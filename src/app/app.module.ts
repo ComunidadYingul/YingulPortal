@@ -33,7 +33,6 @@ import { IcdetailComponent } from './component/items-category/icdetail/icdetail.
 import { ItemsCategoryService } from './service/items-category.service';
 import { IdetailComponent } from './component/item-detail/idetail/idetail.component';
 import { QueryComponent } from './component/query/query.component';
-
 @NgModule({
   declarations: [
     AppComponent,

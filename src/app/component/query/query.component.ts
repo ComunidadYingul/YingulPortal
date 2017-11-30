@@ -14,6 +14,8 @@ export class QueryComponent implements OnInit {
   answer: string;
   query:Object;
   msg:string;
+  queryQuery:string="";
+  popup:boolean=true;
   constructor(private router: Router,private queryService : QueryServiceService) { 
     
   }
@@ -42,14 +44,9 @@ export class QueryComponent implements OnInit {
     );
   }
   postAnswerQuery(query:Object){
-    this.query=Object.assign(query, {"answer":this.answer,"yng_Item":null,"user":null});
-    this.queryService.postAnswerQuery(this.query).subscribe(
-			res => {
-            this.msg = JSON.parse(JSON.stringify(res))._body;
-            this.redirectTo();
-      		},
-      		error => console.log(error)
-    )
+    this.popup=false;
+    this.queryQuery=JSON.parse(JSON.stringify(query)).query;
+    this.query=Object.assign(query, {"answer":this.answer});
   }
 
   redirectTo(){
@@ -60,5 +57,19 @@ export class QueryComponent implements OnInit {
     else{
       alert(this.msg);
     } 
+  }
+  cancel(){
+    this.answer="";
+    this.popup=true;
+  }
+  answerTo(){
+    this.query=Object.assign(this.query, {"answer":this.answer,"yng_Item":null,"user":null});
+    this.queryService.postAnswerQuery(this.query).subscribe(
+			res => {
+            this.msg = JSON.parse(JSON.stringify(res))._body;
+            this.redirectTo();
+      		},
+      		error => console.log(error)
+    )
   }
 }

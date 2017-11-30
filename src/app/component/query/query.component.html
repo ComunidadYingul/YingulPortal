@@ -31,15 +31,6 @@
                                   <div id="comment-section" class="comment-single col-md-12">
                                       <h4 class="m-b-0 m-t-20">{{queriesNumber}} Preguntas</h4>
                                       <hr class="m-t-20 m-b-20">
-                                      <div class="md-float-material">
-                                            <div class="input-group input-group-button">
-                                                <span class="input-group-addon">
-                                                    <i class="icofont icofont-comment"></i>
-                                                </span>
-                                                <input type="text" class="form-control" name="answer" [(ngModel)]="answer" placeholder="Redactar respuesta">
-                                            </div>
-                                          </div>
-                                      
                                       <div>
                                           <ul class="media-list">
                                               <li class="media" *ngFor="let query of queries">
@@ -52,7 +43,7 @@
                                                       <h6 class="media-heading">{{query.user.username}}
                                                         <span>el: {{query.date}}</span>.  sobre:  <span>{{query.yng_Item.name}}</span>
                                                       </h6>
-                                                      <p>{{query.query}}</p>
+                                                      <p>{{query.query}} ?</p>
                                                       <!--<div class="blog-u-comment">
                                                           <span>115 <i class="icofont icofont-curved-up"></i><i class="icofont icofont-curved-down"></i></span>
                                                           <span class="blog-reply"><a href="#!">Reply</a></span><span class="blog-edit"><a href="#!">Edit</a> </span>
@@ -85,3 +76,29 @@
   </div>
 </div>
 <!-- Main-body end -->
+<div class="popup" [hidden]="popup">
+    <div class="page-header-title">
+        <h3>RESPONDER</h3>
+        <hr class="m-t-20 m-b-20">
+        <h4>{{queryQuery}} ?</h4>
+    </div>
+    <div class="md-float-material">
+        <div class="input-group input-group-button">
+            <span class="input-group-addon">
+                <i class="icofont icofont-comment"></i>
+            </span>
+            <input type="text" class="form-control" name="answer" [(ngModel)]="answer" placeholder="Redactar respuesta" required>
+        </div>
+    </div>
+    <hr class="m-t-20 m-b-20">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="answerTo()">Responder
+                </button>
+                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="cancel()">Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
