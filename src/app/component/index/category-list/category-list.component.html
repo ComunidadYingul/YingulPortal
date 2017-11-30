@@ -1,0 +1,47 @@
+<div class="main-body">
+  <div class="page-wrapper">
+    <!-- Page header start -->
+    <div class="page-header">
+      <div class="page-header-title">
+          <h4>¡Encuentra lo que buscas</h4>
+          <span>Hay millones de productos publicados, las mejores marcas y los precios mas bajos.</span>
+      </div>
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action">Clasificados</a>
+    
+            <a class="list-group-item list-group-item-action list-group-item-success" routerLink="/signup">Autos, Motos y Otros</a>
+            <a class="list-group-item list-group-item-action list-group-item-success" routerLink="/signup">Inmuebles</a>
+            <a class="list-group-item list-group-item-action list-group-item-success" routerLink="/signup">Servicios</a>
+          </div>
+          <br/>
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action">Marcas</a>
+    
+            <a class="list-group-item list-group-item-action list-group-item-warning" routerLink="/signup">Tiendas oficiales</a>
+          </div>
+        </div>  
+        <div class="col-lg-10">
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action">Categorias</a>
+            <ul class="nav" >
+              <div class="col-lg-3">
+                    <a *ngFor="let category of categoryList1" class="list-group-item list-group-item-action list-group-item-info" href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
+              </div>
+              <div class="col-lg-3" >
+                  <a *ngFor="let category of categoryList2" class="list-group-item list-group-item-action list-group-item-info"  href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
+              </div>
+              <div class="col-lg-3" >
+                  <a *ngFor="let category of categoryList3" class="list-group-item list-group-item-action list-group-item-info"  href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
+              </div>
+              <div class="col-lg-3" >
+                  <a *ngFor="let category of categoryList4" class="list-group-item list-group-item-action list-group-item-info"  href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

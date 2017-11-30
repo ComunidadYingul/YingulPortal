@@ -1,0 +1,423 @@
+<div class="progress" style="height: 1px;">
+        <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="20" aria-valuemin="20" aria-valuemax="100"></div>
+      </div>
+      <div class="progress" style="height: 20px;">
+        <div class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="20" aria-valuemin="20" aria-valuemax="100"></div>
+      </div>
+<br/>
+<h5>Categoria</h5><br/>
+<strong>Servicios</strong>
+<strong *ngFor="let category of categoryList">
+        /{{category.category.name}}
+</strong>
+<form class="md-float-material card-block" enctype="multipart/form-data">
+    <div ngSwitch="{{typeCat}}">
+        <div *ngSwitchCase="'Service'">
+                <h5>Describe tu Servicio</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                        </div>
+                    </div>
+                </div>
+                <h5>Video de tu Servicio</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video">
+                        </div>
+                    </div>
+                </div>
+                <h5>Fotos de tu Servicio</h5>
+        </div>
+        <div *ngSwitchCase="'Product'">
+                <h5>Describe tu Producto</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Titulo Ej: Camisa Lacoste Hombre Manga Laraga" name="title" [(ngModel)]="title">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                        </div>
+                    </div>
+                </div>
+                <h5>Video de tu Producto</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video"
+                            >
+                            
+                        </div>
+                    </div>
+                </div>            
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <h5>Indica la condición de tu producto</h5>                                
+                        </div>                
+                    </div>
+                    <div class="col-lg-6">
+                            <div class="input-group">
+                                <h5>Tipo y condiciones de venta *</h5>
+                            </div>
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" id="option2" aria-label="Radio button for following text input">
+                            </span>
+                            <select class="form-control form-control-primary" name="productCondition" [(ngModel)]="productCondition">
+                                <option [value]="1" >Nuevo</option>
+                                <option  [value]="0" >Usado</option>
+                            </select>
+                       
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                            <div class="input-group">
+                            <span class="input-group-addon">
+                                    <input type="radio" id="option2" aria-label="Radio button for following text input">
+                            </span>
+                                <select class="form-control form-control-primary" name="productSaleConditions" [(ngModel)]="productSaleConditions">
+                                    <option [value]="1" >Precio fijo</option>
+                                    <option  [value]="0" >Subasta</option>
+                                </select>
+                            </div>
+                        </div>
+                </div>
+            
+        
+        
+        
+            <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
+                        </div>
+                    </div>
+                    
+            </div>
+            <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <h5>Formas de entrega</h5>
+                            
+                        </div>                
+                    </div>
+                    <div class="col-lg-6">
+                            <div class="input-group">
+                                <h5>Medios de pago</h5>
+                            </div>
+                    </div>
+            </div>
+        
+            <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" id="option2" aria-label="Radio button for following text input">
+                            </span>
+                            <select class="form-control form-control-primary" name="productFormDelivery" [(ngModel)]="productFormDelivery">
+                                <option [value]="1" >Ofrecer envíos por Yingul Envíos</option>
+                                <option  [value]="0" >También ofrecer retiro en persona</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input type="radio" id="option2" aria-label="Radio button for following text input">
+                            </span>
+                            <select class="form-control form-control-primary" name="productPaymentMethod" [(ngModel)]="productPaymentMethod">
+                                <option [value]="1" >Aceptar pagos solo por Yingul</option>
+                                <option [value]="0" >Aceptar pagos por Yingul y cobro en persona</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        
+              
+
+                <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <h5>Garantía</h5>
+                                
+                            </div>                
+                        </div>
+                        <div class="col-lg-6">
+                                <div class="input-group">
+                                    <h5>Pago del envió</h5>
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                            <input type="radio" id="option2" aria-label="Radio button for following text input">
+                                        </span>
+                                        <select class="form-control form-control-primary" name="productWarranty" [(ngModel)]="productWarranty">
+                                            <option [value]="1" >Con garantía</option>
+                                            <option [value]="0" >Sin garantía</option>
+                                        </select>                        
+                            </div>                
+                        </div>
+
+                        <div class="col-lg-6">
+                                <div class="input-group">
+                                        <span class="input-group-addon">
+                                                <input type="radio" id="option2" aria-label="Radio button for following text input">
+                                            </span>
+                                            <select class="form-control form-control-primary" name="productPagoEnvio" [(ngModel)]="productPagoEnvio">
+                                                <option [value]="1" >Pagado por él comprador</option>
+                                                <option [value]="0" >Pagado por él vendedor</option>
+                                            </select>                        
+                                </div>                
+                        </div>
+        
+                </div>
+            <h5>Fotos de tu Producto</h5>           
+        </div>
+        <div *ngSwitchCase="'Property'">
+                <div class="row">
+                        <div class="col-sm-6">
+                            <h5>Describe tu Inmueble</h5>
+                        </div>
+                        <div class="col-sm-6">
+                           
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <input type="text" class="form-control" placeholder="Titulo Ej: Casa de 5 ambientes y 2 baños" name="title" [(ngModel)]="title">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                                </div>
+                        </div>
+                       
+                    </div>
+                    <h5>Video de tu Inmueble</h5>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                        <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video">
+                                    </div>
+                            </div>
+                    </div>
+                <h5>Datos de Inmueble</h5>
+                
+                <p class="ch-form-hint">* Datos obligatorios</p>  
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
+                            </div>
+                    </div>
+            
+                </div>
+
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Años de Antigüedad" name="propertyYear" [(ngModel)]="propertyYear">
+                            </div>
+                        </div>
+
+                
+                    </div>
+                    <h5>Fotos de tu Inmueble</h5>
+        </div>
+           
+        <div *ngSwitchCase="'Motorized'">
+                <h5>Describe tu Vehículo</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Ej.: Volkswagen Golf Motor 2.0 2006 Azul 5 puertas" name="title" [(ngModel)]="title">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
+                            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                        </div>
+                    </div>
+                </div>
+                <h5>Video de tu Vehículo</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video">
+                        </div>
+                    </div>
+                </div>
+
+                
+                <h5>Datos de Vehículo</h5>
+                
+                <p class="ch-form-hint">* Datos obligatorios</p>        
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="motorizedYear" [(ngModel)]="motorizedYear">
+                        </div>
+                    </div>
+            
+                </div>
+
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <input type="text" class="form-control" placeholder="Modelo" name="motorizedModel" [(ngModel)]="motorizedModel">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <ul class="ch-form-options ch-box-list ch-leftcolumn">
+                                    <li class="ch-form-row">
+                                        <input type="checkbox" name="motorizedUnicoDue" id="motorizedUnicoDue" class="" [(ngModel)]="motorizedUnicoDue">
+                                        <label for="motorizedUnicoDue" class="">Único dueño</label>
+                                    </li>
+                                </ul>
+                        </div>
+                   
+                </div>
+                <h5>Fotos de tu Automovil</h5>
+
+
+
+
+        </div>
+         
+</div>
+
+
+
+
+
+    <!--aqui pondremos el codigo para cargar imagenes con previsualizacion -->
+
+
+
+
+    <div id="spinner" class="spinner">
+        <label>Espere por favor</label>
+    </div>
+    <br/>
+    <strong>Foto Principal</strong>
+    <br/>
+    <div class="row">
+        <div id="image-preview1" class="col-sm-2">
+            <label for="image-upload1" id="image-label1">Foto Principal</label>
+            <input type="file" name="image-upload1" id="image-upload1" />
+        </div>
+        <div id="image-preview2" class="col-sm-2">
+            <label for="image-upload2" id="image-label2">Foto</label>
+            <input type="file" name="image-upload2" id="image-upload2" />
+        </div>
+        <div id="image-preview3" class="col-sm-2">
+            <label for="image-upload3" id="image-label3">Foto</label>
+            <input type="file" name="image-upload3" id="image-upload3" />
+        </div>
+        <div id="image-preview4" class="col-sm-2">
+            <label for="image-upload4" id="image-label4">Foto</label>
+            <input type="file" name="image-upload4" id="image-upload4" />
+        </div>
+        <div id="image-preview5" class="col-sm-2">
+            <label for="image-upload5" id="image-label5">Foto</label>
+            <input type="file" name="image-upload5" id="image-upload5" />
+        </div>
+        <div id="image-preview6" class="col-sm-2">
+            <label for="image-upload6" id="image-label6">Foto</label>
+            <input type="file" name="image-upload6" id="image-upload6" />
+        </div>
+        <div id="image-preview7" class="col-sm-2">
+            <label for="image-upload7" id="image-label7">Foto</label>
+            <input type="file" name="image-upload7" id="image-upload7" />
+        </div>
+        <div id="image-preview8" class="col-sm-2">
+            <label for="image-upload8" id="image-label8">Foto</label>
+            <input type="file" name="image-upload8" id="image-upload8" />
+        </div>
+        <div id="image-preview9" class="col-sm-2">
+            <label for="image-upload9" id="image-label9">Foto</label>
+            <input type="file" name="image-upload9" id="image-upload9" />
+        </div>
+        <div id="image-preview10" class="col-sm-2">
+            <label for="image-upload10" id="image-label10">Foto</label>
+            <input type="file" name="image-upload10" id="image-upload10" />
+        </div>
+        <div id="image-preview11" class="col-sm-2">
+            <label for="image-upload11" id="image-label11">Foto</label>
+            <input type="file" name="image-upload11" id="image-upload11" />
+        </div>
+        <div id="image-preview12" class="col-sm-2">
+            <label for="image-upload12" id="image-label12">Foto</label>
+            <input type="file" name="image-upload12" id="image-upload12" />
+        </div>
+    </div>
+    <br/>
+    <!--hasta aqui el codigo -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendDetail()">Siguiente
+                </button>
+                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="back()">Atras
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>
+

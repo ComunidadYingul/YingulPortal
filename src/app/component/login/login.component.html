@@ -1,0 +1,75 @@
+<section class=" p-fixed d-flex text-center bg-primary common-img-bg">
+  <!-- Container-fluid starts -->
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-12">
+              <!-- Authentication card start -->
+              <div class="login-card card-block auth-body">
+                  <form class="md-float-material" (ngSubmit)="onSubmit()" [hidden]="loggedIn">
+                      <div class="text-center">
+                          <img src="assets/images/auth/logo.png" alt="logo.png">
+                      </div>
+                      <div class="auth-box">
+                        <div class="row m-b-20">
+                          <div class="col-md-3">
+                              <h3 class="text-center txt-primary">Ingresar</h3>
+                          </div>
+                          <div class="col-md-9">
+                              <p class="text-inverse m-t-25 text-left">No tiene cuenta? <a routerLink="/signup"> Regístrese </a> aquí gratis!</p>
+                          </div>
+                        </div>
+                          <hr/>
+                          <div class="input-group">
+                              <input type="text" class="form-control" name="username" [(ngModel)]="username" placeholder="Correo o Nombre de usuario" name="username" required autofocus=""/>
+                              <span class="md-line"></span>
+                          </div>
+                          <div class="input-group">
+                              <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Contraseña" required/>
+                              <span class="md-line"></span>
+                          </div>
+                          <div class="row m-t-25 text-left">
+                              <div class="col-sm-7 col-xs-12">
+                                  <div class="checkbox-fade fade-in-primary">
+                                      <label>
+                                          <input type="checkbox" value="">
+                                          <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                          <span class="text-inverse">Recordarme</span>
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="col-sm-5 col-xs-12 forgot-phone text-right">
+                                  <a href="forgot-password.html" class="text-right f-w-600 text-inverse"> Olvido su contraseña?</a>
+                              </div>
+                          </div>
+                          <div class="row m-t-30">
+                              <div class="col-md-12">
+                                  <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Ingresar</button>
+                              </div>
+                          </div>
+                          <hr/>
+                          <div class="row">
+                              <div class="col-md-10">
+                                  <p class="text-inverse text-left m-b-0">Gracias y disfruta de nuestro sitio web.</p>
+                                  <p class="text-inverse text-left"><b>Su Equipo de Autentificación</b></p>
+                              </div>
+                              <div class="col-md-2">
+                                  <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                              </div>
+                          </div>
+
+                      </div>
+                  </form>
+                  <!-- end of form -->
+              </div>
+              <!-- Authentication card end -->
+          </div>
+          <!-- end of col-sm-12 -->
+      </div>
+      <!-- end of row -->
+  </div>
+  <!-- end of container-fluid -->
+</section>
+<div [hidden]="!loggedIn">
+  <h2>Welcome to User Portal!</h2>
+</div>
+

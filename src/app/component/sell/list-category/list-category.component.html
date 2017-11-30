@@ -1,0 +1,39 @@
+<div class="progress" style="height: 1px;">
+    <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="20" aria-valuemax="100"></div>
+  </div>
+  <div class="progress" style="height: 20px;">
+    <div class="progress-bar" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="20" aria-valuemax="100"></div>
+  </div>
+<br/>
+<ul class="nav">
+  <ul class="list-group col-md-auto">
+    <li class="nav-item border border-primary " *ngFor="let category of categoryList">
+      <a class="nav-link active text-primary" (click)="getSubCategory(category.categoryId,category)">{{category.name}}</a>
+    </li>
+  </ul>
+  <ul class="list-group col-md-auto">
+    <li class="nav-item border border-primary " *ngFor="let subcategory of subCategoryList">
+      <a class="nav-link active text-primary" (click)="getSubSubCategory(subcategory)">{{subcategory.name}}</a>
+    </li>
+  </ul>
+  <ul class="list-group col-md-auto">
+    <li class="nav-item border border-primary " *ngFor="let subsubcategory of subsubCategoryList">
+      <a class="nav-link active text-primary" (click)="getSubSubSubCategory(subsubcategory)">{{subsubcategory.name}}</a>
+    </li>
+  </ul>
+  <ul class="list-group col-md-auto">
+    <li class="nav-item border border-primary " *ngFor="let subsubsubcategory of subsubsubCategoryList">
+      <a class="nav-link active text-primary" (click)="getSubSubSubSubCategory(subsubsubcategory)">{{subsubsubcategory.name}}</a>
+    </li>
+  </ul>
+</ul>
+<br/>
+<div class="text-center">
+    <a href="javascript:location.reload();" type="button" class="btn btn-warning waves-effect waves-light">Cancelar
+    </a>
+</div>
+<ul class="list-group col-md-auto">
+    <li class="nav-item border border-primary " *ngFor="let image of imageList">
+     <a></a>
+    </li>
+  </ul>
