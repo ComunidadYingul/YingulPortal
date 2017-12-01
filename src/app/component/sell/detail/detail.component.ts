@@ -21,6 +21,7 @@ export class DetailComponent implements OnInit {
   @Output() detailItemS = new EventEmitter();
   @Output() detailProduct = new EventEmitter();
   @Input()  typeCat:any;
+  public typeCatEs:string ="Servicio";
 
 
   title:string;
@@ -63,7 +64,15 @@ public item: Item=new Item();
   }
 
   ngOnInit() {
-    
+    if(this.typeCat=="Product"){
+      this.typeCatEs="Producto";
+    }
+    if(this.typeCat=="Property"){
+      this.typeCatEs="Inmueble";  
+    }
+    if(this.typeCat=="Motorized"){
+      this.typeCatEs="Vehículo";
+    }  
   }
   sendDetail(){
     this.uploadImage();
@@ -87,7 +96,7 @@ public item: Item=new Item();
       this.property.$propertyDuildedArea=this.propertyDuildedArea;
       this.property.$propertyTotalArea=this.propertyTotalArea;
       this.property.$propertyYear=this.propertyYear
-      this.detailProduct.emit(this.property);      
+      this.detailProduct.emit(this.property);    
     }
     if(this.typeCat=="Motorized"){
       this.motorized.$motorizedBrand=this.motorizedBrand;
@@ -96,10 +105,8 @@ public item: Item=new Item();
       this.motorized.$motorizedUnicoDue=this.motorizedUnicoDue;
      // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
      this.detailProduct.emit(this.motorized);
-
-      
-
     }  
+    
 
   }
   back(){

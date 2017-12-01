@@ -2,6 +2,8 @@ import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ItemDetailService } from '../../../service/item-detail.service';
 import { Router } from '@angular/router';
 import { Service } from '../../../model/service';
+import { Item } from '../../../model/item';
+import { Product } from '../../../model/product';
 import { Person } from '../../../model/person';
 @Component({
   selector: 'app-idetail',
@@ -11,7 +13,9 @@ import { Person } from '../../../model/person';
 export class IdetailComponent implements OnInit {
   @Input('itemId') localItemId:number;
   itemType:string;
+  Item:Item=new Item();
   Service:Service= new Service();
+  Product:Product= new Product();
   Seller:Person= new Person();
   usernameSeller:string;
   itemsBySeller: Object[]=[];
@@ -26,51 +30,67 @@ export class IdetailComponent implements OnInit {
   constructor(private itemDetailService : ItemDetailService, private router : Router){ 
     
   }
-
   ngOnInit() {
     this.itemDetailService.getItemType(this.localItemId).subscribe(
 			res => {
             this.itemType = JSON.parse(JSON.stringify(res))._body;
             this.getItem(this.itemType,this.localItemId);
+            this.getItemById();
       		},
       		error => console.log(error)
-    );
-    //Daniel oredanar la llamada a los metodos de este controlador 
-    //creo que toda las llamadas a los metodos debene estar qui pero no se si funcionen
+    ); 
     this.getImageByItem();
     this.getCategoriesByItem();
     this.getQueryByItem();
+    this.getSeller();
+  }
+  getItemById(){
+    this.itemDetailService.getItemById(this.localItemId).subscribe(
+			res => {
+            this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);             
+      		},
+      		error => console.log(error)
+    );
   }
   getItem(itemType:string, itemId: number){
     this.itemDetailService.getItem(itemType,itemId).subscribe(
 			res => {
-          //aqui poner un switch por que no siempre devolvera un service
-            this.Service = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(JSON.stringify(this.Service));
-            // tener cuidado de seguir llamando a los demas metodos de esta clase
-            this.getSeller(this.Service);
+            switch (itemType) {
+              case "Servicio":
+                this.Service = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                console.log(JSON.stringify(this.Service));
+                break;
+              case "Producto":
+                this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                console.log(JSON.stringify(this.Product));
+                break;
+              case "Inmueble":
+              
+                break;
+              case "Vehiculo":
+
+                break;
+              default:
+                alert("error");
+            }//aqui poner un switch para los demas casos
       		},
       		error => console.log(error)
     )
   }
-  getSeller(service:Service){
-
-    this.usernameSeller=JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(service)).yng_Item)).user)).username);
-    this.itemDetailService.getSeller(this.usernameSeller).subscribe(
+  getSeller(){
+    this.itemDetailService.getSeller(this.localItemId).subscribe(
 			res => {
             this.Seller = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(this.Seller);
+            this.usernameSeller=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.Seller)).yng_User)).username));
+            this.getItemsBySeller();
       		},
       		error => console.log(error)
     );
-    this.getItemsBySeller();
-
   }
   getItemsBySeller() {
     this.itemDetailService.getItemsBySeller(this.usernameSeller).subscribe(
 			res => {
             this.itemsBySeller = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(this.itemsBySeller);
       		},
       		error => console.log(error)
     );
@@ -80,7 +100,6 @@ export class IdetailComponent implements OnInit {
     this.itemDetailService.getImageByItem(this.localItemId).subscribe(
 			res => {
             this.imageByItem = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(this.imageByItem);
       		},
       		error => console.log(error)
     );

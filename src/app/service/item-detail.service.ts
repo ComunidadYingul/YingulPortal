@@ -20,9 +20,8 @@ export class ItemDetailService {
     //la url determina el tipo de item que estamos solicitando al backend
     return this.http.get(url);
   }
-  getSeller(username:string){
-    username=username.replace(/['"]+/g, '');
-    let url = "http://localhost:8080/item/Seller/"+username;
+  getSeller(itemId:number){
+    let url = "http://localhost:8080/item/Seller/"+itemId;
     return this.http.get(url);
   }
   getItemsBySeller(username:string){
@@ -40,6 +39,10 @@ export class ItemDetailService {
   }
   getQueryByItem(itemId : number){
     let url = "http://localhost:8080/item/Query/"+itemId;
+    return this.http.get(url);
+  }
+  getItemById(itemId : number){
+    let url = "http://localhost:8080/item/ItemById/"+itemId;
     return this.http.get(url);
   }
 

@@ -2,14 +2,14 @@ import { Item } from './item';
 import { Province } from './province';
 export class Product{
     private product_id:number;
-	private productCondition:string;
-	private productSaleConditions:string;
-    private productQuantity:string;
-    private productFormDelivery:string;
-    private productPaymentMethod:string;
-	private productWarranty:string;
-    private productPagoEnvio:string;
-    private yng_Item:Item =new Item();
+	public productCondition:string;
+	public productSaleConditions:string;
+    public productQuantity:string;
+    public productFormDelivery:string;
+    public productPaymentMethod:string;
+	public productWarranty:string;
+    public productPagoEnvio:string;
+    public yng_Item:Item =new Item();
 	
 
 

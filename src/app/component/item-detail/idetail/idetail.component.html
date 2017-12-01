@@ -35,7 +35,7 @@
                                       <div class="col-lg-12">
                                           <div id="big_banner">
                                               <div class="port_big_img">
-                                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Service.yng_Item.principalImage}}" class="img-fluid o-hidden" alt="">
+                                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" class="img-fluid o-hidden" alt="">
                                               </div>
                                               <!--ngfor para las demas imagenes-->
                                               <div class="port_big_img" *ngFor="let imageItem of imageByItem">
@@ -47,7 +47,7 @@
                                       <div class="col-lg-12 product-right">
                                           <div id="small_banner">
                                               <div>
-                                                  <img class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Service.yng_Item.principalImage}}" alt="small-details">
+                                                  <img class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" alt="small-details">
                                               </div>
                                               <!--ngfor para las demas imagenes-->
                                               <div *ngFor="let imageItem of imageByItem">
@@ -64,11 +64,11 @@
                                   <div class="row">
                                       <div>
                                           <div class="col-lg-12">
-                                              <span class="txt-muted d-inline-block">Codigo de producto: <a href="#!"> {{localItemId}} </a> </span>
-                                              <span class="f-right">Disponibilidad : <a href="#!"> En Stock </a> </span>
+                                              <span class="txt-muted d-inline-block">Codigo de {{itemType}}: <a href="#!"> {{localItemId}} </a> </span>
+                                              <span class="f-right">Disponibilidad : <a href="#!">{{Product.productQuantity}} En Stock </a> </span>
                                           </div>
                                           <div class="col-lg-12">
-                                              <h4 class="pro-desc">{{Service.yng_Item.name}}</h4>
+                                              <h4 class="pro-desc">{{Item.name}}</h4>
                                           </div>
                                           <div class="col-lg-12">
                                               <span class="txt-muted"> Brand : Denim </span>
@@ -83,11 +83,11 @@
                                               </select>
                                           </div>
                                           <div class="col-lg-7 col-xs-12">
-                                              <span class="text-primary product-price"><i class="icofont icofont-cur-dollar"></i>{{Service.yng_Item.price}}</span> <span class="done-task txt-muted"><!--aqui va el precio original y el otro es precio de oferta--></span>
+                                              <span class="text-primary product-price"><i class="icofont icofont-cur-dollar"></i>{{Item.price}}</span> <span class="done-task txt-muted"><!--aqui va el precio original y el otro es precio de oferta--></span>
                                               <hr>
-                                              <p> {{Service.yng_Item.description}}<br/>
-                                                    {{Service.yng_Item.yng_Ubication.yng_Province.name}} {{Service.yng_Item.yng_Ubication.yng_City.name}} {{Service.yng_Item.yng_Ubication.yng_Barrio.name}} {{Service.yng_Item.yng_Ubication.street}} {{Service.yng_Item.yng_Ubication.number}}
-                                                    Codigo Postal: {{Service.yng_Item.yng_Ubication.postalCode}} {{Service.yng_Item.yng_Ubication.aditional}}
+                                              <p> {{Item.description}}<br/>
+                                                    {{Item.yng_Ubication.yng_Province.name}} {{Item.yng_Ubication.yng_City.name}} {{Item.yng_Ubication.yng_Barrio.name}} {{Item.yng_Ubication.street}} {{Item.yng_Ubication.number}}
+                                                    Codigo Postal: {{Item.yng_Ubication.postalCode}} {{Item.yng_Ubication.aditional}}
                                               </p>
                                               <hr>
                                               <h6 class="f-16 f-w-600 m-t-10 m-b-10">Cantidad</h6>
@@ -161,17 +161,18 @@
                           <!--aqui va toda la descripcion del item -->
                           <div class="page-header">
                             <div class="page-header-title">
-                                <h4>Descripcion del {{itemType}} {{Service.yng_Item.name}}</h4>
+                                <h4>Descripcion del {{itemType}} {{Item.name}}</h4>
                             </div>
                           </div>
-                            <p> {{Service.yng_Item.description}}
+                            <p> {{Item.description}}
                             </p>
                           <div class="card-block">
                                 <div class="view-info">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="general-info">
-                                                <div class="row">
+                                            <div class="general-info" ngSwitch="{{itemType}}">
+                                                <!--principio del detalle del servicio-->
+                                                <div class="row" *ngSwitchCase="'Servicio'">
                                                     <div class="col-lg-12 col-xl-6">
                                                         <table class="table m-0">
                                                             <tbody>
@@ -181,7 +182,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">Video</th>
-                                                                    <td><a href="{{Service.yng_Item.video}}">{{Service.yng_Item.video}}</a></td>
+                                                                    <td><a href="{{Item.video}}">{{Item.video}}</a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -192,33 +193,39 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <th scope="row">Precio</th>
-                                                                    <td>{{Service.yng_Item.price}}</td>
+                                                                    <td>{{Item.price}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Disponible en:</th>
+                                                                    <td><a *ngFor="let zone of Service.cobertureZone"><a>{{zone.province.name}}, </a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                     <!-- end of table col-lg-6 -->
                                                 </div>
-                                                <!-- end of row -->
-                                                <div class="row">
+                                                <!--fin del detalle del servicio-->
+
+                                                <!--principio del detalle del producto-->
+                                                <div class="row" *ngSwitchCase="'Producto'">
                                                     <div class="col-lg-12 col-xl-6">
                                                         <table class="table m-0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th scope="row">Dirección del {{itemType}}</th>
-                                                                    <td></td>
+                                                                    <th scope="row">Condición del {{itemType}}</th>
+                                                                    <td>{{Product.productCondition}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>{{Service.yng_Item.yng_Ubication.yng_Province.name}} {{Service.yng_Item.yng_Ubication.yng_City.name}} {{Service.yng_Item.yng_Ubication.yng_Barrio.name}}</td>
-                                                                    <td>{{Service.yng_Item.yng_Ubication.street}} {{Service.yng_Item.yng_Ubication.number}}</td>
+                                                                    <th scope="row">Cantidad en Stock</th>
+                                                                    <td>{{Product.productQuantity}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th scope="row">Teléfono principal</th>
-                                                                    <td>{{Seller.yng_User.phone}}</td>
+                                                                    <th scope="row">Forma de pago</th>
+                                                                    <td>{{Product.productPaymentMethod}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th scope="row">Sitio web</th>
-                                                                    <td>{{Seller.yng_User.webSite}}</td>
+                                                                    <th scope="row">Garantia del {{itemType}}</th>
+                                                                    <td>{{Product.productWarranty}}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -228,27 +235,90 @@
                                                         <table class="table">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th scope="row"></th>
-                                                                    <td>.</td>
+                                                                    <th scope="row">Video</th>
+                                                                    <td><a href="{{Item.video}}">{{Item.video}}</a></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th scope="row">Codigo postal</th>
-                                                                    <td>{{Service.yng_Item.yng_Ubication.postalCode}} {{Service.yng_Item.yng_Ubication.aditional}}</td>
+                                                                    <th scope="row">Precio</th>
+                                                                    <td>{{Item.price}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th scope="row">Teléfono</th>
-                                                                    <td>{{Seller.yng_User.phone2}}</td>
+                                                                    <th scope="row">Condiciónes de Venta</th>
+                                                                    <td>{{Product.productSaleConditions}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th scope="row">Zona de cobertura</th>
-                                                                    <td><p *ngFor="let province of Service.cobertureZone">{{province.province.name}}</p></td>
+                                                                    <th scope="row">Forma de entrega</th>
+                                                                    <td>{{Product.productFormDelivery}}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                     <!-- end of table col-lg-6 -->
                                                 </div>
-                                                <!-- end of row -->
+                                                <!--fin del detalle del producto-->
+
+                                                <!--principio del detalle del inmueble-->
+                                                <div class="row" *ngSwitchCase="'Inmueble'">
+                                                    <div class="col-lg-12 col-xl-6">
+                                                        <table class="table m-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row">Correo del {{itemType}}</th>
+                                                                    <td>{{Service.emailService}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Video</th>
+                                                                    <td><a href="{{Item.video}}">{{Item.video}}</a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end of table col-lg-6 -->
+                                                    <div class="col-lg-12 col-xl-6">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row">Precio</th>
+                                                                    <td>{{Item.price}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end of table col-lg-6 -->
+                                                </div>
+                                                <!--fin del detalle del inmueble-->
+
+                                                <!--principio del detalle del vehiculo-->
+                                                <div class="row" *ngSwitchCase="'Vehiculo'">
+                                                    <div class="col-lg-12 col-xl-6">
+                                                        <table class="table m-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row">Correo del {{itemType}}</th>
+                                                                    <td>{{Service.emailService}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Video</th>
+                                                                    <td><a href="{{Item.video}}">{{Item.video}}</a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end of table col-lg-6 -->
+                                                    <div class="col-lg-12 col-xl-6">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row">Precio</th>
+                                                                    <td>{{Item.price}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end of table col-lg-6 -->
+                                                </div>
+                                                <!--fin del detalle del vehiculo-->
+
                                             </div>
                                             <!-- end of general info -->
                                         </div>
@@ -446,7 +516,7 @@
                                 <!-- Page-header start -->
                                 <div class="page-header">
                                     <div class="page-header-title">
-                                        <h4>Preguntas sobre el {{itemType}} {{Service.yng_Item.name}}</h4>
+                                        <h4>Preguntas sobre el {{itemType}} {{Item.name}}</h4>
                                     </div>
                                 </div>
                                 <!-- Page-header end -->
@@ -512,8 +582,8 @@
                                                                 <div>
                                                                     <h4 class="m-b-10 text-primary">Acerca de {{Seller.name}} {{Seller.lastname}}</h4>
                                                                     <h6 class="m-b-5">Dueñ@ del {{itemType}}</h6>
-                                                                    <p class="m-b-5">{{Service.yng_Item.user.email}}</p>
-                                                                    <h5> <a href="#" class="text-primary"><i class="icofont icofont-circled-right" aria-hidden="true"></i> {{Service.yng_Item.user.webSite}}</a> </h5>
+                                                                    <p class="m-b-5">{{Item.user.email}}</p>
+                                                                    <h5> <a href="#" class="text-primary"><i class="icofont icofont-circled-right" aria-hidden="true"></i> {{Item.user.webSite}}</a> </h5>
                                                                 </div>
                                                             </div>
                                                         </div>

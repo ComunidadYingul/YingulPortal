@@ -29,6 +29,7 @@ export class SellComponent implements OnInit {
   public url:string = '';
   //tipo de item
   public type:String;
+  public typeEs:String="";
   //listcategory
   public category:object[];
   //detail
@@ -62,6 +63,18 @@ export class SellComponent implements OnInit {
   }
   typeItemSe(ev){
     this.type=ev;
+    if(this.type=="Service"){
+      this.typeEs="Servicio";
+    }
+    if(this.type=="Product"){
+      this.typeEs="Producto";
+    }
+    if(this.type=="Motorized"){
+      this.typeEs="Vehículo";
+    }
+    if(this.type=="Property"){
+      this.typeEs="Inmueble";
+    }
     this.url=ev+"/0";
     if(this.type == '') {
       this.hidType=false;
