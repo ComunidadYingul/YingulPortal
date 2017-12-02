@@ -200,22 +200,24 @@ export class PriceComponent implements OnInit {
   back(){
     this.Back.emit('back');
   }
-
-  check(province:Province){
-    if(province){
-      if(this.cobertureZone.indexOf({"province":province})==-1){
-          this.cobertureZone.push({"province":province});
+  check(province:Province){   
+    if(this.cobertureZone.length==0){
+      this.cobertureZone.push({"province":province});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.cobertureZone.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.cobertureZone[i])).province) == JSON.stringify(province)) {
+          this.cobertureZone.splice(i, 1);   
+          aux=true;
+          break;    
+        }
       }
-      else{
-        const index: number = this.cobertureZone.indexOf({"province":province});
-        if (index !== -1) {
-            this.cobertureZone.splice(index, 1);
-        }  
+      if(!aux){
+        this.cobertureZone.push({"province":province});
       }
-    }
+    } 
   }
-
-
+  
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;
 

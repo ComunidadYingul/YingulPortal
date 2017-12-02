@@ -5,6 +5,8 @@ import { Service } from '../../../model/service';
 import { Item } from '../../../model/item';
 import { Product } from '../../../model/product';
 import { Person } from '../../../model/person';
+import { Motorized } from '../../../model/Motorized';
+import { Property } from '../../../model/Property';
 @Component({
   selector: 'app-idetail',
   templateUrl: './idetail.component.html',
@@ -16,6 +18,8 @@ export class IdetailComponent implements OnInit {
   Item:Item=new Item();
   Service:Service= new Service();
   Product:Product= new Product();
+  Motorized:Motorized= new Motorized();
+  Property:Property= new Property();
   Seller:Person= new Person();
   usernameSeller:string;
   itemsBySeller: Object[]=[];
@@ -58,17 +62,15 @@ export class IdetailComponent implements OnInit {
             switch (itemType) {
               case "Servicio":
                 this.Service = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log(JSON.stringify(this.Service));
                 break;
               case "Producto":
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log(JSON.stringify(this.Product));
                 break;
               case "Inmueble":
-              
+                this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body)
                 break;
               case "Vehiculo":
-
+                this.Motorized = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                 break;
               default:
                 alert("error");

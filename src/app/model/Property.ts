@@ -5,10 +5,24 @@ export class Property{
 	private propertyTotalArea:string;
 	private propertyDuildedArea:string;
     private propertyYear:string;
-    //private propertyBath:string;
-    //private productPaymentMethod:string;
-	//private propertyGarages:string;
-    //private productPagoEnvio:string;
+	private propertyAmenities:Object[];
+
+	public get $propertyAmenities(): Object[] {
+		return this.propertyAmenities;
+	}
+
+	public set $propertyAmenities(value: Object[]) {
+		this.propertyAmenities = value;
+	}
+
+	public get $propertyAmbient(): Object[] {
+		return this.propertyAmbient;
+	}
+
+	public set $propertyAmbient(value: Object[]) {
+		this.propertyAmbient = value;
+	}
+	private propertyAmbient:Object[];
     private yng_Item:Item =new Item();
 
 	public get $propertyId(): number {

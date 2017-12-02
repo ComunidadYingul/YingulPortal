@@ -7,6 +7,17 @@ import { Product } from '../../../model/product';
 import { Property } from '../../../model/Property';
 import { Motorized } from '../../../model/Motorized';
 
+import { Security } from '../../../model/security';
+import { Confort } from '../../../model/confort';
+import {  Sound } from '../../../model/Sound';
+import { Exterior } from '../../../model/exterior';
+import { Equipment } from '../../../model/equipment';
+import { Amenities } from '../../../model/amenities';
+import { Ambient } from '../../../model/Ambient';
+import { SellService } from '../../../service/sell.service'
+import { error } from 'util';
+import { Jsonp } from '@angular/http/src/http';
+
 
 @Component({
   selector: 'app-detail',
@@ -23,6 +34,43 @@ export class DetailComponent implements OnInit {
   @Input()  typeCat:any;
   public typeCatEs:string ="Servicio";
 
+
+
+  securityList: Object[];
+  confortList:Object[];
+  soundList:Object[];
+  exteriorList:Object[];
+  equipmentList:Object[];
+
+  amenitiesList:Object[];
+  ambientList:Object[];
+
+  public security:Security = new Security();
+  public confort:Confort=new Confort();
+  public sound:Sound=new Sound();
+  public exterior:Exterior=new Exterior();
+  public equipment:Equipment=new Equipment();
+
+  public amenities:Amenities=new Amenities();
+  public ambient:Ambient= new Ambient();
+
+
+
+  public motSecurity:Object[]=[];
+  public motConfort:Object[]=[];
+  public motSound:Object[]=[];
+  public motExterior:Object[]=[];
+  public motEquipment:Object[]=[];
+
+  public propAmenities:Object[]=[];
+  public propAmbient:Object[]=[];
+
+  datosProductCondition;
+  datosProductSaleConditions;
+  datosProductFormDelivery;
+  datosProductPaymentMethod;
+  datosProductPagoEnvio;
+  datosProductWarranty;
 
   title:string;
   description: string;
@@ -59,7 +107,14 @@ public item: Item=new Item();
 
 
 
-  constructor(private elem:ElementRef) { 
+  constructor(private elem:ElementRef,private sellService: SellService) { 
+        
+    this.datosProductCondition = ["Nuevo","Usado"];
+    this.datosProductFormDelivery=["Ofrecer envíos por Yingul Envíos","También ofrecer retiro en persona"];
+    this.datosProductPagoEnvio=["Pagado por él comprador","Pagado por él vendedor"];
+    this.datosProductPaymentMethod=["Aceptar pagos solo por Yingul","Aceptar pagos por Yingul y cobro en persona"];
+    this.datosProductSaleConditions=["Precio fijo","Subasta"];
+    this.datosProductWarranty=["Con garantía","Sin garantía"];
     
   }
 
@@ -73,6 +128,53 @@ public item: Item=new Item();
     if(this.typeCat=="Motorized"){
       this.typeCatEs="Vehículo";
     }  
+ 
+    this.sellService.getSecurity().subscribe(
+			res => {
+        		this.securityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    )
+    this.sellService.getConfort().subscribe(
+			res => {
+        		this.confortList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    )
+    this.sellService.getSound().subscribe(
+			res => {
+        		this.soundList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    )
+    this.sellService.getExterior().subscribe(
+			res => {
+        		this.exteriorList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    )
+    this.sellService.getEquipment().subscribe(
+			res => {
+        		this.equipmentList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    )
+
+    this.sellService.getAmenities().subscribe(
+			res => {
+        		this.amenitiesList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    ) 
+    
+    
+    this.sellService.getAmbient().subscribe(
+			res => {
+        		this.ambientList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    ) 
+ 
   }
   sendDetail(){
     this.uploadImage();
@@ -95,7 +197,11 @@ public item: Item=new Item();
       //this.property.
       this.property.$propertyDuildedArea=this.propertyDuildedArea;
       this.property.$propertyTotalArea=this.propertyTotalArea;
-      this.property.$propertyYear=this.propertyYear
+      this.property.$propertyYear=this.propertyYear;
+      this.property.$propertyAmenities=this.propAmenities;
+      this.property.$propertyAmbient=this.propAmbient;
+
+
       this.detailProduct.emit(this.property);    
     }
     if(this.typeCat=="Motorized"){
@@ -103,6 +209,12 @@ public item: Item=new Item();
       this.motorized.$motorizedYear=this.motorizedYear;
       this.motorized.$motorizedModel=this.motorizedModel;
       this.motorized.$motorizedUnicoDue=this.motorizedUnicoDue;
+
+      this.motorized.$motorizedSecurity=this.motSecurity;
+      this.motorized.$motorizedConfort=this.motConfort;
+      this.motorized.$motorizedSound=this.motSound;
+      this.motorized.$motorizedExterior=this.motExterior;
+      this.motorized.$motorizedEquipment=this.motEquipment;
      // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
      this.detailProduct.emit(this.motorized);
     }  
@@ -206,5 +318,107 @@ public item: Item=new Item();
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+  }
+
+
+  checkSecurity(security:Security){
+    if(security){
+      if(this.motSecurity.indexOf({"security":security})==-1){
+          this.motSecurity.push({"security":security});
+      }
+      else{
+        const index: number = this.motSecurity.indexOf({"security":security});
+        if (index !== -1) {
+            this.motSecurity.splice(index, 1);
+        }  
+      }
+    }
+
+  }
+
+  checkConfort(confort:Confort){
+    if(confort){
+      if(this.motConfort.indexOf({"confort":confort})==-1){
+          this.motConfort.push({"confort":confort});
+      }
+      else{
+        const index: number = this.motConfort.indexOf({"confort":confort});
+        if (index !== -1) {
+            this.motConfort.splice(index, 1);
+        }  
+      }
+    }    
+  }
+
+  checkSound(sound:Sound){
+    if(sound){
+      if(this.motSound.indexOf({"sound":sound})==-1){
+          this.motSound.push({"sound":sound});
+      }
+      else{
+        const index: number = this.motSound.indexOf({"sound":sound});
+        if (index !== -1) {
+            this.motSound.splice(index, 1);
+        }  
+      }
+    }    
+  }
+  checkExterior(exterior:Exterior){
+    if(exterior){
+      if(this.motExterior.indexOf({"exterior":exterior})==-1){
+          this.motExterior.push({"exterior":exterior});
+      }
+      else{
+        const index: number = this.motExterior.indexOf({"exterior":exterior});
+        if (index !== -1) {
+            this.motExterior.splice(index, 1);
+        }  
+      }
+    }
+
+  }
+
+  checkEquipment(equipment:Equipment){
+    if(equipment){
+      if(this.motEquipment.indexOf({"equipment":equipment})==-1){
+          this.motEquipment.push({"equipment":equipment});
+      }
+      else{
+        const index: number = this.motEquipment.indexOf({"equipment":equipment});
+        if (index !== -1) {
+            this.motEquipment.splice(index, 1);
+        }  
+      }
+    }
+  }
+
+
+  checkAmenities(amenities:Amenities){
+    if(amenities){
+      if(this.propAmenities.indexOf({"amenities":amenities})==-1){
+          this.propAmenities.push({"amenities":amenities});
+      }
+      else{
+        const index: number = this.propAmenities.indexOf({"amenities":amenities});
+        if (index !== -1) {
+            this.propAmenities.splice(index, 1);
+        }  
+      }
+    }
+  }
+  checkAmbient(ambient:Ambient){
+    if(ambient){
+      if(this.propAmbient.indexOf({"ambient":ambient})==-1){
+          this.propAmbient.push({"ambient":ambient});
+      }
+      else{
+        const index: number = this.propAmbient.indexOf({"ambient":ambient});
+        if (index !== -1) {
+            this.propAmbient.splice(index, 1);
+        }  
+      }
+    }
+
+
   }
 }

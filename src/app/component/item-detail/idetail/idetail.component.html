@@ -263,12 +263,20 @@
                                                         <table class="table m-0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th scope="row">Correo del {{itemType}}</th>
-                                                                    <td>{{Service.emailService}}</td>
+                                                                    <th scope="row">Superficie Total del {{itemType}}</th>
+                                                                    <td>{{Property.propertyTotalArea}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">Video</th>
                                                                     <td><a href="{{Item.video}}">{{Item.video}}</a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Antiguedad</th>
+                                                                    <td>{{Property.propertyYear}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Ambientes:</th>
+                                                                    <td><a *ngFor="let ambient of Property.propertyAmbient"><a>{{ambient.ambient.name}}, </a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -280,6 +288,14 @@
                                                                 <tr>
                                                                     <th scope="row">Precio</th>
                                                                     <td>{{Item.price}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Superficie Cubierta</th>
+                                                                    <td>{{Property.propertyDuildedArea}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Comodidades:</th>
+                                                                    <td><a *ngFor="let amenities of Property.propertyAmenities"><a>{{amenities.amenities.name}}, </a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -294,12 +310,24 @@
                                                         <table class="table m-0">
                                                             <tbody>
                                                                 <tr>
-                                                                    <th scope="row">Correo del {{itemType}}</th>
-                                                                    <td>{{Service.emailService}}</td>
+                                                                    <th scope="row">Marca del {{itemType}}</th>
+                                                                    <td>{{Motorized.motorizedBrand}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">Video</th>
                                                                     <td><a href="{{Item.video}}">{{Item.video}}</a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Modelo</th>
+                                                                    <td>{{Motorized.motorizedModel}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Seguridad:</th>
+                                                                    <td><a *ngFor="let security of Motorized.motorizedSecurity"><a>{{security.security.name}}, </a></a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Equipamiento:</th>
+                                                                    <td><a *ngFor="let equipment of Motorized.motorizedEquipment"><a>{{equipment.equipment.name}}, </a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -311,6 +339,23 @@
                                                                 <tr>
                                                                     <th scope="row">Precio</th>
                                                                     <td>{{Item.price}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Año</th>
+                                                                    <td>{{Motorized.motorizedYear}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Unico Dueño</th>
+                                                                    <td   *ngIf="Motorized.motorizedUnicoDue">Si</td>
+                                                                    <td   *ngIf="!Motorized.motorizedUnicoDue">No</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Exterior:</th>
+                                                                    <td><a *ngFor="let exterior of Motorized.motorizedExterior"><a>{{exterior.exterior.name}}, </a></a></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">Sonido:</th>
+                                                                    <td><a *ngFor="let sound of Motorized.motorizedSound"><a>{{sound.sound.name}}, </a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -481,8 +526,6 @@
                                                             <a href="#!" class="hvr-shrink">
                                                                 <!--ruta para la imagenes en desarrollo -->
                                                                 <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
-                                                                <!--ruta para la imagenes en produccion -->          
-                                                                <!--<img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">-->
                                                             </a>
                                                             <div class="p-sale">VENTA</div>
                                                         </div>

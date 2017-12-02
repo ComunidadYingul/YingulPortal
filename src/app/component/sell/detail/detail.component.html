@@ -80,31 +80,19 @@
                 </div>
         
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <input type="radio" id="option2" aria-label="Radio button for following text input">
-                            </span>
-                            <select class="form-control form-control-primary" name="productCondition" [(ngModel)]="productCondition">
-                                <option [value]="1" >Nuevo</option>
-                                <option  [value]="0" >Usado</option>
+                        <div  class="col-sm-6" >
+                            <select class="form-control form-control-primary" name="productCondition" [(ngModel)]="productCondition" (change)="capturar()">
+                                <option>Indica la condición de tu producto</option>
+                                <option *ngFor="let dato of datosProductCondition">{{dato}}</option>
                             </select>
-                       
                         </div>
-                        
+                        <div  class="col-sm-6" >
+                            <select class="form-control form-control-primary" name="productSaleConditions" [(ngModel)]="productSaleConditions" (change)="capturar()">
+                                <option>Tipo y condiciones de venta *</option>
+                                <option *ngFor="let dato of datosProductSaleConditions">{{dato}}</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                            <div class="input-group">
-                            <span class="input-group-addon">
-                                    <input type="radio" id="option2" aria-label="Radio button for following text input">
-                            </span>
-                                <select class="form-control form-control-primary" name="productSaleConditions" [(ngModel)]="productSaleConditions">
-                                    <option [value]="1" >Precio fijo</option>
-                                    <option  [value]="0" >Subasta</option>
-                                </select>
-                            </div>
-                        </div>
-                </div>
             
         
         
@@ -132,30 +120,22 @@
                     </div>
             </div>
         
+        
             <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <input type="radio" id="option2" aria-label="Radio button for following text input">
-                            </span>
-                            <select class="form-control form-control-primary" name="productFormDelivery" [(ngModel)]="productFormDelivery">
-                                <option [value]="1" >Ofrecer envíos por Yingul Envíos</option>
-                                <option  [value]="0" >También ofrecer retiro en persona</option>
-                            </select>
-                        </div>
-                        
+                    <div  class="col-sm-6" >
+                        <select class="form-control form-control-primary" name="productFormDelivery" [(ngModel)]="productFormDelivery" (change)="capturar()">
+                            <option>Formas de entrega</option>
+                            <option *ngFor="let dato of datosProductFormDelivery">{{dato}}</option>
+                        </select>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <input type="radio" id="option2" aria-label="Radio button for following text input">
-                            </span>
-                            <select class="form-control form-control-primary" name="productPaymentMethod" [(ngModel)]="productPaymentMethod">
-                                <option [value]="1" >Aceptar pagos solo por Yingul</option>
-                                <option [value]="0" >Aceptar pagos por Yingul y cobro en persona</option>
-                            </select>
-                        </div>
+  
+                    <div  class="col-sm-6" >
+                        <select class="form-control form-control-primary" name="productPaymentMethod" [(ngModel)]="productPaymentMethod" (change)="capturar()">
+                            <option>Medios de pago</option>
+                            <option *ngFor="let dato of datosProductPaymentMethod">{{dato}}</option>
+                        </select>
                     </div>
+
                 </div>
         
               
@@ -174,31 +154,22 @@
                         </div>
                 </div>
                 <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                    <span class="input-group-addon">
-                                            <input type="radio" id="option2" aria-label="Radio button for following text input">
-                                        </span>
-                                        <select class="form-control form-control-primary" name="productWarranty" [(ngModel)]="productWarranty">
-                                            <option [value]="1" >Con garantía</option>
-                                            <option [value]="0" >Sin garantía</option>
-                                        </select>                        
-                            </div>                
-                        </div>
+                        
+                    <div  class="col-sm-6" >
+                        <select class="form-control form-control-primary" name="productWarranty" [(ngModel)]="productWarranty" (change)="capturar()">
+                            <option>Garantía</option>
+                            <option *ngFor="let dato of datosProductWarranty">{{dato}}</option>
+                        </select>
+                    </div>
 
-                        <div class="col-lg-6">
-                                <div class="input-group">
-                                        <span class="input-group-addon">
-                                                <input type="radio" id="option2" aria-label="Radio button for following text input">
-                                            </span>
-                                            <select class="form-control form-control-primary" name="productPagoEnvio" [(ngModel)]="productPagoEnvio">
-                                                <option [value]="1" >Pagado por él comprador</option>
-                                                <option [value]="0" >Pagado por él vendedor</option>
-                                            </select>                        
-                                </div>                
-                        </div>
-        
-                </div>
+                    <div  class="col-sm-6" >
+                        <select class="form-control form-control-primary" name="productPagoEnvio" [(ngModel)]="productPagoEnvio" (change)="capturar()">
+                            <option>Pago del envió</option>
+                            <option *ngFor="let dato of datosProductPagoEnvio">{{dato}}</option>
+                        </select>
+                    </div>
+    
+            </div>
             <h5>Fotos de tu Producto</h5>           
         </div>
         <div *ngSwitchCase="'Property'">
@@ -264,7 +235,30 @@
                         </div>
 
                 
-                    </div>
+                </div>
+
+                <h5>Comodidades y amenities</h5>
+                <div class="row">
+                <div  class="col-sm-8" *ngFor="let amenities of amenitiesList">
+                    <label class="custom-control custom-checkbox" >
+                    <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmenities(amenities)">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{amenities.name}}</span>
+                    </label>
+                </div>
+                </div>
+
+                <h5>Ambientes</h5>
+                <div class="row">
+                <div  class="col-sm-8" *ngFor="let ambient of ambientList">
+                    <label class="custom-control custom-checkbox" >
+                    <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmbient(ambient)">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{ambient.name}}</span>
+                    </label>
+                </div>
+                </div>
+
                     <h5>Fotos de tu Inmueble</h5>
         </div>
            
@@ -332,6 +326,69 @@
                         </div>
                    
                 </div>
+
+
+                <div *ngIf="true">
+                    
+                        <h5>Seguridad</h5>
+
+                        <div class="row">
+                        <div  class="col-sm-8" *ngFor="let security of securityList">
+                            <label class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSecurity(security)">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{security.name}}</span>
+                            </label>
+                        </div>
+                        </div>
+                    
+                        <h5>Confort</h5>
+                        <div class="row">
+                        <div  class="col-sm-8" *ngFor="let confort of confortList">
+                            <label class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkConfort(confort)">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{confort.name}}</span>
+                            </label>
+                        </div>
+                        </div>
+    
+                        <h5>Sonido</h5>
+                        <div class="row">
+                        <div  class="col-sm-8" *ngFor="let sound of soundList">
+                            <label class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSound(sound)">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{sound.name}}</span>
+                            </label>
+                        </div>
+                        </div>
+    
+                        <h5>Exterior</h5>
+                        <div class="row">
+                        <div  class="col-sm-8" *ngFor="let exterior of exteriorList">
+                            <label class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkExterior(exterior)">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{exterior.name}}</span>
+                            </label>
+                        </div>
+                        </div>
+    
+                        <h5>Equipamiento</h5>
+                        <div class="row">
+                        <div  class="col-sm-8" *ngFor="let equipment of equipmentList">
+                            <label class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkEquipment(equipment)">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description">{{equipment.name}}</span>
+                            </label>
+                        </div>
+                        </div>
+    
+    
+                    </div>
+
                 <h5>Fotos de tu Automovil</h5>
 
 

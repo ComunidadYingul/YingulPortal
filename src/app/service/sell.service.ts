@@ -14,6 +14,7 @@ import { Motorized } from '../model/Motorized';
 export class SellService {
   User: object;
   username: string;
+  API_URL="http://localhost:8080/";
   public headers = new Headers({
     'Access-Control-Allow-Origin': '*',
     'Content-Type' : 'application/json; charset=UTF-8',
@@ -65,5 +66,41 @@ export class SellService {
   public _errorHandler(error: Response){
     console.error('Error Ocurred: '+error);
     return Observable.throw(error || 'Some error on server ocured');
+  }
+
+  getSecurity(){
+    let url =this.API_URL+ "ubication/security"
+    //let url ="http://localhost:8080/motorized/security";
+    return this.http.get(url);    
+  }
+
+  getConfort(){
+    let url =this.API_URL+ "ubication/confort";
+    return this.http.get(url);    
+  }
+  getSound(){
+    let url =this.API_URL+ "ubication/sound";
+    return this.http.get(url);    
+  }
+  getExterior(){
+    let url =this.API_URL+ "ubication/exterior";
+    return this.http.get(url);    
+  }
+  getEquipment(){
+    let url =this.API_URL+ "ubication/equipment";
+    return this.http.get(url); 
+
+  }
+
+  getAmenities(){
+    let url =this.API_URL+ "ubication/amenities";
+    return this.http.get(url); 
+  }
+
+  
+
+  getAmbient(){
+    let url =this.API_URL+ "ubication/ambient";
+    return this.http.get(url); 
   }
 }

@@ -19,6 +19,12 @@ export class Motorized {
     private motorizedMotor: string;
     private motorizedType: string;
 
+    private motorizedSecurity: Object[];
+    private motorizedConfort: Object[];
+    private motorizedSound: Object[];
+    private motorizedExterior: Object[];
+    private motorizedEquipment: Object[];
+
     private yng_Item: Item = new Item();
 
     public get $motorizedBrand(): string {
@@ -137,4 +143,54 @@ export class Motorized {
 		this.yng_Item = value;
     }
     
+
+
+	public get $motorized_id(): number {
+		return this.motorized_id;
+	}
+
+	public set $motorized_id(value: number) {
+		this.motorized_id = value;
+	}
+
+	public get $motorizedSecurity(): Object[] {
+		return this.motorizedSecurity;
+	}
+
+	public set $motorizedSecurity(value: Object[]) {
+		this.motorizedSecurity = value;
+	}
+
+	public get $motorizedConfort(): Object[] {
+		return this.motorizedConfort;
+	}
+
+	public set $motorizedConfort(value: Object[]) {
+		this.motorizedConfort = value;
+	}
+
+	public get $motorizedSound(): Object[] {
+		return this.motorizedSound;
+	}
+
+	public set $motorizedSound(value: Object[]) {
+		this.motorizedSound = value;
+	}
+
+	public get $motorizedExterior(): Object[] {
+		return this.motorizedExterior;
+	}
+
+	public set $motorizedExterior(value: Object[]) {
+		this.motorizedExterior = value;
+	}
+
+	public get $motorizedEquipment(): Object[] {
+		return this.motorizedEquipment;
+	}
+
+	public set $motorizedEquipment(value: Object[]) {
+		this.motorizedEquipment = value;
+	}
+     
 }
