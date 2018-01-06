@@ -1,5 +1,4 @@
 import { Item } from './item';
-import { Province } from './province';
 export class Product{
     private product_id:number;
 	public productCondition:string;
@@ -8,8 +7,31 @@ export class Product{
     public productFormDelivery:string;
     public productPaymentMethod:string;
 	public productWarranty:string;
-    public productPagoEnvio:string;
-    public yng_Item:Item =new Item();
+	public productPagoEnvio:string;
+	public producVolumen:string;
+	public productPeso:string;
+
+
+	public yng_Item:Item =new Item();
+	
+
+
+	public get $producVolumen(): string {
+		return this.producVolumen;
+	}
+
+	public set $producVolumen(value: string) {
+		this.producVolumen = value;
+	}
+	
+
+	public get $productPeso(): string {
+		return this.productPeso;
+	}
+
+	public set $productPeso(value: string) {
+		this.productPeso = value;
+	}
 	
 
 

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Person } from '../model/person';
+import { Business } from '../model/business';
 @Injectable()
 export class SingupService {
   public headers = new Headers({
@@ -25,6 +26,13 @@ export class SingupService {
     //alert(JSON.stringify(person));
     return this.http.post(url ,person, {headers: this.headers});
   }
+  signUpBusiness(business : Business) {
+    let url = "http://localhost:8080/business";
+    //convertir objeto a string
+    //alert(JSON.stringify(person));
+    return this.http.post(url ,business, {headers: this.headers});
+  }
+
 
   private extractData(res: Response) {
     let body = res.json();
