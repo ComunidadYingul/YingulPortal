@@ -152,6 +152,7 @@ export class SellComponent implements OnInit {
       this.itemc=Object.assign(this.item, this.item2);
       this.service.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
       console.log(JSON.stringify( this.service));
+      
       this.saveService();
     }
   }
@@ -180,7 +181,7 @@ export class SellComponent implements OnInit {
     
           this.product=Object.assign(this.itemP,this.product);
           console.log("Product Fusionado: "  + JSON.stringify(this.product));
-          this.saveProduct();
+          //this.saveProduct();
         
         }
       }

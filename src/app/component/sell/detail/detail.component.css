@@ -23,3 +23,22 @@
     margin-left: 50%;
     margin-top: 50%;
 }
+.table > thead > tr > th {
+    border-bottom-color: #28e1bd;
+}
+
+ .shipping-method-title {
+    color: #28e1bd;
+    font-size: 20px;
+}
+
+.syi-input-countdown textarea{
+    margin:5px 0;
+    border:1px solid #cdcdcd;
+    border-radius:3px;
+    padding:6px;
+    max-width:520px;
+    width:100%
+}
+
+.ui-countdown{margin-left:147px}

@@ -28,17 +28,17 @@ export class PriceComponent implements OnInit {
   cityHid:boolean;
   barrioHid:boolean;
   //datos del formulario
-  phone:string;
-  phone2:string;
-  email:string;
-  webSite:string;
+  phone:string="";
+  phone2:string="";
+  email:string="";
+  webSite:string="";
   price:number;
-  money:string;
+  money:string="";
   public cobertureZone:Object[]=[];
-  street:string;
-  number:string;
-  postalCode:string;
-  aditional:string;
+  street:string="";
+  number:string="";
+  postalCode:string="";
+  aditional:string="";
   User:object;
   //objeto final para enviar
   public service:Service = new Service();

@@ -46,6 +46,12 @@ export class ItemDetailService {
     return this.http.get(url);
   }
 
+  sendCotiza(cotizar : Object){
+    //let url = "http://localhost:8080/logistics/cotizarItem";
+    
+    let url = "http://localhost:8080/logistics/cotizarItemA";
+    return this.http.post(url,cotizar, {headers: this.headers});
+  }
   //aumentar a los header lo de seguridad autenticacion basica
   postQuery(query:Object){
     let url = "http://localhost:8080/item/query";

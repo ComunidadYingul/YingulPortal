@@ -1,3 +1,4 @@
+
 import { user } from './user';
 export class Business{
 private businesId:number;
@@ -5,20 +6,34 @@ private name:string;
 private socialName:string;
 private isBusiness :boolean;
 private typeContri:string;
+private address:string;
 
-yng_User:user =new user();
+private yng_User:user =new user();
+
+
+
+	public get $address(): string {
+		return this.address;
+	}
+
+	public set $address(value: string) {
+		this.address = value;
+	}
+
 
 
 
 	constructor() {
 
     }
-    createBusiness(name:string, socialName:string, email:string, password:string,isBusiness:boolean){
+    createBusiness(name:string, socialName:string, email:string, password:string,isBusiness:boolean,typeContri:string){
         this.name= name;
         this.socialName= socialName;
         this.yng_User.$email = email;
-        this.yng_User.$password= password;
-        this.isBusiness= isBusiness;
+		this.yng_User.$password= password;
+		
+		this.isBusiness= isBusiness;
+		this.typeContri=typeContri;
 
     }
     
@@ -64,6 +79,15 @@ yng_User:user =new user();
 	}
     
 
+
+
+	public get $yng_User(): user  {
+		return this.yng_User;
+	}
+
+	public set $yng_User(value: user ) {
+		this.yng_User = value;
+	}
 
 
 

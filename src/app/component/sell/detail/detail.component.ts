@@ -85,9 +85,12 @@ productCondition:string;
 productSaleConditions:string;
 productQuantity:string;
 productFormDelivery:string;
+productFormDeliveryP:string;
 productPaymentMethod:string;
 productWarranty:string;
 productPagoEnvio:string;
+productPeso:string;
+productVolumen:string;
 //property
 propertyTotalArea:string;
 propertyDuildedArea:string;
@@ -191,6 +194,8 @@ public item: Item=new Item();
       this.product.$productPaymentMethod=this.productPaymentMethod;
       this.product.$productQuantity=this.productQuantity;
       this.product.$productWarranty=this.productWarranty;
+      this.product.$productPeso=this.productPeso;
+      this.product.$producVolumen=this.productVolumen;
       this.detailProduct.emit(this.product);
     }
     if(this.typeCat=="Property"){
@@ -418,7 +423,87 @@ public item: Item=new Item();
         }  
       }
     }
+    
 
 
   }
+
+
+ capturar (){
+
+  
+ }
+ popup:boolean=true;
+ popupEligeDomicilio:boolean=true;
+ popupGarantia:boolean=true;
+ popupCotizar:boolean=true;
+ addprop1(){
+   this.popupEligeDomicilio=this.popupEligeDomicilio!;
+   console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
+
+ }
+ domi(){
+   console.log("domi");
+ }
+
+ 
+
+test(event) {
+  
+  console.log("event:"+event.target.checked);
+  if(event.target.checked==true)this.popupEligeDomicilio=false;
+  else this.popupEligeDomicilio=true;
+  //this.popupEligeDomicilio=event.target.checked!; // undefined
+  console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
+
+}
+popGarantia(event) {
+  
+  console.log("event:"+event.target.checked);
+  if(event.target.checked==true){this.popupGarantia=false;}
+  else this.popupGarantia=true;
+  console.log("popupGarantia:"+this.popupGarantia);
+
+}
+popSinGarantia(event) {
+  
+  console.log("event:"+event.target.checked);
+  if(event.target.checked==true)this.popupGarantia=true;
+  else this.popupGarantia=false;
+  console.log("popupGarantia:"+this.popupGarantia);
+
+}
+
+capturarCondicion(provinceId : string){
+ this.productCondition=provinceId;
+}
+
+capturarCondicionVenta(provinceId : string){
+  this.productSaleConditions=provinceId;
+}
+
+mediosDPago(pagos:string){
+  this.productPaymentMethod=pagos;
+  //Precio fijo
+  if(pagos=="1")
+  this.productPagoEnvio="Precio fijo";
+  if(pagos=="2")
+  this.productPagoEnvio="Subasta";
+}
+pagoEnvio(envi:string){
+  if(envi=="1")
+  this.productPagoEnvio="Pagado por él comprador";
+  if(envi=="2")
+  this.productPagoEnvio="Pagado por él vendedor";
+}
+
+
+pagoMedios(envi:string){
+  if(envi=="1")
+  this.productPagoEnvio="Aceptar pagos solo por Yingul";
+  if(envi=="2")
+  this.productPagoEnvio="Aceptar pagos por Yingul y cobro en persona";
+}
+
+
 }
