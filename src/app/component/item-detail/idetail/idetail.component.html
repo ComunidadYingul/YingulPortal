@@ -836,7 +836,7 @@
     </div>
 
 <div [hidden]="!spinner" id="loader"></div>
-<div class="popup" [hidden]="popupEntrega">
+<div class="popup" [hidden]="true">
         <div class="page-header-title">
             <h5>Formas de entrega</h5>
             <!--hr class="m-t-20 m-b-20">
@@ -879,35 +879,19 @@
                 <div class="col-sm-12">
                         <div class="table-responsive" >
                             <table class="table  invoice-detail-table">
-                                <thead>
-                                    <tr class="thead-default">
-                                        <th>Método de envío</th>
-                                        <th>Costo</th>
-                                        <!--th>Entrega estimada</th-->
-                                       
-                                    </tr>
-                                </thead>
                                 <tbody [hidden]="popupCotizar">
                                     <tr>
                                         <td>
                                         <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod">Retiro en una sucursal<br>
                                         </td>
                                         <td>$ {{priceSuc}}</td>
-                                        <!--td>Llega entre el 21 y 26 de diciembre.</td-->
+                                        
                                         
                                     </tr>
-                                    <!--tr>
-                                        <td>
-                                        <input type="radio" name="shippingMethod" value="normal" [(ngModel)]="shippingMethod">Normal a domicilio<br>
-                                        </td>
-                                        <td>$ {{priceDomi}}</td>
-                                        <td>Llega entre el 21 y 26 de diciembre.</td>
-                                       
-                                    </tr-->
-
+                                   
 
                                 </tbody>
-                                <input type="radio" name="shippingMethod" value="domicilio" [(ngModel)]="shippingMethod">  Lo retiro en domicilio del vendedor
+                               
                             </table>
                         </div>
                     </div>
