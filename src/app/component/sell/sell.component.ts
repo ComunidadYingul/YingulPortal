@@ -24,6 +24,7 @@ export class SellComponent implements OnInit {
   hidTyp:boolean;
   msg:string;
   aux:string;
+  popup:boolean=true;
   User: user=new user();
   //para pedir las categorias
   public url:string = '';
@@ -246,6 +247,7 @@ export class SellComponent implements OnInit {
 
       
   sendPriceCat(ev){
+    this.popup=false;
     if(this.type=="Service"){
       console.log("Service: "+this.type);
      this.priceItemSe(ev);

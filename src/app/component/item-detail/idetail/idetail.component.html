@@ -30,16 +30,16 @@
                   <div class="card product-detail-page">
                       <div class="card-block">
                           <div class="row">
-                              <div class="col-lg-5 col-xs-12">
+                              <div class="col-lg-5 col-xs-12" *ngIf="showContent">
                                   <div class="port_details_all_img row">
                                       <div class="col-lg-12">
                                           <div id="big_banner">
                                               <div class="port_big_img">
-                                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" class="img-fluid o-hidden" alt="">
+                                                    <img width="450" height="450" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" class="img-fluid o-hidden" alt="">
                                               </div>
                                               <!--ngfor para las demas imagenes-->
                                               <div class="port_big_img" *ngFor="let imageItem of imageByItem">
-                                                  <img class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{imageItem.image}}" alt="Big_ Details">
+                                                  <img width="450" height="450" class="img-fluid o-hidden" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{imageItem.image}}" alt="Big_ Details">
                                               </div> 
                                               <!--fin del ngfor-->
                                           </div>
@@ -47,13 +47,11 @@
                                       <div class="col-lg-12 product-right">
                                           <div id="small_banner">
                                               <div>
-                                                  <img class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" alt="small-details">
+                                                  <img width="100" height="100" class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" alt="small-details">
                                               </div>
                                               <!--ngfor para las demas imagenes-->
                                               <div *ngFor="let imageItem of imageByItem">
-                                              <div >
-                                                  <img class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{imageItem.image}}" alt="small-details">
-                                              </div>
+                                                  <img width="100" height="100" class="img img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{imageItem.image}}" alt="small-details">
                                                 </div>
                                               <!-- fin del ngfor -->
                                           </div>

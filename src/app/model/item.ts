@@ -2,7 +2,7 @@ import { user } from './user';
 import { Ubication } from './ubication';
 import { ItemImage } from './item-image';
 export class Item {
-    private item_id:number;
+    item_id:number;
     price:number;
     money:string;
     name:string;

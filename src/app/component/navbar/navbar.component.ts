@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
 		} else {
 			this.loggedIn = true;
 			this.User=JSON.parse(localStorage.getItem("user"));
+			this.getQueries();
 		}
 	}
 
@@ -48,7 +49,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-		this.getQueries();
+		
   }
 
 	menu(){

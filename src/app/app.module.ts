@@ -19,6 +19,7 @@ import { DetailComponent } from './component/sell/detail/detail.component';
 import { PriceComponent } from './component/sell/price/price.component';
 import { TypeComponent } from './component/sell/type/type.component';
 import { SellService } from './service/sell.service';
+import { BuyService } from './service/buy.service';
 import { QueryServiceService } from './service/query-service.service';
 import { ItemDetailService } from './service/item-detail.service';
 import { IndexService } from './service/index.service';
@@ -33,6 +34,10 @@ import { IcdetailComponent } from './component/items-category/icdetail/icdetail.
 import { ItemsCategoryService } from './service/items-category.service';
 import { IdetailComponent } from './component/item-detail/idetail/idetail.component';
 import { QueryComponent } from './component/query/query.component';
+import { BuyComponent } from './component/buy/buy.component';
+import { ShippingComponent } from './component/buy/shipping/shipping.component';
+import { PaymentComponent } from './component/buy/payment/payment.component';
+import { ConfirmComponent } from './component/buy/confirm/confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +59,11 @@ import { QueryComponent } from './component/query/query.component';
     ItemsCategoryComponent,
     IcdetailComponent,
     IdetailComponent,
-    QueryComponent
+    QueryComponent,
+    BuyComponent,
+    ShippingComponent,
+    PaymentComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +79,8 @@ import { QueryComponent } from './component/query/query.component';
     IndexService,
     ItemDetailService,
     ItemsCategoryService,
-    QueryServiceService
+    QueryServiceService,
+    BuyService
   ],
   bootstrap: [AppComponent]
 })

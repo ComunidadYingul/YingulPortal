@@ -31,19 +31,21 @@ export class IdetailComponent implements OnInit {
   oneQuery:Object= new Object();
   msg:string;
   spinner: boolean=false;
+  showContent:boolean=false;
   constructor(private itemDetailService : ItemDetailService, private router : Router){ 
     
   }
   ngOnInit() {
+    this.getImageByItem();
+    this.getItemById();
     this.itemDetailService.getItemType(this.localItemId).subscribe(
 			res => {
             this.itemType = JSON.parse(JSON.stringify(res))._body;
             this.getItem(this.itemType,this.localItemId);
-            this.getItemById();
+            
       		},
       		error => console.log(error)
     ); 
-    this.getImageByItem();
     this.getCategoriesByItem();
     this.getQueryByItem();
     this.getSeller();
@@ -105,6 +107,7 @@ export class IdetailComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+    this.showContent=true;
   }
 
   getCategoriesByItem(){

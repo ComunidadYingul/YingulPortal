@@ -9,11 +9,11 @@ import { Motorized } from '../../../model/Motorized';
 
 import { Security } from '../../../model/security';
 import { Confort } from '../../../model/confort';
-import {  Sound } from '../../../model/Sound';
+import {  Sound } from '../../../model/sound';
 import { Exterior } from '../../../model/exterior';
 import { Equipment } from '../../../model/equipment';
 import { Amenities } from '../../../model/amenities';
-import { Ambient } from '../../../model/Ambient';
+import { Ambient } from '../../../model/ambient';
 import { SellService } from '../../../service/sell.service'
 import { error } from 'util';
 import { Jsonp } from '@angular/http/src/http';
@@ -250,42 +250,69 @@ public item: Item=new Item();
     let file11 = files11[0];
     let files12 = this.elem.nativeElement.querySelector('#image-upload12').files;
     let file12 = files12[0];
-    this.getBase64(file).then(
-      data => this.setImagePrincipal(data)
-    );
-    this.getBase64(file2).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file3).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file4).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file5).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file6).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file7).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file8).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file9).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file10).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file11).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file12).then(
-      data => this.setImage(data)
-    );
+    if(file!=null){
+      this.getBase64(file).then(
+        data => this.setImagePrincipal(data)
+      );
+    }
+    else{
+      this.item.$principalImage="sin";
+    }
+    if(file2!=null){
+      this.getBase64(file2).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file3!=null){
+      this.getBase64(file3).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file4!=null){
+      this.getBase64(file4).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file5!=null){
+      this.getBase64(file5).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file6!=null){
+      this.getBase64(file6).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file7!=null){
+      this.getBase64(file7).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file8!=null){
+      this.getBase64(file8).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file9!=null){
+      this.getBase64(file9).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file10!=null){
+      this.getBase64(file10).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file11!=null){
+      this.getBase64(file11).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file12!=null){
+      this.getBase64(file12).then(
+        data => this.setImage(data)
+      );
+    }
   }
   public dataLoaded(data: any):void{
     this.elem.nativeElement.querySelector('#spinner').style.visibility='hidden';
