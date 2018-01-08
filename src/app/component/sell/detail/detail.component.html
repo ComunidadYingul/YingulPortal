@@ -158,6 +158,7 @@
 
             </div>
             <!---->
+            <br/>
             <div class="row">
                     <div  class="col-sm-6" >
                             <select class="form-control form-control-primary"  #t (change)="pagoMedios(t.value)">
@@ -232,13 +233,8 @@
                     </div>
             </div>
         
-            <div class="row">
-                    <!--div  class="col-sm-6" >
-                        <select class="form-control form-control-primary" name="productFormDelivery" [(ngModel)]="productFormDelivery" (change)="capturar()">
-                            <option>Formas de entrega</option>
-                            <option *ngFor="let dato of datosProductFormDelivery">{{dato}}</option>
-                        </select>
-                    </div-->
+            <!--div class="row">
+
   
                     <div  class="col-sm-6" >
                         <select class="form-control form-control-primary" name="productPaymentMethod" [(ngModel)]="productPaymentMethod" (change)="capturar()">
@@ -247,7 +243,7 @@
                         </select>
                     </div>
 
-            </div>
+            </div-->
 
             <div class="row">
                     <div class="col-lg-6">
@@ -313,14 +309,9 @@
                                 </div>
                         </div>
                 </div-->
-                <div class="row">
+                <!--div class="row">
                         
-                    <!--div  class="col-sm-6" >
-                        <select class="form-control form-control-primary" name="productWarranty" [(ngModel)]="productWarranty" (change)="capturar()">
-                            <option>Garantía</option>
-                            <option *ngFor="let dato of datosProductWarranty">{{dato}}</option>
-                        </select>
-                    </div-->
+
 
                     <div  class="col-sm-6" >
                         <select class="form-control form-control-primary"  #t (change)="pagoEnvio(t.value)">
@@ -330,7 +321,7 @@
                         </select>
                     </div>
     
-            </div>
+            </div-->
            
             <h5>Fotos de tu Producto</h5>           
         </div>
@@ -641,7 +632,7 @@
 </form>
 
 
-<div class="popup" [hidden]="popupEligeDomicilio">
+<!--div class="popup" [hidden]="popupEligeDomicilio">
         <div class="page-header-title">
             <h5>Ingresá tu código postal</h5>
             <hr class="m-t-20 m-b-20">
@@ -742,5 +733,5 @@
                     </div>
             </div>
         </div>
-    </div>
+    </div-->
 
