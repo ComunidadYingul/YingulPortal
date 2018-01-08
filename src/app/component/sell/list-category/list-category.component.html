@@ -6,26 +6,34 @@
   </div>
 <br/>
 <ul class="nav">
-  <ul class="list-group col-md-auto">
-    <li class="nav-item border border-primary " *ngFor="let category of categoryList">
-      <a class="nav-link active text-primary" (click)="getSubCategory(category.categoryId,category)">{{category.name}}</a>
-    </li>
-  </ul>
-  <ul class="list-group col-md-auto">
-    <li class="nav-item border border-primary " *ngFor="let subcategory of subCategoryList">
-      <a class="nav-link active text-primary" (click)="getSubSubCategory(subcategory)">{{subcategory.name}}</a>
-    </li>
-  </ul>
-  <ul class="list-group col-md-auto">
-    <li class="nav-item border border-primary " *ngFor="let subsubcategory of subsubCategoryList">
-      <a class="nav-link active text-primary" (click)="getSubSubSubCategory(subsubcategory)">{{subsubcategory.name}}</a>
-    </li>
-  </ul>
-  <ul class="list-group col-md-auto">
-    <li class="nav-item border border-primary " *ngFor="let subsubsubcategory of subsubsubCategoryList">
-      <a class="nav-link active text-primary" (click)="getSubSubSubSubCategory(subsubsubcategory)">{{subsubsubcategory.name}}</a>
-    </li>
-  </ul>
+  <nav>
+    <ul class="list-group col-md-auto">
+        <li class="nav-item border border-primary " *ngFor="let category of categoryList">
+          <a class="nav-link active text-primary" (click)="getSubCategory(category.categoryId,category)">{{category.name}}</a>
+        </li> 
+    </ul>
+  </nav>
+  <nav>
+    <ul class="list-group col-md-auto">
+      <li class="nav-item border border-primary " *ngFor="let subcategory of subCategoryList">
+        <a class="nav-link active text-primary" (click)="getSubSubCategory(subcategory)">{{subcategory.name}}</a>
+      </li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="list-group col-md-auto">
+      <li class="nav-item border border-primary " *ngFor="let subsubcategory of subsubCategoryList">
+        <a class="nav-link active text-primary" (click)="getSubSubSubCategory(subsubcategory)">{{subsubcategory.name}}</a>
+      </li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="list-group col-md-auto">
+      <li class="nav-item border border-primary " *ngFor="let subsubsubcategory of subsubsubCategoryList">
+        <a class="nav-link active text-primary" (click)="getSubSubSubSubCategory(subsubsubcategory)">{{subsubsubcategory.name}}</a>
+      </li>
+    </ul>
+  </nav>
 </ul>
 <br/>
 <div class="text-center">
@@ -37,3 +45,13 @@
      <a></a>
     </li>
   </ul>
+
+
+
+
+
+
+
+
+
+

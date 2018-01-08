@@ -16,6 +16,7 @@ export class QueryComponent implements OnInit {
   msg:string;
   queryQuery:string="";
   popup:boolean=true;
+  popup2:boolean=true;
   constructor(private router: Router,private queryService : QueryServiceService) { 
     
   }
@@ -63,6 +64,7 @@ export class QueryComponent implements OnInit {
     this.popup=true;
   }
   answerTo(){
+    this.popup2=false;
     this.query=Object.assign(this.query, {"answer":this.answer,"yng_Item":null,"user":null});
     this.queryService.postAnswerQuery(this.query).subscribe(
 			res => {

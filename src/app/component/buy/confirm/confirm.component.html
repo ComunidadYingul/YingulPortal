@@ -1,0 +1,102 @@
+<br/>
+<div class="page-header-title">
+    <h4>¡Solo un paso más! Confirma tu compra!</h4>
+</div>
+<br/>
+<br/>
+<div>
+    <ul class="media-list">
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/carrito.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h6 class="media-heading">Producto
+                </h6>
+                <h5><strong>{{Item.name}}</strong></h5>
+                <p> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></p>
+            </div>
+        </li>
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/envio.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h6 class="media-heading">Envio
+                </h6>
+                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                <div class="blog-u-comment">
+                    <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                </div>
+            </div>
+        </li>
+        <br/>
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/pago.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h6 class="media-heading">Pago
+                </h6>
+                <div *ngIf="paymentMethod.yng_Card.provider=='VisaD'">
+                    <img  src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
+                        {{paymentMethod.yng_Card.number}}
+                </div>
+                <div class="blog-u-comment">
+                    <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                </div>
+                <hr>
+            </div>
+        </li>
+        <br/>
+        <hr>
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/factura.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h5>PRECIO: </h5> <strong>{{Item.price}}</strong> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a>
+                <hr>
+                <h5><strong>PAGAS: </strong></h5><strong>{{cost}}</strong>    
+            </div>
+        </li>
+    </ul>
+    <br/>
+    <div class="col-sm-10">
+        <a type="submit" class="btn btn-primary m-b-0" (click)="buyItem()">CONFIRMAR</a>
+    </div>
+</div>
+
+
+<div class="popup" [hidden]="popup">
+    <div class="page-header-title">
+        <h3>POR ÚNICA VEZ, DEJA TUS DATOS DE CONTACTO</h3>
+        <hr class="m-t-20 m-b-20">
+        <h4>Solo seran visibles por tu contraparte cuando compres</h4>
+    </div>
+    <div class="md-float-material">
+        <div class="input-group input-group-button">
+            <span class="input-group-addon">
+                <i class="icofont icofont-comment"></i>
+            </span>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Teléfono" required>
+        </div>
+    </div>
+    <hr class="m-t-20 m-b-20">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="updateUser()">CONFIRMAR
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

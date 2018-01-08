@@ -36,21 +36,23 @@ export class IdetailComponent implements OnInit {
   oneQuery:Object= new Object();
   msg:string;
   spinner: boolean=false;
+  showContent:boolean=false;
   answer: string;
   popup:boolean=true;
   popupCotizar:boolean=true;
-  
   postalCode:string="";
   envioType:string;
   llegadaTime:string;
   priceSuc:string;
   priceDomi:string;
   provinceId:string="0";
-  
+
   constructor(private itemDetailService : ItemDetailService, private router : Router){ 
     
   }
   ngOnInit() {
+    this.getImageByItem();
+    this.getItemById();
     this.itemDetailService.getItemType(this.localItemId).subscribe(
 			res => {
             this.itemType = JSON.parse(JSON.stringify(res))._body;
@@ -130,6 +132,7 @@ export class IdetailComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+    this.showContent=true;
   }
 
   getCategoriesByItem(){
