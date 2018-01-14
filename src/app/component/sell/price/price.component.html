@@ -57,6 +57,7 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div *ngIf="isOtro()">
             <h5>Tu ubicacion</h5>
             <div class="row">
@@ -72,6 +73,40 @@
                         <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
                     </select>
                 </div>
+=======
+    
+    <div [hidden]="false">
+    <h5>Tu ubicacion</h5>
+    <div class="row">
+        <div  class="col-sm-6" >
+            <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                <option>Seleccione una provincia</option>
+                <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
+            </select>
+        </div>
+        <div class="col-sm-6" [hidden]="cityHid">
+            <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
+                <option value="opt1">Seleccione una Ciudad</option>
+                <option *ngFor="let city of cityList" [value]="city.cityId">{{city.name}}</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row"> 
+        <div class="col-sm-6" [hidden]="barrioHid">
+            <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
+                <option value="opt1">Seleccione un Barrio</option>
+                <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId">{{barrio.name}}</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+>>>>>>> origin/master
             </div>
             <br/>
             <div class="row"> 
@@ -202,6 +237,46 @@
 
 
     </div>
+    </div>
+
+    <div [hidden]=true>
+            <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <h5>Formas de entrega</h5>                            
+                        </div>                
+                    </div>
+            </div>
+
+            <div class="row">
+                    <hr class="m-t-20 m-b-20">
+                    <div class="col-sm-12">
+                            <div class="table-responsive" >
+                                <table class="table  invoice-detail-table">
+                                    <tbody [hidden]="false">
+                                        <tr>
+                                            <td>
+                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)" >Ofrecer envíos por Yingul Envíos<br>
+                                            </td>
+                                        </tr>
+                                        <tr [hidden]="popupEligeDomicilio">
+                                             <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="calcularCosto()">
+                                                       <span class="m-l-10">CALCULAR COSTOS</span>
+                                                </button>
+                                        </tr>      
+                                    </tbody>
+                                    <input type="checkbox" name="productFormDeliveryP" value="domicilio" [(ngModel)]="productFormDeliveryP">También ofrecer retiro en persona
+                                </table>
+                            </div>
+                        </div>
+                        <hr class="m-t-20 m-b-10">
+            </div>
+
+
+
+    </div>
+
+    
 
     
 
@@ -232,6 +307,7 @@
         </div>
     </div>
 </form>
+<<<<<<< HEAD
 
 <div class="popup" [hidden]="popupUbication">
     <h4 class="sub-title">Ingresa tu código postal </h4>
@@ -303,3 +379,5 @@
 
 
 </div>
+=======
+>>>>>>> origin/master
