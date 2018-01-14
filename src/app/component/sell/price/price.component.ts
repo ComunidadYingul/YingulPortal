@@ -10,6 +10,7 @@ import { user } from '../../../model/user';
 import { Product } from '../../../model/product';
 import { Property } from '../../../model/Property';
 import { Motorized } from '../../../model/Motorized';
+import { Ubication } from '../../../model/ubication';
 
 @Component({
   selector: 'app-price',
@@ -28,18 +29,19 @@ export class PriceComponent implements OnInit {
   cityHid:boolean;
   barrioHid:boolean;
   //datos del formulario
-  phone:string;
-  phone2:string;
-  email:string;
-  webSite:string;
+  phone:string="";
+  phone2:string="";
+  email:string="";
+  webSite:string="";
   price:number;
-  money:string;
+  money:string="";
   public cobertureZone:Object[]=[];
-  street:string;
-  number:string;
-  postalCode:string;
-  aditional:string;
+  street:string="";
+  number:string="";
+  postalCode:string="";
+  aditional:string="";
   User:object;
+  userName;
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -75,17 +77,25 @@ export class PriceComponent implements OnInit {
         this.webSite=JSON.stringify(JSON.parse(JSON.stringify(this.User)).webSite);
         this.webSite=this.webSite.replace(/['"]+/g, '');
         if(this.webSite=="null"){this.webSite="";}
+        this.userName=JSON.stringify(JSON.parse(JSON.stringify(this.User)).username);
+        this.userName=this.userName.replace(/['"]+/g,'');
+       // alert("userNameprice :"+this.userName);
+
+
       },
       error => console.log(error)
     )
     
   }
+  provin:string;
   getCity(provinceId : number){
     this.province.$provinceId=provinceId;
     this.cityList=[];
     this.sellService.getCities(provinceId).subscribe(
 			res => {
             this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
+            alert("this.provin:"+this.provin);
             if(JSON.stringify(this.cityList)=="[]"){
               this.cityHid=true;
               this.barrioHid=true;
@@ -120,6 +130,15 @@ export class PriceComponent implements OnInit {
     if(this.typeCatPre=="Service")      return true;
     else                                return false;
   }
+  isProduct():boolean{
+    if(this.typeCatPre=="Product")      return true;
+    else                                return false;
+  }
+  isOtro():boolean{
+    if(this.typeCatPre!="Product")      return true;
+    else                                return false;
+  }
+  
 
   sendPrice(){
     console.log("type price  pre: "+this.typeCatPre)
@@ -156,6 +175,7 @@ export class PriceComponent implements OnInit {
       this.product.$yng_Item.$yng_Ubication.$yng_Province=this.province;
       this.product.$yng_Item.$yng_Ubication.$yng_City=this.city;
       this.product.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
       this.priceItemS.emit(this.product);
 
@@ -226,4 +246,122 @@ export class PriceComponent implements OnInit {
       event.preventDefault();
     }
   }
+  codigoPostalE:string;
+  btnCP:boolean=false;
+  buscarCP(){
+    if(this.codigoPostalE==""){alert("Introduzca un Código Postal");}
+    else{
+      //this.province.$provinceId=provinceId;
+      this.cityList=[];
+      //var aNumber : number = StringToInt("1", defaultValue);
+      //var num = parseInt(str);
+      this.sellService.getCP(this.codigoPostalE).subscribe(
+        res => {
+              this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              //alert(JSON.stringify(this.cityList));
+              this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).provinceId);
+              alert("this.provin:"+this.provin);
+  
+              if(JSON.stringify(this.cityList)=="[]"){
+                
+                this.cityHid=true;
+                this.barrioHid=true;
+                alert("no se encontro el codigo postal ");
+              } 
+              else{
+                this.cityHid=false;
+                this.postalCode=this.codigoPostalE;
+                this.btnCP=true;  
+                             
+              }
+            },
+            error => console.log(error)
+      )
+    }
+
+  }
+  popupUbication:boolean=true;
+  aceptar(){
+    
+   
+    if(this.street==""||this.number==""||this.aditional==""){  
+      alert("Complete todo los datos por favor");
+    }
+    else{
+      this.popupEnvios=false;
+      this.popupUbicacion=true;
+      this.popupUbication=true;
+    }  
+  }
+  ubicacion(){
+    this.popupUbication=false;
+  }
+  cambiarCP(){
+    this.cityHid=true;
+    this.postalCode="";
+    this.number="";
+    this.street="";
+    this.aditional="";
+    this.btnCP=false;
+  }
+
+  popup:boolean=true;
+ popupEligeDomicilio:boolean=true;
+ popupEnvios:boolean=true;
+ popupGarantia:boolean=true;
+ popupCotizar:boolean=true;
+ popupUbicacion:boolean=true;
+ ubication:Ubication;
+
+  test(event) {  
+    console.log("event:"+event.target.checked);    
+    if(event.target.checked==true){      
+      this.consultarUbi();
+    }
+    else {
+      this.popupEnvios=true;
+      this.popupUbicacion=true;
+    }
+  }
+
+  consultarUbi(){
+    console.log("this.userName"+this.userName);
+    this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
+      res => {
+        console.log(JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body!=""){
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+           
+           console.log(JSON.stringify(this.ubication));
+            this.popupEnvios=false;
+            this.popupUbicacion=true;
+        }
+        else {
+          this.popupEnvios=true;
+          this.popupUbicacion=false;
+  
+        }
+          },
+          error => console.log(error)
+    );
+    
+  }
+  popGarantia(event) {
+  
+    console.log("event:"+event.target.checked);
+    if(event.target.checked==true){this.popupGarantia=false;}
+    else this.popupGarantia=true;
+    console.log("popupGarantia:"+this.popupGarantia);
+  
+  }
+  envioComprador(event){
+  
+    if(event.target.checked==true) this.product.productPagoEnvio="comprador";
+  }
+  envioGratis(event){
+    
+    if(event.target.checked==true) this.product.productPagoEnvio="gratis";
+  }
+  
+  
 }

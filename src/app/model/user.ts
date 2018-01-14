@@ -1,3 +1,4 @@
+import { Ubication } from './ubication';
 export class user {
     private user_id : number;
     address : string;
@@ -14,7 +15,17 @@ export class user {
     department_id : number;
 	country_id : number;
 	//modificar la ubicacion del usuario y crear la clase ubication
-	yng_Ubication : Object= new Object();
+	yng_Ubication:Ubication= new Ubication;
+
+
+	public get $yng_Ubication(): Ubication {
+		return this.yng_Ubication;
+	}
+
+	public set $yng_Ubication(value: Ubication) {
+		this.yng_Ubication = value;
+	}
+	
 	public get $country_id(): number {
 		return this.country_id;
 	}

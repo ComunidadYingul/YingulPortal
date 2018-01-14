@@ -46,6 +46,23 @@ export class ItemDetailService {
     return this.http.get(url);
   }
 
+  sendCotiza(cotizar : Object){
+    //let url = "http://localhost:8080/logistics/cotizarItem";
+    
+    let url = "http://localhost:8080/logistics/cotizarItemA";
+    return this.http.post(url,cotizar, {headers: this.headers});
+  }
+  sendCotizaAndreani(cotizar : Object){
+    let url = "http://localhost:8080/logistics/cotizarAndreani";
+    return this.http.post(url,cotizar, {headers: this.headers});
+  }
+  urlHost:string="http://localhost:8080/";
+  sendSucursalAndreani(sucursal:Object){
+    let url=this.urlHost+"logistics/branch";
+    return this.http.post(url,sucursal, {headers: this.headers});
+  }
+
+
   //aumentar a los header lo de seguridad autenticacion basica
   postQuery(query:Object){
     let url = "http://localhost:8080/item/query";

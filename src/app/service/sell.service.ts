@@ -91,6 +91,10 @@ export class SellService {
     return this.http.get(url); 
 
   }
+  getCP(CP:string){
+    let url = "http://localhost:8080/ubication/cp/"+CP;
+    return this.http.get(url);
+  }
 
   getAmenities(){
     let url =this.API_URL+ "ubication/amenities";
@@ -102,5 +106,12 @@ export class SellService {
   getAmbient(){
     let url =this.API_URL+ "ubication/ambient";
     return this.http.get(url); 
+  }
+
+
+  ConsultarUbicavionUser(username : string){
+    let url = "http://localhost:8080/sell/ubication/"+username;
+    return this.http.get(url);
+    //return this.http.post(url, query,{headers: this.headers});
   }
 }

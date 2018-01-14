@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         location.reload();
         this.router.navigate(['/']);
       },
-      err => console.log(err)
+      err => alert("Usuario o Contraseña incorrecta")
     );
   }
 

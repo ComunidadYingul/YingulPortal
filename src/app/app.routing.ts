@@ -8,6 +8,7 @@ import { IndexComponent } from './component/index/index.component';
 import { ItemDetailComponent } from './component/item-detail/item-detail.component';
 import { ItemsCategoryComponent } from './component/items-category/items-category.component';
 import { QueryComponent } from './component/query/query.component';
+import { BuyComponent } from './component/buy/buy.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -41,6 +42,10 @@ const appRoutes: Routes = [
   {
     path: 'itemsCategory/:categoryId',
     component: ItemsCategoryComponent
+  },
+  {
+    path: 'buy/:itemId/:quantity',
+    component: BuyComponent
   }
 ];
 

@@ -8,10 +8,24 @@ export class Ubication {
     street:string;
     number:string;
     postalCode:string;
-    aditional:string;
+	aditional:string;
+	public codAndreani:string;
+	
     yng_Province:Province= new Province();
     yng_City:City = new City();
-    yng_Barrio:Barrio = new Barrio();
+	yng_Barrio:Barrio = new Barrio();
+	
+
+	public get $codAndreani(): string {
+		return this.codAndreani;
+	}
+
+	public set $codAndreani(value: string) {
+		this.codAndreani = value;
+	}
+	
+
+
 
 	public get $ubication_id(): number {
 		return this.ubication_id;
