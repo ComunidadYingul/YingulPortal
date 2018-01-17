@@ -187,15 +187,15 @@ public item: Item=new Item();
     this.detailItemS.emit(this.item);
     if(this.typeCat=="Product"){
       //this.item.$name =this.title;
-      this.product.$productCondition=this.productCondition;
-      this.product.$productSaleConditions=this.productSaleConditions;
-      this.product.$productFormDelivery=this.productFormDelivery;
-      this.product.$productPagoEnvio=this.productPagoEnvio;
-      this.product.$productPaymentMethod=this.productPaymentMethod;
-      this.product.$productQuantity=this.productQuantity;
-      this.product.$productWarranty=this.productWarranty;
-      this.product.$productPeso=this.productPeso;
-      this.product.$producVolumen=this.productVolumen;
+      this.product.productCondition=this.productCondition;
+      this.product.productSaleConditions=this.productSaleConditions;
+      this.product.productFormDelivery=this.productFormDelivery;
+      this.product.productPagoEnvio=this.productPagoEnvio;
+      this.product.productPaymentMethod=this.productPaymentMethod;
+      this.product.productQuantity=this.productQuantity;
+      this.product.productWarranty=this.productWarranty;
+      this.product.productPeso=this.productPeso;
+      this.product.producVolumen=this.productVolumen;
       this.detailProduct.emit(this.product);
     }
     if(this.typeCat=="Property"){

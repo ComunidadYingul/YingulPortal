@@ -68,7 +68,7 @@
                                                 <app-payment [hidden]="hidPay" (typePay)="sendTypePay($event)" [Item]="Item" [quantity]="quantity"></app-payment>
                                             <!-- fin de pago -->
                                             <!-- principio de revisa y confirma -->
-                                                <app-confirm [hidden]="hidConf" [paymentMethod]="paymentMethod" [Item]="Item" [quantity]="quantity" [cost]="cost"></app-confirm>
+                                                <app-confirm [hidden]="hidConf" (problem)="showProblem($event)" [paymentMethod]="paymentMethod" [Item]="Item" [quantity]="quantity" [cost]="cost"></app-confirm>
                                             <!-- fin de revisa y confirma -->
                                         </div>
                                     </div>

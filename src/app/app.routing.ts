@@ -9,6 +9,10 @@ import { ItemDetailComponent } from './component/item-detail/item-detail.compone
 import { ItemsCategoryComponent } from './component/items-category/items-category.component';
 import { QueryComponent } from './component/query/query.component';
 import { BuyComponent } from './component/buy/buy.component';
+import { ServiceComponent } from './component/service/service.component';
+import { PropertyComponent } from './component/property/property.component';
+import { MotorizedComponent } from './component/motorized/motorized.component';
+import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -46,6 +50,22 @@ const appRoutes: Routes = [
   {
     path: 'buy/:itemId/:quantity',
     component: BuyComponent
+  },
+  {
+    path: 'service',
+    component: ServiceComponent
+  },
+  {
+    path: 'property',
+    component: PropertyComponent
+  },
+  {
+    path: 'motorized',
+    component: MotorizedComponent
+  },
+  {
+    path: 'searchMotorized/:categoryId/:minPrice/:maxPrice/:minYear/:maxYear',
+    component: SearchMotorizedComponent
   }
 ];
 

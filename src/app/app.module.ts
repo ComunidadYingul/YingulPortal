@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { NavbarComponent } from './component/navbar/navbar.component'
 import { SingupComponent } from './component/singup/singup.component';
-
+import { CategoryService} from './service/category.service'
 import { LoginService } from './service/login.service';
 import { SingupService } from './service/singup.service';
 import { ListCategoryService } from './service/list-category.service';
@@ -38,6 +38,11 @@ import { BuyComponent } from './component/buy/buy.component';
 import { ShippingComponent } from './component/buy/shipping/shipping.component';
 import { PaymentComponent } from './component/buy/payment/payment.component';
 import { ConfirmComponent } from './component/buy/confirm/confirm.component';
+import { ServiceComponent } from './component/service/service.component';
+import { MotorizedComponent } from './component/motorized/motorized.component';
+import { PropertyComponent } from './component/property/property.component';
+import { ItemService } from './service/item.service';
+import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +68,11 @@ import { ConfirmComponent } from './component/buy/confirm/confirm.component';
     BuyComponent,
     ShippingComponent,
     PaymentComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    ServiceComponent,
+    MotorizedComponent,
+    PropertyComponent,
+    SearchMotorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +89,9 @@ import { ConfirmComponent } from './component/buy/confirm/confirm.component';
     ItemDetailService,
     ItemsCategoryService,
     QueryServiceService,
-    BuyService
+    BuyService,
+    CategoryService,
+    ItemService
   ],
   bootstrap: [AppComponent]
 })

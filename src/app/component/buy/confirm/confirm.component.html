@@ -44,9 +44,15 @@
             <div class="media-body blog-s-reply">
                 <h6 class="media-heading">Pago
                 </h6>
-                <div *ngIf="paymentMethod.yng_Card.provider=='VisaD'">
-                    <img  src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
-                        {{paymentMethod.yng_Card.number}}
+                <div>
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='VisaD'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='MastercardD'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='AmexD'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                        Terminada en: 
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>999"> {{paymentMethod.yng_Card.number%10000}}</a>
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>99 && paymentMethod.yng_Card.number%10000<=999"> 0{{paymentMethod.yng_Card.number%10000}}</a>
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>9 && paymentMethod.yng_Card.number%10000<=99"> 00{{paymentMethod.yng_Card.number%10000}}</a>
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>=0 && paymentMethod.yng_Card.number%10000<=9"> 000{{paymentMethod.yng_Card.number%10000}}</a>
                 </div>
                 <div class="blog-u-comment">
                     <span class="blog-edit"><a href="#!">Modificar</a> </span>
@@ -98,5 +104,16 @@
                 </button>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
     </div>
 </div>

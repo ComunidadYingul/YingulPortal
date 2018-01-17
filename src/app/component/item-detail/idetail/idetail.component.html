@@ -114,13 +114,13 @@
                                               <div class="p-l-0 m-b-25">
                                                   <div class="input-group">
                                                       <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-default btn-number shadow-none" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                            <button type="button" class="btn btn-default btn-number shadow-none" [disabled]="quant<2" data-type="minus" data-field="quant[1]" (click)="quantMenos()">
                                                                 <span class="icofont icofont-minus m-0"></span>
                                                       </button>
                                                       </span>
-                                                      <input type="text" name="quant[1]" class="form-control input-number text-center" value="1">
+                                                      <input type="text" name="quant" [(ngModel)]="quant" class="input-number text-center" >
                                                       <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default btn-number shadow-none" data-type="plus" data-field="quant[1]">
+                                                        <button type="button" class="btn btn-default btn-number shadow-none" data-type="plus" data-field="quant[1]" (click)="quantMas()">
                                                             <span class="icofont icofont-plus m-0"></span>
                                                       </button>
                                                       </span>
@@ -128,9 +128,9 @@
                                               </div>
                                           </div>
                                           <div class="col-lg-12 col-sm-12 mob-product-btn">
-                                              <button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
+                                              <a href="/buy/{{Item.itemId}}/{{quant}}"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                   <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">COMPRAR</span>
-                                              </button>
+                                              </button></a>
                                               <button type="button" class="btn btn-outline-primary waves-effect waves-light m-r-20">
                                                   <i class="icofont icofont-heart-alt f-16 m-0"></i>
                                               </button>

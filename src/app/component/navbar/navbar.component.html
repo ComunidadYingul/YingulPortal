@@ -1,11 +1,15 @@
 <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme4" pcoded-header-position="relative">
     <div class="navbar-wrapper">
         <div class="navbar-logo">
-            <a class="mobile-menu" id="mobile-collapse" href="#!">
+            <a (click)="menu()" class="mobile-menu" id="mobile-collapse" >
                 <i class="ti-menu"></i>
             </a>
-            <a class="mobile-search morphsearch-search" href="#">
-                <i class="ti-search"></i>
+            <a class="mobile-search morphsearch-search">
+                <input class="searchItemMobile" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias1">
+                <datalist id="listadecategorias1">
+                    <option *ngFor="let category of categories" value="{{category.name}}"></option>
+                </datalist>
+                <img class="searchImagen" src="assets/images/search.png" alt="Theme-Logo">
             </a>
             <a href="index.html">
                 <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo">
@@ -19,12 +23,6 @@
                 <ul class="nav-left">
                     <li>
                         <div class="sidebar_toggle"><a (click)="menu()"><i class="ti-menu"></i></a></div>
-                    </li>
-                    <li>
-                        <a class="main-search morphsearch-search" href="#">
-                            <!-- themify icon -->
-                            <i class="ti-search"></i>
-                        </a>
                     </li>
                     <li>
                         <a onclick="javascript:toggleFullScreen()">
@@ -148,6 +146,16 @@
                                 </div>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <input class="searchItem" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias">
+                        <datalist id="listadecategorias">
+                            <option *ngFor="let category of categories" value="{{category.name}}"></option>
+                        </datalist>
+                        <a class="main-search morphsearch-search" href="#">
+                            <!-- themify icon -->
+                            <i class="ti-search"></i>
+                        </a>
                     </li>
                 </ul>
                 <!--desde aqui comienza el navbar de la derecha-->
@@ -297,7 +305,7 @@
                     </li>
                     <li class="header-notification">
                         <a routerLink="/signup" class="displayChatbox">
-                          Regístrate
+                          Registrate
                         </a>
                     </li>
                     <li class="header-notification">

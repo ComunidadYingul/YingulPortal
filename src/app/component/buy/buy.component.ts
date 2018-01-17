@@ -63,5 +63,13 @@ export class BuyComponent implements OnInit {
     //alert(JSON.stringify(this.paymentMethod));
     console.log(JSON.stringify(this.paymentMethod));
   }
+  showProblem(ev){
+    if(ev="problemCard"){
+      alert("Ocurrio un problema con el pago. Revise los datos de la tarjeta");
+      this.hidShip=true;
+      this.hidPay=false;
+      this.hidConf=true;
+    }
+  }
 
 }

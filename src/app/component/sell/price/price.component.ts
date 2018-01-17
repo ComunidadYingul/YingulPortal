@@ -143,19 +143,19 @@ export class PriceComponent implements OnInit {
     }
     if(this.typeCatPre=="Product")
     {
-      this.product.$yng_Item.$user.$phone=this.phone;
-      this.product.$yng_Item.$user.$phone2=this.phone2;
+      this.product.yng_Item.$user.$phone=this.phone;
+      this.product.yng_Item.$user.$phone2=this.phone2;
       //this.product.$emailService=this.email;
-      this.product.$yng_Item.$user.$webSite=this.webSite;
-      this.product.$yng_Item.$price=this.price;
-      this.product.$yng_Item.$money=this.money;
-      this.product.$yng_Item.$yng_Ubication.$street=this.street;
-      this.product.$yng_Item.$yng_Ubication.$number=this.number;
-      this.product.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.product.$yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.product.$yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.product.$yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.product.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.product.yng_Item.$user.$webSite=this.webSite;
+      this.product.yng_Item.$price=this.price;
+      this.product.yng_Item.$money=this.money;
+      this.product.yng_Item.$yng_Ubication.$street=this.street;
+      this.product.yng_Item.$yng_Ubication.$number=this.number;
+      this.product.yng_Item.$yng_Ubication.$postalCode= this.postalCode;
+      this.product.yng_Item.$yng_Ubication.$aditional=this.aditional;
+      this.product.yng_Item.$yng_Ubication.$yng_Province=this.province;
+      this.product.yng_Item.$yng_Ubication.$yng_City=this.city;
+      this.product.yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
       this.priceItemS.emit(this.product);
 

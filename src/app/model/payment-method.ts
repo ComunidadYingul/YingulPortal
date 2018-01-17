@@ -4,7 +4,7 @@ export class PaymentMethod {
     private name:string;
     private type:string;
     private paymentPlan:string;
-    private yng_Card:Card=new Card();
+    yng_Card:Card=new Card();
 
 	public get $paymentMethodId(): number {
 		return this.paymentMethodId;
@@ -38,12 +38,5 @@ export class PaymentMethod {
 		this.paymentPlan = value;
 	}
 
-	public get $yng_Card(): Card {
-		return this.yng_Card;
-	}
-
-	public set $yng_Card(value: Card) {
-		this.yng_Card = value;
-	}
     
 }

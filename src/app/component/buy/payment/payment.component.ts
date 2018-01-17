@@ -37,7 +37,9 @@ export class PaymentComponent implements OnInit {
   dueMonth:number;
   dueYear:number;
   dni:number;
-  provider:string;
+  provider:string="Elegir medio de pago...";
+  focusedr:boolean;
+  focusedf:boolean=true;
   //fin datos recuperados del formulario
   User: user=new user();
   paymentMethod:PaymentMethod= new PaymentMethod();
@@ -69,7 +71,7 @@ export class PaymentComponent implements OnInit {
 			res => {
             this.cardUser = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.cardUser=this.cardUser.sort();
-            console.log(JSON.stringify(this.cardUser));
+            //console.log(JSON.stringify(this.cardUser));
       		},
       		error => console.log(error)
     );
@@ -79,12 +81,12 @@ export class PaymentComponent implements OnInit {
     this.debitHid=true;
     this.providerHid=true;
     this.msgHid=true;
-    if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD")
+    if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD"||listcardId=="AmexD")
     {
       this.debitHid=false;
       this.paymentMethod.$name="CARDPAYMENT";
       this.paymentMethod.$type="CARD";
-      this.paymentMethod.$yng_Card.type="DEBIT";
+      this.paymentMethod.yng_Card.type="DEBIT";
     }
     else{
       if(listcardId=="Rapipago"||listcardId=="PagoFacil"||listcardId=="ProvinciaNET"){
@@ -126,25 +128,29 @@ export class PaymentComponent implements OnInit {
       CadenaSinBlancos += cadena.charAt(x); 
       }
     }
-    this.paymentMethod.$yng_Card.number=parseFloat(CadenaSinBlancos);
-    this.paymentMethod.$yng_Card.fullName=this.fullName;
-    this.paymentMethod.$yng_Card.securityCode=this.cvv;
-    this.paymentMethod.$yng_Card.dueMonth=this.dueMonth;
-    this.paymentMethod.$yng_Card.dueYear=this.dueYear;
-    this.paymentMethod.$yng_Card.dni=this.dni;
-    this.paymentMethod.$yng_Card.provider=this.provider;
+    this.paymentMethod.yng_Card.number=parseFloat(CadenaSinBlancos);
+    this.paymentMethod.yng_Card.fullName=this.fullName;
+    this.paymentMethod.yng_Card.securityCode=this.cvv;
+    this.paymentMethod.yng_Card.dueMonth=this.dueMonth;
+    this.paymentMethod.yng_Card.dueYear=this.dueYear;
+    this.paymentMethod.yng_Card.dni=this.dni;
+    this.paymentMethod.yng_Card.provider=this.provider;
     //fin de datos del formulario para tarjetas
-    this.paymentMethod.$yng_Card.user=JSON.parse(localStorage.getItem("user"));
+    this.paymentMethod.yng_Card.user=JSON.parse(localStorage.getItem("user"));
     this.typePay.emit(this.paymentMethod);
   }
   cardSelected(card:Card){
     this.paymentMethod.$name="CARDPAYMENT";
     this.paymentMethod.$type="CARD";
-    this.paymentMethod.$yng_Card=card;
-    this.paymentMethod.$yng_Card.user=JSON.parse(localStorage.getItem("user"));
+    this.paymentMethod.yng_Card=card;
+    this.paymentMethod.yng_Card.user=JSON.parse(localStorage.getItem("user"));
     this.typePay.emit(this.paymentMethod);
   }
 
-  
-
+  onFocusCVV(){
+    this.focusedr=true;
+  }
+  onBlurCVV(){
+    this.focusedr=false;
+  }
 }
