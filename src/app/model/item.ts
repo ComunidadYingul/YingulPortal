@@ -2,7 +2,7 @@ import { user } from './user';
 import { Ubication } from './ubication';
 import { ItemImage } from './item-image';
 export class Item {
-    itemId:number;
+    item_id:number;
     price:number;
     money:string;
     name:string;
@@ -12,8 +12,15 @@ export class Item {
     user : user=new user();
 	itemCategory: Object[];
 	itemImage:Object[];
-    principalImage : string;
+	principalImage : string;
+	itemId:number;
+    public get $item_id(): number {
+		return this.item_id;
+	}
 
+	public set $item_id(value: number) {
+		this.item_id = value;
+    }
     
     public get $price(): number {
 		return this.price;

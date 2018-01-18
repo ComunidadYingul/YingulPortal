@@ -2,7 +2,8 @@ import { Province } from './province';
 export class City {
     private cityId:number;
     name:string;
-    //private province_id:Province;
+	//private 
+	province_id:string;
 
 	public get $cityId(): number {
 		return this.cityId;

@@ -25,13 +25,35 @@
                     <img class="media-object img-circle" width="70" heigth="70" src="assets/images/envio.png" alt="Generic placeholder image">
                 </a>
             </div>
-            <div class="media-body blog-s-reply">
-                <h6 class="media-heading">Envio
-                </h6>
-                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+            <h6 class="media-heading">Envio</h6>
+            <br/> 
+            <div *ngIf="shipping.typeShipping == 'home'" class="media-left">
+                    <br/>Al finalizar la compra te daremos los datos de contacto del vendedor.
+            </div>
+            <div *ngIf="shipping.typeShipping == 'branch'" class="media-left">
+
+            
+                    <p class="cho-address">
+                            <br/>
+                            {{cotizacion.resumen}}-Andreani
+                            {{cotizacion.descripcion}}<br/>
+                            {{cotizacion.direccion}}<br/>
+                            {{cotizacion.horadeTrabajo}}
+                        </p>
+                        <div  class="cho-address" *ngIf="isComprador()"><h6 >{{cotizacion.tarifa}}</h6></div>
+                        <div  class="cho-address" *ngIf="isGratis()"> <h6 >Envio Gratis</h6><br/></div>
+            </div>
+                
+            <div class="media-left">
+
+
+        <!--this.sucursalRe=this.sucursal.descripcion+" "+this.sucursal.direccion+" "+this.sucursal.horadeTrabajo;-->
+                <h5></h5>
+
                 <div class="blog-u-comment">
-                    <span class="blog-edit"><a href="#!">Modificar</a> </span>
-                </div>
+                        <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                    </div>
+               
             </div>
         </li>
         <br/>
@@ -70,8 +92,9 @@
             </div>
             <div class="media-body blog-s-reply">
                 <h5>PRECIO: </h5> <strong>{{Item.price}}</strong> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a>
+                <br/> <a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     <strong>{{cotizacion.tarifa}}</strong></a>
                 <hr>
-                <h5><strong>PAGAS: </strong></h5><strong>{{cost}}</strong>    
+                <h5><strong>PAGAS: </strong></h5><strong>{{cost+costosEnvio}}</strong>    
             </div>
         </li>
     </ul>

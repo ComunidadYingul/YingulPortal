@@ -66,45 +66,24 @@
                         </div>
                     </div>
                 </div>            
-                <!--div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <h5>Indica la condición de tu producto</h5>                                
-                        </div>                
-                    </div>
-                    <div class="col-lg-6">
-                            <div class="input-group">
-                                <h5>Tipo y condiciones de venta *</h5>
-                            </div>
-                    </div>
-                </div-->
-                 <!--div  >
-                            <select  #t (change)="getCity(t.value)" >
-                                    <option value="0">Seleccionar Provincia</option>									
-										<option value="B">Buenos Aires</option>									
-								
-		
-									
-                                </select>
 
-                        </div-->
         
                 <div class="row">
                         <div  class="col-sm-6" >
                             <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
-                                <option value="0">Indica la condición de tu Producto</option>
+                                <option value="0">Indica la condición de tu producto</option>
                                 <option value="Nuevo">Nuevo</option>
                                 <option value="Usado">Usado</option>
                             </select>
                         </div>
-                        <div  class="col-sm-6" >
+                        <!--div  class="col-sm-6" >
                             <select class="form-control form-control-primary" #t (change)="capturarCondicionVenta(t.value)">
                                 <option value="0">Tipo y condiciones de venta *</option>
                                 <option value="1">Precio fijo</option>
                                 <option value="2">Subasta</option>
                                 
                             </select>
-                        </div>
+                        </div-->
                 </div>
             
             <div class="row">
@@ -147,7 +126,7 @@
     
             </div>
 
-            <div class="row">
+            <!--div class="row">
                     <div  class="col-sm-6" >
                             <select class="form-control form-control-primary"  #t (change)="pagoEnvio(t.value)">
                                 <option value="0">Pago del envió</option>
@@ -156,8 +135,9 @@
                             </select>
                         </div>
 
-            </div>
+            </div-->
             <!---->
+            <!--br/>
             <div class="row">
                     <div  class="col-sm-6" >
                             <select class="form-control form-control-primary"  #t (change)="pagoMedios(t.value)">
@@ -167,87 +147,10 @@
                             </select>
                         </div>
 
-            </div>
-
-            <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-
-                            <h5>Formas de entrega</h5>
-                            
-                        </div>                
-                    </div>
-
-            </div>
-
-            <div class="row">
-                    <hr class="m-t-20 m-b-20">
-                    <div class="col-sm-12">
-                            <div class="table-responsive" >
-                                <table class="table  invoice-detail-table">
-                                    <!--thead>
-                                        <tr class="thead-default">
-                                            <th>Ofrecer envíos por Yingul Envíos</th>
-                                        
-                                           
-                                        </tr>
-                                    </thead-->
-                                    <tbody [hidden]="false">
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)" >Ofrecer envíos por Yingul Envíos<br>
-                                            </td>
-                                            
-
-                                            
-                                        </tr>
-                                        <tr [hidden]="popupEligeDomicilio">
-                                             <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="calcularCosto()">
-                                                       <span class="m-l-10">CALCULAR COSTOS</span>
-                                                </button>
-                                        </tr>   
-    
-                                    </tbody>
-                                    <input type="checkbox" name="productFormDeliveryP" value="domicilio" [(ngModel)]="productFormDeliveryP">También ofrecer retiro en persona
-                                </table>
-                            </div>
-                        </div>
-                        <hr class="m-t-20 m-b-10">
+            </div-->
+            <br/>
 
 
-
-            </div>
-            <div class="row">
-                    <!--div class="col-lg-6">
-                        <div class="input-group">
-
-                            <h5>Formas de entrega</h5>
-                            
-                        </div>                
-                    </div-->
-                    <div class="col-lg-6">
-                            <div class="input-group">
-                                <h5>Medios de pago</h5>
-                            </div>
-                    </div>
-            </div>
-        
-            <div class="row">
-                    <!--div  class="col-sm-6" >
-                        <select class="form-control form-control-primary" name="productFormDelivery" [(ngModel)]="productFormDelivery" (change)="capturar()">
-                            <option>Formas de entrega</option>
-                            <option *ngFor="let dato of datosProductFormDelivery">{{dato}}</option>
-                        </select>
-                    </div-->
-  
-                    <div  class="col-sm-6" >
-                        <select class="form-control form-control-primary" name="productPaymentMethod" [(ngModel)]="productPaymentMethod" (change)="capturar()">
-                            <option>Medios de Pago</option>
-                            <option *ngFor="let dato of datosProductPaymentMethod">{{dato}}</option>
-                        </select>
-                    </div>
-
-            </div>
 
             <div class="row">
                     <div class="col-lg-6">
@@ -300,37 +203,6 @@
         
               
 
-                <!--div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <h5>Garantía</h5>
-                                
-                            </div>                
-                        </div>
-                        <div class="col-lg-6">
-                                <div class="input-group">
-                                    <h5>Pago del envió</h5>
-                                </div>
-                        </div>
-                </div-->
-                <div class="row">
-                        
-                    <!--div  class="col-sm-6" >
-                        <select class="form-control form-control-primary" name="productWarranty" [(ngModel)]="productWarranty" (change)="capturar()">
-                            <option>Garantía</option>
-                            <option *ngFor="let dato of datosProductWarranty">{{dato}}</option>
-                        </select>
-                    </div-->
-
-                    <div  class="col-sm-6" >
-                        <select class="form-control form-control-primary"  #t (change)="pagoEnvio(t.value)">
-                            <option value="0">Pago del envió</option>
-                            <option value="1">Pagado por él comprador</option>
-                            <option value="2">Pagado por él vendedor</option>
-                        </select>
-                    </div>
-    
-            </div>
            
             <h5>Fotos de tu Producto</h5>           
         </div>
@@ -641,7 +513,15 @@
 </form>
 
 
-<!--<div class="popup" [hidden]="popupEligeDomicilio">
+<div class="popup" [hidden]="popupEligeDomicilio">
+        <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
+        <div class="input-group input-group-button">
+            <input type="text" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" >
+            <span class="input-group-addon" id="basic-addon10"><!--value="domicilio" [(ngModel)]="shippingMethod"-->
+                <button class="btn btn-primary" (click)="buscarSucursales()">Buscar</button>
+            </span>
+        <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+        </div>
         <div class="page-header-title">
             <h5>Ingresá tu código postal</h5>
             <hr class="m-t-20 m-b-20">
@@ -651,37 +531,7 @@
                 <hr class="m-t-20 m-b-20">
 
             <div class="input-group input-group-button">
-                    <div  >
-                            <select  #t (change)="getCity(t.value)" >
-                                    <option value="0">Seleccionar Provincia</option>									
-										<option value="B">Buenos Aires</option>									
-										<option value="C">Capital Federal</option>									
-										<option value="K">Catamarca</option>									
-										<option value="H">Chaco</option>									
-										<option value="U">Chubut</option>									
-										<option value="X">Córdoba</option>									
-										<option value="W">Corrientes</option>									
-										<option value="E">Entre Ríos</option>									
-										<option value="P">Formosa</option>									
-										<option value="Y">Jujuy</option>									
-										<option value="L">La Pampa</option>									
-										<option value="F">La Rioja</option>									
-										<option value="M">Mendoza</option>									
-										<option value="N">Misiones</option>									
-										<option value="Q">Neuquén</option>									
-										<option value="R">Río Negro</option>									
-										<option value="A">Salta</option>									
-										<option value="J">San Juan</option>									
-										<option value="D">San Luis</option>									
-										<option value="Z">Santa Cruz</option>									
-										<option value="S">Santa Fe</option>									
-										<option value="G">Santiago del Estero</option>									
-										<option value="V">Tierra del Fuego</option>									
-										<option value="T">Tucumán</option>
-									
-                                </select>
 
-                        </div>
 
 
                     <h6 class="col-sm-2">   Código postal:     </h6>
@@ -724,6 +574,7 @@
                                         </td>
                                         <td>$ {{priceDomi}}</td>
                                         <td>Llega entre el 21 y 26 de diciembre.</td>
+                                        
                                        
                                     </tr>
 
@@ -742,5 +593,4 @@
                     </div>
             </div>
         </div>
-    </div>-->
-
+    </div>

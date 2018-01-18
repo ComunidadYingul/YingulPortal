@@ -17,6 +17,9 @@ import { Ambient } from '../../../model/ambient';
 import { SellService } from '../../../service/sell.service'
 import { error } from 'util';
 import { Jsonp } from '@angular/http/src/http';
+import { user } from '../../../model/user';
+import { Ubication } from '../../../model/ubication';
+
 
 
 @Component({
@@ -32,7 +35,9 @@ export class DetailComponent implements OnInit {
   @Output() detailItemS = new EventEmitter();
   @Output() detailProduct = new EventEmitter();
   @Input()  typeCat:any;
+
   public typeCatEs:string ="Servicio";
+  User: user=new user();
 
 
 
@@ -104,6 +109,7 @@ motorizedUnicoDue:string;
 public product: Product=new Product;
 public property: Property=new Property;
 public motorized: Motorized=new Motorized;
+precioEnvio:number=527.8;
 ////
 public item: Item=new Item();
 
@@ -118,6 +124,15 @@ public item: Item=new Item();
     this.datosProductPaymentMethod=["Aceptar pagos solo por Yingul","Aceptar pagos por Yingul y cobro en persona"];
     this.datosProductSaleConditions=["Precio fijo","Subasta"];
     this.datosProductWarranty=["Con garantía","Sin garantía"];
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+        
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      console.log(JSON.stringify(this.User));
+     
+     console.log("username:"+this.User.username+" postalCode:"+this.User.password+" yng_Ubication:"+this.User.yng_Ubication.postalCode);
+		}
     
   }
 
@@ -462,8 +477,10 @@ public item: Item=new Item();
  }
  popup:boolean=true;
  popupEligeDomicilio:boolean=true;
+ popupEnvios:boolean=true;
  popupGarantia:boolean=true;
  popupCotizar:boolean=true;
+ popupUbicacion:boolean=true;
  addprop1(){
    this.popupEligeDomicilio=this.popupEligeDomicilio!;
    console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
@@ -476,6 +493,46 @@ public item: Item=new Item();
  
 
 test(event) {
+  
+  console.log("event:"+event.target.checked);
+  
+  if(event.target.checked==true){
+    this.consultarUbi();
+    
+   // this.popupEnvios=false;
+   
+  }
+  else {
+    this.popupEnvios=true;
+    this.popupUbicacion=true;
+  }
+  
+  console.log("popupEligeDomicilio:"+this.popupEnvios);
+
+}
+ubication:Ubication;
+consultarUbi(){
+  this.sellService.ConsultarUbicavionUser(this.User.username).subscribe(
+    res => {
+      console.log(JSON.stringify(res));
+      if(JSON.parse(JSON.stringify(res))._body!=""){
+          this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          
+          console.log(JSON.stringify(this.ubication));
+          this.popupEnvios=false;
+          this.popupUbicacion=true;
+      }
+      else {
+        this.popupEnvios=true;
+        this.popupUbicacion=false;
+
+      }
+        },
+        error => console.log(error)
+  );
+  
+}
+test2(event) {
   
   console.log("event:"+event.target.checked);
   if(event.target.checked==true)this.popupEligeDomicilio=false;
@@ -530,6 +587,22 @@ pagoMedios(envi:string){
   this.productPagoEnvio="Aceptar pagos solo por Yingul";
   if(envi=="2")
   this.productPagoEnvio="Aceptar pagos por Yingul y cobro en persona";
+
+}
+
+envioComprador(event){
+  
+  if(event.target.checked==true) this.productPagoEnvio="comprador";
+}
+envioGratis(event){
+  
+  if(event.target.checked==true) this.productPagoEnvio="gratis";
+}
+
+//popupEligeDomicilio:boolean;
+elijeDomicilio(){
+  this.popupEligeDomicilio=false;
+
 }
 
 

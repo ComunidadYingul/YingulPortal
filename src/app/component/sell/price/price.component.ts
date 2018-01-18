@@ -10,6 +10,7 @@ import { user } from '../../../model/user';
 import { Product } from '../../../model/product';
 import { Property } from '../../../model/Property';
 import { Motorized } from '../../../model/Motorized';
+import { Ubication } from '../../../model/ubication';
 
 @Component({
   selector: 'app-price',
@@ -40,6 +41,8 @@ export class PriceComponent implements OnInit {
   postalCode:string="";
   aditional:string="";
   User:object;
+  userName;
+  ubicationId:string;
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -75,17 +78,27 @@ export class PriceComponent implements OnInit {
         this.webSite=JSON.stringify(JSON.parse(JSON.stringify(this.User)).webSite);
         this.webSite=this.webSite.replace(/['"]+/g, '');
         if(this.webSite=="null"){this.webSite="";}
+        this.userName=JSON.stringify(JSON.parse(JSON.stringify(this.User)).username);
+        this.userName=this.userName.replace(/['"]+/g,'');
+        //his.ubicationId=JSON.stringify(JSON.parse(JSON.stringify(this.User)).yng_Ubication.);
+       // this.ubicationId=this.ubicationId.replace(/['"]+/g,'');
+       // alert("userNameprice :"+this.ubicationId);
+
+
       },
       error => console.log(error)
     )
     
   }
+  provin:string;
   getCity(provinceId : number){
-    this.province.$provinceId=provinceId;
+   this.province.$provinceId=provinceId;
     this.cityList=[];
     this.sellService.getCities(provinceId).subscribe(
 			res => {
             this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
+           // alert("this.provin:"+this.provin);
             if(JSON.stringify(this.cityList)=="[]"){
               this.cityHid=true;
               this.barrioHid=true;
@@ -120,6 +133,15 @@ export class PriceComponent implements OnInit {
     if(this.typeCatPre=="Service")      return true;
     else                                return false;
   }
+  isProduct():boolean{
+    if(this.typeCatPre=="Product")      return true;
+    else                                return false;
+  }
+  isOtro():boolean{
+    if(this.typeCatPre!="Product")      return true;
+    else                                return false;
+  }
+  
 
   sendPrice(){
     console.log("type price  pre: "+this.typeCatPre)
@@ -148,15 +170,13 @@ export class PriceComponent implements OnInit {
       //this.product.$emailService=this.email;
       this.product.yng_Item.$user.$webSite=this.webSite;
       this.product.yng_Item.$price=this.price;
-      this.product.yng_Item.$money=this.money;
-      this.product.yng_Item.$yng_Ubication.$street=this.street;
-      this.product.yng_Item.$yng_Ubication.$number=this.number;
-      this.product.yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.product.yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.product.yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.product.yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.product.yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.product.yng_Item.$money=this.money;      
+      //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
+      this.product.productPaymentMethod=this.productPaymentMethod;
+      this.product.productSaleConditions=this.productSaleConditions;
+      
+      //this.product.$productFormDelivery=
       this.priceItemS.emit(this.product);
 
     }
@@ -225,5 +245,167 @@ export class PriceComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+  }
+  keyPressCP(event: any){
+    const pattern = /[0-9]/;
+    
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+          event.preventDefault();
+        }
+  }
+  codigoPostalE:string;
+  btnCP:boolean=false;
+  provinciaCP:string;
+  provinciaID:number;
+  buscarCP(){
+    if(this.codigoPostalE==""){alert("Introduzca un Código Postal");}
+    else{
+
+      this.cityList=[];
+
+      this.sellService.getCP(this.codigoPostalE).subscribe(
+        res => {
+              this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+
+              
+  
+              if(JSON.stringify(this.cityList)=="[]"){
+                
+                this.cityHid=true;
+                this.barrioHid=true;
+                alert("no se encontro el codigo postal ");
+              } 
+              else{
+                this.provinciaCP=JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.name);
+                this.provinciaID=parseInt(JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.provinceId));
+              
+                this.province.$provinceId=this.provinciaID;
+                
+                this.cityHid=false;
+                this.postalCode=this.codigoPostalE;
+                this.btnCP=true;  
+                             
+              }
+            },
+            error => console.log(error)
+      )
+    }
+
+  }
+  popupUbication:boolean=true;
+  aceptar(){
+    
+   
+    if(this.street==""||this.number==""||this.aditional==""){  
+      alert("Complete todo los datos por favor");
+    }
+    else{
+      this.product.yng_Item.$yng_Ubication.$street=this.street;
+      this.product.yng_Item.$yng_Ubication.$number=this.number;
+      this.product.yng_Item.$yng_Ubication.$postalCode= this.postalCode;
+      this.product.yng_Item.$yng_Ubication.$aditional=this.aditional;
+      this.product.yng_Item.$yng_Ubication.$yng_Province=this.province;
+      this.product.yng_Item.$yng_Ubication.$yng_City=this.city;
+      this.product.yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.popupEnvios=false;
+      this.popupUbicacion=true;
+      this.popupUbication=true;
+    }  
+  }
+  ubicacion(){
+    this.popupUbication=false;
+  }
+  cambiarCP(){
+    this.cityHid=true;
+    this.postalCode="";
+    this.number="";
+    this.street="";
+    this.aditional="";
+    this.btnCP=false;
+  }
+
+  popup:boolean=true;
+ popupEligeDomicilio:boolean=true;
+ popupEnvios:boolean=true;
+ popupGarantia:boolean=true;
+ popupCotizar:boolean=true;
+ popupUbicacion:boolean=true;
+ ubication:Ubication;
+
+  test(event) {  
+    console.log("event:"+event.target.checked);    
+    if(event.target.checked==true){
+      this.product.productFormDelivery="YingulEnvios"      
+      this.consultarUbi();
+    }
+    else {
+      this.popupEnvios=true;
+      this.popupUbicacion=true;
+    }
+  }
+
+  test2(event) {  
+    console.log("event:"+event.target.checked);    
+    if(event.target.checked==true){
+      this.product.productFormDelivery="YingulEnviosPersona"      
+     // this.consultarUbi();
+    }
+    else {
+      //this.popupEnvios=true;
+      //this.popupUbicacion=true;
+    }
+  }
+  consultarUbi(){
+    console.log("this.userName"+this.userName);
+    this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
+      res => {
+        //console.log(JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body!=""){
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+           
+           console.log(JSON.stringify(this.ubication));
+          //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
+           this.product.yng_Item.$yng_Ubication=this.ubication;
+            this.popupEnvios=false;
+            this.popupUbicacion=true;
+        }
+        else {
+          this.popupEnvios=true;
+          this.popupUbicacion=false;
+  
+        }
+          },
+          error => console.log(error)
+    );
+    
+  }
+  popGarantia(event) {
+  
+    console.log("event:"+event.target.checked);
+    if(event.target.checked==true){this.popupGarantia=false;}
+    else this.popupGarantia=true;
+    console.log("popupGarantia:"+this.popupGarantia);
+  
+  }
+  envioComprador(event){
+  
+    if(event.target.checked==true) this.product.productPagoEnvio="comprador";
+  }
+  envioGratis(event){
+    
+    if(event.target.checked==true) this.product.productPagoEnvio="gratis";
+  }
+  productSaleConditions:string;
+  capturarCondicionVenta(provinceId : string){
+    this.productSaleConditions=provinceId;
+  }
+  productPaymentMethod:string;
+  pagoMedios(envi:string){
+    if(envi=="1")
+    this.productPaymentMethod="Aceptar pagos solo por Yingul";
+    if(envi=="2")
+    this.productPaymentMethod="Aceptar pagos por Yingul y cobro en persona";
+  
   }
 }
