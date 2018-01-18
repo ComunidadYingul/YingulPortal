@@ -739,38 +739,8 @@
         <div class="md-float-material">
                 <hr class="m-t-20 m-b-20">
 
-            <div class="input-group input-group-button">
-                    <!--div  >
-                            <select  #t (change)="getCity(t.value)" >
-                                    <option value="0">Seleccionar Provincia</option>									
-										<option value="B">Buenos Aires</option>									
-										<option value="C">Capital Federal</option>									
-										<option value="K">Catamarca</option>									
-										<option value="H">Chaco</option>									
-										<option value="U">Chubut</option>									
-										<option value="X">Córdoba</option>									
-										<option value="W">Corrientes</option>									
-										<option value="E">Entre Ríos</option>									
-										<option value="P">Formosa</option>									
-										<option value="Y">Jujuy</option>									
-										<option value="L">La Pampa</option>									
-										<option value="F">La Rioja</option>									
-										<option value="M">Mendoza</option>									
-										<option value="N">Misiones</option>									
-										<option value="Q">Neuquén</option>									
-										<option value="R">Río Negro</option>									
-										<option value="A">Salta</option>									
-										<option value="J">San Juan</option>									
-										<option value="D">San Luis</option>									
-										<option value="Z">Santa Cruz</option>									
-										<option value="S">Santa Fe</option>									
-										<option value="G">Santiago del Estero</option>									
-										<option value="V">Tierra del Fuego</option>									
-										<option value="T">Tucumán</option>
-									
-                                </select>
+            <!--div class="input-group input-group-button">
 
-                        </div-->
 
 
                     <h6 class="col-sm-2">   Código postal:     </h6>
@@ -782,6 +752,13 @@
                         <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="buscar()">buscar</button>
                 </div>
 
+            </div-->
+            <div class="input-group input-group-button">
+                <input type="text" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" >
+                <span class="input-group-addon" id="basic-addon10"><!--value="domicilio" [(ngModel)]="shippingMethod"-->
+            <button class="btn btn-primary" (click)="buscar()">Buscar</button>
+            </span>
+            <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
             </div>
         </div>
 
@@ -794,49 +771,26 @@
                                     <tr class="thead-default">
                                         <th>Método de envío</th>
                                         <th>Costo</th>
-<<<<<<< HEAD
                                         
-=======
-                                        <!--th>Entrega estimada</th-->
->>>>>>> origin/master
                                        
                                     </tr>
                                 </thead>
                                 <tbody [hidden]="popupCotizar">
                                     <tr>
                                         <td>
-                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod">Retiro en una sucursal<br>
+                                        <input type="radio" name="shippingMethod"  (click)="retiroSuc($event)">Retiro en una sucursal<br>
                                         </td>
-                                        <td>$ {{priceSuc}}</td>
-<<<<<<< HEAD
+                                        <td>$ {{priceSuc}}</td> 
                                        
                                         
                                     </tr>
                                    
-=======
-                                        <!--td>Llega entre el 21 y 26 de diciembre.</td-->
-                                        
-                                    </tr>
-                                    <!--tr>
-                                        <td>
-                                        <input type="radio" name="shippingMethod" value="normal" [(ngModel)]="shippingMethod">Normal a domicilio<br>
-                                        </td>
-                                        <td>$ {{priceDomi}}</td>
-                                        <td>Llega entre el 21 y 26 de diciembre.</td>
-                                       
-                                    </tr-->
-
->>>>>>> origin/master
 
                                 </tbody>
-                                <input type="radio" name="shippingMethod" value="domicilio" [(ngModel)]="shippingMethod">  Lo retiro en domicilio del vendedor
+                                <input type="radio" name="shippingMethod"  (click)="retiroDomicilio($event)">  Lo retiro en domicilio del vendedor
                             </table>
                         </div>
-<<<<<<< HEAD
                 </div>
-=======
-                    </div>
->>>>>>> origin/master
                     <hr class="m-t-20 m-b-10">
         <div class="row">
             
@@ -847,89 +801,4 @@
             </div>
         </div>
     </div>
-
-<<<<<<< HEAD
-<!--div [hidden]="!spinner" id="loader"></div>
-<div class="popup" [hidden]="true">
-        <div class="page-header-title">
-            <h5>Formas de entrega</h5>
-            
-=======
-<div [hidden]="!spinner" id="loader"></div>
-<div class="popup" [hidden]="true">
-        <div class="page-header-title">
-            <h5>Formas de entrega</h5>
-            <!--hr class="m-t-20 m-b-20">
-            <h6>Así podrás calcular el costo de envío y conocer los servicios disponibles(click)="popGarantia($event)"</h6-->
->>>>>>> origin/master
-        </div>
-
-        <hr class="m-t-20 m-b-20">
-        <div class="col-sm-12">
-                <input type="radio" name="formasEntrega" value="personaEntrega" [(ngModel)]="formasEntrega" (click)="entregaP($event)">Retiro en domicilio del vendedor <br>
-                
-                <input type="radio" name="formasEntrega" value="sucursalEntrega" [(ngModel)]="formasEntrega" (click)="entregaS($event)">Retiro en sucursal Andreani<br>
-
-        </div>
-
-
-
-
-        <div [hidden]="popupEntregaSuc">
-        <div class="md-float-material">
-                <hr class="m-t-20 m-b-20">
-
-            <div class="input-group input-group-button">
-
-
-
-                    <h6 class="col-sm-2">Código postal:</h6>
-                <span class="input-group-addon">
-                    
-                </span>
-                <input class="col-sm-2" type="text"  name="postalCode" [(ngModel)]="postalCode" placeholder="Ej.:1430">
-                <div class="col-sm-6">
-                        <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="buscar()">buscar</button>
-                </div>
-
-            </div>
-        </div>
-
-        
-                <hr class="m-t-20 m-b-20">
-                <div class="col-sm-12">
-                        <div class="table-responsive" >
-                            <table class="table  invoice-detail-table">
-                                <tbody [hidden]="popupCotizar">
-                                    <tr>
-                                        <td>
-                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod">Retiro en una sucursal<br>
-                                        </td>
-                                        <td>$ {{priceSuc}}</td>
-                                        
-                                        
-                                    </tr>
-                                   
-
-                                </tbody>
-                               
-                            </table>
-                        </div>
-                    </div>
-
-                </div>
-                    <hr class="m-t-20 m-b-10">
-        <div class="row">
-            
-            <div class="col-sm-2">
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptarEntrega()">Aceptar</button>
-                    </div>
-            </div>
-        </div>
-<<<<<<< HEAD
-    </div-->
-=======
-    </div>
->>>>>>> origin/master
 

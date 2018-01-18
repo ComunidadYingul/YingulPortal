@@ -62,13 +62,13 @@
                                         <div class="tab-content">
                                             <!-- principio de envio -->
                                             <div class="tab-pane active" id="home7" role="tabpanel">
-                                                <app-shipping [hidden]="hidShip" (typeShip)="sendTypeShip($event)" [Item]="Item" [quantity]="quantity" ></app-shipping>
+                                                <app-shipping [hidden]="hidShip" (typeProduct)="sendProduct($event)" (typeEnvio)="sendTypeEnvio($event)"  (typePrice)="sendTypePrice($event)" (typeCotizacion)="sendTypeCotizacion($event)" (typeShip)="sendTypeShip($event)" [Item]="Item" [quantity]="quantity" ></app-shipping>
                                             <!-- fin de envio -->
                                             <!-- principio de pago -->
-                                                <app-payment [hidden]="hidPay" (typePay)="sendTypePay($event)" [Item]="Item" [quantity]="quantity"></app-payment>
+                                                <app-payment [hidden]="hidPay" [priceSuc]="priceSuc" (typePay)="sendTypePay($event)" [Item]="Item" [quantity]="quantity"></app-payment>
                                             <!-- fin de pago -->
                                             <!-- principio de revisa y confirma -->
-                                                <app-confirm [hidden]="hidConf" [paymentMethod]="paymentMethod" [Item]="Item" [quantity]="quantity" [cost]="cost"></app-confirm>
+                                                <app-confirm [hidden]="hidConf" [priceSuc]="priceSuc" [product]="product" [shipping]="shipping"[paymentMethod]="paymentMethod" [cotizacion]="cotizacion" [Item]="Item" [quantity]="quantity" [cost]="cost"></app-confirm>
                                             <!-- fin de revisa y confirma -->
                                         </div>
                                     </div>

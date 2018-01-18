@@ -9,6 +9,9 @@ import { Motorized } from '../../../model/Motorized';
 import { Property } from '../../../model/Property';
 import { Ubication } from '../../../model/ubication';
 import { Cotizar } from '../../../model/cotizar';
+import { AndreaniCotizacion } from '../../../model/andreaniCotizacion';
+import { AndreaniCotizacionRespuesta } from '../../../model/andreaniCotizacionRespuesta';
+import { Cotizacion } from '../../../model/cotizacion';
 
 @Component({
   selector: 'app-idetail',
@@ -186,6 +189,13 @@ export class IdetailComponent implements OnInit {
 		}
     
   }
+  retiroSuc(event){
+    if(event.target.checked==true)this.shippingMethod="sucursal";
+  }
+
+  retiroDomicilio(event){
+    if(event.target.checked==true)this.shippingMethod="domicilio";
+  }
 
  
   aceptar(){
@@ -196,10 +206,7 @@ export class IdetailComponent implements OnInit {
     if(this.shippingMethod=="domicilio"){
       this.envioType="Lo retiro en domicilio del vendedor";
 
-      // {{Item.yng_Ubication.yng_Province.name}}
-      //{{Item.yng_Ubication.yng_City.name}} 
-      //
-      this.llegadaTime=""+this.Item.yng_Ubication.yng_Province.name+"  "+this.Item.yng_Ubication.yng_City.name;
+      //this.llegadaTime=""+this.Item.yng_Ubication.yng_Province.name+"  "+this.Item.yng_Ubication.yng_City.name;
 
      
     }
@@ -221,7 +228,16 @@ export class IdetailComponent implements OnInit {
       case "sucursal":
       this.envioType="Envío $ "+this.priceSuc;
       this.llegadaTime="Llega a la sucursal entre 48 y 96 hs. hábiles desde la imposición.";
+
       this.popup=true;
+      if(this.andreaniCotizacionRespuesta==null)
+      {alert("debe selecionar un metodo");
+      }
+      else{
+        this.sendCotizacion();
+       // this.typeShip.emit("envio");
+  
+      }
         break;
       default:
         alert("Seleccione un Método de envío");
@@ -230,12 +246,30 @@ export class IdetailComponent implements OnInit {
 
   }
 
+  cotizarTemp1:Cotizacion;
+  cotizacion:Cotizacion = new Cotizacion();
+  sendCotizacion(){
+   // this.cotizarTemp1=coti;
+    console.log("envio: "+JSON.stringify(this.cotizacion));
+    this.itemDetailService.sendCotizacionAndreani(this.cotizacion).subscribe(
+      res => {
+      
 
+            if(JSON.parse(JSON.parse(JSON.stringify(res))._body)=="save"){alert("Cotizacion guardada");}
+            else alert("Ocurio un error");
+            
+          },
+          error => console.log(error)
+    );
+   
+
+  }
 
   calcularCosto(){
     this.popup=false;
   }
   shippingMethod:string;
+  public andreaniCotizacion:AndreaniCotizacion=new AndreaniCotizacion();
 
 
   buscar(){
@@ -252,8 +286,18 @@ export class IdetailComponent implements OnInit {
       this.Cotizar.$volumen=this.Product.producVolumen;
       
       //this.Cotizar.
-      this.sendCotizar(this.Cotizar);
-      
+      this.andreaniCotizacion.username="";
+      this.andreaniCotizacion.password="";             
+      this.andreaniCotizacion.codigoDeCliente="";
+      this.andreaniCotizacion.numeroDeContrato="";
+      this.andreaniCotizacion.codigoPostal=this.postalCode;
+      this.andreaniCotizacion.codigoDeSucursal=this.Item.yng_Ubication.codAndreani;
+      this.andreaniCotizacion.peso=this.Product.productPeso;
+      this.andreaniCotizacion.volumen=this.Product.producVolumen;
+      this.andreaniCotizacion.valorDeclarado=""+this.Item.price; 
+       
+      //this.sendCotizar(this.Cotizar);
+      this.sendCotizar2(this.andreaniCotizacion);
     }
     else {
       var codigoPostalSel="";
@@ -270,9 +314,11 @@ export class IdetailComponent implements OnInit {
   }
 
   cotizarTemp:Cotizar;
+ cotizarTemp2:AndreaniCotizacion;
+ andreaniCotizacionRespuesta:AndreaniCotizacionRespuesta= new AndreaniCotizacionRespuesta();
   tarifa:string;
   sendCotizar(coti:Cotizar){
-    this.cotizarTemp=coti;
+   this.cotizarTemp=coti;
     console.log("Cotizar: "+JSON.stringify(this.cotizarTemp));
     this.itemDetailService.sendCotiza(this.cotizarTemp).subscribe(
 			res => {
@@ -288,7 +334,50 @@ export class IdetailComponent implements OnInit {
     );
    
 
+ 
   }
+
+  sendCotizar2(coti:AndreaniCotizacion){
+    /*this.cotizarTemp=coti;
+     console.log("Cotizar: "+JSON.stringify(this.cotizarTemp));
+     this.itemDetailService.sendCotiza(this.cotizarTemp).subscribe(
+       res => {
+        // this.tarifa=JSON.parse(JSON.parse(JSON.stringify(res))._body);  
+         console.log("tarifa: "+JSON.parse(JSON.stringify(res))._body);
+         this.priceSuc=JSON.parse(JSON.stringify(res))._body;
+             //this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);  
+            // console.log("coti: "+JSON.stringify(res));
+            if(this.priceSuc!=""){this.popupCotizar=false;}
+            else {this.popupCotizar=true; alert("Código postal invalido");};
+           },
+           error => console.log(error)
+     );*/
+    
+ 
+     this.cotizarTemp2=coti;
+     console.log("envio: "+JSON.stringify(this.cotizarTemp2));
+     this.itemDetailService.sendCotizaAndreani(this.cotizarTemp2).subscribe(
+       res => {
+       
+         this.andreaniCotizacionRespuesta=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+       
+ 
+            if(this.andreaniCotizacionRespuesta.tarifa!=""){
+              this.popupCotizar=false;
+              this.priceSuc=this.andreaniCotizacionRespuesta.tarifa;
+              //this.mostrarCotizacion();
+              //this.mostrarSucursal();
+             }
+            else {
+              this.popupCotizar=true; 
+             alert("Código postal invalido");};
+             console.log("else tarifa: ");
+           },
+           error => console.log(error)
+     );
+  
+   }
+ 
 
  
   popupEntregaSuc:boolean=true;

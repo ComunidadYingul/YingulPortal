@@ -48,7 +48,7 @@
           <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" aria-label="Text input with radio button">
         </div>
       </div>
-      <div class="col-lg-6">
+      <div *ngIf="isOtro()" class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon">
             <input type="radio" id="option1" aria-label="Radio button for following text input">
@@ -57,7 +57,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <div *ngIf="isOtro()">
             <h5>Tu ubicacion</h5>
             <div class="row">
@@ -73,40 +72,6 @@
                         <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
                     </select>
                 </div>
-=======
-    
-    <div [hidden]="false">
-    <h5>Tu ubicacion</h5>
-    <div class="row">
-        <div  class="col-sm-6" >
-            <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
-                <option>Seleccione una provincia</option>
-                <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
-            </select>
-        </div>
-        <div class="col-sm-6" [hidden]="cityHid">
-            <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
-                <option value="opt1">Seleccione una Ciudad</option>
-                <option *ngFor="let city of cityList" [value]="city.cityId">{{city.name}}</option>
-            </select>
-        </div>
-    </div>
-    <br/>
-    <div class="row"> 
-        <div class="col-sm-6" [hidden]="barrioHid">
-            <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
-                <option value="opt1">Seleccione un Barrio</option>
-                <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId">{{barrio.name}}</option>
-            </select>
-        </div>
-    </div>
-    <br/>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
->>>>>>> origin/master
             </div>
             <br/>
             <div class="row"> 
@@ -148,6 +113,28 @@
             </div>
             </div>
             <div *ngIf="isProduct()">
+                <div class="row">
+                        <div  class="col-sm-6" >
+                                <select class="form-control form-control-primary" #o (change)="capturarCondicionVenta(o.value)">
+                                    <option value="0">Tipo y condiciones de venta *</option>
+                                    <option value="Fijo">Precio fijo</option>
+                                    <option value="Subasta">Subasta</option>
+                                    
+                                </select>
+                            </div>
+                </div>
+                <br/>
+                <div class="row">
+                        <div  class="col-sm-6" >
+                                <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
+                                    <option value="0">MEDIOS DE PAGO</option>
+                                    <option value="1">Aceptar pagos solo por Yingul</option>
+                                    <option value="2">Aceptar pagos por Yingul y cobro en persona</option>
+                                </select>
+                            </div>
+    
+                </div>
+                <br/>
                     <div class="row">
                             <div class="col-lg-6">
                                 <div class="input-group">
@@ -169,12 +156,12 @@
                                             <tbody [hidden]="popupEnvios">
                                                 <tr>
                                                     <td class="radio radiofill radio-inline">
-                                                        <input type="radio" name="shippingMethod" value="normal" (click)="popGarantia($event)" >Envío a cargo del comprador<br>
+                                                        <input type="radio" name="shippingMethod" value="normal" (click)="envioComprador($event)" >Envío a cargo del comprador<br>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="radio radiofill radio-inline"> 
-                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="popGarantia($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -183,7 +170,7 @@
                                                     <span class="m-l-10">Elige tu domicilio</span>
                                              </button>
                                             </div>
-                                            <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP">También ofrecer retiro en persona
+                                            <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)" >También ofrecer retiro en persona
                                         </table>
                                     </div>
                             </div>
@@ -237,46 +224,6 @@
 
 
     </div>
-    </div>
-
-    <div [hidden]=true>
-            <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <h5>Formas de entrega</h5>                            
-                        </div>                
-                    </div>
-            </div>
-
-            <div class="row">
-                    <hr class="m-t-20 m-b-20">
-                    <div class="col-sm-12">
-                            <div class="table-responsive" >
-                                <table class="table  invoice-detail-table">
-                                    <tbody [hidden]="false">
-                                        <tr>
-                                            <td>
-                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)" >Ofrecer envíos por Yingul Envíos<br>
-                                            </td>
-                                        </tr>
-                                        <tr [hidden]="popupEligeDomicilio">
-                                             <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="calcularCosto()">
-                                                       <span class="m-l-10">CALCULAR COSTOS</span>
-                                                </button>
-                                        </tr>      
-                                    </tbody>
-                                    <input type="checkbox" name="productFormDeliveryP" value="domicilio" [(ngModel)]="productFormDeliveryP">También ofrecer retiro en persona
-                                </table>
-                            </div>
-                        </div>
-                        <hr class="m-t-20 m-b-10">
-            </div>
-
-
-
-    </div>
-
-    
 
     
 
@@ -307,12 +254,11 @@
         </div>
     </div>
 </form>
-<<<<<<< HEAD
 
 <div class="popup" [hidden]="popupUbication">
     <h4 class="sub-title">Ingresa tu código postal </h4>
     <div [hidden]="btnCP" class="input-group input-group-button">
-        <input type="text" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal">
+        <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
         <span class="input-group-addon" id="basic-addon10">
             <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
         </span>
@@ -321,63 +267,60 @@
 
 
     <div  [hidden]="cityHid">
+            <div class="row">        
+                <div  class="input-group input-group-button">            
+                    <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                    <span class="input-group-addon" id="basic-addon10">
+                            <button  class="btn btn-primary"  (click)="cambiarCP()">Codigo postal Cambiar</button>
+                    </span>
+                </div>                
+            </div>
+
+            <h4 class="sub-title">{{provinciaCP}}</h4>
+            <div class="col-sm-6" [hidden]="false">
+                    <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
+                        <option value="opt1">Seleccione una Ciudad</option>
+                        <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
+                    </select>
+            </div>
+            <br/>
             <div class="row">
-       
-        <div  class="input-group input-group-button">            
-            <input type="text" (keypress)="keyPress($event)" class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
-            <span class="input-group-addon" id="basic-addon10">
-                    <button  class="btn btn-primary"  (click)="cambiarCP()">Codigo postal Cambiar</button>
-            </span>
-        </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                            <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+                        </div>
+                    </div>
+            </div>
+            <div class="row">       
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" (keypress)="keyPress($event)" class="form-control" name="number" [(ngModel)]="number" placeholder="Número">
+                        </div>
+                    </div>
+            </div>  
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
+                        </div>
+                </div>
+            </div>
+    </div>
                 
-            </div>
-    <div class="col-sm-6" [hidden]="false">
-            <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
-                <option value="opt1">Seleccione una Ciudad</option>
-                <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
-            </select>
-    </div>
-    <br/>
-    <div class="row">
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                    <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+            
+            <div class="row">
+                
+                <div class="col-sm-2">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                        </div>
                 </div>
             </div>
-     </div>
-     <div class="row">       
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                    <input type="text" (keypress)="keyPress($event)" class="form-control" name="number" [(ngModel)]="number" placeholder="Número">
-                </div>
-            </div>
-    </div>
-   
-
-
-    <div class="row">
-        <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                    <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
-                </div>
-        </div>
-    </div>
-   </div>
-        
-    
-    <div class="row">
-        
-        <div class="col-sm-2">
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
-                </div>
-        </div>
-    </div>
 
 
 </div>
-=======
->>>>>>> origin/master

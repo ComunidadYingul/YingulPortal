@@ -1,6 +1,8 @@
 import { user } from './user';
 import { Item } from './item';
 import { PaymentMethod } from './payment-method';
+import { AndreaniEnvios } from './andreaniEnvios';
+import { Shipping } from './shipping';
 export class Buy {
 	private buyId:number;
 	private cost:number;
@@ -9,6 +11,29 @@ export class Buy {
 	private user:user=new user();
 	private yng_item:Item= new Item();
 	private yng_PaymentMethod:PaymentMethod= new PaymentMethod();
+	private shipping:Shipping=new Shipping();
+
+
+	public get $shipping(): Shipping {
+		return this.shipping;
+	}
+
+	public set $shipping(value: Shipping) {
+		this.shipping = value;
+	}
+
+	
+/*
+	private yng_envio:AndreaniEnvios =new AndreaniEnvios();
+
+	public get $yng_envio(): AndreaniEnvios  {
+		return this.yng_envio;
+	}
+
+	public set $yng_envio(value: AndreaniEnvios ) {
+		this.yng_envio = value;
+	}
+*/
 
 	public get $buyId(): number {
 		return this.buyId;

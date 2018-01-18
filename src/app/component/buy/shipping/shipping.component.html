@@ -28,7 +28,7 @@
             <div [hidden]="branch">
                 <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
                 <div class="input-group input-group-button">
-                    <input type="text" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" >
+                    <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
                     <span class="input-group-addon" id="basic-addon10"><!--value="domicilio" [(ngModel)]="shippingMethod"-->
                 <button class="btn btn-primary" (click)="buscarSucursales()">Buscar</button>
                 </span>
@@ -36,7 +36,7 @@
                 </div>
                 
                 <hr class="m-t-20 m-b-20">
-                <div class="col-sm-12" [hidden]="popupSucursal">
+                <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
                         <div class="table-responsive" >
                             <table class="table  invoice-detail-table">
                                 <thead>
@@ -50,7 +50,7 @@
                                 <tbody [hidden]="false">
                                     <tr>
                                         <td>
-                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod">{{sucursalAndre}}<br>
+                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod" (click)="envioComprador($event)">{{sucursalAndre}}<br>
                                         <h6 class="cho-list">{{resumen}}</h6>
                                         <h6 class="cho-list">{{direccion}}</h6>
                                         <h6 class="cho-list">{{horadeTrabajo}}</h6>
@@ -64,9 +64,28 @@
                                    
 
                                 </tbody>
-                               
+                                
+                                
+                                
                             </table>
+                       
                         </div>
+                </div>
+                <br/>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">
+                               
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="input-group col-md-6">
+                                <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
+                                <span class="md-line"></span>
+                            </div>
                 </div>
 
             </div>
@@ -103,6 +122,7 @@
                 <h6 class="job-card-desc">{{Item.name}}</h6>
                 <p class="text-muted">{{Item.description}}</p>
                 <div class="job-meta-data"><i class="icofont icofont-safety"></i>{{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></div>
+                <div class="job-meta-data" [hidden]="priceHiddem"><i class="icofont icofont-safety"></i>{{priceSuc}}</div>
                 <div class="job-meta-data"><i class="icofont icofont-university"></i>{{Item.price}}</div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import { Buy } from '../model/buy';
 import { user } from '../model/user';
+import { AndreaniEnvios } from '../model/andreaniEnvios';
 @Injectable()
 export class BuyService {
   public headers = new Headers({
@@ -28,6 +29,10 @@ export class BuyService {
   saveBuy(buy:Buy){
     let _url: string ='http://localhost:8080/buy/createBuy';
     return this.http.post(_url, buy,{headers: this.headers})
+  }
+  saveEnvio(envio:AndreaniEnvios){
+    let _url: string ='http://localhost:8080/logistics/envio';
+    return this.http.post(_url, envio,{headers: this.headers})
   }
   updateUser(user:user){
     let _url: string ='http://localhost:8080/buy/updateUser';

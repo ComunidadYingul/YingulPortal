@@ -42,6 +42,7 @@ export class PriceComponent implements OnInit {
   aditional:string="";
   User:object;
   userName;
+  ubicationId:string;
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -79,7 +80,9 @@ export class PriceComponent implements OnInit {
         if(this.webSite=="null"){this.webSite="";}
         this.userName=JSON.stringify(JSON.parse(JSON.stringify(this.User)).username);
         this.userName=this.userName.replace(/['"]+/g,'');
-       // alert("userNameprice :"+this.userName);
+        //his.ubicationId=JSON.stringify(JSON.parse(JSON.stringify(this.User)).yng_Ubication.);
+       // this.ubicationId=this.ubicationId.replace(/['"]+/g,'');
+       // alert("userNameprice :"+this.ubicationId);
 
 
       },
@@ -89,13 +92,13 @@ export class PriceComponent implements OnInit {
   }
   provin:string;
   getCity(provinceId : number){
-    this.province.$provinceId=provinceId;
+   this.province.$provinceId=provinceId;
     this.cityList=[];
     this.sellService.getCities(provinceId).subscribe(
 			res => {
             this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
-            alert("this.provin:"+this.provin);
+           // alert("this.provin:"+this.provin);
             if(JSON.stringify(this.cityList)=="[]"){
               this.cityHid=true;
               this.barrioHid=true;
@@ -167,16 +170,13 @@ export class PriceComponent implements OnInit {
       //this.product.$emailService=this.email;
       this.product.$yng_Item.$user.$webSite=this.webSite;
       this.product.$yng_Item.$price=this.price;
-      this.product.$yng_Item.$money=this.money;
-      this.product.$yng_Item.$yng_Ubication.$street=this.street;
-      this.product.$yng_Item.$yng_Ubication.$number=this.number;
-      this.product.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.product.$yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.product.$yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.product.$yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.product.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.product.$yng_Item.$money=this.money;      
       //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
+      this.product.$productPaymentMethod=this.productPaymentMethod;
+      this.product.$productSaleConditions=this.productSaleConditions;
+      
+      //this.product.$productFormDelivery=
       this.priceItemS.emit(this.product);
 
     }
@@ -246,21 +246,29 @@ export class PriceComponent implements OnInit {
       event.preventDefault();
     }
   }
+  keyPressCP(event: any){
+    const pattern = /[0-9]/;
+    
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+          event.preventDefault();
+        }
+  }
   codigoPostalE:string;
   btnCP:boolean=false;
+  provinciaCP:string;
+  provinciaID:number;
   buscarCP(){
     if(this.codigoPostalE==""){alert("Introduzca un Código Postal");}
     else{
-      //this.province.$provinceId=provinceId;
+
       this.cityList=[];
-      //var aNumber : number = StringToInt("1", defaultValue);
-      //var num = parseInt(str);
+
       this.sellService.getCP(this.codigoPostalE).subscribe(
         res => {
               this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-              //alert(JSON.stringify(this.cityList));
-              this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).provinceId);
-              alert("this.provin:"+this.provin);
+
+              
   
               if(JSON.stringify(this.cityList)=="[]"){
                 
@@ -269,6 +277,11 @@ export class PriceComponent implements OnInit {
                 alert("no se encontro el codigo postal ");
               } 
               else{
+                this.provinciaCP=JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.name);
+                this.provinciaID=parseInt(JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.provinceId));
+              
+                this.province.$provinceId=this.provinciaID;
+                
                 this.cityHid=false;
                 this.postalCode=this.codigoPostalE;
                 this.btnCP=true;  
@@ -288,6 +301,13 @@ export class PriceComponent implements OnInit {
       alert("Complete todo los datos por favor");
     }
     else{
+      this.product.$yng_Item.$yng_Ubication.$street=this.street;
+      this.product.$yng_Item.$yng_Ubication.$number=this.number;
+      this.product.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
+      this.product.$yng_Item.$yng_Ubication.$aditional=this.aditional;
+      this.product.$yng_Item.$yng_Ubication.$yng_Province=this.province;
+      this.product.$yng_Item.$yng_Ubication.$yng_City=this.city;
+      this.product.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
       this.popupEnvios=false;
       this.popupUbicacion=true;
       this.popupUbication=true;
@@ -315,7 +335,8 @@ export class PriceComponent implements OnInit {
 
   test(event) {  
     console.log("event:"+event.target.checked);    
-    if(event.target.checked==true){      
+    if(event.target.checked==true){
+      this.product.$productFormDelivery="YingulEnvios"      
       this.consultarUbi();
     }
     else {
@@ -324,15 +345,28 @@ export class PriceComponent implements OnInit {
     }
   }
 
+  test2(event) {  
+    console.log("event:"+event.target.checked);    
+    if(event.target.checked==true){
+      this.product.$productFormDelivery="YingulEnviosPersona"      
+     // this.consultarUbi();
+    }
+    else {
+      //this.popupEnvios=true;
+      //this.popupUbicacion=true;
+    }
+  }
   consultarUbi(){
     console.log("this.userName"+this.userName);
     this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
       res => {
-        console.log(JSON.stringify(res));
+        //console.log(JSON.stringify(res));
         if(JSON.parse(JSON.stringify(res))._body!=""){
             this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
            
            console.log(JSON.stringify(this.ubication));
+          //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
+           this.product.$yng_Item.$yng_Ubication=this.ubication;
             this.popupEnvios=false;
             this.popupUbicacion=true;
         }
@@ -362,6 +396,16 @@ export class PriceComponent implements OnInit {
     
     if(event.target.checked==true) this.product.productPagoEnvio="gratis";
   }
+  productSaleConditions:string;
+  capturarCondicionVenta(provinceId : string){
+    this.productSaleConditions=provinceId;
+  }
+  productPaymentMethod:string;
+  pagoMedios(envi:string){
+    if(envi=="1")
+    this.productPaymentMethod="Aceptar pagos solo por Yingul";
+    if(envi=="2")
+    this.productPaymentMethod="Aceptar pagos por Yingul y cobro en persona";
   
-  
+  }
 }

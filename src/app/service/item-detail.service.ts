@@ -56,6 +56,11 @@ export class ItemDetailService {
     let url = "http://localhost:8080/logistics/cotizarAndreani";
     return this.http.post(url,cotizar, {headers: this.headers});
   }
+
+  sendCotizacionAndreani(cotizar : Object){
+    let url = "http://localhost:8080/logistics/cotizacion";
+    return this.http.post(url,cotizar, {headers: this.headers});
+  }
   urlHost:string="http://localhost:8080/";
   sendSucursalAndreani(sucursal:Object){
     let url=this.urlHost+"logistics/branch";

@@ -9,6 +9,8 @@ import { PaymentMethod } from '../../../model/payment-method';
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import {Pipe} from '@angular/core';
+import { AndreaniSucursalRespuesta } from '../../../model/andreaniSucursalRespuesta';
+import { AndreaniEnvios } from '../../../model/andreaniEnvios';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -16,7 +18,9 @@ import {Pipe} from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
   @Input('quantity') quantity:number;
+  @Input('priceSuc') priceSuc:string;
   @Input('Item') Item:Item;
+  @Input('andreaniEnvio')andreaniEnvio:AndreaniEnvios=new AndreaniEnvios;
   @Output() typePay = new EventEmitter();
   providerHid:boolean=true;
   formHid:boolean=true;
@@ -38,6 +42,7 @@ export class PaymentComponent implements OnInit {
   dueYear:number;
   dni:number;
   provider:string;
+ // priceSuc:string;
   //fin datos recuperados del formulario
   User: user=new user();
   paymentMethod:PaymentMethod= new PaymentMethod();

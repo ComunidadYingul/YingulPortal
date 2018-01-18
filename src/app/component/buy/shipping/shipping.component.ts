@@ -10,6 +10,10 @@ import { AndreaniCotizacionRespuesta } from '../../../model/andreaniCotizacionRe
 import { AndreaniSucursalRespuesta } from '../../../model/andreaniSucursalRespuesta';
 import { Product } from '../../../model/product';
 import { sucursalAndreani } from '../../../model/sucursalAndreani';
+import { Cotizacion } from '../../../model/cotizacion';
+import { Alert } from 'selenium-webdriver';
+import { AndreaniEnvios } from '../../../model/andreaniEnvios';
+import { Shipping } from '../../../model/shipping';
 
 @Component({
   selector: 'app-shipping',
@@ -19,6 +23,16 @@ import { sucursalAndreani } from '../../../model/sucursalAndreani';
 export class ShippingComponent implements OnInit {
   @Input('quantity') quantity:number;
   @Output() typeShip = new EventEmitter();
+  @Output() Cotizacion=new EventEmitter();
+  @Output() typeEnvio= new EventEmitter();
+  @Output() typeCotizacion= new EventEmitter();
+  @Output() typeProduct=new EventEmitter();
+  @Output() typePrice =new EventEmitter();
+  andreaniEnvio:AndreaniEnvios=new AndreaniEnvios();
+  shipping:Shipping =new Shipping();
+  name:string="";
+  phone:string="";
+ 
   branch:boolean=true;
   sendHome:boolean=true;
   priceSuc:string="";
@@ -54,6 +68,8 @@ export class ShippingComponent implements OnInit {
 
   
   ngOnInit() {
+    this.shipping.typeShipping="home";
+    //this.
     
   }
 
@@ -62,10 +78,14 @@ export class ShippingComponent implements OnInit {
       case "branch":
         this.branch= false;
         this.sendHome=true;
+        this.shipping.typeShipping="branch";
         break;
       case "home":
         this.branch= true;
         this.sendHome=true;
+        this.andreaniCotizacionRespuesta=null;
+        this.priceHiddem=true;
+        this.shipping.typeShipping="home";
         break;
       case "sendHome":
         this.branch= true;
@@ -75,16 +95,78 @@ export class ShippingComponent implements OnInit {
 
     }
   }
+  cotizacion:Cotizacion = new Cotizacion();
   sendTypeShip(){
-    if(this.andreaniCotizacionRespuesta==null)
-    {
-      alert("debe selecionar un metodo");
-    }
+    console.log("alert");
+    if (this.branch==false){
+    if(this.name==""&&this.phone=="" &&this.camSW==false){alert("Complete o seleccione otra opción de envío")}
     else{
-      this.typeShip.emit("envio");
+    if(this.shipping.typeShipping=="branch")
+    {
 
+      //alert("debe selecionar un metodo");
+   
+      this.sendCotizacion();
+      
+
+    
+
+
+    this.andreaniEnvio.provincia=""+this.Item.yng_Ubication.yng_Province.name;
+    this.andreaniEnvio.localidad=""+this.Item.yng_Ubication.yng_City.name;
+    this.andreaniEnvio.codigoPostalDestino=this.postalCode;
+    this.andreaniEnvio.calle=this.Item.yng_Ubication.street;
+    this.andreaniEnvio.numero=this.Item.yng_Ubication.number;
+    this.andreaniEnvio.sucursalRetiro=this.cotizacion.sucursal;
+    this.andreaniEnvio.sucursalCliente="";
+    this.andreaniEnvio.nombreApellido="";
+    this.andreaniEnvio.nombreApellidoAlternativo=""+this.name;
+    this.andreaniEnvio.tipoDocumento="DNI";
+    this.andreaniEnvio.numeroDocumento="";
+    this.andreaniEnvio.email=this.Item.user.email;
+    this.andreaniEnvio.numeroCelular="";
+    this.andreaniEnvio.numeroTelefono=""+this.phone;
+
+    this.andreaniEnvio.numeroTransaccion="";
+    this.andreaniEnvio.tarifa=this.andreaniCotizacionRespuesta.tarifa;
+    this.andreaniEnvio.valorACobrar="";
+    this.andreaniEnvio.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia
+    this.andreaniEnvio.categoriaFacturacion="1"
+    this.andreaniEnvio.categoriaPeso=this.andreaniCotizacionRespuesta.categoriaPeso;
+    this.andreaniEnvio.detalleProductosEntrega="";
+    this.andreaniEnvio.detalleProductosRetiro="";
+    this.andreaniEnvio.volumen=this.Product.producVolumen;
+    this.andreaniEnvio.valorDeclarado=""+this.Item.price;
+    this.andreaniEnvio.peso=this.Product.productPeso;
+
+
+
+    console.log("andreaniEnvio:"+JSON.stringify(this.andreaniEnvio));
+    
+    
+    
+    this.typeCotizacion.emit(this.cotizacion);
+    this.typeProduct.emit(this.Product);
+    this.typePrice.emit(this.priceSuc);
+    this.typeShip.emit("envio");
+    this.typeEnvio.emit(this.shipping);
+    this.shipping.yng_envio=this.andreaniEnvio;
     }
+  }
+    
+  }
+  else{
+    this.typeCotizacion.emit(null);
+    this.typeProduct.emit(this.Product);
+    this.typePrice.emit(null);
+    this.typeShip.emit("envio");
+    this.typeEnvio.emit(this.shipping);
+    //this.shipping.yng_envio=this.andreaniEnvio;
 
+  }
+  
+
+  
   }
 
 
@@ -129,6 +211,9 @@ export class ShippingComponent implements OnInit {
           this.sendSucursal(this.andraniCot);
     }
     cotizarLLenar(){
+
+           
+            
           this.andreaniCotizacion.username="";
           this.andreaniCotizacion.password="";             
           this.andreaniCotizacion.codigoDeCliente="";
@@ -154,6 +239,9 @@ export class ShippingComponent implements OnInit {
         
 
              if(this.andreaniCotizacionRespuesta.tarifa!=""){
+
+//this.andreaniSucursalRespuesta[0].resumen
+
                this.popupCotizar=false;
                this.mostrarCotizacion();
                this.mostrarSucursal();
@@ -168,8 +256,23 @@ export class ShippingComponent implements OnInit {
      
   
     }
+    cotizarTemp1:Cotizacion;
+    sendCotizacion(){
+
+      console.log("envio: "+JSON.stringify(this.cotizacion));
+      this.itemDetailService.sendCotizacionAndreani(this.cotizacion).subscribe(
+        res => {  
+
+              
+            },
+            error => console.log(error)
+      );
+     
+     // this.andrean
+    }
 
     sendSucursal(suc:AndreaniCot){
+      
       this.sucursalTemp=suc;
       this.itemDetailService.sendSucursalAndreani(this.sucursalTemp).subscribe(
         res=>{
@@ -178,9 +281,36 @@ export class ShippingComponent implements OnInit {
          
 
           if(this.andreaniSucursalRespuesta.numero!=""){
+            
+          
             this.cotizarLLenar();
+            //this.cotizacion.Descripcion="";
+            this.cotizacion.direccion=this.andreaniSucursalRespuesta[0].direccion;
+            this.cotizacion.horadeTrabajo=this.andreaniSucursalRespuesta[0].horadeTrabajo;
+            this.cotizacion.latitud=this.andreaniSucursalRespuesta[0].latitud;
+            this.cotizacion.longitud=this.andreaniSucursalRespuesta[0].longitud;
+            this.cotizacion.mail=this.andreaniSucursalRespuesta[0].mail;
+            this.cotizacion.numero=this.andreaniSucursalRespuesta[0].numero;
+            this.cotizacion.responsable=this.andreaniSucursalRespuesta[0].responsable;
+            this.cotizacion.resumen=this.andreaniSucursalRespuesta[0].resumen;
+            this.cotizacion.sucursal=this.andreaniSucursalRespuesta[0].sucursal;
+            this.cotizacion.telefono1=this.andreaniSucursalRespuesta[0].telefono1;
+            this.cotizacion.telefono2=this.andreaniSucursalRespuesta[0].telefono2;
+            this.cotizacion.telefono3=this.andreaniSucursalRespuesta[0].telefono3;
+            this.cotizacion.tipoSucursal=this.andreaniSucursalRespuesta[0].tipoSucursal;
+            this.cotizacion.tipoTelefono1=this.andreaniSucursalRespuesta[0].tipoTelefono1;
+            this.cotizacion.tipoTelefono2=this.andreaniSucursalRespuesta[0].tipoTelefono2;
+            this.cotizacion.tipoTelefono2=this.andreaniSucursalRespuesta[0].tipoTelefono3;
+           // this.cotizacion.idUser=""+this.Item.user.userId;  
+           this.cotizacion.idUser=""+localStorage.getItem('user')          
+            this.cotizacion.itemId=""+this.Item.itemId;
+            console.log("Daniel mas"+JSON.stringify(this.cotizacion.idUser));
+
+            //alert("Item "+ JSON.stringify(this.Item.itemId));
+            
 
           }
+          else {}
           console.log("this.andreaniSucursalRespuesta.descripcion:"+this.andreaniSucursalRespuesta[0].descripcion);
 
         }
@@ -190,13 +320,14 @@ export class ShippingComponent implements OnInit {
 
 
 
-    
+    camSW:boolean=false;
     getItem(itemType:string, itemId: number){
       this.itemDetailService.getItem(itemType,itemId).subscribe(
         res => {
               switch (itemType) {
                 case "Producto":
                   this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                 // this.camSW=true;
                 //  console.log( "Producto: "+this.Product.productPeso+" volumen:"+this.Product.producVolumen);
                 break;
 
@@ -220,13 +351,38 @@ export class ShippingComponent implements OnInit {
       this.sucursalAndre="Andreani";
       this.resumen=this.andreaniSucursalRespuesta[0].resumen;
       this.direccion=this.andreaniSucursalRespuesta[0].direccion;
-      this.horadeTrabajo=this.andreaniSucursalRespuesta[0].horadeTrabajo;  
+      this.horadeTrabajo=this.andreaniSucursalRespuesta[0].horadeTrabajo;
+     
+
     }
     mostrarCotizacion(){
-      this.priceSuc=this.andreaniCotizacionRespuesta.tarifa;
+      console.log("this.Product.productPagoEnvio:"+this.Product.productPagoEnvio);
+      if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
+      else  this.priceSuc=this.andreaniCotizacionRespuesta.tarifa+"  Costo del envio";
+      this.cotizacion.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia
+      this.cotizacion.categoriaDistanciaId=this.andreaniCotizacionRespuesta.categoriaDistanciaId;
+      this.cotizacion.categoriaPeso=this.andreaniCotizacionRespuesta.categoriaPeso;
+      this.cotizacion.categoriaPesoId=this.andreaniCotizacionRespuesta.categoriaPesoId;
+      this.cotizacion.pesoAforado=this.andreaniCotizacionRespuesta.pesoAforado;
+      this.cotizacion.tarifa=this.andreaniCotizacionRespuesta.tarifa;
       this.popupSucursal=false;
       //alert(this.andreaniCotizacionRespuesta.tarifa);
 
 
+    }
+    priceHiddem:boolean=true;
+    envioComprador(event){
+      this.shipping.typeShipping="branch";
+      this.camSW=true;
+  
+      if(event.target.checked==true) this.priceHiddem=false;
+    }
+    keyPressCP(event: any){
+      const pattern = /[0-9]/;
+      
+          let inputChar = String.fromCharCode(event.charCode);
+          if (event.keyCode != 8 && !pattern.test(inputChar)) {
+            event.preventDefault();
+          }
     }
 }

@@ -182,7 +182,7 @@ export class SellComponent implements OnInit {
     
           this.product=Object.assign(this.itemP,this.product);
           console.log("Product Fusionado: "  + JSON.stringify(this.product));
-          //this.saveProduct();
+          this.saveProduct();
         
         }
       }
