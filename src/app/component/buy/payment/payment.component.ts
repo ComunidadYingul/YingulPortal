@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
   dueMonth:number;
   dueYear:number;
   dni:number;
-  provider:string="Elegir medio de pago...";
+  provider:string="null";
   focusedr:boolean;
   focusedf:boolean=true;
   //fin datos recuperados del formulario
@@ -77,36 +77,38 @@ export class PaymentComponent implements OnInit {
     );
   }
   getProvider(listcardId:string){
-    this.formHid=true;
-    this.debitHid=true;
-    this.providerHid=true;
-    this.msgHid=true;
-    if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD"||listcardId=="AmexD")
-    {
-      this.debitHid=false;
-      this.paymentMethod.$name="CARDPAYMENT";
-      this.paymentMethod.$type="CARD";
-      this.paymentMethod.yng_Card.type="DEBIT";
-    }
-    else{
-      if(listcardId=="Rapipago"||listcardId=="PagoFacil"||listcardId=="ProvinciaNET"){
-        this.msgHid=false;
+    if(listcardId!="null"){
+      this.formHid=true;
+      this.debitHid=true;
+      this.providerHid=true;
+      this.msgHid=true;
+      if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD"||listcardId=="AmexD")
+      {
+        this.debitHid=false;
+        this.paymentMethod.$name="CARDPAYMENT";
+        this.paymentMethod.$type="CARD";
+        this.paymentMethod.yng_Card.type="DEBIT";
       }
       else{
-        this.buyService.getCardProvider(listcardId).subscribe(
-          res => {
-                this.cardProviderList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                if(JSON.stringify(this.cardProviderList)=="[]"){
-                  this.providerHid=true;
-                  this.formHid=false;
-                } 
-                else{
-                  this.providerHid=false;
-                  this.cardProviderList=this.cardProviderList.sort();
-                }
-              },
-              error => console.log(error)
-        )
+        if(listcardId=="Rapipago"||listcardId=="PagoFacil"||listcardId=="ProvinciaNET"){
+          this.msgHid=false;
+        }
+        else{
+          this.buyService.getCardProvider(listcardId).subscribe(
+            res => {
+                  this.cardProviderList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                  if(JSON.stringify(this.cardProviderList)=="[]"){
+                    this.providerHid=true;
+                    this.formHid=false;
+                  } 
+                  else{
+                    this.providerHid=false;
+                    this.cardProviderList=this.cardProviderList.sort();
+                  }
+                },
+                error => console.log(error)
+          )
+        }
       }
     }
   }
