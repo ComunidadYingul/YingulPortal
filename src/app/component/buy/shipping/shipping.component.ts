@@ -32,7 +32,7 @@ export class ShippingComponent implements OnInit {
   shipping:Shipping =new Shipping();
   name:string="";
   phone:string="";
- 
+  shippingMethod;
   branch:boolean=true;
   sendHome:boolean=true;
   priceSuc:string="";
