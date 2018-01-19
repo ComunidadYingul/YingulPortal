@@ -99,7 +99,7 @@ export class ShippingComponent implements OnInit {
   sendTypeShip(){
     console.log("alert");
     if (this.branch==false){
-    if(this.name==""||this.phone=="" || this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+    if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
     else{
     if(this.shipping.typeShipping=="branch")
     {
