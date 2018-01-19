@@ -165,16 +165,16 @@ export class PriceComponent implements OnInit {
     }
     if(this.typeCatPre=="Product")
     {
-      this.product.$yng_Item.$user.$phone=this.phone;
-      this.product.$yng_Item.$user.$phone2=this.phone2;
+      this.product.yng_Item.$user.$phone=this.phone;
+      this.product.yng_Item.$user.$phone2=this.phone2;
       //this.product.$emailService=this.email;
-      this.product.$yng_Item.$user.$webSite=this.webSite;
-      this.product.$yng_Item.$price=this.price;
-      this.product.$yng_Item.$money=this.money;      
+      this.product.yng_Item.$user.$webSite=this.webSite;
+      this.product.yng_Item.$price=this.price;
+      this.product.yng_Item.$money=this.money;      
       //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
-      this.product.$productPaymentMethod=this.productPaymentMethod;
-      this.product.$productSaleConditions=this.productSaleConditions;
+      this.product.productPaymentMethod=this.productPaymentMethod;
+      this.product.productSaleConditions=this.productSaleConditions;
       
       //this.product.$productFormDelivery=
       this.priceItemS.emit(this.product);
@@ -301,13 +301,13 @@ export class PriceComponent implements OnInit {
       alert("Complete todo los datos por favor");
     }
     else{
-      this.product.$yng_Item.$yng_Ubication.$street=this.street;
-      this.product.$yng_Item.$yng_Ubication.$number=this.number;
-      this.product.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.product.$yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.product.$yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.product.$yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.product.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.product.yng_Item.$yng_Ubication.$street=this.street;
+      this.product.yng_Item.$yng_Ubication.$number=this.number;
+      this.product.yng_Item.$yng_Ubication.$postalCode= this.postalCode;
+      this.product.yng_Item.$yng_Ubication.$aditional=this.aditional;
+      this.product.yng_Item.$yng_Ubication.$yng_Province=this.province;
+      this.product.yng_Item.$yng_Ubication.$yng_City=this.city;
+      this.product.yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
       this.popupEnvios=false;
       this.popupUbicacion=true;
       this.popupUbication=true;
@@ -336,7 +336,7 @@ export class PriceComponent implements OnInit {
   test(event) {  
     console.log("event:"+event.target.checked);    
     if(event.target.checked==true){
-      this.product.$productFormDelivery="YingulEnvios"      
+      this.product.productFormDelivery="YingulEnvios"      
       this.consultarUbi();
     }
     else {
@@ -348,7 +348,7 @@ export class PriceComponent implements OnInit {
   test2(event) {  
     console.log("event:"+event.target.checked);    
     if(event.target.checked==true){
-      this.product.$productFormDelivery="YingulEnviosPersona"      
+      this.product.productFormDelivery="YingulEnviosPersona"      
      // this.consultarUbi();
     }
     else {
@@ -366,7 +366,7 @@ export class PriceComponent implements OnInit {
            
            console.log(JSON.stringify(this.ubication));
           //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
-           this.product.$yng_Item.$yng_Ubication=this.ubication;
+           this.product.yng_Item.$yng_Ubication=this.ubication;
             this.popupEnvios=false;
             this.popupUbicacion=true;
         }

@@ -49,6 +49,7 @@ export class IdetailComponent implements OnInit {
   priceSuc:string;
   priceDomi:string;
   provinceId:string="0";
+  quant:number=1;
 
   constructor(private itemDetailService : ItemDetailService, private router : Router){ 
     
@@ -79,7 +80,7 @@ export class IdetailComponent implements OnInit {
     this.itemDetailService.getItemById(this.localItemId).subscribe(
 			res => {
             this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);  
-            console.log("daniel: "+JSON.stringify(this.Item));
+           // console.log("daniel: "+JSON.stringify(this.Item));
            // alert("daniel: "+JSON.stringify(this.Item));           
       		},
       		error => console.log(error)
@@ -91,16 +92,20 @@ export class IdetailComponent implements OnInit {
             switch (itemType) {
               case "Servicio":
                 this.Service = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                console.log( "dani S: "+ JSON.stringify(res));
                 break;
               case "Producto":
+              console.log(JSON.parse(JSON.parse(JSON.stringify(res))._body));
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log( "Producto: "+ JSON.stringify(res));
+                console.log( "dani: "+ JSON.stringify(res));alert("dani: "+ JSON.stringify(res));
                 break;
               case "Inmueble":
-                this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body)
+                this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                console.log( "dani P: "+ JSON.stringify(res));
                 break;
               case "Vehiculo":
                 this.Motorized = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                console.log( "dani v: "+ JSON.stringify(res));
                 break;
               default:
                 alert("error");
@@ -143,7 +148,7 @@ export class IdetailComponent implements OnInit {
 			res => {
             this.categoriesByItem = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.categoriesByItem=this.categoriesByItem.sort();
-            console.log(JSON.stringify(this.categoriesByItem));
+           // console.log(JSON.stringify(this.categoriesByItem));
       		},
       		error => console.log(error)
     );
@@ -155,7 +160,7 @@ export class IdetailComponent implements OnInit {
             this.queryByItem = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.queryByItem = this.queryByItem.sort();
             this.queryLength= this.queryByItem.length;
-            console.log(JSON.stringify(this.queryByItem));
+            //console.log(JSON.stringify(this.queryByItem));
       		},
       		error => console.log(error)
     );
@@ -196,7 +201,6 @@ export class IdetailComponent implements OnInit {
   retiroDomicilio(event){
     if(event.target.checked==true)this.shippingMethod="domicilio";
   }
-
  
   aceptar(){
     this.answer="";
@@ -206,7 +210,10 @@ export class IdetailComponent implements OnInit {
     if(this.shippingMethod=="domicilio"){
       this.envioType="Lo retiro en domicilio del vendedor";
 
-      //this.llegadaTime=""+this.Item.yng_Ubication.yng_Province.name+"  "+this.Item.yng_Ubication.yng_City.name;
+      // {{Item.yng_Ubication.yng_Province.name}}
+      //{{Item.yng_Ubication.yng_City.name}} 
+      //
+      this.llegadaTime=""+this.Item.yng_Ubication.yng_Province.name+"  "+this.Item.yng_Ubication.yng_City.name;
 
      
     }
@@ -245,7 +252,6 @@ export class IdetailComponent implements OnInit {
  
 
   }
-
   cotizarTemp1:Cotizacion;
   cotizacion:Cotizacion = new Cotizacion();
   sendCotizacion(){
@@ -265,25 +271,25 @@ export class IdetailComponent implements OnInit {
 
   }
 
+
   calcularCosto(){
     this.popup=false;
   }
   shippingMethod:string;
   public andreaniCotizacion:AndreaniCotizacion=new AndreaniCotizacion();
 
-
   buscar(){
     //if(this.provinceId!="0"&&this.postalCode!=""){
       if(this.postalCode!=""){
-      this.Cotizar.$codigo_postal=this.postalCode;
-      this.Cotizar.$provincia=this.provinceId;
+      this.Cotizar.codigo_postal=this.postalCode;
+      this.Cotizar.provincia=this.provinceId;
       //this.Cotizar.$itemID=this.localItemId.toString();
       
       console.log("this.Item.yng_Ubication.$codAndreani:"+this.Item.yng_Ubication.codAndreani);
-      this.Cotizar.$codAndreani=this.Item.yng_Ubication.codAndreani;
+      this.Cotizar.codAndreani=this.Item.yng_Ubication.codAndreani;
       //this.Cotizar.$peso="";
-      this.Cotizar.$peso=this.Product.productPeso;
-      this.Cotizar.$volumen=this.Product.producVolumen;
+      this.Cotizar.peso=this.Product.productPeso;
+      this.Cotizar.volumen=this.Product.producVolumen;
       
       //this.Cotizar.
       this.andreaniCotizacion.username="";
@@ -336,7 +342,6 @@ export class IdetailComponent implements OnInit {
 
  
   }
-
   sendCotizar2(coti:AndreaniCotizacion){
     /*this.cotizarTemp=coti;
      console.log("Cotizar: "+JSON.stringify(this.cotizarTemp));
@@ -378,8 +383,6 @@ export class IdetailComponent implements OnInit {
   
    }
  
-
- 
   popupEntregaSuc:boolean=true;
   formasEntrega:string;
   entregaP(event){
@@ -400,7 +403,12 @@ export class IdetailComponent implements OnInit {
   aceptarEntrega(){
     console.log("entregaS:"+this.formasEntrega);
   }
+  quantMas(){
+    this.quant++;
 
-
+  }
+  quantMenos(){
+    this.quant--;
+  }
 
 }

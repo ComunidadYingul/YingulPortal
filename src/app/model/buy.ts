@@ -4,14 +4,24 @@ import { PaymentMethod } from './payment-method';
 import { AndreaniEnvios } from './andreaniEnvios';
 import { Shipping } from './shipping';
 export class Buy {
-	private buyId:number;
-	private cost:number;
-	private money:string;
-	private quantity:number;
-	private user:user=new user();
-	private yng_item:Item= new Item();
-	private yng_PaymentMethod:PaymentMethod= new PaymentMethod();
-	private shipping:Shipping=new Shipping();
+
+	buyId:number;
+	cost:number;
+	money:string;
+	quantity:number;
+	ip:string;
+	org:string;
+	lat:string;
+	lon:string;
+	city:string;
+	country:string;
+	countryCode:string;
+	regionName:string;
+	zip:string;
+	user:user=new user();
+	yng_item:Item= new Item();
+	yng_PaymentMethod:PaymentMethod= new PaymentMethod();
+	shipping:Shipping=new Shipping();
 
 
 	public get $shipping(): Shipping {

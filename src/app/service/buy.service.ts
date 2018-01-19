@@ -42,4 +42,8 @@ export class BuyService {
     let url = "http://localhost:8080/buy/getSwForUser/"+username;
     return this.http.get(url);
   }
+  getDataForBuyer(){
+    let url = "http://ip-api.com/json";
+    return this.http.get(url);
+  }
 }

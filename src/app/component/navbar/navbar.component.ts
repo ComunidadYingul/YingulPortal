@@ -1,5 +1,6 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { LoginService } from '../../service/login.service';
+import { CategoryService } from '../../service/category.service';
 import { QueryServiceService } from '../../service/query-service.service';
 import { Router } from '@angular/router';
 import { user } from '../../model/user';
@@ -14,8 +15,9 @@ export class NavbarComponent implements OnInit {
 	loggedIn: boolean=false;
 	User: user=new user();
 	queries:number=0;
+	categories:Object[];
 
-	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService) {
+	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
 			this.loggedIn = false;
 			this.User = new user();
@@ -63,6 +65,26 @@ export class NavbarComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+	}
+	onSearchChange(name) {
+		if(name!=""){
+			this.categoryService.getCategoriesByNane(name).subscribe(
+			res => {
+						this.categories = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+						this.categories=this.categories.sort();
+						for (var i = 0; i < this.categories.length; i++) {
+							if (JSON.parse(JSON.stringify(this.categories[i])).name === name) {
+							  this.router.navigateByUrl('/itemsCategory/'+JSON.parse(JSON.stringify(this.categories[i])).categoryId);
+							  location.reload();
+							  break;
+							}
+					  	}	
+				},
+				error => console.log(error)
+			);
+		}
+
+		
 	}
 
 }

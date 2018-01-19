@@ -171,12 +171,12 @@ export class SellComponent implements OnInit {
         } else {
           //temporalmente finaliza despues llamara a la utlima venta para publicidad
           //this.product=ev;
-          this.product.$yng_Item.$user.username=this.User.username;
-          this.product.$yng_Item.$itemCategory=this.category;
+          this.product.yng_Item.$user.username=this.User.username;
+          this.product.yng_Item.$itemCategory=this.category;
           
-          this.item2=this.product.$yng_Item;
+          this.item2=this.product.yng_Item;
           this.itemc=Object.assign(this.item,this.item2);
-          this.product.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
+          this.product.yng_Item=JSON.parse(JSON.stringify(this.itemc));
           //console.log("daniel detailproduc: "  + JSON.stringify(this.product));
           //console.log("daniel itemp: "+ JSON.stringify(this.itemP));
     
@@ -355,3 +355,4 @@ export class SellComponent implements OnInit {
     } 
   }
 }
+

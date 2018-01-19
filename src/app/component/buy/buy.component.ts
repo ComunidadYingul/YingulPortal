@@ -120,5 +120,13 @@ export class BuyComponent implements OnInit {
     this.priceSuc=ev;
 
   }
+  showProblem(ev){
+    if(ev="problemCard"){
+      alert("Ocurrio un problema con el pago. Revise los datos de la tarjeta");
+      this.hidShip=true;
+      this.hidPay=false;
+      this.hidConf=true;
+    }
+  }
 
 }
