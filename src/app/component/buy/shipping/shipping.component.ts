@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Item } from '../../../model/item';
 import { Cotizar } from '../../../model/cotizar';
 import { ItemDetailService } from '../../../service/item-detail.service';
@@ -32,7 +32,7 @@ export class ShippingComponent implements OnInit {
   shipping:Shipping =new Shipping();
   name:string="";
   phone:string="";
- 
+  shippingMethod;
   branch:boolean=true;
   sendHome:boolean=true;
   priceSuc:string="";
