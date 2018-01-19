@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
 	User: user=new user();
 	queries:number=0;
 	categories:Object[];
+	search;
 
 	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
