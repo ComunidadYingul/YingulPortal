@@ -1,0 +1,192 @@
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page-header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Buscar Inmueble</h4>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="index.html">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/property">Buscar Inmueble</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Page-header end -->
+      <!-- Page-body start -->
+      <div class="page-body">
+      <div class="row">
+      <div class="col-sm-3 card-block-big">
+        <div class="card">
+          <div class="card-header">Año</div>
+          <form>
+              <div class="card-block">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Subject">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" placeholder="E-mail Address">
+                  </div>
+                  <div>
+                      <textarea rows="5" cols="5" class="form-control" placeholder="Message"></textarea>
+                  </div>
+              </div>
+              <div class="card-footer text-right">
+                  <button type="submit" class="btn btn-warning m-r-10">Submit</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+              </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Precio</div>
+          <form>
+              <div class="card-block">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Subject">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" placeholder="E-mail Address">
+                  </div>
+                  <div>
+                      <textarea rows="5" cols="5" class="form-control" placeholder="Message"></textarea>
+                  </div>
+              </div>
+              <div class="card-footer text-right">
+                  <button type="submit" class="btn btn-warning m-r-10">Submit</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+              </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Vendedor</div>
+          <form>
+              <div class="card-block">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Subject">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" placeholder="E-mail Address">
+                  </div>
+                  <div>
+                      <textarea rows="5" cols="5" class="form-control" placeholder="Message"></textarea>
+                  </div>
+              </div>
+              <div class="card-footer text-right">
+                  <button type="submit" class="btn btn-warning m-r-10">Submit</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+              </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Kilometros</div>
+          <form>
+              <div class="card-block">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Subject">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" placeholder="E-mail Address">
+                  </div>
+                  <div>
+                      <textarea rows="5" cols="5" class="form-control" placeholder="Message"></textarea>
+                  </div>
+              </div>
+              <div class="card-footer text-right">
+                  <button type="submit" class="btn btn-warning m-r-10">Submit</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+              </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Ubicación</div>
+          <form>
+              <div class="card-block">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Subject">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" placeholder="E-mail Address">
+                  </div>
+                  <div>
+                      <textarea rows="5" cols="5" class="form-control" placeholder="Message"></textarea>
+                  </div>
+              </div>
+              <div class="card-footer text-right">
+                  <button type="submit" class="btn btn-warning m-r-10">Submit</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+              </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-sm-9">
+          <!-- Product list start -->
+          <br>
+            <div class="row">
+                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemList">
+                    <div class="card prod-view">
+                        <div class="prod-item text-center">
+                            <div class="prod-img">
+                                <div class="option-hover">
+                                    <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                        <i class="icofont icofont-cart-alt f-20"></i>
+                                    </a>
+                                    <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                        <i class="icofont icofont-eye-alt f-20"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </button>
+                                </div>
+                                <a href="#!" class="hvr-shrink">
+                                    <!--ruta para la imagenes en desarrollo -->
+                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
+                                </a>
+                                <div class="p-sale">SALE</div>
+                            </div>
+                            <div class="prod-info">
+                                <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                <div class="stars stars-example-css m-b-10">
+                                    <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select></div>
+                                </div>
+                                <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            <!-- Product list end -->
+      </div>
+  </div>
+  </div>
+  </div>
+</div>

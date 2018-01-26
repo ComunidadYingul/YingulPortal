@@ -83,7 +83,6 @@ export class PaymentComponent implements OnInit {
   }
   getProvider(listcardId:string){
     if(listcardId!="null"){
-      this.formHid=true;
       this.debitHid=true;
       this.providerHid=true;
       this.msgHid=true;
@@ -104,7 +103,9 @@ export class PaymentComponent implements OnInit {
                   this.cardProviderList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                   if(JSON.stringify(this.cardProviderList)=="[]"){
                     this.providerHid=true;
-                    this.formHid=false;
+                    this.debitHid=false;
+                    this.paymentMethod.yng_Card.type="CREDIT";
+                    /* en caso de que no existan proveedores para el tipo de tarjeta proporcionado this.paymentMethod.yng_Card.yng_CardProvider=*/
                   } 
                   else{
                     this.providerHid=false;
@@ -118,8 +119,9 @@ export class PaymentComponent implements OnInit {
     }
   }
   setProvider(cardProviderId:number){
-    this.formHid=false;
-
+    this.debitHid=false;
+    this.paymentMethod.yng_Card.type="CREDIT";
+    this.paymentMethod.yng_Card.yng_CardProvider.cardProviderId=cardProviderId;
   }
   /*check(a:number){   
     esto es para la s cuotas con tarjeta de credito

@@ -9,4 +9,8 @@ export class CategoryService {
     let url = "http://localhost:8080/category/categories/"+name;
     return this.http.get(url);
   }
+  getBestMatch(name:string){
+    let url = "http://localhost:8080/category/bestMatch/"+name;
+    return this.http.get(url);
+  } 
 }

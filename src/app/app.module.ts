@@ -43,6 +43,8 @@ import { MotorizedComponent } from './component/motorized/motorized.component';
 import { PropertyComponent } from './component/property/property.component';
 import { ItemService } from './service/item.service';
 import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
+import { UbicationService } from './service/ubication.service';
+import { SearchPropertyComponent } from './component/search-property/search-property.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,8 @@ import { SearchMotorizedComponent } from './component/search-motorized/search-mo
     ServiceComponent,
     MotorizedComponent,
     PropertyComponent,
-    SearchMotorizedComponent
+    SearchMotorizedComponent,
+    SearchPropertyComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,8 @@ import { SearchMotorizedComponent } from './component/search-motorized/search-mo
     QueryServiceService,
     BuyService,
     CategoryService,
-    ItemService
+    ItemService,
+    UbicationService
   ],
   bootstrap: [AppComponent]
 })

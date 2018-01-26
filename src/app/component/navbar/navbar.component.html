@@ -9,9 +9,9 @@
                 <datalist id="listadecategorias1">
                     <option *ngFor="let category of categories" value="{{category.name}}"></option>
                 </datalist>
-                <img class="searchImagen" src="assets/images/search.png" alt="Theme-Logo">
+                <a style="cursor: pointer;" (click)="bestMatch()"><img  class="searchImagen" src="assets/images/search.png" alt="Theme-Logo"></a>
             </a>
-            <a href="index.html">
+            <a href="/index">
                 <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo">
             </a>
             <a class="mobile-options">
@@ -152,7 +152,7 @@
                         <datalist id="listadecategorias">
                             <option *ngFor="let category of categories" value="{{category.name}}"></option>
                         </datalist>
-                        <a class="main-search morphsearch-search" href="#">
+                        <a style="cursor: pointer;" class="main-search morphsearch-search" (click)="bestMatch()">
                             <!-- themify icon -->
                             <i class="ti-search"></i>
                         </a>

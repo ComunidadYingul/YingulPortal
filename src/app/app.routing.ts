@@ -13,6 +13,7 @@ import { ServiceComponent } from './component/service/service.component';
 import { PropertyComponent } from './component/property/property.component';
 import { MotorizedComponent } from './component/motorized/motorized.component';
 import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
+import { SearchPropertyComponent } from './component/search-property/search-property.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -66,6 +67,10 @@ const appRoutes: Routes = [
   {
     path: 'searchMotorized/:categoryId/:minPrice/:maxPrice/:minYear/:maxYear',
     component: SearchMotorizedComponent
+  },
+  {
+    path: 'searchProperty/:categoryId/:cityId',
+    component: SearchPropertyComponent
   }
 ];
 

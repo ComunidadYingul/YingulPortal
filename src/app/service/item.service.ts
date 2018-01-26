@@ -21,4 +21,13 @@ export class ItemService {
     let url = "http://localhost:8080/item/searchMotorized/"+categoryId+"/"+minPrice+"/"+maxPrice+"/"+minYear+"/"+maxYear;
     return this.http.get(url);
   }
+  getProperty(){
+    let url = "http://localhost:8080/item/property/all";
+    return this.http.get(url);
+  }
+  searchProperty(categoryId:number,cityId:number){
+    let url = "http://localhost:8080/item/searchProperty/"+categoryId+"/"+cityId;
+    alert(url);
+    return this.http.get(url);
+  }
 }
