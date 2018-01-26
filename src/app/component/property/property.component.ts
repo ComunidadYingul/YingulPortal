@@ -16,6 +16,7 @@ export class PropertyComponent implements OnInit {
   categoryList:Category[];
   subCategoryList: Category[];
   cities:City[];
+  city;
   vsubcategory="0";
   //parametros para armar la url
   categoryId: string="0";
