@@ -97,7 +97,7 @@ export class IdetailComponent implements OnInit {
               case "Producto":
               console.log(JSON.parse(JSON.parse(JSON.stringify(res))._body));
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log( "dani: "+ JSON.stringify(res));alert("dani: "+ JSON.stringify(res));
+                //console.log( "dani: "+ JSON.stringify(res));alert("dani: "+ JSON.stringify(res));
                 break;
               case "Inmueble":
                 this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body);

@@ -54,6 +54,8 @@ export class PriceComponent implements OnInit {
   public province:Province = new Province();
   public city:City = new City();
   public barrio:Barrio = new Barrio();
+  checkRPerson:boolean=false;
+  disabledRPerson:boolean=false;
   constructor(private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
@@ -170,7 +172,7 @@ export class PriceComponent implements OnInit {
       //this.product.$emailService=this.email;
       this.product.yng_Item.$user.$webSite=this.webSite;
       this.product.yng_Item.$price=this.price;
-      this.product.yng_Item.$money=this.money;      
+      this.product.yng_Item.$money="1";      
       //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
       this.product.productPaymentMethod=this.productPaymentMethod;
@@ -391,10 +393,18 @@ export class PriceComponent implements OnInit {
   envioComprador(event){
   
     if(event.target.checked==true) this.product.productPagoEnvio="comprador";
+    if(event.target.checked==true) {
+      this.checkRPerson=true;
+      this.disabledRPerson=false;
+    }
   }
   envioGratis(event){
     
     if(event.target.checked==true) this.product.productPagoEnvio="gratis";
+    if(event.target.checked==true) {
+      this.checkRPerson=false;
+      this.disabledRPerson=true;
+    }
   }
   productSaleConditions:string;
   capturarCondicionVenta(provinceId : string){

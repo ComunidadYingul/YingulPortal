@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
+        <div *ngIf="isOtro()" class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
                 <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="Correo electronico">
@@ -35,7 +35,7 @@
         </div>
     </div>
     <h5>Precio</h5>
-    <div class="row">
+    <div *ngIf="isOtro()" class="row">
       <div class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon">
@@ -56,6 +56,14 @@
           <label class="form-control" aria-label="Text input with radio button">A convenir</label>
         </div>
       </div>
+    </div>
+    <div *ngIf="isProduct()" class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
+                <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
+            </div>
+        </div>
     </div>
     <div *ngIf="isOtro()">
             <h5>Tu ubicacion</h5>
@@ -129,7 +137,7 @@
                                 <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
                                     <option value="0">MEDIOS DE PAGO</option>
                                     <option value="1">Aceptar pagos solo por Yingul</option>
-                                    <option value="2">Aceptar pagos por Yingul y cobro en persona</option>
+                                    <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
                                 </select>
                             </div>
     
@@ -152,7 +160,7 @@
                                     <div class="table-responsive" >
                                         <table class="table  invoice-detail-table">
         
-                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Envíos<br>
+                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express<br>
                                             <tbody [hidden]="popupEnvios">
                                                 <tr>
                                                     <td class="radio radiofill radio-inline">
@@ -170,7 +178,7 @@
                                                     <span class="m-l-10">Elige tu domicilio</span>
                                              </button>
                                             </div>
-                                            <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)" >También ofrecer retiro en persona
+                                            <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
                                         </table>
                                     </div>
                             </div>
