@@ -70,6 +70,9 @@
                     <img  *ngIf="paymentMethod.yng_Card.provider=='VisaD'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
                     <img  *ngIf="paymentMethod.yng_Card.provider=='MastercardD'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
                     <img  *ngIf="paymentMethod.yng_Card.provider=='AmexD'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='0'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='1'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='2'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
                         Terminada en: 
                         <a *ngIf="paymentMethod.yng_Card.number%10000>999"> {{paymentMethod.yng_Card.number%10000}}</a>
                         <a *ngIf="paymentMethod.yng_Card.number%10000>99 && paymentMethod.yng_Card.number%10000<=999"> 0{{paymentMethod.yng_Card.number%10000}}</a>

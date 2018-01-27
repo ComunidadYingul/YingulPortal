@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
 	User: user=new user();
 	queries:number=0;
 	categories:Object[];
+	search;
 
 	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -86,6 +87,17 @@ export class NavbarComponent implements OnInit {
 
 		
 	}
-
+	bestMatch(){
+		if(this.search!=""){
+			this.categoryService.getBestMatch(this.search).subscribe(
+			res => {
+						let url = JSON.parse(JSON.stringify(res))._body;
+						this.router.navigate(['/itemsCategory'+url]); 
+						location.reload();  
+				},
+				error => console.log(error)
+			);
+		}
+	}
 }
 

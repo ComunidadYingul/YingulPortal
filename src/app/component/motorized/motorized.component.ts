@@ -56,7 +56,7 @@ export class MotorizedComponent implements OnInit {
     if(categoryId!="0"){
       this.categoryService.getSubCategories(categoryId).subscribe(
         res => {
-              this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body)
             },
             error => console.log(error)
       );
