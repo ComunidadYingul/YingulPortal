@@ -14,6 +14,7 @@ import { Cotizacion } from '../../../model/cotizacion';
 import { Alert } from 'selenium-webdriver';
 import { AndreaniEnvios } from '../../../model/andreaniEnvios';
 import { Shipping } from '../../../model/shipping';
+import { user } from '../../../model/user';
 
 @Component({
   selector: 'app-shipping',
@@ -59,7 +60,7 @@ export class ShippingComponent implements OnInit {
     resumen:string;
     direccion:string;
     horadeTrabajo:string; 
-
+    useri:user=new user();
 
 
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
@@ -259,7 +260,7 @@ export class ShippingComponent implements OnInit {
     cotizarTemp1:Cotizacion;
     sendCotizacion(){
 
-      console.log("envio: "+JSON.stringify(this.cotizacion));
+      console.log("envio55: "+JSON.stringify(this.cotizacion));
       this.itemDetailService.sendCotizacionAndreani(this.cotizacion).subscribe(
         res => {  
 
@@ -306,8 +307,11 @@ export class ShippingComponent implements OnInit {
             this.cotizacion.itemId=""+this.Item.itemId;
             console.log("Daniel mas"+JSON.stringify(this.cotizacion.idUser));
 
-            //alert("Item "+ JSON.stringify(this.Item.itemId));
-            
+            //alert("Item "+ JSON.stringify(localStorage.getItem('user')));
+            this.useri=JSON.parse(localStorage.getItem("user"));
+            console.log("Daniel mas:"+this.useri.username);
+            this.cotizacion.idUser=""+this.useri.username; 
+
 
           }
           else {}

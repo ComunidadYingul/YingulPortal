@@ -372,6 +372,10 @@ export class IdetailComponent implements OnInit {
               this.priceSuc=this.andreaniCotizacionRespuesta.tarifa;
               //this.mostrarCotizacion();
               //this.mostrarSucursal();
+              this.cotizacion.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia;
+              this.cotizacion.categoriaDistanciaId=this.andreaniCotizacionRespuesta.categoriaDistanciaId;
+              this.cotizacion.categoriaPeso=this.andreaniCotizacionRespuesta.categoriaPeso;
+              //this.cotizacion.descripcion=this.cotizarTemp2.
              }
             else {
               this.popupCotizar=true; 

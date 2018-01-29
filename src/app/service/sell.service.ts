@@ -14,7 +14,7 @@ import { Motorized } from '../model/Motorized';
 export class SellService {
   User: object;
   username: string;
-  API_URL="http://localhost:8080/";
+  API_URL="http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/";
   public headers = new Headers({
     'Access-Control-Allow-Origin': '*',
     'Content-Type' : 'application/json; charset=UTF-8',
@@ -28,38 +28,38 @@ export class SellService {
     this.User=JSON.parse(localStorage.getItem("user"));
     this.username=JSON.stringify(JSON.parse(JSON.stringify(this.User)).username);
     this.username=this.username.replace(/['"]+/g, '');
-    let url = "http://localhost:8080/user/"+this.username;
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/user/"+this.username;
     return this.http.get(url);
   }
   getProvinces() {
-    let url = "http://localhost:8080/ubication/province/all";
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/ubication/province/all";
     return this.http.get(url);
   }
   getCities(provinceId:number){
-    let url = "http://localhost:8080/ubication/city/"+provinceId;
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/ubication/city/"+provinceId;
     return this.http.get(url);
   }
   getBarrio(cityId:number){
-    let url = "http://localhost:8080/ubication/barrio/"+cityId;
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/ubication/barrio/"+cityId;
     return this.http.get(url);
   }
   saveService(service:Service){
-    let _url: string ='http://localhost:8080/sell/service';
+    let _url: string ='http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/sell/service';
     return this.http.post(_url, service,{headers: this.headers})
   }
 
   saveProduct(product:Product){
-    let _url: string ='http://localhost:8080/sell/product';
+    let _url: string ='http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/sell/product';
     return this.http.post(_url, product,{headers: this.headers})
   }
 
   saveProperty(property:Property){
-    let _url: string ='http://localhost:8080/sell/property';
+    let _url: string ='http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/sell/property';
     return this.http.post(_url, property,{headers: this.headers})
   }
 
   saveMotorized(motorized:Motorized){
-    let _url: string ='http://localhost:8080/sell/motorized';
+    let _url: string ='http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/sell/motorized';
     return this.http.post(_url, motorized,{headers: this.headers})
   }
 
@@ -70,7 +70,7 @@ export class SellService {
 
   getSecurity(){
     let url =this.API_URL+ "ubication/security"
-    //let url ="http://localhost:8080/motorized/security";
+    //let url ="http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/motorized/security";
     return this.http.get(url);    
   }
 
@@ -92,7 +92,7 @@ export class SellService {
 
   }
   getCP(CP:string){
-    let url = "http://localhost:8080/ubication/cp/"+CP;
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/ubication/cp/"+CP;
     return this.http.get(url);
   }
 
@@ -110,7 +110,7 @@ export class SellService {
 
 
   ConsultarUbicavionUser(username : string){
-    let url = "http://localhost:8080/sell/ubication/"+username;
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/sell/ubication/"+username;
     return this.http.get(url);
     //return this.http.post(url, query,{headers: this.headers});
   }

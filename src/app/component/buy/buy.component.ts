@@ -16,6 +16,7 @@ import { Product } from '../../model/product';
 export class BuyComponent implements OnInit {
   public itemId: number;
   public quantity: number;
+  public postalCode: number;
   public Item:Item=new Item();
   public cotizacion:Cotizacion=new Cotizacion();
   public envio:AndreaniEnvios=new  AndreaniEnvios();
@@ -32,6 +33,8 @@ export class BuyComponent implements OnInit {
     constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
     this.itemId =route.snapshot.params['itemId'];
     this.quantity = route.snapshot.params['quantity'];
+    this.postalCode=route.snapshot.params['postalCode'];
+    console.log("this.postalCode:"+this.postalCode+" quant:"+this.quantity);
   }
   ngOnInit() {
     this.getItemById();

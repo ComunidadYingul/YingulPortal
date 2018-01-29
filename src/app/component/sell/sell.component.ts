@@ -311,7 +311,7 @@ export class SellComponent implements OnInit {
   }
 
   saveProduct(){
-    alert(this.product);
+    //alert(this.product);
     console.log("save produc : "+this.product);
     this.sellService.saveProduct(this.product).subscribe(
 			res => {
@@ -323,7 +323,7 @@ export class SellComponent implements OnInit {
   }
 
   saveProperty(){
-    alert(this.property);
+    //alert(this.property);
     console.log("save produc : "+this.property);
     this.sellService.saveProperty(this.property).subscribe(
 			res => {

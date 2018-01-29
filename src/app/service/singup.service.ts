@@ -21,13 +21,13 @@ export class SingupService {
   constructor(private http: Http) { }
 
   signUp(person : Person) {
-    let url = "http://localhost:8080/signup";
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/signup";
     //convertir objeto a string
     //alert(JSON.stringify(person));
     return this.http.post(url ,person, {headers: this.headers});
   }
   signUpBusiness(business : Business) {
-    let url = "http://localhost:8080/business";
+    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/business";
     //convertir objeto a string
     //alert(JSON.stringify(person));
     return this.http.post(url ,business, {headers: this.headers});
