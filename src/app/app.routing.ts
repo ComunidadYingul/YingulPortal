@@ -14,6 +14,7 @@ import { PropertyComponent } from './component/property/property.component';
 import { MotorizedComponent } from './component/motorized/motorized.component';
 import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
 import { SearchPropertyComponent } from './component/search-property/search-property.component';
+import { EditItemComponent } from './component/edit-item/edit-item.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -71,6 +72,10 @@ const appRoutes: Routes = [
   {
     path: 'searchProperty/:categoryId/:cityId',
     component: SearchPropertyComponent
+  },
+  {
+    path: 'editItem',
+    component: EditItemComponent
   }
 ];
 

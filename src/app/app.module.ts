@@ -45,6 +45,7 @@ import { ItemService } from './service/item.service';
 import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
 import { UbicationService } from './service/ubication.service';
 import { SearchPropertyComponent } from './component/search-property/search-property.component';
+import { EditItemComponent } from './component/edit-item/edit-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +76,8 @@ import { SearchPropertyComponent } from './component/search-property/search-prop
     MotorizedComponent,
     PropertyComponent,
     SearchMotorizedComponent,
-    SearchPropertyComponent
+    SearchPropertyComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,
