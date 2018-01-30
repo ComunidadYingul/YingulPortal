@@ -6,7 +6,7 @@ export class UbicationService {
 
   constructor(private http:Http) { }
   getCitiesByName(name:string) {
-    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/ubication/cities/"+name;
+    let url = "http://localhost:8080/ubication/cities/"+name;
     return this.http.get(url);
   }
 }

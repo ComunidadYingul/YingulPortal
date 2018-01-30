@@ -13,15 +13,15 @@ export class QueryServiceService {
   constructor(private http:Http) { }
 
   getQueriesByUser(username : string){
-    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/query/Number/"+username;
+    let url = "http://localhost:8080/query/Number/"+username;
     return this.http.get(url);
   }
   getQueriesListByUser(username : string){
-    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/query/Queries/"+username;
+    let url = "http://localhost:8080/query/Queries/"+username;
     return this.http.get(url);
   }
   postAnswerQuery(query:Object){
-    let url: string ='http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/query/answer';
+    let url: string ='http://localhost:8080/query/answer';
     return this.http.post(url, query,{headers: this.headers})
   }
 }
