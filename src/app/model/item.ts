@@ -14,6 +14,8 @@ export class Item {
 	itemImage:Object[];
 	principalImage : string;
 	itemId:number;
+	priceNormal:number;
+	priceDiscount:number;
     public get $item_id(): number {
 		return this.item_id;
 	}

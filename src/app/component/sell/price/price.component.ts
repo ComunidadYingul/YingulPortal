@@ -56,6 +56,10 @@ export class PriceComponent implements OnInit {
   public barrio:Barrio = new Barrio();
   checkRPerson:boolean=false;
   disabledRPerson:boolean=false;
+  public popupDescuento:boolean=true;
+  checkedDiscount:boolean=false;
+  priceDiscount:number;
+  priceNormal:number;
   constructor(private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
@@ -417,5 +421,28 @@ export class PriceComponent implements OnInit {
     if(envi=="2")
     this.productPaymentMethod="Aceptar pagos por Yingul y cobro en persona";
   
+  }
+
+  discountPrice(event){
+    if(event.target.checked==true){
+      this.popupDescuento=false;
+    }
+    else {
+      
+    }
+
+  }
+  aceptarDiscount(){
+    if(this.priceNormal>this.priceDiscount){
+    this.popupDescuento=true;
+    this.checkedDiscount=false;
+    this.product.yng_Item.priceDiscount=this.priceDiscount;
+    this.product.yng_Item.priceNormal=this.priceNormal;
+    this.price=this.priceDiscount;
+    //this.
+    }
+    else{
+      alert("Los valores no son válidos");
+    }
   }
 }

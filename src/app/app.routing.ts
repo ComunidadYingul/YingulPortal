@@ -74,7 +74,7 @@ const appRoutes: Routes = [
     component: SearchPropertyComponent
   },
   {
-    path: 'editItem',
+    path: 'editItem/:itemId',
     component: EditItemComponent
   }
 ];
