@@ -21,4 +21,8 @@ export class StoreService {
     let url = "http://localhost:8080/store/findByName/"+nameStore;
     return this.http.get(url);
   }
+  findAll(){
+    let url = "http://localhost:8080/store/all";
+    return this.http.get(url);
+  }
 }

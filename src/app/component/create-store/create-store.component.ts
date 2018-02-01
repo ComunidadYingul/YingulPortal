@@ -12,6 +12,7 @@ export class CreateStoreComponent implements OnInit {
   hidFront:boolean=false;
   store:Store;
   msg:string;
+  popup2:boolean=true;
   constructor(private storeService: StoreService, private router: Router) { }
 
   ngOnInit() {
@@ -38,6 +39,7 @@ export class CreateStoreComponent implements OnInit {
     }
   }
   saveStore(){
+    this.popup2=false;
     this.store.user=JSON.parse(localStorage.getItem("user"));
     console.log(JSON.stringify(this.store));
     this.storeService.createStore(this.store).subscribe(
@@ -50,11 +52,12 @@ export class CreateStoreComponent implements OnInit {
   }
   redirectTo(){
     if(this.msg=='save'){
-      alert("item registrado exitosamente revise su bandeja de entrada");
+      alert("Tienda registrada exitosamente revise su bandeja de entrada");
       this.router.navigate(['/']);   
     }
     else{
       alert(this.msg);
+      this.router.navigate(['/']);
     } 
   }
 }
