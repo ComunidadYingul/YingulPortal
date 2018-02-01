@@ -1,0 +1,87 @@
+<br/>
+<div class="page-header-title">
+    <h4>Cuéntanos más sobre tu negocio</h4>
+    <br><br>
+    <h5>Responde estas preguntas, no te tomará más de 5 minutos.</h5>
+</div>
+<div class="form-group row">
+        <form class="md-float-material card-block">
+            <div class="row">
+                <div class="col-sm-6">
+                    <select name="category" class="form-control form-control-primary" #w (change)="setCategory(w.value)">
+                        <option value="null" disabled>Elegir Rubro...</option>
+                        <option value="Motorized" >Autos, Motos y Otros</option>
+                        <option value="Property" >Inmuebles</option>
+                        <option value="Service" >Servicios</option>
+                        <option *ngFor="let category of categoryList" [value]="category.categoryId" >{{category.name}}</option>
+                        
+                    </select>
+                </div>
+                <div class="col-sm-6" >
+                    <select name="employesQuantity" class="form-control form-control-primary" #t (change)="setEmployesQuantity(t.value)">
+                        <option value="opt1" disabled>Cantidad de empleados. Elegir...</option>
+                        <option value="-6">Menos de 6</option>
+                        <option value="6-30">De 6 a 30</option>
+                        <option value="31-100">De 31 a 100</option>
+                        <option value="101-500">De 101 a 500</option>
+                        <option value="+500">Más de 500</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6" >
+                    <select name="ecommerceExperience" class="form-control form-control-primary" #u (change)="setEcommerceExperience(u.value)">
+                        <option value="opt1" disabled>¿Tienes experiencia con e-commerce?. Elegir...</option>
+                        <option value="-1">Menos de 1 año</option>
+                        <option value="1-2">De 1 a 2 años</option>
+                        <option value="3-5">De 3 a 5 años</option>
+                        <option value="+5">Más de 5 años</option>
+                    </select>
+                </div>
+                <div class="col-sm-6" >
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6" >
+                    ¿Tienes sitio web propio?:
+                    <br><br>
+                    <div class="form-radio">
+                        <div class="radio radiofill radio-inline">
+                            <label>
+                                <input type="radio" name="radio" (change)="check('yes')">
+                                <i class="helper"></i>Si
+                            </label>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-radio">
+                        <div class="radio radiofill radio-inline">
+                            <label>
+                                <input type="radio" name="radio" checked="checked" #radio (change)="check('no')">
+                                <i class="helper"></i>No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" >
+                  <br><br>
+                  <div *ngIf="detailWebsite">
+                      <input type="text" class="form-control form-control-primary" placeholder="Dirección: www.tusitio.com" name="website" [(ngModel)]="website">
+                      <br><select name="traficInvest" class="form-control form-control-primary" #v (change)="settraficInvest(v.value)">
+                          <option value="opt1" disabled>¿Invertís para conseguir tráfico?. Elegir...</option>
+                          <option value="yes">Si</option>
+                          <option value="no">No</option>
+                          <option value="needHelp">Necesito ayuda para acerlo</option>
+                      </select>
+                  </div>  
+                </div>
+            </div>
+            <br/>
+            <div class="col-sm-10">
+                <a type="submit" class="btn btn-primary m-b-0" (click)="sendAboutBusines()">Continuar</a>
+            </div>
+        </form>
+</div>

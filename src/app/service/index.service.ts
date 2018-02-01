@@ -6,7 +6,7 @@ export class IndexService {
 
   constructor(private http:Http) { }
   getItems() {
-    let url = "http://backend-env.f366rbrhwz.us-west-2.elasticbeanstalk.com/index/item/all";
+    let url = "http://localhost:8080/index/item/all";
     return this.http.get(url);
   }
 }

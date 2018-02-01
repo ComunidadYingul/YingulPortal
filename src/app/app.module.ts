@@ -25,7 +25,6 @@ import { ItemDetailService } from './service/item-detail.service';
 import { IndexService } from './service/index.service';
 import { IndexComponent } from './component/index/index.component';
 import { CategoryListComponent } from './component/index/category-list/category-list.component';
-import { ItemListComponent } from './component/index/item-list/item-list.component';
 import { BannerComponent } from './component/index/banner/banner.component';
 import { ItemComponent } from './component/index/item/item.component';
 import { ItemDetailComponent } from './component/item-detail/item-detail.component';
@@ -45,6 +44,13 @@ import { ItemService } from './service/item.service';
 import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
 import { UbicationService } from './service/ubication.service';
 import { SearchPropertyComponent } from './component/search-property/search-property.component';
+import { CreateStoreComponent } from './component/create-store/create-store.component';
+import { StoresComponent } from './component/index/stores/stores.component';
+import { AllStoresComponent } from './component/all-stores/all-stores.component';
+import { AboutBusinessComponent } from './component/create-store/about-business/about-business.component';
+import { CreateFrontComponent } from './component/create-store/create-front/create-front.component';
+import { StoreService } from './service/store.service';
+import { StoreComponent } from './component/store/store.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +65,6 @@ import { SearchPropertyComponent } from './component/search-property/search-prop
     TypeComponent,
     IndexComponent,
     CategoryListComponent,
-    ItemListComponent,
     BannerComponent,
     ItemComponent,
     ItemDetailComponent,
@@ -75,7 +80,13 @@ import { SearchPropertyComponent } from './component/search-property/search-prop
     MotorizedComponent,
     PropertyComponent,
     SearchMotorizedComponent,
-    SearchPropertyComponent
+    SearchPropertyComponent,
+    CreateStoreComponent,
+    StoresComponent,
+    AllStoresComponent,
+    AboutBusinessComponent,
+    CreateFrontComponent,
+    StoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +106,8 @@ import { SearchPropertyComponent } from './component/search-property/search-prop
     BuyService,
     CategoryService,
     ItemService,
-    UbicationService
+    UbicationService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })

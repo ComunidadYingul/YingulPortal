@@ -52,7 +52,6 @@ export class IdetailComponent implements OnInit {
   quant:number=1;
 
   constructor(private itemDetailService : ItemDetailService, private router : Router){ 
-    
   }
   ngOnInit() {
     this.getImageByItem();
@@ -80,7 +79,7 @@ export class IdetailComponent implements OnInit {
     this.itemDetailService.getItemById(this.localItemId).subscribe(
 			res => {
             this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);  
-           // console.log("daniel: "+JSON.stringify(this.Item));
+            console.log("daniel: "+JSON.stringify(this.Item));
            // alert("daniel: "+JSON.stringify(this.Item));           
       		},
       		error => console.log(error)
