@@ -28,7 +28,6 @@ export class ServiceComponent implements OnInit {
     this.categoryService.getCategories("Service/0").subscribe(
 			res => {
             this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.categoryList=this.categoryList.sort();  
             this.getSubCategories();       
       		},
       		error => console.log(error)

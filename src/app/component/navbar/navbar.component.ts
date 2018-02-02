@@ -72,7 +72,6 @@ export class NavbarComponent implements OnInit {
 			this.categoryService.getCategoriesByNane(name).subscribe(
 			res => {
 						this.categories = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-						this.categories=this.categories.sort();
 						for (var i = 0; i < this.categories.length; i++) {
 							if (JSON.parse(JSON.stringify(this.categories[i])).name === name) {
 							  this.router.navigateByUrl('/itemsCategory/'+JSON.parse(JSON.stringify(this.categories[i])).categoryId);

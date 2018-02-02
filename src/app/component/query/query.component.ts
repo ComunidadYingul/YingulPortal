@@ -38,7 +38,6 @@ export class QueryComponent implements OnInit {
     this.queryService.getQueriesListByUser(this.User.username).subscribe(
 			res => {
             this.queries = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.queries=this.queries.sort();
             console.log(JSON.stringify(this.queries));
       		},
       		error => console.log(error)

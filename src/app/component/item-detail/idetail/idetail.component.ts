@@ -148,7 +148,6 @@ export class IdetailComponent implements OnInit {
     this.itemDetailService.getCategoriesByItem(this.localItemId).subscribe(
 			res => {
             this.categoriesByItem = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.categoriesByItem=this.categoriesByItem.sort();
            // console.log(JSON.stringify(this.categoriesByItem));
       		},
       		error => console.log(error)
@@ -159,7 +158,6 @@ export class IdetailComponent implements OnInit {
     this.itemDetailService.getQueryByItem(this.localItemId).subscribe(
 			res => {
             this.queryByItem = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.queryByItem = this.queryByItem.sort();
             this.queryLength= this.queryByItem.length;
             //console.log(JSON.stringify(this.queryByItem));
       		},

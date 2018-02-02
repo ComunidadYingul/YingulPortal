@@ -67,7 +67,6 @@ export class PaymentComponent implements OnInit {
     this.buyService.getListCreditCard().subscribe(
 			res => {
             this.creditCardList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.creditCardList=this.creditCardList.sort();
       		},
       		error => console.log(error)
     );
@@ -75,7 +74,6 @@ export class PaymentComponent implements OnInit {
     this.buyService.getCardForUser(this.User.username).subscribe(
 			res => {
             this.cardUser = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.cardUser=this.cardUser.sort();
             //console.log(JSON.stringify(this.cardUser));
       		},
       		error => console.log(error)
@@ -109,7 +107,6 @@ export class PaymentComponent implements OnInit {
                   } 
                   else{
                     this.providerHid=false;
-                    this.cardProviderList=this.cardProviderList.sort();
                   }
                 },
                 error => console.log(error)

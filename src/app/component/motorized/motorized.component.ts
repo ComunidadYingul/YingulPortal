@@ -41,8 +41,7 @@ export class MotorizedComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories("Motorized/0").subscribe(
 			res => {
-            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.categoryList=this.categoryList.sort();    
+            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);  
       		},
       		error => console.log(error)
     )

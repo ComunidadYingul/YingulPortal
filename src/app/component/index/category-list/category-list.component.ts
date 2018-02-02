@@ -21,7 +21,6 @@ export class CategoryListComponent implements OnInit {
     this.categoryService.getCategories("Product/0").subscribe(
 			res => {
             this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.categoryList=this.categoryList.sort();
             this.categoryList1=this.categoryList.slice(0,this.categoryList.length/4);
             this.categoryList2=this.categoryList.slice(this.categoryList.length/4,this.categoryList.length/4*2);
             this.categoryList3=this.categoryList.slice(this.categoryList.length/4*2,this.categoryList.length/4*3);

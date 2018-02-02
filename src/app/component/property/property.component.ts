@@ -34,8 +34,7 @@ export class PropertyComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories("Property/0").subscribe(
 			res => {
-            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.categoryList=this.categoryList.sort();    
+            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body); 
       		},
       		error => console.log(error)
     )
@@ -61,7 +60,6 @@ export class PropertyComponent implements OnInit {
 			this.ubicationService.getCitiesByName(name).subscribe(
 			res => {
 						this.cities = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-						this.cities = this.cities.sort();
 						for (var i = 0; i < this.cities.length; i++) {
 							if (JSON.parse(JSON.stringify(this.cities[i])).name === name) {
                  this.cityId=JSON.parse(JSON.stringify(this.cities[i])).cityId;
