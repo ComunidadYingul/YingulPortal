@@ -1,0 +1,33 @@
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Nuestras tiendas oficiales</h4>
+              <span>Encuentra lo que buscas de marcas específicas y con garantia de tienda</span>
+          </div>
+      </div>
+      <!-- Page header end -->
+      <!-- Page body start -->
+          <!-- Product list start -->
+          <div>
+            <div class="row" align="center" width="100%">
+                <div id='scrolly'>
+                    <a href="/{{store.name}}" *ngFor="let store of storeList"><img src='https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}' ></a>
+                </div>
+            </div>
+          </div>
+          <!-- Product list end -->
+          <div>
+            <div class="row" align="center">
+              <div class="col-md-12 col-xl-6">
+                <a href="/allStores"><button class="btn btn-inverse btn-round">Ver todas las tiendas oficiales</button></a>
+              </div>
+              <div class="col-md-12 col-xl-6">
+                <a href="/createStore" ><button class="btn btn-inverse btn-round">Crea tu tienda en Yingul Shop</button></a>
+              </div>
+            </div>
+          </div>
+
+  </div>
+</div>

@@ -25,7 +25,6 @@ import { ItemDetailService } from './service/item-detail.service';
 import { IndexService } from './service/index.service';
 import { IndexComponent } from './component/index/index.component';
 import { CategoryListComponent } from './component/index/category-list/category-list.component';
-import { ItemListComponent } from './component/index/item-list/item-list.component';
 import { BannerComponent } from './component/index/banner/banner.component';
 import { ItemComponent } from './component/index/item/item.component';
 import { ItemDetailComponent } from './component/item-detail/item-detail.component';
@@ -47,6 +46,14 @@ import { UbicationService } from './service/ubication.service';
 import { SearchPropertyComponent } from './component/search-property/search-property.component';
 import { EditItemComponent } from './component/edit-item/edit-item.component';
 import { PriceEditComponent } from './component/edit-item/price-edit/price-edit.component';
+import { CreateStoreComponent } from './component/create-store/create-store.component';
+import { StoresComponent } from './component/index/stores/stores.component';
+import { AllStoresComponent } from './component/all-stores/all-stores.component';
+import { AboutBusinessComponent } from './component/create-store/about-business/about-business.component';
+import { CreateFrontComponent } from './component/create-store/create-front/create-front.component';
+import { StoreService } from './service/store.service';
+import { StoreComponent } from './component/store/store.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +68,6 @@ import { PriceEditComponent } from './component/edit-item/price-edit/price-edit.
     TypeComponent,
     IndexComponent,
     CategoryListComponent,
-    ItemListComponent,
     BannerComponent,
     ItemComponent,
     ItemDetailComponent,
@@ -78,8 +84,17 @@ import { PriceEditComponent } from './component/edit-item/price-edit/price-edit.
     PropertyComponent,
     SearchMotorizedComponent,
     SearchPropertyComponent,
+
     EditItemComponent,
-    PriceEditComponent
+    PriceEditComponent,
+
+    CreateStoreComponent,
+    StoresComponent,
+    AllStoresComponent,
+    AboutBusinessComponent,
+    CreateFrontComponent,
+    StoreComponent
+
   ],
   imports: [
     BrowserModule,
@@ -99,7 +114,8 @@ import { PriceEditComponent } from './component/edit-item/price-edit/price-edit.
     BuyService,
     CategoryService,
     ItemService,
-    UbicationService
+    UbicationService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })

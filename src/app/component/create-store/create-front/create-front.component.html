@@ -1,0 +1,60 @@
+<br/>
+<div class="page-header-title">
+    <h4>Diseñemos tu tienda</h4>
+    <br><br>
+    <h5>Completa estos datos para personalizar tu tienda</h5>
+</div>
+<div class="form-group row">
+    <div class="col-sm-8">
+        <div class="form-group row">
+            <form class="md-float-material card-block">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control form-control-primary" placeholder="Nombre de tu tienda" name="name" [(ngModel)]="name">
+                    </div>
+                    <div class="col-sm-6" >
+                        <input type="text" class="form-control form-control-primary" placeholder="Leyenda o Resúmen breve de tu tienda" name="summary" [(ngModel)]="summary">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <h5>Sube la foto principal(LOGO) de tu tienda</h5>
+                        <p>(358 px X 330 px) <a target="_blank" href="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/sampleLogo.jpg">ejemplo</a></p>
+                        <div id="image-preview1">
+                            <label for="image-upload1" id="image-label1">Logo</label>
+                            <input type="file" name="image-upload1" id="image-upload1" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6" >
+                        <h5>Sube una portada(BANNER) para tu tienda</h5>
+                        <p>(1170 px X 300 px) <a target="_blank" href="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/sampleBanner.jpg">ejemplo</a></p>
+                        <div id="image-preview2" >
+                            <label for="image-upload2" id="image-label2">Banner</label>
+                            <input type="file" name="image-upload2" id="image-upload2" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-6" >
+                        <input type="text" class="form-control form-control-primary" placeholder="Video de tu tienda link de YouTube" name="video" [(ngModel)]="video"> 
+                    </div>
+                    <div class="col-sm-6" >
+                       
+                    </div>
+                </div>
+                <br/>
+                <div class="col-sm-10">
+                    <a type="submit" class="btn btn-primary m-b-0" (click)="sendFront()">Continuar</a>
+                </div>
+            </form>
+        </div>
+    
+    </div>
+    <!-- desde aqui el detalle del item a vender -->
+    <div class="col-sm-4">
+        
+    </div>
+    <!-- hasta aqui el detalle del item a vender --> 
+</div>

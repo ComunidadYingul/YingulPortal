@@ -1,0 +1,82 @@
+<!-- Main-body start -->
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Crear tienda</h4>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="/index">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/createStore">Crear Tienda</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Page header end -->
+      <!-- Page body start -->
+      <div class="page-body">
+          <div class="row">
+              <div class="col-sm-12">
+                  <!-- Product edit card start -->
+                  <div class="card">
+                      <div class="card-header">
+                          <h5>Crea tu tienda en Yingul Shop</h5>
+                      </div>
+                      <div class="card-block">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="product-edit">
+                                      <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
+                                          <li class="nav-item">
+                                              <a class="nav-link active" data-toggle="tab" href="#home7" role="tab">
+                                                  <div class="f-26">
+                                                      <i class="icofont icofont-edit"></i>
+                                                  </div>
+                                                  Diseñemos tu tienda</a>
+                                              <div class="slide"></div>
+                                          </li>
+                                          <li class="nav-item">
+                                              <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
+                                                  <div class="f-26">
+                                                      <i class="icofont icofont-document-search"></i>
+                                                  </div>
+                                                  Sobre tu negocio</a>
+                                              <div class="slide"></div>
+                                          </li>
+                                      </ul>
+                                      <!-- Tab panes -->
+                                      <div class="tab-content">
+                                          <!-- principio de envio -->
+                                          <div class="tab-pane active" id="home7" role="tabpanel">
+                                            <app-create-front [hidden]="hidFront" (setStore)="sendSetStore1($event)" ></app-create-front>
+                                            <app-about-business [hidden]="hidAbout" (setStore)="sendSetStore($event)" [Store]="store"></app-about-business>
+                                              
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Product edit card end -->
+              </div>
+          </div>
+      </div>
+      <!-- Page body end -->
+  </div>
+</div>
+<!-- Main-body end -->
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
+    </div>
+</div>

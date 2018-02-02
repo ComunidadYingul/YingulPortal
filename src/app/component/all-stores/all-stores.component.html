@@ -1,0 +1,64 @@
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Yingul Shop</h4>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="index">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/allStores">Tiendas Oficiales</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Page header end -->
+      <!-- Page body start -->
+      <div class="page-body masonry-page">
+          <div class="row">
+              <div class="col-sm-12">
+                  <!-- Gallery with description card start -->
+                  <div class="card">
+                      <div class="card-header">
+                          <h5>Tiendas Oficiales</h5>
+                          <div class="card-header-right">
+                              <i class="icofont icofont-rounded-down"></i>
+                              <i class="icofont icofont-refresh"></i>
+                              <i class="icofont icofont-close-circled"></i>
+                          </div>
+                      </div>
+                      <div class="card-block">
+                          <div class="default-grid">
+                              <div class="row lightboxgallery-popup">
+                                <!--ngfor -->
+                                  <div class="col-sm-3 default-grid-item" *ngFor="let store of storeList">
+                                      <div class="card gallery-desc">
+                                          <div class="masonry-media">
+                                              <a class="media-middle" href="/{{store.name}}">
+                                                  <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}" alt="masonary">
+                                              </a>
+                                          </div>
+                                          <div class="card-block">
+                                              <h6 class="job-card-desc">{{store.name}}</h6>
+                                              <p class="text-muted">{{store.summary}}</p>
+                                              <!--<div class="job-meta-data"><i class="icofont icofont-safety"></i>washington</div>
+                                              <div class="job-meta-data"><i class="icofont icofont-university"></i>10 Years</div>-->
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Gallery with description card end -->
+              </div>
+          </div>
+      </div>
+      <!-- Page body end -->
+  </div>
+</div>

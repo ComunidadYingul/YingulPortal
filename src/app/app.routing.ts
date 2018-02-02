@@ -15,6 +15,10 @@ import { MotorizedComponent } from './component/motorized/motorized.component';
 import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
 import { SearchPropertyComponent } from './component/search-property/search-property.component';
 import { EditItemComponent } from './component/edit-item/edit-item.component';
+import { CreateStoreComponent } from './component/create-store/create-store.component';
+import { AllStoresComponent } from './component/all-stores/all-stores.component';
+import { StoreComponent } from './component/store/store.component'; 
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -74,8 +78,22 @@ const appRoutes: Routes = [
     component: SearchPropertyComponent
   },
   {
+
     path: 'editItem/:itemId',
     component: EditItemComponent
+  },
+  {
+    path: 'createStore',
+    component: CreateStoreComponent
+  },
+  {
+    path: 'allStores',
+    component: AllStoresComponent
+  },
+  {
+    path: ':nameStore',
+    component: StoreComponent
+
   }
 ];
 
