@@ -10,7 +10,7 @@
                           <div class="col-md-12">
                               <!-- Social wallpaper start -->
                               <div class="social-wallpaper">
-                                  <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.bannerImage}}" class="img-fluid width-100" alt="" />
+                                  <img *ngIf="store.bannerImage" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.bannerImage}}" class="img-fluid width-100" alt="" />
                               </div>
                               <!-- Social wallpaper end -->
                               <!-- Timeline button start -->
@@ -30,7 +30,7 @@
                                   <!-- social-profile card start -->
                                   <div class="card">
                                       <div class="social-profile">
-                                          <img class="img-fluid width-100" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}" alt="">
+                                          <img *ngIf="store.mainImage" class="img-fluid width-100" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}" alt="">
                                       </div>
                                       <div class="card-block social-follower">
                                           <h4>{{store.name}}</h4>
@@ -56,14 +56,11 @@
                                   </div>
                                   <!-- social-profile card end -->
                                   <div class="card" *ngIf="store.video" >
-                                    <iframe width="640" height="360" src="https://www.youtube.com/embed/{{store.video}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                       <!-- cd-timeline-img 
                                         <div  class="cd-timeline-content card_main">
                                             <div class="embed-responsive embed-responsive-4by3">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{store.video}}"></iframe>
+                                                <iframe class="embed-responsive-item" [src]='video'></iframe>
                                             </div>
                                         </div>
-                                        <!-- cd-timeline-content -->
                                   </div>
                                   <!-- Who to follow card end -->
                                   <!-- Friends card start -->

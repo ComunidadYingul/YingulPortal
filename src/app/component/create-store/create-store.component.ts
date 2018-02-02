@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '../../model/store';
 import { StoreService } from '../../service/store.service';
 import { Router } from '@angular/router';
+import { user } from '../../model/user';
 @Component({
   selector: 'app-create-store',
   templateUrl: './create-store.component.html',
@@ -13,8 +14,15 @@ export class CreateStoreComponent implements OnInit {
   store:Store;
   msg:string;
   popup2:boolean=true;
-  constructor(private storeService: StoreService, private router: Router) { }
-
+  User: user=new user();
+  constructor(private storeService: StoreService, private router: Router) { 
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+    } else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+    }
+  }
   ngOnInit() {
   }
   sendSetStore1(ev){
