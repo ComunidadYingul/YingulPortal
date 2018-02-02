@@ -63,6 +63,13 @@ export class CreateFrontComponent implements OnInit {
     this.store.bannerImage=JSON.stringify(data);
     this.store.bannerImage=this.store.bannerImage.replace(/['"]+/g, '');
   }
-
+  keyPressCP(event: any){
+    const pattern = /[a-z\A-Z]/;
+    
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+          event.preventDefault();
+        }
+  }
 
 }
