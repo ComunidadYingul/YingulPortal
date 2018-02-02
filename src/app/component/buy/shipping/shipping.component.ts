@@ -232,10 +232,10 @@ export class ShippingComponent implements OnInit {
     
     sendCotizar(coti:AndreaniCotizacion){
       this.cotizarTemp=coti;
-      console.log("envio: "+JSON.stringify(this.cotizarTemp));
+      console.log("envio1: "+JSON.stringify(this.cotizarTemp));
       this.itemDetailService.sendCotizaAndreani(this.cotizarTemp).subscribe(
         res => {
-        
+
           this.andreaniCotizacionRespuesta=JSON.parse(JSON.parse(JSON.stringify(res))._body);
         
 

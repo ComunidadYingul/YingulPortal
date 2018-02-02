@@ -1,82 +1,24 @@
 <div class="main-body">
   <div class="page-wrapper">
-      <!-- Page header start -->
-      <div class="page-header">
-          <div class="page-header-title">
-              <h4>Vender {{typeEs}}</h4>
-          </div>
-          <div class="page-header-breadcrumb">
-              <ul class="breadcrumb-title">
-                  <li class="breadcrumb-item">
-                      <a routerLink="/">
-                          <i class="icofont icofont-home"></i>
-                      </a>
-                  </li>
-                  <li class="breadcrumb-item"><a routerLink="/sell">Vender {{typeEs}}</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-      <!-- Page header end -->
-      <!-- Page body start -->
+
       <div class="page-body">
           <div class="row">
               <div class="col-sm-12">
                   <!-- Product edit card start -->
                   <div class="card">
                       <div class="card-header">
-                          <h5>Vender {{typeEs}}</h5>
+                          <h5>Modificar publicación </h5>
                       </div>
                       <div class="card-block">
                           <div class="row">
                               <div class="col-sm-12">
                                   <div class="product-edit">
-                                      <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
-                                          <li class="nav-item">
-                                              <a class="nav-link active" data-toggle="tab" href="#home7" role="tab">
-                                                  <div class="f-26">
-                                                      <i class="icofont icofont-edit"></i>
-                                                  </div>
-                                                  Tipo de Item</a>
-                                          </li>
-                                          <li class="nav-item"> 
-                                              <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
-                                                  <div class="f-26">
-                                                      <i class="icofont icofont-document-search"></i>
-                                                  </div>
-                                                  Que quieres publicar</a>
-                                          </li>
-                                          <li class="nav-item">
-                                              <a class="nav-link" data-toggle="tab" href="#messages7" role="tab">
-                                                  <div class="f-26">
-                                                      <i class="icofont icofont-ui-image"></i>
-                                                  </div>
-                                                  Descripción y fotos</a>
-                                          </li>
-                                          <li class="nav-item">
-                                              <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
-                                                  <div class="f-26">
-                                                      <i class="icofont icofont-money-bag"></i>
-                                                  </div>
-                                                  Precio</a>
-                                          </li>
-                                          <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
-                                                    <div class="f-26">
-                                                        <i class="icofont icofont-wheel"></i>
-                                                    </div>
-                                                    Tipo de publicacion</a>      
-                                            </li>
-                                      </ul>
-                                      <!-- Tab panes -->
+                                       <!-- Tab panes -->
                                       <div class="tab-content">
                                           <div class="tab-pane active" id="home7" role="tabpanel">
-                                            <app-type-item (typeItemS)="typeItemSe($event)" [hidden]="hidType" ></app-type-item>
-                                            <app-list-category (categoryItemS)="categoryItemSe($event)" [hidden]="hidCat" [url]="url"></app-list-category>
-                                            <app-detail (detailProduct)="detailProductSe($event)"  [typeCat]="type" (detailItemS)="detailItemSe($event)" (Back)="backE($event)" [hidden]="hidDet" [category]="category"></app-detail>
-                                            <app-price [typeCatPre]="type"
-                                                        (priceItemS)="sendPriceCat($event)" (Back)="backP($event)" [hidden]="hidPri"></app-price>
-                                            <app-type [hidden]="hidTyp"></app-type>
+                                           
+                                            <app-price-edit></app-price-edit>
+                                           
                                         </div>
                                       </div>
                                   </div>
@@ -91,7 +33,7 @@
       <!-- Page body end -->
   </div>
 </div>
-<div class="popup" [hidden]="false">
+<div class="popup" [hidden]="true">
     <div class="page-header-title">
         <h3>Solicitud en Proceso</h3>
         <hr class="m-t-20 m-b-20">

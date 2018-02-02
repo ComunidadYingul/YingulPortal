@@ -109,7 +109,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                        <input type="text" class="form-control" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
+                        <input type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
 
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" placeholder="Volumen en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
+                            <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
     
                         </div>
                     </div>

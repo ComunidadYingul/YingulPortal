@@ -42,6 +42,7 @@
                                   <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
                               </a>
                               <div class="p-sale">SALE</div>
+                              <div [hidden]="envioIcon(item.itemId)" class="icofont icofont-envelope-open text-warning">Envió gratis.</div>
                           </div>
                           <div class="prod-info">
                               <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
@@ -54,6 +55,7 @@
                                       <option value="5">5</option>
                                   </select></div>
                               </div>
+                              <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
                               <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
                           </div>
                       </div>

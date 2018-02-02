@@ -50,6 +50,7 @@ export class IdetailComponent implements OnInit {
   priceDomi:string;
   provinceId:string="0";
   quant:number=1;
+  hiddenTypeSend:boolean=false;
 
   constructor(private itemDetailService : ItemDetailService, private router : Router){ 
     
@@ -98,6 +99,7 @@ export class IdetailComponent implements OnInit {
               console.log(JSON.parse(JSON.parse(JSON.stringify(res))._body));
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                 //console.log( "dani: "+ JSON.stringify(res));alert("dani: "+ JSON.stringify(res));
+                if(this.Product.productPagoEnvio=="gratis"){this.envioType="Envío Gratis a todo el país";this.hiddenTypeSend=true;this.llegadaTime="Llega a la sucursal entre 48 y 96 hs. hábiles desde la imposición.";}console.log("this.Product.productPagoEnvio"+this.Product.productPagoEnvio);
                 break;
               case "Inmueble":
                 this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body);

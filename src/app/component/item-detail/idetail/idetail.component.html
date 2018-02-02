@@ -80,6 +80,7 @@
                                                   <option value="5">5</option>
                                               </select>
                                           </div>
+                                          <div  *ngIf="Item.priceDiscount>0" class="col-lg-7 col-xs-12"><del  class="icofont icofont-cur-dollar"> {{Item.priceNormal}}</del>  </div>
                                           <div class="col-lg-7 col-xs-12">
                                               <span class="text-primary product-price">
                                                   <i class="icofont icofont-cur-dollar">
@@ -104,7 +105,7 @@
                                                 <p class="shipping-method-title">{{envioType}}</p>
                                                 <p >{{llegadaTime}}</p>
 
-                                                <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="calcularCosto()">
+                                                <button [hidden]="hiddenTypeSend" type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="calcularCosto()">
                                                         <i class="icofont icofont-cur-dollar f-16"></i><span class="m-l-10">CALCULAR COSTOS</span>
                                                 </button>
                                                 

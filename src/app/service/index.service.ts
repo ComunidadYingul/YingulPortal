@@ -9,4 +9,8 @@ export class IndexService {
     let url = "http://localhost:8080/index/item/all";
     return this.http.get(url);
   }
+  getProduct() {
+    let url = "http://localhost:8080/item/product/all";
+    return this.http.get(url);
+  }
 }

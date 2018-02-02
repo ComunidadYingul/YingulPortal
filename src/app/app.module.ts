@@ -46,6 +46,7 @@ import { SearchMotorizedComponent } from './component/search-motorized/search-mo
 import { UbicationService } from './service/ubication.service';
 import { SearchPropertyComponent } from './component/search-property/search-property.component';
 import { EditItemComponent } from './component/edit-item/edit-item.component';
+import { PriceEditComponent } from './component/edit-item/price-edit/price-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import { EditItemComponent } from './component/edit-item/edit-item.component';
     PropertyComponent,
     SearchMotorizedComponent,
     SearchPropertyComponent,
-    EditItemComponent
+    EditItemComponent,
+    PriceEditComponent
   ],
   imports: [
     BrowserModule,
