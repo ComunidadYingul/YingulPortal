@@ -52,7 +52,7 @@ export class AboutBusinessComponent implements OnInit {
     this.setStore.emit(this.store);
   }
   setCategory(category:string){
-    if(category=="Property"||category=="Motorized"||category=="Service"){
+    if(category=="Property"||category=="Motorized"||category=="Service"||category=="Product"){
       this.store.itemsType=category;
       this.store.mainCategory=null;
     }else{
