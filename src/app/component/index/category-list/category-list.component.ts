@@ -8,10 +8,6 @@ import { ListCategoryService } from '../../../service/list-category.service'
 })
 export class CategoryListComponent implements OnInit {
   categoryList: Object[];
-  categoryList1:Object[];
-  categoryList2:Object[];
-  categoryList3:Object[];
-  categoryList4:Object[];
   constructor(private categoryService: ListCategoryService) { }
 
   ngOnInit() {
@@ -20,11 +16,7 @@ export class CategoryListComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories("Product/0").subscribe(
 			res => {
-            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.categoryList1=this.categoryList.slice(0,this.categoryList.length/4);
-            this.categoryList2=this.categoryList.slice(this.categoryList.length/4,this.categoryList.length/4*2);
-            this.categoryList3=this.categoryList.slice(this.categoryList.length/4*2,this.categoryList.length/4*3);
-            this.categoryList4=this.categoryList.slice(this.categoryList.length/4*3,this.categoryList.length/4*4);          
+            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);       
       		},
       		error => console.log(error)
     )
