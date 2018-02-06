@@ -53,6 +53,7 @@ import { AboutBusinessComponent } from './component/create-store/about-business/
 import { CreateFrontComponent } from './component/create-store/create-front/create-front.component';
 import { StoreService } from './service/store.service';
 import { StoreComponent } from './component/store/store.component';
+import { UserFrontComponent } from './component/user-front/user-front.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { StoreComponent } from './component/store/store.component';
     AllStoresComponent,
     AboutBusinessComponent,
     CreateFrontComponent,
-    StoreComponent
+    StoreComponent,
+    UserFrontComponent
 
   ],
   imports: [
