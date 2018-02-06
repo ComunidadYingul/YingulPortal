@@ -132,8 +132,8 @@ export class SingupComponent implements OnInit {
     this.business.$yng_User.$phone=this.phone;
     this.business.$yng_User.$yng_Ubication.$street=this.street;
     this.business.$yng_User.$yng_Ubication.$number=this.number;
-    this.business.$yng_User.$yng_Ubication.$yng_Province.$provinceId=this.province.$provinceId;
-    this.business.$yng_User.$yng_Ubication.$yng_City.$cityId=this.city.$cityId;
+    this.business.$yng_User.$yng_Ubication.$yng_Province.provinceId=this.province.provinceId;
+    this.business.$yng_User.$yng_Ubication.$yng_City.cityId=this.city.cityId;
     this.business.$yng_User.$yng_Ubication.$yng_Barrio=this.barrio;
    // this.business.$address="Provincia: "+this.province.$provinceId+" Cuidad: "+this.city.$cityId+" Barrio: "+this.barrio.$name+ " Calle:"+this.street+" Número:"+this.number;
     console.log("Business envio: "  + JSON.stringify(this.business));
@@ -168,7 +168,7 @@ export class SingupComponent implements OnInit {
   }
 
   getCity(provinceId : number){
-    this.province.$provinceId=provinceId;
+    this.province.provinceId=provinceId;
     //this.province.$name=
     this.cityList=[];
     this.sellService.getCities(provinceId).subscribe(
@@ -186,7 +186,7 @@ export class SingupComponent implements OnInit {
     )
   }
   getBarrio(cityId : number){
-    this.city.$cityId=cityId;
+    this.city.cityId=cityId;
     this.barrioList=[];
     this.sellService.getBarrio(cityId).subscribe(
 			res => {

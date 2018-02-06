@@ -18,6 +18,7 @@ import { EditItemComponent } from './component/edit-item/edit-item.component';
 import { CreateStoreComponent } from './component/create-store/create-store.component';
 import { AllStoresComponent } from './component/all-stores/all-stores.component';
 import { StoreComponent } from './component/store/store.component'; 
+import { UserFrontComponent } from './component/user-front/user-front.component';
 
 const appRoutes: Routes = [
   {
@@ -89,6 +90,10 @@ const appRoutes: Routes = [
   {
     path: 'allStores',
     component: AllStoresComponent
+  },
+  {
+    path: 'userFront',
+    component: UserFrontComponent
   },
   {
     path: ':nameStore',

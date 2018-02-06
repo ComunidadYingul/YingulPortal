@@ -27,7 +27,6 @@ export class ItemService {
   }
   searchProperty(categoryId:number,cityId:number){
     let url = "http://localhost:8080/item/searchProperty/"+categoryId+"/"+cityId;
-    alert(url);
     return this.http.get(url);
   }
 }
