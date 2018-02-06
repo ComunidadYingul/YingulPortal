@@ -98,7 +98,7 @@ export class PriceComponent implements OnInit {
   }
   provin:string;
   getCity(provinceId : number){
-   this.province.$provinceId=provinceId;
+   this.province.provinceId=provinceId;
     this.cityList=[];
     this.sellService.getCities(provinceId).subscribe(
 			res => {
@@ -117,7 +117,7 @@ export class PriceComponent implements OnInit {
     )
   }
   getBarrio(cityId : number){
-    this.city.$cityId=cityId;
+    this.city.cityId=cityId;
     this.barrioList=[];
     this.sellService.getBarrio(cityId).subscribe(
 			res => {
@@ -286,7 +286,7 @@ export class PriceComponent implements OnInit {
                 this.provinciaCP=JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.name);
                 this.provinciaID=parseInt(JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.provinceId));
               
-                this.province.$provinceId=this.provinciaID;
+                this.province.provinceId=this.provinciaID;
                 
                 this.cityHid=false;
                 this.postalCode=this.codigoPostalE;
