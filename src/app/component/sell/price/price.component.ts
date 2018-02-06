@@ -433,13 +433,13 @@ export class PriceComponent implements OnInit {
 
   }
   aceptarDiscount(){
-    if(this.priceNormal>this.priceDiscount){
+    var a=this.priceNormal-this.priceDiscount;
+    if(a>0){
     this.popupDescuento=true;
     this.checkedDiscount=false;
     this.product.yng_Item.priceDiscount=this.priceDiscount;
     this.product.yng_Item.priceNormal=this.priceNormal;
     this.price=this.priceDiscount;
-    //this.
     }
     else{
       alert("Los valores no son válidos");

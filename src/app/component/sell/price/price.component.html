@@ -5,8 +5,8 @@
   <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 <form class="md-float-material card-block">
-  <h5>Datos de contacto</h5>
-    <div class="row">
+  <h5 *ngIf="isOtro()">Datos de contacto</h5>
+    <div *ngIf="isOtro()" class="row">
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
@@ -27,7 +27,7 @@
                 <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="Correo electronico">
             </div>
         </div>
-        <div class="col-sm-6">
+        <div *ngIf="isOtro()" class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
                 <input type="text" class="form-control" name="webSite" [(ngModel)]="webSite" placeholder="Sitio Web" >
@@ -131,9 +131,9 @@
                 <div class="row">
                         <div  class="col-sm-6" >
                                 <select class="form-control form-control-primary" #o (change)="capturarCondicionVenta(o.value)">
-                                    <option value="0">Tipo y condiciones de venta *</option>
+                                    <option value="0"disabled>TIPO Y CONDICIONES DE VENTA *</option>
                                     <option value="Fijo">Precio fijo</option>
-                                    <option value="Subasta">Subasta</option>
+                                    <option value="Subasta" disabled>Subasta</option>
                                     
                                 </select>
                             </div>
@@ -142,7 +142,7 @@
                 <div class="row">
                         <div  class="col-sm-6" >
                                 <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
-                                    <option value="0">MEDIOS DE PAGO</option>
+                                    <option value="0"disabled>MEDIOS DE PAGO</option>
                                     <option value="1">Aceptar pagos solo por Yingul</option>
                                     <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
                                 </select>

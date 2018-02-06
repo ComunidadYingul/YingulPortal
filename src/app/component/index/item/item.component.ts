@@ -45,7 +45,7 @@ export class ItemComponent implements OnInit {
   envioIcon(number:number):boolean{
     var retu=this.productR(number);
     var free="gratis";
-    console.log("retu: "+retu); 
+    //console.log("retu: "+retu); 
     if(retu==free)    {return false;}
     else     return true;
 
