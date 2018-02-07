@@ -1,5 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ItemsCategoryService } from '../../../service/items-category.service'
+import { CategoryService } from '../../../service/category.service';
+import { Category } from '../../../model/category';
+import { ListCategoryService } from '../../../service/list-category.service';
+import { SellService } from '../../../service/sell.service';
+import { Item } from '../../../model/item';
+import { ItemService } from '../../../service/item.service';
 
 @Component({
   selector: 'app-icdetail',
@@ -8,21 +14,109 @@ import { ItemsCategoryService } from '../../../service/items-category.service'
 })
 export class IcdetailComponent implements OnInit {
   @Input('categoryId') categoryId:number;
-  itemCategoryList: Object[]=[];
-  constructor(private itemsCategoryService: ItemsCategoryService) { 
+  itemList: Item[]=[];
+  itemListTemp: Item[]=[];
+  category:Category=new Category;
+  subCategoryList: Category[];
+  subCategoryListTemp:Category[];
+  tensubCategoryList: Category[];
+  popup:boolean=true;
+  popup3:boolean=true;
+  popup4:boolean=true;
+  provinceList: Object[];
+  provinceListFive:Object[];
+  cityCard:boolean=true;
+  cityList: Object[];
+  cityListFive:Object[];
+  provinceCard:boolean=false;
+  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
   }
 
   ngOnInit() {
     this.getItemsByCategory();
-  }
-  getItemsByCategory() {
-    this.itemsCategoryService.getItemsByCategory(this.categoryId).subscribe(
+    this.categoryService.getCategoryById(this.categoryId).subscribe(
 			res => {
-            this.itemCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(JSON.stringify(this.itemCategoryList));
+            this.category = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            console.log(JSON.stringify(this.category));
       		},
       		error => console.log(error)
-    )
+    );
+    this.sellService.getProvinces().subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive=this.provinceListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
   }
-
+  getItemsByCategory() {
+    this.itemService.getItemsByCategory(this.categoryId).subscribe(
+			res => {
+            this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            console.log(JSON.stringify(this.itemList));
+      		},
+      		error => console.log(error)
+    );
+    //
+    this.subCategoryList=[];
+    this.categoryService1.getSubCategories(this.categoryId.toString()).subscribe(
+      res => {
+            this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.subCategoryListTemp= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            if(this.subCategoryList.length>5){this.tensubCategoryList=this.subCategoryList.splice(0,5);}
+            else{this.tensubCategoryList=this.subCategoryList;}
+            if(JSON.stringify(this.subCategoryList)=="[]"){this.tensubCategoryList=null;}
+          },
+          error => console.log(error)
+    );
+  }
+  popupCategory(){
+    this.popup=false;
+  }
+  popupHide(){
+    this.popup=true;
+    this.popup3=true;
+    this.popup4=true;
+  }
+  popupProvince(){
+    this.popup3=false;
+  }
+  popupCity(){
+    this.popup4=false;
+  }
+  findProvince(a:number){
+    this.sellService.getCities(a).subscribe(
+			res => {
+            this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.cityListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.cityListFive=this.cityListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_Province.provinceId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.provinceCard=true;
+    this.cityCard=false;
+  }
+  findCity(b:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_City.cityId==b){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.provinceCard=true;
+    this.cityCard=true;
+  }
 }

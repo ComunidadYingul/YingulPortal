@@ -22,6 +22,17 @@
       <div class="page-body">
       <div class="row">
       <div class="col-sm-3 card-block-big">
+
+        <div class="card" *ngIf="tensubCategoryList">
+        <div class="card-header">Categorias</div>
+            <div class="card-block">
+                <div class="list-group" width="100%">
+                    <a *ngFor="let category of tensubCategoryList" class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
+                    <a style="cursor: pointer;" (click)="popupCategory()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                </div>
+            </div>
+        </div>
+
         <div class="card" [hidden]="provinceCard">
           <div class="card-header" >Ubicación</div>
           <form>
@@ -139,6 +150,19 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let city of cityList">
                 <a style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action list-group-item-success" >{{city.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup" [hidden]="popup3">
+    <div class="row" >
+        <div class="card-header col-sm-10 ">Categorias</div>
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let category of subCategoryListTemp">
+                <a  class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
             </div>
         </div>
     </div>
