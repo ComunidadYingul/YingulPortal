@@ -1,0 +1,86 @@
+<!-- Main-body start -->
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page header start -->
+        <div class="page-header">
+            <div class="page-header-title">
+                <h4>Comprar {{Item.name}}</h4>
+            </div>
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="index.html">
+                            <i class="icofont icofont-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="/buy/{{itemId}}/{{quantity}}">Comprar {{Item.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Page header end -->
+        <!-- Page body start -->
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Product edit card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Comprar {{Item.name}}</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="product-edit">
+                                        <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#home7" role="tab">
+                                                    <div class="f-26">
+                                                        <i class="icofont icofont-edit"></i>
+                                                    </div>
+                                                    Envio</a>
+                                                <div class="slide"></div>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
+                                                    <div class="f-26">
+                                                        <i class="icofont icofont-document-search"></i>
+                                                    </div>
+                                                    Pago</a>
+                                                <div class="slide"></div>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#messages7" role="tab">
+                                                    <div class="f-26">
+                                                        <i class="icofont icofont-ui-image"></i>
+                                                    </div>
+                                                    Revisa y Confirma</a>
+                                                <div class="slide"></div>
+                                            </li>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <!-- principio de envio -->
+                                            <div class="tab-pane active" id="home7" role="tabpanel">
+                                                <app-shipping [hidden]="hidShip" (typeProduct)="sendProduct($event)" (typeEnvio)="sendTypeEnvio($event)"  (typePrice)="sendTypePrice($event)" (typeCotizacion)="sendTypeCotizacion($event)" (typeShip)="sendTypeShip($event)" [Item]="Item" [quantity]="quantity" ></app-shipping>
+                                            <!-- fin de envio -->
+                                            <!-- principio de pago -->
+                                                <app-payment [hidden]="hidPay" [priceSuc]="priceSuc" (typePay)="sendTypePay($event)" [Item]="Item" [quantity]="quantity"></app-payment>
+                                            <!-- fin de pago -->
+                                            <!-- principio de revisa y confirma -->
+                                                <app-confirm [hidden]="hidConf" (problem)="showProblem($event)" [priceSuc]="priceSuc" [product]="product" [shipping]="shipping"[paymentMethod]="paymentMethod" [cotizacion]="cotizacion" [Item]="Item" [quantity]="quantity" [cost]="cost"></app-confirm>
+                                            <!-- fin de revisa y confirma -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product edit card end -->
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->

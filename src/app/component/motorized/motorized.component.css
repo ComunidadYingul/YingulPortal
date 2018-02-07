@@ -1,0 +1,35 @@
+.image {
+    position: relative;
+    width: 100%; /* for IE 6 */
+    top: 0;
+    left : 0;
+    
+}
+.prev {
+    position: absolute;
+    top: 5%;
+    width: 100%;  
+    color: white;  
+    font-size: 50px; 
+    text-shadow: -0.3px 0 black, 0 0.3px black, 0.3px 0 black, 0 -0.3px black;
+}
+.title {
+    position: absolute;
+    top: 18%;
+    width: 100%;  
+    color: white;   
+    font-size: 100px;
+    text-shadow: -0.3px 0 black, 0 0.3px black, 0.3px 0 black, 0 -0.3px black;
+    font-weight: 600;
+}
+.form {
+    position: absolute;
+    top: 45%;
+    width: 70%;
+    left: 15%;
+    background-color:rgba(0,0,0,0.4);
+    margin: 0 auto;
+}
+.element{
+    opacity: 1;
+}

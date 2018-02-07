@@ -8,6 +8,18 @@ import { IndexComponent } from './component/index/index.component';
 import { ItemDetailComponent } from './component/item-detail/item-detail.component';
 import { ItemsCategoryComponent } from './component/items-category/items-category.component';
 import { QueryComponent } from './component/query/query.component';
+import { BuyComponent } from './component/buy/buy.component';
+import { ServiceComponent } from './component/service/service.component';
+import { PropertyComponent } from './component/property/property.component';
+import { MotorizedComponent } from './component/motorized/motorized.component';
+import { SearchMotorizedComponent } from './component/search-motorized/search-motorized.component';
+import { SearchPropertyComponent } from './component/search-property/search-property.component';
+import { EditItemComponent } from './component/edit-item/edit-item.component';
+import { CreateStoreComponent } from './component/create-store/create-store.component';
+import { AllStoresComponent } from './component/all-stores/all-stores.component';
+import { StoreComponent } from './component/store/store.component'; 
+import { UserFrontComponent } from './component/user-front/user-front.component';
+
 const appRoutes: Routes = [
   {
     path: '',
@@ -41,6 +53,52 @@ const appRoutes: Routes = [
   {
     path: 'itemsCategory/:categoryId',
     component: ItemsCategoryComponent
+  },
+  {
+    path: 'buy/:itemId/:quantity',
+    component: BuyComponent
+  },
+  {
+    path: 'service',
+    component: ServiceComponent
+  },
+  {
+    path: 'property',
+    component: PropertyComponent
+  },
+  {
+    path: 'motorized',
+    component: MotorizedComponent
+  },
+  {
+    path: 'searchMotorized/:categoryId/:minPrice/:maxPrice/:minYear/:maxYear',
+    component: SearchMotorizedComponent
+  },
+  {
+    path: 'searchProperty/:categoryId/:cityId',
+    component: SearchPropertyComponent
+  },
+  {
+
+    path: 'editItem/:itemId',
+    component: EditItemComponent
+  },
+  {
+    path: 'createStore',
+    component: CreateStoreComponent
+  },
+  {
+    path: 'allStores',
+    component: AllStoresComponent
+  },
+  {
+    path: 'userFront',
+    component: UserFrontComponent
+  },
+  {
+    path: ':nameStore',
+    component: StoreComponent
+
   }
 ];
 

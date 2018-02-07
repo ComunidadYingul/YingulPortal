@@ -1,0 +1,241 @@
+<br/>
+<div class="page-header-title">
+    <h4>¿Cómo quieres pagar?</h4>
+</div>
+<div class="form-group row">
+    <div class="col-sm-8">
+        <br/>
+        <!--aqui llenar con las tarjetas guardadas -->
+            <div class="row">
+                <!--ngfor para las tarjetas del usuario-->
+                <div class="col-xs-12 col-md-12 col-lg-4" style="cursor: pointer;" (click)="cardSelected(cardu)" *ngFor="let cardu of cardUser">
+                    <div class="card payment-card" >
+                        <div >
+                            <i *ngIf="cardu.provider == 'VisaD'" class="icofont icofont-visa-alt"></i>
+                            <i *ngIf="cardu.provider == '0'" class="icofont icofont-visa-alt"></i>
+                            <i *ngIf="cardu.provider == 'MastercardD'" class="icofont icofont-mastercard"></i>
+                            <i *ngIf="cardu.provider == '1'" class="icofont icofont-mastercard"></i>
+                            <img *ngIf="cardu.provider == 'AmexD'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                            <img *ngIf="cardu.provider == '2'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                            <p *ngIf="cardu.provider == 'AmexD'"></p>
+                            <h5 *ngIf="cardu.number%10000>999">**** **** **** {{cardu.number%10000}}</h5>
+                            <h5 *ngIf="cardu.number%10000>99 && cardu.number%10000<=999">**** **** **** 0{{cardu.number%10000}}</h5>
+                            <h5 *ngIf="cardu.number%10000>9 && cardu.number%10000<=99">**** **** **** 00{{cardu.number%10000}}</h5>
+                            <h5 *ngIf="cardu.number%10000>=0 && cardu.number%10000<=9">**** **** **** 000{{cardu.number%10000}}</h5>
+                            <div class="row m-t-10">
+                                <div class="col-sm-6">
+                                    <strong class="m-r-5">Expiry Date :</strong>0{{cardu.dueMonth}}/{{cardu.dueYear}}
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <strong class="m-r-5">Name :</strong>{{cardu.fullName}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--fin del ng for para las tarjetas-->
+            </div>
+        <!-- fin de las tarjetas guardadas -->
+        <form class="md-float-material card-block">
+            <div class="row">
+                <div class="col-sm-6">
+                    <select name="provider" [(ngModel)]="provider" class="form-control form-control-primary" #t (change)="getProvider(t.value)">
+                        <option value="null" disabled>Elegir medio de pago...</option>
+                        <option value="opt1" disabled>Tarjetas de crédito</option>
+                        <option *ngFor="let listCreditCard of creditCardList" [value]="listCreditCard.listCreditCardId">{{listCreditCard.name}}</option>
+                        <option value="opt1" disabled>Tarjetas de débito</option>
+                        <option value="VisaD">Visa Débito</option>
+                        <option value="CabalD" disabled>Cabal Débito</option>
+                        <option value="MastercardD">Mastercard Débito</option>
+                        <option value="AmexD">AmericanExpress Débito</option>
+                        <option value="MaestroD" disabled>Maestro</option>
+                        <option value="opt1" disabled>Transferencia bancaria</option>
+                        <option value="RedLink" disabled>Red Link</option>
+                        <option value="opt1" disabled>En efectivo</option>
+                        <option value="Rapipago" disabled>Rapipago</option>
+                        <option value="PagoFacil" disabled>Pago Fácil</option>
+                        <option value="ProvinciaNET" disabled>Provincia NET</option>
+                    </select>
+                </div>
+                <div class="col-sm-6" [hidden]="providerHid">
+                    <select name="select" class="form-control form-control-primary" #u (change)="setProvider(u.value)">
+                        <option value="opt1" disabled>Elegir un proveedor</option>
+                        <option *ngFor="let cardProvider of cardProviderList" [value]="cardProvider.cardProviderId">{{cardProvider.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <br/>
+            <div [hidden]="formHid">
+                <!--formulario de tarjeta de credito -->
+                <div class="demo-container card-block">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-wrapper"></div>
+                        </div>
+                        <div class="col-sm-12">
+                            <form class="payment-form">
+                                <div class="form-group">
+                                    <input name="number" type="tel" class="form-control" placeholder="Card Number">
+                                </div>
+                                <div class="form-group">
+                                    <input name="name" type="text" class="form-control" placeholder="Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <input name="expiry" type="tel" class="form-control" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <input name="cvc" type="number" class="form-control" placeholder="CVC">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--fin del formulario de tarjeta de credito-->
+                <!-- inicio de las cuotas para tarjetas de credito
+                <div class="row" [hidden]="duesHid">
+                    <label class="col-sm-2 col-form-label">Cuotas:</label>
+                    <div class="col-sm-10">
+                        <div class="form-radio">
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="radio" checked="checked" (change)="check(1)">
+                                    <i class="helper"></i>1 X 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-radio">
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="radio" (change)="check(3)">
+                                    <i class="helper"></i>3 X 
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-radio">
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="radio" (change)="check(6)">
+                                    <i class="helper"></i>6 X
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-radio">
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="radio" (change)="check(9)">
+                                    <i class="helper"></i>9 X
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-radio">
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="radio" (change)="check(12)">
+                                    <i class="helper"></i>12 X
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>fin de las cuotas para tarjeta de credito-->
+            </div>
+            <div class="row" [hidden]="debitHid">
+                <!--div para la tarjeta de debito de frente-->
+                <div *ngIf="focusedf" class="image" width="" heigth="" align="center">
+                    <img src="assets/images/card1.png" alt="debitcard.jpg">
+                    <h4 class="number"><span *ngIf="!cardNumber">**** **** **** ****</span><span *ngIf="cardNumber !=''">{{cardNumber}}</span></h4>
+                    <p class="duedate"><span *ngIf="!dueMonth">**</span><span *ngIf="dueMonth !=''">{{dueMonth}}</span><span *ngIf="!dueYear">/**</span><span *ngIf="dueYear">/{{dueYear%100}}</span></p>
+                    <p class="fullname"><span *ngIf="!fullName">NOMBRE APELLIDO</span><span *ngIf="fullName !=''">{{fullName}}</span></p>
+                </div>
+                <!--fin de frente-->
+                <!--div para la tarjeta de debito REVERSO-->
+                <div *ngIf="focusedr" class="image" width="" heigth="" align="center">
+                    <img src="assets/images/card2.png" alt="debitcard.jpg">
+                    <h4 class="cvv"><span *ngIf="!cvv">***</span><span *ngIf="cvv">{{cvv}}</span></h4>
+                </div>
+                <!--fin REVERSO-->
+                <div class="debitCardForm card-block p-b-0">
+                    <div class="payment">
+                        <form>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" id="card-number-field">
+                                        <input (focus)="focusedf=true" type="text" name="cardNumber" [(ngModel)]="cardNumber" class="form-control" id="cardNumber" placeholder="Numero de la tarjeta">
+                                    </div>
+                                    <div class="form-group">
+                                        <input (focus)="focusedf=true" type="text" class="form-control" name="fullName" [(ngModel)]="fullName" placeholder="Nombre Apellido del dueño de la Tarjeta">
+                                    </div>
+                                    <div class="form-group CVV">
+                                        <input (blur)="focusedr=false" (blur)="focusedf=true" (focus)="focusedf=false" (focus)="focusedr=true" type="text" class="form-control" name="cvv" [(ngModel)]="cvv" id="cvv" placeholder="Código de seguridad">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" id="expiration-date">
+                                        <label>Fecha de expiración</label>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <select (focus)="focusedf=true" class="form-control" name="dueMonth" [(ngModel)]="dueMonth">
+                                                    <option>Seleccione el Mes</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <option value="04">04</option>
+                                                    <option value="05">05</option>
+                                                    <option value="06">06</option>
+                                                    <option value="07">07</option>
+                                                    <option value="08">08</option>
+                                                    <option value="09">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select (focus)="focusedf=true" class="form-control" name="dueYear" [(ngModel)]="dueYear">
+                                                    <option>Seleccione el Año</option>
+                                                    <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Documento del titular de esta tarjeta</label>
+                                        <div class="row">
+                                            <input  (focus)="focusedf=true" type="number" class="form-control" name="dni" [(ngModel)]="dni" placeholder="Usa sólo números">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row" [hidden]="msgHid">
+                <label class="col-sm-12 col-form-label">Al terminar la compra te daremos instrucciones o un número para pagar</label>
+            </div>  
+            <br/>
+            <div class="col-sm-10">
+                <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypePay()">Continuar</a>
+            </div>
+            <br/>
+            <div class="job-meta-data"><i class="icofont icofont-ssl-security"></i>Sitio seguro</div>
+        </form>
+    </div>
+    <!-- desde aqui el detalle del item a vender -->
+    <div class="col-sm-4">
+        <div class="card gallery-desc">
+            <div class="masonry-media">
+                <a class="media-middle" href="#!">
+                    <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" alt="masonary">
+                </a>
+            </div>
+            <div class="card-block">
+                <h6 class="job-card-desc">{{Item.name}}</h6>
+                <p class="text-muted">{{Item.description}}</p>
+                <div class="job-meta-data"><i class="icofont icofont-safety"></i>{{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></div>
+                <div class="job-meta-data"> <i class="icofont icofont-university"></i>{{priceSuc}} </div>
+                <div class="job-meta-data"><i class="icofont icofont-university"></i>{{Item.price}}</div>
+            </div>
+        </div>
+    </div>
+    <!-- hasta aqui el detalle del item a vender --> 
+</div>

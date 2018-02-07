@@ -1,0 +1,145 @@
+<br/>
+<div class="page-header-title">
+    <h4>¡Solo un paso más! Confirma tu compra!</h4>
+</div>
+<br/>
+<br/>
+<div>
+    <ul class="media-list">
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/carrito.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h6 class="media-heading">Producto
+                </h6>
+                <h5><strong>{{Item.name}}</strong></h5>
+                <p> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></p>
+            </div>
+        </li>
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/envio.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <h6 class="media-heading">Envio</h6>
+            <br/> 
+            <div *ngIf="shipping.typeShipping == 'home'" class="media-left">
+                    <br/>Al finalizar la compra te daremos los datos de contacto del vendedor.
+            </div>
+            <div *ngIf="shipping.typeShipping == 'branch'" class="media-left">
+
+            
+                    <p class="cho-address">
+                            <br/>
+                            {{cotizacion.resumen}}-Andreani
+                            {{cotizacion.descripcion}}<br/>
+                            {{cotizacion.direccion}}<br/>
+                            {{cotizacion.horadeTrabajo}}
+                        </p>
+                        <div  class="cho-address" *ngIf="isComprador()"><h6 >{{cotizacion.tarifa}}</h6></div>
+                        <div  class="cho-address" *ngIf="isGratis()"> <h6 >Envio Gratis</h6><br/></div>
+            </div>
+                
+            <div class="media-left">
+
+
+        <!--this.sucursalRe=this.sucursal.descripcion+" "+this.sucursal.direccion+" "+this.sucursal.horadeTrabajo;-->
+                <h5></h5>
+
+                <div class="blog-u-comment">
+                        <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                    </div>
+               
+            </div>
+        </li>
+        <br/>
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/pago.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h6 class="media-heading">Pago
+                </h6>
+                <div>
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='VisaD'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='MastercardD'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='AmexD'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='0'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='1'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="paymentMethod.yng_Card.provider=='2'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                        Terminada en: 
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>999"> {{paymentMethod.yng_Card.number%10000}}</a>
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>99 && paymentMethod.yng_Card.number%10000<=999"> 0{{paymentMethod.yng_Card.number%10000}}</a>
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>9 && paymentMethod.yng_Card.number%10000<=99"> 00{{paymentMethod.yng_Card.number%10000}}</a>
+                        <a *ngIf="paymentMethod.yng_Card.number%10000>=0 && paymentMethod.yng_Card.number%10000<=9"> 000{{paymentMethod.yng_Card.number%10000}}</a>
+                </div>
+                <div class="blog-u-comment">
+                    <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                </div>
+                <hr>
+            </div>
+        </li>
+        <br/>
+        <hr>
+        <li class="media">
+            <div class="media-left">
+                <a>
+                    <img class="media-object img-circle" width="70" heigth="70" src="assets/images/factura.png" alt="Generic placeholder image">
+                </a>
+            </div>
+            <div class="media-body blog-s-reply">
+                <h5>PRECIO: </h5> <strong>{{Item.price}}</strong> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a>
+                <br/> <a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     <strong>{{cotizacion.tarifa}}</strong></a>
+                <hr>
+                <h5><strong>PAGAS: </strong></h5><strong>{{cost+costosEnvio}}</strong>    
+            </div>
+        </li>
+    </ul>
+    <br/>
+    <div class="col-sm-10">
+        <a type="submit" class="btn btn-primary m-b-0" (click)="buyItem()">CONFIRMAR</a>
+    </div>
+</div>
+
+
+<div class="popup" [hidden]="popup">
+    <div class="page-header-title">
+        <h3>POR ÚNICA VEZ, DEJA TUS DATOS DE CONTACTO</h3>
+        <hr class="m-t-20 m-b-20">
+        <h4>Solo seran visibles por tu contraparte cuando compres</h4>
+    </div>
+    <div class="md-float-material">
+        <div class="input-group input-group-button">
+            <span class="input-group-addon">
+                <i class="icofont icofont-comment"></i>
+            </span>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Teléfono" required>
+        </div>
+    </div>
+    <hr class="m-t-20 m-b-20">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="updateUser()">CONFIRMAR
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
+    </div>
+</div>

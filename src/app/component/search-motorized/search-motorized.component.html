@@ -1,0 +1,170 @@
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page-header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Buscar Vehículo</h4>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="index.html">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/motorized">Buscar Vehículo</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Page-header end -->
+      <!-- Page-body start -->
+      <div class="page-body">
+      <div class="row">
+      <div class="col-sm-3 card-block-big">
+        <div class="card" *ngIf="tensubCategoryList">
+          <div class="card-header">Categorias</div>
+            <div class="card-block">
+                <div class="list-group" width="100%">
+                    <a *ngFor="let category of tensubCategoryList" class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
+                    <a style="cursor: pointer;" (click)="popupCategory()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Año</div>
+          <form>
+              <div class="card-block">
+                <div class="list-group" width="100%">
+                    <a *ngFor="let anio of anios" class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{categoryId}}/{{minPrice}}/{{maxPrice}}/{{anio}}/{{anio}}">{{anio}}</a>
+                    <a style="cursor: pointer;" (click)="popupAnio()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                </div>
+              </div>
+              <div class="card-footer text-right">
+                <div class="row" >
+                    <select name="anioDesde" [(ngModel)]="anioDesde" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12">
+                        <option [value]="0">Desde</option>
+                        <option *ngFor="let anio of aniosTemp" [value]="anio">{{anio}}</option>
+                    </select>&nbsp;&nbsp;
+                    <select name="anioHasta" [(ngModel)]="anioHasta" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12">
+                        <option [value]="0">Hasta</option>
+                        <option *ngFor="let anio of aniosTemp" [value]="anio">{{anio}}</option>
+                    </select>&nbsp;
+                    <a class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/{{minPrice}}/{{maxPrice}}/{{anioDesde}}/{{anioHasta}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                </div>
+              </div>
+          </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Precio</div>
+            <form>
+                <div class="card-block">
+                    <div class="list-group" width="100%">
+                        <a class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{categoryId}}/0/100000/{{minYear}}/{{maxYear}}">Hasta $ 100.000</a>
+                        <a class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{categoryId}}/100000/250000/{{minYear}}/{{maxYear}}">$100.000 a $250.000</a>
+                        <a class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{categoryId}}/250000/0/{{minYear}}/{{maxYear}}">Más de $250.000</a>
+                    </div>
+                </div>
+                <div class="card-footer text-right">
+                    <div class="row" >
+                        <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
+                        <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
+                        <a *ngIf="precioDesde&&precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/{{precioDesde}}/{{precioHasta}}/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                        <a *ngIf="precioDesde&&!precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/{{precioDesde}}/0/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                        <a *ngIf="!precioDesde&&precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/0/{{precioHasta}}/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Vendedor</div>
+          <form>
+                <div class="card-block">
+                    <div class="list-group" width="100%">
+                        <button class="list-group-item list-group-item-action list-group-item-success" >Dueño directo</button>
+                        <button class="list-group-item list-group-item-action list-group-item-success" >Concesionaria</button>
+                    </div>
+                </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="col-sm-9">
+          <!-- Product list start -->
+          <br>
+            <div class="row">
+                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemList">
+                    <div class="card prod-view">
+                        <div class="prod-item text-center">
+                            <div class="prod-img">
+                                <div class="option-hover">
+                                    <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                        <i class="icofont icofont-cart-alt f-20"></i>
+                                    </a>
+                                    <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                        <i class="icofont icofont-eye-alt f-20"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </button>
+                                </div>
+                                <a href="#!" class="hvr-shrink">
+                                    <!--ruta para la imagenes en desarrollo -->
+                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
+                                </a>
+                                <div class="p-sale">SALE</div>
+                            </div>
+                            <div class="prod-info">
+                                <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                <div class="stars stars-example-css m-b-10">
+                                    <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select></div>
+                                </div>
+                                <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            <!-- Product list end -->
+      </div>
+  </div>
+  </div>
+  </div>
+</div>
+<!--desde aqui los popups para los filtros-->
+<div class="popup" [hidden]="popup">
+    <div class="row" >
+        <div class="card-header col-sm-10 ">Categorias</div>
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let category of subCategoryListTemp">
+                <a  class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup" [hidden]="popup2">
+    <div class="row" >
+        <div class="card-header col-sm-10 ">Año</div>
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-8" *ngFor="let anio of aniosTemp">
+                <a  class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{categoryId}}/{{minPrice}}/{{maxPrice}}/{{anio}}/{{anio}}">{{anio}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--fin desde aqui los popups para los filtros-->

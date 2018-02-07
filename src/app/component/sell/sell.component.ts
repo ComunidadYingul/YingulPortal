@@ -24,6 +24,7 @@ export class SellComponent implements OnInit {
   hidTyp:boolean;
   msg:string;
   aux:string;
+  popup:boolean=true;
   User: user=new user();
   //para pedir las categorias
   public url:string = '';
@@ -152,6 +153,7 @@ export class SellComponent implements OnInit {
       this.itemc=Object.assign(this.item, this.item2);
       this.service.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
       console.log(JSON.stringify( this.service));
+      
       this.saveService();
     }
   }
@@ -169,12 +171,12 @@ export class SellComponent implements OnInit {
         } else {
           //temporalmente finaliza despues llamara a la utlima venta para publicidad
           //this.product=ev;
-          this.product.$yng_Item.$user.username=this.User.username;
-          this.product.$yng_Item.$itemCategory=this.category;
+          this.product.yng_Item.$user.username=this.User.username;
+          this.product.yng_Item.$itemCategory=this.category;
           
-          this.item2=this.product.$yng_Item;
+          this.item2=this.product.yng_Item;
           this.itemc=Object.assign(this.item,this.item2);
-          this.product.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
+          this.product.yng_Item=JSON.parse(JSON.stringify(this.itemc));
           //console.log("daniel detailproduc: "  + JSON.stringify(this.product));
           //console.log("daniel itemp: "+ JSON.stringify(this.itemP));
     
@@ -246,6 +248,7 @@ export class SellComponent implements OnInit {
 
       
   sendPriceCat(ev){
+    this.popup=false;
     if(this.type=="Service"){
       console.log("Service: "+this.type);
      this.priceItemSe(ev);
@@ -308,7 +311,7 @@ export class SellComponent implements OnInit {
   }
 
   saveProduct(){
-    alert(this.product);
+    //alert(this.product);
     console.log("save produc : "+this.product);
     this.sellService.saveProduct(this.product).subscribe(
 			res => {
@@ -320,7 +323,7 @@ export class SellComponent implements OnInit {
   }
 
   saveProperty(){
-    alert(this.property);
+    //alert(this.property);
     console.log("save produc : "+this.property);
     this.sellService.saveProperty(this.property).subscribe(
 			res => {
@@ -352,3 +355,4 @@ export class SellComponent implements OnInit {
     } 
   }
 }
+

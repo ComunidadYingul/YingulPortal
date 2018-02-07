@@ -1,0 +1,15 @@
+#scrolly{
+    width: 1000px;
+    height: 240px;
+    overflow: auto;
+    overflow-y: hidden;
+    margin: 0 auto;
+    white-space: nowrap
+}
+
+img{
+    width: 250px;
+    height: 200px;
+    margin: 20px 10px;
+    display: inline;
+}

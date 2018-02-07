@@ -9,14 +9,17 @@ import { Motorized } from '../../../model/Motorized';
 
 import { Security } from '../../../model/security';
 import { Confort } from '../../../model/confort';
-import {  Sound } from '../../../model/Sound';
+import {  Sound } from '../../../model/sound';
 import { Exterior } from '../../../model/exterior';
 import { Equipment } from '../../../model/equipment';
 import { Amenities } from '../../../model/amenities';
-import { Ambient } from '../../../model/Ambient';
+import { Ambient } from '../../../model/ambient';
 import { SellService } from '../../../service/sell.service'
 import { error } from 'util';
 import { Jsonp } from '@angular/http/src/http';
+import { user } from '../../../model/user';
+import { Ubication } from '../../../model/ubication';
+
 
 
 @Component({
@@ -32,7 +35,9 @@ export class DetailComponent implements OnInit {
   @Output() detailItemS = new EventEmitter();
   @Output() detailProduct = new EventEmitter();
   @Input()  typeCat:any;
+
   public typeCatEs:string ="Servicio";
+  User: user=new user();
 
 
 
@@ -85,9 +90,12 @@ productCondition:string;
 productSaleConditions:string;
 productQuantity:string;
 productFormDelivery:string;
+productFormDeliveryP:string;
 productPaymentMethod:string;
 productWarranty:string;
 productPagoEnvio:string;
+productPeso:string;
+productVolumen:string;
 //property
 propertyTotalArea:string;
 propertyDuildedArea:string;
@@ -101,6 +109,7 @@ motorizedUnicoDue:string;
 public product: Product=new Product;
 public property: Property=new Property;
 public motorized: Motorized=new Motorized;
+precioEnvio:number=527.8;
 ////
 public item: Item=new Item();
 
@@ -115,6 +124,15 @@ public item: Item=new Item();
     this.datosProductPaymentMethod=["Aceptar pagos solo por Yingul","Aceptar pagos por Yingul y cobro en persona"];
     this.datosProductSaleConditions=["Precio fijo","Subasta"];
     this.datosProductWarranty=["Con garantía","Sin garantía"];
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+        
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      console.log(JSON.stringify(this.User));
+     
+     console.log("username:"+this.User.username+" postalCode:"+this.User.password+" yng_Ubication:"+this.User.yng_Ubication.postalCode);
+		}
     
   }
 
@@ -184,13 +202,15 @@ public item: Item=new Item();
     this.detailItemS.emit(this.item);
     if(this.typeCat=="Product"){
       //this.item.$name =this.title;
-      this.product.$productCondition=this.productCondition;
-      this.product.$productSaleConditions=this.productSaleConditions;
-      this.product.$productFormDelivery=this.productFormDelivery;
-      this.product.$productPagoEnvio=this.productPagoEnvio;
-      this.product.$productPaymentMethod=this.productPaymentMethod;
-      this.product.$productQuantity=this.productQuantity;
-      this.product.$productWarranty=this.productWarranty;
+      this.product.productCondition=this.productCondition;
+      this.product.productSaleConditions=this.productSaleConditions;
+      this.product.productFormDelivery=this.productFormDelivery;
+      this.product.productPagoEnvio=this.productPagoEnvio;
+      this.product.productPaymentMethod=this.productPaymentMethod;
+      this.product.productQuantity=this.productQuantity;
+      this.product.productWarranty=this.productWarranty;
+      this.product.productPeso=this.productPeso;
+      this.product.producVolumen=this.productVolumen;
       this.detailProduct.emit(this.product);
     }
     if(this.typeCat=="Property"){
@@ -250,42 +270,69 @@ public item: Item=new Item();
     let file11 = files11[0];
     let files12 = this.elem.nativeElement.querySelector('#image-upload12').files;
     let file12 = files12[0];
-    this.getBase64(file).then(
-      data => this.setImagePrincipal(data)
-    );
-    this.getBase64(file2).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file3).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file4).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file5).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file6).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file7).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file8).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file9).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file10).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file11).then(
-      data => this.setImage(data)
-    );
-    this.getBase64(file12).then(
-      data => this.setImage(data)
-    );
+    if(file!=null){
+      this.getBase64(file).then(
+        data => this.setImagePrincipal(data)
+      );
+    }
+    else{
+      this.item.$principalImage="sin";
+    }
+    if(file2!=null){
+      this.getBase64(file2).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file3!=null){
+      this.getBase64(file3).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file4!=null){
+      this.getBase64(file4).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file5!=null){
+      this.getBase64(file5).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file6!=null){
+      this.getBase64(file6).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file7!=null){
+      this.getBase64(file7).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file8!=null){
+      this.getBase64(file8).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file9!=null){
+      this.getBase64(file9).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file10!=null){
+      this.getBase64(file10).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file11!=null){
+      this.getBase64(file11).then(
+        data => this.setImage(data)
+      );
+    }
+    if(file12!=null){
+      this.getBase64(file12).then(
+        data => this.setImage(data)
+      );
+    }
   }
   public dataLoaded(data: any):void{
     this.elem.nativeElement.querySelector('#spinner').style.visibility='hidden';
@@ -312,7 +359,7 @@ public item: Item=new Item();
 
   
   keyPress(event: any) {
-    const pattern = /[0-9\+\-\ ]/;
+    const pattern = /[0-9]/;
 
     let inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
@@ -418,7 +465,145 @@ public item: Item=new Item();
         }  
       }
     }
+    
 
 
   }
+
+
+ capturar (){
+
+  
+ }
+ popup:boolean=true;
+ popupEligeDomicilio:boolean=true;
+ popupEnvios:boolean=true;
+ popupGarantia:boolean=true;
+ popupCotizar:boolean=true;
+ popupUbicacion:boolean=true;
+ addprop1(){
+   this.popupEligeDomicilio=this.popupEligeDomicilio!;
+   console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
+
+ }
+ domi(){
+   console.log("domi");
+ }
+
+ 
+
+test(event) {
+  
+  console.log("event:"+event.target.checked);
+  
+  if(event.target.checked==true){
+    this.consultarUbi();
+    
+   // this.popupEnvios=false;
+   
+  }
+  else {
+    this.popupEnvios=true;
+    this.popupUbicacion=true;
+  }
+  
+  console.log("popupEligeDomicilio:"+this.popupEnvios);
+
+}
+ubication:Ubication;
+consultarUbi(){
+  this.sellService.ConsultarUbicavionUser(this.User.username).subscribe(
+    res => {
+      console.log(JSON.stringify(res));
+      if(JSON.parse(JSON.stringify(res))._body!=""){
+          this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          
+          console.log(JSON.stringify(this.ubication));
+          this.popupEnvios=false;
+          this.popupUbicacion=true;
+      }
+      else {
+        this.popupEnvios=true;
+        this.popupUbicacion=false;
+
+      }
+        },
+        error => console.log(error)
+  );
+  
+}
+test2(event) {
+  
+  console.log("event:"+event.target.checked);
+  if(event.target.checked==true)this.popupEligeDomicilio=false;
+  else this.popupEligeDomicilio=true;
+  //this.popupEligeDomicilio=event.target.checked!; // undefined
+  console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
+
+}
+popGarantia(event) {
+  
+  console.log("event:"+event.target.checked);
+  if(event.target.checked==true){this.popupGarantia=false;}
+  else this.popupGarantia=true;
+  console.log("popupGarantia:"+this.popupGarantia);
+
+}
+popSinGarantia(event) {
+  
+  console.log("event:"+event.target.checked);
+  if(event.target.checked==true)this.popupGarantia=true;
+  else this.popupGarantia=false;
+  console.log("popupGarantia:"+this.popupGarantia);
+
+}
+
+capturarCondicion(provinceId : string){
+ this.productCondition=provinceId;
+}
+
+capturarCondicionVenta(provinceId : string){
+  this.productSaleConditions=provinceId;
+}
+
+mediosDPago(pagos:string){
+  this.productPaymentMethod=pagos;
+  //Precio fijo
+  if(pagos=="1")
+  this.productPagoEnvio="Precio fijo";
+  if(pagos=="2")
+  this.productPagoEnvio="Subasta";
+}
+pagoEnvio(envi:string){
+  if(envi=="1")
+  this.productPagoEnvio="Pagado por él comprador";
+  if(envi=="2")
+  this.productPagoEnvio="Pagado por él vendedor";
+}
+
+
+pagoMedios(envi:string){
+  if(envi=="1")
+  this.productPagoEnvio="Aceptar pagos solo por Yingul";
+  if(envi=="2")
+  this.productPagoEnvio="Aceptar pagos por Yingul y cobro en persona";
+
+}
+
+envioComprador(event){
+  
+  if(event.target.checked==true) this.productPagoEnvio="comprador";
+}
+envioGratis(event){
+  
+  if(event.target.checked==true) this.productPagoEnvio="gratis";
+}
+
+//popupEligeDomicilio:boolean;
+elijeDomicilio(){
+  this.popupEligeDomicilio=false;
+
+}
+
+
 }

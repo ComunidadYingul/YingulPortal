@@ -1,0 +1,132 @@
+<br/>
+<div class="page-header-title">
+    <h4>Formas de entrega</h4>
+</div>
+<div class="form-group row">
+    <div class="col-sm-8">
+        <form class="md-float-material card-block">
+
+            <div class="form-radio">
+                <div class="radio radiofill radio-inline">
+                    <label>
+                        <input type="radio" name="radio" checked="checked" (change)="check('home')">
+                        <i class="helper"></i>Retiro en domicilio del vendedor - 
+                        <br/>Al finalizar la compra te daremos los datos de contacto del vendedor.
+                    </label>
+                </div>
+            </div>
+            <br/>
+            <div class="form-radio">
+                <div class="radio radiofill radio-inline">
+                    <label>
+                        <input type="radio" name="radio" #radio (change)="check('branch')">
+                        <i class="helper"></i>Retiro en una sucursal
+                    </label>
+                </div>
+            </div>
+            <br/>
+            <div [hidden]="branch">
+                <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
+                <div class="input-group input-group-button">
+                    <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
+                    <span class="input-group-addon" id="basic-addon10"><!--value="domicilio" [(ngModel)]="shippingMethod"-->
+                <button class="btn btn-primary" (click)="buscarSucursales()">Buscar</button>
+                </span>
+                <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+                </div>
+                
+                <hr class="m-t-20 m-b-20">
+                <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
+                        <div class="table-responsive" >
+                            <table class="table  invoice-detail-table">
+                                <thead>
+                                    <tr class="thead-default">
+                                        <th>Sucursal</th>
+                                        <th>Costo</th>
+                                        
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody [hidden]="false">
+                                    <tr>
+                                        <td>
+                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod" (click)="envioComprador($event)">{{sucursalAndre}}<br>
+                                        <h6 class="cho-list">{{resumen}}</h6>
+                                        <h6 class="cho-list">{{direccion}}</h6>
+                                        <h6 class="cho-list">{{horadeTrabajo}}</h6>
+                                        
+                                        </td>
+                                        <td>$ {{priceSuc}}</td>
+                                       
+                                        
+                                    </tr>
+
+                                   
+
+                                </tbody>
+                                
+                                
+                                
+                            </table>
+                       
+                        </div>
+                </div>
+                <br/>
+                <h6>¿Quien retira el paquete?</h6><br/>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">
+                               
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="input-group col-md-6">
+                                <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
+                                <span class="md-line"></span>
+                            </div>
+                </div>
+
+            </div>
+
+            <br/>
+            <div [hidden]="sendHome">
+                <h4 class="sub-title">Ingresa tu código postal para ver las opciones y costos de envío</h4>
+                <div class="input-group input-group-button">
+                    <input type="text" class="form-control" placeholder="Código postal">
+                    <span class="input-group-addon" id="basic-addon10">
+                <button class="btn btn-primary">Buscar</button>
+                </span>
+                <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+                </div>
+
+
+
+            </div> 
+            <br/>
+            <div class="col-sm-10">
+                <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip()">Continuar</a>
+            </div>  
+        </form>
+    </div>
+    <!-- desde aqui el detalle del item a vender -->
+    <div class="col-sm-4">
+        <div class="card gallery-desc">
+            <div class="masonry-media">
+                <a class="media-middle" href="#!">
+                    <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{Item.principalImage}}" alt="masonary">
+                </a>
+            </div>
+            <div class="card-block">
+                <h6 class="job-card-desc">{{Item.name}}</h6>
+                <p class="text-muted">{{Item.description}}</p>
+                <div class="job-meta-data"><i class="icofont icofont-safety"></i>{{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></div>
+                <div class="job-meta-data" [hidden]="priceHiddem"><i class="icofont icofont-safety"></i>{{priceSuc}}</div>
+                <div class="job-meta-data"><i class="icofont icofont-university"></i>{{Item.price}}</div>
+            </div>
+        </div>
+    </div>
+    <!-- hasta aqui el detalle del item a vender --> 
+</div>

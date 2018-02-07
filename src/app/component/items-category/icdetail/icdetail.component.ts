@@ -9,7 +9,8 @@ import { ItemsCategoryService } from '../../../service/items-category.service'
 export class IcdetailComponent implements OnInit {
   @Input('categoryId') categoryId:number;
   itemCategoryList: Object[]=[];
-  constructor(private itemsCategoryService: ItemsCategoryService) { }
+  constructor(private itemsCategoryService: ItemsCategoryService) { 
+  }
 
   ngOnInit() {
     this.getItemsByCategory();

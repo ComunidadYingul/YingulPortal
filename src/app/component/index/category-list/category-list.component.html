@@ -10,35 +10,268 @@
         <div class="col-lg-2">
           <div class="list-group">
             <a class="list-group-item list-group-item-action">Clasificados</a>
-    
-            <a class="list-group-item list-group-item-action list-group-item-success" routerLink="/signup">Autos, Motos y Otros</a>
-            <a class="list-group-item list-group-item-action list-group-item-success" routerLink="/signup">Inmuebles</a>
-            <a class="list-group-item list-group-item-action list-group-item-success" routerLink="/signup">Servicios</a>
+
+            <a routerLink="/motorized">
+              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-car-alt-1"></i>
+                  <p><strong>Autos, Motos y Otros</strong></p>
+              </div>
+            </a>
+            <a routerLink="/property">
+              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-building-alt"></i>
+                  <p><strong>Inmuebles</strong></p>
+              </div>
+            </a>
+            <a routerLink="/service">
+              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-headphone-alt-2"></i>
+                  <p><strong>Servicios</strong></p>
+              </div>
+            </a>
           </div>
           <br/>
           <div class="list-group">
             <a class="list-group-item list-group-item-action">Marcas</a>
-    
-            <a class="list-group-item list-group-item-action list-group-item-warning" routerLink="/signup">Tiendas oficiales</a>
+            <a routerLink="/allStores">
+              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-food-cart"></i>
+                  <p><strong>Tiendas oficiales</strong></p>
+              </div>
+            </a>
           </div>
         </div>  
         <div class="col-lg-10">
           <div class="list-group">
             <a class="list-group-item list-group-item-action">Categorias</a>
-            <ul class="nav" >
-              <div class="col-lg-3">
-                    <a *ngFor="let category of categoryList1" class="list-group-item list-group-item-action list-group-item-info" href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
-              </div>
-              <div class="col-lg-3" >
-                  <a *ngFor="let category of categoryList2" class="list-group-item list-group-item-action list-group-item-info"  href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
-              </div>
-              <div class="col-lg-3" >
-                  <a *ngFor="let category of categoryList3" class="list-group-item list-group-item-action list-group-item-info"  href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
-              </div>
-              <div class="col-lg-3" >
-                  <a *ngFor="let category of categoryList4" class="list-group-item list-group-item-action list-group-item-info"  href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
-              </div>
-            </ul>
+            <div style="overflow-y: auto; height:540px; width:100%;">
+              <ul class="nav">
+                <li class="nav-item" style="width:17%; height:180px;" >
+                  <a routerLink="/itemsCategory/1001" >
+                    <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-steering"></i>
+                        <p><strong>Accesorios para vehículos</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1003">
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fast-food"></i>
+                        <p><strong>Alimentos y bebídas</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1004" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-animal-bone"></i>
+                        <p><strong>Animales y mascotas</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1005" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-castle"></i>
+                        <p><strong>Antiguedades</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1006" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-picture"></i>
+                        <p><strong>Artes y artesanias</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1007" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-baby-trolley"></i>
+                        <p><strong>Bebes</strong></p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav">
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1008" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-bathtub"></i>
+                        <p><strong>Belleza y cuidado personal</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1009">
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-camera"></i>
+                        <p><strong>Cámara y accesorios</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1010" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-touch-phone"></i>
+                        <p><strong>Celulares y teléfonos</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1011" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-unity-hand"></i>
+                        <p><strong>Coleccionables y hobbies</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1012" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-laptop"></i>
+                        <p><strong>Computación</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1013" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-game-console"></i>
+                        <p><strong>Consolas y videojuegos</strong></p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav">
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1014" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-swimmer"></i>
+                        <p><strong>Deportes y fitness</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1015">
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-washing-machine"></i>
+                        <p><strong>Electrodomesticos y aires ac.</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1016" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-drwaing-tablet"></i>
+                        <p><strong>Electronica, audio y video</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1017" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ticket"></i>
+                        <p><strong>Entradas para eventos</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1018" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fix-tools"></i>
+                        <p><strong>Herramientas y construcción</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1019" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-chair"></i>
+                        <p><strong>Hogar, muebles y jardin</strong></p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav">
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1020" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-industries-alt-2"></i>
+                        <p><strong>Industria y oficinas</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1021">
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-song-notes"></i>
+                        <p><strong>Instrumentos musicales</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1022" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-wall-clock"></i>
+                        <p><strong>Joyas y relojes</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1023" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-toy-duck"></i>
+                        <p><strong>Juegos y juguetes</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1024" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-book-alt"></i>
+                        <p><strong>Libros, revistas y comics</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1025" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-multimedia"></i>
+                        <p><strong>Música, películas y series</strong></p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav">
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1026" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-jewlery"></i>
+                        <p><strong>Ropa y <br>accesorios</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1027">
+                    <div class="card-block-big" style="height:180px;background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-stethoscope-alt"></i>
+                        <p><strong>Salud y equipamiento médico</strong></p>
+                    </div>
+                  </a>
+                </li>
+                <li class="nav-item "style="width:17%; height:180px;">
+                  <a routerLink="/itemsCategory/1028" >
+                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-architecture-alt"></i>
+                        <p><strong>Otras categorias</strong></p>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

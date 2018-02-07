@@ -1,0 +1,674 @@
+<!-- Page-body start -->
+<div class="page-body">
+  <div class="row">
+      <div class="col-sm-12">
+          <div>
+              <div class="content social-timeline">
+                  <div class="">
+                      <!-- Row Starts -->
+                      <div class="row">
+                          <div class="col-md-12">
+                              <!-- Social wallpaper start -->
+                              <div class="social-wallpaper">
+                                  <img *ngIf="store.bannerImage" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.bannerImage}}" class="img-fluid width-100" alt="" />
+                              </div>
+                              <!-- Social wallpaper end -->
+                              <!-- Timeline button start -->
+                              <div class="timeline-btn">
+                                  <a href="#" class="btn btn-primary waves-effect waves-light m-r-10">follows</a>
+                                  <a href="#" class="btn btn-primary waves-effect waves-light">Send Message</a>
+                              </div>
+                              <!-- Timeline button end -->
+                          </div>
+                      </div>
+                      <!-- Row end -->
+                      <!-- Row Starts -->
+                      <div class="row">
+                          <div class="col-xl-3 col-lg-4 col-md-4 col-xs-12">
+                              <!-- Social timeline left start -->
+                              <div class="social-timeline-left">
+                                  <!-- social-profile card start -->
+                                  <div class="card">
+                                      <div class="social-profile">
+                                          <img *ngIf="store.mainImage" class="img-fluid width-100" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}" alt="">
+                                      </div>
+                                      <div class="card-block social-follower">
+                                          <h4>{{store.name}}</h4>
+                                          <h5>{{store.summary}}</h5>
+                                          <div class="row follower-counter">
+                                              <div class="col-md-12 col-lg-4">
+                                                  <div class="txt-primary">485</div>
+                                                  <div>Followings</div>
+                                              </div>
+                                              <div class="col-md-12 col-lg-4">
+                                                  <div class="txt-primary">2k</div>
+                                                  <div>Followers</div>
+                                              </div>
+                                              <div class="col-md-12 col-lg-4">
+                                                  <div class="txt-primary">90</div>
+                                                  <div>Activities</div>
+                                              </div>
+                                          </div>
+                                          <div class="btn-group">
+                                              <button type="button" class="btn btn-outline-primary waves-effect"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- social-profile card end -->
+                                  <div class="card" *ngIf="store.video" >
+                                        <div  class="cd-timeline-content card_main">
+                                            <div class="embed-responsive embed-responsive-4by3">
+                                                <iframe class="embed-responsive-item" [src]='video'></iframe>
+                                            </div>
+                                        </div>
+                                  </div>
+                                  <!-- Who to follow card end -->
+                                  <!-- Friends card start -->
+                                  <div class="card">
+                                      <div class="card-header">
+                                          <h5 class="card-header-text d-inline-block">Friends</h5>
+                                          <!-- <span class="friend-more f-right">see 12 more</span> -->
+                                          <span class="label label-primary f-right"> See 12 More </span>
+                                      </div>
+                                      <div class="card-block friend-box">
+                                          <img class="media-object img-circle" src="assets/images/avatar-1.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-2.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-3.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-4.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-1.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-4.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-3.png" alt="">
+                                          <img class="media-object img-circle" src="assets/images/avatar-2.png" alt="">
+                                      </div>
+                                  </div>
+                                  <!-- Friends card end -->
+                              </div>
+                              <!-- Social timeline left end -->
+                          </div>
+                          <div class="col-xl-9 col-lg-8 col-md-8 col-xs-12 ">
+                              <!-- Nav tabs -->
+                              <div class="card social-tabs">
+                                  <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist">
+                                      <li class="nav-item" >
+                                          <a class="nav-link active" *ngIf="store.itemsType ==='Product'" data-toggle="tab" href="#timeline" role="tab">Productos</a>
+                                          <a class="nav-link active" *ngIf="store.itemsType ==='Property'" data-toggle="tab" href="#timeline" role="tab">Inmuebles</a>
+                                          <a class="nav-link active" *ngIf="store.itemsType ==='Motorized'" data-toggle="tab" href="#timeline" role="tab">Vehículos</a>
+                                          <a class="nav-link active" *ngIf="store.itemsType ==='Service'" data-toggle="tab" href="#timeline" role="tab">Servicios</a>
+                                          <div class="slide"></div>
+                                      </li>
+                                      <li class="nav-item">
+                                          <a class="nav-link" data-toggle="tab" href="#about" role="tab">About</a>
+                                          <div class="slide"></div>
+                                      </li>
+                                      <li class="nav-item">
+                                          <a class="nav-link" data-toggle="tab" href="#photos" role="tab">Photos</a>
+                                          <div class="slide"></div>
+                                      </li>
+                                      <li class="nav-item">
+                                          <a class="nav-link" data-toggle="tab" href="#friends" role="tab">Friends</a>
+                                          <div class="slide"></div>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                  <!-- Timeline tab start -->
+                                  <div class="tab-pane active" id="timeline">
+                                      <div class="row">
+                                          <!-- mas publicaciones del mismo usuario-->
+                                        <div class="page-wrapper">
+                                        <!-- Page body start -->
+                                        <div class="page-body">
+                                            <div class="col-sm-12">
+                                            <div class="card">
+                                            <!-- Product list start -->
+                                            <div class="row">
+                                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemsBySeller">
+                                                    <div class="card prod-view">
+                                                        <div class="prod-item text-center">
+                                                            <div class="prod-img">
+                                                                <div class="option-hover">
+                                                                    <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                                        <i class="icofont icofont-cart-alt f-20"></i>
+                                                                    </a>
+                                                                    <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                                        <i class="icofont icofont-eye-alt f-20"></i>
+                                                                    </a>
+                                                                    <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <a href="#!" class="hvr-shrink">
+                                                                    <!--ruta para la imagenes en desarrollo -->
+                                                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
+                                                                </a>
+                                                                <div class="p-sale">VENTA</div>
+                                                            </div>
+                                                            <div class="prod-info">
+                                                                <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                                                <div class="stars stars-example-css m-b-10">
+                                                                    <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                    </select></div>
+                                                                </div>
+                                                                <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <!-- Product list end -->
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <!-- Page body end -->
+                                        </div>
+                                        <!-- fin de mas publicaciones del mismo usuario-->
+                                      </div>
+                                  </div>
+                                  <!-- Timeline tab end -->
+                                  <!-- About tab start -->
+                                  <div class="tab-pane" id="about">
+                                      <div class="row">
+                                          <div class="col-sm-12">
+                                              <div class="card">
+                                                  <div class="card-header">
+                                                      <h5 class="card-header-text">Basic Information</h5>
+                                                      <button id="edit-btn" type="button" class="btn btn-primary waves-effect waves-light f-right">
+                                                          <i class="icofont icofont-edit"></i>
+                                                      </button>
+                                                  </div>
+                                                  <div class="card-block">
+                                                      <div id="view-info" class="row">
+                                                          <div class="col-lg-6 col-md-12">
+                                                              <form>
+                                                                  <table class="table m-b-0">
+                                                                      <tr>
+                                                                          <th class="social-label b-none p-t-0">Full Name
+                                                                          </th>
+                                                                          <td class="social-user-name b-none p-t-0 text-muted">Josephine Villa</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                          <th class="social-label b-none">Gender</th>
+                                                                          <td class="social-user-name b-none text-muted">Female</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                          <th class="social-label b-none">Birth Date</th>
+                                                                          <td class="social-user-name b-none text-muted">October 25th, 1990</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                          <th class="social-label b-none">Martail Status</th>
+                                                                          <td class="social-user-name b-none text-muted">Single</td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                          <th class="social-label b-none p-b-0">Location</th>
+                                                                          <td class="social-user-name b-none p-b-0 text-muted">New York, USA</td>
+                                                                      </tr>
+                                                                  </table>
+                                                              </form>
+                                                          </div>
+                                                      </div>
+                                                      <div id="edit-info" class="row">
+                                                          <div class="col-lg-12 col-md-12">
+                                                              <form>
+                                                                  <div class="input-group">
+                                                                      <input type="text" class="form-control" placeholder="Full Name">
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <div class="form-radio">
+                                                                          <div class="form-radio">
+                                                                              <label class="md-check p-0">Gender</label>
+                                                                              <div class="radio radio-inline">
+                                                                                  <label>
+                                                                                      <input type="radio" name="radio" checked="checked">
+                                                                                      <i class="helper"></i>Male
+                                                                                  </label>
+                                                                              </div>
+                                                                              <div class="radio radio-inline">
+                                                                                  <label>
+                                                                                      <input type="radio" name="radio">
+                                                                                      <i class="helper"></i>Female
+                                                                                  </label>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <input id="dropper-default" class="form-control" type="text" placeholder="Birth Date" />
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <select id="hello-single" class="form-control">
+                                                                          <option value="">---- Marital Status ----</option>
+                                                                          <option value="married">Married</option>
+                                                                          <option value="unmarried">Unmarried</option>
+                                                                      </select>
+                                                                  </div>
+                                                                  <div class="md-group-add-on">
+                                                                      <textarea rows="5" cols="5" class="form-control" placeholder="Address..."></textarea>
+                                                                  </div>
+                                                                  <div class="text-center m-t-20">
+                                                                      <a href="javascript:;" id="edit-save" class="btn btn-primary waves-effect waves-light m-r-20">Save</a>
+                                                                      <a href="javascript:;" id="edit-cancel" class="btn btn-default waves-effect waves-light">Cancel</a>
+                                                                  </div>
+                                                              </form>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-12">
+                                              <div class="card">
+                                                  <div class="card-header">
+                                                      <h5 class="card-header-text">Contact Information</h5>
+                                                      <button id="edit-Contact" type="button" class="btn btn-primary waves-effect waves-light f-right">
+                                                          <i class="icofont icofont-edit"></i>
+                                                      </button>
+                                                  </div>
+                                                  <div class="card-block">
+                                                      <div id="contact-info" class="row">
+                                                          <div class="col-lg-6 col-md-12">
+                                                              <table class="table m-b-0">
+                                                                  <tr>
+                                                                      <th class="social-label b-none p-t-0">Mobile Number</th>
+                                                                      <td class="social-user-name b-none p-t-0 text-muted">eg. (0123) - 4567891</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                      <th class="social-label b-none">Email Address</th>
+                                                                      <td class="social-user-name b-none text-muted">test@gmail.com</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                      <th class="social-label b-none">Twitter</th>
+                                                                      <td class="social-user-name b-none text-muted">@phonixcoded</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                      <th class="social-label b-none p-b-0">Skype</th>
+                                                                      <td class="social-user-name b-none p-b-0 text-muted">@phonixcoded demo</td>
+                                                                  </tr>
+                                                              </table>
+                                                          </div>
+                                                      </div>
+                                                      <div id="edit-contact-info" class="row">
+                                                          <div class="col-lg-12 col-md-12">
+                                                              <form>
+                                                                  <div class="input-group">
+                                                                      <input type="text" class="form-control" placeholder="Mobile number">
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <input type="text" class="form-control" placeholder="Email address">
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <input type="text" class="form-control" placeholder="Twitter id">
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <input type="text" class="form-control" placeholder="Skype id">
+                                                                  </div>
+                                                                  <div class="text-center m-t-20">
+                                                                      <a href="javascript:;" id="contact-save" class="btn btn-primary waves-effect waves-light m-r-20">Save</a>
+                                                                      <a href="javascript:;" id="contact-cancel" class="btn btn-default waves-effect waves-light">Cancel</a>
+                                                                  </div>
+                                                              </form>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-sm-12">
+                                              <div class="card">
+                                                  <div class="card-header">
+                                                      <h5 class="card-header-text">Work</h5>
+                                                      <button id="edit-work" type="button" class="btn btn-primary waves-effect waves-light f-right">
+                                                          <i class="icofont icofont-edit"></i>
+                                                      </button>
+                                                  </div>
+                                                  <div class="card-block">
+                                                      <div id="work-info" class="row">
+                                                          <div class="col-lg-6 col-md-12">
+                                                              <table class="table m-b-0">
+                                                                  <tr>
+                                                                      <th class="social-label b-none p-t-0">Occupation &nbsp; &nbsp; &nbsp;
+                                                                      </th>
+                                                                      <td class="social-user-name b-none p-t-0 text-muted">Developer</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                      <th class="social-label b-none">Skills</th>
+                                                                      <td class="social-user-name b-none text-muted">C#, Javascript, Anguler</td>
+                                                                  </tr>
+                                                                  <tr>
+                                                                      <th class="social-label b-none">Jobs</th>
+                                                                      <td class="social-user-name b-none p-b-0 text-muted">Phoenixcoded</td>
+                                                                  </tr>
+                                                              </table>
+                                                          </div>
+                                                      </div>
+                                                      <div id="edit-contact-work" class="row">
+                                                          <div class="col-lg-12 col-md-12">
+                                                              <form>
+                                                                  <div class="input-group">
+                                                                      <select id="occupation" class="form-control">
+                                                                          <option value=""> Select occupation </option>
+                                                                          <option value="married">Developer</option>
+                                                                          <option value="unmarried">Web Design</option>
+                                                                      </select>
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <select id="skill" class="form-control">
+                                                                          <option value=""> Select Skills </option>
+                                                                          <option value="married">C# &amp; .net</option>
+                                                                          <option value="unmarried">Angular</option>
+                                                                      </select>
+                                                                  </div>
+                                                                  <div class="input-group">
+                                                                      <select id="job" class="form-control">
+                                                                          <option value=""> Select Job </option>
+                                                                          <option value="married">Phoenixcoded</option>
+                                                                          <option value="unmarried">Other</option>
+                                                                      </select>
+                                                                  </div>
+                                                                  <div class="text-center m-t-20">
+                                                                      <a href="javascript:;" id="work-save" class="btn btn-primary waves-effect waves-light m-r-20">Save</a>
+                                                                      <a href="javascript:;" id="work-cancel" class="btn btn-default waves-effect waves-light">Cancel</a>
+                                                                  </div>
+                                                              </form>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- About tab end -->
+                                  <!-- Photos tab start -->
+                                  <div class="tab-pane" id="photos">
+                                      <div class="card">
+                                          <!-- Row start -->
+                                          <div class="row">
+                                              <!-- Gallery start -->
+                                              <div class="card-block">
+                                                  <div class="demo-gallery">
+                                                      <ul id="profile-lightgallery">
+                                                          <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12  p-3">
+                                                              <a href="assets/images/light-box/l1.jpg" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                  <img src="assets/images/light-box/sl1.jpg" class="img-fluid" alt="">
+                                                              </a>
+                                                          </li>
+                                                          <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12  p-3">
+                                                              <a href="assets/images/light-box/l1.jpg" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                  <img src="assets/images/light-box/sl1.jpg" class="img-fluid" alt="">
+                                                              </a>
+                                                          </li>
+                                                          <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12  p-3">
+                                                              <a href="assets/images/light-box/l1.jpg" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                  <img src="assets/images/light-box/sl1.jpg" class="img-fluid" alt="">
+                                                              </a>
+                                                          </li>
+                                                          <li class="col-md-4 col-lg-2 col-sm-6 col-xs-12  p-3">
+                                                              <a href="assets/images/light-box/l1.jpg" data-toggle="lightbox" data-title="A random title" data-footer="A custom footer text">
+                                                                  <img src="assets/images/light-box/sl1.jpg" class="img-fluid" alt="">
+                                                              </a>
+                                                          </li>
+                                                      </ul>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <!-- Gallery end -->
+                                      </div>
+                                  </div>
+                                  <!-- Photos tab end -->
+                                  <!-- Friends tab start -->
+                                  <div class="tab-pane" id="friends">
+                                      <div class="row">
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                  <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                      <a class="dropdown-item" href="#">Remove tag</a>
+                                                      <a class="dropdown-item" href="#">Report Photo</a>
+                                                      <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                      <a class="dropdown-item" href="#">Blog User</a>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-lg-12 col-xl-6">
+                                              <div class="card">
+                                                  <div class="input-group wall-elips">
+                                                      <span class="dropdown-toggle addon-btn text-muted f-right service-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="tooltip"></span>
+                                                      <div class="dropdown-menu dropdown-menu-right b-none services-list">
+                                                          <a class="dropdown-item" href="#">Remove tag</a>
+                                                          <a class="dropdown-item" href="#">Report Photo</a>
+                                                          <a class="dropdown-item" href="#">Hide From Timeline</a>
+                                                          <a class="dropdown-item" href="#">Blog User</a>
+                                                      </div>
+                                                  </div>
+                                                  <div class="media bg-white d-flex p-10">
+                                                      <div class="media-left media-middle">
+                                                          <a href="#">
+                                                              <img class="media-object" src="assets/images/timeline/img2.png" alt="">
+                                                          </a>
+                                                      </div>
+                                                      <div class="media-body friend-elipsis">
+                                                          <div class="f-15 f-bold m-b-5">Josephin Doe</div>
+                                                          <div class="text-muted social-designation">Softwear Engineer at phoenixcoded</div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- Friends tab end -->
+                              </div>
+                              <!-- Row end -->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

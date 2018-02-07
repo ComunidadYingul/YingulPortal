@@ -1,0 +1,85 @@
+<div class="image" style="width:100%">
+  <img class="mySlides" src="assets/images/inmuebleBanner.jpg" style="width:100%">
+  <p align="center" class="prev"><span >Propiedades en venta y alquiler</span></p>
+  <h4 align="center" class="title"><span >Tu hogar está acá</span></h4>
+  <div align= "center" class="form">
+    <form class="md-float-material card-block">
+      <div class="row">
+        <div class="col-sm-4">
+          <select name="select" class="form-control form-control-primary element" #t (change)="getSubCategory(t.value)">
+            <option [value]="0" disabled>Seleccione el tipo</option>
+            <option *ngFor="let category of categoryList" [value]="category.categoryId">{{category.name}}</option>
+          </select>
+          </div>
+          <div class="col-sm-4">
+            <select name="vsubcategory" [(ngModel)]="vsubcategory" class="form-control form-control-primary" #u (change)="setSubCategory(u.value)">
+                <option [value]="0" disabled >Seleccione la condición</option>
+                <option *ngFor="let category of subCategoryList" [value]="category.categoryId">{{category.name}}</option>
+              </select>
+          </div>
+          <div class="col-sm-4">
+            <input type="text" class="form-control form-control-primary" placeholder="Ingresá Barrio o Ciudad" name="city" [(ngModel)]="city" (input)="onSearchChange($event.target.value)" list="cityList">
+            <datalist id="cityList">
+                <option *ngFor="let city of cities" value="{{city.name}}, {{city.yng_Province.name}}"></option>
+            </datalist>        
+          </div>
+      </div>
+      <hr>
+      <div class="row">
+          <div class="col-sm-12">
+            <button (click)="search()" type="button" class="btn btn-primary waves-effect waves-light m-r-10">Buscar
+            </button>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Main-body start -->
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page body start -->
+        <div class="page-body masonry-page">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Gallery with description card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Inmuebles</h5>
+                            <div class="card-header-right">
+                                <i class="icofont icofont-rounded-down"></i>
+                                <i class="icofont icofont-refresh"></i>
+                                <i class="icofont icofont-close-circled"></i>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <div class="default-grid">
+                                <div class="row lightboxgallery-popup">
+                                    <!--ng for -->
+                                    <div class="col-sm-3 default-grid-item" *ngFor="let item of itemList">
+                                        <div class="card gallery-desc">
+                                            <div class="masonry-media">
+                                                <a class="media-middle" href="/itemDetail/{{item.itemId}}">
+                                                    <img class="img-fluid" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" alt="masonary">
+                                                </a>
+                                            </div>
+                                            <div class="card-block">
+                                                <h6 class="job-card-desc">{{item.name}}</h6>
+                                                <p class="text-muted">{{item.description}}</p>
+                                                <div class="job-meta-data"><i class="icofont icofont-safety"></i>Ver si aqui ira la ubicacion de la propiedad</div>
+                                                <div class="job-meta-data"><i class="icofont icofont-university"></i>$ {{item.price}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gallery with description card end -->
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->

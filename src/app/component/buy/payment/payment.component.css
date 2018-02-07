@@ -1,0 +1,29 @@
+.image {
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+.number {
+    position: absolute;
+    top: 55%;
+    left: 0;
+    width: 100%;  
+    color: white;   
+}
+.fullname {
+    position: absolute;
+    top: 80%;
+    left: 35%;
+    color: white; 
+}
+.duedate {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    color: white; 
+}
+.cvv {
+    position: absolute;
+    top: 40%;
+    left: 57%;
+    color: white; 
+}

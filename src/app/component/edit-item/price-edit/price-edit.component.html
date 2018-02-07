@@ -1,0 +1,268 @@
+<form class="md-float-material card-block" enctype="multipart/form-data">
+  <div >
+    <h5>Describe tu Producto</h5>
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                  <input type="text" class="form-control" placeholder="Titulo Ej: Camisa Lacoste Hombre Manga Laraga" name="title" [(ngModel)]="title">
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
+                  <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+              </div>
+          </div>
+      </div>
+      <h5>Video de tu Producto</h5>
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                  <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video"
+                  >
+                  
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div  class="col-sm-6" >
+            <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
+                <option value="0">Indica la condición de tu producto</option>
+                <option value="Nuevo">Nuevo</option>
+                <option value="Usado">Usado</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <h5></h5>                                
+            </div>                
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+            <input type="text" class="form-control" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+                <input type="text" class="form-control" placeholder="Volumen en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
+            </div>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <h5> <br>Garantía</h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <hr class="m-t-20 m-b-20">
+        <div class="col-sm-12">
+          <div class="table-responsive" >
+            <table class="table  invoice-detail-table">
+              <tbody [hidden]="false">
+                <tr>
+                  <td>
+                    <input type="radio" name="shippingMethod" value="normal" (click)="popGarantia($event)" >Con garantía<br>
+                  </td>
+                </tr>
+                <tr [hidden]="popupGarantia">
+                  <div class="syi-input-countdown">
+                    <span>
+                      <textarea maxlength="250" class="" type="textarea" name="productWarranty" [(ngModel)]="productWarranty"></textarea>
+                    </span>
+                    <p class="ui-countdown">Máximo 250 caracteres.</p>
+                  </div>
+                </tr> 
+                <tr>
+                  <td>
+                    <input type="radio" name="shippingMethod" value="normal2" (click)="popSinGarantia($event)">Sin garantía<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <hr class="m-t-20 m-b-10">
+      </div>
+      <div *ngIf="true" class="row">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
+            <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
+          </div>
+        </div>
+      </div>
+      <div *ngIf="true" class="row">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <input type="checkbox" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)">Ofrecer Descuento
+          </div>
+        </div>
+      </div>
+      <div *ngIf="true">
+        <div class="row">
+          <div  class="col-sm-6" >
+            <select class="form-control form-control-primary" #o (change)="capturarCondicionVenta(o.value)">
+              <option value="0">Tipo y condiciones de venta *</option>
+              <option value="Fijo">Precio fijo</option>
+              <option value="Subasta">Subasta</option>
+            </select>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div  class="col-sm-6" >
+            <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
+              <option value="0">MEDIOS DE PAGO</option>
+              <option value="1">Aceptar pagos solo por Yingul</option>
+              <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
+            </select>
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="input-group">
+              <h5>Formas de entrega</h5>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <hr class="m-t-20 m-b-20">
+          <div class="col-sm-12">
+                                    <div class="table-responsive" >
+                                        <table class="table  invoice-detail-table">
+        
+                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express<br>
+                                            <tbody [hidden]="popupEnvios">
+                                                <tr>
+                                                    <td class="radio radiofill radio-inline">
+                                                        <input type="radio" name="shippingMethod" value="normal" (click)="envioComprador($event)" >Envío a cargo del comprador<br>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="radio radiofill radio-inline"> 
+                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <!--div [hidden]=popupUbicacion>
+                                            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="ubicacion()">
+                                                    <span class="m-l-10">Elige tu domicilio</span>
+                                             </button>
+                                            </div-->
+                                            <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
+                                        </table>
+                                    </div>
+                            </div>
+                        <hr class="m-t-20 m-b-10">
+                    </div>
+                    
+            </div>
+           
+            <h5>Fotos de tu Producto</h5>           
+        </div>
+   
+
+
+
+
+
+    <!--aqui pondremos el codigo para cargar imagenes con previsualizacion -->
+
+
+
+
+    <!--div id="spinner" class="spinner">
+        <label>Espere por favor</label>
+    </div>
+    <br/>
+    <strong>Foto Principal</strong>
+    <br/>
+    <div class="row">
+        <div id="image-preview1" class="col-sm-2">
+            <label for="image-upload1" id="image-label1">Foto Principal</label>
+            <input type="file" name="image-upload1" id="image-upload1" />
+        </div>
+        <div id="image-preview2" class="col-sm-2">
+            <label for="image-upload2" id="image-label2">Foto</label>
+            <input type="file" name="image-upload2" id="image-upload2" />
+        </div>
+        <div id="image-preview3" class="col-sm-2">
+            <label for="image-upload3" id="image-label3">Foto</label>
+            <input type="file" name="image-upload3" id="image-upload3" />
+        </div>
+        <div id="image-preview4" class="col-sm-2">
+            <label for="image-upload4" id="image-label4">Foto</label>
+            <input type="file" name="image-upload4" id="image-upload4" />
+        </div>
+        <div id="image-preview5" class="col-sm-2">
+            <label for="image-upload5" id="image-label5">Foto</label>
+            <input type="file" name="image-upload5" id="image-upload5" />
+        </div>
+        <div id="image-preview6" class="col-sm-2">
+            <label for="image-upload6" id="image-label6">Foto</label>
+            <input type="file" name="image-upload6" id="image-upload6" />
+        </div>
+        <div id="image-preview7" class="col-sm-2">
+            <label for="image-upload7" id="image-label7">Foto</label>
+            <input type="file" name="image-upload7" id="image-upload7" />
+        </div>
+        <div id="image-preview8" class="col-sm-2">
+            <label for="image-upload8" id="image-label8">Foto</label>
+            <input type="file" name="image-upload8" id="image-upload8" />
+        </div>
+        <div id="image-preview9" class="col-sm-2">
+            <label for="image-upload9" id="image-label9">Foto</label>
+            <input type="file" name="image-upload9" id="image-upload9" />
+        </div>
+        <div id="image-preview10" class="col-sm-2">
+            <label for="image-upload10" id="image-label10">Foto</label>
+            <input type="file" name="image-upload10" id="image-upload10" />
+        </div>
+        <div id="image-preview11" class="col-sm-2">
+            <label for="image-upload11" id="image-label11">Foto</label>
+            <input type="file" name="image-upload11" id="image-upload11" />
+        </div>
+        <div id="image-preview12" class="col-sm-2">
+            <label for="image-upload12" id="image-label12">Foto</label>
+            <input type="file" name="image-upload12" id="image-upload12" />
+        </div>
+    </div-->
+    <br/>
+
+    <!--hasta aqui el codigo -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="saveEdit()">Guardar
+                </button>
+                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="cancel()">Atras
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
