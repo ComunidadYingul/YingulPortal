@@ -153,30 +153,30 @@ export class PriceComponent implements OnInit {
     console.log("type price  pre: "+this.typeCatPre)
     if(this.typeCatPre=="Service"){
     
-        this.service.$yng_Item.$user.$phone=this.phone;
-        this.service.$yng_Item.$user.$phone2=this.phone2;
-        this.service.$emailService=this.email;
-        this.service.$yng_Item.$user.$webSite=this.webSite;
-        this.service.$yng_Item.$price=this.price;
-        this.service.$yng_Item.$money=this.money;
-        this.service.$yng_Item.$yng_Ubication.$street=this.street;
-        this.service.$yng_Item.$yng_Ubication.$number=this.number;
-        this.service.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-        this.service.$yng_Item.$yng_Ubication.$aditional=this.aditional;
-        this.service.$yng_Item.$yng_Ubication.$yng_Province=this.province;
-        this.service.$yng_Item.$yng_Ubication.$yng_City=this.city;
-        this.service.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
-        this.service.$cobertureZone=this.cobertureZone;
+        this.service.yng_Item.user.phone=this.phone;
+        this.service.yng_Item.user.phone2=this.phone2;
+        this.service.emailService=this.email;
+        this.service.yng_Item.user.webSite=this.webSite;
+        this.service.yng_Item.price=this.price;
+        this.service.yng_Item.money=this.money;
+        this.service.yng_Item.yng_Ubication.street=this.street;
+        this.service.yng_Item.yng_Ubication.number=this.number;
+        this.service.yng_Item.yng_Ubication.postalCode= this.postalCode;
+        this.service.yng_Item.yng_Ubication.aditional=this.aditional;
+        this.service.yng_Item.yng_Ubication.yng_Province=this.province;
+        this.service.yng_Item.yng_Ubication.yng_City=this.city;
+        this.service.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+        this.service.cobertureZone=this.cobertureZone;
         this.priceItemS.emit(this.service);
     }
     if(this.typeCatPre=="Product")
     {
-      this.product.yng_Item.$user.$phone=this.phone;
-      this.product.yng_Item.$user.$phone2=this.phone2;
+      this.product.yng_Item.user.phone=this.phone;
+      this.product.yng_Item.user.phone2=this.phone2;
       //this.product.$emailService=this.email;
-      this.product.yng_Item.$user.$webSite=this.webSite;
-      this.product.yng_Item.$price=this.price;
-      this.product.yng_Item.$money="1";      
+      this.product.yng_Item.user.webSite=this.webSite;
+      this.product.yng_Item.price=this.price;
+      this.product.yng_Item.money="1";      
       //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
       this.product.productPaymentMethod=this.productPaymentMethod;
@@ -187,37 +187,37 @@ export class PriceComponent implements OnInit {
 
     }
     if(this.typeCatPre=="Property"){
-      this.property.$yng_Item.$user.$phone=this.phone;
-      this.property.$yng_Item.$user.$phone2=this.phone2;
+      this.property.yng_Item.user.phone=this.phone;
+      this.property.yng_Item.user.phone2=this.phone2;
       //this.product.$emailService=this.email;
-      this.property.$yng_Item.$user.$webSite=this.webSite;
-      this.property.$yng_Item.$price=this.price;
-      this.property.$yng_Item.$money=this.money;
-      this.property.$yng_Item.$yng_Ubication.$street=this.street;
-      this.property.$yng_Item.$yng_Ubication.$number=this.number;
-      this.property.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.property.$yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.property.$yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.property.$yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.property.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.property.yng_Item.user.webSite=this.webSite;
+      this.property.yng_Item.price=this.price;
+      this.property.yng_Item.money=this.money;
+      this.property.yng_Item.yng_Ubication.street=this.street;
+      this.property.yng_Item.yng_Ubication.number=this.number;
+      this.property.yng_Item.yng_Ubication.postalCode= this.postalCode;
+      this.property.yng_Item.yng_Ubication.aditional=this.aditional;
+      this.property.yng_Item.yng_Ubication.yng_Province=this.province;
+      this.property.yng_Item.yng_Ubication.yng_City=this.city;
+      this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
       this.priceItemS.emit(this.property);
     }
     if(this.typeCatPre=="Motorized")
     {
-      this.motorized.$yng_Item.$user.$phone=this.phone;
-      this.motorized.$yng_Item.$user.$phone2=this.phone2;
+      this.motorized.yng_Item.user.phone=this.phone;
+      this.motorized.yng_Item.user.phone2=this.phone2;
       //this.product.$emailService=this.email;
-      this.motorized.$yng_Item.$user.$webSite=this.webSite;
-      this.motorized.$yng_Item.$price=this.price;
-      this.motorized.$yng_Item.$money=this.money;
-      this.motorized.$yng_Item.$yng_Ubication.$street=this.street;
-      this.motorized.$yng_Item.$yng_Ubication.$number=this.number;
-      this.motorized.$yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.motorized.$yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.motorized.$yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.motorized.$yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.motorized.$yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.motorized.yng_Item.user.webSite=this.webSite;
+      this.motorized.yng_Item.price=this.price;
+      this.motorized.yng_Item.money=this.money;
+      this.motorized.yng_Item.yng_Ubication.street=this.street;
+      this.motorized.yng_Item.yng_Ubication.number=this.number;
+      this.motorized.yng_Item.yng_Ubication.postalCode= this.postalCode;
+      this.motorized.yng_Item.yng_Ubication.aditional=this.aditional;
+      this.motorized.yng_Item.yng_Ubication.yng_Province=this.province;
+      this.motorized.yng_Item.yng_Ubication.yng_City=this.city;
+      this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
       this.priceItemS.emit(this.motorized);
 
@@ -307,13 +307,13 @@ export class PriceComponent implements OnInit {
       alert("Complete todo los datos por favor");
     }
     else{
-      this.product.yng_Item.$yng_Ubication.$street=this.street;
-      this.product.yng_Item.$yng_Ubication.$number=this.number;
-      this.product.yng_Item.$yng_Ubication.$postalCode= this.postalCode;
-      this.product.yng_Item.$yng_Ubication.$aditional=this.aditional;
-      this.product.yng_Item.$yng_Ubication.$yng_Province=this.province;
-      this.product.yng_Item.$yng_Ubication.$yng_City=this.city;
-      this.product.yng_Item.$yng_Ubication.$yng_Barrio=this.barrio;
+      this.product.yng_Item.yng_Ubication.street=this.street;
+      this.product.yng_Item.yng_Ubication.number=this.number;
+      this.product.yng_Item.yng_Ubication.postalCode= this.postalCode;
+      this.product.yng_Item.yng_Ubication.aditional=this.aditional;
+      this.product.yng_Item.yng_Ubication.yng_Province=this.province;
+      this.product.yng_Item.yng_Ubication.yng_City=this.city;
+      this.product.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       this.popupEnvios=false;
       this.popupUbicacion=true;
       this.popupUbication=true;
@@ -372,7 +372,7 @@ export class PriceComponent implements OnInit {
            
            console.log(JSON.stringify(this.ubication));
           //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
-           this.product.yng_Item.$yng_Ubication=this.ubication;
+           this.product.yng_Item.yng_Ubication=this.ubication;
             this.popupEnvios=false;
             this.popupUbicacion=true;
         }

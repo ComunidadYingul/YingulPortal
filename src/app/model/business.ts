@@ -29,8 +29,8 @@ private yng_User:user =new user();
     createBusiness(name:string, socialName:string, email:string, password:string,isBusiness:boolean,typeContri:string){
         this.name= name;
         this.socialName= socialName;
-        this.yng_User.$email = email;
-		this.yng_User.$password= password;
+        this.yng_User.email = email;
+		this.yng_User.password= password;
 		
 		this.isBusiness= isBusiness;
 		this.typeContri=typeContri;

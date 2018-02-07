@@ -147,11 +147,11 @@ export class SellComponent implements OnInit {
       this.hidTyp=true;
     } else {
       //temporalmente finaliza despues llamara a la utlima venta para publicidad
-      this.service.$yng_Item.$user.username=this.User.username;
-      this.service.$yng_Item.$itemCategory=this.category;
-      this.item2=this.service.$yng_Item;
+      this.service.yng_Item.user.username=this.User.username;
+      this.service.yng_Item.itemCategory=this.category;
+      this.item2=this.service.yng_Item;
       this.itemc=Object.assign(this.item, this.item2);
-      this.service.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
+      this.service.yng_Item=JSON.parse(JSON.stringify(this.itemc));
       console.log(JSON.stringify( this.service));
       
       this.saveService();
@@ -171,8 +171,8 @@ export class SellComponent implements OnInit {
         } else {
           //temporalmente finaliza despues llamara a la utlima venta para publicidad
           //this.product=ev;
-          this.product.yng_Item.$user.username=this.User.username;
-          this.product.yng_Item.$itemCategory=this.category;
+          this.product.yng_Item.user.username=this.User.username;
+          this.product.yng_Item.itemCategory=this.category;
           
           this.item2=this.product.yng_Item;
           this.itemc=Object.assign(this.item,this.item2);
@@ -200,12 +200,12 @@ export class SellComponent implements OnInit {
             } else {
               //temporalmente finaliza despues llamara a la utlima venta para publicidad
               //this.product=ev;
-              this.motorized.$yng_Item.$user.username=this.User.username;
-              this.motorized.$yng_Item.$itemCategory=this.category;
+              this.motorized.yng_Item.user.username=this.User.username;
+              this.motorized.yng_Item.itemCategory=this.category;
               
-              this.item2=this.motorized.$yng_Item;
+              this.item2=this.motorized.yng_Item;
               this.itemc=Object.assign(this.item,this.item2);
-              this.motorized.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
+              this.motorized.yng_Item=JSON.parse(JSON.stringify(this.itemc));
               //console.log("daniel detailproduc: "  + JSON.stringify(this.product));
               //console.log("daniel itemp: "+ JSON.stringify(this.itemP));
         
@@ -229,12 +229,12 @@ export class SellComponent implements OnInit {
                 } else {
                   //temporalmente finaliza despues llamara a la utlima venta para publicidad
                   //this.product=ev;
-                  this.property.$yng_Item.$user.username=this.User.username;
-                  this.property.$yng_Item.$itemCategory=this.category;
+                  this.property.yng_Item.user.username=this.User.username;
+                  this.property.yng_Item.itemCategory=this.category;
                   
-                  this.item2=this.property.$yng_Item;
+                  this.item2=this.property.yng_Item;
                   this.itemc=Object.assign(this.item,this.item2);
-                  this.property.$yng_Item=JSON.parse(JSON.stringify(this.itemc));
+                  this.property.yng_Item=JSON.parse(JSON.stringify(this.itemc));
                   //console.log("daniel detailproduc: "  + JSON.stringify(this.product));
                   //console.log("daniel itemp: "+ JSON.stringify(this.itemP));
             

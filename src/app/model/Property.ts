@@ -6,4 +6,6 @@ export class Property{
 	propertyDuildedArea:string;
     propertyYear:string;
 	propertyAmenities:Object[];
+	propertyAmbient:Object[];
+	yng_Item:Item=new Item();
 }
