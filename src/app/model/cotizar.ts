@@ -1,6 +1,5 @@
 export class Cotizar{
- cotizarId:string="";
-
+  cotizarId:string="";
   provincia:string="";
   localidad:string="";
   codigo_postal:string="";
@@ -16,20 +15,16 @@ export class Cotizar{
   orden_sentido:string="";
   itemID:string;
   codAndreani:string="";
-
-public   ordenColumnaAsce ="asc";
-public   ordenColumnaDesc="desc";
-public   modalidadEnvioDomicilio="D";
-public   modalidadEnvioSucursal="S";
-public   servicioEstandar="N";
-public   servicioPrioritario="";
-public   servicioExpres="X";
-public   servicioDevoluciones="R";
-public   ordenColumnaValor="valor";
-public   ordenColumnaHorasEntrega="horas_entrega";
-public   ordenColumnaCumplimiento="cumplimiento";
-public   ordenColumnaAnomalos="anomalos";
-
-
-
+  ordenColumnaAsce ="asc";
+  ordenColumnaDesc="desc";
+  modalidadEnvioDomicilio="D";
+  modalidadEnvioSucursal="S";
+  servicioEstandar="N";
+  servicioPrioritario="";
+  servicioExpres="X";
+  servicioDevoluciones="R";
+  ordenColumnaValor="valor";
+  ordenColumnaHorasEntrega="horas_entrega";
+  ordenColumnaCumplimiento="cumplimiento";
+  ordenColumnaAnomalos="anomalos";
 }

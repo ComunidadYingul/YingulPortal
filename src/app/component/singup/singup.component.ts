@@ -127,14 +127,14 @@ export class SingupComponent implements OnInit {
     this.business.$socialName=this.socialName;
     this.business.$isBusiness=this.isBusiness;
     this.business.$typeContri=this.typeContri;
-    this.business.$yng_User.$email=this.email;
-    this.business.$yng_User.$password=this.password;
-    this.business.$yng_User.$phone=this.phone;
-    this.business.$yng_User.$yng_Ubication.$street=this.street;
-    this.business.$yng_User.$yng_Ubication.$number=this.number;
-    this.business.$yng_User.$yng_Ubication.$yng_Province.provinceId=this.province.provinceId;
-    this.business.$yng_User.$yng_Ubication.$yng_City.cityId=this.city.cityId;
-    this.business.$yng_User.$yng_Ubication.$yng_Barrio=this.barrio;
+    this.business.$yng_User.email=this.email;
+    this.business.$yng_User.password=this.password;
+    this.business.$yng_User.phone=this.phone;
+    this.business.$yng_User.yng_Ubication.street=this.street;
+    this.business.$yng_User.yng_Ubication.number=this.number;
+    this.business.$yng_User.yng_Ubication.yng_Province.provinceId=this.province.provinceId;
+    this.business.$yng_User.yng_Ubication.yng_City.cityId=this.city.cityId;
+    this.business.$yng_User.yng_Ubication.yng_Barrio=this.barrio;
    // this.business.$address="Provincia: "+this.province.$provinceId+" Cuidad: "+this.city.$cityId+" Barrio: "+this.barrio.$name+ " Calle:"+this.street+" Número:"+this.number;
     console.log("Business envio: "  + JSON.stringify(this.business));
      this.business.createBusiness(this.nameBusiness,this.socialName,this.email,this.password,this.isBusiness,this.typeContri)
