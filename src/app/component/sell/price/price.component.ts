@@ -133,7 +133,7 @@ export class PriceComponent implements OnInit {
     )
   }
   setBarrio(barrioId:number){
-    this.barrio.$barrioId=barrioId;
+    this.barrio.barrioId=barrioId;
   }
   zonaServ():boolean{
     if(this.typeCatPre=="Service")      return true;
