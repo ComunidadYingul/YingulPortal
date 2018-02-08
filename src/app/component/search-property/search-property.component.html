@@ -60,9 +60,9 @@
                     <div class="row" >
                         <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
                         <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
-                        <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde&&precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
-                        <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde&&!precioHasta" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
-                        <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="!precioDesde&&precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                        <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null&&precioHasta!=null"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                        <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null&&precioHasta==null" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                        <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde==null&&precioHasta!=null"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
                     </div>
                 </div>
             </form>
