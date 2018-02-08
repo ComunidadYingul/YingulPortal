@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ItemService } from '../../service/item.service'
 import { SellService } from '../../service/sell.service';
 import { Item } from '../../model/item';
+import { Category } from '../../model/category';
+import { ListCategoryService } from '../../service/list-category.service';
 
 @Component({
   selector: 'app-search-property',
@@ -19,13 +21,17 @@ export class SearchPropertyComponent implements OnInit {
   provinceListFive:Object[];
   popup:boolean=true;
   popup2:boolean=true;
+  popup3:boolean=true;
   provinceCard:boolean=false;
   cityCard:boolean=true;
   cityList: Object[];
   cityListFive:Object[];
   precioDesde:number;
   precioHasta:number;
-  constructor(private route:ActivatedRoute,private itemService: ItemService,private sellService:SellService) { 
+  subCategoryList: Category[];
+  subCategoryListTemp:Category[];
+  tensubCategoryList: Category[];
+  constructor(private route:ActivatedRoute,private itemService: ItemService,private sellService:SellService,private categoryService: ListCategoryService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.cityId =route.snapshot.params['cityId'];
     this.getItems();
@@ -50,6 +56,30 @@ export class SearchPropertyComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+    this.subCategoryList=[];
+    if(this.categoryId!=0){
+      this.categoryService.getSubCategories(this.categoryId.toString()).subscribe(
+        res => {
+              this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              this.subCategoryListTemp= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              if(this.subCategoryList.length>5){this.tensubCategoryList=this.subCategoryList.splice(0,5);}
+              else{this.tensubCategoryList=this.subCategoryList;}
+              if(JSON.stringify(this.subCategoryList)=="[]"){this.tensubCategoryList=null;}
+            },
+            error => console.log(error)
+      );
+    }else{
+      this.categoryService.getCategories("Property/0").subscribe(
+        res => {
+              this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              this.subCategoryListTemp= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              if(this.subCategoryList.length>5){this.tensubCategoryList=this.subCategoryList.splice(0,5);}
+              else{this.tensubCategoryList=this.subCategoryList;}
+              if(JSON.stringify(this.subCategoryList)=="[]"){this.tensubCategoryList=null;}
+            },
+            error => console.log(error)
+      );
+    }
   }
   popupProvince(){
     this.popup=false;

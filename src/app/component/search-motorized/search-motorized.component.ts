@@ -4,6 +4,8 @@ import { ItemService } from '../../service/item.service';
 import { Category } from '../../model/category';
 import { ListCategoryService } from '../../service/list-category.service'
 import { FindMotorized } from '../../model/find-motorized';
+import { SellService } from '../../service/sell.service';
+import { Item } from '../../model/item';
 
 @Component({
   selector: 'app-search-motorized',
@@ -21,18 +23,27 @@ export class SearchMotorizedComponent implements OnInit {
   maxPrice:number;
   minYear:number;
   maxYear:number;
-  itemList: Object[]=[];
+  itemList: Item[]=[];
+  itemListTemp: Item[]=[];
   subCategoryList: Category[];
   subCategoryListTemp:Category[];
   tensubCategoryList: Category[];
   popup:boolean=true;
   popup2:boolean=true;
+  popup3:boolean=true;
+  popup4:boolean=true;
   anioDesde="0";
   anioHasta="0";
   precioDesde;
   precioHasta;
   findMotorized:FindMotorized=new FindMotorized();
-  constructor(private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService) { 
+  provinceList: Object[];
+  provinceListFive:Object[];
+  cityCard:boolean=true;
+  cityList: Object[];
+  cityListFive:Object[];
+  provinceCard:boolean=false;
+  constructor(private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService,private sellService:SellService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.minPrice = route.snapshot.params['minPrice'];
     this.maxPrice = route.snapshot.params['maxPrice'];
@@ -42,6 +53,14 @@ export class SearchMotorizedComponent implements OnInit {
   }
   ngOnInit() {
     this.getItems();
+    this.sellService.getProvinces().subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive=this.provinceListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
   }
   getItems() {
     this.itemService.searchMotorized(this.categoryId, this.minPrice, this.maxPrice, this.minYear, this.maxYear).subscribe(
@@ -91,6 +110,8 @@ export class SearchMotorizedComponent implements OnInit {
   popupHide(){
     this.popup=true;
     this.popup2=true;
+    this.popup3=true;
+    this.popup4=true;
   }
   setParameters(){
     this.anios=[];
@@ -106,5 +127,45 @@ export class SearchMotorizedComponent implements OnInit {
     for(let j = this.findMotorized.minPrice ; j<= this.findMotorized.maxPrice ; j=j+this.findMotorized.rankPrice){
       this.price.push(j);
     }
+  }
+  popupProvince(){
+    this.popup3=false;
+  }
+  popupCity(){
+    this.popup4=false;
+  }
+  findProvince(a:number){
+    this.sellService.getCities(a).subscribe(
+			res => {
+            this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.cityListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.cityListFive=this.cityListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_Province.provinceId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.provinceCard=true;
+    this.cityCard=false;
+  }
+  findCity(b:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_City.cityId==b){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.provinceCard=true;
+    this.cityCard=true;
   }
 }

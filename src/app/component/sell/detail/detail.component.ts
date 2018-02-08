@@ -196,9 +196,9 @@ public item: Item=new Item();
   }
   sendDetail(){
     this.uploadImage();
-    this.item.$name=this.title;
-    this.item.$description=this.description;
-    this.item.$video=this.video;
+    this.item.name=this.title;
+    this.item.description=this.description;
+    this.item.video=this.video;
     this.detailItemS.emit(this.item);
     if(this.typeCat=="Product"){
       //this.item.$name =this.title;
@@ -215,26 +215,26 @@ public item: Item=new Item();
     }
     if(this.typeCat=="Property"){
       //this.property.
-      this.property.$propertyDuildedArea=this.propertyDuildedArea;
-      this.property.$propertyTotalArea=this.propertyTotalArea;
-      this.property.$propertyYear=this.propertyYear;
-      this.property.$propertyAmenities=this.propAmenities;
-      this.property.$propertyAmbient=this.propAmbient;
+      this.property.propertyDuildedArea=this.propertyDuildedArea;
+      this.property.propertyTotalArea=this.propertyTotalArea;
+      this.property.propertyYear=this.propertyYear;
+      this.property.propertyAmenities=this.propAmenities;
+      this.property.propertyAmbient=this.propAmbient;
 
 
       this.detailProduct.emit(this.property);    
     }
     if(this.typeCat=="Motorized"){
-      this.motorized.$motorizedBrand=this.motorizedBrand;
-      this.motorized.$motorizedYear=this.motorizedYear;
-      this.motorized.$motorizedModel=this.motorizedModel;
-      this.motorized.$motorizedUnicoDue=this.motorizedUnicoDue;
+      this.motorized.motorizedBrand=this.motorizedBrand;
+      this.motorized.motorizedYear=this.motorizedYear;
+      this.motorized.motorizedModel=this.motorizedModel;
+      this.motorized.motorizedUnicoDue=this.motorizedUnicoDue;
 
-      this.motorized.$motorizedSecurity=this.motSecurity;
-      this.motorized.$motorizedConfort=this.motConfort;
-      this.motorized.$motorizedSound=this.motSound;
-      this.motorized.$motorizedExterior=this.motExterior;
-      this.motorized.$motorizedEquipment=this.motEquipment;
+      this.motorized.motorizedSecurity=this.motSecurity;
+      this.motorized.motorizedConfort=this.motConfort;
+      this.motorized.motorizedSound=this.motSound;
+      this.motorized.motorizedExterior=this.motExterior;
+      this.motorized.motorizedEquipment=this.motEquipment;
      // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
      this.detailProduct.emit(this.motorized);
     }  
@@ -276,7 +276,7 @@ public item: Item=new Item();
       );
     }
     else{
-      this.item.$principalImage="sin";
+      this.item.principalImage="sin";
     }
     if(file2!=null){
       this.getBase64(file2).then(
@@ -347,14 +347,14 @@ public item: Item=new Item();
     });
   }
   setImagePrincipal(data:object){
-    this.item.$principalImage=JSON.stringify(data);
-    this.item.$principalImage=this.item.$principalImage.replace(/['"]+/g, '');
+    this.item.principalImage=JSON.stringify(data);
+    this.item.principalImage=this.item.principalImage.replace(/['"]+/g, '');
   }
   setImage(data:object){
     this.itemImage=JSON.stringify(data);
     this.itemImage=this.itemImage.replace(/['"]+/g, '');
     this.itemImageArray.push({"image":this.itemImage});
-    this.item.$itemImage=this.itemImageArray;
+    this.item.itemImage=this.itemImageArray;
   }
 
   

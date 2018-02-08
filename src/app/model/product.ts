@@ -1,20 +1,15 @@
 import { Item } from './item';
 export class Product{
-     product_id:number;
-	public productCondition:string;
-	public productSaleConditions:string;
-    public productQuantity:string;
-    public productFormDelivery:string;
-    public productPaymentMethod:string;
-	public productWarranty:string;
-	public productPagoEnvio:string;
-	public producVolumen:string;
-	public productPeso:string;
+    product_id:number;
+	productCondition:string;
+	productSaleConditions:string;
+    productQuantity:string;
+    productFormDelivery:string;
+    productPaymentMethod:string;
+	productWarranty:string;
+	productPagoEnvio:string;
+	producVolumen:string;
+	productPeso:string;
 
-
-	public yng_Item:Item =new Item();
-	
-
-
-    
+	yng_Item:Item =new Item();  
 }

@@ -87,8 +87,8 @@ export class PaymentComponent implements OnInit {
       if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD"||listcardId=="AmexD")
       {
         this.debitHid=false;
-        this.paymentMethod.$name="CARDPAYMENT";
-        this.paymentMethod.$type="CARD";
+        this.paymentMethod.name="CARDPAYMENT";
+        this.paymentMethod.type="CARD";
         this.paymentMethod.yng_Card.type="DEBIT";
       }
       else{
@@ -146,8 +146,8 @@ export class PaymentComponent implements OnInit {
     this.typePay.emit(this.paymentMethod);
   }
   cardSelected(card:Card){
-    this.paymentMethod.$name="CARDPAYMENT";
-    this.paymentMethod.$type="CARD";
+    this.paymentMethod.name="CARDPAYMENT";
+    this.paymentMethod.type="CARD";
     this.paymentMethod.yng_Card=card;
     this.paymentMethod.yng_Card.user=JSON.parse(localStorage.getItem("user"));
     this.typePay.emit(this.paymentMethod);

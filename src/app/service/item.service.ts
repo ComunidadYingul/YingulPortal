@@ -29,4 +29,8 @@ export class ItemService {
     let url = "http://localhost:8080/item/searchProperty/"+categoryId+"/"+cityId;
     return this.http.get(url);
   }
+  getItemsByCategory(categoryId:number) {
+    let url = "http://localhost:8080/item/itemsByCategory/"+categoryId;
+    return this.http.get(url);
+  }
 }
