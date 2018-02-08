@@ -1,11 +1,13 @@
 .p-send {
-    position: absolute;
-    top: 104%;
-    left: 81%;
-    width: 40px;
-    height: 40px;
-    font-size: 14px;
-    text-transform: uppercase;
+    font-family: 'IcoFont' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     border-radius: 50%;
     border-top-left-radius: 50%;
     border-top-right-radius: 50%;
@@ -13,11 +15,4 @@
     border-bottom-left-radius: 50%;
     background-color: #ff5252;
     color: #ff5252;
-    font-weight: 800;
-    letter-spacing: 4px;
-    padding: 11px 4px;
-    padding-top: 0px;
-    padding-right: 0;
-    padding-bottom: 0px;
-    padding-left: 0;
 }
