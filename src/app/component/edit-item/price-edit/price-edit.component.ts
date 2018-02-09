@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+//import { Input } from '@angular/core/src/metadata/directives';
+import { Item } from '../../../model/item';
 
 @Component({
   selector: 'app-price-edit',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./price-edit.component.css']
 })
 export class PriceEditComponent implements OnInit {
+  @Input('itemId') localItemId:number;
+  @Input('Item') Item:Item =new Item();
   title:string;
   description: string;
   video:string;
@@ -30,9 +34,12 @@ productPagoEnvio:string;
 productPeso:string;
 productVolumen:string;
 popupGarantia:boolean=true;
-  constructor() { }
+  constructor() { 
+   console.log("Item: "+JSON.stringify(this.Item));
+  }
 
   ngOnInit() {
+  
   }
   keyPress(event: any) {
     const pattern = /[0-9\+\-\ ]/;

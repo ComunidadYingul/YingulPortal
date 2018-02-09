@@ -1,268 +1,374 @@
-<form class="md-float-material card-block" enctype="multipart/form-data">
-  <div >
-    <h5>Describe tu Producto</h5>
-      <div class="row">
-          <div class="col-sm-6">
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                  <input type="text" class="form-control" placeholder="Titulo Ej: Camisa Lacoste Hombre Manga Laraga" name="title" [(ngModel)]="title">
-              </div>
-          </div>
-          <div class="col-sm-6">
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
-                  <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
-              </div>
-          </div>
-      </div>
-      <h5>Video de tu Producto</h5>
-      <div class="row">
-          <div class="col-sm-6">
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                  <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video"
-                  >
-                  
-              </div>
-          </div>
-      </div>
-      <div class="row">
-        <div  class="col-sm-6" >
-            <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
-                <option value="0">Indica la condición de tu producto</option>
-                <option value="Nuevo">Nuevo</option>
-                <option value="Usado">Usado</option>
-            </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-            <div class="input-group">
-                <h5></h5>                                
-            </div>                
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
+    <!-- Main-body start -->
+    <div class="main-body">
+        <div class="page-wrapper">
+            <!-- Page header start -->
+            <div class="page-header">
+                <div class="page-header-title">
+                    <h4>Product Edit</h4>
+                </div>
+                <div class="page-header-breadcrumb">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <i class="icofont icofont-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">E-Commerce</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Product Edit</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="input-group">
-            <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-            <input type="text" class="form-control" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                <input type="text" class="form-control" placeholder="Volumen en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
-            </div>
-        </div>
-      </div>
-      <br/>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="input-group">
-            <h5> <br>Garantía</h5>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <hr class="m-t-20 m-b-20">
-        <div class="col-sm-12">
-          <div class="table-responsive" >
-            <table class="table  invoice-detail-table">
-              <tbody [hidden]="false">
-                <tr>
-                  <td>
-                    <input type="radio" name="shippingMethod" value="normal" (click)="popGarantia($event)" >Con garantía<br>
-                  </td>
-                </tr>
-                <tr [hidden]="popupGarantia">
-                  <div class="syi-input-countdown">
-                    <span>
-                      <textarea maxlength="250" class="" type="textarea" name="productWarranty" [(ngModel)]="productWarranty"></textarea>
-                    </span>
-                    <p class="ui-countdown">Máximo 250 caracteres.</p>
-                  </div>
-                </tr> 
-                <tr>
-                  <td>
-                    <input type="radio" name="shippingMethod" value="normal2" (click)="popSinGarantia($event)">Sin garantía<br>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <hr class="m-t-20 m-b-10">
-      </div>
-      <div *ngIf="true" class="row">
-        <div class="col-sm-6">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-            <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
-          </div>
-        </div>
-      </div>
-      <div *ngIf="true" class="row">
-        <div class="col-sm-6">
-          <div class="input-group">
-            <input type="checkbox" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)">Ofrecer Descuento
-          </div>
-        </div>
-      </div>
-      <div *ngIf="true">
-        <div class="row">
-          <div  class="col-sm-6" >
-            <select class="form-control form-control-primary" #o (change)="capturarCondicionVenta(o.value)">
-              <option value="0">Tipo y condiciones de venta *</option>
-              <option value="Fijo">Precio fijo</option>
-              <option value="Subasta">Subasta</option>
-            </select>
-          </div>
-        </div>
-        <br/>
-        <div class="row">
-          <div  class="col-sm-6" >
-            <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
-              <option value="0">MEDIOS DE PAGO</option>
-              <option value="1">Aceptar pagos solo por Yingul</option>
-              <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
-            </select>
-          </div>
-        </div>
-        <br/>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="input-group">
-              <h5>Formas de entrega</h5>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <hr class="m-t-20 m-b-20">
-          <div class="col-sm-12">
-                                    <div class="table-responsive" >
-                                        <table class="table  invoice-detail-table">
-        
-                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express<br>
-                                            <tbody [hidden]="popupEnvios">
-                                                <tr>
-                                                    <td class="radio radiofill radio-inline">
-                                                        <input type="radio" name="shippingMethod" value="normal" (click)="envioComprador($event)" >Envío a cargo del comprador<br>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="radio radiofill radio-inline"> 
-                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!--div [hidden]=popupUbicacion>
-                                            <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="ubicacion()">
-                                                    <span class="m-l-10">Elige tu domicilio</span>
-                                             </button>
-                                            </div-->
-                                            <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
-                                        </table>
-                                    </div>
+            <!-- Page header end -->
+            <!-- Page body start -->
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Product edit card start -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Product edit</h5>
                             </div>
-                        <hr class="m-t-20 m-b-10">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="product-edit">
+                                            <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#home7" role="tab">
+                                                        <div class="f-26">
+                                                            <i class="icofont icofont-edit"></i>
+                                                        </div>
+                                                        Product Edit</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
+                                                        <div class="f-26">
+                                                            <i class="icofont icofont-document-search"></i>
+                                                        </div>
+                                                        SEO Metadata</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#messages7" role="tab">
+                                                        <div class="f-26">
+                                                            <i class="icofont icofont-ui-image"></i>
+                                                        </div>
+                                                        Pictures</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
+                                                        <div class="f-26">
+                                                            <i class="icofont icofont-comment"></i>
+                                                        </div>
+                                                        Reviews</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                            </ul>
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="home7" role="tabpanel">
+                                                    <form class="md-float-material card-block">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="First Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Last Name">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Tax">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Price">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Quantity">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-align-left"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Categories">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Product Description">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <select name="select" class="form-control form-control-primary">
+                                                                    <option value="opt1">Select One Value Only</option>
+                                                                    <option value="opt2">2</option>
+                                                                    <option value="opt3">3</option>
+                                                                    <option value="opt4">4</option>
+                                                                    <option value="opt5">5</option>
+                                                                    <option value="opt6">6</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="text-center">
+                                                                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">Save
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Discard
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane" id="profile7" role="tabpanel">
+                                                    <form class="md-float-material card-block">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Title">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Label Name">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-ui-keyboard"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Keyword">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
+                                                                    <input type="text" class="form-control" placeholder="Description">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="text-center">
+                                                                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">Save
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Discard
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="tab-pane" id="messages7" role="tabpanel">
+                                                    <div class="md-float-material card-block">
+                                                        <div class="row p-t-10 p-b-10">
+                                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                                <a href="">
+                                                                    <img src="assets/images/product-edit/product-edit1.jpg" class="img-fluid width-100" alt="img-edit">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-6 col-sm-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                            <input type="text" class="form-control" placeholder="Label Name">
+                                                                        </div>
+                                                                        <div class="col-xs-6 edit-left">
+                                                                            <div class="form-radio">
+                                                                                <form>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Largest Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Medium Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Small Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-6 edit-right text-right">
+                                                                            <button type="button" class="btn btn-danger waves-effect waves-light">Remove
+                                                                                <i class="icofont icofont-close-circled f-16 m-l-5"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row p-t-10 p-b-10">
+                                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                                <a href="">
+                                                                    <img src="assets/images/product-edit/product-edit2.jpg" class="img-fluid width-100" alt="img-edit">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-6 col-sm-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                            <input type="text" class="form-control" placeholder="Label Name">
+                                                                        </div>
+                                                                        <div class="col-xs-6 edit-left">
+                                                                            <div class="form-radio">
+                                                                                <form>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Largest Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Medium Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Small Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-6 edit-right text-right">
+                                                                            <button type="button" class="btn btn-danger waves-effect waves-light">Remove
+                                                                                <i class="icofont icofont-close-circled f-16 m-l-5"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="row p-t-10">
+                                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                                <a href="">
+                                                                    <img src="assets/images/product-edit/product-edit3.jpg" class="img-fluid width-100" alt="img-edit">
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-lg-9 col-md-6 col-sm-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                            <input type="text" class="form-control" placeholder="Label Name">
+                                                                        </div>
+                                                                        <div class="col-xs-6 edit-left">
+                                                                            <div class="form-radio">
+                                                                                <form>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Largest Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Medium Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                    <div class="radio radiofill">
+                                                                                        <label>
+                                                                                            <input type="radio" name="radio"><i class="helper"></i>Small Image
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xs-6 edit-right text-right">
+                                                                            <button type="button" class="btn btn-danger waves-effect waves-light">Remove
+                                                                                <i class="icofont icofont-close-circled f-16 m-l-5"></i>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="messages8" role="tabpanel">
+                                                    <div class="container">
+                                                        <div class="card-block">
+                                                            <div class="text-muted f-w-400">
+                                                                No reviews yet.
+                                                            </div>
+                                                            <div class="m-t-10">
+                                                                <div class="txt-primary f-18 f-w-600">Your Rating</div>
+                                                                <div class="stars stars-example-css detail-stars">
+                                                                    <select id="product-view" class="rating-star" name="rating" autocomplete="off">
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="icofont icofont-underline"></i></span>
+                                                                <input type="text" class="form-control" placeholder="User Name">
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                                                <input type="text" class="form-control" placeholder="Last Name">
+                                                            </div>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
+                                                                <input type="text" class="form-control" placeholder="Email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Product edit card end -->
                     </div>
-                    
+                </div>
             </div>
-           
-            <h5>Fotos de tu Producto</h5>           
-        </div>
-   
-
-
-
-
-
-    <!--aqui pondremos el codigo para cargar imagenes con previsualizacion -->
-
-
-
-
-    <!--div id="spinner" class="spinner">
-        <label>Espere por favor</label>
-    </div>
-    <br/>
-    <strong>Foto Principal</strong>
-    <br/>
-    <div class="row">
-        <div id="image-preview1" class="col-sm-2">
-            <label for="image-upload1" id="image-label1">Foto Principal</label>
-            <input type="file" name="image-upload1" id="image-upload1" />
-        </div>
-        <div id="image-preview2" class="col-sm-2">
-            <label for="image-upload2" id="image-label2">Foto</label>
-            <input type="file" name="image-upload2" id="image-upload2" />
-        </div>
-        <div id="image-preview3" class="col-sm-2">
-            <label for="image-upload3" id="image-label3">Foto</label>
-            <input type="file" name="image-upload3" id="image-upload3" />
-        </div>
-        <div id="image-preview4" class="col-sm-2">
-            <label for="image-upload4" id="image-label4">Foto</label>
-            <input type="file" name="image-upload4" id="image-upload4" />
-        </div>
-        <div id="image-preview5" class="col-sm-2">
-            <label for="image-upload5" id="image-label5">Foto</label>
-            <input type="file" name="image-upload5" id="image-upload5" />
-        </div>
-        <div id="image-preview6" class="col-sm-2">
-            <label for="image-upload6" id="image-label6">Foto</label>
-            <input type="file" name="image-upload6" id="image-upload6" />
-        </div>
-        <div id="image-preview7" class="col-sm-2">
-            <label for="image-upload7" id="image-label7">Foto</label>
-            <input type="file" name="image-upload7" id="image-upload7" />
-        </div>
-        <div id="image-preview8" class="col-sm-2">
-            <label for="image-upload8" id="image-label8">Foto</label>
-            <input type="file" name="image-upload8" id="image-upload8" />
-        </div>
-        <div id="image-preview9" class="col-sm-2">
-            <label for="image-upload9" id="image-label9">Foto</label>
-            <input type="file" name="image-upload9" id="image-upload9" />
-        </div>
-        <div id="image-preview10" class="col-sm-2">
-            <label for="image-upload10" id="image-label10">Foto</label>
-            <input type="file" name="image-upload10" id="image-upload10" />
-        </div>
-        <div id="image-preview11" class="col-sm-2">
-            <label for="image-upload11" id="image-label11">Foto</label>
-            <input type="file" name="image-upload11" id="image-upload11" />
-        </div>
-        <div id="image-preview12" class="col-sm-2">
-            <label for="image-upload12" id="image-label12">Foto</label>
-            <input type="file" name="image-upload12" id="image-upload12" />
-        </div>
-    </div-->
-    <br/>
-
-    <!--hasta aqui el codigo -->
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="text-center">
-                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="saveEdit()">Guardar
-                </button>
-                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="cancel()">Atras
-                </button>
-            </div>
+            <!-- Page body end -->
         </div>
     </div>
-
-</form>
-

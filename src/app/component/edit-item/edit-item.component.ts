@@ -13,18 +13,18 @@ export class EditItemComponent implements OnInit {
   public Item:Item=new Item();
 
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
-    //this.itemId =route.snapshot.params['itemId'];
-    //console.log("this.itemId:"+this.itemId);
+    this.itemId =route.snapshot.params['itemId'];
+    console.log("this.itemId:"+this.itemId);
   }
 
   ngOnInit() {
-    //this.getItemById();
+    this.getItemById();
   }
   getItemById(){
     this.itemDetailService.getItemById(this.itemId).subscribe(
 			res => {
             this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(JSON.stringify(this.Item));
+            //console.log(JSON.stringify(this.Item));
         },
       		error => console.log(error)
     );

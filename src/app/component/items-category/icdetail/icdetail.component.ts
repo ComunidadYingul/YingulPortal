@@ -29,6 +29,8 @@ export class IcdetailComponent implements OnInit {
   cityList: Object[];
   cityListFive:Object[];
   provinceCard:boolean=false;
+  precioDesde:number;
+  precioHasta:number;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
   }
 
@@ -119,4 +121,5 @@ export class IcdetailComponent implements OnInit {
     this.provinceCard=true;
     this.cityCard=true;
   }
+  
 }
