@@ -70,80 +70,172 @@
                                             </ul>
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane active" id="home7" role="tabpanel">
-                                                    <form class="md-float-material card-block">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="First Name">
+                                                <div ngSwitch="{{typeCat}}">
+                                                    <div *ngSwitchCase="'Product'">
+                                                        <div class="tab-pane active" id="home7" role="tabpanel">
+                                                            <form class="md-float-material card-block">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                            <input type="text" class="form-control"  placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title" value="{{this.Item.name}}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                                                            <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description" value="{{this.Item.description}}">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="Last Name">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
+                                                                            <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video" value="{{this.Item.video}}"><!--placeholder="Link desde Youtube" name="video" [(ngModel)]="video"-->
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group ">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
+                                                                            <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio Ej: 10.00" value="{{this.Item.price}}">
+                                                                                <div class="checkbox-fade fade-in-primary">
+                                                                                    <label> <input type="checkbox" value="" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)"> 
+                                                                                        <span class="cr">
+                                                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                                                        </span> <span>Ofrecer Descuento</span>
+                                                                                    </label>
+                                                                                </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                                <div class="row">
+                                                                    <div  class="col-sm-6" >
+                                                                        <div class="input-group">
+                                                                            <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
+                                                                                <option value="0" disabled>Indica la condición de tu producto</option>
+                                                                                <option value="Nuevo" [selected]="nuevoB">Nuevo</option>
+                                                                                <option value="Usado" [selected]="usadoB">Usado</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>                                                                  
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                            <input type="text" class="form-control"  placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity" value="{{this.Item.productQuantity}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                            <input type="text" class="form-control"  placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso" value="{{this.Item.productPeso}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                            <input type="text" class="form-control"  placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen" value="{{this.Item.productVolumen}}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group">                                                                        
+                                                                            <h5> <br>Garantía</h5>                                                                    
+                                                                        </div>                
+                                                                    </div>                                            
+                                                                </div>
+                                                                <div class="row">
+                                                                    <hr class="m-t-20 m-b-20">
+                                                                        <div class="col-sm-12">
+                                                                            <div class="table-responsive" >
+                                                                                <table class="table  invoice-detail-table">                                            
+                                                                                    <tbody [hidden]="false">
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <input type="radio" name="shippingMethod" value="normal" (click)="popGarantia($event)" >Con garantía<br>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr [hidden]="popupGarantia">
+                                                                                            <div class="syi-input-countdown">
+                                                                                                <span>
+                                                                                                    <textarea maxlength="250" class="" type="textarea" name="productWarranty" [(ngModel)]="productWarranty" value="{{this.Item.productWarranty}}"></textarea>
+                                                                                                </span>
+                                                                                                <p class="ui-countdown">Máximo 250 caracteres.</p>
+                                                                                            </div>                                            
+                                                                                        </tr> 
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <input type="radio" name="shippingMethod" value="normal2" (click)="popSinGarantia($event)">Sin garantía<br>
+                                                                                            </td>                                                                                          
+                                                                                        </tr>                                                
+                                                                                    </tbody>                                                                                
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                            <hr class="m-t-20 m-b-10">
+                                                                </div>
+
+                                                                <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="input-group">
+                                                    
+                                                                                <h5>Formas de entrega</h5>
+                                                                                
+                                                                            </div>                
+                                                                        </div>
+                                                    
+                                                                </div>
+                                                    
+                                                                <div class="row">
+                                                                        <hr class="m-t-20 m-b-20">
+                                                                        <div class="col-sm-12">
+                                                                                <div class="table-responsive" >
+                                                                                    <table class="table  invoice-detail-table">
+                                                    
+                                                                                        <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express<br>
+                                                                                        <tbody [hidden]="popupEnvios">
+                                                                                            <tr>
+                                                                                                <td class="radio radiofill radio-inline">
+                                                                                                    <input type="radio" name="shippingMethod" value="normal" (click)="envioComprador($event)" >Envío a cargo del comprador<br>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td class="radio radiofill radio-inline"> 
+                                                                                                    <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+
+                                                                                        <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
+                                                                                    </table>
+                                                                                </div>
+                                                                        </div>
+                                                                    <hr class="m-t-20 m-b-10">
+
+                                                                <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <div class="text-center">
+                                                                                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">Save
+                                                                                </button>
+                                                                                <button type="button" class="btn btn-warning waves-effect waves-light">Discard
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="Tax">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="Price">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="Quantity">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-align-left"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="Categories">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
-                                                                    <input type="text" class="form-control" placeholder="Product Description">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <select name="select" class="form-control form-control-primary">
-                                                                    <option value="opt1">Select One Value Only</option>
-                                                                    <option value="opt2">2</option>
-                                                                    <option value="opt3">3</option>
-                                                                    <option value="opt4">4</option>
-                                                                    <option value="opt5">5</option>
-                                                                    <option value="opt6">6</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-12">
-                                                                <div class="text-center">
-                                                                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">Save
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-warning waves-effect waves-light">Discard
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
+
                                                 <div class="tab-pane" id="profile7" role="tabpanel">
                                                     <form class="md-float-material card-block">
                                                         <div class="row">
@@ -372,3 +464,49 @@
             <!-- Page body end -->
         </div>
     </div>
+
+    <div class="popup" [hidden]="popupDescuento">
+            <h4 class="sub-title">Crear descuento</h4>            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
+                        <input type="text" class="form-control" name="priceNormal" [(ngModel)]="priceNormal" placeholder="300.00" value="{{Item.priceNormal}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="input-group">
+                                <span >Precio Estándar: </span>  
+                                <span class="itemDiscount"> $ &nbsp;{{priceNormal}} </span> 
+                        </div>            
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
+                        <input type="text" class="form-control" name="priceDiscount" [(ngModel)]="priceDiscount" placeholder="200.00" value="{{Item.priceDiscount}}">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                            <div> 
+                                <span >Precio con descuento: $ </span> 
+                                <span > {{priceDiscount}} </span>
+                            </div> 
+                            <div class="itemDiscount"></div> 
+                    </div>
+                </div>
+            </div>        
+                    
+                    <div class="row">
+                        
+                        <div class="col-sm-2">
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptarDiscount()">Aceptar</button>
+                                </div>
+                        </div>
+                    </div>
+        
+        
+        </div>

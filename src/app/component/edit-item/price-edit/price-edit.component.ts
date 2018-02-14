@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-//import { Input } from '@angular/core/src/metadata/directives';
 import { Item } from '../../../model/item';
+import { Product } from '../../../model/product';
 
 @Component({
   selector: 'app-price-edit',
@@ -22,6 +22,7 @@ export class PriceEditComponent implements OnInit {
   datosProductPaymentMethod;
   datosProductPagoEnvio;
   datosProductWarranty;
+  product:Product=new Product();
 
   productCondition:string;
 productSaleConditions:string;
@@ -34,15 +35,24 @@ productPagoEnvio:string;
 productPeso:string;
 productVolumen:string;
 popupGarantia:boolean=true;
-  constructor() { 
-   console.log("Item: "+JSON.stringify(this.Item));
+nuevoB:boolean=false;
+usadoB:boolean=true;
+popupDescuento:boolean=true;
+popupEnvios:boolean=true;
+typeCat:string="Product";
+priceDiscount:number;
+priceNormal:number;
+checkedDiscount:boolean=false;
+price:number;
+  constructor() { this.Item.name
+   
   }
 
   ngOnInit() {
-  
+    console.log("Item: "+JSON.stringify(this.Item));
   }
   keyPress(event: any) {
-    const pattern = /[0-9\+\-\ ]/;
+    const pattern = /[0-9]/;
 
     let inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
@@ -53,12 +63,8 @@ popupGarantia:boolean=true;
     this.productCondition=provinceId;
    }
    popSinGarantia(event) {
-  
-    console.log("event:"+event.target.checked);
     if(event.target.checked==true)this.popupGarantia=true;
     else this.popupGarantia=false;
-    console.log("popupGarantia:"+this.popupGarantia);
-  
   }
 
   
@@ -99,17 +105,50 @@ popupGarantia:boolean=true;
     if(event.target.checked==true) this.productPagoEnvio="gratis";
   }
   popGarantia(event) {
-  
-    console.log("event:"+event.target.checked);
-    if(event.target.checked==true){this.popupGarantia=false;}
+    if(event.target.checked==true){this.popupGarantia=false;this.productWarranty="";}
     else this.popupGarantia=true;
-    console.log("popupGarantia:"+this.popupGarantia);
   
+  }
+  discountPrice(event){
+    if(event.target.checked==true){
+      this.popupDescuento=false;
+      this.priceNormal=this.Item.priceNormal;
+      this.priceDiscount=this.Item.priceDiscount;
+    }
+  }
+  test(event) {   
+    if(event.target.checked==true){
+      this.product.productFormDelivery="YingulEnvios"      
+      this.popupEnvios=false;
+    }
+    else {
+      this.popupEnvios=true;
+    }
+  }
+
+  test2(event) {   
+    if(event.target.checked==true){
+      this.product.productFormDelivery="YingulEnviosPersona";
+    }
+  }
+  aceptarDiscount(){
+    var a=this.priceNormal-this.priceDiscount;
+    if(a>0){
+    this.popupDescuento=true;
+    this.checkedDiscount=false;
+    this.product.yng_Item.priceDiscount=this.priceDiscount;
+    this.product.yng_Item.priceNormal=this.priceNormal;
+    this.price=this.priceDiscount;
+    }
+    else{
+      alert("Los valores no son válidos");
+    }
   }
   saveEdit(){
   }
 
   cancel(){
   }
+  
 
 }

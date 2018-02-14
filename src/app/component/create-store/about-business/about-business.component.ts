@@ -14,6 +14,7 @@ export class AboutBusinessComponent implements OnInit {
   @Input('Store') store:Store;
   categoryList:Category[];
   @Output() setStore = new EventEmitter();
+  categoryTemp:Category =new Category();
   constructor(private categoryService: ListCategoryService) { }
 
   ngOnInit() {
@@ -52,12 +53,15 @@ export class AboutBusinessComponent implements OnInit {
     this.setStore.emit(this.store);
   }
   setCategory(category:string){
+   // alert(category);
     if(category=="Property"||category=="Motorized"||category=="Service"||category=="Product"){
       this.store.itemsType=category;
       this.store.mainCategory=null;
     }else{
       this.store.itemsType="Product";
-      this.store.mainCategory.categoryId=Number(category);
+      this.categoryTemp.categoryId=Number(category);
+      this.store.mainCategory=this.categoryTemp;
+      //this.store.mainCategory.categoryId=Number(category);
     } 
   }
 }

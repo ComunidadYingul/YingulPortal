@@ -15,4 +15,11 @@
     border-bottom-left-radius: 50%;
     background-color: #ff5252;
     color: #ff5252;
+    float: left;
 }
+.h5-send {
+    color: #ff5252;
+    font-weight: normal;
+    font-size: 18px;
+    font-family: Arial;
+  }

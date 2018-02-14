@@ -24,7 +24,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
-                            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                            <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description">
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="row">
                         <div  class="col-sm-6" >
                             <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
-                                <option value="0">Indica la condición de tu producto</option>
+                                <option value="0" disabled>Indica la condición de tu producto</option>
                                 <option value="Nuevo">Nuevo</option>
                                 <option value="Usado">Usado</option>
                             </select>
