@@ -54,7 +54,10 @@ import { CreateFrontComponent } from './component/create-store/create-front/crea
 import { StoreService } from './service/store.service';
 import { StoreComponent } from './component/store/store.component';
 import { UserFrontComponent } from './component/user-front/user-front.component';
-
+import { FavoritesComponent } from './component/user-front/favorites/favorites.component';
+import { FavoriteService } from './service/favorite.service';
+import { UserProfileComponent } from './component/user-front/user-profile/user-profile.component';
+import { UserService } from './service/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +98,9 @@ import { UserFrontComponent } from './component/user-front/user-front.component'
     AboutBusinessComponent,
     CreateFrontComponent,
     StoreComponent,
-    UserFrontComponent
+    UserFrontComponent,
+    FavoritesComponent,
+    UserProfileComponent
 
   ],
   imports: [
@@ -117,7 +122,9 @@ import { UserFrontComponent } from './component/user-front/user-front.component'
     CategoryService,
     ItemService,
     UbicationService,
-    StoreService
+    StoreService,
+    FavoriteService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

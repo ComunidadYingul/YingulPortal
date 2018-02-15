@@ -19,7 +19,8 @@ import { CreateStoreComponent } from './component/create-store/create-store.comp
 import { AllStoresComponent } from './component/all-stores/all-stores.component';
 import { StoreComponent } from './component/store/store.component'; 
 import { UserFrontComponent } from './component/user-front/user-front.component';
-
+import { FavoritesComponent } from './component/user-front/favorites/favorites.component';
+import { UserProfileComponent } from './component/user-front/user-profile/user-profile.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -96,9 +97,16 @@ const appRoutes: Routes = [
     component: UserFrontComponent
   },
   {
+    path: 'userProfile',
+    component: UserProfileComponent
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent
+  },
+  {
     path: ':nameStore',
     component: StoreComponent
-
   }
 ];
 

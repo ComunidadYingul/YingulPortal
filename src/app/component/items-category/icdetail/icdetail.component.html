@@ -63,9 +63,9 @@
                         <form>
                             <div class="card-block">
                                 <div class="list-group" width="100%">
-                                    <a style="cursor: pointer;" (click)="findPrice(0,1500000)" class="list-group-item list-group-item-action list-group-item-success" >Hasta $1.500.000</a>
-                                    <a style="cursor: pointer;" (click)="findPrice(1500000,3500000)" class="list-group-item list-group-item-action list-group-item-success" >$1.500.000 a $3.500.000</a>
-                                    <a style="cursor: pointer;" (click)="findPrice(3500000,0)" class="list-group-item list-group-item-action list-group-item-success" >Más de $3.500.000</a>
+                                    <a style="cursor: pointer;" (click)="findPrice(0,minPrice)" class="list-group-item list-group-item-action list-group-item-success" >Hasta ${{minPrice}}</a>
+                                    <a style="cursor: pointer;" (click)="findPrice(minPrice,maxPrice)" class="list-group-item list-group-item-action list-group-item-success" >${{minPrice}} a ${{maxPrice}}</a>
+                                    <a style="cursor: pointer;" (click)="findPrice(maxPrice,0)" class="list-group-item list-group-item-action list-group-item-success" >Más de ${{maxPrice}}</a>
                                 </div>
                             </div>
                             <div class="card-footer text-right">

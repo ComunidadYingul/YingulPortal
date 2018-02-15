@@ -29,6 +29,12 @@ export class IcdetailComponent implements OnInit {
   cityList: Object[];
   cityListFive:Object[];
   provinceCard:boolean=false;
+  MediaPrice:number=0;
+  priceTotal:number=0;
+  minPrice:number=0;
+  maxPrice:number=0;
+  precioDesde:number;
+  precioHasta:number;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
   }
 
@@ -55,6 +61,12 @@ export class IcdetailComponent implements OnInit {
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             console.log(JSON.stringify(this.itemList));
+            for(var j=0; j<this.itemList.length; j++){
+              this.priceTotal=this.priceTotal+this.itemList[j].price;
+            }
+            this.MediaPrice=this.priceTotal/this.itemList.length;
+            this.minPrice=this.MediaPrice-(this.MediaPrice*0.4);
+            this.maxPrice=this.MediaPrice+(this.MediaPrice*0.4);
       		},
       		error => console.log(error)
     );
@@ -118,5 +130,30 @@ export class IcdetailComponent implements OnInit {
     this.popupHide();
     this.provinceCard=true;
     this.cityCard=true;
+  }
+  findPrice(precioDesde:number,precioHasta:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(precioHasta==0){
+        if(this.itemList[i].price>=precioDesde){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }else{
+        if(this.itemList[i].price>=precioDesde && this.itemList[i].price<=precioHasta){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+  }
+  findPrice1(){
+    if(!this.precioDesde){
+      this.precioDesde=0;
+    }
+    if(!this.precioHasta){
+      this.precioHasta=0;
+    }
+    this.findPrice(this.precioDesde,this.precioHasta);
   }
 }

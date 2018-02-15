@@ -33,7 +33,7 @@
                                   <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
                                       <i class="icofont icofont-eye-alt f-20"></i>
                                   </a>
-                                  <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                  <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
                                       <i class="icofont icofont-heart-alt f-20"></i>
                                   </button>
                               </div>
@@ -41,7 +41,7 @@
                                   <!--ruta para la imagenes en desarrollo -->
                                   <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
                               </a>
-                              <div class="p-sale">SALE</div>
+                              <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
                               <div [hidden]="envioIcon(item.itemId)" class=""><a>
                     <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
                 </a><!--Envió gratis.--></div>
