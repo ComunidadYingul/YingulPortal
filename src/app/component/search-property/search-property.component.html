@@ -27,7 +27,7 @@
         <div class="card-header">Categorias</div>
             <div class="card-block">
                 <div class="list-group" width="100%">
-                    <a *ngFor="let category of tensubCategoryList" class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
+                    <a *ngFor="let category of tensubCategoryList" class="list-group-item list-group-item-action " href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
                     <a style="cursor: pointer;" (click)="popupCategory()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
           <form>
             <div class="card-block">
                 <div class="list-group" width="100%">
-                    <a *ngFor="let province of provinceListFive" style="cursor: pointer;" (click)="findProvince(province.provinceId)" class="list-group-item list-group-item-action list-group-item-success" >{{province.name}}</a>
+                    <a *ngFor="let province of provinceListFive" style="cursor: pointer;" (click)="findProvince(province.provinceId)" class="list-group-item list-group-item-action " >{{province.name}}</a>
                     <a style="cursor: pointer;" (click)="popupProvince()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
                 </div>
             </div>
@@ -50,7 +50,7 @@
           <form>
             <div class="card-block">
                 <div class="list-group" width="100%">
-                    <a *ngFor="let city of cityListFive" style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action list-group-item-success" >{{city.name}}</a>
+                    <a *ngFor="let city of cityListFive" style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action " >{{city.name}}</a>
                     <a style="cursor: pointer;" (click)="popupCity()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
                 </div>
             </div>
@@ -62,9 +62,9 @@
             <form>
                 <div class="card-block">
                     <div class="list-group" width="100%">
-                        <a style="cursor: pointer;" (click)="findPrice(0,1500000)" class="list-group-item list-group-item-action list-group-item-success" >Hasta $1.500.000</a>
-                        <a style="cursor: pointer;" (click)="findPrice(1500000,3500000)" class="list-group-item list-group-item-action list-group-item-success" >$1.500.000 a $3.500.000</a>
-                        <a style="cursor: pointer;" (click)="findPrice(3500000,0)" class="list-group-item list-group-item-action list-group-item-success" >Más de $3.500.000</a>
+                        <a style="cursor: pointer;" (click)="findPrice(0,1500000)" class="list-group-item list-group-item-action " >Hasta $1.500.000</a>
+                        <a style="cursor: pointer;" (click)="findPrice(1500000,3500000)" class="list-group-item list-group-item-action " >$1.500.000 a $3.500.000</a>
+                        <a style="cursor: pointer;" (click)="findPrice(3500000,0)" class="list-group-item list-group-item-action " >Más de $3.500.000</a>
                     </div>
                 </div>
                 <div class="card-footer text-right">
@@ -136,7 +136,7 @@
     <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let province of provinceList">
-                <a style="cursor: pointer;" (click)="findProvince(province.provinceId)" class="list-group-item list-group-item-action list-group-item-success" >{{province.name}}</a>
+                <a style="cursor: pointer;" (click)="findProvince(province.provinceId)" class="list-group-item list-group-item-action " >{{province.name}}</a>
             </div>
         </div>
     </div>
@@ -149,7 +149,7 @@
     <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let city of cityList">
-                <a style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action list-group-item-success" >{{city.name}}</a>
+                <a style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action " >{{city.name}}</a>
             </div>
         </div>
     </div>
@@ -162,7 +162,7 @@
     <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let category of subCategoryListTemp">
-                <a  class="list-group-item list-group-item-action list-group-item-success" href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
+                <a  class="list-group-item list-group-item-action " href="/searchMotorized/{{category.categoryId}}/{{minPrice}}/{{maxPrice}}/{{minYear}}/{{maxYear}}">{{category.name}}</a>
             </div>
         </div>
     </div>
