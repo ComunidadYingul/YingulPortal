@@ -16,10 +16,13 @@
     background-color: #ff5252;
     color: #ff5252;
     float: left;
+    margin-left: 20px;
 }
 .h5-send {
     color: #ff5252;
     font-weight: normal;
     font-size: 18px;
     font-family: Arial;
+    float: left;
+    margin-left: 10px;
   }

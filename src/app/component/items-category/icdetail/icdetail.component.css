@@ -15,3 +15,16 @@
     border: 5px solid #28e1bd;
 	
 }
+@media screen and (max-width: 800px) {
+    .phone {        
+        display: none;
+	}
+	.phoneMirrow{
+		display: inline;
+	}
+}
+@media screen and (min-width: 801px) {
+	.phoneMirrow2{
+		display: none;
+	}
+}

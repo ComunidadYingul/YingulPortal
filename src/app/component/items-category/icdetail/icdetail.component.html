@@ -22,8 +22,8 @@
         <!-- Page body start -->
         <div class="page-body">
             <div class="row">
-                <div class="col-sm-3 card-block-big">
-
+                <div class="col-sm-3 card-block-big phone">
+                
                     <div class="card" *ngIf="tensubCategoryList">
                     <div class="card-header">Categorias</div>
                         <div class="card-block">
@@ -110,7 +110,7 @@
                                                         <img width="200" height="200" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid" alt="{{item.principalImage}}">
                                                     </td>
                                                     <td class="pro-name">
-                                                        <h6> {{item.name}} </h6>
+                                                        <a href="/itemDetail/{{item.itemId}}"> <h6> {{item.name}} </h6></a>
                                                         <span>{{item.description}}</span>
                                                     </td>
                                                     <td>$ {{item.price}}</td>
@@ -129,6 +129,65 @@
                         </div>
                     </div>
                     <!-- Product list card end -->
+                </div>
+                <div class="col-sm-3 card-block-big phoneMirrow phoneMirrow2">
+                
+                    <div class="card" *ngIf="tensubCategoryList">
+                    <div class="card-header">Categorias</div>
+                        <div class="card-block">
+                            <div class="list-group" width="100%">
+                                <a *ngFor="let category of tensubCategoryList" class="list-group-item list-group-item-action list-group-item-success" href="/itemsCategory/{{category.categoryId}}">{{category.name}}</a>
+                                <a style="cursor: pointer;" (click)="popupCategory()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" [hidden]="provinceCard">
+                        <div class="card-header" >Ubicación</div>
+                        <form>
+                        <div class="card-block">
+                            <div class="list-group" width="100%">
+                                <a *ngFor="let province of provinceListFive" style="cursor: pointer;" (click)="findProvince(province.provinceId)" class="list-group-item list-group-item-action list-group-item-success" >{{province.name}}</a>
+                                <a style="cursor: pointer;" (click)="popupProvince()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+            
+                    <div class="card" [hidden]="cityCard">
+                        <div class="card-header">Ciudades y Barrios</div>
+                        <form>
+                        <div class="card-block">
+                            <div class="list-group" width="100%">
+                                <a *ngFor="let city of cityListFive" style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action list-group-item-success" >{{city.name}}</a>
+                                <a style="cursor: pointer;" (click)="popupCity()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+            
+                    <div class="card">
+                        <div class="card-header">Precio</div>
+                        <form>
+                            <div class="card-block">
+                                <div class="list-group" width="100%">
+                                    <a style="cursor: pointer;" (click)="findPrice(0,minPrice)" class="list-group-item list-group-item-action list-group-item-success" >Hasta ${{minPrice}}</a>
+                                    <a style="cursor: pointer;" (click)="findPrice(minPrice,maxPrice)" class="list-group-item list-group-item-action list-group-item-success" >${{minPrice}} a ${{maxPrice}}</a>
+                                    <a style="cursor: pointer;" (click)="findPrice(maxPrice,0)" class="list-group-item list-group-item-action list-group-item-success" >Más de ${{maxPrice}}</a>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <div class="row" >
+                                    <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
+                                    <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
+                                    <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null&&precioHasta!=null"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                                    <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null&&precioHasta==null" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                                    <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde==null&&precioHasta!=null"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+            
                 </div>
             </div>
         </div>
