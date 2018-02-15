@@ -58,6 +58,7 @@ import { FavoritesComponent } from './component/user-front/favorites/favorites.c
 import { FavoriteService } from './service/favorite.service';
 import { UserProfileComponent } from './component/user-front/user-profile/user-profile.component';
 import { UserService } from './service/user.service';
+import { FooterComponent } from './component/index/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +101,8 @@ import { UserService } from './service/user.service';
     StoreComponent,
     UserFrontComponent,
     FavoritesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FooterComponent
 
   ],
   imports: [
