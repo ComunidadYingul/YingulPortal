@@ -35,6 +35,10 @@ export class IcdetailComponent implements OnInit {
   maxPrice:number=0;
   precioDesde:number;
   precioHasta:number;
+  popup5:boolean=true;
+  popup6:boolean=true;
+  popup7:boolean=true;
+  popup8:boolean=true;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
   }
 
@@ -85,17 +89,26 @@ export class IcdetailComponent implements OnInit {
   }
   popupCategory(){
     this.popup=false;
+    this.popup7=true;
+    this.popup5=true;
   }
   popupHide(){
     this.popup=true;
     this.popup3=true;
     this.popup4=true;
+    this.popup5=true;
+    this.popup6=true;
+    this.popup7=true;
+    this.popup8=true;
   }
   popupProvince(){
     this.popup3=false;
+    this.popup5=true;
+    this.popup8=true;
   }
   popupCity(){
     this.popup4=false;
+    this.cityCard=true;
   }
   findProvince(a:number){
     this.sellService.getCities(a).subscribe(
@@ -155,5 +168,17 @@ export class IcdetailComponent implements OnInit {
       this.precioHasta=0;
     }
     this.findPrice(this.precioDesde,this.precioHasta);
+  }
+  filterHidden(){
+    this.popup5=false;  
+  }
+  popupPrice(){
+    this.popup6=false;
+  }
+  popupUbication(){
+    this.popup8=false;
+  }
+  popupCategorys(){
+    this.popup7=false;
   }
 }
