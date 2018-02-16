@@ -13,15 +13,15 @@ export class QueryServiceService {
   constructor(private http:Http) { }
 
   getQueriesByUser(username : string){
-    let url = "http://localhost:8080/query/Number/"+username;
+    let url = "http://192.168.100.12:8080/query/Number/"+username;
     return this.http.get(url);
   }
   getQueriesListByUser(username : string){
-    let url = "http://localhost:8080/query/Queries/"+username;
+    let url = "http://192.168.100.12:8080/query/Queries/"+username;
     return this.http.get(url);
   }
   postAnswerQuery(query:Object){
-    let url: string ='http://localhost:8080/query/answer';
+    let url: string ='http://192.168.100.12:8080/query/answer';
     return this.http.post(url, query,{headers: this.headers})
   }
 }

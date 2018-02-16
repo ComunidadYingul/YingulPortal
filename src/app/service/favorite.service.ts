@@ -14,23 +14,23 @@ export class FavoriteService {
     
   }
   createFavorite(itemId:number,username:string){
-    let url = "http://localhost:8080/favorite/create/"+itemId+"/"+username;
+    let url = "http://192.168.100.12:8080/favorite/create/"+itemId+"/"+username;
     return this.http.get(url);
   }
   deleteFavorite(itemId:number,username:string){
-    let url = "http://localhost:8080/favorite/delete/"+itemId+"/"+username;
+    let url = "http://192.168.100.12:8080/favorite/delete/"+itemId+"/"+username;
     return this.http.get(url);
   }
   getFavorite(username:string){
-    let url = "http://localhost:8080/favorite/getFavorite/"+username;
+    let url = "http://192.168.100.12:8080/favorite/getFavorite/"+username;
     return this.http.get(url);
   }
   deleteFavorites(deleteList:number[]){
-    let url: string ='http://localhost:8080/favorite/deleteFavorites';
+    let url: string ='http://192.168.100.12:8080/favorite/deleteFavorites';
     return this.http.post(url, deleteList,{headers: this.headers})
   }
   getItemFavorite(username:string){
-    let url = "http://localhost:8080/favorite/getItemFavorite/"+username;
+    let url = "http://192.168.100.12:8080/favorite/getItemFavorite/"+username;
     return this.http.get(url);
   }
 }

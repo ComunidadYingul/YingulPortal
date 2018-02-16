@@ -21,13 +21,13 @@ export class SingupService {
   constructor(private http: Http) { }
 
   signUp(person : Person) {
-    let url = "http://localhost:8080/signup";
+    let url = "http://192.168.100.12:8080/signup";
     //convertir objeto a string
     //alert(JSON.stringify(person));
     return this.http.post(url ,person, {headers: this.headers});
   }
   signUpBusiness(business : Business) {
-    let url = "http://localhost:8080/business";
+    let url = "http://192.168.100.12:8080/business";
     //convertir objeto a string
     //alert(JSON.stringify(person));
     return this.http.post(url ,business, {headers: this.headers});

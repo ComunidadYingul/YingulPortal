@@ -11,7 +11,7 @@ export class UserService {
   });
   constructor(private http:Http) { }
   getPerson(username:string){
-    let url = "http://localhost:8080/user/person/"+username;
+    let url = "http://192.168.100.12:8080/user/person/"+username;
     return this.http.get(url);
   }
 }
