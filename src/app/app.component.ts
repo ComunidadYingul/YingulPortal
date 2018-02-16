@@ -11,6 +11,7 @@ export class AppComponent {
   menu: boolean=true;
   loggedIn: boolean=false;
 	User: user=new user();
+	more:boolean=true;
   menuE(ev){
     this.menu=!this.menu;
   }

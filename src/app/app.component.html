@@ -1772,14 +1772,89 @@
                     </div>
                 </nav>
                 <div class="pcoded-content">
-                    <div [ngClass]="(menu==false)?'pcoded-content':'pcoded-content1'">
-                        <router-outlet></router-outlet>
-                    </div>
-                    <!-- Warning Section Starts -->
-
-                    <div id="styleSelector">
-
-                    </div>
+                    <router-outlet></router-outlet>
+                    <div class="card">
+                        <div class="row">
+                          <div class="col-sm-12" >
+                            <div style="text-align: center;">
+                                <div class="btn-group dropdown-split-default" >
+                                    <button style="background: white; color: #666; font-size: 13px;" type="button" class="btn ">Más información</button>
+                                    <button [hidden]="!more" (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn "><i class="icofont icofont-rounded-down"></i></button>
+                                    <button [hidden]="more" (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn "><i class="icofont icofont-rounded-up"></i></button>
+                                </div>
+                            </div>
+                              <div style="padding-left:4em; padding-right:4em;" class="table-responsive" [hidden]="more">
+                                  <table class="table">
+                                      <thead>
+                                          <tr style="color: #333; font-size: 14px;" class="text-capitalize">
+                                              <th>Acerca de</th>
+                                              <th>Otros sitios</th>
+                                              <th>Ayuda</th>
+                                              <th>Redes sociales</th>
+                                              <th>Mi cuenta</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody style="color: #999; font-size: 14px; line-height: 0;">
+                                          <tr>
+                                              <td>Yingul</td>
+                                              <td>Developers</td>
+                                              <td>Comprar</td>
+                                              <td>Twiter</td>
+                                              <td>Resúmen</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Investor relations</td>
+                                              <td>Yingul Pay</td>
+                                              <td>Vender</td>
+                                              <td>Facebook</td>
+                                              <td>Favoritos</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Mapa de sítio</td>
+                                              <td>Yingul Shop</td>
+                                              <td>Resolución de problemas</td>
+                                              <td>Instagram</td>
+                                              <td>Vender</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Tendencias</td>
+                                              <td>Yingul Express</td>
+                                              <td>Centro de seguridad</td>
+                                              <td>Youtube</td>
+                                              <td></td>
+                                          </tr>
+                                          <tr>
+                                              <td></td>
+                                              <td>Yingul Libre Publicidad</td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                          </tr>
+                                          <tr>
+                                              <td></td>
+                                              <td>Yingul Libre Ideas</td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <hr>
+                              <div>
+                                <div class="row" >
+                                    <div class="col-sm-8">
+                                        <p style="font-size: 14px; line-height: 0; padding-left:4em"> Trabajá con nosotros &nbsp; Términos y condiciones &nbsp; Políticas de privacidad &nbsp; Ayuda</p>
+                                        <p style="padding-left:4em; color: #999; font-size: 13px; line-height: 0; "> Copyright © 1999-2018 Yingul S.R.L</p>    
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn" style="background-color: #ff5e3a; border-color: #ff5e3a; color: #fff; cursor: pointer; transition: all ease-in 0.3s;"><i class="icofont icofont-ui-touch-phone"></i>¡Descargá gratis la app de Yingul!</button>
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div> 

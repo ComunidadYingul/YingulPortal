@@ -48,7 +48,7 @@ p { font-size: 13px; }
 /**====== Main-body css end ======**/
 /**  ===================== Card-Layout css start
 ==========================  **/
-.card { border-radius: 2px; border-top: 4px solid #8CDDCD; box-shadow: 0 2px 1px rgba(0, 0, 0, 0.05); border-left: none; border-right: none; border-bottom: none; margin-bottom: 30px; }
+.card { border-radius: 2px; border-top: 4px solid #fff; box-shadow: 0 2px 1px rgba(0, 0, 0, 0.05); border-left: none; border-right: none; border-bottom: none; margin-bottom: 30px; }
 .card .card-footer { background-color: #fff; }
 .card .card-header { background-color: transparent; padding: 15px 20px; }
 .card .card-header .card-header-left { display: inline-block; }
