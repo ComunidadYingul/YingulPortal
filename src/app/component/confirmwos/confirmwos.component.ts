@@ -10,10 +10,12 @@ export class ConfirmwosComponent implements OnInit {
   confirmId: number;
   constructor(private route:ActivatedRoute) { 
     this.confirmId =route.snapshot.params['confirmId'];
-    alert(this.confirmId);
   }
 
   ngOnInit() {
+  }
+  resolved(captchaResponse:string){
+    alert('Resolved captcha with response');
   }
 
 }

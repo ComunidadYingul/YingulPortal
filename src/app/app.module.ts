@@ -61,6 +61,7 @@ import { UserService } from './service/user.service';
 import { FooterComponent } from './component/index/footer/footer.component';
 import { ConfirmwsComponent } from './component/confirmws/confirmws.component';
 import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,7 +111,8 @@ import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    RecaptchaModule.forRoot()
   ],
   providers: [
     LoginService,
