@@ -59,6 +59,8 @@ import { FavoriteService } from './service/favorite.service';
 import { UserProfileComponent } from './component/user-front/user-profile/user-profile.component';
 import { UserService } from './service/user.service';
 import { FooterComponent } from './component/index/footer/footer.component';
+import { ConfirmwsComponent } from './component/confirmws/confirmws.component';
+import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,10 +91,8 @@ import { FooterComponent } from './component/index/footer/footer.component';
     PropertyComponent,
     SearchMotorizedComponent,
     SearchPropertyComponent,
-
     EditItemComponent,
     PriceEditComponent,
-
     CreateStoreComponent,
     StoresComponent,
     AllStoresComponent,
@@ -102,8 +102,9 @@ import { FooterComponent } from './component/index/footer/footer.component';
     UserFrontComponent,
     FavoritesComponent,
     UserProfileComponent,
-    FooterComponent
-
+    FooterComponent,
+    ConfirmwsComponent,
+    ConfirmwosComponent,
   ],
   imports: [
     BrowserModule,

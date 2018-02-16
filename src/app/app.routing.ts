@@ -21,6 +21,8 @@ import { StoreComponent } from './component/store/store.component';
 import { UserFrontComponent } from './component/user-front/user-front.component';
 import { FavoritesComponent } from './component/user-front/favorites/favorites.component';
 import { UserProfileComponent } from './component/user-front/user-profile/user-profile.component';
+import { ConfirmwsComponent } from './component/confirmws/confirmws.component';
+import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -103,6 +105,14 @@ const appRoutes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent
+  },
+  {
+    path: 'confirmws/:confirmId',
+    component: ConfirmwsComponent
+  },
+  {
+    path: 'confirmwos/:confirmId',
+    component: ConfirmwosComponent
   },
   {
     path: ':nameStore',
