@@ -62,6 +62,10 @@ import { FooterComponent } from './component/index/footer/footer.component';
 import { ConfirmwsComponent } from './component/confirmws/confirmws.component';
 import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { ConfirmService } from './service/confirm.service';
+import { FrontYingulPayComponent } from './component/front-yingul-pay/front-yingul-pay.component';
+import { BalanceComponent } from './component/front-yingul-pay/balance/balance.component';
+import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdraw.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,6 +110,9 @@ import { RecaptchaModule } from 'ng-recaptcha';
     FooterComponent,
     ConfirmwsComponent,
     ConfirmwosComponent,
+    FrontYingulPayComponent,
+    BalanceComponent,
+    WithdrawComponent,
   ],
   imports: [
     BrowserModule,
@@ -129,7 +136,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
     UbicationService,
     StoreService,
     FavoriteService,
-    UserService
+    UserService,
+    ConfirmService
   ],
   bootstrap: [AppComponent]
 })
