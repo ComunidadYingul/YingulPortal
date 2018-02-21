@@ -21,6 +21,11 @@ import { StoreComponent } from './component/store/store.component';
 import { UserFrontComponent } from './component/user-front/user-front.component';
 import { FavoritesComponent } from './component/user-front/favorites/favorites.component';
 import { UserProfileComponent } from './component/user-front/user-profile/user-profile.component';
+import { ConfirmwsComponent } from './component/confirmws/confirmws.component';
+import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component';
+import { FrontYingulPayComponent } from './component/front-yingul-pay/front-yingul-pay.component';
+import { BalanceComponent } from './component/front-yingul-pay/balance/balance.component';
+import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdraw.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -103,6 +108,26 @@ const appRoutes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent
+  },
+  {
+    path: 'confirmws/:confirmId',
+    component: ConfirmwsComponent
+  },
+  {
+    path: 'confirmwos/:confirmId',
+    component: ConfirmwosComponent
+  },
+  {
+    path: 'frontYingulPay',
+    component: FrontYingulPayComponent
+  },
+  {
+    path: 'userBalance',
+    component: BalanceComponent
+  },
+  {
+    path: 'withdraw',
+    component: WithdrawComponent
   },
   {
     path: ':nameStore',

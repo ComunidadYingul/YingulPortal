@@ -1,0 +1,90 @@
+<!-- Main-body start -->
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page header start -->
+        <div class="page-header">
+            <div class="page-header-title">
+                <h4>Confirmar entrega de producto</h4>
+            </div>
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="/index">
+                            <i class="icofont icofont-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="">Confirmar entrega</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Page header end -->
+        <!-- Page body start -->
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Product edit card start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Confirmar entrega de producto en persona</h5>
+                        </div>
+                        <div class="card-block">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="product-edit">
+                                        <div class="tab-content">
+                                            <form class="md-float-material card-block">
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="icofont icofont-ssl-security"></i></span>
+                                                            <input name="codeConfirm" [(ngModel)]="codeConfirm" type="text" class="form-control" placeholder="Código de confirmación" (ngModelChange)="changeInput()" maxlength="4">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                    </div>
+                                                    <div class="col-sm-4" *ngIf="codeConfirm>999&&codeConfirm<=9999">
+                                                        <re-captcha (resolved)="resolved($event)" siteKey="6Lfv2EYUAAAAAIVxjK9Rs_mkpH-gzqeKZZEMBsE_"></re-captcha>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="text-center">
+                                                            <button [disabled]="enabled==false" (click)="onConfirm()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">Confirmar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product edit card end -->
+                </div>
+            </div>
+        </div>
+        <!-- Page body end -->
+    </div>
+</div>
+<!-- Main-body end -->
+
+<div class="popup" align="center" [hidden]="popup">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
+    </div>
+</div>

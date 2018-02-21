@@ -30,7 +30,7 @@ export class BuyComponent implements OnInit {
   hidConf:boolean;
   public paymentMethod:PaymentMethod= new PaymentMethod();
  
-    constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
+  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
     this.itemId =route.snapshot.params['itemId'];
     this.quantity = route.snapshot.params['quantity'];
     this.postalCode=route.snapshot.params['postalCode'];
