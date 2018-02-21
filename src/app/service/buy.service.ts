@@ -15,31 +15,31 @@ export class BuyService {
   });
   constructor(private http:Http) { }
   getListCreditCard() {
-    let url = "http://192.168.100.12:8080/buy/listCreditCard/all";
+    let url = "http://localhost:8080/buy/listCreditCard/all";
     return this.http.get(url);
   }
   getCardProvider(listCreditCardId:string){
-    let url = "http://192.168.100.12:8080/buy/getCreditCardProvider/"+listCreditCardId;
+    let url = "http://localhost:8080/buy/getCreditCardProvider/"+listCreditCardId;
     return this.http.get(url);
   }
   getCardForUser(username:string){
-    let url = "http://192.168.100.12:8080/buy/getCardForUser/"+username;
+    let url = "http://localhost:8080/buy/getCardForUser/"+username;
     return this.http.get(url);
   }
   saveBuy(buy:Buy){
-    let _url: string ='http://192.168.100.12:8080/buy/createBuy';
+    let _url: string ='http://localhost:8080/buy/createBuy';
     return this.http.post(_url, buy,{headers: this.headers})
   }
   saveEnvio(envio:AndreaniEnvios){
-    let _url: string ='http://192.168.100.12:8080/logistics/envio';
+    let _url: string ='http://localhost:8080/logistics/envio';
     return this.http.post(_url, envio,{headers: this.headers})
   }
   updateUser(user:user){
-    let _url: string ='http://192.168.100.12:8080/buy/updateUser';
+    let _url: string ='http://localhost:8080/buy/updateUser';
     return this.http.post(_url, user,{headers: this.headers})
   }
   getSwForData(username:string){
-    let url = "http://192.168.100.12:8080/buy/getSwForUser/"+username;
+    let url = "http://localhost:8080/buy/getSwForUser/"+username;
     return this.http.get(url);
   }
   getDataForBuyer(){

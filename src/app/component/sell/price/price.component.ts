@@ -176,7 +176,7 @@ export class PriceComponent implements OnInit {
       //this.product.$emailService=this.email;
       this.product.yng_Item.user.webSite=this.webSite;
       this.product.yng_Item.price=this.price;
-      this.product.yng_Item.money="1";      
+      this.product.yng_Item.money="ARS";      
       //this.product.
       //this.product.$cobertureZone=this.cobertureZone;
       this.product.productPaymentMethod=this.productPaymentMethod;

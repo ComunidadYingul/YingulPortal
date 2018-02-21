@@ -14,15 +14,15 @@ export class StoreService {
 
   constructor(private http:Http) { }
   createStore(store:Store){
-    let _url: string ='http://192.168.100.12:8080/store/create';
+    let _url: string ='http://localhost:8080/store/create';
     return this.http.post(_url, store,{headers: this.headers});
   }
   findStoreByName(nameStore:string){
-    let url = "http://192.168.100.12:8080/store/findByName/"+nameStore;
+    let url = "http://localhost:8080/store/findByName/"+nameStore;
     return this.http.get(url);
   }
   findAll(){
-    let url = "http://192.168.100.12:8080/store/all";
+    let url = "http://localhost:8080/store/all";
     return this.http.get(url);
   }
 }
