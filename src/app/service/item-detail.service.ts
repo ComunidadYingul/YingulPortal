@@ -73,6 +73,27 @@ export class ItemDetailService {
     let url = "http://localhost:8080/item/query";
     return this.http.post(url ,query, {headers: this.headers});
   }
+  
+  getItemTypeEdit(itemId : number) {
+    let url = "http://localhost:8080/item/type/"+itemId;
+    return this.http.get(url);
+  }
 
+  getProductByIdItem(itemId : number){
+    let url = "http://localhost:8080/item/product/"+itemId;
+    return this.http.get(url);
+  }
+  postUpdateProduct(product:Object){
+    let url = "http://localhost:8080/item/product/update";
+    return this.http.post(url ,product, {headers: this.headers});
+  }
+  postUpdateMotorized(product:Object){
+    let url = "http://localhost:8080/item/motorized/update";
+    return this.http.post(url ,product, {headers: this.headers});
+  }
+  postUpdateProperty(product:Object){
+    let url = "http://localhost:8080/item/property/update";
+    return this.http.post(url ,product, {headers: this.headers});
+  }
 }
 

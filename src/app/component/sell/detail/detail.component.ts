@@ -552,7 +552,7 @@ popGarantia(event) {
 popSinGarantia(event) {
   
   console.log("event:"+event.target.checked);
-  if(event.target.checked==true)this.popupGarantia=true;
+  if(event.target.checked==true){this.popupGarantia=true;this.productWarranty="";}
   else this.popupGarantia=false;
   console.log("popupGarantia:"+this.popupGarantia);
 

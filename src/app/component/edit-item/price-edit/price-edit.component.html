@@ -70,8 +70,8 @@
                                             </ul>
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div ngSwitch="{{typeCat}}">
-                                                    <div *ngSwitchCase="'Product'">
+                                                <!--div ngSwitch="{{typeCat}}"-->
+                                                    <!--div *ngSwitchCase="'Product'"-->
                                                         <div class="tab-pane active" id="home7" role="tabpanel">
                                                             <form class="md-float-material card-block">
                                                                 <div class="row">
@@ -109,13 +109,14 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div [hidden]="hiddenEditProd">
                                                                 <div class="row">
                                                                     <div  class="col-sm-6" >
                                                                         <div class="input-group">
                                                                             <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
                                                                                 <option value="0" disabled>Indica la condición de tu producto</option>
-                                                                                <option value="Nuevo" [selected]="nuevoB">Nuevo</option>
-                                                                                <option value="Usado" [selected]="usadoB">Usado</option>
+                                                                                <option value="Nuevo" [selected]="nuevoBbo()">Nuevo</option>
+                                                                                <option value="Usado" [selected]="usadoBbo()">Usado</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>                                                                  
@@ -125,7 +126,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
-                                                                            <input type="text" class="form-control"  placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity" value="{{this.Item.productQuantity}}">
+                                                                            <input type="text" class="form-control"  placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -133,7 +134,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
-                                                                            <input type="text" class="form-control"  placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso" value="{{this.Item.productPeso}}">
+                                                                            <input type="text" class="form-control"  placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -141,7 +142,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
-                                                                            <input type="text" class="form-control"  placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen" value="{{this.Item.productVolumen}}">
+                                                                            <input type="text" class="form-control"  placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -160,20 +161,20 @@
                                                                                     <tbody [hidden]="false">
                                                                                         <tr>
                                                                                             <td>
-                                                                                                <input type="radio" name="shippingMethod" value="normal" (click)="popGarantia($event)" >Con garantía<br>
+                                                                                                <input type="radio" name="Warranty"  (click)="popGarantia($event)" [checked]="garantiaB()">Con garantía<br>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr [hidden]="popupGarantia">
                                                                                             <div class="syi-input-countdown">
                                                                                                 <span>
-                                                                                                    <textarea maxlength="250" class="" type="textarea" name="productWarranty" [(ngModel)]="productWarranty" value="{{this.Item.productWarranty}}"></textarea>
+                                                                                                    <textarea maxlength="250" class="" type="textarea" name="productWarranty" [(ngModel)]="productWarranty"></textarea>
                                                                                                 </span>
                                                                                                 <p class="ui-countdown">Máximo 250 caracteres.</p>
                                                                                             </div>                                            
                                                                                         </tr> 
                                                                                         <tr>
                                                                                             <td>
-                                                                                                <input type="radio" name="shippingMethod" value="normal2" (click)="popSinGarantia($event)">Sin garantía<br>
+                                                                                                <input type="radio" name="Warranty" (click)="popSinGarantia($event)" [checked]="sinGarantiaB()">Sin garantía<br>
                                                                                             </td>                                                                                          
                                                                                         </tr>                                                
                                                                                     </tbody>                                                                                
@@ -193,39 +194,209 @@
                                                                         </div>
                                                     
                                                                 </div>
-                                                    
                                                                 <div class="row">
-                                                                        <hr class="m-t-20 m-b-20">
+                                                                    <hr class="m-t-20 m-b-20">
                                                                         <div class="col-sm-12">
                                                                                 <div class="table-responsive" >
                                                                                     <table class="table  invoice-detail-table">
                                                     
-                                                                                        <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express<br>
+                                                                                        <input type="checkbox"  (click)="test($event)" [checked]="formDeliveryB()">Ofrecer envíos por Yingul Express<br>
                                                                                         <tbody [hidden]="popupEnvios">
                                                                                             <tr>
                                                                                                 <td class="radio radiofill radio-inline">
-                                                                                                    <input type="radio" name="shippingMethod" value="normal" (click)="envioComprador($event)" >Envío a cargo del comprador<br>
+                                                                                                    <input type="radio" name="shippingMethod"  (click)="envioComprador($event)" [checked]="envioCompradorB()">Envío a cargo del comprador<br>
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td class="radio radiofill radio-inline"> 
-                                                                                                    <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                                                                    <input type="radio" name="shippingMethod"  (click)="envioGratis($event)" [checked]="envioGratisB()">Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
 
-                                                                                        <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
+                                                                                        <input type="checkbox"  (click)="test2($event)"  [checked]="formDeliveryP()" [disabled]="disabledRPerson">También ofrecer retiro en persona
                                                                                     </table>
                                                                                 </div>
                                                                         </div>
                                                                     <hr class="m-t-20 m-b-10">
+                                                                </div>
+                                                            </div>
 
+                                                            <div [hidden]="hiddenEditProp">
+                                                                    <h5>Datos de Inmueble</h5>
+                
+                                                                    <p class="ch-form-hint">* Datos obligatorios</p>  
+                                                                    <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                    <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                    <div class="input-group">
+                                                                                        <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                        <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
+                                                                                    </div>
+                                                                            </div>
+                                                                    
+                                                                        </div>
+                                                        
+                                                                        <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="input-group">
+                                                                                        <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                        <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Años de Antigüedad" name="propertyYear" [(ngModel)]="propertyYear">
+                                                                                    </div>
+                                                                                </div>
+                                                        
+                                                                        
+                                                                        </div>
+                                                        
+                                                                        <h5>Comodidades y amenities</h5>
+                                                                        <div class="row">
+                                                                        <div  class="col-sm-8" *ngFor="let amenities of amenitiesList">
+                                                                            <label class="custom-control custom-checkbox" >
+                                                                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmenities(amenities)">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <span class="custom-control-description">{{amenities.name}}</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        </div>
+                                                        
+                                                                        <h5>Ambientes</h5>
+                                                                        <div class="row">
+                                                                        <div  class="col-sm-8" *ngFor="let ambient of ambientList">
+                                                                            <label class="custom-control custom-checkbox" >
+                                                                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmbient(ambient)">
+                                                                            <span class="custom-control-indicator"></span>
+                                                                            <span class="custom-control-description">{{ambient.name}}</span>
+                                                                            </label>
+                                                                        </div>
+                                                                        </div>
+                                                            </div>
+                                                            <div [hidden]="hiddenEditMoto">
+
+                                                                    <h5>Datos de Vehículo</h5>
+                
+                                                                    <p class="ch-form-hint">* Datos obligatorios</p>        
+                                                                    
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                <input type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="motorizedYear" [(ngModel)]="motorizedYear">
+                                                                            </div>
+                                                                        </div>
+                                                                
+                                                                    </div>
+                                                    
+                                                                    <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                    <input type="text" class="form-control" placeholder="Modelo" name="motorizedModel" [(ngModel)]="motorizedModel">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                    <ul class="ch-form-options ch-box-list ch-leftcolumn">
+                                                                                        <li class="ch-form-row">
+                                                                                            <input type="checkbox" name="motorizedUnicoDue" id="motorizedUnicoDue" class="" [(ngModel)]="motorizedUnicoDue">
+                                                                                            <label for="motorizedUnicoDue" class="">Único dueño</label>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                            </div>
+                                                                       
+                                                                    </div>
+                                                                    <h5>Seguridad</h5>
+
+                                                                    <div class="row">
+                                                                    <div  class="col-sm-8" *ngFor="let security of securityList">
+                                                                        <label class="custom-control custom-checkbox" >
+                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSecurity(security)">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description">{{security.name}}</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    </div>
+                                                                
+                                                                    <h5>Confort</h5>
+                                                                    <div class="row">
+                                                                    <div  class="col-sm-8" *ngFor="let confort of confortList">
+                                                                        <label class="custom-control custom-checkbox" >
+                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkConfort(confort)">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description">{{confort.name}}</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    </div>
+                                                
+                                                                    <h5>Sonido</h5>
+                                                                    <div class="row">
+                                                                    <div  class="col-sm-8" *ngFor="let sound of soundList">
+                                                                        <label class="custom-control custom-checkbox" >
+                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSound(sound)">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description">{{sound.name}}</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    </div>
+                                                
+                                                                    <h5>Exterior</h5>
+                                                                    <div class="row">
+                                                                    <div  class="col-sm-8" *ngFor="let exterior of exteriorList">
+                                                                        <label class="custom-control custom-checkbox" >
+                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkExterior(exterior)">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description">{{exterior.name}}</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    </div>
+                                                
+                                                                    <h5>Equipamiento</h5>
+                                                                    <div class="row">
+                                                                    <div  class="col-sm-8" *ngFor="let equipment of equipmentList">
+                                                                        <label class="custom-control custom-checkbox" >
+                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkEquipment(equipment)">
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description">{{equipment.name}}</span>
+                                                                        </label>
+                                                                    </div>
+                                                                    </div>
+
+                                                            </div>
+                                                            <div [hidden]="hiddenEditServ">
+                                                                <h5>Zona de Cobertura</h5>
+                                                                <br/>
                                                                 <div class="row">
+                                                                <div  class="col-sm-8" *ngFor="let province of provinceList">
+                                                                    <label class="custom-control custom-checkbox" >                                                                        
+                                                                            <input 
+                                                                            type="checkbox" 
+                                                                            class="custom-control-input" 
+                                                                            #checkbox (change)="check(province)" 
+                                                                            
+                                                                            >
+                                                                        <span class="custom-control-indicator"></span>
+                                                                        <span class="custom-control-description">{{province.name}}</span>
+                                                                    </label>
+                                                                </div>
+                                                                </div>                                                        
+                                                            </div>
+                                                            <div class="row"><a *ngFor="let zone of Service.cobertureZone"><a>{{zone.province.name}}, </a></a></div>                                                    
+                                                                <div class="row">
+                                                                    <div class="row">
                                                                         <div class="col-sm-12">
                                                                             <div class="text-center">
-                                                                                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10">Save
+                                                                                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10"(click)="saveEdit()">Save
                                                                                 </button>
-                                                                                <button type="button" class="btn btn-warning waves-effect waves-light">Discard
+                                                                                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="cargar()"> Modificar mas datos...
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -233,8 +404,8 @@
                                                                 </div>
                                                             </form>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                    <!--/div-->
+                                                <!--/div-->
 
                                                 <div class="tab-pane" id="profile7" role="tabpanel">
                                                     <form class="md-float-material card-block">
