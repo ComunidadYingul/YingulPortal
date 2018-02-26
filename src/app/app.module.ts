@@ -66,6 +66,9 @@ import { ConfirmService } from './service/confirm.service';
 import { FrontYingulPayComponent } from './component/front-yingul-pay/front-yingul-pay.component';
 import { BalanceComponent } from './component/front-yingul-pay/balance/balance.component';
 import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdraw.component';
+import { AccountService } from './service/account.service';
+import { BankService } from './service/bank.service';
+import { WireTransferService } from './service/wire-transfer.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -137,7 +140,10 @@ import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdra
     StoreService,
     FavoriteService,
     UserService,
-    ConfirmService
+    ConfirmService,
+    AccountService,
+    BankService,
+    WireTransferService
   ],
   bootstrap: [AppComponent]
 })

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   	this.loginService.sendCredential(this.username, this.password).subscribe(
       res => {
         this.User.username = JSON.parse(JSON.stringify(res))._body;
-        this.User.password = this.password;
+        this.User.password = btoa(this.User.username+":"+this.password);
         this.loggedIn=true;
         this.saveLocalStorage();
         location.reload();

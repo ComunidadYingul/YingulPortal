@@ -41,17 +41,21 @@
                             <label class="col-sm-4 col-lg-2 col-form-label">Nombre del titular: *</label>
                             <div class="col-sm-8 col-lg-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-volume"></i></span>
-                                    <input type="text" class="form-control" placeholder="Normal Text">
+                                    <span class="input-group-addon"><i class="icofont icofont-user-male"></i></span>
+                                    <input name="titularName" [(ngModel)]="titularName" type="text" class="form-control form-control-uppercase" placeholder="">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-lg-2 col-form-label">CUIT/CUIL: *</label>
                             <div class="col-sm-8 col-lg-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-volume"></i></span>
-                                    <input type="text" class="form-control form-control-bold" placeholder=".form-control-bold">
+                                <div class="input-group ">
+                                    <span class="input-group-addon"><i class="icofont icofont-list"></i></span>
+                                    <select name="cuitCuil" [(ngModel)]="cuitCuil" class="form-control form-control-primary" style="max-width: 80px;">
+                                        <option value="CUIL">CUIL</option>
+                                        <option value="CUIT">CUIT</option>
+                                    </select>
+                                    <input name="cuitCuilNumber" [(ngModel)]="cuitCuilNumber" type="text" class="form-control" placeholder="Escribe solo números, sin puntos ni guiones.">
                                 </div>
                             </div>
                         </div>
@@ -59,8 +63,11 @@
                             <label class="col-sm-4 col-lg-2 col-form-label">Banco: *</label>
                             <div class="col-sm-8 col-lg-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-volume"></i></span>
-                                    <input type="text" class="form-control form-control-capitalize" placeholder=".form-control-capitalize">
+                                    <span class="input-group-addon"><i class="icofont icofont-bank-alt"></i></span>
+                                    <select name="bankId" [(ngModel)]="bankId" class="form-control form-control-primary">
+                                        <option value="-1">Elige</option>
+                                        <option *ngFor="let bank of listBank" [value]="bank.bankId">{{bank.name}}</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +75,12 @@
                             <label class="col-sm-4 col-lg-2 col-form-label">Tipo de cuenta: *</label>
                             <div class="col-sm-8 col-lg-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-volume"></i></span>
-                                    <input type="text" class="form-control form-control-uppercase" placeholder=".form-control-uppercase">
+                                    <span class="input-group-addon"><i class="icofont icofont-hand-drag2"></i></span>
+                                    <select name="accountType" [(ngModel)]="accountType" class="form-control form-control-primary">
+                                        <option value="opt1">Elige...</option>
+                                        <option value="CURRENT">Cuenta Corriente</option>
+                                        <option value="SAVING">Caja de Ahorro</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +88,8 @@
                             <label class="col-sm-4 col-lg-2 col-form-label">CBU: *</label>
                             <div class="col-sm-8 col-lg-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-volume"></i></span>
-                                    <input type="text" class="form-control form-control-lowercase" placeholder=".form-control-lowercase">
+                                    <span class="input-group-addon"><i class="icofont icofont-list"></i></span>
+                                    <input name="cbu" [(ngModel)]="cbu" type="text" class="form-control " placeholder="Ingresa solo números, sin puntos ni guiones.">
                                 </div>
                             </div>
                         </div>
@@ -86,15 +97,15 @@
                             <label class="col-sm-4 col-lg-2 col-form-label">Monto a retirar: *</label>
                             <div class="col-sm-8 col-lg-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-volume"></i></span>
-                                    <input type="text" class="form-control form-control-variant" placeholder=".form-control-variant">
+                                    <span class="input-group-addon"><i class="icofont icofont-cur-dollar-minus"></i></span>
+                                    <input name="amount" [(ngModel)]="amount" type="text" class="form-control " placeholder="Ingresa un monto mayor a 3. (Saldo disponible: $ {{account.availableMoney}} )">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10"><i class="icofont icofont-arrow-down"></i>Iniciar Retiro
+                                    <button [disabled]="!isValidForm()" (click)="transfer()" type="button" class="btn btn-primary waves-effect waves-light m-r-10"><i class="icofont icofont-arrow-down"></i>Iniciar Retiro
                                     </button>
                                 </div>
                             </div>
@@ -104,5 +115,15 @@
             </div>
         </div>
         <!-- Page-body end -->
+    </div>
+</div>
+
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
     </div>
 </div>

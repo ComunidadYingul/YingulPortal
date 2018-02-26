@@ -21,17 +21,17 @@
       <div class="page-body">
           <div class="row">
               <!-- counter-card-1 start-->
-              <div class="col-md-12 col-xl-4">
+              <div (click)="popup=false;" style="cursor:pointer;" class="col-md-12 col-xl-4">
                   <div class="card counter-card-1">
                       <div class="card-block-big">
                           <div>
-                              <h3>$ 4000</h3>
+                              <h3>$ {{money}}</h3>
                               <p>Dinero en Cuenta</p>
                               <div class="progress ">
                                   <div class="progress-bar progress-bar-striped progress-xs progress-bar-pink" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           </div>
-                          <i class="icofont icofont-money-bag"></i>
+                          <i class="icofont icofont-money"></i>
                       </div>
                   </div>
               </div>
@@ -41,7 +41,7 @@
                   <div class="card counter-card-2">
                       <div class="card-block-big">
                           <div>
-                              <h3>$ 2500</h3>
+                              <h3>$ {{account.availableMoney}}</h3>
                               <p>Dinero Disponible<a href="/withdraw"><span class="f-right text-primary">
                                 <i class="icofont icofont-arrow-down"></i>
                                 Retirar
@@ -51,7 +51,7 @@
                                   <div class="progress-bar progress-bar-striped progress-xs progress-bar-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           </div>
-                          <i class="icofont icofont-ui-remove"></i>
+                          <i class="icofont icofont-money-bag"></i>
                       </div>
                   </div>
               </div>
@@ -61,11 +61,11 @@
                   <div class="card counter-card-3">
                       <div class="card-block-big">
                           <div>
-                              <h3>$ 800</h3>
-                              <p>Dinero a Retirar
+                              <h3>$ {{account.releasedMoney}}</h3>
+                              <p>Dinero a Liberar
                               </p>
                               <div class="progress ">
-                                  <div class="progress-bar progress-bar-striped progress-xs progress-bar-default" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar progress-bar-striped progress-xs progress-bar-default" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                               </div>
                           </div>
                           <i class="icofont icofont-briefcase-alt-2"></i>
@@ -84,7 +84,40 @@
                     </div>
                 </div>
             </div>
-
+            <br>
+            <div class="card col-sm-12">
+                <!-- User activities chart start -->
+                <div class="analytic-user">
+                    <div class="card-block-big text-center">
+                        <i class="icofont icofont-table"></i><br><br>
+                        <h5>Por ahora, todo se ve muy tranquilo por aquí</h5>
+                        <h6>Puedes enviar un e-mail a tu grupo y recaudar dinero para lo que necesites.</h6>
+                        <a href="">Conoce cómo empezar a recibir pagos</a>
+                    </div>
+                </div>
+                <!-- User activities chart end -->
+            </div>
       </div>
   </div>
+</div>
+
+<div class="popup" [hidden]="popup">
+    <div class="row" >
+        <div class="card-header col-sm-10 "></div>
+        <div class="col-sm-2" (click)="popup=true;" style="cursor: pointer;"> <i  style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; text-align: left; ">
+            Dinero en cuenta<br>
+            $ {{money}}<br>
+            <p style="color: #999; font-size: 14px;">Incluye el total del dinero que recibiste: lo disponible, lo que aún no se libera y lo que se retiene, solo si tuvieras algo que resolver.</p>
+            Dinero disponible<br>
+            $ {{account.availableMoney}}<br>
+            <p style="color: #999; font-size: 14px;">Es el dinero que puedes retirar a tu cuenta bancaria o usarlo para pagar.</p>
+            Dinero a liberar<br>
+            $ {{account.releasedMoney}}<br>
+            <p style="color: #999; font-size: 14px;">Es dinero que recibiste, pero que aún no puedes usar. Siempre podrás consultar cuándo estará disponible.</p>
+            Dinero retenido<br>
+            $ {{account.withheldMoney}}<br>
+            <p style="color: #999; font-size: 14px;">Es el dinero que retuvimos porque tienes algo que resolver: reclamos o contracargos que aún no se solucionaron, facturas de Mercado Libre pendientes de pago y cuotas impagas de un préstamo.</p>
+    </div>
 </div>

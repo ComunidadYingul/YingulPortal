@@ -21,6 +21,7 @@ export class Confirm {
     yearEndClaim:number;
 
     codeConfirm:number;
+    status:string;
 
     buy : Buy=new Buy();
 }
