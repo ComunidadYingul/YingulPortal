@@ -7,6 +7,8 @@ export class Buy {
 
 	buyId:number;
 	cost:number;
+	shippingCost:number;
+	itemCost:number;
 	money:string;
 	quantity:number;
 	ip:string;

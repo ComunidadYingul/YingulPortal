@@ -118,6 +118,8 @@ export class ConfirmComponent implements OnInit {
       this.buy.regionName=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).regionName));
       this.buy.zip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).zip));
       this.buy.cost=this.cost+this.costosEnvio;
+      this.buy.shippingCost=this.costosEnvio;
+      this.buy.itemCost=this.cost;
       this.buy.shipping=this.shipping;
       
       console.log(JSON.stringify(this.buy));
