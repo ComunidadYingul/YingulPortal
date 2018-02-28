@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ItemDetailService } from '../../service/item-detail.service';
 import { Item } from '../../model/item';
-import { PaymentMethod } from '../../model/payment-method';  
+import { Payment } from '../../model/payment';  
 import { Cotizacion } from '../../model/cotizacion';
 import { AndreaniEnvios } from '../../model/andreaniEnvios';
 import { AndreaniSucursalRespuesta } from '../../model/andreaniSucursalRespuesta';
@@ -28,7 +28,7 @@ export class BuyComponent implements OnInit {
   hidShip:boolean;
   hidPay:boolean;
   hidConf:boolean;
-  public paymentMethod:PaymentMethod= new PaymentMethod();
+  public payment:Payment= new Payment();
  
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
     this.itemId =route.snapshot.params['itemId'];
@@ -74,9 +74,8 @@ export class BuyComponent implements OnInit {
       this.hidPay=true;
       this.hidConf=false;
     }
-    this.paymentMethod=ev;
-    //alert(JSON.stringify(this.paymentMethod));
-  //  console.log(JSON.stringify(this.paymentMethod));
+    this.payment=ev;
+
   }
   sendTypeEnvio(ev){
     if(ev==""){

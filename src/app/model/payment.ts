@@ -1,6 +1,6 @@
 import { Card } from './card';
-export class PaymentMethod {
-    paymentMethodId:number;
+export class Payment {
+    paymentId:number;
     name:string;
     type:string;
     paymentPlan:string;

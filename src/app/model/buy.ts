@@ -1,6 +1,6 @@
 import { user } from './user';
 import { Item } from './item';
-import { PaymentMethod } from './payment-method';
+import { Payment } from './payment';
 import { AndreaniEnvios } from './andreaniEnvios';
 import { Shipping } from './shipping';
 export class Buy {
@@ -20,9 +20,13 @@ export class Buy {
 	countryCode:string;
 	regionName:string;
 	zip:string;
+	time:string;
+	userAgent:string;
+	cookie:string;
+	deviceSessionId:string;
 	user:user=new user();
 	yng_item:Item= new Item();
-	yng_PaymentMethod:PaymentMethod= new PaymentMethod();
+	yng_Payment:Payment= new Payment();
 	shipping:Shipping=new Shipping();
 	    
 }
