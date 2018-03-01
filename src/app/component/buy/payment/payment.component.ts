@@ -84,12 +84,26 @@ export class PaymentComponent implements OnInit {
       this.debitHid=true;
       this.providerHid=true;
       this.msgHid=true;
-      if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD"||listcardId=="AmexD")
+      if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD")
       {
         this.debitHid=false;
         this.payment.name="CARDPAYMENT";
         this.payment.type="CARD";
         this.payment.yng_Card.type="DEBIT";
+        switch (listcardId){
+          case "VisaD":
+            this.payment.yng_Card.provider="VISA";
+          break;
+          case "CabalD":
+            this.payment.yng_Card.provider="CABAL";
+          break;
+          case "MastercardD":
+            this.payment.yng_Card.provider="MASTERCARD";
+          break;
+          case "MaestroD":
+            this.payment.yng_Card.provider="MAESTRO";
+          break;
+        }
       }
       else{
         if(listcardId=="Rapipago"||listcardId=="PagoFacil"||listcardId=="ProvinciaNET"){
@@ -110,7 +124,12 @@ export class PaymentComponent implements OnInit {
                   }
                 },
                 error => console.log(error)
-          )
+          );
+          for(let i of this.creditCardList){
+            if(i.listCreditCardId==+listcardId){
+              this.payment.yng_Card.provider=i.keyPayu;
+            }
+          }
         }
       }
     }
@@ -140,10 +159,10 @@ export class PaymentComponent implements OnInit {
     this.payment.yng_Card.dueMonth=this.dueMonth;
     this.payment.yng_Card.dueYear=this.dueYear;
     this.payment.yng_Card.dni=this.dni;
-    this.payment.yng_Card.provider=this.provider;
     //fin de datos del formulario para tarjetas
     this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
     this.typePay.emit(this.payment);
+    console.log(JSON.stringify(this.payment));
   }
   cardSelected(card:Card){
     this.payment.name="CARDPAYMENT";
@@ -151,6 +170,7 @@ export class PaymentComponent implements OnInit {
     this.payment.yng_Card=card;
     this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
     this.typePay.emit(this.payment);
+    console.log(JSON.stringify(this.payment));
   }
 
   onFocusCVV(){
