@@ -79,6 +79,7 @@ export class BuyComponent implements OnInit {
   //  console.log(JSON.stringify(this.paymentMethod));
   }
   sendTypeEnvio(ev){
+    this.shipping=ev;
     if(ev==""){
      // alert("ERROR");
     }
@@ -131,5 +132,7 @@ export class BuyComponent implements OnInit {
       this.hidConf=true;
     }
   }
-
+  sendShipping(ev){
+    this.shipping=ev;
+  }
 }

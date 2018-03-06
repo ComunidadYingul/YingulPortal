@@ -40,7 +40,7 @@
                             {{cotizacion.direccion}}<br/>
                             {{cotizacion.horadeTrabajo}}
                         </p>
-                        <div  class="cho-address" *ngIf="isComprador()"><h6 >{{cotizacion.tarifa}}</h6></div>
+                        <div  class="cho-address" *ngIf="isComprador()"><h6 >{{shipping.yng_Quote.rate}}</h6></div>
                         <div  class="cho-address" *ngIf="isGratis()"> <h6 >Envio Gratis</h6><br/></div>
             </div>
                 
@@ -95,7 +95,7 @@
             </div>
             <div class="media-body blog-s-reply">
                 <h5>PRECIO: </h5> <strong>{{Item.price}}</strong> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a>
-                <br/> <a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     <strong>{{cotizacion.tarifa}}</strong></a>
+                <br/> <a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     <strong>{{shipping.yng_Quote.rate}}</strong></a>
                 <hr>
                 <h5><strong>PAGAS: </strong></h5><strong>{{cost+costosEnvio}}</strong>    
             </div>

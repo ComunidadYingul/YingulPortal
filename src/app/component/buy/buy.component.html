@@ -62,7 +62,7 @@
                                         <div class="tab-content">
                                             <!-- principio de envio -->
                                             <div class="tab-pane active" id="home7" role="tabpanel">
-                                                <app-shipping [hidden]="hidShip" (typeProduct)="sendProduct($event)" (typeEnvio)="sendTypeEnvio($event)"  (typePrice)="sendTypePrice($event)" (typeCotizacion)="sendTypeCotizacion($event)" (typeShip)="sendTypeShip($event)" [Item]="Item" [quantity]="quantity" ></app-shipping>
+                                                <app-shipping [hidden]="hidShip" (typeProduct)="sendProduct($event)" (typeEnvio)="sendTypeEnvio($event)"  (typePrice)="sendTypePrice($event)" (typeCotizacion)="sendTypeCotizacion($event)" (typeShip)="sendTypeShip($event)" [Item]="Item" [quantity]="quantity" (shipping)="sendShipping($event)"></app-shipping>
                                             <!-- fin de envio -->
                                             <!-- principio de pago -->
                                                 <app-payment [hidden]="hidPay" [priceSuc]="priceSuc" (typePay)="sendTypePay($event)" [Item]="Item" [quantity]="quantity"></app-payment>

@@ -15,6 +15,8 @@ import { Alert } from 'selenium-webdriver';
 import { AndreaniEnvios } from '../../../model/andreaniEnvios';
 import { Shipping } from '../../../model/shipping';
 import { user } from '../../../model/user';
+import { Branch } from '../../../model/branch';
+import { Quote } from '../../../model/quote';
 
 @Component({
   selector: 'app-shipping',
@@ -38,6 +40,7 @@ export class ShippingComponent implements OnInit {
   sendHome:boolean=true;
   priceSuc:string="";
   popupSucursal:boolean=true;
+  checke:boolean=false;
   //buscarCP:string;
   @Input('Item') Item:Item;
 
@@ -61,8 +64,13 @@ export class ShippingComponent implements OnInit {
     direccion:string;
     horadeTrabajo:string; 
     useri:user=new user();
-
-
+    branchS:Branch =new Branch();
+    amenitiesList:Object[];
+    quoteS:Quote=new Quote();
+    userTemp:user =new user();
+    userTemp2:user =new user();
+    quoteList:Object[];
+    priceSuc2:string;
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
 
   }
@@ -87,6 +95,7 @@ export class ShippingComponent implements OnInit {
         this.andreaniCotizacionRespuesta=null;
         this.priceHiddem=true;
         this.shipping.typeShipping="home";
+        this.checke=false;
         break;
       case "sendHome":
         this.branch= true;
@@ -150,8 +159,13 @@ export class ShippingComponent implements OnInit {
     this.typeProduct.emit(this.Product);
     this.typePrice.emit(this.priceSuc);
     this.typeShip.emit("envio");
-    this.typeEnvio.emit(this.shipping);
+    
     this.shipping.yng_envio=this.andreaniEnvio;
+    //this.shipping.typeShipping=this.branchS.nameMail;
+    this.shipping.yng_Quote.yng_Branch=this.branchS;
+    this.shipping.yng_Quote
+    this.shipping.yng_Shipment
+    this.typeEnvio.emit(this.shipping);
     }
   }
     
@@ -225,7 +239,23 @@ export class ShippingComponent implements OnInit {
           this.andreaniCotizacion.volumen=this.Product.producVolumen;
           this.andreaniCotizacion.valorDeclarado=""+this.Item.price;          
           this.sendCotizar(this.andreaniCotizacion);
+          this.quoteS.rate=0;
+          this.quoteS.respuesta="";
+          this.userTemp=this.Item.user;
+         
+          this.Item.user=null;
+          this.userTemp2.username=this.userTemp.username;
+          //
+          this.Item.user=this.userTemp2;
 
+          this.quoteS.yng_Item=this.Item;
+
+        
+          ///this.quoteS.yng_Item.user=null;
+          this.useri=JSON.parse(localStorage.getItem("user"));
+          this.quoteS.yng_User=this.useri;
+          
+          this.sendQuote(this.quoteS);
     }
 
 
@@ -319,7 +349,15 @@ export class ShippingComponent implements OnInit {
 
         }
       );
-      
+      this.sucursalTemp.codigoPostal="";
+      this.sucursalTemp.provincia="salta";
+      this.itemDetailService.sendData(this.sucursalTemp).subscribe(
+        res=>{
+          this.amenitiesList=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+         // console.log(JSON.stringify(this.amenitiesList));
+        },
+        error => console.log(error)
+      );
     }
 
 
@@ -332,7 +370,7 @@ export class ShippingComponent implements OnInit {
                 case "Producto":
                   this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                  // this.camSW=true;
-                //  console.log( "Producto: "+this.Product.productPeso+" volumen:"+this.Product.producVolumen);
+              
                 break;
 
 
@@ -362,31 +400,139 @@ export class ShippingComponent implements OnInit {
     mostrarCotizacion(){
       console.log("this.Product.productPagoEnvio:"+this.Product.productPagoEnvio);
       if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
-      else  this.priceSuc=this.andreaniCotizacionRespuesta.tarifa+"  Costo del envio";
-      this.cotizacion.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia
+      else  this.priceSuc=this.priceSuc2+"  Costo del envio";
+      /*this.cotizacion.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia
       this.cotizacion.categoriaDistanciaId=this.andreaniCotizacionRespuesta.categoriaDistanciaId;
       this.cotizacion.categoriaPeso=this.andreaniCotizacionRespuesta.categoriaPeso;
       this.cotizacion.categoriaPesoId=this.andreaniCotizacionRespuesta.categoriaPesoId;
       this.cotizacion.pesoAforado=this.andreaniCotizacionRespuesta.pesoAforado;
-      this.cotizacion.tarifa=this.andreaniCotizacionRespuesta.tarifa;
+      this.cotizacion.tarifa=this.andreaniCotizacionRespuesta.tarifa;*/
       this.popupSucursal=false;
       //alert(this.andreaniCotizacionRespuesta.tarifa);
 
 
     }
     priceHiddem:boolean=true;
-    envioComprador(event){
+    envioComprador(event,yng_Quote:Quote){
+      
       this.shipping.typeShipping="branch";
       this.camSW=true;
-  
-      if(event.target.checked==true) this.priceHiddem=false;
+      if(event.target.checked==true) {
+        this.priceHiddem=false;
+        this.shipping.yng_Quote=yng_Quote;
+       // this.priceSuc2=""+yng_Quote.rate;
+        if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
+      else  this.priceSuc=yng_Quote.rate+"  Costo del envio";
+      }
     }
     keyPressCP(event: any){
-      const pattern = /[0-9]/;
-      
+      const pattern = /[0-9]/;      
           let inputChar = String.fromCharCode(event.charCode);
           if (event.keyCode != 8 && !pattern.test(inputChar)) {
             event.preventDefault();
           }
+    }
+    sendQuote(yng_Quote:Quote){
+      console.log("yng_Quote: "+JSON.stringify(yng_Quote));
+      this.itemDetailService.sendQuote(yng_Quote).subscribe(
+        res => {
+            this.quoteList=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            console.log("JSON qoute responce:"+JSON.stringify(this.quoteList));
+
+            if(this.quoteList.length>0){
+              this.popupCotizar=false;
+              //getItemS();
+              this.mostrarCotizacion();
+              //this.mostrarSucursal();
+            }
+            else {
+              this.popupCotizar=true; 
+              alert("Código postal invalido");
+            }
+          },
+        error => console.log(error)
+      ); 
+    }
+    quoteSend(){
+      if(this.postalCode!=""){
+        this.getItem("Producto",this.Item.itemId); 
+         //this.quoteS.rate=0;
+      this.quoteS.respuesta="";
+      this.userTemp=this.Item.user;     
+      this.Item.user=null;
+      this.userTemp2.username=this.userTemp.username;
+      //
+      this.Item.user=this.userTemp2;
+      this.quoteS.yng_Item=this.Item;    
+      ///this.quoteS.yng_Item.user=null;
+      this.useri=JSON.parse(localStorage.getItem("user"));
+      this.quoteS.yng_User=this.useri;      
+      this.sendQuote(this.quoteS);
+      }
+      else {
+        var codigoPostalSel="";
+        
+        if(this.postalCode=="")codigoPostalSel=codigoPostalSel+"\n -Un Código postal";
+        alert("Para realizar una cotización debe agregar:"+codigoPostalSel);
+  
+      }
+     
+    }
+    getItemS(itemType:string, itemId: number){
+      this.itemDetailService.getItem(itemType,itemId).subscribe(
+        res => {
+              switch (itemType) {
+                case "Producto":
+                  this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                 // this.camSW=true;
+              
+                break;
+
+
+                default:
+                  alert("error");
+                 
+
+              }
+              if(this.Product.productPeso!=""){
+                this.sucursalLLenar();
+              }
+            },
+            error => console.log(error)
+      )
+    }
+    sendTypeShip2(){
+      if (this.branch==false){
+      if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+      else{
+        if(this.shipping.typeShipping=="branch")
+        {
+          this.typeCotizacion.emit(this.cotizacion);
+          this.typeProduct.emit(this.Product);
+          this.typePrice.emit(this.priceSuc);
+          this.typeShip.emit("envio");          
+          //this.shipping.yng_envio=this.andreaniEnvio;
+          //this.shipping.typeShipping=this.branchS.nameMail;
+          //this.shipping.yng_Quote.yng_Branch=this.branchS;
+          //this.shipping.yng_Quote
+         // this.shipping.yng_Shipment
+          this.shipping.yng_Quote.yng_Item=null;
+          this.shipping.yng_Quote.yng_User=null;
+          this.typeEnvio.emit(this.shipping);
+        }
+      }      
+    }
+    else{
+      this.typeCotizacion.emit(null);
+      this.typeProduct.emit(this.Product);
+      this.typePrice.emit(null);
+      this.typeShip.emit("envio");
+      this.typeEnvio.emit(this.shipping);
+      //this.shipping.yng_envio=this.andreaniEnvio;
+  
+    }
+    
+  
+    
     }
 }

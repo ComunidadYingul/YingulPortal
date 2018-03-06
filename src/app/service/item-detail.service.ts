@@ -95,5 +95,13 @@ export class ItemDetailService {
     let url = "http://localhost:8080/item/property/update";
     return this.http.post(url ,product, {headers: this.headers});
   }
+  sendData(sucursal:Object){
+    let url=this.urlHost+"logistics/branchList";
+    return this.http.post(url,sucursal, {headers: this.headers});
+  }
+  sendQuote(cotizar : Object){
+    let url = "http://localhost:8080/logistics/quote";
+    return this.http.post(url,cotizar, {headers: this.headers});
+  }
 }
 

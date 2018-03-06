@@ -60,7 +60,7 @@ export class ConfirmComponent implements OnInit {
           this.costosEnvio=0;
         }
         else{
-          this.costosEnvio=Number(this.shipping.yng_envio.tarifa);
+          this.costosEnvio=Number(this.shipping.yng_Quote.rate);
          
       }
 

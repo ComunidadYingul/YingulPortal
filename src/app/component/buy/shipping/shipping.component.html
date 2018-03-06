@@ -30,7 +30,7 @@
                 <div class="input-group input-group-button">
                     <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
                     <span class="input-group-addon" id="basic-addon10"><!--value="domicilio" [(ngModel)]="shippingMethod"-->
-                <button class="btn btn-primary" (click)="buscarSucursales()">Buscar</button>
+                <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
                 </span>
                 <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
                 </div>
@@ -41,14 +41,14 @@
                             <table class="table  invoice-detail-table">
                                 <thead>
                                     <tr class="thead-default">
-                                        <th>Sucursal</th>
-                                        <th>Costo</th>
+                                        <th>Sucursal/Costo</th>
+                                        <!--th>Costo</th-->
                                         
                                        
                                     </tr>
                                 </thead>
                                 <tbody [hidden]="false">
-                                    <tr>
+                                    <!--tr>
                                         <td>
                                         <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod" (click)="envioComprador($event)">{{sucursalAndre}}<br>
                                         <h6 class="cho-list">{{resumen}}</h6>
@@ -56,17 +56,34 @@
                                         <h6 class="cho-list">{{horadeTrabajo}}</h6>
                                         
                                         </td>
-                                        <td>$ {{priceSuc}}</td>
-                                       
+                                        <td>$ {{priceSuc}}</td>                                      
                                         
                                     </tr>
-
-                                   
-
-                                </tbody>
-                                
-                                
-                                
+                                    <tr>
+                                        <td>
+                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod" (click)="envioComprador($event)">{{sucursalAndre}}<br>
+                                        <h6 class="cho-list">{{resumen}}</h6>
+                                        <h6 class="cho-list">{{direccion}}</h6>
+                                        <h6 class="cho-list">{{horadeTrabajo}}</h6>                                        
+                                        </td>
+                                        <td>$ {{priceSuc}}</td>
+                                    </tr-->
+                                    <div class="col-sm-12 form-radio">
+                                     <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
+                                            <label>
+                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
+                                                <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
+                                                <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
+                                                <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
+                                                <i class="helper"></i>{{amenities.yng_Branch.schedules}}
+                                            </label>
+                                            <label>
+                                                <h6 class="count text-primary"*ngIf="Product.productPagoEnvio=='gratis'">$ Envio Gratis</h6>
+                                                <h6 class="count text-primary"*ngIf="Product.productPagoEnvio!='gratis'">$ {{amenities.rate}}</h6><br>
+                                            </label>                                                
+                                        </div> 
+                                    </div>
+                                </tbody>                              
                             </table>
                        
                         </div>
@@ -107,7 +124,7 @@
             </div> 
             <br/>
             <div class="col-sm-10">
-                <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip()">Continuar</a>
+                <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip2()">Continuar</a>
             </div>  
         </form>
     </div>
