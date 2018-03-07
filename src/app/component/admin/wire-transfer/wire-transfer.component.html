@@ -1,0 +1,230 @@
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Transferencias Bancarias</h4>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="/index">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/yng-admin">Admin</a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/yng-admin/wireTransfer">Transferencias Bancarias</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Page header end -->
+      <!-- Page body start -->
+      <div class="page-body">
+          <div class="row">
+              <div class="col-sm-12">
+                  <!-- Product edit card start -->
+                  <div class="card">
+                      <div class="card-header">
+                          <h5>Transferencias Bancarias</h5>
+                      </div>
+                      <div class="card-block">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <div class="product-edit">
+                                      <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
+                                          <li class="nav-item">
+                                              <a class="nav-link active" data-toggle="tab" href="#home7" role="tab">
+                                                  <div class="f-26">
+                                                      <i class="icofont icofont-edit"></i>
+                                                  </div>
+                                                  Por Hacer</a>
+                                              <div class="slide"></div>
+                                          </li>
+                                          <li class="nav-item">
+                                              <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
+                                                  <div class="f-26">
+                                                      <i class="icofont icofont-document-search"></i>
+                                                  </div>
+                                                  Hechas</a>
+                                              <div class="slide"></div>
+                                          </li>
+                                          <li class="nav-item">
+                                              <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
+                                                  <div class="f-26">
+                                                      <i class="icofont icofont-comment"></i>
+                                                  </div>
+                                                  Todas</a>
+                                              <div class="slide"></div>
+                                          </li>
+                                      </ul>
+                                      <!-- Tab panes -->
+                                      <div class="tab-content">
+                                          <div class="tab-pane active" id="home7" role="tabpanel">
+                                            <div class="row">
+                                              <div class="col-sm-12">
+                                                  <div class="card">
+                                                      <div class="card-header">
+                                                          <h5>Transferencias Bancarias por hacer</h5>
+                                                          <span>Se deben realizar las siguientes transferencias bancarias a los clientes</span>
+                                                          <div class="card-header-right">
+                                                              <i class="icofont icofont-rounded-down"></i>
+                                                              <i class="icofont icofont-refresh"></i>
+                                                              <i class="icofont icofont-close-circled"></i>
+                                                          </div>
+                                                      </div>
+                                                      <div class="card-block">
+                                                          <div class="dt-responsive table-responsive">
+                                                              <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                                                  <thead>
+                                                                      <tr>
+                                                                          <th>Nombre del Titular</th>
+                                                                          <th>CUIT/CUIL</th>
+                                                                          <th>BANCO</th>
+                                                                          <th>TIPO DE CUENTA</th>
+                                                                          <th>CBU</th>
+                                                                          <th>MONTO A RETIRAR</th>
+                                                                          <th>ACCION</th>
+                                                                      </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                      <tr *ngFor="let toDo of toDoList">
+                                                                          <td>{{toDo.titularName}}</td>
+                                                                          <td>{{toDo.cuitCuil}} {{toDo.cuitCuilNumber}}</td>
+                                                                          <td>{{toDo.bank.name}}</td>
+                                                                          <td>{{toDo.accountType}}</td>
+                                                                          <td>{{toDo.cbu}}</td>
+                                                                          <td>$ {{toDo.amount}}</td>
+                                                                          <td><button (click)="onComplete(toDo.wireTransferId)" type="submit" class="btn btn-primary m-b-0" >HECHO</button></td>
+                                                                      </tr>
+                                                                  </tbody>
+                                                                  <tfoot>
+                                                                      <tr>
+                                                                        <th>Nombre del Titular</th>
+                                                                        <th>CUIT/CUIL</th>
+                                                                        <th>BANCO</th>
+                                                                        <th>TIPO DE CUENTA</th>
+                                                                        <th>CBU</th>
+                                                                        <th>MONTO A RETIRAR</th>
+                                                                        <th>ACCION</th>
+                                                                      </tr>
+                                                                  </tfoot>
+                                                              </table>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                              </div>  
+                                          </div>
+                                          <div class="tab-pane" id="profile7" role="tabpanel">
+                                            <div class="card">
+                                              <div class="card-header">
+                                                  <h5>Transferencias Bancarias hechas</h5>
+                                                  <span>Se realizaron las siguientes transferencias bancarias a los clientes</span>
+                                                  <div class="card-header-right">
+                                                      <i class="icofont icofont-rounded-down"></i>
+                                                      <i class="icofont icofont-refresh"></i>
+                                                      <i class="icofont icofont-close-circled"></i>
+                                                  </div>
+                                              </div>
+                                              <div class="card-block">
+                                                  <div class="dt-responsive table-responsive">
+                                                      <table id="order-table" class="table table-striped table-bordered nowrap">
+                                                        <thead>
+                                                          <tr>
+                                                              <th>Nombre del Titular</th>
+                                                              <th>CUIT/CUIL</th>
+                                                              <th>BANCO</th>
+                                                              <th>TIPO DE CUENTA</th>
+                                                              <th>CBU</th>
+                                                              <th>MONTO A RETIRAR</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let complete of completeList">
+                                                                <td>{{complete.titularName}}</td>
+                                                                <td>{{complete.cuitCuil}} {{complete.cuitCuilNumber}}</td>
+                                                                <td>{{complete.bank.name}}</td>
+                                                                <td>{{complete.accountType}}</td>
+                                                                <td>{{complete.cbu}}</td>
+                                                                <td>$ {{complete.amount}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                              <th>Nombre del Titular</th>
+                                                              <th>CUIT/CUIL</th>
+                                                              <th>BANCO</th>
+                                                              <th>TIPO DE CUENTA</th>
+                                                              <th>CBU</th>
+                                                              <th>MONTO A RETIRAR</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                      </table>
+                                                  </div>
+                                              </div>
+                                            </div>  
+                                          </div>
+                                          <div class="tab-pane" id="messages8" role="tabpanel">
+                                            <div class="card">
+                                              <div class="card-header">
+                                                  <h5>Todas las Transferencias Bancarias</h5>
+                                                  <span>Lista de las transferencias bancarias hechas y por hacer a los clientes</span>
+                                                  <div class="card-header-right">
+                                                      <i class="icofont icofont-rounded-down"></i>
+                                                      <i class="icofont icofont-refresh"></i>
+                                                      <i class="icofont icofont-close-circled"></i>
+                                                  </div>
+                                              </div>
+                                              <div class="card-block">
+                                                  <div class="dt-responsive table-responsive">
+                                                      <table id="multi-colum-dt" class="table table-striped table-bordered nowrap">
+                                                        <thead>
+                                                          <tr>
+                                                              <th>Nombre del Titular</th>
+                                                              <th>CUIT/CUIL</th>
+                                                              <th>BANCO</th>
+                                                              <th>TIPO DE CUENTA</th>
+                                                              <th>CBU</th>
+                                                              <th>MONTO A RETIRAR</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let all of allList">
+                                                                <td>{{all.titularName}}</td>
+                                                                <td>{{all.cuitCuil}} {{all.cuitCuilNumber}}</td>
+                                                                <td>{{all.bank.name}}</td>
+                                                                <td><a *ngIf="all.accountType == 'SAVING'">Caja de ahorro</a><a *ngIf="all.accountType == 'CURRENT'">Cuenta corriente</a></td>
+                                                                <td>{{all.cbu}}</td>
+                                                                <td>$ {{all.amount}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                              <th>Nombre del Titular</th>
+                                                              <th>CUIT/CUIL</th>
+                                                              <th>BANCO</th>
+                                                              <th>TIPO DE CUENTA</th>
+                                                              <th>CBU</th>
+                                                              <th>MONTO A RETIRAR</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                      </table>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Product edit card end -->
+              </div>
+          </div>
+      </div>
+      <!-- Page body end -->
+  </div>
+</div>

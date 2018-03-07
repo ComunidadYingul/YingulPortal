@@ -20,4 +20,20 @@ export class WireTransferService {
       });
     return this.http.post(url, wireTransfer,{headers: headers})
   }
+  getAllWireTransfer(){
+    let url = "http://localhost:8080/wireTransfer/list/all";
+    return this.http.get(url);
+  }
+  getToDoWireTransfer(){
+    let url = "http://localhost:8080/wireTransfer/list/toDo";
+    return this.http.get(url);
+  }
+  getCompleteWireTransfer(){
+    let url = "http://localhost:8080/wireTransfer/list/complete";
+    return this.http.get(url);
+  }
+  updateWireTransfer(wireTransferId:number){
+    let url = "http://localhost:8080/wireTransfer/update/"+wireTransferId;
+    return this.http.get(url);
+  }
 }

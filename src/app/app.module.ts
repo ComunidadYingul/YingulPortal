@@ -69,6 +69,9 @@ import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdra
 import { AccountService } from './service/account.service';
 import { BankService } from './service/bank.service';
 import { WireTransferService } from './service/wire-transfer.service';
+import { AdminComponent } from './component/admin/admin.component';
+import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
+import { AdminService } from './service/admin.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,6 +119,8 @@ import { WireTransferService } from './service/wire-transfer.service';
     FrontYingulPayComponent,
     BalanceComponent,
     WithdrawComponent,
+    AdminComponent,
+    WireTransferComponent
   ],
   imports: [
     BrowserModule,
@@ -143,7 +148,8 @@ import { WireTransferService } from './service/wire-transfer.service';
     ConfirmService,
     AccountService,
     BankService,
-    WireTransferService
+    WireTransferService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })
