@@ -10,7 +10,7 @@ export class WireTransfer {
     cbu:number;
     amount:number;
     currency:string;
-
+    status:string;
     bank : Bank=new Bank();
     transaction : Transaction=new Transaction();
     

@@ -26,6 +26,8 @@ import { ConfirmwosComponent } from './component/confirmwos/confirmwos.component
 import { FrontYingulPayComponent } from './component/front-yingul-pay/front-yingul-pay.component';
 import { BalanceComponent } from './component/front-yingul-pay/balance/balance.component';
 import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdraw.component';
+import { AdminComponent } from './component/admin/admin.component';
+import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -128,6 +130,14 @@ const appRoutes: Routes = [
   {
     path: 'withdraw',
     component: WithdrawComponent
+  },
+  {
+    path: 'yng-admin',
+    component: AdminComponent
+  },
+  {
+    path: 'yng-admin/wireTransfer',
+    component: WireTransferComponent
   },
   {
     path: ':nameStore',

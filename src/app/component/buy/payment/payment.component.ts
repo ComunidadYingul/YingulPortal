@@ -5,7 +5,7 @@ import { BuyService } from '../../../service/buy.service'
 import { ListCreditCard } from '../../../model/list-credit-card';
 import { CardProvider } from '../../../model/card-provider';
 import { Card } from '../../../model/card';
-import { PaymentMethod } from '../../../model/payment-method';  
+import { Payment } from '../../../model/payment';  
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import {Pipe} from '@angular/core';
@@ -47,7 +47,7 @@ export class PaymentComponent implements OnInit {
  // priceSuc:string;
   //fin datos recuperados del formulario
   User: user=new user();
-  paymentMethod:PaymentMethod= new PaymentMethod();
+  payment:Payment= new Payment();
   constructor(private buyService: BuyService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
@@ -84,12 +84,26 @@ export class PaymentComponent implements OnInit {
       this.debitHid=true;
       this.providerHid=true;
       this.msgHid=true;
-      if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD"||listcardId=="AmexD")
+      if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD")
       {
         this.debitHid=false;
-        this.paymentMethod.name="CARDPAYMENT";
-        this.paymentMethod.type="CARD";
-        this.paymentMethod.yng_Card.type="DEBIT";
+        this.payment.name="CARDPAYMENT";
+        this.payment.type="CARD";
+        this.payment.yng_Card.type="DEBIT";
+        switch (listcardId){
+          case "VisaD":
+            this.payment.yng_Card.provider="VISA";
+          break;
+          case "CabalD":
+            this.payment.yng_Card.provider="CABAL";
+          break;
+          case "MastercardD":
+            this.payment.yng_Card.provider="MASTERCARD";
+          break;
+          case "MaestroD":
+            this.payment.yng_Card.provider="MAESTRO";
+          break;
+        }
       }
       else{
         if(listcardId=="Rapipago"||listcardId=="PagoFacil"||listcardId=="ProvinciaNET"){
@@ -102,23 +116,28 @@ export class PaymentComponent implements OnInit {
                   if(JSON.stringify(this.cardProviderList)=="[]"){
                     this.providerHid=true;
                     this.debitHid=false;
-                    this.paymentMethod.yng_Card.type="CREDIT";
-                    /* en caso de que no existan proveedores para el tipo de tarjeta proporcionado this.paymentMethod.yng_Card.yng_CardProvider=*/
+                    this.payment.yng_Card.type="CREDIT";
+                    /* en caso de que no existan proveedores para el tipo de tarjeta proporcionado this.payment.yng_Card.yng_CardProvider=*/
                   } 
                   else{
                     this.providerHid=false;
                   }
                 },
                 error => console.log(error)
-          )
+          );
+          for(let i of this.creditCardList){
+            if(i.listCreditCardId==+listcardId){
+              this.payment.yng_Card.provider=i.keyPayu;
+            }
+          }
         }
       }
     }
   }
   setProvider(cardProviderId:number){
     this.debitHid=false;
-    this.paymentMethod.yng_Card.type="CREDIT";
-    this.paymentMethod.yng_Card.yng_CardProvider.cardProviderId=cardProviderId;
+    this.payment.yng_Card.type="CREDIT";
+    this.payment.yng_Card.yng_CardProvider.cardProviderId=cardProviderId;
   }
   /*check(a:number){   
     esto es para la s cuotas con tarjeta de credito
@@ -134,23 +153,24 @@ export class PaymentComponent implements OnInit {
       CadenaSinBlancos += cadena.charAt(x); 
       }
     }
-    this.paymentMethod.yng_Card.number=parseFloat(CadenaSinBlancos);
-    this.paymentMethod.yng_Card.fullName=this.fullName;
-    this.paymentMethod.yng_Card.securityCode=this.cvv;
-    this.paymentMethod.yng_Card.dueMonth=this.dueMonth;
-    this.paymentMethod.yng_Card.dueYear=this.dueYear;
-    this.paymentMethod.yng_Card.dni=this.dni;
-    this.paymentMethod.yng_Card.provider=this.provider;
+    this.payment.yng_Card.number=parseFloat(CadenaSinBlancos);
+    this.payment.yng_Card.fullName=this.fullName;
+    this.payment.yng_Card.securityCode=this.cvv;
+    this.payment.yng_Card.dueMonth=this.dueMonth;
+    this.payment.yng_Card.dueYear=this.dueYear;
+    this.payment.yng_Card.dni=this.dni;
     //fin de datos del formulario para tarjetas
-    this.paymentMethod.yng_Card.user=JSON.parse(localStorage.getItem("user"));
-    this.typePay.emit(this.paymentMethod);
+    this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
+    this.typePay.emit(this.payment);
+    console.log(JSON.stringify(this.payment));
   }
   cardSelected(card:Card){
-    this.paymentMethod.name="CARDPAYMENT";
-    this.paymentMethod.type="CARD";
-    this.paymentMethod.yng_Card=card;
-    this.paymentMethod.yng_Card.user=JSON.parse(localStorage.getItem("user"));
-    this.typePay.emit(this.paymentMethod);
+    this.payment.name="CARDPAYMENT";
+    this.payment.type="CARD";
+    this.payment.yng_Card=card;
+    this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
+    this.typePay.emit(this.payment);
+    console.log(JSON.stringify(this.payment));
   }
 
   onFocusCVV(){

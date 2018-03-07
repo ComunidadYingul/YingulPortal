@@ -1,5 +1,5 @@
 import { Component, OnInit, Input,Output,EventEmitter} from '@angular/core';
-import { PaymentMethod } from '../../../model/payment-method';  
+import { Payment } from '../../../model/payment';  
 import { Item } from '../../../model/item';
 import { Buy } from '../../../model/buy';
 import { BuyService } from '../../../service/buy.service'
@@ -19,7 +19,7 @@ import { Product } from '../../../model/product';
   styleUrls: ['./confirm.component.css']
 })
 export class ConfirmComponent implements OnInit {
-  @Input('paymentMethod') paymentMethod:PaymentMethod= new PaymentMethod();
+  @Input('payment') payment:Payment= new Payment();
   @Input('quantity') quantity:number;
   @Input('Item') Item:Item;
   @Input('cost') cost:number=12;
@@ -106,8 +106,8 @@ export class ConfirmComponent implements OnInit {
       this.buy.quantity=this.quantity;
       this.buy.yng_item=this.Item;
       this.buy.yng_item.user=null;
-      this.buy.yng_PaymentMethod=this.paymentMethod;
-      this.buy.user=this.paymentMethod.yng_Card.user;
+      this.buy.yng_Payment=this.payment;
+      this.buy.user=this.payment.yng_Card.user;
       this.buy.ip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).query));
       this.buy.org=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).org));
       this.buy.lat=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).lat));
@@ -117,7 +117,12 @@ export class ConfirmComponent implements OnInit {
       this.buy.countryCode=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).countryCode));
       this.buy.regionName=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).regionName));
       this.buy.zip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).zip));
+      this.buy.userAgent=navigator.userAgent;
+      this.buy.cookie=this.User.password;
+
       this.buy.cost=this.cost+this.costosEnvio;
+      this.buy.shippingCost=this.costosEnvio;
+      this.buy.itemCost=this.cost;
       this.buy.shipping=this.shipping;
       
       console.log(JSON.stringify(this.buy));
@@ -149,6 +154,7 @@ export class ConfirmComponent implements OnInit {
       alert("compra realizada exitosamente revise su bandeja de entrada");
       this.router.navigate(['/']);   
     }else{
+      if(this.msg!='problemCard')
       alert(this.msg);
     } 
   }

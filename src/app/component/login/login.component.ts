@@ -30,8 +30,7 @@ export class LoginComponent implements OnInit {
         this.User.password = btoa(this.User.username+":"+this.password);
         this.loggedIn=true;
         this.saveLocalStorage();
-        location.reload();
-        this.router.navigate(['/']);
+        window.history.back();
       },
       err => alert("Usuario o Contraseña incorrecta")
     );
