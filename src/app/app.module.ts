@@ -72,6 +72,8 @@ import { WireTransferService } from './service/wire-transfer.service';
 import { AdminComponent } from './component/admin/admin.component';
 import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
 import { AdminService } from './service/admin.service';
+
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 @NgModule({
   declarations: [
     AppComponent,
@@ -127,7 +129,9 @@ import { AdminService } from './service/admin.service';
     FormsModule,
     HttpModule,
     routing,
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+
+    Ng2CarouselamosModule
   ],
   providers: [
     LoginService,
