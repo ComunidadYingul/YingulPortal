@@ -159,12 +159,12 @@ export class SingupComponent implements OnInit {
 
 
   ngOnInit() {
-    this.sellService.getProvinces().subscribe(
+    /*this.sellService.getProvinces().subscribe(
 			res => {
         		this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
-    )
+    )*/
   }
 
   getCity(provinceId : number){

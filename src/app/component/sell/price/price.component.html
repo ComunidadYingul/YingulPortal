@@ -76,6 +76,15 @@
             <h5>Tu ubicacion</h5>
             <div class="row">
                 <div  class="col-sm-6" >
+                    <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
+                        <option >Seleccione su país</option>
+                        <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div  class="col-sm-6" *ngIf="provinceList!=null">
                     <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
                         <option>Seleccione una provincia</option>
                         <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>

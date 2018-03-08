@@ -123,7 +123,8 @@ Service:Service= new Service();
                 },
                 error => console.log(error)
           );
-          this.sellService.getProvinces().subscribe(
+          //solo sirve para argentina
+          this.sellService.getProvinces(0).subscribe(
             res => {
                   this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                 },

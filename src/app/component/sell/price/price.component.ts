@@ -11,6 +11,7 @@ import { Product } from '../../../model/product';
 import { Property } from '../../../model/Property';
 import { Motorized } from '../../../model/Motorized';
 import { Ubication } from '../../../model/ubication';
+import { Country } from '../../../model/country';
 
 @Component({
   selector: 'app-price',
@@ -23,6 +24,7 @@ export class PriceComponent implements OnInit {
   @Output() priceItemS = new EventEmitter();
 
   @Input()  typeCatPre:any;
+  countryList:Country[];
   provinceList: Object[];
   cityList: Object[];
   barrioList : Object[];
@@ -48,9 +50,8 @@ export class PriceComponent implements OnInit {
   public product:Product = new Product();
   public property:Property = new Property();
   public motorized:Motorized =new Motorized();
-
-
   //
+  country:Country= new Country();
   public province:Province = new Province();
   public city:City = new City();
   public barrio:Barrio = new Barrio();
@@ -66,12 +67,12 @@ export class PriceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sellService.getProvinces().subscribe(
+    this.sellService.getCountries().subscribe(
 			res => {
-        		this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+        		this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
-    )
+    );
     this.sellService.getUser().subscribe(
       res => {
         this.User = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -97,6 +98,20 @@ export class PriceComponent implements OnInit {
     
   }
   provin:string;
+  getProvince(countryId:number){
+    this.country.countryId=countryId;
+    this.provinceList=null;
+    this.cityHid=true;
+    this.barrioHid=true;
+    this.sellService.getProvinces(countryId).subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            //this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
+
+      		},
+      		error => console.log(error)
+    )
+  }
   getCity(provinceId : number){
    this.province.provinceId=provinceId;
     this.cityList=[];
@@ -163,6 +178,7 @@ export class PriceComponent implements OnInit {
         this.service.yng_Item.yng_Ubication.number=this.number;
         this.service.yng_Item.yng_Ubication.postalCode= this.postalCode;
         this.service.yng_Item.yng_Ubication.aditional=this.aditional;
+        this.service.yng_Item.yng_Ubication.yng_Country=this.country;
         this.service.yng_Item.yng_Ubication.yng_Province=this.province;
         this.service.yng_Item.yng_Ubication.yng_City=this.city;
         this.service.yng_Item.yng_Ubication.yng_Barrio=this.barrio;

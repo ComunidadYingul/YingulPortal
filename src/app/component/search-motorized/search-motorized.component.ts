@@ -6,6 +6,7 @@ import { ListCategoryService } from '../../service/list-category.service'
 import { FindMotorized } from '../../model/find-motorized';
 import { SellService } from '../../service/sell.service';
 import { Item } from '../../model/item';
+import { Country } from '../../model/country';
 
 @Component({
   selector: 'app-search-motorized',
@@ -32,6 +33,7 @@ export class SearchMotorizedComponent implements OnInit {
   popup2:boolean=true;
   popup3:boolean=true;
   popup4:boolean=true;
+  popup5:boolean=true;
   anioDesde="0";
   anioHasta="0";
   precioDesde;
@@ -42,7 +44,10 @@ export class SearchMotorizedComponent implements OnInit {
   cityCard:boolean=true;
   cityList: Object[];
   cityListFive:Object[];
-  provinceCard:boolean=false;
+  provinceCard:boolean=true;
+  countryList:Country[];
+  countryListFive:Country[];
+  countryCard:boolean=false;
   constructor(private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService,private sellService:SellService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.minPrice = route.snapshot.params['minPrice'];
@@ -53,11 +58,11 @@ export class SearchMotorizedComponent implements OnInit {
   }
   ngOnInit() {
     this.getItems();
-    this.sellService.getProvinces().subscribe(
+    this.sellService.getCountries().subscribe(
 			res => {
-            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.provinceListFive=this.provinceListFive.splice(0,5);
+            this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive=this.countryListFive.splice(0,5);
       		},
       		error => console.log(error)
     );
@@ -112,6 +117,7 @@ export class SearchMotorizedComponent implements OnInit {
     this.popup2=true;
     this.popup3=true;
     this.popup4=true;
+    this.popup5=true;
   }
   setParameters(){
     this.anios=[];
@@ -128,12 +134,37 @@ export class SearchMotorizedComponent implements OnInit {
       this.price.push(j);
     }
   }
+  popupCountry(){
+    this.popup5=false;
+  }
   popupProvince(){
     this.popup3=false;
   }
   popupCity(){
     this.popup4=false;
   }
+  findCountry(a:number){
+    this.sellService.getProvinces(a).subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive=this.provinceListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_Country.countryId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.countryCard=true;
+    this.provinceCard=false;
+  }
+
   findProvince(a:number){
     this.sellService.getCities(a).subscribe(
 			res => {
