@@ -5,6 +5,7 @@ import { SellService } from '../../service/sell.service';
 import { Item } from '../../model/item';
 import { Category } from '../../model/category';
 import { ListCategoryService } from '../../service/list-category.service';
+import { Country } from '../../model/country';
 
 @Component({
   selector: 'app-search-property',
@@ -22,7 +23,8 @@ export class SearchPropertyComponent implements OnInit {
   popup:boolean=true;
   popup2:boolean=true;
   popup3:boolean=true;
-  provinceCard:boolean=false;
+  popup4:boolean=true;
+  provinceCard:boolean=true;
   cityCard:boolean=true;
   cityList: Object[];
   cityListFive:Object[];
@@ -31,6 +33,10 @@ export class SearchPropertyComponent implements OnInit {
   subCategoryList: Category[];
   subCategoryListTemp:Category[];
   tensubCategoryList: Category[];
+  countryCard:boolean=false;
+  countryList:Country[];
+  countryListFive:Country[];
+
   constructor(private route:ActivatedRoute,private itemService: ItemService,private sellService:SellService,private categoryService: ListCategoryService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.cityId =route.snapshot.params['cityId'];
@@ -39,11 +45,11 @@ export class SearchPropertyComponent implements OnInit {
 
   ngOnInit() {
     this.getItems();
-    this.sellService.getProvinces().subscribe(
+    this.sellService.getCountries().subscribe(
 			res => {
-            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.provinceListFive=this.provinceListFive.splice(0,5);
+            this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive=this.countryListFive.splice(0,5);
       		},
       		error => console.log(error)
     );
@@ -81,6 +87,9 @@ export class SearchPropertyComponent implements OnInit {
       );
     }
   }
+  popupCountry(){
+    this.popup4=false;
+  }
   popupProvince(){
     this.popup=false;
   }
@@ -90,6 +99,28 @@ export class SearchPropertyComponent implements OnInit {
   popupHide(){
     this.popup=true;
     this.popup2=true;
+    this.popup4=true;
+  }
+  findCountry(a:number){
+    this.sellService.getProvinces(a).subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive=this.provinceListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_Country.countryId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.countryCard=true;
+    this.provinceCard=false;
   }
   findProvince(a:number){
     this.sellService.getCities(a).subscribe(

@@ -31,8 +31,12 @@ export class SellService {
     let url = "http://localhost:8080/user/"+this.username;
     return this.http.get(url);
   }
-  getProvinces() {
-    let url = "http://localhost:8080/ubication/province/all";
+  getProvinces(countryId:number) {
+    let url = "http://localhost:8080/ubication/province/"+countryId;
+    return this.http.get(url);
+  }
+  getCountries(){
+    let url = "http://localhost:8080/ubication/country/all";
     return this.http.get(url);
   }
   getCities(provinceId:number){

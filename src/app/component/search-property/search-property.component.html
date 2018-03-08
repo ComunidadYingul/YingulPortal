@@ -33,6 +33,18 @@
             </div>
         </div>
 
+        <div class="card" [hidden]="countryCard">
+            <div class="card-header" >País</div>
+            <form>
+              <div class="card-block">
+                  <div class="list-group" width="100%">
+                      <a *ngFor="let country of countryListFive" style="cursor: pointer;" (click)="findCountry(country.countryId)" class="list-group-item list-group-item-action " >{{country.name}}</a>
+                      <a style="cursor: pointer;" (click)="popupCountry()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                  </div>
+              </div>
+            </form>
+        </div>
+
         <div class="card" [hidden]="provinceCard">
           <div class="card-header" >Ubicación</div>
           <form>
@@ -150,6 +162,19 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let city of cityList">
                 <a style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action " >{{city.name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup" [hidden]="popup4">
+    <div class="row" >
+        <div class="card-header col-sm-10 ">Paises</div>
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let country of countryList">
+                <a style="cursor: pointer;" (click)="findCountry(country.countryId)" class="list-group-item list-group-item-action " >{{country.name}}</a>
             </div>
         </div>
     </div>

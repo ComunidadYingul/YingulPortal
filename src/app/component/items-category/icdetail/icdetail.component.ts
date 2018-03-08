@@ -28,7 +28,10 @@ export class IcdetailComponent implements OnInit {
   cityCard:boolean=true;
   cityList: Object[];
   cityListFive:Object[];
-  provinceCard:boolean=false;
+  countryCard:boolean=false;
+  countryList: Object[];
+  countryListFive:Object[];
+  provinceCard:boolean=true;
   MediaPrice:number=0;
   priceTotal:number=0;
   minPrice:number=0;
@@ -39,6 +42,7 @@ export class IcdetailComponent implements OnInit {
   popup6:boolean=true;
   popup7:boolean=true;
   popup8:boolean=true;
+  popup9:boolean=true;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
   }
 
@@ -51,11 +55,11 @@ export class IcdetailComponent implements OnInit {
       		},
       		error => console.log(error)
     );
-    this.sellService.getProvinces().subscribe(
+    this.sellService.getCountries().subscribe(
 			res => {
-            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.provinceListFive=this.provinceListFive.splice(0,5);
+            this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive=this.countryListFive.splice(0,5);
       		},
       		error => console.log(error)
     );
@@ -100,6 +104,10 @@ export class IcdetailComponent implements OnInit {
     this.popup6=true;
     this.popup7=true;
     this.popup8=true;
+    this.popup9=true;
+  }
+  popupCountry(){
+    this.popup9=false;
   }
   popupProvince(){
     this.popup3=false;
@@ -109,6 +117,27 @@ export class IcdetailComponent implements OnInit {
   popupCity(){
     this.popup4=false;
     this.cityCard=true;
+  }
+  findCountry(a:number){
+    this.sellService.getProvinces(a).subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive=this.provinceListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_Country.countryId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.countryCard=true;
+    this.provinceCard=false;
   }
   findProvince(a:number){
     this.sellService.getCities(a).subscribe(
