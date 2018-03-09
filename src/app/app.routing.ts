@@ -28,6 +28,7 @@ import { BalanceComponent } from './component/front-yingul-pay/balance/balance.c
 import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdraw.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
+import { OverComponent } from './component/over/over.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -138,6 +139,10 @@ const appRoutes: Routes = [
   {
     path: 'yng-admin/wireTransfer',
     component: WireTransferComponent
+  },
+  {
+    path: 'over',
+    component: OverComponent
   },
   {
     path: ':nameStore',

@@ -33,4 +33,8 @@ export class ItemService {
     let url = "http://localhost:8080/item/itemsByCategory/"+categoryId;
     return this.http.get(url);
   }
+  getItemsOver(sw:boolean){
+    let url = "http://localhost:8080/item/over/"+sw;
+    return this.http.get(url);
+  }
 }

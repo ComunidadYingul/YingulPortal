@@ -36,7 +36,9 @@ export class SearchPropertyComponent implements OnInit {
   countryCard:boolean=false;
   countryList:Country[];
   countryListFive:Country[];
-
+  today = new Date().toJSON().split('T')[0];
+  dateDesde:string;
+  dateHasta:string;
   constructor(private route:ActivatedRoute,private itemService: ItemService,private sellService:SellService,private categoryService: ListCategoryService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.cityId =route.snapshot.params['cityId'];
@@ -180,5 +182,28 @@ export class SearchPropertyComponent implements OnInit {
       this.precioHasta=0;
     }
     this.findPrice(this.precioDesde,this.precioHasta);
+  }
+  findDate(){
+    let dateDesde;
+    let dateHasta;
+    if(this.dateDesde==null){
+      dateDesde=["2018","03","08"];
+    }else{
+      dateDesde=this.dateDesde.split("-");
+    }
+    if(this.dateHasta==null){
+      dateHasta=this.today.split("-");
+    }else{
+      dateHasta=this.dateHasta.split("-");
+    }
+    
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yearPublication>=+dateDesde[0]&&this.itemList[i].yearPublication<=+dateHasta[0]&&this.itemList[i].monthPublication>=+dateDesde[1]&&this.itemList[i].monthPublication<=+dateHasta[1]&&this.itemList[i].dayPublication>=+dateDesde[2]&&this.itemList[i].dayPublication<=+dateHasta[2]){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
   }
 }

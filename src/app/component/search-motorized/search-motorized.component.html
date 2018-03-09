@@ -80,16 +80,17 @@
               </div>
               <div class="card-footer text-right">
                 <div class="row" >
-                    <select name="anioDesde" [(ngModel)]="anioDesde" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12">
+                    <select name="anioDesde" [(ngModel)]="anioDesde" class="form-control form-control-primary col-lg-5 col-md-5 col-sm-5 col-xs-12">
                         <option [value]="0">Desde</option>
                         <option *ngFor="let anio of aniosTemp" [value]="anio">{{anio}}</option>
                     </select>&nbsp;&nbsp;
-                    <select name="anioHasta" [(ngModel)]="anioHasta" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12">
+                    <select name="anioHasta" [(ngModel)]="anioHasta" class="form-control form-control-primary col-lg-5 col-md-5 col-sm-5 col-xs-12">
                         <option [value]="0">Hasta</option>
                         <option *ngFor="let anio of aniosTemp" [value]="anio">{{anio}}</option>
                     </select>&nbsp;
-                    <a class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/{{minPrice}}/{{maxPrice}}/{{anioDesde}}/{{anioHasta}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
                 </div>
+                <br>
+                <a *ngIf="anioDesde!=0||anioHasta!=0" href="/searchMotorized/{{categoryId}}/{{minPrice}}/{{maxPrice}}/{{anioDesde}}/{{anioHasta}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
               </div>
           </form>
         </div>
@@ -106,11 +107,26 @@
                 </div>
                 <div class="card-footer text-right">
                     <div class="row" >
-                        <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
-                        <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
-                        <a *ngIf="precioDesde&&precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/{{precioDesde}}/{{precioHasta}}/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
-                        <a *ngIf="precioDesde&&!precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/{{precioDesde}}/0/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
-                        <a *ngIf="!precioDesde&&precioHasta"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" href="/searchMotorized/{{categoryId}}/0/{{precioHasta}}/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                        <input type="number" class="form-control form-control-primary col-lg-6 col-md-6 col-sm-6 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
+                        <input type="number" class="form-control form-control-primary col-lg-6 col-md-6 col-sm-6 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
+                    </div>
+                    <br>
+                    <a *ngIf="precioDesde&&precioHasta" href="/searchMotorized/{{categoryId}}/{{precioDesde}}/{{precioHasta}}/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+                    <a *ngIf="precioDesde&&!precioHasta" href="/searchMotorized/{{categoryId}}/{{precioDesde}}/0/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+                    <a *ngIf="!precioDesde&&precioHasta" href="/searchMotorized/{{categoryId}}/0/{{precioHasta}}/{{minYear}}/{{maxYear}}"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Fecha de publicación</div>
+            <form>
+                <div class="card-block">
+                    <div class="list-group" width="100%">
+                        <a>Desde:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateDesde" [(ngModel)]="dateDesde">
+                        <a>Hasta:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateHasta" [(ngModel)]="dateHasta">
+                        <br>
+                        <a *ngIf="dateDesde!=null||dateHasta!=null" style="cursor: pointer;" (click)="findDate()" class="" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
                     </div>
                 </div>
             </form>

@@ -86,16 +86,28 @@
                             </div>
                             <div class="card-footer text-right">
                                 <div class="row" >
-                                    <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
-                                    <input type="number" class="form-control form-control-primary col-lg-4 col-md-8 col-sm-8 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
-                                    <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null&&precioHasta!=null"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
-                                    <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null&&precioHasta==null" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
-                                    <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde==null&&precioHasta!=null"class="col-lg-3 col-md-6 col-sm-6 col-xs-12" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"></i></span></a>
+                                    <input type="number" class="form-control form-control-primary col-lg-6 col-md-6 col-sm-6 col-xs-12" placeholder="Mínimo" name="precioDesde" [(ngModel)]="precioDesde">
+                                    <input type="number" class="form-control form-control-primary col-lg-6 col-md-6 col-sm-6 col-xs-12" placeholder="Máximo" name="precioHasta" [(ngModel)]="precioHasta">
+                                </div>
+                                <br>
+                                <a style="cursor: pointer;" (click)="findPrice1()" *ngIf="precioDesde!=null||precioHasta!=null"><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">Fecha de publicación</div>
+                        <form>
+                            <div class="card-block">
+                                <div class="list-group" width="100%">
+                                    <a>Desde:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateDesde" [(ngModel)]="dateDesde">
+                                    <a>Hasta:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateHasta" [(ngModel)]="dateHasta">
+                                    <br>
+                                    <a *ngIf="dateDesde!=null||dateHasta!=null" style="cursor: pointer;" (click)="findDate()" class="" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
                                 </div>
                             </div>
                         </form>
                     </div>
-            
                 </div>
                 <div class="col-sm-9">
                     <!-- Product list card start -->

@@ -1,21 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ItemsCategoryService } from '../../../service/items-category.service'
-import { CategoryService } from '../../../service/category.service';
-import { Category } from '../../../model/category';
-import { ListCategoryService } from '../../../service/list-category.service';
-import { SellService } from '../../../service/sell.service';
-import { Item } from '../../../model/item';
-import { ItemService } from '../../../service/item.service';
+import { Component, OnInit } from '@angular/core';
+import { Item } from '../../model/item';
+import { Category } from '../../model/category';
+import { ItemService } from '../../service/item.service';
+import { CategoryService } from '../../service/category.service';
+import { ListCategoryService } from '../../service/list-category.service';
+import { SellService } from '../../service/sell.service';
+import { user } from '../../model/user';
+import { Router } from '@angular/router';
+import { FavoriteService } from '../../service/favorite.service';
+import { IndexService } from '../../service/index.service';
+import { Product } from '../../model/product';
 
 @Component({
-  selector: 'app-icdetail',
-  templateUrl: './icdetail.component.html',
-  styleUrls: ['./icdetail.component.css']
+  selector: 'app-over',
+  templateUrl: './over.component.html',
+  styleUrls: ['./over.component.css']
 })
-export class IcdetailComponent implements OnInit {
-  @Input('categoryId') categoryId:number;
+export class OverComponent implements OnInit {
   itemList: Item[]=[];
   itemListTemp: Item[]=[];
+  productList:Object[]=[];
+  prod:Product=new Product();
   category:Category=new Category;
   subCategoryList: Category[];
   subCategoryListTemp:Category[];
@@ -46,29 +51,19 @@ export class IcdetailComponent implements OnInit {
   today = new Date().toJSON().split('T')[0];
   dateDesde:string;
   dateHasta:string;
-  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
-  }
+  msg:string;
+  User: user=new user();
+  itemFavorites: Item[]=[];
+  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService,private router: Router, private favoriteService: FavoriteService,private indexService: IndexService) { }
 
   ngOnInit() {
-    this.getItemsByCategory();
-    this.categoryService.getCategoryById(this.categoryId).subscribe(
-			res => {
-            this.category = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            console.log(JSON.stringify(this.category));
-      		},
-      		error => console.log(error)
-    );
-    this.sellService.getCountries().subscribe(
-			res => {
-            this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.countryListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            this.countryListFive=this.countryListFive.splice(0,5);
-      		},
-      		error => console.log(error)
-    );
-  }
-  getItemsByCategory() {
-    this.itemService.getItemsByCategory(this.categoryId).subscribe(
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
+    this.itemService.getItemsOver(true).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             console.log(JSON.stringify(this.itemList));
@@ -81,9 +76,17 @@ export class IcdetailComponent implements OnInit {
       		},
       		error => console.log(error)
     );
-    //
+
+    this.sellService.getCountries().subscribe(
+			res => {
+            this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.countryListFive=this.countryListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
     this.subCategoryList=[];
-    this.categoryService1.getSubCategories(this.categoryId.toString()).subscribe(
+    this.categoryService1.getCategories("Product/0").subscribe(
       res => {
             this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.subCategoryListTemp= JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -94,6 +97,7 @@ export class IcdetailComponent implements OnInit {
           error => console.log(error)
     );
   }
+
   popupCategory(){
     this.popup=false;
     this.popup7=true;
@@ -235,5 +239,94 @@ export class IcdetailComponent implements OnInit {
     }
     this.itemList=[];
     this.itemList=this.itemListTemp;
+  }
+
+
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    } 
+    
+  }
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
+  }
+
+  getProduct(){
+    this.indexService.getProduct().subscribe(
+      res=>{
+        this.productList=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+        console.log("getProduc:"+this.productList.length);
+        for(let p of this.productList){
+          this.prod=JSON.parse(JSON.stringify(p));           
+        }
+      },
+      error=> console.log(error)
+    )
+  }
+
+  envioIcon(number:number):boolean{
+    var retu=this.productR(number);
+    var free="gratis";
+    //console.log("retu: "+retu); 
+    if(retu==free)    {return false;}
+    else     return true;
+
+  }
+  productR(number:number):string{
+    var ret="";
+    for(let p of this.productList){
+      this.prod=JSON.parse(JSON.stringify(p));
+      if(number==this.prod.yng_Item.itemId){ 
+        ret=this.prod.productPagoEnvio
+      }
+    }
+    return ""+ret;
   }
 }
