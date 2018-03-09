@@ -25,6 +25,7 @@ export class Buy {
 	cookie:string;
 	deviceSessionId:string;
 	user:user=new user();
+	seller:user=new user();
 	yng_item:Item= new Item();
 	yng_Payment:Payment= new Payment();
 	shipping:Shipping=new Shipping();

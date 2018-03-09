@@ -46,4 +46,12 @@ export class BuyService {
     let url = "http://ip-api.com/json";
     return this.http.get(url);
   }
+  getSalesForUser(username:string){
+    let url = "http://localhost:8080/buy/getSalesByUser/"+username;
+    return this.http.get(url);
+  }
+  getPurchasesForUser(username:string){
+    let url = "http://localhost:8080/buy/getPurchaseByUser/"+username;
+    return this.http.get(url);
+  }
 }

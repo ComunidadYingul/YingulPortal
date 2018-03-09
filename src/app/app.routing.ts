@@ -29,6 +29,8 @@ import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdra
 import { AdminComponent } from './component/admin/admin.component';
 import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
 import { OverComponent } from './component/over/over.component';
+import { SalesComponent } from './component/user-front/sales/sales.component';
+import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -105,12 +107,20 @@ const appRoutes: Routes = [
     component: UserFrontComponent
   },
   {
-    path: 'userProfile',
+    path: 'userFront/userProfile',
     component: UserProfileComponent
   },
   {
-    path: 'favorites',
+    path: 'userFront/favorites',
     component: FavoritesComponent
+  },
+  {
+    path: 'userFront/sales',
+    component: SalesComponent
+  },
+  {
+    path: 'userFront/purchases',
+    component: PurchasesComponent
   },
   {
     path: 'confirmws/:confirmId',

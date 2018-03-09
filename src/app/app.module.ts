@@ -75,6 +75,8 @@ import { AdminService } from './service/admin.service';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { OverComponent } from './component/over/over.component';
+import { SalesComponent } from './component/user-front/sales/sales.component';
+import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,7 +126,9 @@ import { OverComponent } from './component/over/over.component';
     WithdrawComponent,
     AdminComponent,
     WireTransferComponent,
-    OverComponent
+    OverComponent,
+    SalesComponent,
+    PurchasesComponent
   ],
   imports: [
     BrowserModule,
