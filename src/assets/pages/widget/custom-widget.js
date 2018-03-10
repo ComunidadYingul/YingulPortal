@@ -17,7 +17,7 @@ $(document).ready(function() {
                 x: 2,
                 y: 30
             }],
-            color: '#1abc9c'
+            color: '#FF5E3A'
         }, {
             data: [{
                 x: 0,
@@ -50,7 +50,7 @@ $(document).ready(function() {
                 x: 2,
                 y: 78
             }],
-            color: '#1abc9c'
+            color: '#FF5E3A'
         }, {
             data: [{
                 x: 0,
@@ -387,7 +387,7 @@ $(document).ready(function() {
             width: widchart,
             height: 200,
             series: [{
-                color: '#1abc9c',
+                color: '#FF5E3A',
                 data: [
                     { x: 0, y: 10 },
                     { x: 1, y: 16 },

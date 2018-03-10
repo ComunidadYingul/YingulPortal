@@ -63,9 +63,11 @@
                                                 <img width="450" height="450" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="">
                                             </a>
                                             <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-                                            <div [hidden]="envioIcon(item.itemId)" class=""><a>
+                                            <div [hidden]="envioIcon(item.itemId)" class="h5-send">
+                                                <!--a>
                                               <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
-                                              </a> <h1 class="h5-send">Envió gratis</h1>
+                                                </a> <h1 class="h5-send">Envió gratis</h1-->
+                                                    <i  class="icofont icofont-truck-alt">Envió gratis</i>
                                             </div>
                                         </div>
                                         <div class="prod-info">
@@ -87,6 +89,76 @@
                     </div>
               </ng-template>
           </div>
+        <div>
+
+
+                <div class="col-sm-12">
+                        <!-- Swiper slider card start -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Swiper slider</h5>
+                                <div class="card-header-right">
+                                    <i class="icofont icofont-rounded-down"></i>
+                                    <i class="icofont icofont-refresh"></i>
+                                    <!--i class="icofont icofont-close-circled"></i-->
+                                </div>
+                            </div>
+                            <div class="card-block">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper " >
+                                            <div class="swiper-slide"  *ngFor="let item of itemList" >
+                                                <div id="mycolor1">
+                                                <div class="prod-view">
+                                                    <div class="prod-item text-center"  >
+                                                            <div class="prod-img">
+                                                                <div class="option-hover">
+                                                                    <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                                        <i class="icofont icofont-cart-alt f-20"></i>
+                                                                    </a>
+                                                                    <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                                        <i class="icofont icofont-eye-alt f-20"></i>
+                                                                    </a>
+                                                                    <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <a href="#!" class="hvr-shrink">
+                                                                    <!--ruta para la imagenes en desarrollo -->
+                                                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
+                                                                </a>
+                                                                <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
+                                                                <div [hidden]="envioIcon(item.itemId)" class=""><a>
+                                                                  <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
+                                                                  </a> <h1 class="h5-send">Envió gratis</h1>
+                                                                </div>
+                                                            </div>
+                                                            <div class="prod-info">
+                                                                <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                                                <div class="stars stars-example-css m-b-10">
+                                                                    <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                    </select></div>
+                                                                </div>
+                                                                <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
+                                                                <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                                
+                                    </div>
+                                    <!-- end of swipper-wrapper -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Swiper slider card end -->
+                    </div>
+               
+        </div>
           <div style="overflow-y: auto; height:1000px; width:100%;">
           <div class="row">
                <div [hidden]="true" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemList">

@@ -2,18 +2,18 @@
 $(document).ready(function() {
 	// Single swithces
 	var elemsingle = document.querySelector('.js-single');
-	var switchery = new Switchery(elemsingle, { color: '#1abc9c', jackColor: '#fff' });
+	var switchery = new Switchery(elemsingle, { color: '#FF5E3A', jackColor: '#fff' });
 
 	// Multiple swithces
 	var elem = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
 	elem.forEach(function(html) {		
-		var switchery = new Switchery(html, { color: '#1abc9c', jackColor: '#fff' });		
+		var switchery = new Switchery(html, { color: '#FF5E3A', jackColor: '#fff' });		
 	});		
 
 	// Disable enable swithces
 	var elemstate = document.querySelector('.js-dynamic-state');
-	var switcheryy = new Switchery(elemstate, { color: '#1abc9c', jackColor: '#fff' });
+	var switcheryy = new Switchery(elemstate, { color: '#FF5E3A', jackColor: '#fff' });
 
 	document.querySelector('.js-dynamic-disable').addEventListener('click', function() {
 	  switcheryy.disable();
@@ -28,7 +28,7 @@ $(document).ready(function() {
 	var switchery = new Switchery(elemdefault, { color: '#bdc3c7', jackColor: '#fff' });
 
 	var elemprimary = document.querySelector('.js-primary');
-	var switchery = new Switchery(elemprimary, { color: '#1abc9c', jackColor: '#fff' });
+	var switchery = new Switchery(elemprimary, { color: '#FF5E3A', jackColor: '#fff' });
 
 	var elemprimary = document.querySelector('.js-success');
 	var switchery = new Switchery(elemprimary, { color: '#2ecc71', jackColor: '#fff' });
@@ -47,18 +47,18 @@ $(document).ready(function() {
 
 	// Switch sizes
 	var elemlarge = document.querySelector('.js-large');
-	var switchery = new Switchery(elemlarge, { color: '#1abc9c', jackColor: '#fff', size: 'large' });
+	var switchery = new Switchery(elemlarge, { color: '#FF5E3A', jackColor: '#fff', size: 'large' });
 
 	var elemmedium = document.querySelector('.js-medium');
-	var switchery = new Switchery(elemmedium, { color: '#1abc9c', jackColor: '#fff', size: 'medium' });
+	var switchery = new Switchery(elemmedium, { color: '#FF5E3A', jackColor: '#fff', size: 'medium' });
 
 	var elemsmall = document.querySelector('.js-small');
-	var switchery = new Switchery(elemsmall, { color: '#1abc9c', jackColor: '#fff', size: 'small' });
+	var switchery = new Switchery(elemsmall, { color: '#FF5E3A', jackColor: '#fff', size: 'small' });
 
 	
 
 	// var elemdisable = document.querySelector('.js-disable');
-	// var switchery = new Switchery(elemdisable, { color: '#1abc9c', jackColor: '#fff', disabled: true });
+	// var switchery = new Switchery(elemdisable, { color: '#FF5E3A', jackColor: '#fff', disabled: true });
 
 	// Tags plugins start
 

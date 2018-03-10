@@ -240,56 +240,56 @@ $(document).ready(function(){
 
 $("#dropper-default").dateDropper( {
         dropWidth: 200,
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c"
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A"
     }),
 $("#dropper-animation").dateDropper( {
         dropWidth: 200,
         init_animation: "bounce",
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c"
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A"
     }),
 $("#dropper-format").dateDropper( {
         dropWidth: 200,
         format: "F S, Y",
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c"
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A"
     }),
 $("#dropper-lang").dateDropper( {
         dropWidth: 200,
         format: "F S, Y",
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         lang: "ar"
     }),
 $("#dropper-lock").dateDropper( {
         dropWidth: 200,
         format: "F S, Y",
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         lock: "from"
     }),
 $("#dropper-max-year").dateDropper( {
         dropWidth: 200,        
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         maxYear: "2020"
     }),
 $("#dropper-min-year").dateDropper( {
         dropWidth: 200,       
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         minYear: "1990"
     }),
 $("#year-range").dateDropper( {
         dropWidth: 200,       
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         yearsRange: "5"
     }),
 $("#dropper-width").dateDropper( {         
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         dropWidth: 500
     }),
 $("#dropper-dangercolor").dateDropper( {  
@@ -299,8 +299,8 @@ $("#dropper-dangercolor").dateDropper( {
     }),
 $("#dropper-backcolor").dateDropper( {  
         dropWidth: 200,       
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c", 
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A", 
         dropBackgroundColor: "#bdc3c7"       
     }),
 $("#dropper-txtcolor").dateDropper( {  
@@ -312,19 +312,19 @@ $("#dropper-txtcolor").dateDropper( {
     }),
 $("#dropper-radius").dateDropper( {
         dropWidth: 200,       
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         dropBorderRadius: "0"
     }),
 $("#dropper-border").dateDropper( {
         dropWidth: 200,       
-        dropPrimaryColor: "#1abc9c",        
-        dropBorder: "2px solid #1abc9c"
+        dropPrimaryColor: "#FF5E3A",        
+        dropBorder: "2px solid #FF5E3A"
     }),
 $("#dropper-shadow").dateDropper( {
         dropWidth: 200,       
-        dropPrimaryColor: "#1abc9c", 
-        dropBorder: "1px solid #1abc9c",
+        dropPrimaryColor: "#FF5E3A", 
+        dropBorder: "1px solid #FF5E3A",
         dropBorderRadius: "20px",
         dropShadow: "0 0 20px 0 rgba(26, 188, 156, 0.6)"
     })

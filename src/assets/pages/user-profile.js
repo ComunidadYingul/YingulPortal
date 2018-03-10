@@ -550,8 +550,8 @@ $(document).ready(function() {
 
     $("#dropper-default").dateDropper({
             dropWidth: 200,
-            dropPrimaryColor: "#1abc9c",
-            dropBorder: "1px solid #1abc9c"
+            dropPrimaryColor: "#FF5E3A",
+            dropBorder: "1px solid #FF5E3A"
         }),
         // Date-dropper js end
 

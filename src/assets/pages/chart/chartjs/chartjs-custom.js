@@ -9,7 +9,7 @@ $(document).ready(function(){
         datasets: [{
             data: [40, 10, 40, 10],
             backgroundColor: [
-                "#1ABC9C",
+                "#FF5E3A",
                 "#FCC9BA",
                 "#B8EDF0",
                 "#B4C1D7"
@@ -21,7 +21,7 @@ $(document).ready(function(){
                 "0px"
             ],
             borderColor: [
-                "#1ABC9C",
+                "#FF5E3A",
                 "#FCC9BA",
                 "#B8EDF0",
                 "#B4C1D7"
@@ -146,7 +146,7 @@ $(document).ready(function(){
             ],
             backgroundColor: [
                 "#7E81CB",
-                "#1ABC9C",
+                "#FF5E3A",
                 "#B8EDF0",
                 "#B4C1D7",
                 "#01C0C8"

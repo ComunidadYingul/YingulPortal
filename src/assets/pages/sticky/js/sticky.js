@@ -31,7 +31,7 @@
           posX: 50,
           posY: 200,
           style: {
-              backgroundcolor: '#1abc9c', //Background color in new postits when randomColor = false
+              backgroundcolor: '#FF5E3A', //Background color in new postits when randomColor = false
               textcolor: '#fff', //Text color
               fontfamily: 'Open Sans', //Default font
               fontsize: 'small', //Default font size
@@ -53,7 +53,7 @@
               /*posX :410,
               posY : 200,*/
               style: {
-                  backgroundcolor: '#1abc9c',
+                  backgroundcolor: '#FF5E3A',
                   textcolor: '#fff', //Text color
                   fontfamily: 'Open Sans', //Default font
                   fontsize: 'small', //Default font size
@@ -101,7 +101,7 @@
           posX: 50,
           posY: 200,
           style: {
-              backgroundcolor: '#1abc9c', //Background color in new postits when randomColor = false
+              backgroundcolor: '#FF5E3A', //Background color in new postits when randomColor = false
               textcolor: '#fff', //Text color
               fontfamily: 'Open Sans', //Default font
               fontsize: 'small', //Default font size
@@ -116,7 +116,7 @@
           posX: 230,
           posY: 200,
           style: {
-              backgroundcolor: '#1abc9c', //Background color in new postits when randomColor = false
+              backgroundcolor: '#FF5E3A', //Background color in new postits when randomColor = false
               textcolor: '#fff', //Text color
               fontfamily: 'Open Sans', //Default font
               fontsize: 'small', //Default font size
@@ -138,7 +138,7 @@
               /*posX :410,
               posY : 200,*/
               style: {
-                  backgroundcolor: '#1abc9c',
+                  backgroundcolor: '#FF5E3A',
                   textcolor: '#fff', //Text color
                   fontfamily: 'Open Sans', //Default font
                   fontsize: 'small', //Default font size

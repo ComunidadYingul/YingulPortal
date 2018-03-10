@@ -119,7 +119,7 @@ var option_dt = {
 
     options : [
         {
-            color: ['#1ABC9C','#2C3E50','#4A6076','#87E8C6','#656e77','#42E1FE'],
+            color: ['#FF5E3A','#2C3E50','#4A6076','#87E8C6','#656e77','#42E1FE'],
             title : {
                 text: '',
                 subtext: ''
@@ -137,7 +137,7 @@ var option_dt = {
             },
             toolbox: {
                 show : false,
-                color : ['#1ABC9C','#1ABC9C','#1ABC9C','#1ABC9C'],
+                color : ['#FF5E3A','#FF5E3A','#FF5E3A','#FF5E3A'],
                 feature : {
                     mark : {show: false},
                     dataView : {show: false, readOnly: true},
@@ -230,9 +230,9 @@ myChart.setOption(option_dt);
                             show: true,
                             lineStyle: {
                                 color: [
-                                    [0.2, '#1ABC9C'],
+                                    [0.2, '#FF5E3A'],
                                     [0.8, '#64DDBB'],
-                                    [1, '#1ABC9C']
+                                    [1, '#FF5E3A']
                                 ],
                                 width: 10
                             }
@@ -241,7 +241,7 @@ myChart.setOption(option_dt);
                             show : false,
                             offsetCenter: [0, '120%'],
                             textStyle: {
-                                color: '#1ABC9C',
+                                color: '#FF5E3A',
                                 fontSize : 15
                             }
                         }  ,
@@ -343,7 +343,7 @@ function gauge_load_chart(optionGauge){
             itemStyle: {
                 normal: {
                     color: '#fff',
-                    barBorderColor: '#1ABC9C',
+                    barBorderColor: '#FF5E3A',
                     barBorderWidth: 3,
                     barBorderRadius:0,
                     label : {
@@ -357,7 +357,7 @@ function gauge_load_chart(optionGauge){
                             }
                         },
                         textStyle: {
-                            color: '#1ABC9C'
+                            color: '#FF5E3A'
                         }
                     }
                 }

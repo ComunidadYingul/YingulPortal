@@ -91,7 +91,7 @@ $(document).ready(function() {
         },
 
         options: [{
-                    color: ['#1ABC9C', '#2C3E50', '#4A6076', '#87E8C6', '#656e77', '#42E1FE'],
+                    color: ['#FF5E3A', '#2C3E50', '#4A6076', '#87E8C6', '#656e77', '#42E1FE'],
                     title: {
                         text: '',
                         subtext: ''
@@ -109,7 +109,7 @@ $(document).ready(function() {
                     },
                     toolbox: {
                         show: false,
-                        color: ['#1ABC9C', '#1ABC9C', '#1ABC9C', '#1ABC9C'],
+                        color: ['#FF5E3A', '#FF5E3A', '#FF5E3A', '#FF5E3A'],
                         feature: {
                             mark: { show: false },
                             dataView: { show: false, readOnly: true },

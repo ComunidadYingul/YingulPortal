@@ -84,7 +84,7 @@ $(document).ready(function() {
             onmouseout: function(d, i) { console.log("onmouseout", d, i); }
         },
         color: {
-            pattern: ['#4C5667', '#1ABC9C']
+            pattern: ['#4C5667', '#FF5E3A']
         },
         donut: {
             title: "Iris Petal Width"
@@ -126,7 +126,7 @@ $(document).ready(function() {
             onmouseout: function(d, i) { console.log("onmouseout", d, i); }
         },
         color: {
-            pattern: ['#1ABC9C', '#4C5667', '#00C292', '#AB8CE4']
+            pattern: ['#FF5E3A', '#4C5667', '#00C292', '#AB8CE4']
         },
     });
 
@@ -203,7 +203,7 @@ $(document).ready(function() {
     var chart = c3.generate({
         bindto: '#chart6',
         size: { height: 400 },
-        color: { pattern: ["#2C3E50", "#1ABC9C"] },
+        color: { pattern: ["#2C3E50", "#FF5E3A"] },
         data: {
             xs: {
                 setosa: 'setosa_x',

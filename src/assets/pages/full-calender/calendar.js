@@ -47,7 +47,7 @@
 	                start: '2016-09-13T11:00:00',
 	                constraint: 'availableForMeeting',
 	                editable: true,
-	                borderColor: '#1abc9c',
+	                borderColor: '#FF5E3A',
 	                textColor: '#000'
 	            }, {
 	                title: 'Conference',

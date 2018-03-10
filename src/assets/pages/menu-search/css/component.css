@@ -53,7 +53,7 @@
 	height: 160px;
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-	background: #1abc9c;
+	background: #FF5E3A;
 }
 .morphsearch-input {
 	width: 100%;
@@ -303,7 +303,7 @@ input[type="search"] { /* reset normalize */
 }
 
 .dummy-media-object:hover h3 {
-	color:#1abc9c;
+	color:#FF5E3A;
 }
 
 /* Overlay */
