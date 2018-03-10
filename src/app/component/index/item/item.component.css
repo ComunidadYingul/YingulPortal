@@ -33,4 +33,6 @@
     height: 100%;
     position: relative;
 }
-#mycolor1 {width:180px;} 
+#mycolor1 {
+    display: flex;
+} 
