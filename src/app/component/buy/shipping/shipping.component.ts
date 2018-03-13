@@ -75,6 +75,7 @@ export class ShippingComponent implements OnInit {
     priceSuc2:string;
     userName;
     ubication:Ubication;
+    popupUbication:boolean=false;
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { 
 
   }

@@ -23,11 +23,11 @@
           left: 50%;
         top: 40%;
         text-align: center;
-        border: 5px solid #28e1bd;
+        border: 5px solid #FF5E3A;
     
 }
 .table > thead > tr > th {
-    border-bottom-color: #28e1bd;
+    border-bottom-color: #FF5E3A;
 }
 
  .shipping-method-title {
