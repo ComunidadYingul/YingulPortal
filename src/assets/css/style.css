@@ -5525,17 +5525,17 @@ span.value { display: inline; }
 .your-rating { position: relative; top: -50px; }
 .your-rating.hidden { display: none; }
 
-.br-theme-bars-1to10 .br-widget a, .br-theme-bars-movie .br-widget a, .br-theme-bars-reversed .br-widget a, .br-theme-bars-horizontal .br-widget a { background-color: #8CDDCD; }
+.br-theme-bars-1to10 .br-widget a, .br-theme-bars-movie .br-widget a, .br-theme-bars-reversed .br-widget a, .br-theme-bars-horizontal .br-widget a { background-color: #FF5E3A; }
 .br-theme-bars-1to10 .br-widget a.br-active, .br-theme-bars-1to10 .br-widget a.br-selected, .br-theme-bars-movie .br-widget a.br-active, .br-theme-bars-movie .br-widget a.br-selected, .br-theme-bars-reversed .br-widget a.br-active, .br-theme-bars-reversed .br-widget a.br-selected, .br-theme-bars-horizontal .br-widget a.br-active, .br-theme-bars-horizontal .br-widget a.br-selected { background-color: #FF5E3A; }
 
-.br-theme-bars-pill .br-widget a { background-color: #8CDDCD; color: #FF5E3A; }
+.br-theme-bars-pill .br-widget a { background-color: #FF5E3A; color: #FF5E3A; }
 .br-theme-bars-pill .br-widget a.br-active, .br-theme-bars-pill .br-widget a.br-selected { background-color: #FF5E3A; }
 
 .br-theme-fontawesome-stars .br-widget a.br-active:after, .br-theme-fontawesome-stars .br-widget a.br-selected:after { color: #FF5E3A; }
 
 .br-theme-css-stars .br-widget a.br-active:after, .br-theme-css-stars .br-widget a.br-selected:after { color: #FF5E3A; }
 
-.br-theme-bars-square .br-widget a { border: 2px solid #8CDDCD; color: #8CDDCD; }
+.br-theme-bars-square .br-widget a { border: 2px solid #FF5E3A; color: #FF5E3A; }
 .br-theme-bars-square .br-widget a.br-active, .br-theme-bars-square .br-widget a.br-selected { border: 2px solid #FF5E3A; color: #FF5E3A; }
 
 .br-theme-fontawesome-stars-o .br-widget a.br-selected:after, .br-theme-fontawesome-stars-o .br-widget a:after, .br-theme-fontawesome-stars-o .br-widget a.br-active:after, .br-theme-fontawesome-stars-o .br-widget a.br-fractional:after { color: #FF5E3A; }
@@ -6635,7 +6635,7 @@ body[themebg-pattern="pattern9"] { background-image: url("../images/pattern9.png
 
 .progress-squared { border-radius: 0; }
 
-.progress-bar { background-color: #8CDDCD; }
+.progress-bar { background-color: #FF5E3A; }
 
 .progress-bar-success { background-color: #22BAA0; }
 

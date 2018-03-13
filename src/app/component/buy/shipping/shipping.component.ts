@@ -17,6 +17,8 @@ import { Shipping } from '../../../model/shipping';
 import { user } from '../../../model/user';
 import { Branch } from '../../../model/branch';
 import { Quote } from '../../../model/quote';
+import { SellService } from '../../../service/sell.service';
+import { Ubication } from '../../../model/ubication';
 
 @Component({
   selector: 'app-shipping',
@@ -71,14 +73,38 @@ export class ShippingComponent implements OnInit {
     userTemp2:user =new user();
     quoteList:Object[];
     priceSuc2:string;
-  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
+    userName;
+    ubication:Ubication;
+  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { 
 
   }
 
   
   ngOnInit() {
     this.shipping.typeShipping="home";
-    //this.
+    this.useri=JSON.parse(localStorage.getItem("user"));
+    this.userName=this.useri.username;
+    console.log("this.userName"+this.userName);
+    this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
+      res => {
+        //console.log(JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body!=""){
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+           
+           console.log("ubication:"+ JSON.stringify(this.ubication));
+          //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
+           //this.product.yng_Item.yng_Ubication=this.ubication;
+            //this.popupEnvios=false;
+           //this.popupUbicacion=true;
+        }
+        else {
+          //this.popupEnvios=true;
+          //this.popupUbicacion=false;
+  
+        }
+          },
+          error => console.log(error)
+    );
     
   }
 
