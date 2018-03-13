@@ -8,7 +8,7 @@ export class Motorized {
     motorizedUnicoDue: string;
 
     motorizedDoor: string;
-    motorizedKilometers: string;
+    motorizedKilometers: number;
     motorizedFuelType: string;
     motorizedColor: string;
     motorizedDirection: string;

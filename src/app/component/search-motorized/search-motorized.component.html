@@ -132,6 +132,18 @@
             </form>
         </div>
 
+        <div class="card" [hidden]="conditionCard">
+            <div class="card-header">Condición</div>
+            <form>
+                <div class="card-block">
+                    <div class="list-group" width="100%">
+                        <a style="cursor: pointer;" (click)="findNew()" class="list-group-item list-group-item-action " >Nuevo</a>
+                        <a style="cursor: pointer;" (click)="findUsed()" class="list-group-item list-group-item-action " >Usado</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
       </div>
       <div class="col-sm-9">
           <!-- Product list start -->

@@ -31,6 +31,7 @@ import { WireTransferComponent } from './component/admin/wire-transfer/wire-tran
 import { OverComponent } from './component/over/over.component';
 import { SalesComponent } from './component/user-front/sales/sales.component';
 import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
+import { ClaimsComponent } from './component/user-front/claims/claims.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -121,6 +122,10 @@ const appRoutes: Routes = [
   {
     path: 'userFront/purchases',
     component: PurchasesComponent
+  },
+  {
+    path: 'userFront/claims',
+    component: ClaimsComponent
   },
   {
     path: 'confirmws/:confirmId',

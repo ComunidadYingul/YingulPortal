@@ -183,7 +183,7 @@ export class PriceComponent implements OnInit {
         this.service.yng_Item.yng_Ubication.yng_City=this.city;
         this.service.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
         //sise cobra publicidad por producto destacado aqui
-        this.service.yng_Item.isOver=false;
+        //this.service.yng_Item.isOver=false;
         this.service.cobertureZone=this.cobertureZone;
         this.priceItemS.emit(this.service);
     }
@@ -221,7 +221,7 @@ export class PriceComponent implements OnInit {
       this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
       //sise cobra publicidad por producto destacado aqui
-      this.property.yng_Item.isOver=false;
+      //this.property.yng_Item.isOver=false;
       this.priceItemS.emit(this.property);
     }
     if(this.typeCatPre=="Motorized")
@@ -242,7 +242,7 @@ export class PriceComponent implements OnInit {
       this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
       //sise cobra publicidad por producto destacado aqui
-      this.motorized.yng_Item.isOver=false;
+      //this.motorized.yng_Item.isOver=false;
       this.priceItemS.emit(this.motorized);
 
     }
@@ -340,7 +340,7 @@ export class PriceComponent implements OnInit {
       this.product.yng_Item.yng_Ubication.yng_City=this.city;
       this.product.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //sise cobra publicidad por producto destacado aqui
-      this.product.yng_Item.isOver=false;
+      //this.product.yng_Item.isOver=false;
       this.popupEnvios=false;
       this.popupUbicacion=true;
       this.popupUbication=true;

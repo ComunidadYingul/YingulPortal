@@ -13,6 +13,10 @@ export class ItemService {
     let url = "http://localhost:8080/item/motorized/all";
     return this.http.get(url);
   }
+  getOnlyMotorized(){
+    let url = "http://localhost:8080/item/onlyMotorized/all";
+    return this.http.get(url);
+  }
   getFindMotorized(categoryId:string){
     let url = "http://localhost:8080/item/findMotorized/"+categoryId;
     return this.http.get(url);
@@ -35,6 +39,14 @@ export class ItemService {
   }
   getItemsOver(sw:boolean){
     let url = "http://localhost:8080/item/over/"+sw;
+    return this.http.get(url);
+  }
+  getProductsByCategory(categoryId:number){
+    let url = "http://localhost:8080/item/ProductsByCategory/"+categoryId;
+    return this.http.get(url);
+  }
+  getMotorizedByCategory(categoryId:number){
+    let url = "http://localhost:8080/item/MotorizedByCategory/"+categoryId;
     return this.http.get(url);
   }
 }

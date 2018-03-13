@@ -128,4 +128,7 @@ export class ItemComponent implements OnInit {
       }
     }
   }
+  click(){
+    //alert("kanf");
+  }
 }

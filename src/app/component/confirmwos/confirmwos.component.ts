@@ -49,6 +49,8 @@ export class ConfirmwosComponent implements OnInit {
     this.popup=false;
     this.confirm.codeConfirm=this.codeConfirm;
     this.confirm.buy=null;
+    this.confirm.buyer=null;
+    this.confirm.seller=null;
     this.confirmService.updateConfirm(this.confirm).subscribe(
       res => {
             this.msg = JSON.parse(JSON.stringify(res))._body;

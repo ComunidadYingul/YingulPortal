@@ -1,0 +1,121 @@
+<!-- Main-body start -->
+<div class="main-body">
+  <div class="page-wrapper">
+      <!-- Page-header start -->
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Reclamos</h4>
+              <span>Productos, Servicios, Inmuebles o Vehículos comprados vigentes a reclamos</span>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="/index">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/userFront">Mi cuenta</a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/userFront/claims">Reclamos</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <!-- Page-header end -->
+      <!-- Page-body start -->
+      <div class="page-body">
+          <div class="row">
+              <div class="col-sm-12">
+                
+                <!-- Zero config.table start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Reclamos</h5>
+                        <span>Productos, Servicios, Inmuebles o Vehículos comprados vigentes a reclamos en Yingul.</span>
+                        <div class="card-header-right">
+                            <i class="icofont icofont-rounded-down"></i>
+                            <i class="icofont icofont-refresh"></i>
+                            <i class="icofont icofont-close-circled"></i>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="dt-responsive table-responsive">
+                            <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Foto</th>
+                                        <th>Fecha y Hora</th>
+                                        <th>Cantidad</th>
+                                        <th>Nombre</th>
+                                        <th>Costo Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let confirm of confirmList">
+                                        <td style="cursor: pointer;" (click)="initClaim(confirm)"><img width="150" height="150" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{confirm.buy.yng_item.principalImage}}" class="img-fluid" alt="{{confirm.buy.yng_item.principalImage}}"></td>
+                                        <td style="cursor: pointer;" (click)="initClaim(confirm)">{{confirm.buy.time}}</td>
+                                        <td style="cursor: pointer;" (click)="initClaim(confirm)">{{confirm.buy.quantity}}</td>
+                                        <td style="cursor: pointer;" (click)="initClaim(confirm)">{{confirm.buy.yng_item.name}}</td>
+                                        <td style="cursor: pointer;" (click)="initClaim(confirm)">$ {{confirm.buy.cost}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Foto</th>
+                                        <th>Fecha y Hora</th>
+                                        <th>Cantidad</th>
+                                        <th>Nombre</th>
+                                        <th>Costo Total</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Zero config.table end -->
+
+              </div>
+          </div>
+      </div>
+      <!-- Page-body end -->
+  </div>
+</div>
+<!-- Main-body end -->
+
+<div class="popup" [hidden]="popup">
+    <div class="row" >
+        <div class="col-sm-10 "><a style="font-weight: 600; color: #4a6076; font-size: 20px;">CUENTANOS QUE PASO???</a></div>
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <hr class="m-t-20 m-b-20">
+    <div class="page-header-title">
+        <h6 style="color: #999; font-size: 15px;">Describenos que paso con {{claim.confirm.buy.yng_item.name}} comprado el {{claim.confirm.buy.time}} para que tu y tu vendedor puedan llegar a una acuerdo</h6>
+    </div>
+    <br>
+    <div class="md-float-material">
+        <div class="input-group input-group-button">
+            <span class="input-group-addon">
+                <i class="icofont icofont-comment"></i>
+            </span>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="claimText" placeholder="Mensaje" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button [disabled]="isFormDisabled()" type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="createClaim()">CREAR RECLAMO
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
+    </div>
+</div>

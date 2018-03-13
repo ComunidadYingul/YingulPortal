@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Claim } from '../model/claim';
 import {Http, Headers} from '@angular/http';
-import { Confirm } from '../model/confirm';
+
 @Injectable()
-export class ConfirmService {
+export class ClaimService {
+
   public headers = new Headers({
     'Access-Control-Allow-Origin': '*',
     'Content-Type' : 'application/json; charset=UTF-8',
@@ -11,16 +13,8 @@ export class ConfirmService {
     'Access-Control-Allow-Credentials': true 
   });
   constructor(private http:Http) { }
-  getConfirm(confirmId:number){
-    let url = "http://localhost:8080/confirm/getConfirmForId/"+confirmId;
-    return this.http.get(url);
-  }
-  updateConfirm(confirm:Confirm){
-    let _url: string ='http://localhost:8080/confirm/updateConfirm';
-    return this.http.post(_url, confirm,{headers: this.headers})
-  }
-  getConfirmToClaimForUser(username:string){
-    let url = "http://localhost:8080/confirm/getConfirmToClaimForUser/"+username;
-    return this.http.get(url);
+  saveClaim(claim:Claim){
+    let _url: string ='http://localhost:8080/claim/createClaim';
+    return this.http.post(_url, claim,{headers: this.headers})
   }
 }

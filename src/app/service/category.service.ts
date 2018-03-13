@@ -17,4 +17,8 @@ export class CategoryService {
     let url = "http://localhost:8080/category/getCategory/"+categoryId;
     return this.http.get(url);
   }
+  getTypeItemCategory(categoryId:number){
+    let url = "http://localhost:8080/category/getTypeCategory/"+categoryId;
+    return this.http.get(url);
+  }
 }

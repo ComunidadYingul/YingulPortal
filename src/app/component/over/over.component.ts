@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { FavoriteService } from '../../service/favorite.service';
 import { IndexService } from '../../service/index.service';
 import { Product } from '../../model/product';
+import { Motorized } from '../../model/Motorized';
 
 @Component({
   selector: 'app-over',
@@ -19,7 +20,7 @@ import { Product } from '../../model/product';
 export class OverComponent implements OnInit {
   itemList: Item[]=[];
   itemListTemp: Item[]=[];
-  productList:Object[]=[];
+  productList:Product[]=[];
   prod:Product=new Product();
   category:Category=new Category;
   subCategoryList: Category[];
@@ -54,6 +55,8 @@ export class OverComponent implements OnInit {
   msg:string;
   User: user=new user();
   itemFavorites: Item[]=[];
+  conditionCard:boolean=false;
+  motorizedList:Motorized[];
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService,private router: Router, private favoriteService: FavoriteService,private indexService: IndexService) { }
 
   ngOnInit() {
@@ -96,6 +99,8 @@ export class OverComponent implements OnInit {
           },
           error => console.log(error)
     );
+    this.getProduct();
+    this.getMotorized();
   }
 
   popupCategory(){
@@ -328,5 +333,65 @@ export class OverComponent implements OnInit {
       }
     }
     return ""+ret;
+  }
+  getMotorized(){
+    this.itemService.getOnlyMotorized().subscribe(
+			res => {
+            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  findNew(){
+    this.itemListTemp=[];
+    for (let i of this.itemList) {
+      if(i.aproduct==true){
+        for(let p of this.productList){
+          if(p.yng_Item.itemId==i.itemId){
+            if(p.productCondition=="Nuevo"){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+      if(i.amotorized==true){
+        for(let m of this.motorizedList){
+          if(m.yng_Item.itemId==i.itemId){
+            if(m.motorizedKilometers==0){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
+  }
+  findUsed(){
+    this.itemListTemp=[];
+    for (let i of this.itemList) {
+      if(i.aproduct==true){
+        for(let p of this.productList){
+          if(p.yng_Item.itemId==i.itemId){
+            if(p.productCondition=="Usado"){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+      if(i.amotorized==true){
+        for(let m of this.motorizedList){
+          if(m.yng_Item.itemId==i.itemId){
+            if(m.motorizedKilometers>0){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
   }
 }

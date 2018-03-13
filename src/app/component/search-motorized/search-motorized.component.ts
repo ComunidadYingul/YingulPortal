@@ -7,6 +7,7 @@ import { FindMotorized } from '../../model/find-motorized';
 import { SellService } from '../../service/sell.service';
 import { Item } from '../../model/item';
 import { Country } from '../../model/country';
+import { Motorized } from '../../model/Motorized';
 
 @Component({
   selector: 'app-search-motorized',
@@ -51,6 +52,8 @@ export class SearchMotorizedComponent implements OnInit {
   today = new Date().toJSON().split('T')[0];
   dateDesde:string;
   dateHasta:string;
+  conditionCard:boolean=false;
+  motorizedList:Motorized[];
   constructor(private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService,private sellService:SellService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.minPrice = route.snapshot.params['minPrice'];
@@ -74,6 +77,12 @@ export class SearchMotorizedComponent implements OnInit {
     this.itemService.searchMotorized(this.categoryId, this.minPrice, this.maxPrice, this.minYear, this.maxYear).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    this.itemService.getOnlyMotorized().subscribe(
+			res => {
+            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );
@@ -224,5 +233,35 @@ export class SearchMotorizedComponent implements OnInit {
     }
     this.itemList=[];
     this.itemList=this.itemListTemp;
+  }
+  findNew(){
+    this.itemListTemp=[];
+    for (let i of this.itemList) {
+      for(let m of this.motorizedList){
+        if(m.yng_Item.itemId==i.itemId){
+          if(m.motorizedKilometers==0){
+            this.itemListTemp.push(i);
+          }
+        }         
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
+  }
+  findUsed(){
+    this.itemListTemp=[];
+    for (let i of this.itemList) {
+      for(let m of this.motorizedList){
+        if(m.yng_Item.itemId==i.itemId){
+          if(m.motorizedKilometers>0){
+            this.itemListTemp.push(i);
+          }
+        }         
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
   }
 }

@@ -16,11 +16,11 @@ export class Item {
 	itemId:number;
 	priceNormal:number;
     priceDiscount:number;
-    isAProduct:boolean;
-	isAService:boolean;
-	isAMotorized:boolean;
-	isAProperty:boolean;
-	isOver:boolean;
+    aproduct:boolean;
+	aservice:boolean;
+	amotorized:boolean;
+	aproperty:boolean;
+	over:boolean;
     dayPublication:number;
     monthPublication:number;
     yearPublication:number;

@@ -11,13 +11,13 @@
                 <div class="col-xs-12 col-md-12 col-lg-4" style="cursor: pointer;" (click)="cardSelected(cardu)" *ngFor="let cardu of cardUser">
                     <div class="card payment-card" >
                         <div >
-                            <i *ngIf="cardu.provider == 'VisaD'" class="icofont icofont-visa-alt"></i>
+                            <i *ngIf="cardu.provider == 'VISA'" class="icofont icofont-visa-alt"></i>
                             <i *ngIf="cardu.provider == '0'" class="icofont icofont-visa-alt"></i>
-                            <i *ngIf="cardu.provider == 'MastercardD'" class="icofont icofont-mastercard"></i>
+                            <i *ngIf="cardu.provider == 'MASTERCARD'" class="icofont icofont-mastercard"></i>
                             <i *ngIf="cardu.provider == '1'" class="icofont icofont-mastercard"></i>
-                            <img *ngIf="cardu.provider == 'AmexD'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                            <img *ngIf="cardu.provider == 'AMEX'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
                             <img *ngIf="cardu.provider == '2'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
-                            <p *ngIf="cardu.provider == 'AmexD'"></p>
+                            <p *ngIf="cardu.provider == 'AMEX'"></p>
                             <h5 *ngIf="cardu.number%10000>999">**** **** **** {{cardu.number%10000}}</h5>
                             <h5 *ngIf="cardu.number%10000>99 && cardu.number%10000<=999">**** **** **** 0{{cardu.number%10000}}</h5>
                             <h5 *ngIf="cardu.number%10000>9 && cardu.number%10000<=99">**** **** **** 00{{cardu.number%10000}}</h5>
