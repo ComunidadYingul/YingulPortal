@@ -38,6 +38,8 @@ export class ConfirmComponent implements OnInit {
   phone:string;
   User: user=new user();
   dataForBuyer:Object=new Object();
+  documentType:string="DNI";
+  documentNumber:string;
   constructor(private buyService: BuyService, private router: Router) { 
   console.log("Cotizacion"+JSON.stringify(this.shipping));
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -160,6 +162,8 @@ export class ConfirmComponent implements OnInit {
   }
   updateUser(){
     this.User.phone=this.phone;
+    this.User.documentType=this.documentType;
+    this.User.documentNumber=this.documentNumber;
     this.buyService.updateUser(this.User).subscribe(
       res => {
             this.msg = JSON.parse(JSON.stringify(res))._body;
@@ -176,6 +180,8 @@ export class ConfirmComponent implements OnInit {
 
     this.popup=true;
   }
-
-
+  getDniCuit(type : string){
+    console.log("type:"+type);
+    this.documentType=type;  
+}
 }

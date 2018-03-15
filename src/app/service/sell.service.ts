@@ -118,4 +118,9 @@ export class SellService {
     return this.http.get(url);
     //return this.http.post(url, query,{headers: this.headers});
   }
+  ConsultarCountry(){
+    let url = "http://localhost:8080/ubication/country/all";
+    return this.http.get(url);
+    //return this.http.post(url, query,{headers: this.headers});
+  }
 }

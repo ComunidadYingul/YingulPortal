@@ -122,6 +122,16 @@
         <hr class="m-t-20 m-b-20">
         <h4>Solo seran visibles por tu contraparte cuando compres</h4>
     </div>
+    <div class="">
+        <div class="input-group">
+         
+            <select class="input-group-addon col-sm-2"#a (change)="getDniCuit(a.value)">
+                <option [value]="DNI" >DNI</option>
+                <option  [value]="CUIT" >CUIT</option>
+            </select>
+          <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button">
+        </div>
+      </div>
     <div class="md-float-material">
         <div class="input-group input-group-button">
             <span class="input-group-addon">

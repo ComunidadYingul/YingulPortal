@@ -15,5 +15,8 @@ export class user {
     department_id : number;
 	country_id : number;
 	//modificar la ubicacion del usuario y crear la clase ubication
-	yng_Ubication:Ubication= new Ubication();
+    yng_Ubication:Ubication= new Ubication();
+    documentType:string;
+    documentNumber:string
+    
 }

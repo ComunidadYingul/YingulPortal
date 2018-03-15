@@ -10,8 +10,11 @@ export class Ubication {
     number:string;
     postalCode:string;
 	aditional:string;
-	codAndreani:string;
-	
+    codAndreani:string;
+    //country:string;
+    department:string;
+    withinStreets:string;
+
     yng_Province:Province= new Province();
     yng_City:City = new City();
     yng_Barrio:Barrio = new Barrio();

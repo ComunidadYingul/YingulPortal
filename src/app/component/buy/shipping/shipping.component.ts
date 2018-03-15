@@ -19,6 +19,11 @@ import { Branch } from '../../../model/branch';
 import { Quote } from '../../../model/quote';
 import { SellService } from '../../../service/sell.service';
 import { Ubication } from '../../../model/ubication';
+import { Province } from '../../../model/province';
+import { BuyService } from '../../../service/buy.service';
+import { City } from '../../../model/city';
+import { Barrio } from '../../../model/barrio';
+import { Country } from '../../../model/country';
 
 @Component({
   selector: 'app-shipping',
@@ -43,7 +48,7 @@ export class ShippingComponent implements OnInit {
   priceSuc:string="";
   popupSucursal:boolean=true;
   checke:boolean=false;
-  //buscarCP:string;
+ 
   @Input('Item') Item:Item;
 
 
@@ -74,11 +79,43 @@ export class ShippingComponent implements OnInit {
     quoteList:Object[];
     priceSuc2:string;
     userName;
-    ubication:Ubication;
-    popupUbication:boolean=false;
-  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { 
-
-  }
+    ubication:Ubication=new Ubication();
+    popupUbication:boolean=true;
+    btnCP:boolean=false;
+    cityHid:boolean;
+    codigoPostalE:string;
+    cityList: Object[];
+    barrioHid:boolean;
+    provinciaCP:string;
+    provinciaID:number;
+    public province:Province = new Province();
+    Country:string;
+    department:string;
+    withinStreets:string;
+    number:string;
+    street:string;
+    aditional:string;
+    swUb:boolean;
+    User: user=new user();
+    msg:string;
+    public city:City = new City();
+    public barrio:Barrio = new Barrio();
+    barrioList : Object[];
+    countryList:object[];
+    countryName:string;
+    country:Country=new Country();
+    countryTemp:Country=new Country();
+    countryHidden:boolean=false;
+  constructor(private buyService: BuyService,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService,private router: Router) { 
+    this.cityHid=true;
+    console.log("Cotizacion"+JSON.stringify(this.shipping));
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+			this.User=JSON.parse(localStorage.getItem("user"));
+    }  
+    }
 
   
   ngOnInit() {
@@ -88,20 +125,20 @@ export class ShippingComponent implements OnInit {
     console.log("this.userName"+this.userName);
     this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
       res => {
-        //console.log(JSON.stringify(res));
+        console.log("res:"+JSON.stringify(res));
         if(JSON.parse(JSON.stringify(res))._body!=""){
-            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-           
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);           
            console.log("ubication:"+ JSON.stringify(this.ubication));
+           
           //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
            //this.product.yng_Item.yng_Ubication=this.ubication;
             //this.popupEnvios=false;
-           //this.popupUbicacion=true;
+           this.popupUbication=true;
         }
         else {
           //this.popupEnvios=true;
-          //this.popupUbicacion=false;
-  
+          this.popupUbication=false;
+          this.countryAll();
         }
           },
           error => console.log(error)
@@ -219,7 +256,7 @@ export class ShippingComponent implements OnInit {
     calcularCosto(){
       this.popup=false;
     }
-    buscarCP:string="";
+    //buscarCP:string="";
     //postalCode:string;
  
 
@@ -482,6 +519,7 @@ export class ShippingComponent implements OnInit {
     }
     quoteSend(){
       if(this.postalCode!=""){
+        this.popupSucursal=true;
         this.getItem("Producto",this.Item.itemId); 
          //this.quoteS.rate=0;
       this.quoteS.respuesta="";
@@ -562,4 +600,136 @@ export class ShippingComponent implements OnInit {
   
     
     }
+    buscarCP(){
+      if(this.codigoPostalE==""){alert("Introduzca un Código Postal");}
+      else{
+  
+        this.cityList=[];
+  
+        this.sellService.getCP(this.codigoPostalE).subscribe(
+          res => {
+                this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+  
+                
+    
+                if(JSON.stringify(this.cityList)=="[]"){
+                  
+                  this.cityHid=true;
+                  this.barrioHid=true;
+                  alert("no se encontro el codigo postal ");
+                } 
+                else{
+                  this.provinciaCP=JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.name);
+                  this.provinciaID=parseInt(JSON.stringify(JSON.parse(JSON.stringify(this.cityList[0])).yng_Province.provinceId));
+                
+                  this.province.provinceId=this.provinciaID;
+                  
+                  this.cityHid=false;
+                  this.postalCode=this.codigoPostalE;
+                  this.btnCP=true;  
+                               
+                }
+              },
+              error => console.log(error)
+        )
+      }
+  
+    }
+    cambiarCP(){
+      this.cityHid=true;
+      this.postalCode="";
+      this.number="";
+      this.street="";
+      this.aditional="";
+      this.department="";
+      this.withinStreets="";
+      this.btnCP=false;
+    }
+    aceptar(){   
+      
+      if(this.street==""||this.number==""||this.aditional==""){  
+        alert("Complete todo los datos por favor");
+      }
+      else{
+        console.log("this.street:"+this.street);
+        this.ubication.street=this.street;
+        this.ubication.number=this.number;
+        this.ubication.postalCode= this.postalCode;
+        this.ubication.aditional=this.aditional;
+        this.ubication.yng_Province=this.province;
+        this.ubication.yng_City=this.city;
+        this.ubication.yng_Barrio=this.barrio;
+        this.ubication.department=this.department;
+        this.ubication.withinStreets=this.withinStreets;
+        this.ubication.yng_Country=this.country;
+        //alert("ubication"+JSON.stringify(this.ubication));
+        console.log("ubication"+JSON.stringify(this.ubication));
+        this.User.yng_Ubication=this.ubication;
+        console.log("ubication"+JSON.stringify(this.User));
+        this.buyService.updateUserUbication(this.User).subscribe(
+          res => {
+                this.msg = JSON.parse(JSON.stringify(res))._body;
+                if(this.msg=='save'){
+                  //this.sw=true;
+                 // this.buyItem();
+                 this.popupUbication=true;
+                }
+                else{
+                  alert(this.msg);
+                } 
+              },
+              error => console.log(error)
+        );
+    
+        this.popup=true;
+        this.popupUbication=true;
+      }  
+    }
+    getBarrio(cityId : number){
+      this.city.cityId=cityId;
+      this.barrioList=[];
+      this.sellService.getBarrio(cityId).subscribe(
+        res => {
+              this.barrioList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              if(JSON.stringify(this.barrioList)=="[]"){
+                this.barrioHid=true;
+              }
+              else{
+                this.barrioHid=false;
+              }
+            },
+            error => console.log(error)
+      )
+    }
+    countryAll(){
+      this.sellService.ConsultarCountry().subscribe(
+        res => {
+          console.log("resCountry:"+JSON.stringify(res));
+          if(JSON.parse(JSON.stringify(res))._body!=""){
+              this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);           
+             console.log("ubication:"+ JSON.stringify(this.ubication));
+            // this.popupUbication=true;
+          }
+          else {
+            //this.popupUbication=false;
+            
+          }
+            },
+            error => console.log(error)
+      );
+
+
+    }
+    getCountry(countryId : number){
+      this.countryHidden=true;
+      var ret;
+    for(let p of this.countryList){
+      this.countryTemp=JSON.parse(JSON.stringify(p));
+      if(countryId==this.countryTemp.countryId){              
+        console.log("contry: " +JSON.stringify(this.countryTemp));
+        this.country=this.countryTemp;
+      }     
+      this.countryName=this.country.name     
+    }
+  }
 }

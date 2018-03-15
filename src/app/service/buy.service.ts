@@ -46,4 +46,8 @@ export class BuyService {
     let url = "http://ip-api.com/json";
     return this.http.get(url);
   }
+  updateUserUbication(user:user){
+    let _url: string ='http://localhost:8080/buy/updateUserUbication';
+    return this.http.post(_url, user,{headers: this.headers})
+  }
 }

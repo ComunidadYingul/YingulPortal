@@ -89,6 +89,7 @@
                         </div>
                 </div>
                 <br/>
+                <div [hidden]="popupSucursal">
                 <h6>¿Quien retira el paquete?</h6><br/>
                 <div class="row">
                         <div class="col-sm-6">
@@ -101,11 +102,12 @@
                 </div>
                 <div class="row">
                         <div class="input-group col-md-6">
+                                <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
                                 <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
                                 <span class="md-line"></span>
                             </div>
                 </div>
-
+                </div>
             </div>
 
             <br/>
@@ -147,14 +149,26 @@
     </div>
     <!-- hasta aqui el detalle del item a vender --> 
 </div>
+
 <div class="popup" [hidden]="popupUbication">
-    <h4 class="sub-title">Ingresa tu código postal </h4>
+    <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
+    <!--h5 class="text-center">Ingresa tu código postal </h5-->
+    
+        <div class="col-sm-6" [hidden]="countryHidden">
+                <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
+                    <option value="opt1" disabled>Seleccione un País</option>
+                    <option *ngFor="let country of countryList" [value]="country.countryId" [disabled]="country.countryId!=2">{{country.name}}</option>
+                </select>
+        </div>
+        <h4 class="sub-title" [hidden]="!countryHidden">{{countryName}}</h4>
+        <br/>
+        <div [hidden]="!countryHidden">
     <div [hidden]="btnCP" class="input-group input-group-button">
         <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
         <span class="input-group-addon" id="basic-addon10">
             <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
         </span>
-    <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+    <a hidden="true" href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
     </div>
 
 
@@ -185,15 +199,29 @@
                     </div>
             </div>
             <div class="row">       
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                        <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                    </div>
+                </div>
+        </div>
+            <div class="row">       
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                            <input type="text" (keypress)="keyPress($event)" class="form-control" name="number" [(ngModel)]="number" placeholder="Número">
+                            <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
                         </div>
                     </div>
             </div>  
-
-
+            <div class="row">       
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                        <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
+                    </div>
+                </div>
+            </div> 
             <div class="row">
                 <div class="col-sm-6">
                         <div class="input-group">
@@ -214,5 +242,5 @@
                 </div>
             </div>
 
-
+</div>
 </div>
