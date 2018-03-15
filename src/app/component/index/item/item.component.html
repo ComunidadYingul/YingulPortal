@@ -21,7 +21,7 @@
       <div class="page-body">
           <!-- Product list start -->
           <div>
-            <div id="container">
+            <div [hidden]="true" id="container">
                 <div
                   ng2-carouselamos
                   class="slides-wrapper"
@@ -89,7 +89,7 @@
                     </div>
               </ng-template>
           </div>
-        <div>
+        <div [hidden]="true">
 
 
                 <div class="col-sm-12">
@@ -161,7 +161,7 @@
         </div>
           <div style="overflow-y: auto; height:1000px; width:100%;">
           <div class="row">
-               <div [hidden]="true" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemList">
+               <div [hidden]="false" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemList">
                   <div class="card prod-view">
                       <div class="prod-item text-center">
                           <div class="prod-img">
@@ -181,9 +181,17 @@
                                   <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
                               </a>
                               <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-                              <div [hidden]="envioIcon(item.itemId)" class=""><a>
+                              <div [hidden]="envioIcon(item.itemId)" class="h5-send" style="margin-left:20px;">
+                                  <!--a>
                                 <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
-                                </a> <h1 class="h5-send">Envió gratis</h1>
+                                </a> <h1 class="h5-send">Envió gratis</h1-->
+                                    <div class="row">
+                                            <div  class="h5-send" style="margin-left:20px;">                                  
+                                                    <div  class="row">                                                        
+                                                        <img style="width: 25px;height: 25px;" class="" src="assets/images/car.png" alt="Generic placeholder image">
+                                                        <h6  style="font-size:12px;margin-top: 8px;">Envió gratis</h6>
+                                                    </div>
+                                            </div>
                               </div>
                           </div>
                           <div class="prod-info">

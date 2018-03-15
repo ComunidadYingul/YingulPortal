@@ -74,7 +74,6 @@ import { WireTransferComponent } from './component/admin/wire-transfer/wire-tran
 import { AdminService } from './service/admin.service';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
-import { ListItemsComponent } from './component/user-front/list-items/list-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,7 +123,6 @@ import { ListItemsComponent } from './component/user-front/list-items/list-items
     WithdrawComponent,
     AdminComponent,
     WireTransferComponent,
-    ListItemsComponent
   ],
   imports: [
     BrowserModule,

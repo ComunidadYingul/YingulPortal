@@ -12,6 +12,7 @@ import { Property } from '../../../model/Property';
 import { Motorized } from '../../../model/Motorized';
 import { Ubication } from '../../../model/ubication';
 import { Country } from '../../../model/country';
+import { BuyService } from '../../../service/buy.service';
 
 @Component({
   selector: 'app-price',
@@ -61,7 +62,18 @@ export class PriceComponent implements OnInit {
   checkedDiscount:boolean=false;
   priceDiscount:number;
   priceNormal:number;
-  constructor(private sellService: SellService) { 
+  countryName:string;
+  countryHidden:boolean=false;
+  countryTemp:Country=new Country();
+  department:string="";
+  withinStreets:string="";
+  popPriUb:boolean=false;
+  booleanPerson:boolean=false;
+  useri:user=new user();
+  userNameP:string;
+  Usertemp:user=new user();
+  msg:string;
+  constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
   }
@@ -94,7 +106,24 @@ export class PriceComponent implements OnInit {
 
       },
       error => console.log(error)
-    )
+    );
+   
+    this.useri=JSON.parse(localStorage.getItem("user"));
+    this.userNameP=this.useri.username;
+    console.log("userNameP:"+this.userNameP);
+    this.sellService.ConsultarUbicavionUser(this.userNameP).subscribe(
+      res => {
+        console.log("res:"+JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body==""){
+            //this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          this.popPriUb=true;
+        }
+        else {
+          this.popPriUb=false;
+        }
+          },
+          error => console.log(error)
+    );
     
   }
   provin:string;
@@ -330,6 +359,29 @@ export class PriceComponent implements OnInit {
       this.product.yng_Item.yng_Ubication.yng_Province=this.province;
       this.product.yng_Item.yng_Ubication.yng_City=this.city;
       this.product.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+      this.product.yng_Item.yng_Ubication.department=this.department;
+      this.product.yng_Item.yng_Ubication.withinStreets=this.withinStreets;
+      this.product.yng_Item.yng_Ubication.yng_Country=this.country;
+      //console.log("ubication"+JSON.stringify(this.ubication));
+        this.Usertemp.yng_Ubication=this.product.yng_Item.yng_Ubication;
+        this.Usertemp.username=this.userNameP;
+        console.log("ubication"+JSON.stringify(this.Usertemp));
+        this.buyService.updateUserUbication(this.Usertemp).subscribe(
+          res => {
+                this.msg = JSON.parse(JSON.stringify(res))._body;
+                if(this.msg=='save'){
+                  //this.sw=true;
+                 // this.buyItem();
+                 this.popupUbication=true;
+                }
+                else{
+                  alert(this.msg);
+                } 
+              },
+              error => console.log(error)
+        );
+      if(this.booleanPerson==true) this.popupEnvios=true;
+      else this.popupEnvios=false;
       this.popupEnvios=false;
       this.popupUbicacion=true;
       this.popupUbication=true;
@@ -344,6 +396,8 @@ export class PriceComponent implements OnInit {
     this.number="";
     this.street="";
     this.aditional="";
+    this.department="";
+    this.withinStreets="";
     this.btnCP=false;
   }
 
@@ -353,7 +407,7 @@ export class PriceComponent implements OnInit {
  popupGarantia:boolean=true;
  popupCotizar:boolean=true;
  popupUbicacion:boolean=true;
- ubication:Ubication;
+ ubication:Ubication=new Ubication();
 
   test(event) {  
     console.log("event:"+event.target.checked);    
@@ -368,10 +422,33 @@ export class PriceComponent implements OnInit {
   }
 
   test2(event) {  
-    console.log("event:"+event.target.checked);    
+    console.log("event:"+event.target.checked +"popPriUb"+this.popPriUb);    
     if(event.target.checked==true){
-      this.product.productFormDelivery="YingulEnviosPersona"      
-     // this.consultarUbi();
+      this.product.productFormDelivery="YingulEnviosPersona"
+      this.useri=JSON.parse(localStorage.getItem("user"));
+      this.userNameP=this.useri.username;
+      console.log("userNameP:"+this.userNameP);
+      this.sellService.ConsultarUbicavionUser(this.userNameP).subscribe(
+        res => {
+          console.log("res:"+JSON.stringify(res));
+          if(JSON.parse(JSON.stringify(res))._body==""){
+              //this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.popPriUb=true;
+            this.popupUbication=false;
+            this.popupEnvios=true;
+            this.booleanPerson=true;
+          }
+          else {
+            this.popPriUb=false;
+          }
+            },
+            error => console.log(error)
+      );      
+      if(this.popPriUb==true){
+        this.popupUbication=false;
+        this.popupEnvios=true;
+        this.booleanPerson=true;
+      }
     }
     else {
       //this.popupEnvios=true;
@@ -389,7 +466,8 @@ export class PriceComponent implements OnInit {
            console.log(JSON.stringify(this.ubication));
           //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
            this.product.yng_Item.yng_Ubication=this.ubication;
-            this.popupEnvios=false;
+            if(this.booleanPerson==true) this.popupEnvios=true;
+            else this.popupEnvios=false;
             this.popupUbicacion=true;
         }
         else {
@@ -461,4 +539,16 @@ export class PriceComponent implements OnInit {
       alert("Los valores no son válidos");
     }
   }
+  getCountry(countryId : number){
+    this.countryHidden=true;
+    var ret;
+  for(let p of this.countryList){
+    this.countryTemp=JSON.parse(JSON.stringify(p));
+    if(countryId==this.countryTemp.countryId){              
+      console.log("contry: " +JSON.stringify(this.countryTemp));
+      this.country=this.countryTemp;
+    }     
+    this.countryName=this.country.name     
+  }
+}
 }

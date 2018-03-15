@@ -182,6 +182,8 @@ export class ConfirmComponent implements OnInit {
   }
   getDniCuit(type : string){
     console.log("type:"+type);
-    this.documentType=type;  
+    if(type=="2"){this.documentType="CUIT";}
+    else{this.documentType="DNI";}
+      
 }
 }
