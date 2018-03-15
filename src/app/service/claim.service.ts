@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Claim } from '../model/claim';
 import {Http, Headers} from '@angular/http';
+import { user } from '../model/user';
 
 @Injectable()
 export class ClaimService {
@@ -16,5 +17,13 @@ export class ClaimService {
   saveClaim(claim:Claim){
     let _url: string ='http://localhost:8080/claim/createClaim';
     return this.http.post(_url, claim,{headers: this.headers})
+  }
+  getClaimById(claimId:number, User:user) {
+    let url = "http://localhost:8080/claim/getClaimById/"+claimId;
+    let headers = new Headers(
+      {
+        'Authorization': User.password
+      });
+    return this.http.get(url,{headers: headers});
   }
 }

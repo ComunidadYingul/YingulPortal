@@ -32,6 +32,8 @@ import { OverComponent } from './component/over/over.component';
 import { SalesComponent } from './component/user-front/sales/sales.component';
 import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
 import { ClaimsComponent } from './component/user-front/claims/claims.component';
+import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
+import { AgreementComponent } from './component/agreement/agreement.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -158,6 +160,14 @@ const appRoutes: Routes = [
   {
     path: 'over',
     component: OverComponent
+  },
+  {
+    path: 'help/protectedPurchase',
+    component: ProtectedPurchaseComponent
+  },
+  {
+    path: 'agreement/:claimId',
+    component: AgreementComponent
   },
   {
     path: ':nameStore',
