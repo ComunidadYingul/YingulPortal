@@ -15,5 +15,14 @@ export class Item {
 	principalImage : string;
 	itemId:number;
 	priceNormal:number;
-	priceDiscount:number;    
+    priceDiscount:number;
+    aproduct:boolean;
+	aservice:boolean;
+	amotorized:boolean;
+	aproperty:boolean;
+	over:boolean;
+    dayPublication:number;
+    monthPublication:number;
+    yearPublication:number;
+
 }

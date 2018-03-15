@@ -7,6 +7,7 @@ import { FindMotorized } from '../../model/find-motorized';
 import { SellService } from '../../service/sell.service';
 import { Item } from '../../model/item';
 import { Country } from '../../model/country';
+import { Motorized } from '../../model/Motorized';
 
 @Component({
   selector: 'app-search-motorized',
@@ -48,6 +49,11 @@ export class SearchMotorizedComponent implements OnInit {
   countryList:Country[];
   countryListFive:Country[];
   countryCard:boolean=false;
+  today = new Date().toJSON().split('T')[0];
+  dateDesde:string;
+  dateHasta:string;
+  conditionCard:boolean=false;
+  motorizedList:Motorized[];
   constructor(private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService,private sellService:SellService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.minPrice = route.snapshot.params['minPrice'];
@@ -71,6 +77,12 @@ export class SearchMotorizedComponent implements OnInit {
     this.itemService.searchMotorized(this.categoryId, this.minPrice, this.maxPrice, this.minYear, this.maxYear).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    this.itemService.getOnlyMotorized().subscribe(
+			res => {
+            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );
@@ -198,5 +210,58 @@ export class SearchMotorizedComponent implements OnInit {
     this.popupHide();
     this.provinceCard=true;
     this.cityCard=true;
+  }
+  findDate(){
+    let dateDesde;
+    let dateHasta;
+    if(this.dateDesde==null){
+      dateDesde=["2018","03","08"];
+    }else{
+      dateDesde=this.dateDesde.split("-");
+    }
+    if(this.dateHasta==null){
+      dateHasta=this.today.split("-");
+    }else{
+      dateHasta=this.dateHasta.split("-");
+    }
+    
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yearPublication>=+dateDesde[0]&&this.itemList[i].yearPublication<=+dateHasta[0]&&this.itemList[i].monthPublication>=+dateDesde[1]&&this.itemList[i].monthPublication<=+dateHasta[1]&&this.itemList[i].dayPublication>=+dateDesde[2]&&this.itemList[i].dayPublication<=+dateHasta[2]){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+  }
+  findNew(){
+    this.itemListTemp=[];
+    for (let i of this.itemList) {
+      for(let m of this.motorizedList){
+        if(m.yng_Item.itemId==i.itemId){
+          if(m.motorizedKilometers==0){
+            this.itemListTemp.push(i);
+          }
+        }         
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
+  }
+  findUsed(){
+    this.itemListTemp=[];
+    for (let i of this.itemList) {
+      for(let m of this.motorizedList){
+        if(m.yng_Item.itemId==i.itemId){
+          if(m.motorizedKilometers>0){
+            this.itemListTemp.push(i);
+          }
+        }         
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
   }
 }

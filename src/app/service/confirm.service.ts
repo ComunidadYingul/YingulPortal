@@ -19,4 +19,8 @@ export class ConfirmService {
     let _url: string ='http://localhost:8080/confirm/updateConfirm';
     return this.http.post(_url, confirm,{headers: this.headers})
   }
+  getConfirmToClaimForUser(username:string){
+    let url = "http://localhost:8080/confirm/getConfirmToClaimForUser/"+username;
+    return this.http.get(url);
+  }
 }

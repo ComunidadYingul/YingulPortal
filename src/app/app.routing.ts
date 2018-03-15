@@ -28,6 +28,12 @@ import { BalanceComponent } from './component/front-yingul-pay/balance/balance.c
 import { WithdrawComponent } from './component/front-yingul-pay/withdraw/withdraw.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
+import { OverComponent } from './component/over/over.component';
+import { SalesComponent } from './component/user-front/sales/sales.component';
+import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
+import { ClaimsComponent } from './component/user-front/claims/claims.component';
+import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
+import { AgreementComponent } from './component/agreement/agreement.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -104,12 +110,24 @@ const appRoutes: Routes = [
     component: UserFrontComponent
   },
   {
-    path: 'userProfile',
+    path: 'userFront/userProfile',
     component: UserProfileComponent
   },
   {
-    path: 'favorites',
+    path: 'userFront/favorites',
     component: FavoritesComponent
+  },
+  {
+    path: 'userFront/sales',
+    component: SalesComponent
+  },
+  {
+    path: 'userFront/purchases',
+    component: PurchasesComponent
+  },
+  {
+    path: 'userFront/claims',
+    component: ClaimsComponent
   },
   {
     path: 'confirmws/:confirmId',
@@ -138,6 +156,18 @@ const appRoutes: Routes = [
   {
     path: 'yng-admin/wireTransfer',
     component: WireTransferComponent
+  },
+  {
+    path: 'over',
+    component: OverComponent
+  },
+  {
+    path: 'help/protectedPurchase',
+    component: ProtectedPurchaseComponent
+  },
+  {
+    path: 'agreement/:claimId',
+    component: AgreementComponent
   },
   {
     path: ':nameStore',

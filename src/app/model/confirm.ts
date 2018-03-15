@@ -1,4 +1,5 @@
 import { Buy } from './buy';
+import { user } from './user';
 export class Confirm {
     confirmId:number;
 
@@ -24,4 +25,7 @@ export class Confirm {
     status:string;
 
     buy : Buy=new Buy();
+
+    buyer:user=new user();
+    seller:user=new user();
 }

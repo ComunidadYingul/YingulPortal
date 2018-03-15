@@ -74,6 +74,14 @@ import { WireTransferComponent } from './component/admin/wire-transfer/wire-tran
 import { AdminService } from './service/admin.service';
 
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { OverComponent } from './component/over/over.component';
+import { SalesComponent } from './component/user-front/sales/sales.component';
+import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
+import { ClaimsComponent } from './component/user-front/claims/claims.component';
+import { ClaimService } from './service/claim.service';
+import { HelpComponent } from './component/help/help.component';
+import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
+import { AgreementComponent } from './component/agreement/agreement.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,6 +131,14 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
     WithdrawComponent,
     AdminComponent,
     WireTransferComponent,
+
+    OverComponent,
+    SalesComponent,
+    PurchasesComponent,
+    ClaimsComponent,
+    HelpComponent,
+    ProtectedPurchaseComponent,
+    AgreementComponent
   ],
   imports: [
     BrowserModule,
@@ -153,7 +169,8 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
     AccountService,
     BankService,
     WireTransferService,
-    AdminService
+    AdminService,
+    ClaimService
   ],
   bootstrap: [AppComponent]
 })

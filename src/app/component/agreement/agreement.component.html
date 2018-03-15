@@ -1,0 +1,242 @@
+<div class="main-body">
+  <div class="page-wrapper">
+      <div class="page-header">
+          <div class="page-header-title">
+              <h4>Acuerdo con respecto a {{claim.confirm.buy.yng_item.name}}</h4>
+          </div>
+          <div class="page-header-breadcrumb">
+              <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                      <a href="/index">
+                          <i class="icofont icofont-home"></i>
+                      </a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/help">Ayuda</a>
+                  </li>
+                  <li class="breadcrumb-item"><a href="/help/protectedPurchase">Compra protegida</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="page-body">
+
+        <div class="card card-block">
+          <div class="row users-card">
+            <div class="col-lg-12 col-xl-12 col-md-12">
+                <div class="card rounded-card user-card">
+                    <div class="card-block">
+                        <div class="user-content">
+                            <h4 class="">Argumento del comprador: {{claim.claimText}}</h4>
+                            <h5 class="">Paga con Yingul Pay y todas tus compras estarán protegidas ante cualquier inconveniente que tengas.</h5>
+                            <p><a style="color:#ff5e3a;">Importante: </a> Para cualquier acuerdo que se llegue entre ambas partes se debe leer cuidadosamente las instrucciones y seguirlas al pie de la letra, si se cumple con esto todo saldra bien pero si se producen equivocaciones no nos hacemos responsables también debe visitar: donde tenemos videos para no cometer equivocaciones.</p>
+                            <p *ngIf="User.username==claim.confirm.buyer.username">El comprador no puede devolver el producto al vendedor si no recibe un email indicando que lo haga, si no cumple con este enunciado Yingul no le podra devolver su dinero.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-block">
+          <div class="row users-card">
+
+            <div class="col-lg-4 col-xl-4 col-md-4">
+              <div class="card rounded-card user-card">
+                <div class="card-block">
+                  <div class="user-content">
+                    <h4 class="">CAMBIO DE PRODUCTO DEFECTUOSO</h4>
+                    <h5>En el caso de que el producto no fue alterado ni estropeado por el comprador y presente fallas (de uso o de fábrica) poco después de haberlo comprado. Librando de culpa tanto al vendedor como al comprador.</h5>
+                    <p style="text-align: left;">El procedimiento estandar para este caso en este caso es de: <br>
+                    1. Se confirmará que ambos estan de acuerdo con el proceso de CAMBIO DE PRODUCTO POR DEFECTOS.<br>
+                    1.1. El vendedor debe presionar el botón de ENVIAR CÓDIGO al comprador que se encuentra al pie de esta tarjeta.<br>
+                    1.2. Al comprador le llegará un email y una notificacion de CAMBIO DE PRODUCTO POR DEFECTOS y un código de confirmación, el cual se debe proporcionar al vendedor.<br>
+                    1.3. El vendedor debe introducir el código de confirmación y presionar CONFIRMAR CAMBIO DE PRODUCTO.</p>
+                    <p style="text-align: left;">2. Despues de confirmar que ambos estan de acuerdo con el proceso de CAMBIO DE PRODUCTO POR DEFECTOS tanto comprador como vendedor deben revisar sus correos donde encontraran nuevas instrucciones para el proceso.</p> 
+                    <a (click)="showAfterChange()"style="color: #9ca5ab; cursor:pointer;">Que hacer despues? <i [hidden]="afterChange" class="icofont icofont-simple-up"></i><i [hidden]="!afterChange" class="icofont icofont-simple-down"></i></a>
+                    <div [hidden]="!afterChange"><hr>
+                    <p style="text-align: left;">Despues de la confirmacion de CAMBIO DE PRODUCTO DEFECTUOSO se debe hacer lo siguiente:<br>
+                    1. Tanto al comprador como al vendedor le llegarar los emails correspondientes.<br>
+                    2. Al comprador le llegara nuevo código que debera proporcionar al comprador a cambio del nuevo producto.<br>
+                    3. Al vendedor le llegara un link donde tiene que introducir el código que proporciona el comprador a cambio del nuevo producto (debe asegurarse que el codigo sea aceptado por Yingul antes de cambiar el producto).<br>
+                    <a style="color:#ff5e3a;">Importante: </a> El comprador como el vendedor deben asegurarse que el producto nuevo sea examente igual que el producto a cambiar.</p></div>
+                    <form class="md-float-material card-block" *ngIf="User.username==claim.confirm.seller.username">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <button [disabled]="enabled==false" (click)="sendCodeChange()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
+                          </button>
+                        </div>
+                      </div>
+                      <br>
+                      <div [hidden]="!change">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ssl-security"></i></span>
+                                    <input name="codeConfirm" [(ngModel)]="codeConfirm" type="text" class="form-control" placeholder="Código de confirmación" (ngModelChange)="changeInput()" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" *ngIf="codeConfirm>999&&codeConfirm<=9999">
+                                <re-captcha (resolved)="resolved($event)" siteKey="6Lfv2EYUAAAAAIVxjK9Rs_mkpH-gzqeKZZEMBsE_"></re-captcha>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-center">
+                                    <button [disabled]="enabled==false" (click)="onConfirm()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">CONFIRMAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xl-4 col-md-4">
+              <div class="card rounded-card user-card">
+                <div class="card-block">
+                  <div class="user-content">
+                    <h4 class="">DEVOLUCIÓN DE PRODUCTO DEFECTUOSO</h4>
+                    <h5>En el caso de que el producto no fue alterado ni estropeado por el comprador y presente fallas (de uso o de fábrica) poco después de haberlo comprado. Librando de culpa tanto al vendedor como al comprador. ademas de que el vendedor no cuente con mas stock del mismo producto. Librando de culpa al comprador.</h5>
+                    <p style="text-align: left;">El procedimiento estandar para este caso en este caso es de: <br>
+                    1. Se confirmará que ambos estan de acuerdo con el proceso de DEVOLUCIÓN DE PRODUCTO DEFECTUOSO.<br>
+                    1.1. El vendedor debe presionar el botón de ENVIAR CÓDIGO al comprador que se encuentra al pie de esta tarjeta.<br>
+                    1.2. Al comprador le llegará un email y una notificacion de DEVOLUCIÓN DE PRODUCTO DEFECTUOSO y un código de confirmación, el cual se debe proporcionar al vendedor.<br>
+                    1.3. El vendedor debe introducir el código de confirmación y presionar CONFIRMAR DEVOLUCIÓN DE PRODUCTO.</p>
+                    <p style="text-align: left;">2. Despues de confirmar que ambos estan de acuerdo con el proceso de DEVOLUCIÓN DE PRODUCTO DEFECTUOSO tanto comprador como vendedor deben revisar sus correos donde encontraran nuevas instrucciones para el proceso.</p> 
+                    <a (click)="showAfterBack()"style="color: #9ca5ab; cursor:pointer;">Que hacer despues? <i [hidden]="afterBack" class="icofont icofont-simple-up"></i><i [hidden]="!afterBack" class="icofont icofont-simple-down"></i></a>
+                    <div [hidden]="!afterBack"><hr>
+                    <p style="text-align: left;">Despues de la confirmacion de DEVOLUCIÓN DE PRODUCTO DEFECTUOSO se debe hacer lo siguiente: <br>
+                    1. Tanto al comprador como al vendedor le llegarar los emails correspondientes.<br>
+                    2. Al vendedor le llegara un link donde debera depositar el cobro por transacciones según nuestras <a href="">politicas de devolución de producto defectuoso</a> en Yingul.<br>
+                    2.1. Despues de depositar el cobro por transacciones le llegara un nuevo código que debera proporcionar al comprador a cambio del producto.<br>
+                    3. Al comprador le llegara un link donde tiene que introducir el código que proporciona el vendedor a cambio del producto (debe asegurarse que el codigo sea aceptado por Yingul antes de devolver el producto).<br>
+                    3.1. Al comprador le llegara un email con intrucciones para poder retirar su dinero.</p></div>
+                    <form class="md-float-material card-block" *ngIf="User.username==claim.confirm.seller.username">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <button [disabled]="enabled==false" (click)="sendCodeBack()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
+                          </button>
+                        </div>
+                      </div>
+                      <br>
+                      <div [hidden]="!back">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ssl-security"></i></span>
+                                    <input name="codeConfirm" [(ngModel)]="codeConfirm" type="text" class="form-control" placeholder="Código de confirmación" (ngModelChange)="changeInput()" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" *ngIf="codeConfirm>999&&codeConfirm<=9999">
+                                <re-captcha (resolved)="resolved($event)" siteKey="6Lfv2EYUAAAAAIVxjK9Rs_mkpH-gzqeKZZEMBsE_"></re-captcha>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-center">
+                                    <button [disabled]="enabled==false" (click)="onConfirm()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">CONFIRMAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-xl-4 col-md-4">
+              <div class="card rounded-card user-card">
+                <div class="card-block">
+                  <div class="user-content">
+                    <h4 class="">MALA MANIPULACIÓN DEL PRODUCTO</h4>
+                    <h5>En el caso de que el producto fue alterado o estropeado por el comprador y presente fallas poco después de haberlo comprado. Librando de culpa al vendedor.</h5>
+                    <p style="text-align: left;">El procedimiento estandar para este caso en este caso es de: <br>
+                    1. El vendedor debe presentar un informe oral o escrito al comprador de acuerdo a <a href="">políticas de mala manipulacion de producto</a> de Yingul
+                    2. Se confirmará que ambos estan de acuerdo con el proceso de MALA MANIPULACIÓN DEL PRODUCTO.<br>
+                    2.1. El vendedor debe presionar el botón de ENVIAR CÓDIGO al comprador que se encuentra al pie de esta tarjeta.<br>
+                    2.2. Al comprador le llegará un email y una notificacion de MALA MANIPULACIÓN DEL PRODUCTO y un código de confirmación, el cual se debe proporcionar al vendedor.<br>
+                    2.3. El vendedor debe introducir el código de confirmación y presionar CONFIRMAR MALA MANIPULACIÓN DEL PRODUCTO.</p>
+                    <form class="md-float-material card-block" *ngIf="User.username==claim.confirm.seller.username">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <button [disabled]="enabled==false" (click)="sendCodeMisuse()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
+                          </button>
+                        </div>
+                      </div>
+                      <br>
+                      <div [hidden]="!misuse">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ssl-security"></i></span>
+                                    <input name="codeConfirm" [(ngModel)]="codeConfirm" type="text" class="form-control" placeholder="Código de confirmación" (ngModelChange)="changeInput()" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" *ngIf="codeConfirm>999&&codeConfirm<=9999">
+                                <re-captcha (resolved)="resolved($event)" siteKey="6Lfv2EYUAAAAAIVxjK9Rs_mkpH-gzqeKZZEMBsE_"></re-captcha>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="text-center">
+                                    <button [disabled]="enabled==false" (click)="onConfirm()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">CONFIRMAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </form>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="popup" align="center" [hidden]="popup">
+    <div class="page-header-title">
+        <h4>PARECE QUE TU Y TU COMPRADOR LLEGARON A UN ACUERDO</h4>
+        <h5>Ahora se enviara un código de confirmación a tu comprador, solo puedes enviar un código a tu comprador y si ambos no estan de acuerdo presiona cancelar o no te podremos devolver el producto</h5>
+        <br>
+        <div class="col-sm-12">
+            <div class="text-center">
+                <button (click)="sendAgreement()" type="button" class="btn btn-primary waves-effect waves-light m-r-10">Aceptar
+                </button>
+                <button (click)="cancelAgreement()"type="button" class="btn btn-warning waves-effect waves-light">Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
+    </div>
+</div>

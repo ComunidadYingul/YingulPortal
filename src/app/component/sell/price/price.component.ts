@@ -211,6 +211,8 @@ export class PriceComponent implements OnInit {
         this.service.yng_Item.yng_Ubication.yng_Province=this.province;
         this.service.yng_Item.yng_Ubication.yng_City=this.city;
         this.service.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+        //sise cobra publicidad por producto destacado aqui
+        //this.service.yng_Item.isOver=false;
         this.service.cobertureZone=this.cobertureZone;
         this.priceItemS.emit(this.service);
     }
@@ -242,10 +244,13 @@ export class PriceComponent implements OnInit {
       this.property.yng_Item.yng_Ubication.number=this.number;
       this.property.yng_Item.yng_Ubication.postalCode= this.postalCode;
       this.property.yng_Item.yng_Ubication.aditional=this.aditional;
+      this.property.yng_Item.yng_Ubication.yng_Country=this.country;
       this.property.yng_Item.yng_Ubication.yng_Province=this.province;
       this.property.yng_Item.yng_Ubication.yng_City=this.city;
       this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
+      //sise cobra publicidad por producto destacado aqui
+      //this.property.yng_Item.isOver=false;
       this.priceItemS.emit(this.property);
     }
     if(this.typeCatPre=="Motorized")
@@ -260,10 +265,13 @@ export class PriceComponent implements OnInit {
       this.motorized.yng_Item.yng_Ubication.number=this.number;
       this.motorized.yng_Item.yng_Ubication.postalCode= this.postalCode;
       this.motorized.yng_Item.yng_Ubication.aditional=this.aditional;
+      this.motorized.yng_Item.yng_Ubication.yng_Country=this.country;
       this.motorized.yng_Item.yng_Ubication.yng_Province=this.province;
       this.motorized.yng_Item.yng_Ubication.yng_City=this.city;
       this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
       //this.product.$cobertureZone=this.cobertureZone;
+      //sise cobra publicidad por producto destacado aqui
+      //this.motorized.yng_Item.isOver=false;
       this.priceItemS.emit(this.motorized);
 
     }
@@ -356,9 +364,11 @@ export class PriceComponent implements OnInit {
       this.product.yng_Item.yng_Ubication.number=this.number;
       this.product.yng_Item.yng_Ubication.postalCode= this.postalCode;
       this.product.yng_Item.yng_Ubication.aditional=this.aditional;
+      this.product.yng_Item.yng_Ubication.yng_Country=this.country;
       this.product.yng_Item.yng_Ubication.yng_Province=this.province;
       this.product.yng_Item.yng_Ubication.yng_City=this.city;
       this.product.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+
       this.product.yng_Item.yng_Ubication.department=this.department;
       this.product.yng_Item.yng_Ubication.withinStreets=this.withinStreets;
       this.product.yng_Item.yng_Ubication.yng_Country=this.country;
@@ -382,6 +392,10 @@ export class PriceComponent implements OnInit {
         );
       if(this.booleanPerson==true) this.popupEnvios=true;
       else this.popupEnvios=false;
+
+      //sise cobra publicidad por producto destacado aqui
+      //this.product.yng_Item.isOver=false;
+
       this.popupEnvios=false;
       this.popupUbicacion=true;
       this.popupUbication=true;

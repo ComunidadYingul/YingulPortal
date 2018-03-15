@@ -6,6 +6,9 @@ import { ListCategoryService } from '../../../service/list-category.service';
 import { SellService } from '../../../service/sell.service';
 import { Item } from '../../../model/item';
 import { ItemService } from '../../../service/item.service';
+import { ItemDetailService } from '../../../service/item-detail.service';
+import { Product } from '../../../model/product';
+import { Motorized } from '../../../model/Motorized';
 
 @Component({
   selector: 'app-icdetail',
@@ -43,7 +46,14 @@ export class IcdetailComponent implements OnInit {
   popup7:boolean=true;
   popup8:boolean=true;
   popup9:boolean=true;
-  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService) { 
+  today = new Date().toJSON().split('T')[0];
+  dateDesde:string;
+  dateHasta:string;
+  typeItemCategory:string;
+  productList:Product[];
+  motorizedList:Motorized[];
+  conditionCard:boolean=false;
+  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
   }
 
   ngOnInit() {
@@ -54,6 +64,20 @@ export class IcdetailComponent implements OnInit {
             console.log(JSON.stringify(this.category));
       		},
       		error => console.log(error)
+    );
+    this.categoryService.getTypeItemCategory(this.categoryId).subscribe(
+      res => {
+        this.typeItemCategory = JSON.parse(JSON.stringify(res))._body;
+        switch (this.typeItemCategory){
+          case "Product":
+            this.getProductsByCategory();
+          break;
+          case "Motorized":
+
+          break;
+        }
+      },
+      error => console.log(error)
     );
     this.sellService.getCountries().subscribe(
 			res => {
@@ -89,6 +113,22 @@ export class IcdetailComponent implements OnInit {
             if(JSON.stringify(this.subCategoryList)=="[]"){this.tensubCategoryList=null;}
           },
           error => console.log(error)
+    );
+  }
+  getProductsByCategory(){
+    this.itemService.getProductsByCategory(this.categoryId).subscribe(
+			res => {
+            this.productList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  getMotorizedByCategory(){
+    this.itemService.getMotorizedByCategory(this.categoryId).subscribe(
+			res => {
+            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
     );
   }
   popupCategory(){
@@ -210,4 +250,84 @@ export class IcdetailComponent implements OnInit {
   popupCategorys(){
     this.popup7=false;
   }
+  findDate(){
+    let dateDesde;
+    let dateHasta;
+    if(this.dateDesde==null){
+      dateDesde=["2018","03","08"];
+    }else{
+      dateDesde=this.dateDesde.split("-");
+    }
+    if(this.dateHasta==null){
+      dateHasta=this.today.split("-");
+    }else{
+      dateHasta=this.dateHasta.split("-");
+    }
+    
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yearPublication>=+dateDesde[0]&&this.itemList[i].yearPublication<=+dateHasta[0]&&this.itemList[i].monthPublication>=+dateDesde[1]&&this.itemList[i].monthPublication<=+dateHasta[1]&&this.itemList[i].dayPublication>=+dateDesde[2]&&this.itemList[i].dayPublication<=+dateHasta[2]){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+  }
+  findNew(){
+    this.itemListTemp=[];
+    if(this.typeItemCategory=="Product"){
+      for (let i of this.itemList) {
+        for(let p of this.productList){
+          if(p.yng_Item.itemId==i.itemId){
+            if(p.productCondition=="Nuevo"){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+    }else{
+      for (let i of this.itemList) {
+        for(let m of this.motorizedList){
+          if(m.yng_Item.itemId==i.itemId){
+            if(m.motorizedKilometers==0){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
+  }
+  findUsed(){
+    this.itemListTemp=[];
+    if(this.typeItemCategory=="Product"){
+      for (let i of this.itemList) {
+        for(let p of this.productList){
+          if(p.yng_Item.itemId==i.itemId){
+            if(p.productCondition=="Usado"){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+    }else{
+      for (let i of this.itemList) {
+        for(let m of this.motorizedList){
+          if(m.yng_Item.itemId==i.itemId){
+            if(m.motorizedKilometers>0){
+              this.itemListTemp.push(i);
+            }
+          }         
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.conditionCard=true;
+  }
+  
 }
+
+

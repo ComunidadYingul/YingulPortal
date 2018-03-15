@@ -97,7 +97,7 @@
                 <h5>PRECIO: </h5> <strong>{{Item.price}}</strong> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a>
                 <br/> <a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     <strong>{{shipping.yng_Quote.rate}}</strong></a>
                 <hr>
-                <h5><strong>PAGAS: </strong></h5><strong>{{cost+costosEnvio}}</strong>    
+                <h5><strong>PAGAS: </strong></h5><strong>{{cost+shipping.yng_Quote.rate}}</strong>    
             </div>
         </li>
     </ul>
