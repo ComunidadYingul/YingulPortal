@@ -169,7 +169,7 @@ export class AgreementComponent implements OnInit {
         this.buttonHiden=true;
       }
     }else{
-      alert("Algo salio mal vuelve a intentarlo");
+      alert("Algo salio mal vuelve a intentarlo recargando la página");
     } 
   }
 }
