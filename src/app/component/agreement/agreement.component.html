@@ -29,7 +29,7 @@
                             <h4 class="">Argumento del comprador: {{claim.claimText}}</h4>
                             <h5 class="">Paga con Yingul Pay y todas tus compras estarán protegidas ante cualquier inconveniente que tengas.</h5>
                             <p><a style="color:#ff5e3a;">Importante: </a> Para cualquier acuerdo que se llegue entre ambas partes se debe leer cuidadosamente las instrucciones y seguirlas al pie de la letra, si se cumple con esto todo saldra bien pero si se producen equivocaciones no nos hacemos responsables también debe visitar: donde tenemos videos para no cometer equivocaciones.</p>
-                            <p *ngIf="User.username==claim.confirm.buyer.username">El comprador no puede devolver el producto al vendedor si no recibe un email indicando que lo haga, si no cumple con este enunciado Yingul no le podra devolver su dinero.</p>
+                            <p *ngIf="User.username==buyer.username">El comprador no puede devolver el producto al vendedor si no recibe un email indicando que lo haga, si no cumple con este enunciado Yingul no le podra devolver su dinero.</p>
                         </div>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
                     2. Al comprador le llegara nuevo código que debera proporcionar al comprador a cambio del nuevo producto.<br>
                     3. Al vendedor le llegara un link donde tiene que introducir el código que proporciona el comprador a cambio del nuevo producto (debe asegurarse que el codigo sea aceptado por Yingul antes de cambiar el producto).<br>
                     <a style="color:#ff5e3a;">Importante: </a> El comprador como el vendedor deben asegurarse que el producto nuevo sea examente igual que el producto a cambiar.</p></div>
-                    <form class="md-float-material card-block" *ngIf="User.username==claim.confirm.seller.username">
+                    <form class="md-float-material card-block" *ngIf="User.username==seller.username">
                       <div class="row">
                         <div class="col-sm-12">
-                          <button [disabled]="enabled==false" (click)="sendCodeChange()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
+                          <button [disabled]="buttonHiden" (click)="sendCodeChange()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
                           </button>
                         </div>
                       </div>
@@ -117,10 +117,10 @@
                     2.1. Despues de depositar el cobro por transacciones le llegara un nuevo código que debera proporcionar al comprador a cambio del producto.<br>
                     3. Al comprador le llegara un link donde tiene que introducir el código que proporciona el vendedor a cambio del producto (debe asegurarse que el codigo sea aceptado por Yingul antes de devolver el producto).<br>
                     3.1. Al comprador le llegara un email con intrucciones para poder retirar su dinero.</p></div>
-                    <form class="md-float-material card-block" *ngIf="User.username==claim.confirm.seller.username">
+                    <form class="md-float-material card-block" *ngIf="User.username==seller.username">
                       <div class="row">
                         <div class="col-sm-12">
-                          <button [disabled]="enabled==false" (click)="sendCodeBack()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
+                          <button [disabled]="buttonHiden" (click)="sendCodeBack()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
                           </button>
                         </div>
                       </div>
@@ -168,10 +168,10 @@
                     2.1. El vendedor debe presionar el botón de ENVIAR CÓDIGO al comprador que se encuentra al pie de esta tarjeta.<br>
                     2.2. Al comprador le llegará un email y una notificacion de MALA MANIPULACIÓN DEL PRODUCTO y un código de confirmación, el cual se debe proporcionar al vendedor.<br>
                     2.3. El vendedor debe introducir el código de confirmación y presionar CONFIRMAR MALA MANIPULACIÓN DEL PRODUCTO.</p>
-                    <form class="md-float-material card-block" *ngIf="User.username==claim.confirm.seller.username">
+                    <form class="md-float-material card-block" *ngIf="User.username==seller.username">
                       <div class="row">
                         <div class="col-sm-12">
-                          <button [disabled]="enabled==false" (click)="sendCodeMisuse()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
+                          <button [disabled]="buttonHiden" (click)="sendCodeMisuse()"  type="button" class="btn btn-primary waves-effect waves-light m-r-10">ENVIAR CÓDIGO
                           </button>
                         </div>
                       </div>
