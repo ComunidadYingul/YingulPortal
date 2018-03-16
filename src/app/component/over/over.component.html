@@ -142,10 +142,8 @@
                                             <i class="icofont icofont-heart-alt f-20"></i>
                                         </button>
                                     </div>
-                                    <a href="#!" class="hvr-shrink">
-                                        <!--ruta para la imagenes en desarrollo -->
-                                        <!--img  src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}"-->       
-                                        <img width="450" height="450" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="">
+                                    <a href="#!" class="hvr-shrink">    
+                                        <img width="450" height="450" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="">
                                     </a>
                                     <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
                                     <div [hidden]="envioIcon(item.itemId)" class=""><a>

@@ -24,6 +24,7 @@ import { BuyService } from '../../../service/buy.service';
 import { City } from '../../../model/city';
 import { Barrio } from '../../../model/barrio';
 import { Country } from '../../../model/country';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-shipping',
@@ -31,6 +32,7 @@ import { Country } from '../../../model/country';
   styleUrls: ['./shipping.component.css']
 })
 export class ShippingComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   @Input('quantity') quantity:number;
   @Output() typeShip = new EventEmitter();
   @Output() Cotizacion=new EventEmitter();

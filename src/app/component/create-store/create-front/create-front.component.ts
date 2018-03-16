@@ -1,11 +1,13 @@
 import { Component, OnInit,  ElementRef, Output, EventEmitter } from '@angular/core';
 import { Store } from '../../../model/store';
+import { Network } from '../../../model/Network';
 @Component({
   selector: 'app-create-front',
   templateUrl: './create-front.component.html',
   styleUrls: ['./create-front.component.css']
 })
 export class CreateFrontComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   store:Store=new Store();
   name:string;
   summary:string;

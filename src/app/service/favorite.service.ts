@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
-
+import { Network } from '../model/Network';
 @Injectable()
 export class FavoriteService {
   public headers = new Headers({
@@ -14,23 +14,23 @@ export class FavoriteService {
     
   }
   createFavorite(itemId:number,username:string){
-    let url = "http://localhost:8080/favorite/create/"+itemId+"/"+username;
+    let url = Network.API_URL+"favorite/create/"+itemId+"/"+username;
     return this.http.get(url);
   }
   deleteFavorite(itemId:number,username:string){
-    let url = "http://localhost:8080/favorite/delete/"+itemId+"/"+username;
+    let url = Network.API_URL+"favorite/delete/"+itemId+"/"+username;
     return this.http.get(url);
   }
   getFavorite(username:string){
-    let url = "http://localhost:8080/favorite/getFavorite/"+username;
+    let url = Network.API_URL+"favorite/getFavorite/"+username;
     return this.http.get(url);
   }
   deleteFavorites(deleteList:number[]){
-    let url: string ='http://localhost:8080/favorite/deleteFavorites';
+    let url: string =Network.API_URL+"favorite/deleteFavorites";
     return this.http.post(url, deleteList,{headers: this.headers})
   }
   getItemFavorite(username:string){
-    let url = "http://localhost:8080/favorite/getItemFavorite/"+username;
+    let url = Network.API_URL+"favorite/getItemFavorite/"+username;
     return this.http.get(url);
   }
 }

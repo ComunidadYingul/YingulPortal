@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
-
+import { Network } from '../model/Network';
 @Injectable()
 export class ItemDetailService {
   public headers = new Headers({
@@ -12,56 +12,56 @@ export class ItemDetailService {
   });
   constructor(private http:Http) { }
   getItemType(itemId : number) {
-    let url = "http://localhost:8080/item/itemType/"+itemId;
+    let url = Network.API_URL+"item/itemType/"+itemId;
     return this.http.get(url);
   }
   getItem(typeItem: string,itemId : number){
-    let url = "http://localhost:8080/item/"+typeItem+"/"+itemId;
+    let url = Network.API_URL+"item/"+typeItem+"/"+itemId;
     //la url determina el tipo de item que estamos solicitando al backend
     return this.http.get(url);
   }
   getSeller(itemId:number){
-    let url = "http://localhost:8080/item/Seller/"+itemId;
+    let url = Network.API_URL+"item/Seller/"+itemId;
     return this.http.get(url);
   }
   getItemsBySeller(username:string){
     username=username.replace(/['"]+/g, '');
-    let url = "http://localhost:8080/item/Item/"+username;
+    let url = Network.API_URL+"item/Item/"+username;
     return this.http.get(url);
   }
   getImageByItem(itemId : number){
-    let url = "http://localhost:8080/item/Image/"+itemId;
+    let url = Network.API_URL+"item/Image/"+itemId;
     return this.http.get(url);
   }
   getCategoriesByItem(itemId : number){
-    let url = "http://localhost:8080/item/Categories/"+itemId;
+    let url = Network.API_URL+"item/Categories/"+itemId;
     return this.http.get(url);
   }
   getQueryByItem(itemId : number){
-    let url = "http://localhost:8080/item/Query/"+itemId;
+    let url = Network.API_URL+"item/Query/"+itemId;
     return this.http.get(url);
   }
   getItemById(itemId : number){
-    let url = "http://localhost:8080/item/ItemById/"+itemId;
+    let url = Network.API_URL+"item/ItemById/"+itemId;
     return this.http.get(url);
   }
 
   sendCotiza(cotizar : Object){
-    //let url = "http://localhost:8080/logistics/cotizarItem";
+    //let url = Network.API_URL+"logistics/cotizarItem";
     
-    let url = "http://localhost:8080/logistics/cotizarItemA";
+    let url = Network.API_URL+"logistics/cotizarItemA";
     return this.http.post(url,cotizar, {headers: this.headers});
   }
   sendCotizaAndreani(cotizar : Object){
-    let url = "http://localhost:8080/logistics/cotizarAndreani";
+    let url = Network.API_URL+"logistics/cotizarAndreani";
     return this.http.post(url,cotizar, {headers: this.headers});
   }
 
   sendCotizacionAndreani(cotizar : Object){
-    let url = "http://localhost:8080/logistics/cotizacion";
+    let url = Network.API_URL+"logistics/cotizacion";
     return this.http.post(url,cotizar, {headers: this.headers});
   }
-  urlHost:string="http://localhost:8080/";
+  urlHost:string=Network.API_URL+"";
   sendSucursalAndreani(sucursal:Object){
     let url=this.urlHost+"logistics/branch";
     return this.http.post(url,sucursal, {headers: this.headers});
@@ -70,29 +70,29 @@ export class ItemDetailService {
 
   //aumentar a los header lo de seguridad autenticacion basica
   postQuery(query:Object){
-    let url = "http://localhost:8080/item/query";
+    let url = Network.API_URL+"item/query";
     return this.http.post(url ,query, {headers: this.headers});
   }
   
   getItemTypeEdit(itemId : number) {
-    let url = "http://localhost:8080/item/type/"+itemId;
+    let url = Network.API_URL+"item/type/"+itemId;
     return this.http.get(url);
   }
 
   getProductByIdItem(itemId : number){
-    let url = "http://localhost:8080/item/product/"+itemId;
+    let url = Network.API_URL+"item/product/"+itemId;
     return this.http.get(url);
   }
   postUpdateProduct(product:Object){
-    let url = "http://localhost:8080/item/product/update";
+    let url = Network.API_URL+"item/product/update";
     return this.http.post(url ,product, {headers: this.headers});
   }
   postUpdateMotorized(product:Object){
-    let url = "http://localhost:8080/item/motorized/update";
+    let url = Network.API_URL+"item/motorized/update";
     return this.http.post(url ,product, {headers: this.headers});
   }
   postUpdateProperty(product:Object){
-    let url = "http://localhost:8080/item/property/update";
+    let url = Network.API_URL+"item/property/update";
     return this.http.post(url ,product, {headers: this.headers});
   }
   sendData(sucursal:Object){
@@ -100,7 +100,7 @@ export class ItemDetailService {
     return this.http.post(url,sucursal, {headers: this.headers});
   }
   sendQuote(cotizar : Object){
-    let url = "http://localhost:8080/logistics/quote";
+    let url = Network.API_URL+"logistics/quote";
     return this.http.post(url,cotizar, {headers: this.headers});
   }
 }

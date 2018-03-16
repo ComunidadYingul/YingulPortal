@@ -4,12 +4,14 @@ import { ListCategoryService } from '../../service/list-category.service'
 import { ItemService } from '../../service/item.service'
 import { FindMotorized } from '../../model/find-motorized';
 import { Router } from '@angular/router';
+import { Network } from '../../model/Network';
 @Component({
   selector: 'app-motorized',
   templateUrl: './motorized.component.html',
   styleUrls: ['./motorized.component.css']
 })
 export class MotorizedComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   fechaActual = new Date();
   anios = [];
   anio = this.fechaActual.getFullYear();

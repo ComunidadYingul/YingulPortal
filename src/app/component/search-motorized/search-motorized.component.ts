@@ -8,6 +8,7 @@ import { SellService } from '../../service/sell.service';
 import { Item } from '../../model/item';
 import { Country } from '../../model/country';
 import { Motorized } from '../../model/Motorized';
+import { Network } from '../../model/Network';
 
 @Component({
   selector: 'app-search-motorized',
@@ -15,6 +16,7 @@ import { Motorized } from '../../model/Motorized';
   styleUrls: ['./search-motorized.component.css']
 })
 export class SearchMotorizedComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   categoryId:number;
   anios = [];
   aniosTemp =[];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { user } from '../../../model/user';
 import { ItemDetailService } from '../../../service/item-detail.service';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-list-items',
@@ -8,6 +9,7 @@ import { ItemDetailService } from '../../../service/item-detail.service';
   styleUrls: ['./list-items.component.css']
 })
 export class ListItemsComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   itemsBySeller: Object[]=[];
   useri:user=new user();
   userNameP:string;

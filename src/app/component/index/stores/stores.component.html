@@ -13,7 +13,7 @@
           <div>
             <div class="row" align="center" width="100%">
                 <div id='scrolly'>
-                    <a href="/{{store.name}}" *ngFor="let store of storeList"><img class="img-fluid" src='https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}' ></a>
+                    <a href="/{{store.name}}" *ngFor="let store of storeList"><img class="img-fluid" src='{{BUCKET_URL}}store/{{store.mainImage}}' ></a>
                 </div>
             </div>
           </div>

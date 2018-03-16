@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '../../../model/store';
 import { StoreService } from '../../../service/store.service';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-stores',
@@ -9,7 +10,7 @@ import { StoreService } from '../../../service/store.service';
 })
 export class StoresComponent implements OnInit {
   storeList : Store[];
-  
+  BUCKET_URL:string=Network.BUCKET_URL;
   constructor(private storeService : StoreService) { }
 
   ngOnInit() {

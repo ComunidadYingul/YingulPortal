@@ -10,7 +10,7 @@
                           <div class="col-md-12">
                               <!-- Social wallpaper start -->
                               <div class="social-wallpaper">
-                                  <img *ngIf="store.bannerImage" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.bannerImage}}" class="img-fluid width-100" alt="" />
+                                  <img *ngIf="store.bannerImage" src="{{BUCKET_URL}}store/{{store.bannerImage}}" class="img-fluid width-100" alt="" />
                               </div>
                               <!-- Social wallpaper end -->
                               <!-- Timeline button start -->
@@ -30,7 +30,7 @@
                                   <!-- social-profile card start -->
                                   <div class="card">
                                       <div class="social-profile">
-                                          <img *ngIf="store.mainImage" class="img-fluid width-100" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/store/{{store.mainImage}}" alt="">
+                                          <img *ngIf="store.mainImage" class="img-fluid width-100" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
                                       </div>
                                       <div class="card-block social-follower">
                                           <h4>{{store.name}}</h4>
@@ -140,7 +140,7 @@
                                                                 </div>
                                                                 <a href="#!" class="hvr-shrink">
                                                                     <!--ruta para la imagenes en desarrollo -->
-                                                                    <img src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
+                                                                    <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
                                                                 </a>
                                                                 <div class="p-sale">VENTA</div>
                                                             </div>

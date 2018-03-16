@@ -57,7 +57,7 @@
                                                     <input type="checkbox" class="custom-control-input" #checkbox (change)="check(items.favoriteId)">
                                                     <span class="custom-control-indicator"></span>
                                                     </label></td>
-                                            <td><img width="150" height="150" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{items.principalImage}}" class="img-fluid" alt="{{items.principalImage}}"></td>
+                                            <td><img width="150" height="150" src="{{BUCKET_URL}}{{items.principalImage}}" class="img-fluid" alt="{{items.principalImage}}"></td>
                                             <td>{{items.name}}</td>
                                             <td>${{items.price}}</td>
                                             <td><a type="submit" class="btn btn-primary m-b-0" href="/editItem/{{items.itemId}}">Editar artículo</a></td>

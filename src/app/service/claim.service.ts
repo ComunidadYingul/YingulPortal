@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Claim } from '../model/claim';
 import {Http, Headers} from '@angular/http';
 import { user } from '../model/user';
-
+import { Network } from '../model/Network';
 @Injectable()
 export class ClaimService {
 
@@ -15,11 +15,11 @@ export class ClaimService {
   });
   constructor(private http:Http) { }
   saveClaim(claim:Claim){
-    let _url: string ='http://localhost:8080/claim/createClaim';
+    let _url: string =Network.API_URL+"claim/createClaim";
     return this.http.post(_url, claim,{headers: this.headers})
   }
   getClaimById(claimId:number, User:user) {
-    let url = "http://localhost:8080/claim/getClaimById/"+claimId;
+    let url = Network.API_URL+"claim/getClaimById/"+claimId;
     let headers = new Headers(
       {
         'Authorization': User.password
@@ -27,7 +27,7 @@ export class ClaimService {
     return this.http.get(url,{headers: headers});
   }
   updateClaim(claim:Claim, User:user){
-    let url: string ='http://localhost:8080/claim/updateClaim';
+    let url: string =Network.API_URL+"claim/updateClaim";
     let headers = new Headers(
       {
         'Authorization': User.password

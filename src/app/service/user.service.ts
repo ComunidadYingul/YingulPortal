@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import { Network } from '../model/Network';
 @Injectable()
 export class UserService {
   public headers = new Headers({
@@ -11,7 +12,7 @@ export class UserService {
   });
   constructor(private http:Http) { }
   getPerson(username:string){
-    let url = "http://localhost:8080/user/person/"+username;
+    let url = Network.API_URL+"user/person/"+username;
     return this.http.get(url);
   }
 }

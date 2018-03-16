@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Person } from '../model/person';
 import { Business } from '../model/business';
+import { Network } from '../model/Network';
 @Injectable()
 export class SingupService {
   public headers = new Headers({
@@ -21,13 +22,13 @@ export class SingupService {
   constructor(private http: Http) { }
 
   signUp(person : Person) {
-    let url = "http://localhost:8080/signup";
+    let url = Network.API_URL+"signup";
     //convertir objeto a string
     //alert(JSON.stringify(person));
     return this.http.post(url ,person, {headers: this.headers});
   }
   signUpBusiness(business : Business) {
-    let url = "http://localhost:8080/business";
+    let url = Network.API_URL+"business";
     //convertir objeto a string
     //alert(JSON.stringify(person));
     return this.http.post(url ,business, {headers: this.headers});

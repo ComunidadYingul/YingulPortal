@@ -52,7 +52,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let confirm of confirmList">
-                                        <td style="cursor: pointer;" (click)="initClaim(confirm)"><img width="150" height="150" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{confirm.buy.yng_item.principalImage}}" class="img-fluid" alt="{{confirm.buy.yng_item.principalImage}}"></td>
+                                        <td style="cursor: pointer;" (click)="initClaim(confirm)"><img width="150" height="150" src="{{BUCKET_URL}}{{confirm.buy.yng_item.principalImage}}" class="img-fluid" alt="{{confirm.buy.yng_item.principalImage}}"></td>
                                         <td style="cursor: pointer;" (click)="initClaim(confirm)">{{confirm.buy.time}}</td>
                                         <td style="cursor: pointer;" (click)="initClaim(confirm)">{{confirm.buy.quantity}}</td>
                                         <td style="cursor: pointer;" (click)="initClaim(confirm)">{{confirm.buy.yng_item.name}}</td>

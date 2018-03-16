@@ -416,7 +416,7 @@ Service:Service= new Service();
     productT.yng_Item.video=this.video;
     let idU:number= this.product.yng_Item.user.user_id;
     let name:string=this.product.yng_Item.user.username;
-    productT.yng_Item.user=null;
+    productT.yng_Item.user.authorities=null;
     productT.yng_Item.user.user_id=idU;
     productT.yng_Item.user.username=name;
   }
