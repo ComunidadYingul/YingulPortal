@@ -113,6 +113,11 @@ export class PaymentComponent implements OnInit {
           this.buyService.getCardProvider(listcardId).subscribe(
             res => {
                   this.cardProviderList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                  for(let i of this.creditCardList){
+                    if(i.listCreditCardId==+listcardId){
+                      this.payment.yng_Card.provider=i.keyPayu;
+                    }
+                  }
                   if(JSON.stringify(this.cardProviderList)=="[]"){
                     this.providerHid=true;
                     this.debitHid=false;
@@ -125,11 +130,6 @@ export class PaymentComponent implements OnInit {
                 },
                 error => console.log(error)
           );
-          for(let i of this.creditCardList){
-            if(i.listCreditCardId==+listcardId){
-              this.payment.yng_Card.provider=i.keyPayu;
-            }
-          }
         }
       }
     }

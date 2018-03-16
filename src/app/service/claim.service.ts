@@ -26,4 +26,12 @@ export class ClaimService {
       });
     return this.http.get(url,{headers: headers});
   }
+  updateClaim(claim:Claim, User:user){
+    let url: string ='http://localhost:8080/claim/updateClaim';
+    let headers = new Headers(
+      {
+        'Authorization': User.password
+      });
+    return this.http.post(url,claim,{headers: headers});
+  }
 }

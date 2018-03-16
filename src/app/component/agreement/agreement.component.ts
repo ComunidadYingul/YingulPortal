@@ -20,6 +20,10 @@ export class AgreementComponent implements OnInit {
   afterChange:boolean=false;
   popup:boolean=true;
   popup2:boolean=true;
+  buttonHiden:boolean=false;
+  msg:string;
+  buyer:user=new user();
+  seller:user=new user();
   constructor(private route:ActivatedRoute, private router: Router,private claimService:ClaimService) { 
     this.claimId =route.snapshot.params['claimId'];
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -36,7 +40,8 @@ export class AgreementComponent implements OnInit {
               this.router.navigate(['/']); 
             }else{
               this.claim = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-              console.log(JSON.stringify(this.claim));
+              this.buyer=this.claim.confirm.buyer;
+              this.seller=this.claim.confirm.seller;
             }
       		},
       		error => console.log(error)
@@ -54,6 +59,7 @@ export class AgreementComponent implements OnInit {
     this.claim.back=false;
     this.claim.change=true;
     this.claim.minuse=false;
+    this.buttonHiden=true;
   }
   sendCodeBack(){
     this.change=false;
@@ -66,6 +72,7 @@ export class AgreementComponent implements OnInit {
     this.claim.back=true;
     this.claim.change=false;
     this.claim.minuse=false;
+    this.buttonHiden=true;
   }
   sendCodeMisuse(){
     this.change=false;
@@ -78,6 +85,7 @@ export class AgreementComponent implements OnInit {
     this.claim.back=false;
     this.claim.change=false;
     this.claim.minuse=true;
+    this.buttonHiden=true;
   }
   showAfterChange(){
     this.change=false;
@@ -105,18 +113,63 @@ export class AgreementComponent implements OnInit {
     this.afterChange=false;
     this.popup=true;
     this.popup2=true;
+    this.buttonHiden=false;
   }
   sendAgreement(){
+    this.popup=true;
     this.popup2=false;
     this.change=false;
     this.back=false;
     this.misuse=false;
     this.afterBack=false;
     this.afterChange=false;
-    this.popup=true;
-    this.claim.back=false;
-    this.claim.change=false;
-    this.claim.minuse=false;
-    alert(JSON.stringify(this.claim));
+    this.claim.confirm.seller=null;
+    this.claim.confirm.buyer=null;
+    this.claim.confirm.buy.user=null;
+    this.claim.confirm.buy.seller=null;
+    this.claim.confirm.buy.yng_item.user=null;
+    this.claimService.updateClaim(this.claim,this.User).subscribe(
+      res => {
+            this.msg = JSON.parse(JSON.stringify(res))._body;
+            this.redirectTo();
+          },
+          error => console.log(error)
+    );
+  }
+  redirectTo(){
+    if(this.msg=='save'){
+      if(this.claim.back==true){
+        this.back=true;
+        this.change=false;
+        this.misuse=false;
+        this.afterBack=false;
+        this.afterChange=false;
+        this.popup=true;
+        this.popup2=true;
+        this.buttonHiden=true;
+      }
+      if(this.claim.change==true){
+        this.change=true;
+        this.back=false;
+        this.misuse=false;
+        this.afterBack=false;
+        this.afterChange=false;
+        this.popup=true;
+        this.popup2=true;
+        this.buttonHiden=true;
+      }
+      if(this.claim.minuse==true){
+        this.misuse=true;
+        this.change=false;
+        this.back=false;
+        this.afterBack=false;
+        this.afterChange=false;
+        this.popup=true;
+        this.popup2=true;
+        this.buttonHiden=true;
+      }
+    }else{
+      alert("Algo salio mal vuelve a intentarlo");
+    } 
   }
 }
