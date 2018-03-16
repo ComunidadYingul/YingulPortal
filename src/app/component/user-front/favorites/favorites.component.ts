@@ -3,6 +3,7 @@ import { FavoriteService } from '../../../service/favorite.service';
 import { user } from '../../../model/user';
 import { Favorite } from '../../../model/favorite';
 import { Router } from '@angular/router';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-favorites',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   User: user=new user();
   favoriteList: Favorite[];
   deleteList:number[]=[];

@@ -11,6 +11,7 @@ import { FavoriteService } from '../../service/favorite.service';
 import { IndexService } from '../../service/index.service';
 import { Product } from '../../model/product';
 import { Motorized } from '../../model/Motorized';
+import { Network } from '../../model/Network';
 
 @Component({
   selector: 'app-over',
@@ -18,6 +19,7 @@ import { Motorized } from '../../model/Motorized';
   styleUrls: ['./over.component.css']
 })
 export class OverComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   itemList: Item[]=[];
   itemListTemp: Item[]=[];
   productList:Product[]=[];

@@ -6,6 +6,7 @@ import { Item } from '../../model/item';
 import { Category } from '../../model/category';
 import { ListCategoryService } from '../../service/list-category.service';
 import { Country } from '../../model/country';
+import { Network } from '../../model/Network';
 
 @Component({
   selector: 'app-search-property',
@@ -13,6 +14,7 @@ import { Country } from '../../model/country';
   styleUrls: ['./search-property.component.css']
 })
 export class SearchPropertyComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   itemList: Item[]=[];
   itemListTemp: Item[]=[];
 

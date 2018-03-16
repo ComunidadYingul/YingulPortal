@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import {Observable}     from 'rxjs/Observable';
+import { Http, Headers } from '@angular/http';
+import { Observable }     from 'rxjs/Observable';
 import { Buy } from '../model/buy';
 import { user } from '../model/user';
 import { AndreaniEnvios } from '../model/andreaniEnvios';
+import { Network } from '../model/Network';
 @Injectable()
 export class BuyService {
   public headers = new Headers({
@@ -15,31 +16,31 @@ export class BuyService {
   });
   constructor(private http:Http) { }
   getListCreditCard() {
-    let url = "http://localhost:8080/buy/listCreditCard/all";
+    let url = Network.API_URL+"buy/listCreditCard/all";
     return this.http.get(url);
   }
   getCardProvider(listCreditCardId:string){
-    let url = "http://localhost:8080/buy/getCreditCardProvider/"+listCreditCardId;
+    let url = Network.API_URL+"buy/getCreditCardProvider/"+listCreditCardId;
     return this.http.get(url);
   }
   getCardForUser(username:string){
-    let url = "http://localhost:8080/buy/getCardForUser/"+username;
+    let url = Network.API_URL+"buy/getCardForUser/"+username;
     return this.http.get(url);
   }
   saveBuy(buy:Buy){
-    let _url: string ='http://localhost:8080/buy/createBuy';
+    let _url: string =Network.API_URL+"buy/createBuy";
     return this.http.post(_url, buy,{headers: this.headers})
   }
   saveEnvio(envio:AndreaniEnvios){
-    let _url: string ='http://localhost:8080/logistics/envio';
+    let _url: string =Network.API_URL+"logistics/envio";
     return this.http.post(_url, envio,{headers: this.headers})
   }
   updateUser(user:user){
-    let _url: string ='http://localhost:8080/buy/updateUser';
+    let _url: string =Network.API_URL+"buy/updateUser";
     return this.http.post(_url, user,{headers: this.headers})
   }
   getSwForData(username:string){
-    let url = "http://localhost:8080/buy/getSwForUser/"+username;
+    let url = Network.API_URL+"buy/getSwForUser/"+username;
     return this.http.get(url);
   }
   getDataForBuyer(){
@@ -48,15 +49,15 @@ export class BuyService {
   }
 
   updateUserUbication(user:user){
-    let _url: string ='http://localhost:8080/buy/updateUserUbication';
+    let _url: string =Network.API_URL+"buy/updateUserUbication";
     return this.http.post(_url, user,{headers: this.headers})
   }
   getSalesForUser(username:string){
-    let url = "http://localhost:8080/buy/getSalesByUser/"+username;
+    let url = Network.API_URL+"buy/getSalesByUser/"+username;
     return this.http.get(url);
   }
   getPurchasesForUser(username:string){
-    let url = "http://localhost:8080/buy/getPurchaseByUser/"+username;
+    let url = Network.API_URL+"buy/getPurchaseByUser/"+username;
     return this.http.get(url);
   }
 }

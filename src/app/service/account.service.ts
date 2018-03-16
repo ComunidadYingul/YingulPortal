@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import { user } from '../model/user';
-
+import { Network } from '../model/Network';
 @Injectable()
 export class AccountService {
   User: user=new user();
@@ -10,7 +10,7 @@ export class AccountService {
   }
   getAccountByUser(username:string) {
     this.User=JSON.parse(localStorage.getItem("user"));
-    let url = "http://localhost:8080/account/getAccountByUser/"+username;
+    let url = Network.API_URL+"/account/getAccountByUser/"+username;
     let headers = new Headers(
       {
         'Authorization': this.User.password
@@ -18,7 +18,7 @@ export class AccountService {
     return this.http.get(url,{headers: headers});
   }
   getTransactionByUser(username:string){
-    let url = "http://localhost:8080/account/getTransactionsByUser/"+username;
+    let url = Network.API_URL+"account/getTransactionsByUser/"+username;
     return this.http.get(url);
   }
 }

@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
 import {Pipe} from '@angular/core';
 import { AndreaniSucursalRespuesta } from '../../../model/andreaniSucursalRespuesta';
 import { AndreaniEnvios } from '../../../model/andreaniEnvios';
+import { Network } from '../../../model/Network';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   @Input('quantity') quantity:number;
   @Input('priceSuc') priceSuc:string;
   @Input('Item') Item:Item;

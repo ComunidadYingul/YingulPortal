@@ -6,6 +6,7 @@ import { Product } from '../../../model/product';
 import { FavoriteService } from '../../../service/favorite.service';
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
+import { Network } from '../../../model/Network';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -19,6 +20,7 @@ export class ItemComponent implements OnInit {
   msg:string;
   User: user=new user();
   itemFavorites: Item[]=[];
+  BUCKET_URL:string=Network.BUCKET_URL;
   constructor(private indexService: IndexService, private favoriteService: FavoriteService,private router: Router) {
   
   }

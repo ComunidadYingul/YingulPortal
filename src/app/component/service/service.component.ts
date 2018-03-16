@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ListCategoryService } from '../../service/list-category.service'
 import { Category } from '../../model/category';
 import { ItemService } from '../../service/item.service'
+import { Network } from '../../model/Network';
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit {
-
+  BUCKET_URL:string=Network.BUCKET_URL;
   categoryList: Category[];
   subCategoryList=[];
   itemList: Object[]=[];

@@ -12,6 +12,7 @@ import { Cotizar } from '../../../model/cotizar';
 import { AndreaniCotizacion } from '../../../model/andreaniCotizacion';
 import { AndreaniCotizacionRespuesta } from '../../../model/andreaniCotizacionRespuesta';
 import { Cotizacion } from '../../../model/cotizacion';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-idetail',
@@ -19,6 +20,7 @@ import { Cotizacion } from '../../../model/cotizacion';
   styleUrls: ['./idetail.component.css']
 })
 export class IdetailComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   @Input('itemId') localItemId:number;
   itemType:string;
   Item:Item=new Item();

@@ -5,6 +5,7 @@ import { user } from '../../../model/user';
 import { Claim } from '../../../model/claim';
 import { ConfirmService } from '../../../service/confirm.service';
 import { ClaimService } from '../../../service/claim.service';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-claims',
@@ -12,6 +13,7 @@ import { ClaimService } from '../../../service/claim.service';
   styleUrls: ['./claims.component.css']
 })
 export class ClaimsComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   confirmList:Confirm[];
   User: user=new user();
   claim:Claim=new Claim();

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
-
+import { Network } from '../model/Network';
 @Injectable()
 export class QueryServiceService {
   public headers = new Headers({
@@ -13,15 +13,15 @@ export class QueryServiceService {
   constructor(private http:Http) { }
 
   getQueriesByUser(username : string){
-    let url = "http://localhost:8080/query/Number/"+username;
+    let url = Network.API_URL+"query/Number/"+username;
     return this.http.get(url);
   }
   getQueriesListByUser(username : string){
-    let url = "http://localhost:8080/query/Queries/"+username;
+    let url = Network.API_URL+"query/Queries/"+username;
     return this.http.get(url);
   }
   postAnswerQuery(query:Object){
-    let url: string ='http://localhost:8080/query/answer';
+    let url: string =Network.API_URL+"query/answer";
     return this.http.post(url, query,{headers: this.headers})
   }
 }

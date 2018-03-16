@@ -5,12 +5,14 @@ import { ListCategoryService } from '../../service/list-category.service'
 import { City } from '../../model/city';
 import { UbicationService } from '../../service/ubication.service';
 import { Router } from '@angular/router';
+import { Network } from '../../model/Network';
 @Component({
   selector: 'app-property',
   templateUrl: './property.component.html',
   styleUrls: ['./property.component.css']
 })
 export class PropertyComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   itemList: Object[]=[];
   constructor(private itemService: ItemService,private categoryService: ListCategoryService, private ubicationService: UbicationService,private router: Router) { }
   categoryList:Category[];

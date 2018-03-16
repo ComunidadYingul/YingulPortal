@@ -9,6 +9,7 @@ import { ItemService } from '../../../service/item.service';
 import { ItemDetailService } from '../../../service/item-detail.service';
 import { Product } from '../../../model/product';
 import { Motorized } from '../../../model/Motorized';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-icdetail',
@@ -16,6 +17,7 @@ import { Motorized } from '../../../model/Motorized';
   styleUrls: ['./icdetail.component.css']
 })
 export class IcdetailComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   @Input('categoryId') categoryId:number;
   itemList: Item[]=[];
   itemListTemp: Item[]=[];

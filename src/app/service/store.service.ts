@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import { Store } from '../model/store'; 
-
+import { Network } from '../model/Network';
 @Injectable()
 export class StoreService {
   public headers = new Headers({
@@ -14,15 +14,15 @@ export class StoreService {
 
   constructor(private http:Http) { }
   createStore(store:Store){
-    let _url: string ='http://localhost:8080/store/create';
+    let _url: string =Network.API_URL+"store/create";
     return this.http.post(_url, store,{headers: this.headers});
   }
   findStoreByName(nameStore:string){
-    let url = "http://localhost:8080/store/findByName/"+nameStore;
+    let url = Network.API_URL+"store/findByName/"+nameStore;
     return this.http.get(url);
   }
   findAll(){
-    let url = "http://localhost:8080/store/all";
+    let url = Network.API_URL+"store/all";
     return this.http.get(url);
   }
 }

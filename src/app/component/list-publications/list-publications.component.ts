@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemDetailService } from '../../service/item-detail.service';
 import { user } from '../../model/user';
+import { Network } from '../../model/Network';
 
 @Component({
   selector: 'app-list-publications',
@@ -8,9 +9,11 @@ import { user } from '../../model/user';
   styleUrls: ['./list-publications.component.css']
 })
 export class ListPublicationsComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   itemsBySeller: Object[]=[];
   useri:user=new user();
   userNameP:string;
+  deleteList:number[]=[];
   constructor(private itemDetailService : ItemDetailService) {
   }
 
@@ -29,4 +32,5 @@ export class ListPublicationsComponent implements OnInit {
     );
     
   }
+  onConfirm(){}
 }

@@ -74,7 +74,7 @@
                 <div class="card rounded-card user-card">
                     <div class="card-block">
                         <div class="img-hover">
-                            <img class="img-fluid img-circle" width="200" height="200" src="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/dev/image/{{item.principalImage}}" alt="round-img">
+                            <img class="img-fluid img-circle" width="200" height="200" src="{{BUCKET_URL}}{{item.principalImage}}" alt="round-img">
                             <div class="img-overlay">
                                 <span>
                                   <a href="/buy/{{item.itemId}}/1" class="btn btn-sm btn-primary" data-popup="lightbox"><i class="icofont icofont-cart-alt"></i></a>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import { Confirm } from '../model/confirm';
+import { Network } from '../model/Network';
 @Injectable()
 export class ConfirmService {
   public headers = new Headers({
@@ -12,15 +13,15 @@ export class ConfirmService {
   });
   constructor(private http:Http) { }
   getConfirm(confirmId:number){
-    let url = "http://localhost:8080/confirm/getConfirmForId/"+confirmId;
+    let url = Network.API_URL+"confirm/getConfirmForId/"+confirmId;
     return this.http.get(url);
   }
   updateConfirm(confirm:Confirm){
-    let _url: string ='http://localhost:8080/confirm/updateConfirm';
+    let _url: string =Network.API_URL+"confirm/updateConfirm";
     return this.http.post(_url, confirm,{headers: this.headers})
   }
   getConfirmToClaimForUser(username:string){
-    let url = "http://localhost:8080/confirm/getConfirmToClaimForUser/"+username;
+    let url = Network.API_URL+"confirm/getConfirmToClaimForUser/"+username;
     return this.http.get(url);
   }
 }
