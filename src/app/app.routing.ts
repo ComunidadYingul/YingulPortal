@@ -34,6 +34,7 @@ import { PurchasesComponent } from './component/user-front/purchases/purchases.c
 import { ClaimsComponent } from './component/user-front/claims/claims.component';
 import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
 import { AgreementComponent } from './component/agreement/agreement.component';
+import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -172,7 +173,11 @@ const appRoutes: Routes = [
   {
     path: ':nameStore',
     component: StoreComponent
-  }
+  },
+  {
+    path: 'listPublications',
+    component: ListPublicationsComponent
+  },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

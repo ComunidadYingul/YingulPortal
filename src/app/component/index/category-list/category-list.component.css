@@ -1,0 +1,36 @@
+#scrolly{
+    width: 1000px;
+    height: 240px;
+    overflow: auto;
+    overflow-y: hidden;
+    margin: 0 auto;
+    white-space: nowrap
+}
+
+img{
+    width: 250px;
+    height: 200px;
+    margin: 20px 10px;
+    display: inline;
+}
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;  
+    .card {
+        flex: 0 0 auto;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .phone {        
+        display: none;
+	}
+	.phoneMirrow{
+		display: inline;
+	}
+}
+@media screen and (min-width: 801px) {
+	.phoneMirrow2{
+		display: none;
+	}
+}
