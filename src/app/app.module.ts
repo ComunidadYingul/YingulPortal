@@ -82,6 +82,7 @@ import { ClaimService } from './service/claim.service';
 import { HelpComponent } from './component/help/help.component';
 import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
 import { AgreementComponent } from './component/agreement/agreement.component';
+import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +139,8 @@ import { AgreementComponent } from './component/agreement/agreement.component';
     ClaimsComponent,
     HelpComponent,
     ProtectedPurchaseComponent,
-    AgreementComponent
+    AgreementComponent,
+    ListPublicationsComponent
   ],
   imports: [
     BrowserModule,
