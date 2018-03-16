@@ -1,4 +1,4 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders, Component }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './component/login/login.component';
@@ -35,6 +35,7 @@ import { ClaimsComponent } from './component/user-front/claims/claims.component'
 import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
 import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
+import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -175,9 +176,13 @@ const appRoutes: Routes = [
     component: StoreComponent
   },
   {
-    path: 'listPublications',
+    path: 'listPublications/:id',
     component: ListPublicationsComponent
   },
+  {
+    path:'ListItemsComponent',
+    component: ListItemsComponent
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

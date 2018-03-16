@@ -413,7 +413,13 @@ Service:Service= new Service();
     productT.yng_Item.price=this.price;
     productT.yng_Item.priceDiscount=this.priceDiscount;
     productT.yng_Item.priceNormal=this.priceNormal;
-    productT.yng_Item.video=this.video;}
+    productT.yng_Item.video=this.video;
+    let idU:number= this.product.yng_Item.user.user_id;
+    let name:string=this.product.yng_Item.user.username;
+    productT.yng_Item.user=null;
+    productT.yng_Item.user.user_id=idU;
+    productT.yng_Item.user.username=name;
+  }
      this.product=productT;
      console.log("prodssd: "+JSON.stringify(productT));
      this.itemDetailService.postUpdateProduct(this.product).subscribe(

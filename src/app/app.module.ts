@@ -83,6 +83,7 @@ import { HelpComponent } from './component/help/help.component';
 import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
 import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
+import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,7 +141,8 @@ import { ListPublicationsComponent } from './component/list-publications/list-pu
     HelpComponent,
     ProtectedPurchaseComponent,
     AgreementComponent,
-    ListPublicationsComponent
+    ListPublicationsComponent,
+    ListItemsComponent
   ],
   imports: [
     BrowserModule,
