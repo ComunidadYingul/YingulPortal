@@ -4,6 +4,7 @@ import { Query } from '../../../../model/query';
 import { user } from '../../../../model/user';
 import { QueryServiceService } from '../../../../service/query-service.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../../../../service/login.service';
 
 @Component({
   selector: 'app-query-purchases',
@@ -21,7 +22,7 @@ export class QueryPurchasesComponent implements OnInit {
   query:Query=new Query();
   answer:string;
   msg:string;
-  constructor(private queryService:QueryServiceService,private router: Router) { 
+  constructor(private queryService:QueryServiceService,private router: Router,private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -79,5 +80,18 @@ export class QueryPurchasesComponent implements OnInit {
       
     } 
   }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 
 }

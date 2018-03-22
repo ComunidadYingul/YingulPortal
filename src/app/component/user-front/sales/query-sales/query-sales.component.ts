@@ -5,6 +5,7 @@ import { user } from '../../../../model/user';
 import { Router } from '@angular/router';
 import { query } from '@angular/core/src/animation/dsl';
 import { Network } from '../../../../model/Network';
+import { LoginService } from '../../../../service/login.service';
 
 @Component({
   selector: 'app-query-sales',
@@ -22,7 +23,7 @@ export class QuerySalesComponent implements OnInit {
   query:Query=new Query();
   answer:string;
   msg:string;
-  constructor(private queryService:QueryServiceService,private router: Router) {
+  constructor(private queryService:QueryServiceService,private router: Router,private loginService: LoginService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -112,4 +113,17 @@ export class QuerySalesComponent implements OnInit {
           error => console.log(error)
     );
   }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 }

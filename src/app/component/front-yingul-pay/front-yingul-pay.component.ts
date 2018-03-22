@@ -4,6 +4,7 @@ import { Account } from '../../model/account';
 import { Transaction } from '../../model/transaction';
 import { Router } from '@angular/router';
 import { AccountService } from '../../service/account.service';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-front-yingul-pay',
@@ -15,7 +16,7 @@ export class FrontYingulPayComponent implements OnInit {
   account:Account = new Account();
   money:number;
   transactionList: Transaction[];
-  constructor(private router: Router, private accountService:AccountService) { 
+  constructor(private router: Router, private accountService:AccountService, private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -45,5 +46,19 @@ export class FrontYingulPayComponent implements OnInit {
       		error => console.log(error)
     ); 
   }
+
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 
 }

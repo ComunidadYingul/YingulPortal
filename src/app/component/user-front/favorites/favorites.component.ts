@@ -4,6 +4,7 @@ import { user } from '../../../model/user';
 import { Favorite } from '../../../model/favorite';
 import { Router } from '@angular/router';
 import { Network } from '../../../model/Network';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-favorites',
@@ -16,7 +17,7 @@ export class FavoritesComponent implements OnInit {
   favoriteList: Favorite[];
   deleteList:number[]=[];
   msg:string;
-  constructor(private favoriteService: FavoriteService,private router: Router) { }
+  constructor(private favoriteService: FavoriteService,private router: Router,private loginService: LoginService) { }
 
   ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -60,4 +61,17 @@ export class FavoritesComponent implements OnInit {
       alert(this.msg);
     } 
   }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 }

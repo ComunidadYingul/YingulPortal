@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { user } from '../../model/user';
+import { Router } from '@angular/router';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-user-front',
@@ -6,10 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-front.component.css']
 })
 export class UserFrontComponent implements OnInit {
-
-  constructor() { }
+  User: user=new user();
+  constructor(private loginService: LoginService, private router: Router) { 
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+			this.User=JSON.parse(localStorage.getItem("user"));
+    }
+  }
 
   ngOnInit() {
   }
+
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 
 }
