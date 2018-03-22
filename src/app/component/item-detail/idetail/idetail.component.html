@@ -33,29 +33,64 @@
                               <div class="col-lg-5 col-xs-12" *ngIf="showContent">
                                   <div class="port_details_all_img row">
                                       <div class="col-lg-12">
-                                          <div id="big_banner">
+
+
+                                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li *ngIf="numberImg>=1" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li *ngIf="numberImg>=2" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                    <li *ngIf="numberImg>=3" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                    <li *ngIf="numberImg>=4" data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                                    <li *ngIf="numberImg>=5" data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                                                    <li *ngIf="numberImg>=6" data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+                                                    <li *ngIf="numberImg>=7" data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+                                                    <li *ngIf="numberImg>=8" data-target="#carouselExampleIndicators" data-slide-to="8"></li>
+                                                    <li *ngIf="numberImg>=9" data-target="#carouselExampleIndicators" data-slide-to="9"></li>
+                                                    <li *ngIf="numberImg>=10" data-target="#carouselExampleIndicators" data-slide-to="10"></li>
+                                                    <li *ngIf="numberImg>=11" data-target="#carouselExampleIndicators" data-slide-to="11"></li>
+                                                </ol>
+                                                <div class="carousel-inner" role="listbox">
+                                                    <div class="carousel-item active">
+                                                        <img style="height:400px;" class="d-block img-fluid w-100" src="{{BUCKET_URL}}{{Item.principalImage}}" alt="First slide">
+                                                    </div>
+                                                    <div class="carousel-item" *ngFor="let imageItem of imageByItem">
+                                                        <img style="height:400px;" class="d-block img-fluid w-100" src="{{BUCKET_URL}}{{imageItem.image}}" alt="Second slide">
+                                                    </div>
+                                                </div>
+                                                <!--a class="carousel-control-prev" href="javascript:void(0)" role="button" data-slide="prev1">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="javascript:void(0)" role="button" data-slide="next1">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Nextsss</span>
+                                                </a-->
+                                            </div>
+
+
+
+                                          <!--<div id="big_banner">
                                               <div class="port_big_img">
                                                     <img width="450" height="450" src="{{BUCKET_URL}}{{Item.principalImage}}" class="img-fluid o-hidden" alt="">
                                               </div>
-                                              <!--ngfor para las demas imagenes-->
                                               <div class="port_big_img" *ngFor="let imageItem of imageByItem">
                                                   <img width="450" height="450" class="img-fluid o-hidden" src="{{BUCKET_URL}}{{imageItem.image}}" alt="Big_ Details">
                                               </div> 
-                                              <!--fin del ngfor-->
-                                          </div>
+                                          </div>-->
+
+
                                       </div>
-                                      <div class="col-lg-12 product-right">
+                                      <!--<div class="col-lg-12 product-right">
                                           <div id="small_banner">
                                               <div>
                                                   <img width="100" height="100" class="img img-fluid" src="{{BUCKET_URL}}{{Item.principalImage}}" alt="small-details">
                                               </div>
-                                              <!--ngfor para las demas imagenes-->
                                               <div *ngFor="let imageItem of imageByItem">
                                                   <img width="100" height="100" class="img img-fluid" src="{{BUCKET_URL}}{{imageItem.image}}" alt="small-details">
                                                 </div>
-                                              <!-- fin del ngfor -->
                                           </div>
-                                      </div>
+                                      </div>-->
                                   </div>
                               </div>
                               <div class="col-lg-7 col-xs-12 product-detail" id="product-detail">
@@ -706,7 +741,7 @@
                                                                             </span>
                                                                             <input type="text" class="form-control" placeholder="Escribe una pregunta" name="query" required [(ngModel)]="query">
                                                                             <span class="input-group-addon" id="basic-addon12">
-                                                                                <button class="btn btn-primary" (click)="onSubmit()"><i class="icofont icofont-plus m-r-10"> </i> Preguntar</button>
+                                                                                <button [disabled]="isFormValid()" class="btn btn-primary" (click)="onSubmit()"><i class="icofont icofont-plus m-r-10"> </i> Preguntar</button>
                                                                             </span> 
                                                                         </div>
                                                                     </div>
@@ -804,5 +839,16 @@
                     <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
                 </div>
         </div>
+    </div>
+</div>
+
+
+<div class="popup2" align="center" [hidden]="popup2">
+    <div class="page-header-title">
+        <h3>SOLICITUD EN PROCESO</h3>
+        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+        <br>
+        <br>
+        <h4>Por Favor espere</h4>
     </div>
 </div>

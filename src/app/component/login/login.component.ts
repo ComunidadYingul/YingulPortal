@@ -3,6 +3,7 @@ import {Observable}  from 'rxjs/Observable';
 import {LoginService} from '../../service/login.service';
 import { user } from '../../model/user';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,11 +16,12 @@ export class LoginComponent implements OnInit {
   password: string;
   User: user = new user();
 
-	constructor (private loginService: LoginService,private router: Router) {
+	constructor (private loginService: LoginService,private router: Router,private location: Location) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.loggedIn = false;
     } else {
       this.loggedIn = true;
+      this.location.back();
     }
   }
   
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
         this.User.password = btoa(this.User.username+":"+this.password);
         this.loggedIn=true;
         this.saveLocalStorage();
-        window.history.back();
+        location.reload();
       },
       err => alert("Usuario o Contraseña incorrecta")
     );

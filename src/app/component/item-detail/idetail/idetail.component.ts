@@ -53,12 +53,12 @@ export class IdetailComponent implements OnInit {
   provinceId:string="0";
   quant:number=1;
   hiddenTypeSend:boolean=true;
-
+  popup2:boolean=true;
+  numberImg:number;
   constructor(private itemDetailService : ItemDetailService, private router : Router){
     if(this.Product.productPagoEnvio=="comprador"){this.hiddenTypeSend=false;}
   }
   ngOnInit() {
-    this.getImageByItem();
     this.getItemById();
     this.itemDetailService.getItemType(this.localItemId).subscribe(
 			res => {
@@ -142,6 +142,7 @@ export class IdetailComponent implements OnInit {
     this.itemDetailService.getImageByItem(this.localItemId).subscribe(
 			res => {
             this.imageByItem = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.numberImg=this.imageByItem.length;
       		},
       		error => console.log(error)
     );
@@ -172,28 +173,23 @@ export class IdetailComponent implements OnInit {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
 			this.router.navigate(['/login']);
 		} else {
-			this.spinner=true;
-      //probablemente para crear un nuevo servicio funciones con el promise 
-      /*var promise = new Promise((resolve, reject) => {
-          setTimeout(() => {
-          console.log("Async Work Complete");
-          resolve();
-        }, 100000);
-      });*/
+      this.popup2=false;
       this.oneQuery={"query":this.query,"user":JSON.parse(localStorage.getItem("user")),"yng_Item":{"itemId":this.localItemId}};
       this.itemDetailService.postQuery(this.oneQuery).subscribe(
         res => {
           this.msg = JSON.parse(JSON.stringify(res))._body;
           if(this.msg=='save'){
-            location.reload();
+            this.ngOnInit();
+            this.popup2=true;
           }
           else{
             alert(this.msg);
+            this.popup2=true;
           } 
         },
         error => console.log(error)
       );
-      this.spinner=false;
+
 		}
     
   }
@@ -416,6 +412,13 @@ export class IdetailComponent implements OnInit {
   }
   quantMenos(){
     this.quant--;
+  }
+  isFormValid(){
+    if(this.query=="" || this.query==null){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }

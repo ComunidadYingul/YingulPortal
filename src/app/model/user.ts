@@ -18,5 +18,6 @@ export class user {
     yng_Ubication:Ubication= new Ubication();
     documentType:string;
     documentNumber:string
+    authorities:Object[];
     
 }

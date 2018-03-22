@@ -9,18 +9,15 @@
                         <div class="text-center">
                             <img src="assets/images/auth/logo.png" alt="logo.png">
                         </div>
-                        <div *ngIf="empresaIf" class="auth-box">
+                        <div class="auth-box">
                             
                             <div class="row m-b-20">
-                                <div class="col-md-6" [hidden]="!empresaIf">
-                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="empresa()" [disabled]="regDis"> Regístrate como empresa</button>
-                                </div>
                                 <div class="col-md-12">
                                     <h3 class="text-center txt-primary">Regístrate. És rápido y fácil.</h3>
                                 </div>
 
                             </div>
-                            <p class="text-inverse b-b-default text-left p-b-5">Inicie sesión fácilmente con su cuenta social:</p>
+                            <p class="text-inverse b-b-default text-left p-b-5">Regístrate fácilmente con su cuenta social:</p>
                             <div class="row m-b-20">
                                 <div class="col-md-6">
                                     <button class="btn btn-facebook m-b-0"><i class="icofont icofont-social-facebook"></i>Registrate con Facebook</button>
@@ -29,7 +26,7 @@
                                     <button class="btn btn-twitter m-b-0"><i class="icofont icofont-social-twitter"></i>Registrate con Twitter</button>
                                 </div>
                             </div>
-                            <p class="text-inverse b-b-default text-left p-b-5">Inicia sesión con tu cuenta habitual</p>
+                            <p class="text-inverse b-b-default text-left p-b-5">Regístrate con tu cuenta habitual</p>
                             <div class="row m-b-20">
                             <div class="input-group col-md-6">
                                 <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">
@@ -54,7 +51,7 @@
                                 <div class="col-md-6">
                                     <div class="checkbox-fade fade-in-primary">
                                         <label>
-                                            <input type="checkbox" value="">
+                                            <input type="checkbox" value="" name="condition" [(ngModel)]="condition">
                                             <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                             <span class="text-inverse">Leo y acepto <a href="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/politicas/terminos-y-condiciones-de-uso.pdf">Terminos &amp; Condiciones.</a></span>
                                         </label>
@@ -63,16 +60,16 @@
                                 <div class="col-md-6">
                                     <div class="checkbox-fade fade-in-primary">
                                         <label>
-                                            <input type="checkbox" value="">
+                                            <input type="checkbox" value="" name="business" [(ngModel)]="business">
                                             <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                            <span class="text-inverse">Envíame el <a href="">Hoja informativa </a>semanal.</span>
+                                            <span class="text-inverse">Regístrarme como empresa</span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row m-t-30">
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="onSubmit()" [disabled]="regDis">Regístrese ahora.</button>
+                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="onSubmit()" [disabled]="isFormDisabled()">Regístrese ahora.</button>
                                 </div>
                                 <div class="col-md-6">
                                     <a class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" href="javascript:history.back(-1);">Cancelar.</a>
@@ -88,207 +85,6 @@
                                     <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="auth-box" *ngIf="!empresaIf">
-                                                        
-                                <div class="row m-b-20">
-                                    <div class="col-md-9">
-                                            <p class="text-inverse m-t-25 text-left"> <a> Regístrate como empresa </a></p>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <h3 class="text-center txt-primary">Regístrate como Empresa. És rápido y fácil.</h3>
-                                    </div>
-    
-                                </div>
-
-                                <div class="row m-b-20">
-                                    <div  class="input-group col-md-6">
-                                        <select class="form-control form-control-primary" name="opcionSeleccionado" [(ngModel)]="opcionSeleccionado" (change)="capturar()">
-                                            <option value="0">Selecciona una opción</option>
-                                            <option *ngFor="let dato of datosBusinesType">
-                                            {{dato}}
-                                            </option>
-                                        </select>
-                                        
-                                    </div>
-                                    <div  class="input-group col-md-6"   [hidden]="!seleccionadoI">
-
-                                            <select name="opcionSeleccionadoPB" [(ngModel)]="opcionSeleccionadoPB" (change)="capturarPB()">
-                                                <option value="0">Selecciona una opción</option>
-                                                <option *ngFor="let dato of datosI;
-                                                ">
-                                                {{dato}}
-                                                </option>
-                                            </select>
-                                            
-                                    </div>
-
-                                    <div  class="input-group col-md-6"   [hidden]="!seleccionadoE">
-                                        
-                                        <select name="opcionSeleccionadoPB" [(ngModel)]="opcionSeleccionadoPB" (change)="capturarPB()">
-                                            <option value="0">Selecciona una opción</option>
-                                            <option *ngFor="let dato of datosE;
-                                            ">
-                                            {{dato}}
-                                            </option>
-                                        </select>
-                                        
-                                </div>
-                                    <!--div  class="input-group col-md-6"   *ngIf="seleccionadoPB">
-                                            <select class="form-control form-control-primary" #t (change)="capturarPB()" >
-                                                    <option>Selecciona una opción</option>
-                                                    <option *ngFor="let dato of datos" [value]="dato" >{{dato}}</option>
-                                                </select>
-                                    </div-->
-                                </div>
-
-
-                                <div *ngIf="isAll">
-
-                                    <div *ngIf="false">
-                                        <p class="text-inverse b-b-default text-left p-b-5">Inicie sesión fácilmente con su cuenta social:</p>
-                                        <div class="row m-b-20">
-                                            <div class="col-md-6">
-                                                <button class="btn btn-facebook m-b-0"><i class="icofont icofont-social-facebook"></i>Registrate con Facebook</button>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button class="btn btn-twitter m-b-0"><i class="icofont icofont-social-twitter"></i>Registrate con Twitter</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="text-inverse b-b-default text-left p-b-5">Inicia sesión con tu cuenta habitual</p>
-
-
-                                <div class="row m-b-20" *ngIf="isPerson">                                 
-                                                                               
-                                    <div class="input-group col-md-6">
-                                        <input type="text" class="form-control" placeholder="Nombre" name="nameBusiness" required [(ngModel)]="nameBusiness">
-                                        <span class="md-line"></span>
-                                    </div>
-                                    <div class="input-group col-md-6">
-                                        <input type="text" class="form-control" placeholder="Apellido" name="socialName" required [(ngModel)]="socialName">
-                                        <span class="md-line"></span>
-                                    </div>
-    
-                                </div>
-
-                                <div class="row m-b-20" *ngIf="isBusinessF">                                                                            
-                                    <div class="input-group col-md-6" >
-                                        <input type="text" class="form-control" placeholder="Nombre de la empresa" name="nameBusiness" required [(ngModel)]="nameBusiness">
-                                        <span class="md-line"></span>
-                                    </div>
-                                    <div class="input-group col-md-6" >
-                                        <input type="text" class="form-control" placeholder="Razón social" name="socialName" required [(ngModel)]="socialName">
-                                        <span class="md-line"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-b-20">
-                                <div class="input-group col-md-6">
-                                    <input type="text" class="form-control" placeholder="Correo electronico" name="email" required [(ngModel)]="email">
-                                    <span class="md-line"></span>
-                                </div>
-                                <div class="input-group col-md-6">
-                                    <input type="password" class="form-control" placeholder="Contraseña" name="password" required [(ngModel)]="password">
-                                    <span class="md-line"></span>
-                                </div>
-                                </div>
-
-                                <div class="row m-b-20">
-                                <div class="input-group col-md-6">
-                                    <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Teléfono" name="phone" required [(ngModel)]="phone">
-                                    <span class="md-line"></span>
-                                </div>
-                                
-                                </div>
-                                <div class="row m-b-20">
-                                    <div class="input-group col-md-6">
-                                        <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
-                                            <option>Seleccione una provincia</option>
-                                            <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="row m-b-20">
-                                    <div class="input-group col-md-6" [hidden]="cityHid">
-                                        <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
-                                                <option value="opt1">Seleccione una Ciudad</option>
-                                                <option *ngFor="let city of cityList" [value]="city.cityId">{{city.name}}</option>
-                                            </select>
-                                    </div>
-                                </div>
-
-                                <div class="row m-b-20" > 
-                                        <div class="input-group col-sm-6" [hidden]="barrioHid">
-                                            <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
-                                                <option value="opt1">Seleccione un Barrio</option>
-                                                <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId">{{barrio.name}}</option>
-                                            </select>
-                                        </div>
-                                </div>
-
-                                <div class="row  m-b-20">
-                                        <div class="col-sm-6">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
-                                            </div>
-                                        </div>
-
-                                </div>
-
-                                <div class="row m-b-20">
-                                        <div class="col-sm-6">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                                    <input type="text" (keypress)="keyPress($event)" class="form-control" name="number" [(ngModel)]="number" placeholder="Número">
-                                                </div>
-                                            </div>
-
-                                </div>
-                                <div class="row m-b-20">
-                                    <div class="col-md-6">
-                                        <div class="checkbox-fade fade-in-primary">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                <span class="text-inverse">Leo y acepto <a href="#">Terminos &amp; Condiciones.</a></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="checkbox-fade fade-in-primary">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
-                                                <span class="text-inverse">Envíame el <a href="">Hoja informativa </a>semanal.</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row m-t-30">
-                                    <div class="col-md-6">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="onSubmit()" [disabled]="regDis">Regístrese ahora.</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" href="javascript:history.back(-1);">Cancelar.</a>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <p class="text-inverse text-left m-b-0">Gracias y disfrute de nuestro sitio web.</p>
-                                        <p class="text-inverse text-left"><b>Su equipo de autentificación</b></p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
-                                    </div>
-                                </div>
-
-                            </div>
-
-
                         </div>
                     </form>
                     <!-- end of form -->
