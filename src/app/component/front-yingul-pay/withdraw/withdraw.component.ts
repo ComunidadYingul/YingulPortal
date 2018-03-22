@@ -63,6 +63,7 @@ export class WithdrawComponent implements OnInit {
     );
   }
   transfer(){
+    this.popup2=false;
     this.wireTransfer.titularName=this.titularName;
     this.wireTransfer.cuitCuil=this.cuitCuil;
     this.wireTransfer.cuitCuilNumber=this.cuitCuilNumber;
