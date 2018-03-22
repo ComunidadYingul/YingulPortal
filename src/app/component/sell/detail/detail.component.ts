@@ -105,6 +105,7 @@ motorizedBrand:string;
 motorizedYear:string;
 motorizedModel:string;
 motorizedUnicoDue:string;
+motorizedKilometers:number;
 
 public product: Product=new Product;
 public property: Property=new Property;
@@ -235,6 +236,7 @@ public item: Item=new Item();
       this.motorized.motorizedSound=this.motSound;
       this.motorized.motorizedExterior=this.motExterior;
       this.motorized.motorizedEquipment=this.motEquipment;
+      this.motorized.motorizedKilometers=this.motorizedKilometers;
      // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
      this.detailProduct.emit(this.motorized);
     }  

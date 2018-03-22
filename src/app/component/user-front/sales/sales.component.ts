@@ -30,5 +30,8 @@ export class SalesComponent implements OnInit {
       		error => console.log(error)
     );
   }
+  onConfirm(){
+    
+  }
 
 }

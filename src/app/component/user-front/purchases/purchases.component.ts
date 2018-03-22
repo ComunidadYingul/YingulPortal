@@ -31,4 +31,7 @@ export class PurchasesComponent implements OnInit {
     );
   }
 
+  onConfirm(){
+    
+  }
 }

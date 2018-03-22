@@ -4,7 +4,7 @@
         <!-- Page-header start -->
         <div class="page-header">
             <div class="page-header-title">
-                <h4>Favoritos</h4>
+                <h4>Lista de publicaciones</h4>
                 <span>Productos, Servicios, Inmuebles o Vehículos</span>
             </div>
             <div class="page-header-breadcrumb">
@@ -18,7 +18,7 @@
                     </li>
                     <li class="breadcrumb-item"><a href="/userFront/favorites">Favoritos</a>
                     </li>
-                    <li class="breadcrumb-item"><a href="/listItems">Favoritos</a>
+                    <li class="breadcrumb-item"><a href="/listPublications/1">Publicaciones  </a>
                     </li>
                 </ul>
             </div>
@@ -31,7 +31,7 @@
                     <!-- Zero config.table start -->
                     <div class="card">
                         <div class="card-header">
-                            <h5>Favoritos</h5>
+                            <h5>Lista de publicaciones</h5>
                             <span>Productos, Servicios, Inmuebles o Vehículos que agregaste a favoritos</span>
                             <div class="card-header-right">
                                 <i class="icofont icofont-rounded-down"></i>
@@ -60,7 +60,12 @@
                                             <td><img width="150" height="150" src="{{BUCKET_URL}}{{items.principalImage}}" class="img-fluid" alt="{{items.principalImage}}"></td>
                                             <td>{{items.name}}</td>
                                             <td>${{items.price}}</td>
-                                            <td><a type="submit" class="btn btn-primary m-b-0" href="/editItem/{{items.itemId}}">Editar artículo</a></td>
+                                            <td>
+                                                <div class="row">
+                                                    <a type="submit" class="btn btn-primary m-b-0" href="/editItem/{{items.itemId}}">Editar artículo</a>
+                                                    <a type="submit" class="btn btn-primary m-b-0"#checkbox (click)="changeUbi(items.itemId)">Modificar ubicación</a>
+                                                </div>
+                                            </td>
                                             
                                         </tr>
                                     </tbody>
@@ -88,4 +93,97 @@
     </div>
   </div>
   <!-- Main-body end -->
-  
+  <div class="popup" [hidden]="popupUbication">
+        <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
+        <!--h5 class="text-center">Ingresa tu código postal </h5-->
+        
+            <div class="col-sm-6" [hidden]="countryHidden">
+                    <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
+                        <option value="opt1" disabled>Seleccione un País</option>
+                        <option *ngFor="let country of countryList" [value]="country.countryId" [disabled]="country.countryId!=2">{{country.name}}</option>
+                    </select>
+            </div>
+            <h4 class="sub-title" [hidden]="!countryHidden">{{countryName}}</h4>
+            <br/>
+            <div [hidden]="!countryHidden">
+        <div [hidden]="btnCP" class="input-group input-group-button">
+            <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
+            <span class="input-group-addon" id="basic-addon10">
+                <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
+            </span>
+        <a hidden="true" href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+        </div>
+    
+    
+        <div  [hidden]="cityHid">
+                <div class="row">        
+                    <div  class="input-group input-group-button">            
+                        <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                        <span class="input-group-addon" id="basic-addon10">
+                                <button  class="btn btn-primary"  (click)="cambiarCP()">Codigo postal Cambiar</button>
+                        </span>
+                    </div>                
+                </div>
+    
+                <h4 class="sub-title">{{provinciaCP}}</h4>
+                <div class="col-sm-6" [hidden]="false">
+                        <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
+                            <option value="opt1">Seleccione una Ciudad</option>
+                            <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
+                        </select>
+                </div>
+                <br/>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+                            </div>
+                        </div>
+                </div>
+                <div class="row">       
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                        </div>
+                    </div>
+            </div>
+                <div class="row">       
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
+                            </div>
+                        </div>
+                </div>  
+                <div class="row">       
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="aditional" [(ngModel)]="additional" placeholder="Datos adicionales">
+                            </div>
+                    </div>
+                </div>
+        </div>
+                    
+                
+                <div class="row">
+                    
+                    <div class="col-sm-2">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                            </div>
+                    </div>
+                </div>
+    
+    </div>
+    </div>    

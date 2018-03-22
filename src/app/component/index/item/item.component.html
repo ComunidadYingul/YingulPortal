@@ -200,7 +200,7 @@
                                             </div>
                               </div>
                           </div>
-                          <div class="prod-info">
+                          <div class="prod-info" style="margin-bottom: 5px;">
                               <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
                               <div class="stars stars-example-css m-b-10">
                                   <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
@@ -213,6 +213,16 @@
                               </div>
                               <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
                               <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                              <div class="row" style="margin:0 7px;">
+                                <div [hidden]="envioIcon(item.itemId)" class="h5-send" style="margin-left:20px;">
+                                    <div  class="h5-send" style="margin-left:20px;">                                  
+                                            <div  class="row">                                                        
+                                                <img style="width: 25px;height: 25px;" class="" src="assets/images/car.png" alt="Generic placeholder image">
+                                                <h6  style="font-size:12px;margin-top: 8px;">Envió gratis</h6>
+                                            </div>
+                                    </div>
+                               </div>
+                            </div>
                           </div>
                       </div>
                   </div>
