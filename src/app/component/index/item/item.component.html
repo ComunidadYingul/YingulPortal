@@ -21,216 +21,66 @@
       <div class="page-body">
           <!-- Product list start -->
           <div>
-            <div [hidden]="true" id="container">
-                <div
-                  ng2-carouselamos
-                  class="slides-wrapper"
-                  [items]="itemList"
-                  [width]="900"
-                  [$prev]="prev"
-                  [$next]="next"
-                  [$item]="item"
-                  (mousedown)="click()"
-                    (touchstart)="click()"
-                (mousemove)="click()"
-          (touchmove)="click()"
-          (mouseup)="click()"
-          (mouseleave)="click()"
-          (touchend)="click()"
-                >
-                </div>
-              
-          
-              <ng-template #prev>
-                <img src="assets/images/left-arrow.png" id="left" />
-              </ng-template>
-              <ng-template #next>
-                <!--i class="ti-angle-right" id="right"></i-->
-                <img src="assets/images/right-arrow.png" id="right" />
-              </ng-template>
-              <ng-template #item let-item let-i="index">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                            <div class="card prod-view" >
-                                    <div class="prod-item text-center">
-                                        <div class="prod-img">
-                                            <div class="option-hover">
-                                                <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                    <i class="icofont icofont-cart-alt f-20"></i>
-                                                </a>
-                                                <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                    <i class="icofont icofont-eye-alt f-20"></i>
-                                                </a>
-                                                <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
-                                                    <i class="icofont icofont-heart-alt f-20"></i>
-                                                </button>
-                                            </div>
-                                            <a href="#!" class="hvr-shrink">
-                                                <!--ruta para la imagenes en desarrollo -->   
-                                                <img width="450" height="450" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="">
-                                            </a>
-                                            <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-                                            <div [hidden]="envioIcon(item.itemId)" class="h5-send">
-                                                <!--a>
-                                              <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
-                                                </a> <h1 class="h5-send">Envió gratis</h1-->
-                                                    <i  class="icofont icofont-truck-alt">Envió gratis</i>
-                                            </div>
-                                        </div>
-                                        <div class="prod-info">
-                                            <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
-                                            <div class="stars stars-example-css m-b-10">
-                                                <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select></div>
-                                            </div>
-                                            <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
-                                            <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-              </ng-template>
-          </div>
-        <div [hidden]="true">
 
+        <!---->
+        <div>
+            <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+                    <div ngxSlickItem *ngFor="let item of itemList" class="slide" style="height: 330px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
+                            <div id="" style=" background-color: white;" >
+                                    <div class="prod-view" style="width: 240px;">
+                                        <div class="prod-item text-center"  >
+                                                <div class="prod-img" style=" background-color: white;" >
+                                                    <div class="option-hover">
+                                                        <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                            <i class="icofont icofont-cart-alt f-20"></i>
+                                                        </a>
+                                                        <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                            <i class="icofont icofont-eye-alt f-20"></i>
+                                                        </a>
+                                                        <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                                            <i class="icofont icofont-heart-alt f-20"></i>
+                                                        </button>
+                                                    </div>
+                                                        <a href="javascript:void(0)" class="hvr-shrink">
+                                                            <!--ruta para la imagenes en desarrollo -->
+                                                            <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden img" alt="{{item.principalImage}}">       
+                                                        </a>
+                                                    <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
 
-                <div class="col-sm-12">
-                        <!-- Swiper slider card start -->
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Swiper slider</h5>
-                                <div class="card-header-right">
-                                    <i class="icofont icofont-rounded-down"></i>
-                                    <i class="icofont icofont-refresh"></i>
-                                    <!--i class="icofont icofont-close-circled"></i-->
-                                </div>
-                            </div>
-                            <div class="card-block">
-                                <div class="swiper-container">
-                                    <div class="swiper-wrapper " >
-                                            <div class="swiper-slide"  *ngFor="let item of itemList" >
-                                                <div id="mycolor1">
-                                                <div class="prod-view">
-                                                    <div class="prod-item text-center"  >
-                                                            <div class="prod-img">
-                                                                <div class="option-hover">
-                                                                    <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                                        <i class="icofont icofont-cart-alt f-20"></i>
-                                                                    </a>
-                                                                    <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                                        <i class="icofont icofont-eye-alt f-20"></i>
-                                                                    </a>
-                                                                    <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
-                                                                        <i class="icofont icofont-heart-alt f-20"></i>
-                                                                    </button>
+                                                </div>
+                                                <div class="prod-info">
+                                                    <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                                    <div class="stars stars-example-css m-b-10">
+                                                        <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select></div>
+                                                    </div>
+                                                    <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
+                                                    <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                                                    <div class="row" style="margin:0 7px;">
+                                                            <div [hidden]="envioIcon(item.itemId)" class="h5-send" style="margin-left:20px;">
+                                                                <div  class="h5-send" style="margin-left:20px;">                                  
+                                                                        <div  class="row">                                                        
+                                                                            <img style="width: 25px;height: 25px;" class="" src="assets/images/car.png" alt="Generic placeholder image">
+                                                                            <h6  style="font-size:12px;margin-top: 8px;">Envió gratis</h6>
+                                                                        </div>
                                                                 </div>
-                                                                <a href="#!" class="hvr-shrink">
-                                                                    <!--ruta para la imagenes en desarrollo -->
-                                                                    <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
-                                                                </a>
-                                                                <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-                                                                <div [hidden]="envioIcon(item.itemId)" class=""><a>
-                                                                  <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
-                                                                  </a> <h1 class="h5-send">Envió gratis</h1>
-                                                                </div>
-                                                            </div>
-                                                            <div class="prod-info">
-                                                                <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
-                                                                <div class="stars stars-example-css m-b-10">
-                                                                    <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                    </select></div>
-                                                                </div>
-                                                                <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
-                                                                <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                                                            </div>
-                                                        </div>
+                                                           </div>
                                                     </div>
                                                 </div>
-                                            </div>                                                
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- end of swipper-wrapper -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Swiper slider card end -->
                     </div>
-               
+                </ngx-slick>                   
+                   
         </div>
-          <div style="overflow-y: auto; height:1000px; width:100%;">
-          <div class="row">
-               <div [hidden]="false" class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemList">
-                  <div class="card prod-view">
-                      <div class="prod-item text-center">
-                          <div class="prod-img">
-                              <div class="option-hover">
-                                  <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                      <i class="icofont icofont-cart-alt f-20"></i>
-                                  </a>
-                                  <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                      <i class="icofont icofont-eye-alt f-20"></i>
-                                  </a>
-                                  <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
-                                      <i class="icofont icofont-heart-alt f-20"></i>
-                                  </button>
-                              </div>
-                              <a href="#!" class="hvr-shrink">
-                                  <!--ruta para la imagenes en desarrollo -->
-                                  <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
-                              </a>
-                              <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-                              <div [hidden]="envioIcon(item.itemId)" class="h5-send" style="margin-left:20px;">
-                                  <!--a>
-                                <img class="p-send" width="40" heigth="40" src="assets/images/carritoEnvio.png" alt="Generic placeholder image">
-                                </a> <h1 class="h5-send">Envió gratis</h1-->
-                                    <div class="row">
-                                            <div  class="h5-send" style="margin-left:20px;">                                  
-                                                    <div  class="row">                                                        
-                                                        <img style="width: 25px;height: 25px;" class="" src="assets/images/car.png" alt="Generic placeholder image">
-                                                        <h6  style="font-size:12px;margin-top: 8px;">Envió gratis</h6>
-                                                    </div>
-                                            </div>
-                              </div>
-                          </div>
-                          <div class="prod-info" style="margin-bottom: 5px;">
-                              <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
-                              <div class="stars stars-example-css m-b-10">
-                                  <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
-                                      <option value="1">1</option>
-                                      <option value="2">2</option>
-                                      <option value="3">3</option>
-                                      <option value="4">4</option>
-                                      <option value="5">5</option>
-                                  </select></div>
-                              </div>
-                              <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
-                              <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                              <div class="row" style="margin:0 7px;">
-                                <div [hidden]="envioIcon(item.itemId)" class="h5-send" style="margin-left:20px;">
-                                    <div  class="h5-send" style="margin-left:20px;">                                  
-                                            <div  class="row">                                                        
-                                                <img style="width: 25px;height: 25px;" class="" src="assets/images/car.png" alt="Generic placeholder image">
-                                                <h6  style="font-size:12px;margin-top: 8px;">Envió gratis</h6>
-                                            </div>
-                                    </div>
-                               </div>
-                            </div>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-          </div>
-            </div>
-          <!-- Product list end -->
-      </div>
+         <!---->
+
       <!-- Page body end -->
   </div>
 </div>

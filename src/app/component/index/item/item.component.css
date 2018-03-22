@@ -36,3 +36,31 @@
 #mycolor1 {
     display: flex;
 } 
+
+.img{
+    display:block;
+    margin:auto;
+    width: 180px;
+    height: 180px;
+    background-color:white;
+    }
+
+.slide slick-slide{
+    width: auto;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

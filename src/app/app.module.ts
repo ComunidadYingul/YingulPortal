@@ -84,6 +84,7 @@ import { ProtectedPurchaseComponent } from './component/help/protected-purchase/
 import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
 import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
+import { SlickModule } from 'ngx-slick';
 @NgModule({
   declarations: [
     AppComponent,
@@ -150,6 +151,7 @@ import { ListItemsComponent } from './component/list-publications/list-items/lis
     HttpModule,
     routing,
     RecaptchaModule.forRoot(),
+    SlickModule.forRoot(),
 
     Ng2CarouselamosModule
   ],

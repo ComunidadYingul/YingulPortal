@@ -171,10 +171,10 @@ const appRoutes: Routes = [
     path: 'agreement/:claimId',
     component: AgreementComponent
   },
-  {
+  /*{
     path: ':nameStore',
     component: StoreComponent
-  },
+  },*/
   {
     path: 'listPublications/:id',
     component: ListPublicationsComponent

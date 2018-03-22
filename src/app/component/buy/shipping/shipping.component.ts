@@ -108,6 +108,9 @@ export class ShippingComponent implements OnInit {
     country:Country=new Country();
     countryTemp:Country=new Country();
     countryHidden:boolean=false;
+    cityTem:City=new City();
+    provinceList: Object[];
+    provin:string;
   constructor(private buyService: BuyService,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService,private router: Router) { 
     this.cityHid=true;
     console.log("Cotizacion"+JSON.stringify(this.shipping));
@@ -689,6 +692,16 @@ export class ShippingComponent implements OnInit {
     }
     getBarrio(cityId : number){
       this.city.cityId=cityId;
+      console.log("cityId:"+cityId);
+      var ret="";
+      for(let c of this.cityList){
+        this.cityTem=JSON.parse(JSON.stringify(c));
+        if(cityId==this.cityTem.cityId){ 
+          ret=this.cityTem.codigopostal;
+        }
+      }
+      console.log("ret:"+ret);
+      this.postalCode=ret;
       this.barrioList=[];
       this.sellService.getBarrio(cityId).subscribe(
         res => {
@@ -734,4 +747,37 @@ export class ShippingComponent implements OnInit {
       this.countryName=this.country.name     
     }
   }
+  getProvince(countryId:number){
+    this.country.countryId=countryId;
+    this.provinceList=null;
+    this.cityHid=true;
+    this.barrioHid=true;
+    this.sellService.getProvinces(countryId).subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            //this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
+
+      		},
+      		error => console.log(error)
+    )
+  }
+  getCity(provinceId : number){
+    this.province.provinceId=provinceId;
+     this.cityList=[];
+     this.sellService.getCities(provinceId).subscribe(
+       res => {
+             this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+             this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
+            // alert("this.provin:"+this.provin);
+             if(JSON.stringify(this.cityList)=="[]"){
+               this.cityHid=true;
+               this.barrioHid=true;
+             } 
+             else{
+               this.cityHid=false;
+             }
+           },
+           error => console.log(error)
+     )
+   }
 }
