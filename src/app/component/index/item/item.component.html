@@ -23,13 +23,14 @@
           <div>
 
         <!---->
-        <div>
+        <div >
             <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
                     <div ngxSlickItem *ngFor="let item of itemList" class="slide" style="height: 330px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
-                            <div id="" style=" background-color: white;" >
-                                    <div class="prod-view" style="width: 240px;">
+                            <div id="" class="divcolor">
+                                    <div class="prod-view prod-view                             
+                                    " style="width: 240px;">
                                         <div class="prod-item text-center"  >
-                                                <div class="prod-img" style=" background-color: white;" >
+                                                <div class="prod-img"  >
                                                     <div class="option-hover">
                                                         <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
                                                             <i class="icofont icofont-cart-alt f-20"></i>

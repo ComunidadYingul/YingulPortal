@@ -10,12 +10,12 @@
       <!-- Page header end -->
       <!-- Page body start -->
           <!-- Product list start -->
-          <div>
-            <div class="row" align="center" width="100%">
-                <div id='scrolly'>
-                    <a href="/{{store.name}}" *ngFor="let store of storeList"><img class="img-fluid" src='{{BUCKET_URL}}store/{{store.mainImage}}' ></a>
-                </div>
-            </div>
+          <div align="center">
+            <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+              <div ngxSlickItem *ngFor="let store of storeList" class="slide">
+                <img class="img-fluid" src='{{BUCKET_URL}}store/{{store.mainImage}}' >
+              </div>
+            </ngx-slick>
           </div>
           <!-- Product list end -->
           <div>

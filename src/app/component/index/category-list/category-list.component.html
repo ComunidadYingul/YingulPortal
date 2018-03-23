@@ -67,466 +67,225 @@
         <div class="col-lg-10">
           <div class="list-group">
             <a class="list-group-item list-group-item-action">Categorias</a>
-            <div [hidden]="false" class="phone" style="overflow-y: auto; height:540px; width:100%;">
-              <ul class="nav">
-                <li class="nav-item" style="width:17%; height:180px;" >
-                  <a routerLink="/itemsCategory/1001" >
-                    <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-steering"></i>
-                        <p><strong>Accesorios para vehículos</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1003">
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fast-food"></i>
-                        <p><strong>Alimentos y bebídas</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1004" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-animal-bone"></i>
-                        <p><strong>Animales y mascotas</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1005" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-castle"></i>
-                        <p><strong>Antiguedades</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1006" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-picture"></i>
-                        <p><strong>Artes y artesanias</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1007" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-baby-trolley"></i>
-                        <p><strong>Bebes</strong></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav">
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1008" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-bathtub"></i>
-                        <p><strong>Belleza y cuidado personal</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1009">
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-camera"></i>
-                        <p><strong>Cámara y accesorios</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1010" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-touch-phone"></i>
-                        <p><strong>Celulares y teléfonos</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1011" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-unity-hand"></i>
-                        <p><strong>Coleccionables y hobbies</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1012" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-laptop"></i>
-                        <p><strong>Computación</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1013" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-game-console"></i>
-                        <p><strong>Consolas y videojuegos</strong></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav">
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1014" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-swimmer"></i>
-                        <p><strong>Deportes y fitness</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1015">
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-washing-machine"></i>
-                        <p><strong>Electrodomesticos y aires ac.</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1016" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-drwaing-tablet"></i>
-                        <p><strong>Electronica, audio y video</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1017" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ticket"></i>
-                        <p><strong>Entradas para eventos</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1018" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fix-tools"></i>
-                        <p><strong>Herramientas y construcción</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1019" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-chair"></i>
-                        <p><strong>Hogar, muebles y jardin</strong></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav">
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1020" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-industries-alt-2"></i>
-                        <p><strong>Industria y oficinas</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1021">
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-song-notes"></i>
-                        <p><strong>Instrumentos musicales</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1022" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-wall-clock"></i>
-                        <p><strong>Joyas y relojes</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1023" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-toy-duck"></i>
-                        <p><strong>Juegos y juguetes</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1024" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-book-alt"></i>
-                        <p><strong>Libros, revistas y comics</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1025" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-multimedia"></i>
-                        <p><strong>Música, películas y series</strong></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-              <ul class="nav">
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1026" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-jewlery"></i>
-                        <p><strong>Ropa y <br>accesorios</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1027">
-                    <div class="card-block-big" style="height:180px;background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-stethoscope-alt"></i>
-                        <p><strong>Salud y equipamiento médico</strong></p>
-                    </div>
-                  </a>
-                </li>
-                <li class="nav-item "style="width:17%; height:180px;">
-                  <a routerLink="/itemsCategory/1028" >
-                    <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-architecture-alt"></i>
-                        <p><strong>Otras categorias</strong></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
+            <!---->
+            <ngx-slick class="carousel prod-view card rounded-card user-card " #slickModal="slick-modal" [config]="slideConfig">
+              <div class="card" ngxSlickItem  class="slide" style="height: 180px;"> 
+                <a routerLink="/itemsCategory/1001" >
+                  <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-steering"></i>
+                      <p><strong>Accesorios para vehículos</strong></p>
+                  </div>
+                </a>
+              </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1003">
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fast-food"></i>
+                      <p><strong>Alimentos y bebídas</strong></p>
+                  </div>
+                </a>
             </div>
-<!--desde aqui con slider-->
-<div class="phoneMirrow phoneMirrow2">
-    <div>
-        <div class="row" align="center" width="100%">
-            <!--div id='scrolly'-->
-            <div class="scrolling-wrapper-flexbox">
-                <div class="card"> 
-                    <a routerLink="/itemsCategory/1001" >
-                      <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-steering"></i>
-                          <p><strong>Accesorios para vehículos</strong></p>
-                      </div>
-                    </a>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1004" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-animal-bone"></i>
+                      <p><strong>Animales y mascotas</strong></p>
                   </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1003">
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fast-food"></i>
-                          <p><strong>Alimentos y bebídas</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1004" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-animal-bone"></i>
-                          <p><strong>Animales y mascotas</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1005" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-castle"></i>
-                          <p><strong>Antiguedades</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1006" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-picture"></i>
-                          <p><strong>Artes y artesanias</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1007" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-baby-trolley"></i>
-                          <p><strong>Bebes</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1008" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-bathtub"></i>
-                          <p><strong>Belleza y cuidado personal</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1009">
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-camera"></i>
-                          <p><strong>Cámara y accesorios</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1010" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-touch-phone"></i>
-                          <p><strong>Celulares y teléfonos</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1011" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-unity-hand"></i>
-                          <p><strong>Coleccionables y hobbies</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1012" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-laptop"></i>
-                          <p><strong>Computación</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1013" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-game-console"></i>
-                          <p><strong>Consolas y videojuegos</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1014" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-swimmer"></i>
-                          <p><strong>Deportes y fitness</strong></p>
-                      </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a routerLink="/itemsCategory/1015">
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-washing-machine"></i>
-                          <p><strong>Electrodomesticos y aires ac.</strong></p>
-                      </div>
-                    </a>
-                </div>
-                                                                  
+                </a>
             </div>
-            <!--div id='scrolly'-->
-            <div class="scrolling-wrapper-flexbox">
-                <div class="card">
-                    <a routerLink="/itemsCategory/1016" >
-                      <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                          <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-drwaing-tablet"></i>
-                          <p><strong>Electronica, audio y video</strong></p>
-                      </div>
-                    </a>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1005" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-castle"></i>
+                      <p><strong>Antiguedades</strong></p>
                   </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1017" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ticket"></i>
-                            <p><strong>Entradas para eventos</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1018" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fix-tools"></i>
-                            <p><strong>Herramientas y construcción</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1019" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-chair"></i>
-                            <p><strong>Hogar, muebles y jardin</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1020" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-industries-alt-2"></i>
-                            <p><strong>Industria y oficinas</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1021">
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-song-notes"></i>
-                            <p><strong>Instrumentos musicales</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1022" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-wall-clock"></i>
-                            <p><strong>Joyas y relojes</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1023" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-toy-duck"></i>
-                            <p><strong>Juegos y juguetes</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1024" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-book-alt"></i>
-                            <p><strong>Libros, revistas y comics</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1025" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-multimedia"></i>
-                            <p><strong>Música, películas y series</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1026" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-jewlery"></i>
-                            <p><strong>Ropa y <br>accesorios</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1027">
-                        <div class="card-block-big" style="height:180px;background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-stethoscope-alt"></i>
-                            <p><strong>Salud y equipamiento médico</strong></p>
-                        </div>
-                      </a>
-                  </div>
-                  <div class="card">
-                      <a routerLink="/itemsCategory/1028" >
-                        <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                            <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-architecture-alt"></i>
-                            <p><strong>Otras categorias</strong></p>
-                        </div>
-                      </a>
-                  </div>                     
+                </a>
             </div>
-        </div>
-      </div>
-
-</div>
-<!--fin del slide -->
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1006" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-picture"></i>
+                      <p><strong>Artes y artesanias</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1007" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-baby-trolley"></i>
+                      <p><strong>Bebes</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1008" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-bathtub"></i>
+                      <p><strong>Belleza y cuidado personal</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1009">
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-camera"></i>
+                      <p><strong>Cámara y accesorios</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1010" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ui-touch-phone"></i>
+                      <p><strong>Celulares y teléfonos</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1011" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-unity-hand"></i>
+                      <p><strong>Coleccionables y hobbies</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1012" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-laptop"></i>
+                      <p><strong>Computación</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1013" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-game-console"></i>
+                      <p><strong>Consolas y videojuegos</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1014" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-swimmer"></i>
+                      <p><strong>Deportes y fitness</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1015">
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-washing-machine"></i>
+                      <p><strong>Electrodomesticos y aires ac.</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+              <a routerLink="/itemsCategory/1016" >
+                <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                    <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-drwaing-tablet"></i>
+                    <p><strong>Electronica, audio y video</strong></p>
+                </div>
+              </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1017" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-ticket"></i>
+                      <p><strong>Entradas para eventos</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1018" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-fix-tools"></i>
+                      <p><strong>Herramientas y construcción</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1019" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-chair"></i>
+                      <p><strong>Hogar, muebles y jardin</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1020" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-industries-alt-2"></i>
+                      <p><strong>Industria y oficinas</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1021">
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-song-notes"></i>
+                      <p><strong>Instrumentos musicales</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1022" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-wall-clock"></i>
+                      <p><strong>Joyas y relojes</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1023" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-toy-duck"></i>
+                      <p><strong>Juegos y juguetes</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1024" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-book-alt"></i>
+                      <p><strong>Libros, revistas y comics</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1025" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-multimedia"></i>
+                      <p><strong>Música, películas y series</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1026" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-jewlery"></i>
+                      <p><strong>Ropa y <br>accesorios</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1027">
+                  <div class="card-block-big" style="height:180px;background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-stethoscope-alt"></i>
+                      <p><strong>Salud y equipamiento médico</strong></p>
+                  </div>
+                </a>
+            </div>
+            <div class="card" ngxSlickItem  class="slide" style="height: 180px;">
+                <a routerLink="/itemsCategory/1028" >
+                  <div class="card-block-big" style="height:180px; background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                      <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-architecture-alt"></i>
+                      <p><strong>Otras categorias</strong></p>
+                  </div>
+                </a>
+            </div>               
+            </ngx-slick>
           </div>
         </div>
       </div>

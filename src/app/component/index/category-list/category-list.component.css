@@ -34,3 +34,11 @@ img{
 		display: none;
 	}
 }
+.element.style {
+    font-size: 70px;
+    color: #f7f7f7;
+}
+.a {
+    color: #ff5e3a;
+    text-decoration: none;
+}
