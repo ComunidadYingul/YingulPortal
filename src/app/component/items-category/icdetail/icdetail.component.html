@@ -127,44 +127,34 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Lista de {{category.name}}</h5>
-                            <button type="button" class="btn btn-primary waves-effect waves-light f-right d-inline-block md-trigger" data-modal="modal-13"> <i class="icofont icofont-plus m-r-5"></i> Vender
-                            </button>
+                            <a href="/sell"><button type="button" class="btn btn-primary waves-effect waves-light f-right d-inline-block md-trigger" data-modal="modal-13"> <i class="icofont icofont-plus m-r-5"></i> Vender
+                            </button></a>
                         </div>
                         <div class="card-block">
-                            <div class="table-responsive">
-                                <div class="table-content">
-                                    <div class="project-table">
-                                        <table id="e-product-list" class="table table-striped dt-responsive nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th>Imagen</th>
-                                                    <th>Nombre y descripción</th>
-                                                    <th>Precio</th>
-                                                    <th>Stock</th>
-                                                    <th>Ver</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let item of itemList">
-                                                    <td class="pro-list-img">
-                                                        <!--ruta para la imagenes en desarrollo -->
-                                                        <a href="/itemDetail/{{item.itemId}}"><img width="200" height="200" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid" alt="{{item.principalImage}}"></a>
-                                                    </td>
-                                                    <td class="pro-name">
-                                                        <a href="/itemDetail/{{item.itemId}}"> <h6> {{item.name}} </h6></a>
-                                                        <span>{{item.description}}</span>
-                                                    </td>
-                                                    <td>$ {{item.price}}</td>
-                                                    <td>
-                                                        <label class="text-success">In Stock</label>
-                                                    </td>
-                                                    <td class="action-icon">
-                                                        <a href="/itemDetail/{{item.itemId}}" class="m-r-15 text-muted" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="icofont icofont-touch"></i></a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                            
+                            <div class="row" *ngFor="let item of itemList">
+                                <div class="col-sm-4 center">
+                                    <a style="display:block; text-align:center;" href="/itemDetail/{{item.itemId}}"><img style="max-height: 150px;" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid" alt="{{item.principalImage}}"></a>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="col-sm-12"><a href="/itemDetail/{{item.itemId}}"> <h6> {{item.name}} </h6></a></div>
+                                        <div class="col-sm-12"><h6>{{item.description}}</h6></div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <br>
+                                            $ {{item.price}}<br>
+                                            <label class="text-success">In Stock</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <a href="/itemDetail/{{item.itemId}}" ><i class="icofont icofont-touch">Ver más {{item.name}}</i></a><br>
+                                            <a href="/buy/{{item.itemId}}/1" ><i class="icofont icofont-touch">Comprar {{item.name}}</i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    &nbsp;
                                 </div>
                             </div>
                         </div>

@@ -121,14 +121,19 @@ export class NavbarComponent implements OnInit {
 				this.redirectTo();
 			  },
 			  error => console.log(error)
-		)
-	  }
-	  redirectTo(){
+		);
+	}
+	redirectTo(){
 		if(this.msg=='save'){
-		  alert("mensaje enviado exitosamente, nos pondremos en contacto lo mas pronto posible");
+			alert("mensaje enviado exitosamente, nos pondremos en contacto lo mas pronto posible");
 		}else{
-		  alert("Algo salio mal vuelve a intentarlo");
+			alert("Algo salio mal vuelve a intentarlo");
 		} 
-	  }
+	}
+	private handleKeyDown(event: any){
+    	if (event.keyCode == 13){
+			this.bestMatch();
+    	}  
+	}
 }
 

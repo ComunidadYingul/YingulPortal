@@ -185,7 +185,7 @@
                         </ul>
                     </li>
                     <li>
-                        <input class="searchItem" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias">
+                        <input (keydown)="handleKeyDown($event)" class="searchItem" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias">
                         <datalist id="listadecategorias">
                             <option *ngFor="let category of categories" value="{{category.name}}"></option>
                         </datalist>

@@ -1,3 +1,11 @@
+<!-- Pre-loader start -->
+<div class="theme-loader">
+    <div class="ball-scale">
+        <div></div>
+    </div>
+</div>
+<!-- Pre-loader end -->
+
 <app-navbar (Menu)="menuE($event)"></app-navbar>
 <router-outlet></router-outlet>
 <div class="card">
@@ -5,61 +13,61 @@
         <div class="col-sm-12" >
         <div style="text-align: center;">
             <div class="btn-group dropdown-split-default" >
-                <button style="background: white; color: #666; font-size: 13px;" type="button" class="btn ">Más información</button>
-                <button [hidden]="!more" (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn "><i class="icofont icofont-rounded-down"></i></button>
-                <button [hidden]="more" (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn "><i class="icofont icofont-rounded-up"></i></button>
+                <button (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn ">Más información</button>
+                <button [hidden]="!more" (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn "><i class="icofont icofont-rounded-up"></i></button>
+                <button [hidden]="more" (click)="more=!more" style="cursor: pointer; background: white; color: #666; font-size: 13px;" type="button" class="btn "><i class="icofont icofont-rounded-down"></i></button>
             </div>
         </div>
             <div style="padding-left:4em; padding-right:4em;" class="table-responsive" [hidden]="more">
                 <table class="table">
                     <thead>
                         <tr style="color: #333; font-size: 14px;" class="text-capitalize">
-                            <th>Acerca de</th>
+                            <!--<th>Acerca de</th>-->
                             <th>Otros sitios</th>
                             <th>Ayuda</th>
                             <th>Redes sociales</th>
-                            <th>Mi cuenta</th>
+                            <th><a href="/userFront">Mi cuenta</a></th>
                         </tr>
                     </thead>
                     <tbody style="color: #999; font-size: 14px; line-height: 0;">
                         <tr>
-                            <td>Yingul</td>
-                            <td>Developers</td>
+                            <!--<td>Yingul</td>-->
+                            <td><a href="/motorized">Vehículos</a></td>
                             <td>Comprar</td>
                             <td>Twiter</td>
-                            <td>Resúmen</td>
+                            <td><a href="/userFront/userProfile">Resúmen</a></td>
                         </tr>
                         <tr>
-                            <td>Investor relations</td>
-                            <td>Yingul Pay</td>
+                            <!--<td>Investor relations</td>-->
+                            <td><a href="/property">Inmuebles</a></td>
                             <td>Vender</td>
                             <td>Facebook</td>
-                            <td>Favoritos</td>
+                            <td><a href="/userFront/favorites">Favoritos</a></td>
                         </tr>
                         <tr>
-                            <td>Mapa de sítio</td>
-                            <td>Yingul Shop</td>
+                            <!--<td>Mapa de sítio</td>-->
+                            <td><a href="/service">Servicios</a></td>
                             <td>Resolución de problemas</td>
                             <td>Instagram</td>
-                            <td>Vender</td>
+                            <td><a href="/sell">Vender</a></td>
                         </tr>
                         <tr>
-                            <td>Tendencias</td>
-                            <td>Yingul Express</td>
+                            <!--<td>Tendencias</td>-->
+                            <td><a href="/over">Destacados</a></td>
                             <td>Centro de seguridad</td>
                             <td>Youtube</td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Yingul Publicidad</td>
+                            <!--<td></td>-->
+                            <td><a href="/allStores">Tiendas oficiales</a></td>
                             <td></td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Yingul Ideas</td>
+                            <!--<td></td>-->
+                            <td><a href="/createStore">Yingul Shop</a></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -70,9 +78,9 @@
             <hr>
             <div>
                 <div class="row" >
-                    <p style="font-size: 14px; line-height: 0; padding-left:4em">Trabajá con nosotros</p>
+                    <!--<p style="font-size: 14px; line-height: 0; padding-left:4em">Trabajá con nosotros</p>-->
                     <p style="font-size: 14px; line-height: 0; padding-left:4em"><a style="color:#292b2c;" target="_blank" href="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/politicas/terminos-y-condiciones-de-uso.pdf">Términos y condiciones</a></p> 
-                    <p style="font-size: 14px; line-height: 0; padding-left:4em">Políticas de privacidad</p> 
+                    <!--<p style="font-size: 14px; line-height: 0; padding-left:4em">Políticas de privacidad</p> -->
                     <p style="font-size: 14px; line-height: 0; padding-left:4em">Ayuda</p>
                     <p style="font-size: 14px; line-height: 0; padding-left:4em"><a style="color:#292b2c;" href="/about/contactUs">Contáctanos</a></p>
                 </div>
