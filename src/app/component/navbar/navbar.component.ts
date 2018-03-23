@@ -130,7 +130,7 @@ export class NavbarComponent implements OnInit {
 			alert("Algo salio mal vuelve a intentarlo");
 		} 
 	}
-	private handleKeyDown(event: any){
+	handleKeyDown(event: any){
     	if (event.keyCode == 13){
 			this.bestMatch();
     	}  
