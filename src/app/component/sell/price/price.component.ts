@@ -161,7 +161,7 @@ export class PriceComponent implements OnInit {
       		error => console.log(error)
     )
   }
-  getBarrio(cityId : number,cp:string){
+  getBarrio(cityId : number){
     this.city.cityId=cityId;
     this.barrioList=[];
     console.log("cityId:"+cityId);

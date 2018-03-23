@@ -44,6 +44,13 @@ export class ListItemsComponent implements OnInit {
   yng_city:City=new City();
   yng_Country:Country=new Country();
   yng_Province:Province=new Province();
+  countryList:Country[];
+  countryTemp:Country=new Country();
+  country:Country= new Country();
+  countryName:string;
+  public city:City = new City();  
+  public cityTem:City = new City();
+  public additional:string;
   constructor(private itemDetailService : ItemDetailService,private sellService: SellService) {
     this.cityHid=true;
    }
@@ -134,5 +141,48 @@ export class ListItemsComponent implements OnInit {
       },
       error =>{console.log(error)}
     )
-  }  
+  } 
+  getCountry(countryId : number){
+    this.countryHidden=true;
+    var ret;
+  for(let p of this.countryList){
+    this.countryTemp=JSON.parse(JSON.stringify(p));
+    if(countryId==this.countryTemp.countryId){              
+      console.log("contry: " +JSON.stringify(this.countryTemp));
+      this.country=this.countryTemp;
+    }     
+    this.countryName=this.country.name     
+  }
+} 
+keyPressCP(event: any){
+  const pattern = /[0-9]/;
+  
+      let inputChar = String.fromCharCode(event.charCode);
+      if (event.keyCode != 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+      }
+}
+cambiarCP(){
+  this.cityHid=true;
+  this.postalCode="";
+  this.number="";
+  this.street="";
+  this.aditional="";
+  this.department="";
+  this.withinStreets="";
+  this.btnCP=false;
+}
+getBarrio(cityId : number){
+  this.city.cityId=cityId;
+  console.log("cityId:"+cityId);
+  var ret="";
+  for(let c of this.cityList){
+    this.cityTem=JSON.parse(JSON.stringify(c));
+    if(cityId==this.cityTem.cityId){ 
+      ret=this.cityTem.codigopostal;
+    }
+  }
+}
+aceptar(){ }
+
 }

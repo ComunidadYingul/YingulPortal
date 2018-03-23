@@ -780,4 +780,7 @@ export class ShippingComponent implements OnInit {
            error => console.log(error)
      )
    }
+   setBarrio(barrioId:number){
+    this.barrio.barrioId=barrioId;
+  }
 }
