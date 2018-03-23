@@ -191,3 +191,98 @@ li .dropdown-menu:before {
   position: relative;
   float: left;
 }
+
+
+
+/*********************** BEGIN ESTILOS DEL POPUP  ****************************/
+
+.content_popup_g {
+	background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5001;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.popup_g *{
+    padding: 0;
+    margin: 0;
+}
+
+.popup_g{
+    background: #FF7E3A;
+    border-radius: 30px;
+    color: #fff;
+    padding: 30px 15px;
+    width: 30%;
+
+    text-align: center;
+}
+
+.popup_g .popup-title{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.popup_g img{
+    height: 70px;
+    width: 70px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.popup_g .popup-msg{
+    font-weight: lighter;
+    font-size: 1em;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width:992px){
+    .popup_g{
+        width: 35%;
+    }
+    .popup_g .popup-title{
+        font-size: 1.2em;
+    }
+    .popup_g img{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width:768px){
+    .popup_g{
+        width: 45%;
+    }
+    .popup_g .popup-title{
+        font-size: 1.1em;
+    }
+    .popup_g .popup-msg{
+        font-size: .8em;
+    }
+    .popup_g img{
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media screen and (max-width:543px){
+    .popup_g{
+        width: 65%;
+    }
+    .popup_g .popup-title{
+        font-size: 1em;
+    }
+    .popup_g img{
+        width: 40px;
+        height: 40px;
+    }
+    
+}
+
+/*********************** END ESTILOS DEL POPUP  ****************************/

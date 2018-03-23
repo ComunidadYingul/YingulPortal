@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
   password: string;
   User: user = new user();
 
+  hidUsername:boolean=true;
+  hidPassword:boolean=true;
+  popup_g:boolean=true;
+
 	constructor (private loginService: LoginService,private router: Router,private location: Location) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.loggedIn = false;
@@ -26,16 +30,30 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit() {
-  	this.loginService.sendCredential(this.username, this.password).subscribe(
-      res => {
-        this.User.username = JSON.parse(JSON.stringify(res))._body;
-        this.User.password = btoa(this.User.username+":"+this.password);
-        this.loggedIn=true;
-        this.saveLocalStorage();
-        location.reload();
-      },
-      err => alert("Usuario o Contraseña incorrecta")
-    );
+    if(this.username==null || this.username==""){
+      this.hidUsername=false;
+    }else if(this.password==null || this.password==""){
+      this.hidUsername=true;
+      this.hidPassword=false;
+    }
+    else{
+      this.popup_g=false;
+      this.hidUsername=true;
+      this.hidPassword=true;
+      this.loginService.sendCredential(this.username, this.password).subscribe(
+        res => {
+          this.User.username = JSON.parse(JSON.stringify(res))._body;
+          this.User.password = btoa(this.User.username+":"+this.password);
+          this.loggedIn=true;
+          this.saveLocalStorage();
+          location.reload();
+        },
+        err => {
+          this.popup_g=true;
+          alert("Usuario o Contraseña incorrecta")
+        }
+      );
+    }
   }
 
   ngOnInit() {}

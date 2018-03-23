@@ -23,10 +23,16 @@
                               <input type="text" class="form-control" name="username" [(ngModel)]="username" placeholder="Correo o Nombre de usuario" name="username" required autofocus=""/>
                               <span class="md-line"></span>
                           </div>
+                          <div class="error-g">
+                            <p  [hidden]="hidUsername">Username required</p>
+                        </div>
                           <div class="input-group">
                               <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Contraseña" required/>
                               <span class="md-line"></span>
                           </div>
+                          <div class="error-g">
+                            <p  [hidden]="hidPassword">Password required</p>
+                        </div>
                           <div class="row m-t-25 text-left">
                               <div class="col-sm-7 col-xs-12">
                                   <div class="checkbox-fade fade-in-primary">
@@ -73,3 +79,10 @@
   <h2>Welcome to User Portal!</h2>
 </div>
 
+<div class="content_popup_g" align="center" [hidden]="popup_g">
+    <div class="popup_g">
+        <p class="popup-title">SOLICITUD EN PROCESO</p>
+        <img src="assets/images/spiner.gif" alt="Cargando">
+        <p class="popup-msg">Por favor espere...</p>
+    </div>
+</div>
