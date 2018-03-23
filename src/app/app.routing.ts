@@ -7,7 +7,6 @@ import { SellComponent } from './component/sell/sell.component';
 import { IndexComponent } from './component/index/index.component';
 import { ItemDetailComponent } from './component/item-detail/item-detail.component';
 import { ItemsCategoryComponent } from './component/items-category/items-category.component';
-import { QueryComponent } from './component/query/query.component';
 import { BuyComponent } from './component/buy/buy.component';
 import { ServiceComponent } from './component/service/service.component';
 import { PropertyComponent } from './component/property/property.component';
@@ -36,6 +35,10 @@ import { ProtectedPurchaseComponent } from './component/help/protected-purchase/
 import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
 import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
+import { ChatComponent } from './component/user-front/chat/chat.component';
+import { QuerySalesComponent } from './component/user-front/sales/query-sales/query-sales.component';
+import { QueryPurchasesComponent } from './component/user-front/purchases/query-purchases/query-purchases.component';
+import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -57,10 +60,6 @@ const appRoutes: Routes = [
   {
   	path: 'index',
   	component: IndexComponent
-  },
-  {
-  	path: 'query',
-  	component: QueryComponent
   },
   {
   	path: 'itemDetail/:itemId',
@@ -124,12 +123,24 @@ const appRoutes: Routes = [
     component: SalesComponent
   },
   {
+    path: 'userFront/sales/query',
+    component: QuerySalesComponent
+  },
+  {
     path: 'userFront/purchases',
     component: PurchasesComponent
   },
   {
+    path: 'userFront/purchases/query',
+    component: QueryPurchasesComponent
+  },
+  {
     path: 'userFront/claims',
     component: ClaimsComponent
+  },
+  {
+    path: 'userFront/chat',
+    component: ChatComponent
   },
   {
     path: 'confirmws/:confirmId',
@@ -144,11 +155,11 @@ const appRoutes: Routes = [
     component: FrontYingulPayComponent
   },
   {
-    path: 'userBalance',
+    path: 'frontYingulPay/userBalance',
     component: BalanceComponent
   },
   {
-    path: 'withdraw',
+    path: 'frontYingulPay/withdraw',
     component: WithdrawComponent
   },
   {
@@ -166,6 +177,10 @@ const appRoutes: Routes = [
   {
     path: 'help/protectedPurchase',
     component: ProtectedPurchaseComponent
+  },
+  {
+    path: 'about/contactUs',
+    component: ContactUsComponent
   },
   {
     path: 'agreement/:claimId',

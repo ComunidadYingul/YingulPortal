@@ -8,6 +8,7 @@ import { WireTransferService } from '../../../service/wire-transfer.service';
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import { Transaction } from '../../../model/transaction';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-withdraw',
@@ -32,7 +33,7 @@ export class WithdrawComponent implements OnInit {
   msg:string;
   popup2:boolean=true;
   isValid:boolean=false;
-  constructor(private bankService:BankService, private accountService:AccountService,private router: Router, private wireTranserService:WireTransferService) {
+  constructor(private bankService:BankService, private accountService:AccountService,private router: Router, private wireTranserService:WireTransferService, private loginService: LoginService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -62,6 +63,7 @@ export class WithdrawComponent implements OnInit {
     );
   }
   transfer(){
+    this.popup2=false;
     this.wireTransfer.titularName=this.titularName;
     this.wireTransfer.cuitCuil=this.cuitCuil;
     this.wireTransfer.cuitCuilNumber=this.cuitCuilNumber;
@@ -112,4 +114,17 @@ export class WithdrawComponent implements OnInit {
     }
     return this.isValid;
   }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 }

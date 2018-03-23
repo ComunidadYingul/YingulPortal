@@ -70,7 +70,7 @@ export class ItemDetailService {
 
   //aumentar a los header lo de seguridad autenticacion basica
   postQuery(query:Object){
-    let url = Network.API_URL+"item/query";
+    let url = Network.API_URL+"query/create";
     return this.http.post(url ,query, {headers: this.headers});
   }
   

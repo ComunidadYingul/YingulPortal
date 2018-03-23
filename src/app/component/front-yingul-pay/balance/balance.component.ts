@@ -3,6 +3,7 @@ import { user } from '../../../model/user';
 import { Account } from '../../../model/account';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../service/account.service';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-balance',
@@ -14,7 +15,7 @@ export class BalanceComponent implements OnInit {
   account:Account = new Account();
   money:number;
   popup:boolean=true;
-  constructor(private router: Router, private accountService:AccountService) { 
+  constructor(private router: Router, private accountService:AccountService, private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -37,5 +38,18 @@ export class BalanceComponent implements OnInit {
       		error => console.log(error)
     );
   }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 
 }

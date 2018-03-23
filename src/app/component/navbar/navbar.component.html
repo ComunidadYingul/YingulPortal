@@ -1,9 +1,9 @@
 <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme4" pcoded-header-position="relative">
     <div class="navbar-wrapper">
         <div class="navbar-logo">
-            <a class="mobile-menu" id="mobile-collapse" href="javascript:void(0)">
+            <!--<a class="mobile-menu" id="mobile-collapse" href="javascript:void(0)">
                 <i class="ti-menu"></i>
-            </a>
+            </a>-->
             <a class="mobile-search morphsearch-search">
                 <input class="searchItemMobile" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias1">
                 <datalist id="listadecategorias1">
@@ -21,9 +21,9 @@
         <div class="navbar-container container-fluid">
             <div>
                 <ul class="nav-left">
-                    <li>
+                    <!--<li>
                         <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                    </li>
+                    </li>-->
                     <li>
                         <a onclick="javascript:toggleFullScreen()">
                             <i class="ti-fullscreen"></i>
@@ -31,22 +31,22 @@
                     </li>
                     <li class="mega-menu-top">
                         <a href="javascript:void(0)">
-                            Mega
+                            Menú
                             <i class="ti-angle-down"></i>
                         </a>
                         <ul class="show-notification row">
                             <li class="col-sm-3">
-                                <h6 class="mega-menu-title">Popular Links</h6>
+                                <h6 class="mega-menu-title">Principal</h6>
                                 <ul class="mega-menu-links">
-                                    <li><a href="form-elements-component.html">Form Elements</a></li>
-                                    <li><a href="button.html">Buttons</a></li>
-                                    <li><a href="map-google.html">Maps</a></li>
-                                    <li><a href="user-card.html">Contact Cards</a></li>
-                                    <li><a href="user-profile.html">User Information</a></li>
-                                    <li><a href="auth-lock-screen.html">Lock Screen</a></li>
+                                    <li><a href="/userFront">Resúmen</a></li>
+                                    <li><a href="/userFront/favorites">Favoritos</a></li>
+                                    <li><a href="/lisItems">Publicaciones</a></li>
+                                    <li><a href="/userFront/purchases">Compras</a></li>
+                                    <li><a href="/userFront/sales">Ventas</a></li>
+                                    <li><a href="/userFront/userProfile">Mis datos</a></li>
                                 </ul>
                             </li>
-                            <li class="col-sm-3">
+                            <!--<li class="col-sm-3">
                                 <h6 class="mega-menu-title">Mailbox</h6>
                                 <ul class="mega-mailbox">
                                     <li>
@@ -95,60 +95,97 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="col-sm-3">
-                                <h6 class="mega-menu-title">Gallery</h6>
+                            </li>-->
+                            <li class="col-sm-5">
+                                <h6 class="mega-menu-title">Categorias Principales</h6>
                                 <div class="row m-b-20">
-                                    <div class="col-sm-4"><img class="img-fluid img-thumbnail" src="assets/images/mega-menu/01.jpg" alt="Gallery-1">
-                                    </div>
-                                    <div class="col-sm-4"><img class="img-fluid img-thumbnail" src="assets/images/mega-menu/02.jpg" alt="Gallery-2">
-                                    </div>
-                                    <div class="col-sm-4"><img class="img-fluid img-thumbnail" src="assets/images/mega-menu/03.jpg" alt="Gallery-3">
-                                    </div>
+                                    <div class="col-sm-4">
+                                        <a routerLink="/motorized">
+                                        <div class="card rounded-card user-card" style="background:#014A8F; color:white; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                            <i style="font-size: 70px; margin-left: 0px; margin-top:10px;" class="icofont icofont-car-alt-1"></i>
+                                            <p style="margin-bottom:7px;"><strong>Vehículos</strong></p>
+                                        </div>
+                                        </a>
+                                    </div>  
+                                    <div class="col-sm-4">
+                                        <a routerLink="/property">
+                                        <div class="card rounded-card user-card" style="background:#014A8F; color:white; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                            <i style="font-size: 70px; margin-left: 0px; margin-top:10px;" class="icofont icofont-building-alt"></i>
+                                            <p style="margin-bottom:7px;"><strong>Inmuebles</strong></p>
+                                        </div>
+                                        </a>
+                                    </div> 
+                                    <div class="col-sm-4">
+                                        <a routerLink="/service">
+                                        <div class="card rounded-card user-card" style="background:#014A8F; color:white; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                            <i style="font-size: 70px; margin-left: 0px; margin-top:10px;" class="icofont icofont-headphone-alt-2"></i>
+                                            <p style="margin-bottom:7px;"><strong>Servicios</strong></p>
+                                        </div>
+                                        </a>
+                                    </div> 
                                 </div>
                                 <div class="row m-b-20">
-                                    <div class="col-sm-4"><img class="img-fluid img-thumbnail" src="assets/images/mega-menu/04.jpg" alt="Gallery-4">
-                                    </div>
-                                    <div class="col-sm-4"><img class="img-fluid img-thumbnail" src="assets/images/mega-menu/05.jpg" alt="Gallery-5">
-                                    </div>
-                                    <div class="col-sm-4"><img class="img-fluid img-thumbnail" src="assets/images/mega-menu/06.jpg" alt="Gallery-6">
-                                    </div>
+                                    <div class="col-sm-4">
+                                        <a routerLink="/over">
+                                        <div class="card rounded-card user-card" style="background:#014A8F; color:white; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                            <i style="font-size: 70px; margin-left: 0px; margin-top:10px;" class="icofont icofont-star-shape"></i>
+                                            <p style="margin-bottom:7px;"><strong>Destacados</strong></p>
+                                        </div>
+                                        </a>
+                                    </div>  
+                                    <div class="col-sm-4">
+                                        <a routerLink="/allStores">
+                                        <div class="card rounded-card user-card" style="background:#014A8F; color:white; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                            <i style="font-size: 70px; margin-left: 0px; margin-top:10px;" class="icofont icofont-food-cart"></i>
+                                            <p style="margin-bottom:7px;"><strong>Tiendas Oficiales</strong></p>
+                                        </div>
+                                        </a>
+                                    </div> 
+                                    <div class="col-sm-4">
+                                        <a routerLink="/createStore">
+                                        <div class="card rounded-card user-card" style="background:#014A8F; color:white; display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+                                            <i style="font-size: 70px; margin-left: 0px; margin-top:10px;" class="icofont icofont-shopping-cart"></i>
+                                            <p style="margin-bottom:7px;"><strong>Yingul Shop</strong></p>
+                                        </div>
+                                        </a>
+                                    </div> 
                                 </div>
-                                <button class="btn btn-primary btn-sm btn-block">Browse Gallery</button>
+                                <!--<button class="btn btn-primary btn-sm btn-block">Browse Gallery</button>-->
                             </li>
-                            <li class="col-sm-3">
-                                <h6 class="mega-menu-title">Contact Us</h6>
+                            <li class="col-sm-4">
+                                <h6 class="mega-menu-title">Contáctanos</h6>
                                 <div class="mega-menu-contact">
                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-3 col-form-label">Name</label>
+                                        <label for="example-text-input" class="col-3 col-form-label">Nombre</label>
                                         <div class="col-9">
-                                            <input class="form-control" type="text" placeholder="Artisanal kale" id="example-text-input">
+                                            <input name="fullName" [(ngModel)]="fullName" class="form-control" type="text" placeholder="John Doe" id="example-text-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-search-input" class="col-3 col-form-label">Email</label>
                                         <div class="col-9">
-                                            <input class="form-control" type="email" placeholder="Enter your E-mail Id" id="example-search-input">
+                                            <input name="email" [(ngModel)]="email" class="form-control" type="email" placeholder="Introduzca su email" id="example-search-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="example-search-input" class="col-3 col-form-label">Contact</label>
+                                        <label for="example-search-input" class="col-3 col-form-label">Teléfono</label>
                                         <div class="col-9">
-                                            <input class="form-control" type="number" placeholder="+91-9898989898" id="example-search-input">
+                                            <input name="phone" [(ngModel)]="phone" class="form-control" type="number" placeholder="+91-9898989898" id="example-search-input">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="exampleTextarea" class="col-3 col-form-label">Message</label>
+                                        <label for="exampleTextarea" class="col-3 col-form-label">Mensaje</label>
                                         <div class="col-9">
-                                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                            <textarea name="message" [(ngModel)]="message" class="form-control" id="exampleTextarea" rows="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
+                                <button (click)="sendMessage()" class="btn btn-primary btn-sm btn-block">Contáctanos</button>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <input class="searchItem" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias">
+                        <input (keydown)="handleKeyDown($event)" class="searchItem" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias">
                         <datalist id="listadecategorias">
                             <option *ngFor="let category of categories" value="{{category.name}}"></option>
                         </datalist>
@@ -164,7 +201,7 @@
                         <a href="#" id="dropdown-active-item">
                             <i class="flag-icon flag-icon-es m-r-5"></i> Español
                         </a>
-                        <ul class="show-notification">
+                        <!--<ul class="show-notification">
                             <li>
                                 <a href="#" data-lng="en">
                                     <i class="flag-icon flag-icon-gb m-r-5"></i> Inglés
@@ -185,7 +222,7 @@
                                     <i class="flag-icon flag-icon-fr m-r-5"></i> Francés
                                 </a>
                             </li>
-                        </ul>
+                        </ul>-->
                     </li>
                     <li class="header-notification">
                         <a href="#!">
@@ -230,7 +267,7 @@
                         </ul>
                     </li>
                     <li class="header-notification">
-                        <a routerLink="/query" class="displayChatbox">
+                        <a href="/userFront/sales/query" class="displayChatbox">
                             <i class="ti-comments"></i>
                             <span [ngClass]="(queries==0)?'':'badge'">{{queries}}</span>
                         </a>
@@ -243,23 +280,23 @@
                         </a>
                         <ul class="show-notification profile-notification">
                             <li>
-                                <a href="#!">
-                                    <i class="ti-settings"></i> Settings
+                                <a href="/userFront">
+                                    <i class="ti-user"></i> Mi cuenta
                                 </a>
                             </li>
                             <li>
-                                <a href="user-profile.html">
-                                    <i class="ti-user"></i> Profile
+                                <a href="/userFront/purchases">
+                                    <i class="ti-shopping-cart"></i> Compras
                                 </a>
                             </li>
                             <li>
-                                <a href="email-inbox.html">
-                                    <i class="ti-email"></i> My Messages
+                                <a href="/userFront/sales">
+                                    <i class="ti-credit-card"></i> Ventas
                                 </a>
                             </li>
                             <li>
-                                <a href="auth-lock-screen.html">
-                                    <i class="ti-lock"></i> Lock Screen
+                                <a href="/userFront/userProfile">
+                                    <i class="ti-settings"></i> Mis datos
                                 </a>
                             </li>
                             <li>
@@ -280,7 +317,7 @@
                         <a href="#" id="dropdown-active-item">
                             <i class="flag-icon flag-icon-es m-r-5"></i> Español
                         </a>
-                        <ul class="show-notification">
+                        <!--<ul class="show-notification">
                             <li>
                                 <a href="#" data-lng="en">
                                     <i class="flag-icon flag-icon-gb m-r-5"></i> Inglés
@@ -301,7 +338,7 @@
                                     <i class="flag-icon flag-icon-fr m-r-5"></i> Francés
                                 </a>
                             </li>
-                        </ul>
+                        </ul>-->
                     </li>
                     <li class="header-notification">
                         <a routerLink="/signup" class="displayChatbox">

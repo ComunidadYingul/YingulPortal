@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import { Network } from '../model/Network';
+import { user } from '../model/user';
 @Injectable()
 export class QueryServiceService {
   public headers = new Headers({
@@ -23,5 +24,29 @@ export class QueryServiceService {
   postAnswerQuery(query:Object){
     let url: string =Network.API_URL+"query/answer";
     return this.http.post(url, query,{headers: this.headers})
+  }
+  getQueryBySeller(User : user){
+    let url = Network.API_URL+"query/queryBySeller/"+User.username;
+    return this.http.get(url);
+  }
+  getQueryByBuyer(User : user){
+    let url = Network.API_URL+"query/queryByBuyer/"+User.username;
+    return this.http.get(url);
+  }
+  getQueryBySellerAndStatus(User : user,status:string){
+    let url = Network.API_URL+"query/queryBySellerAndStatus/"+User.username+"/"+status;
+    return this.http.get(url);
+  }
+  getQueryByBuyerAndStatus(User : user,status:string){
+    let url = Network.API_URL+"query/queryByBuyerAndStatus/"+User.username+"/"+status;
+    return this.http.get(url);
+  }
+  deleteFavorite(queryId:number,User:user){
+    let url = Network.API_URL+"query/delete/"+queryId;
+    let headers = new Headers(
+      {
+        'Authorization': User.password
+      });
+    return this.http.get(url,{headers: headers});
   }
 }

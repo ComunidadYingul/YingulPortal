@@ -3,6 +3,7 @@ import { Buy } from '../../../model/buy';
 import { user } from '../../../model/user';
 import { BuyService } from '../../../service/buy.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-sales',
@@ -13,7 +14,7 @@ export class SalesComponent implements OnInit {
 
   listSales:Buy[];
   User: user=new user();
-  constructor(private router: Router, private buyService:BuyService) { 
+  constructor(private router: Router, private buyService:BuyService, private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -33,5 +34,18 @@ export class SalesComponent implements OnInit {
   onConfirm(){
     
   }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 
 }

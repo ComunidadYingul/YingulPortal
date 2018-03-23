@@ -32,7 +32,6 @@ import { ItemsCategoryComponent } from './component/items-category/items-categor
 import { IcdetailComponent } from './component/items-category/icdetail/icdetail.component';
 import { ItemsCategoryService } from './service/items-category.service';
 import { IdetailComponent } from './component/item-detail/idetail/idetail.component';
-import { QueryComponent } from './component/query/query.component';
 import { BuyComponent } from './component/buy/buy.component';
 import { ShippingComponent } from './component/buy/shipping/shipping.component';
 import { PaymentComponent } from './component/buy/payment/payment.component';
@@ -85,6 +84,12 @@ import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
 import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
 import { SlickModule } from 'ngx-slick';
+import { ChatComponent } from './component/user-front/chat/chat.component';
+import { QuerySalesComponent } from './component/user-front/sales/query-sales/query-sales.component';
+import { QueryPurchasesComponent } from './component/user-front/purchases/query-purchases/query-purchases.component';
+import { AboutComponent } from './component/about/about.component';
+import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
+import { AboutService } from './service/about.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,7 +110,6 @@ import { SlickModule } from 'ngx-slick';
     ItemsCategoryComponent,
     IcdetailComponent,
     IdetailComponent,
-    QueryComponent,
     BuyComponent,
     ShippingComponent,
     PaymentComponent,
@@ -143,7 +147,12 @@ import { SlickModule } from 'ngx-slick';
     ProtectedPurchaseComponent,
     AgreementComponent,
     ListPublicationsComponent,
-    ListItemsComponent
+    ListItemsComponent,
+    ChatComponent,
+    QuerySalesComponent,
+    QueryPurchasesComponent,
+    AboutComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
@@ -176,7 +185,8 @@ import { SlickModule } from 'ngx-slick';
     BankService,
     WireTransferService,
     AdminService,
-    ClaimService
+    ClaimService,
+    AboutService
   ],
   bootstrap: [AppComponent]
 })
