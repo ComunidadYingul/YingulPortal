@@ -1,16 +1,17 @@
 <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme4" pcoded-header-position="relative">
     <div class="navbar-wrapper">
-        <div class="navbar-logo">
+        <div class="navbar-logo" id="content-logo">
             <!--<a class="mobile-menu" id="mobile-collapse" href="javascript:void(0)">
                 <i class="ti-menu"></i>
             </a>-->
-            <a class="mobile-search morphsearch-search">
+            <!--div class="mobile-search morphsearch-search" id="content-search" style="margin-right:0;"-->
+            <div id="content-search">
                 <input class="searchItemMobile" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias1">
                 <datalist id="listadecategorias1">
                     <option *ngFor="let category of categories" value="{{category.name}}"></option>
                 </datalist>
                 <a style="cursor: pointer;" (click)="bestMatch()"><img  class="searchImagen" src="assets/images/search.png" alt="Theme-Logo"></a>
-            </a>
+            </div>
             <a href="/index">
                 <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo">
             </a>
@@ -18,7 +19,7 @@
                 <i class="ti-more"></i>
             </a>
         </div>
-        <div class="navbar-container container-fluid">
+        <div class="navbar-container container-fluid" id="navbar-contenedor">
             <div>
                 <ul class="nav-left">
                     <!--<li>
@@ -184,16 +185,16 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!--li>
                         <input class="searchItem" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias">
                         <datalist id="listadecategorias">
                             <option *ngFor="let category of categories" value="{{category.name}}"></option>
                         </datalist>
                         <a style="cursor: pointer;" class="main-search morphsearch-search" (click)="bestMatch()">
-                            <!-- themify icon -->
+                            
                             <i class="ti-search"></i>
                         </a>
-                    </li>
+                    </li-->
                 </ul>
                 <!--desde aqui comienza el navbar de la derecha-->
                 <ul class="nav-right" [hidden]="!loggedIn">
