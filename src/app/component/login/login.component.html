@@ -44,7 +44,7 @@
                                   </div>
                               </div>
                               <div class="col-sm-5 col-xs-12 forgot-phone text-right">
-                                  <a href="forgot-password.html" class="text-right f-w-600 text-inverse"> Olvido su contraseña?</a>
+                                  <a routerLink="/login/forgotPassword" class="text-right f-w-600 text-inverse"> Olvido su contraseña?</a>
                               </div>
                           </div>
                           <div class="row m-t-30">
@@ -76,7 +76,7 @@
   <!-- end of container-fluid -->
 </section>
 <div [hidden]="!loggedIn">
-  <h2>Welcome to User Portal!</h2>
+  <!--<h2>Welcome to User Portal!</h2>-->
 </div>
 
 <div class="content_popup_g" align="center" [hidden]="popup_g">

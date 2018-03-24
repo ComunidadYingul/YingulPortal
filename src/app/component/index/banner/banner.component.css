@@ -1,0 +1,13 @@
+@media screen and (max-width: 992px) {
+    .phone {        
+        display: none;
+	}
+	.phoneMirrow{
+		display: inline;
+	}
+}
+@media screen and (min-width: 993px) {
+	.phoneMirrow2{
+		display: none;
+	}
+}

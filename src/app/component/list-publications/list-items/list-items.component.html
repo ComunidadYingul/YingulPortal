@@ -1,0 +1,232 @@
+<!-- Main-body start -->
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page-header start -->
+        <div class="page-header">
+            <div class="page-header-title">
+                <h4>Lista de publicaciones</h4>
+                <span>Productos, Servicios, Inmuebles o Vehículos</span>
+            </div>
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="/index">
+                            <i class="icofont icofont-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="/userFront">Mi cuenta</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="/userFront/favorites">Favoritos</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="/listPublications/1">Publicaciones  </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Page-header end -->
+        <!-- Page-body start -->
+        <div class="page-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Zero config.table start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Lista de publicaciones</h5>
+                            <span>Productos, Servicios, Inmuebles o Vehículos que agregaste a Publicaciones</span>
+                            <div class="card-header-right">
+                                <i class="icofont icofont-rounded-down"></i>
+                                <i class="icofont icofont-refresh"></i>
+                                <i class="icofont icofont-close-circled"></i>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <div class="dt-responsive table-responsive">
+                                <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th><button [disabled]="deleteList?.length == 0" (click)="onConfirm()" type="submit" class="btn btn-primary m-b-0" >Eliminar</button></th>
+                                            <th>Foto</th>
+                                            <th>Título</th>
+                                            <th>Precio</th>
+                                            <th>Ver</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let items of itemsBySeller">
+                                            <td><label class="custom-control custom-checkbox" >
+                                                    <input type="checkbox" class="custom-control-input" #checkbox (change)="check(items.favoriteId)">
+                                                    <span class="custom-control-indicator"></span>
+                                                    </label></td>
+                                            <td><img width="150" height="150" src="{{BUCKET_URL}}{{items.principalImage}}" class="img-fluid" alt="{{items.principalImage}}"></td>
+                                            <td>{{items.name}}</td>
+                                            <td>${{items.price}}</td>
+                                            <td>
+                                                <div class="row">
+                                                    <a type="submit" class="btn btn-primary m-b-0" href="/editItem/{{items.itemId}}">Editar artículo</a>
+                                                    <a type="submit" class="btn btn-primary m-b-0"#checkbox (click)="changeUbi(items.itemId)">Modificar ubicación</a>
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th><button [disabled]="deleteList?.length == 0" (click)="onConfirm()" type="submit" class="btn btn-primary m-b-0" >Eliminar</button></th>
+                                            <th>Foto</th>
+                                            <th>Título</th>
+                                            <th>Precio</th>
+                                            <th>Ver</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Zero config.table end -->
+                    
+                    
+                    <!-- Language - Comma Decimal Place table end -->
+                </div>
+            </div>
+        </div>
+        <!-- Page-body end -->
+    </div>
+  </div>
+  <!-- Main-body end -->
+  <div class="popup" [hidden]="popupUbication">
+        <h4 class="text-primary">EDITA LA UBICACIÓN DE TU ÍTEM</h4>
+        <div  [hidden]="false">
+                <div class="row" hidden="true">        
+                    <div  class="input-group input-group-button">            
+                        <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                        <span class="input-group-addon" id="basic-addon10">
+                                <button  class="btn btn-primary"  (click)="cambiarCP()">Codigo postal Cambiar</button>
+                        </span>
+                    </div>                
+                </div>
+    
+                <h4 class="sub-title">{{provinciaCP}}</h4>
+                   <!--h5 class="text-center">Ingresa tu código postal </h5-->
+            <h5>Tu ubicacion</h5>
+            <div class="row">
+                <div  class="col-sm-6" >
+                    <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
+
+                        <option >Seleccione su país</option>
+                        <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row" [hidden]="countruHidden">
+                    <div  class="col-sm-12">
+                            <label >                                
+                                <span class="custom-control-description">{{yng_Country.name}}</span>
+                            </label>
+                    </div>
+                    <div  class="col-sm-12">
+                            <label >                                
+                                <span class="custom-control-description">{{yng_Province.name}}</span>
+                            </label>
+                    </div>
+                    <div  class="col-sm-12">
+                            <label >                                
+                                <span class="custom-control-description"> {{yng_city.name}}</span>
+                            </label>
+                    </div>
+            </div>
+            <div class="row">
+                <div  class="col-sm-6" *ngIf="provinceList!=null">
+                    <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                        <option>Seleccione una provincia</option>
+                        <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
+                    </select>
+                </div>
+    
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6" [hidden]="cityHid">
+                        <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
+                            <option value="opt1">Seleccione una Ciudad</option>
+                            <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
+                        </select>
+                </div>
+            </div>
+            <br/>
+            
+            <div class="row"> 
+                <div class="col-sm-6" [hidden]="true">
+                    <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
+                        <option value="opt1">Seleccione un Barrio</option>
+                        <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <br/>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+                            </div>
+                        </div>
+                </div>
+                <div class="row">       
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                        </div>
+                    </div>
+            </div>
+                <div class="row">       
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
+                            </div>
+                        </div>
+                </div>  
+                <div class="row">       
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
+                        </div>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
+                            </div>
+                    </div>
+                </div>
+        </div>
+                    
+                
+                <div class="row">
+                    
+                    <div class="col-sm-2">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                            </div>
+                    </div>
+                    <div class="col-sm-2">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-primary waves-effect waves-effect m-r-10" (click)="cancel()">Cancelar</button>
+                            </div>
+                    </div>
+                </div>
+    
+</div>   

@@ -7,6 +7,7 @@ import { FavoriteService } from '../../../service/favorite.service';
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import { Network } from '../../../model/Network';
+import { ItemService } from '../../../service/item.service';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -14,6 +15,7 @@ import { Network } from '../../../model/Network';
 })
 export class ItemComponent implements OnInit {
   itemList: Object[]=[];
+  overList:Item[]=[];
   productList:Object[]=[];
   Item:Item=new Item();
   prod:Product=new Product();
@@ -21,7 +23,67 @@ export class ItemComponent implements OnInit {
   User: user=new user();
   itemFavorites: Item[]=[];
   BUCKET_URL:string=Network.BUCKET_URL;
-  constructor(private indexService: IndexService, private favoriteService: FavoriteService,private router: Router) {
+  slides = [
+    {img: "http://placehold.it/350x150/000000"},
+    {img: "http://placehold.it/350x150/111111"},
+    {img: "http://placehold.it/350x150/333333"},
+    {img: "http://placehold.it/350x150/666666"}
+  ];
+  slideConfig = {
+   //"dots": true,
+    "infinite": false,
+    "speed": 300,
+    "slidesToShow": 4.5,
+    "slidesToScroll": 4,
+    //"autoplay": true,
+    //"autoplaySpeed": 2000,
+    "responsive": [
+      {
+        "breakpoint": 1980,
+        "settings": {
+          "slidesToShow": 6,
+          "slidesToScroll": 6,
+          "infinite": false,
+          "dots": true
+        }
+      },
+      {
+        "breakpoint": 1367,
+        "settings": {
+          "slidesToShow": 4.5,
+          "slidesToScroll": 4,
+          "infinite": false,
+          "dots": true
+        }
+      },
+      {
+        "breakpoint": 1024,
+        "settings": {
+          "slidesToShow": 2.5,
+          "slidesToScroll": 2,
+          "infinite": false,
+          "dots": true
+        }
+      },
+      {
+        "breakpoint": 600,
+        "settings": {
+          "slidesToShow": 1,
+          "slidesToScroll": 1,
+          "dots": true
+        }
+      },
+      {
+        "breakpoint": 480,
+        "settings": {
+          "slidesToShow": 1,
+          "slidesToScroll": 1
+        }
+      }
+    ]
+  };
+
+  constructor(private itemService: ItemService, private indexService: IndexService, private favoriteService: FavoriteService,private router: Router) {
   
   }
 
@@ -39,6 +101,12 @@ export class ItemComponent implements OnInit {
     this.indexService.getItems().subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    this.itemService.getItemsOver(true).subscribe(
+			res => {
+            this.overList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );

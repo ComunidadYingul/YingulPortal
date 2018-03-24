@@ -103,5 +103,9 @@ export class ItemDetailService {
     let url = Network.API_URL+"logistics/quote";
     return this.http.post(url,cotizar, {headers: this.headers});
   }
+  postUpdateService(service:Object){
+    let url = Network.API_URL+"item/service/update";
+    return this.http.post(url ,service, {headers: this.headers});
+  }
 }
 

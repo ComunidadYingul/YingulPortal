@@ -6,7 +6,7 @@
             </a>-->
             <!--div class="mobile-search morphsearch-search" id="content-search" style="margin-right:0;"-->
             <div id="content-search">
-                <input class="searchItemMobile" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias1">
+                <input (keydown)="handleKeyDown($event)" class="searchItemMobile" type="text" placeholder="Buscar productos, marcas y más" name="search" [(ngModel)]="search" (input)="onSearchChange($event.target.value)" list="listadecategorias1">
                 <datalist id="listadecategorias1">
                     <option *ngFor="let category of categories" value="{{category.name}}"></option>
                 </datalist>

@@ -154,6 +154,7 @@
     <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
     <!--h5 class="text-center">Ingresa tu código postal </h5-->
     
+    <div [hidden]="true"> 
         <div class="col-sm-6" [hidden]="countryHidden">
                 <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
                     <option value="opt1" disabled>Seleccione un País</option>
@@ -162,8 +163,10 @@
         </div>
         <h4 class="sub-title" [hidden]="!countryHidden">{{countryName}}</h4>
         <br/>
-        <div [hidden]="!countryHidden">
-    <div [hidden]="btnCP" class="input-group input-group-button">
+    </div>
+<div [hidden]="false">
+
+    <div [hidden]="true" class="input-group input-group-button">
         <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
         <span class="input-group-addon" id="basic-addon10">
             <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
@@ -172,8 +175,9 @@
     </div>
 
 
-    <div  [hidden]="cityHid">
-            <div class="row">        
+    <div  [hidden]="false">
+        
+            <div class="row" hidden=true>        
                 <div  class="input-group input-group-button">            
                     <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
                     <span class="input-group-addon" id="basic-addon10">
@@ -183,7 +187,55 @@
             </div>
 
             <h4 class="sub-title">{{provinciaCP}}</h4>
-            <div class="col-sm-6" [hidden]="false">
+            <!--nueva ubicacion -->
+            <h5>Tu ubicacion</h5>
+        <div class="row">
+            <div  class="col-sm-6" >
+                <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
+                    <option >Seleccione su país</option>
+                    <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div  class="col-sm-6" *ngIf="provinceList!=null">
+                <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                    <option>Seleccione una provincia</option>
+                    <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
+                </select>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6" [hidden]="cityHid">
+                    <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
+                        <option value="opt1">Seleccione una Ciudad</option>
+                        <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
+                    </select>
+            </div>
+        </div>
+        <br/>
+        
+        <div class="row"> 
+            <div class="col-sm-6" [hidden]="true">
+                <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
+                    <option value="opt1">Seleccione un Barrio</option>
+                    <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                        <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                    </div>
+                </div>
+        </div>
+            <!---->
+            <div class="col-sm-6" [hidden]="true">
                     <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
                         <option value="opt1">Seleccione una Ciudad</option>
                         <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>

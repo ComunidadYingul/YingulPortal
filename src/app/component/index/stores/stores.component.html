@@ -3,31 +3,43 @@
       <!-- Page header start -->
       <div class="page-header">
           <div class="page-header-title">
-              <h4>Nuestras tiendas oficiales</h4>
-              <span>Encuentra lo que buscas de marcas específicas y con garantia de tienda</span>
+              <h4>Las mejores tiendas te esperan </h4>&nbsp;&nbsp;<a href="/allStores"> Ver tiendas</a>
+              <!--<span>Encuentra lo que buscas de marcas específicas y con garantia de tienda</span>-->
           </div>
       </div>
       <!-- Page header end -->
       <!-- Page body start -->
           <!-- Product list start -->
-          <div>
-            <div class="row" align="center" width="100%">
-                <div id='scrolly'>
-                    <a href="/{{store.name}}" *ngFor="let store of storeList"><img class="img-fluid" src='{{BUCKET_URL}}store/{{store.mainImage}}' ></a>
+          <div class="page-body gallery-page">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- Gallery advance card start -->
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="grid">
+                                            <div align="center">
+                                                <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+                                                    <div ngxSlickItem *ngFor="let store of storeList" class="slide">
+                                                        <figure style="width:250px; height:200px" class="effect-ming">
+                                                            <img style="width:100%; height:100%; margin:0; border:0;" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="img09" />
+                                                            <figcaption>
+                                                                <h2><span>{{store.name}}</span></h2>
+                                                                <p>Tienda Oficial Yingul</p>
+                                                                <a href="/{{store.name}}">View more</a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                </ngx-slick>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Gallery advance card end -->
+                    </div>
                 </div>
             </div>
-          </div>
           <!-- Product list end -->
-          <div>
-            <div class="row" align="center">
-              <div class="col-md-12 col-xl-6">
-                <a href="/allStores"><button class="btn btn-inverse btn-round">Ver todas las tiendas oficiales</button></a>
-              </div>
-              <div class="col-md-12 col-xl-6">
-                <a href="/createStore" ><button class="btn btn-inverse btn-round">Crea tu tienda en Yingul Shop</button></a>
-              </div>
-            </div>
-          </div>
-
   </div>
 </div>

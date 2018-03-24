@@ -114,65 +114,16 @@ Service:Service= new Service();
   }
 
   ngOnInit() {
-    console.log("Item: "+JSON.stringify(this.Item));
-    this.productQuantity=this.product.productQuantity;
-    this.itemDetailService.getItemType(this.itemId).subscribe(
-            res => {
-                    this.itemType = JSON.parse(JSON.stringify(res))._body;              
-                   this.getItem(this.itemType,this.itemId);                  
-                },
-                error => console.log(error)
-          );
-          //solo sirve para argentina
-          this.sellService.getProvinces(0).subscribe(
-            res => {
-                  this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
-          this.sellService.getSecurity().subscribe(
-            res => {
-                  this.securityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
-          this.sellService.getConfort().subscribe(
-            res => {
-                  this.confortList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
-          this.sellService.getSound().subscribe(
-            res => {
-                  this.soundList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
-          this.sellService.getExterior().subscribe(
-            res => {
-                  this.exteriorList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
-          this.sellService.getEquipment().subscribe(
-            res => {
-                  this.equipmentList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
+    this.itemDetailService.getItemById(this.itemId).subscribe(
+      res=>{
+        this.Item=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+        this.Item.user.authorities=null;
+        console.log("this.Item:"+JSON.stringify(this.Item))
+        this.itemsSet();
+      },
+      error=>console.error()      
+    );
 
-          this.sellService.getAmenities().subscribe(
-            res => {
-                  this.amenitiesList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          )
-          this.sellService.getAmbient().subscribe(
-            res => {
-                  this.ambientList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                },
-                error => console.log(error)
-          ) 
   }
   keyPress(event: any) {
     const pattern = /[0-9]/;
@@ -303,7 +254,12 @@ Service:Service= new Service();
       this.propertyTemp.yng_Item=this.itemTemp;
       this.sendUpdateProperty(this.propertyTemp)
     }
-  
+  else{if(this.typeCat=="Servicio"){
+    this.serviceTemp.cobertureZone=this.cobertureZone;
+    this.sendUpdateService(this.serviceTemp);
+
+  }
+  }
        }
 
     }    
@@ -347,8 +303,10 @@ Service:Service= new Service();
       this.motorizedModel=this.Motorized.motorizedModel;
       this.motorizedUnicoDue=this.Motorized.motorizedUnicoDue;
     }
-    if(this.itemType=="Servicio"){this.hiddenEditServ=false;}
-    console.log("this.product.productWarranty:"+this.product.productWarranty)
+    if(this.itemType=="Servicio"){
+      this.hiddenEditServ=false;
+    }
+    console.log("this.itemType:"+this.itemType)
     
     return this.productQuantity;
   }
@@ -413,8 +371,11 @@ Service:Service= new Service();
     productT.yng_Item.price=this.price;
     productT.yng_Item.priceDiscount=this.priceDiscount;
     productT.yng_Item.priceNormal=this.priceNormal;
-    productT.yng_Item.video=this.video;}
+    productT.yng_Item.video=this.video;
+    
+  }
      this.product=productT;
+     this.product.yng_Item.user.authorities=null;
      console.log("prodssd: "+JSON.stringify(productT));
      this.itemDetailService.postUpdateProduct(this.product).subscribe(
        res => {
@@ -436,6 +397,7 @@ Service:Service= new Service();
       motorized.yng_Item.priceNormal=this.priceNormal;
       motorized.yng_Item.video=this.video;}
     this.Motorized=motorized;
+    this.Motorized.yng_Item.user.authorities=null;
     console.log("prodssd: "+JSON.stringify(motorized));
     this.itemDetailService.postUpdateMotorized(this.Motorized).subscribe(
       res => {
@@ -457,6 +419,7 @@ Service:Service= new Service();
     property.yng_Item.priceNormal=this.priceNormal;
     property.yng_Item.video=this.video;}
   this.Property=property;
+  this.Property.yng_Item.user.authorities=null;
   console.log("prodssd: "+JSON.stringify(property));
   this.itemDetailService.postUpdateProperty(this.Property).subscribe(
     res => {
@@ -506,11 +469,11 @@ Service:Service= new Service();
           console.log("zone if :"+provinceName);
           this.cityB= true;
         }
-        else this.cityB= false;
+        else {this.cityB= false;return this.cityB;}
       // 
       }    
-      console.log("this.cityB:"+this.cityB);
-    return this.cityB;
+    //  console.log("this.cityB:"+this.cityB);
+    
   }
   check(province:Province){   
     if(this.cobertureZone.length==0){
@@ -629,5 +592,82 @@ Service:Service= new Service();
     
 
 
+  }
+  sendUpdateService(service:Service){
+    if (this.hiddenEditProd==false){
+    service.cobertureZone=this.cobertureZone;
+    service.emailService  
+    }
+    this.Service=service;
+    this.Service.yng_Item.user.authorities=null;
+    console.log("prodssd: "+JSON.stringify(Service));
+    this.itemDetailService.postUpdateProperty(this.Property).subscribe(
+      res => {
+        console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+          },
+          error => console.log(error)
+    );
+  }
+  itemsSet(){
+    console.log("Item: "+JSON.stringify(this.Item));
+    this.productQuantity=this.product.productQuantity;
+    this.itemDetailService.getItemType(this.itemId).subscribe(
+            res => {
+                    this.itemType = JSON.parse(JSON.stringify(res))._body; 
+                    //alert("itemType"+this.itemType);             
+                   this.getItem(this.itemType,this.itemId);                  
+                },
+                error => console.log(error)
+          );
+          //solo sirve para argentina
+          this.sellService.getProvinces(2).subscribe(
+            res => {
+                  this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+          this.sellService.getSecurity().subscribe(
+            res => {
+                  this.securityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+          this.sellService.getConfort().subscribe(
+            res => {
+                  this.confortList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+          this.sellService.getSound().subscribe(
+            res => {
+                  this.soundList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+          this.sellService.getExterior().subscribe(
+            res => {
+                  this.exteriorList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+          this.sellService.getEquipment().subscribe(
+            res => {
+                  this.equipmentList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+
+          this.sellService.getAmenities().subscribe(
+            res => {
+                  this.amenitiesList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          )
+          this.sellService.getAmbient().subscribe(
+            res => {
+                  this.ambientList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                },
+                error => console.log(error)
+          ) 
   }
 }

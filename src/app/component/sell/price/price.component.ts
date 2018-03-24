@@ -73,6 +73,7 @@ export class PriceComponent implements OnInit {
   userNameP:string;
   Usertemp:user=new user();
   msg:string;
+  cityTem:City =new City();
   constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
@@ -163,6 +164,16 @@ export class PriceComponent implements OnInit {
   getBarrio(cityId : number){
     this.city.cityId=cityId;
     this.barrioList=[];
+    console.log("cityId:"+cityId);
+    var ret="";
+    for(let c of this.cityList){
+      this.cityTem=JSON.parse(JSON.stringify(c));
+      if(cityId==this.cityTem.cityId){ 
+        ret=this.cityTem.codigopostal;
+      }
+    }
+    console.log("ret:"+ret);
+    this.postalCode=ret;
     this.sellService.getBarrio(cityId).subscribe(
 			res => {
             this.barrioList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -565,4 +576,22 @@ export class PriceComponent implements OnInit {
     this.countryName=this.country.name     
   }
 }
+
+  clickPostal(citydd:string){
+    console.log("citydd:"+citydd);
+  }
+  getCP(cityId : number){
+    this.city.cityId=cityId;
+    this.barrioList=[];
+    console.log("cityId:"+cityId);
+    var ret="";
+    for(let c of this.cityList){
+      this.cityTem=JSON.parse(JSON.stringify(c));
+      if(cityId==this.cityTem.cityId){ 
+        ret=this.cityTem.codigopostal;
+      }
+    }
+    console.log("ret:"+ret);
+    this.postalCode=ret;
+  }
 }

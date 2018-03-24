@@ -82,12 +82,16 @@ import { HelpComponent } from './component/help/help.component';
 import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
 import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
+import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
+import { SlickModule } from 'ngx-slick';
 import { ChatComponent } from './component/user-front/chat/chat.component';
 import { QuerySalesComponent } from './component/user-front/sales/query-sales/query-sales.component';
 import { QueryPurchasesComponent } from './component/user-front/purchases/query-purchases/query-purchases.component';
 import { AboutComponent } from './component/about/about.component';
 import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
 import { AboutService } from './service/about.service';
+import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -145,11 +149,14 @@ import { AboutService } from './service/about.service';
     ProtectedPurchaseComponent,
     AgreementComponent,
     ListPublicationsComponent,
+    ListItemsComponent,
     ChatComponent,
     QuerySalesComponent,
     QueryPurchasesComponent,
     AboutComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -157,6 +164,7 @@ import { AboutService } from './service/about.service';
     HttpModule,
     routing,
     RecaptchaModule.forRoot(),
+    SlickModule.forRoot(),
 
     Ng2CarouselamosModule
   ],

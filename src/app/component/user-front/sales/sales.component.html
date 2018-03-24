@@ -1852,7 +1852,7 @@
                                                             <td>{{sale.quantity}}</td>
                                                             <td>{{sale.yng_item.name}}</td>
                                                             <td>{{sale.itemCost}}</td>
-                                                            <td>{{sale.shippingCost}} &nbsp;&nbsp; <button [disabled]="sale.shippingCost == 0" (click)="onConfirm()" type="submit" class="btn btn-primary m-b-0" >Ver Envio</button></td>
+                                                            <td>{{sale.shippingCost}} &nbsp;&nbsp; <button [disabled]="sale.shippingCost == 0" (click)="onConfirm(sale)" type="submit" class="btn btn-primary m-b-0" >Ver Envio</button></td>
                                                             <td>{{sale.cost}}</td>
                                                         </tr>
                                                     </tbody>
@@ -1884,4 +1884,20 @@
             </div>
         </div> 
     </div>
+</div>
+<div [hidden]="hiddenPop">
+        <div class="content_popup_g" align="center" [hidden]="hiddenPop">
+                <div class="popup_g">
+                    <p class="popup-title">ESTADO DEL ENVIÓ</p>
+                    <!--img src="assets/images/spiner.gif" alt="Cargando"-->
+                    <p class="popup-msg">Fecha de Alta: {{dateStringA |  date:'MM/dd/yyyy'}}</p>
+                    <p class="popup-msg">Fecha: {{dateString |  date:'MM/dd/yyyy'}}</p>
+                    <p class="popup-msg">Estado: {{state.estado}}</p>
+                    <p class="popup-msg">Motivo: {{state.motivo}}</p>
+                    <p class="popup-msg">Sucursal:  {{state.sucursal}}</p>
+
+                    <button type="button" class="boton_1" (click)="aceptar()">Aceptar</button>
+                </div>
+        
+        </div>
 </div>

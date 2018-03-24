@@ -1,4 +1,4 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders, Component }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './component/login/login.component';
@@ -34,10 +34,13 @@ import { ClaimsComponent } from './component/user-front/claims/claims.component'
 import { ProtectedPurchaseComponent } from './component/help/protected-purchase/protected-purchase.component';
 import { AgreementComponent } from './component/agreement/agreement.component';
 import { ListPublicationsComponent } from './component/list-publications/list-publications.component';
+import { ListItemsComponent } from './component/list-publications/list-items/list-items.component';
 import { ChatComponent } from './component/user-front/chat/chat.component';
 import { QuerySalesComponent } from './component/user-front/sales/query-sales/query-sales.component';
 import { QueryPurchasesComponent } from './component/user-front/purchases/query-purchases/query-purchases.component';
 import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
+import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -47,6 +50,14 @@ const appRoutes: Routes = [
   {
   	path: 'login',
   	component: LoginComponent
+  },
+  {
+  	path: 'login/forgotPassword',
+  	component: ForgotPasswordComponent
+  },
+  {
+  	path: 'resetPassword/:resetId',
+  	component: ResetPasswordComponent
   },
   {
   	path: 'signup',
@@ -190,9 +201,13 @@ const appRoutes: Routes = [
     component: StoreComponent
   },*/
   {
-    path: 'listPublications',
+    path: 'listPublications/:id',
     component: ListPublicationsComponent
   },
+  {
+    path:'ListItemsComponent',
+    component: ListItemsComponent
+  }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

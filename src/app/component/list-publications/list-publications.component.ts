@@ -15,10 +15,11 @@ export class ListPublicationsComponent implements OnInit {
   userNameP:string;
   deleteList:number[]=[];
   constructor(private itemDetailService : ItemDetailService) {
+
   }
 
   ngOnInit() {
-    this.getItemsBySeller();
+   
   }
 
   getItemsBySeller() {
@@ -33,4 +34,5 @@ export class ListPublicationsComponent implements OnInit {
     
   }
   onConfirm(){}
+
 }
