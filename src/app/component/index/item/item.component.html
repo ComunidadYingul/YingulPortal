@@ -3,17 +3,8 @@
       <!-- Page header start -->
       <div class="page-header">
           <div class="page-header-title">
-              <h4>Nuestros productos, servicios, inmuebles y movilidades</h4>
-              <span>Encuentra lo que buscas</span>
-          </div>
-          <div class="page-header-breadcrumb">
-              <ul class="breadcrumb-title">
-                  <li class="breadcrumb-item">
-                      <a href="index.html">
-                          <i class="icofont icofont-home"></i>
-                      </a>
-                  </li>
-              </ul>
+              <h4>Encuentra lo que buscás</h4>
+              <!--<span>Encuentra lo que buscas</span>-->
           </div>
       </div>
       <!-- Page header end -->
@@ -22,7 +13,7 @@
           <!-- Product list start -->
        
             <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
-                    <div ngxSlickItem *ngFor="let item of itemList" class="slide" style="height: 330px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
+                    <div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
                             <div id="" class="divcolor">
                                     <div class="prod-view prod-view                             
                                     " style="width: 240px;">
@@ -41,7 +32,7 @@
                                                     </div>
                                                         <a href="javascript:void(0)" class="hvr-shrink">
                                                             <!--ruta para la imagenes en desarrollo -->
-                                                            <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden img" alt="{{item.principalImage}}">       
+                                                            <img style="margin-top:5px;" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden img" alt="{{item.principalImage}}">       
                                                         </a>
                                                     <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
 
@@ -59,15 +50,9 @@
                                                     </div>
                                                     <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
                                                     <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                                                    <div class="row" style="margin:0 7px;">
-                                                            <div [hidden]="envioIcon(item.itemId)" class="h5-send" style="margin-left:20px;">
-                                                                <div  class="h5-send" style="margin-left:20px;">                                  
-                                                                        <div  class="row">                                                        
-                                                                            <img style="width: 25px;height: 25px;" class="" src="assets/images/car.png" alt="Generic placeholder image">
-                                                                            <h6  style="font-size:12px;margin-top: 8px;">Envió gratis</h6>
-                                                                        </div>
-                                                                </div>
-                                                           </div>
+                                                    <div  class="row text-center" [hidden]="envioIcon(item.itemId)">
+                                                        <div class="col-sm-12"><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
+                                                        <h6 class="col-sm-12" style="font-size:12px; color:#ff5e3a;">Envió gratis</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,4 +66,72 @@
 
       <!-- Page body end -->
   </div>
+
+    <div class="page-wrapper">
+        <!-- Page header start -->
+        <div class="page-header">
+            <div class="page-header-title">
+                <h4>Destacados </h4><a href="/over">&nbsp;&nbsp; Ver más</a>
+                <!--<span>Encuentra lo que buscas</span>-->
+            </div>
+        </div>
+        <!-- Page header end -->
+        <!-- Page body start -->
+        <div class="page-body">
+            <!-- Product list start -->
+         
+              <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+                      <div ngxSlickItem *ngFor="let item of overList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
+                              <div id="" class="divcolor">
+                                      <div class="prod-view prod-view                             
+                                      " style="width: 240px;">
+                                          <div class="prod-item text-center"  >
+                                                  <div class="prod-img"  >
+                                                      <div class="option-hover">
+                                                          <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                              <i class="icofont icofont-cart-alt f-20"></i>
+                                                          </a>
+                                                          <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                              <i class="icofont icofont-eye-alt f-20"></i>
+                                                          </a>
+                                                          <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                                              <i class="icofont icofont-heart-alt f-20"></i>
+                                                          </button>
+                                                      </div>
+                                                          <a href="javascript:void(0)" class="hvr-shrink">
+                                                              <!--ruta para la imagenes en desarrollo -->
+                                                              <img style="margin-top:5px;" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden img" alt="{{item.principalImage}}">       
+                                                          </a>
+                                                      <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
+  
+                                                  </div>
+                                                  <div class="prod-info">
+                                                      <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                                      <div class="stars stars-example-css m-b-10">
+                                                          <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
+                                                              <option value="1">1</option>
+                                                              <option value="2">2</option>
+                                                              <option value="3">3</option>
+                                                              <option value="4">4</option>
+                                                              <option value="5">5</option>
+                                                          </select></div>
+                                                      </div>
+                                                      <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
+                                                      <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
+                                                      <div  class="row text-center" [hidden]="envioIcon(item.itemId)">
+                                                        <div class="col-sm-12"><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
+                                                        <h6 class="col-sm-12" style="font-size:12px; color:#ff5e3a;">Envió gratis</h6>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                      </div>
+                  </ngx-slick>                   
+                     
+          </div>
+           <!---->
+  
+        <!-- Page body end -->
+    </div>
 </div>

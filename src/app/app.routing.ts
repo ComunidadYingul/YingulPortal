@@ -39,6 +39,8 @@ import { ChatComponent } from './component/user-front/chat/chat.component';
 import { QuerySalesComponent } from './component/user-front/sales/query-sales/query-sales.component';
 import { QueryPurchasesComponent } from './component/user-front/purchases/query-purchases/query-purchases.component';
 import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
+import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -48,6 +50,14 @@ const appRoutes: Routes = [
   {
   	path: 'login',
   	component: LoginComponent
+  },
+  {
+  	path: 'login/forgotPassword',
+  	component: ForgotPasswordComponent
+  },
+  {
+  	path: 'resetPassword/:resetId',
+  	component: ResetPasswordComponent
   },
   {
   	path: 'signup',

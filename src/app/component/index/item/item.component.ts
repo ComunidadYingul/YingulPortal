@@ -7,6 +7,7 @@ import { FavoriteService } from '../../../service/favorite.service';
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import { Network } from '../../../model/Network';
+import { ItemService } from '../../../service/item.service';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -14,6 +15,7 @@ import { Network } from '../../../model/Network';
 })
 export class ItemComponent implements OnInit {
   itemList: Object[]=[];
+  overList:Item[]=[];
   productList:Object[]=[];
   Item:Item=new Item();
   prod:Product=new Product();
@@ -81,7 +83,7 @@ export class ItemComponent implements OnInit {
     ]
   };
 
-  constructor(private indexService: IndexService, private favoriteService: FavoriteService,private router: Router) {
+  constructor(private itemService: ItemService, private indexService: IndexService, private favoriteService: FavoriteService,private router: Router) {
   
   }
 
@@ -99,6 +101,12 @@ export class ItemComponent implements OnInit {
     this.indexService.getItems().subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    this.itemService.getItemsOver(true).subscribe(
+			res => {
+            this.overList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );

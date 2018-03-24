@@ -90,6 +90,8 @@ import { QueryPurchasesComponent } from './component/user-front/purchases/query-
 import { AboutComponent } from './component/about/about.component';
 import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
 import { AboutService } from './service/about.service';
+import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -152,7 +154,9 @@ import { AboutService } from './service/about.service';
     QuerySalesComponent,
     QueryPurchasesComponent,
     AboutComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
