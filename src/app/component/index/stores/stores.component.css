@@ -13,3 +13,6 @@ img{
     margin: 20px 10px;
     display: inline;
 }
+.grid{
+    max-width: 3000px;
+}

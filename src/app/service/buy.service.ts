@@ -60,4 +60,8 @@ export class BuyService {
     let url = Network.API_URL+"buy/getPurchaseByUser/"+username;
     return this.http.get(url);
   }
+  getStateShipping(number:string){
+    let url = Network.API_URL+"buy/getStateBuy/"+number;
+    return this.http.get(url);
+  }
 }

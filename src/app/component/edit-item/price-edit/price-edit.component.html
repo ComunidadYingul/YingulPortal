@@ -251,6 +251,11 @@
                                                                         </div>
                                                         
                                                                         <h5>Comodidades y amenities</h5>
+                                                                        <div  class="col-sm-12" *ngFor="let zone of Property.propertyAmenities">
+                                                                                <label>
+                                                                                    <span class="custom-control-description">{{zone.amenities.name}}</span>
+                                                                                </label>
+                                                                        </div>
                                                                         <div class="row">
                                                                         <div  class="col-sm-8" *ngFor="let amenities of amenitiesList">
                                                                             <label class="custom-control custom-checkbox" >
@@ -262,6 +267,11 @@
                                                                         </div>
                                                         
                                                                         <h5>Ambientes</h5>
+                                                                        <div  class="col-sm-12" *ngFor="let zone of Property.propertyAmbient">
+                                                                                <label>
+                                                                                    <span class="custom-control-description">{{zone.ambient.name}}</span>
+                                                                                </label>
+                                                                        </div>
                                                                         <div class="row">
                                                                         <div  class="col-sm-8" *ngFor="let ambient of ambientList">
                                                                             <label class="custom-control custom-checkbox" >
@@ -312,6 +322,11 @@
                                                                        
                                                                     </div>
                                                                     <h5>Seguridad</h5>
+                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedSecurity">
+                                                                            <label>
+                                                                                <span class="custom-control-description">{{zone.security.name}}</span>
+                                                                            </label>
+                                                                    </div>
 
                                                                     <div class="row">
                                                                     <div  class="col-sm-8" *ngFor="let security of securityList">
@@ -324,6 +339,11 @@
                                                                     </div>
                                                                 
                                                                     <h5>Confort</h5>
+                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedConfort">
+                                                                            <label>
+                                                                                <span class="custom-control-description">{{zone.confort.name}}</span>
+                                                                            </label>
+                                                                    </div>
                                                                     <div class="row">
                                                                     <div  class="col-sm-8" *ngFor="let confort of confortList">
                                                                         <label class="custom-control custom-checkbox" >
@@ -335,6 +355,11 @@
                                                                     </div>
                                                 
                                                                     <h5>Sonido</h5>
+                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedSound">
+                                                                            <label>
+                                                                                <span class="custom-control-description">{{zone.sound.name}}</span>
+                                                                            </label>
+                                                                    </div>
                                                                     <div class="row">
                                                                     <div  class="col-sm-8" *ngFor="let sound of soundList">
                                                                         <label class="custom-control custom-checkbox" >
@@ -346,6 +371,11 @@
                                                                     </div>
                                                 
                                                                     <h5>Exterior</h5>
+                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedExterior">
+                                                                        <label>
+                                                                            <span class="custom-control-description">{{zone.exterior.name}}</span>
+                                                                        </label>
+                                                                    </div>
                                                                     <div class="row">
                                                                     <div  class="col-sm-8" *ngFor="let exterior of exteriorList">
                                                                         <label class="custom-control custom-checkbox" >
@@ -370,7 +400,15 @@
                                                             </div>
                                                             <div [hidden]="hiddenEditServ">
                                                                 <h5>Zona de Cobertura</h5>
+
                                                                 <br/>
+                                                                <div  class="col-sm-12" *ngFor="let zone of Service.cobertureZone">
+                                                                        <label class="" >                                                                   
+                                                                             
+                                                                            <span class=""></span>
+                                                                            <span class="custom-control-description">{{zone.province.name}}</span>
+                                                                        </label>
+                                                                </div>
                                                                 <div class="row">
                                                                 <div  class="col-sm-8" *ngFor="let province of provinceList">
                                                                     <label class="custom-control custom-checkbox" >                                                                        
@@ -386,7 +424,10 @@
                                                                 </div>
                                                                 </div>                                                        
                                                             </div>
-                                                            <div class="row"><a *ngFor="let zone of Service.cobertureZone"><a>{{zone.province.name}}, </a></a></div>                                                    
+                                                            <div class="row" [hidden]="true">
+                                                                    <div class="row"><a *ngFor="let zone of Service.cobertureZone"><a>{{zone.province.name}}, </a></a></div>                                                                                                
+                                                            </div> 
+                                                            
                                                                 <div class="row">
                                                                     <div class="row">
                                                                         <div class="col-sm-12">
