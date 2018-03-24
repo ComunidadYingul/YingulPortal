@@ -79,3 +79,13 @@
     color: #33A;
     font-size: 20px;
 }
+
+/*********************** MODIFICACION G ***********************/
+.fondo-img-g div{
+    background: #014a8f11;
+    border-radius: 5px;
+}
+.fondo-img-g label{
+    border-radius: 10px;
+    background: #FF5E3A;
+}

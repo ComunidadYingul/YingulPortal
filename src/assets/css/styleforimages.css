@@ -1,4 +1,39 @@
-  #image-preview1{
+.fondo-img-g div{
+  width: 250px;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  background: #014a8f11;
+  border-radius: 5px;
+  color: #ecf0f1;
+}
+.fondo-img-g input {
+  line-height: 150px;
+  font-size: 150px;
+  position: relative;
+  opacity: 0;
+  z-index: 10;
+}
+.fondo-img-g label{
+  position: absolute;
+  z-index: 5;
+  opacity: 0.8;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #FF5E3A;
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+}
+  /*#image-preview1{
     width: 250px;
     height: 250px;
     position: relative;
@@ -393,4 +428,4 @@
     bottom: 0;
     margin: auto;
     text-align: center;
-  }
+  }*/
