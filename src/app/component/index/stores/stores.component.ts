@@ -36,7 +36,7 @@ export class StoresComponent implements OnInit {
           "slidesToShow": 2.7,
           "slidesToScroll": 2,
           "infinite": true,
-          "dots": true
+          //"dots": true
         }
       },
       {
@@ -45,7 +45,7 @@ export class StoresComponent implements OnInit {
           "slidesToShow": 2,
           "slidesToScroll": 2,
           "infinite": true,
-          "dots": true
+          //"dots": true
         }
       },
       {

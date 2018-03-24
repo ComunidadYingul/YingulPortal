@@ -34,35 +34,41 @@
         <div class="col-lg-2">
           <div class="list-group">
             <a class="list-group-item list-group-item-action">Clasificados</a>
-            <a routerLink="/motorized">
-              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-car-alt-1"></i>
-                  <p><strong>Autos, Motos y Otros</strong></p>
-              </div>
-            </a>
-            <a routerLink="/property">
-              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-building-alt"></i>
-                  <p><strong>Inmuebles</strong></p>
-              </div>
-            </a>
-            <a routerLink="/service">
-              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-headphone-alt-2"></i>
-                  <p><strong>Servicios</strong></p>
-              </div>
-            </a>
-          </div>
-          <br/>
-          <div class="list-group">
-            <a class="list-group-item list-group-item-action">Marcas</a>
-            <a routerLink="/allStores">
-              <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
-                  <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-food-cart"></i>
-                  <p><strong>Tiendas oficiales</strong></p>
-              </div>
-            </a>
-          </div>
+            <ngx-slick class="carousel prod-view card rounded-card user-card " #slickModal="slick-modal" [config]="slideConfig1">
+                <div class="card" ngxSlickItem  class="slide" style="height: 180px;"> 
+                    <a routerLink="/motorized" >
+                    <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-car-alt-1"></i>
+                        <p><strong>Autos, Motos y Otros</strong></p>
+                    </div>
+                    </a>
+                </div>
+                <div class="card" ngxSlickItem  class="slide" style="height: 180px;"> 
+                    <a routerLink="/property" >
+                    <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-building-alt"></i>
+                        <p><strong>Inmuebles</strong></p>
+                    </div>
+                    </a>
+                </div>
+                <div class="card" ngxSlickItem  class="slide" style="height: 180px;"> 
+                    <a routerLink="/service" >
+                    <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-car-alt-2"></i>
+                        <p><strong>Servicios</strong></p>
+                    </div>
+                    </a>
+                </div>
+                <div class="card" ngxSlickItem  class="slide" style="height: 180px;"> 
+                    <a routerLink="/motorized" >
+                    <div class="card-block-big" style="background-color: white; text-align: center;border: 1px solid rgb(197, 197, 197);">
+                        <i style="font-size: 70px; color: #ff5e3a;" class="icofont icofont-food-cart"></i>
+                        <p><strong>Tiendas oficiales</strong></p>
+                    </div>
+                    </a>
+                </div>
+            </ngx-slick>
+         </div>
         </div>  
         <div class="col-lg-10">
           <div class="list-group">

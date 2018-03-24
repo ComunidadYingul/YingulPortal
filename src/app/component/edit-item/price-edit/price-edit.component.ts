@@ -254,7 +254,12 @@ Service:Service= new Service();
       this.propertyTemp.yng_Item=this.itemTemp;
       this.sendUpdateProperty(this.propertyTemp)
     }
-  
+  else{if(this.typeCat=="Servicio"){
+    this.serviceTemp.cobertureZone=this.cobertureZone;
+    this.sendUpdateService(this.serviceTemp);
+
+  }
+  }
        }
 
     }    
@@ -298,7 +303,9 @@ Service:Service= new Service();
       this.motorizedModel=this.Motorized.motorizedModel;
       this.motorizedUnicoDue=this.Motorized.motorizedUnicoDue;
     }
-    if(this.itemType=="Servicio"){this.hiddenEditServ=false;}
+    if(this.itemType=="Servicio"){
+      this.hiddenEditServ=false;
+    }
     console.log("this.itemType:"+this.itemType)
     
     return this.productQuantity;
@@ -462,11 +469,11 @@ Service:Service= new Service();
           console.log("zone if :"+provinceName);
           this.cityB= true;
         }
-        else this.cityB= false;
+        else {this.cityB= false;return this.cityB;}
       // 
       }    
-      console.log("this.cityB:"+this.cityB);
-    return this.cityB;
+    //  console.log("this.cityB:"+this.cityB);
+    
   }
   check(province:Province){   
     if(this.cobertureZone.length==0){
@@ -591,7 +598,7 @@ Service:Service= new Service();
     service.cobertureZone=this.cobertureZone;
     service.emailService  
     }
-      this.Service=service;
+    this.Service=service;
     this.Service.yng_Item.user.authorities=null;
     console.log("prodssd: "+JSON.stringify(Service));
     this.itemDetailService.postUpdateProperty(this.Property).subscribe(
@@ -613,7 +620,7 @@ Service:Service= new Service();
                 error => console.log(error)
           );
           //solo sirve para argentina
-          this.sellService.getProvinces(0).subscribe(
+          this.sellService.getProvinces(2).subscribe(
             res => {
                   this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                 },

@@ -51,12 +51,22 @@ export class ListItemsComponent implements OnInit {
   public city:City = new City();  
   public cityTem:City = new City();
   public additional:string;
+  provinceList: Object[];
+  provin:string;
+  countruHidden:boolean=false;
+  barrioList : Object[];
   constructor(private itemDetailService : ItemDetailService,private sellService: SellService) {
     this.cityHid=true;
    }
 
   ngOnInit() {
     this.getItemsBySeller();
+    this.sellService.getCountries().subscribe(
+			res => {
+        		this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
   }
   getItemsBySeller() {
     this.useri=JSON.parse(localStorage.getItem("user"));
@@ -74,7 +84,7 @@ export class ListItemsComponent implements OnInit {
   changeUbi(idItem:number){
 
 
-    this.cityHid=false;
+    
     console.log("idItem :"+idItem);
     this.getItem(idItem);
     
@@ -118,12 +128,14 @@ export class ListItemsComponent implements OnInit {
   getItem(idItem:number){
     this.itemDetailService.getItemById(idItem).subscribe(
       res=>{
-        this.item=JSON.parse(JSON.parse(JSON.stringify(res))._body);        
+        this.item=JSON.parse(JSON.parse(JSON.stringify(res))._body); 
+        this.popupUbication=false;       
         this.ubication=this.item.yng_Ubication;
-        console.log("res:"+JSON.stringify(this.ubication));
+        
         this.ubicationTemp=this.ubication;
-
+        
         this.aditional=this.ubicationTemp.aditional;
+        console.log("ubication:"+JSON.stringify(this.ubicationTemp)+"aditional:"+this.aditional);
         //this.codAndreani=this.ubicationTemp.codAndreani;
         this.department=this.ubicationTemp.department;
         //this.latitud=this.ubicationTemp.latitud;
@@ -183,6 +195,66 @@ getBarrio(cityId : number){
     }
   }
 }
-aceptar(){ }
+aceptar(){ 
+  this.ubicationTemp.aditional=this.aditional
+  //his.ubicationTemp.codAndreani
+  this.ubicationTemp.department=this.department
+  this.ubicationTemp.number=this.number
+  this.ubicationTemp.postalCode=this.codigoPostalE
+  this.ubicationTemp.street=this.street
+  //this.ubicationTemp.ubication_id
+  this.ubicationTemp.withinStreets=this.withinStreets
+  this.ubicationTemp.yng_Barrio=this.yng_Barrio
+  this.ubicationTemp.yng_City=this.yng_city
+  this.ubicationTemp.yng_Country=this.yng_Country
+  this.ubicationTemp.yng_Province=this.yng_Province
+  var ubicationtemporal:Ubication=new Ubication();
+  this.itemDetailService.postUpdateMotorized(this.item).subscribe(
+    res => {
+      console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+        },
+        error => console.log(error)
+  );  
+}
+cancel(){
+  this.popupUbication=true;
+  this.countruHidden=false
+}
+getProvince(countryId:number){
+  this.country.countryId=countryId;
+  this.provinceList=null;
+  this.cityHid=true;
+  this.barrioHid=true;
+  this.countruHidden=true;
+  this.sellService.getProvinces(countryId).subscribe(
+    res => {
+          this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          //this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
 
+        },
+        error => console.log(error)
+  )
+}
+getCity(provinceId : number){
+  this.province.provinceId=provinceId;
+   this.cityList=[];
+   this.sellService.getCities(provinceId).subscribe(
+     res => {
+           this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+           this.provin=JSON.stringify(JSON.parse(JSON.stringify(this.cityList)).provinceId);
+          // alert("this.provin:"+this.provin);
+           if(JSON.stringify(this.cityList)=="[]"){
+             this.cityHid=true;
+             this.barrioHid=true;
+           } 
+           else{
+             this.cityHid=false;
+           }
+         },
+         error => console.log(error)
+   )
+ }
+ setBarrio(barrioId:number){
+  //this.barrio.barrioId=barrioId;
+}
 }

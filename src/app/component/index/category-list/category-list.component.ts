@@ -12,8 +12,8 @@ export class CategoryListComponent implements OnInit {
     //"dots": true,
     "infinite": false,
     "speed": 300,
-    "slidesToShow": 4,
-    "slidesToScroll": 4,
+    "slidesToShow": 6,
+    "slidesToScroll": 6,
     //"autoplay": true,
     //"autoplaySpeed": 2000,
     "responsive": [
@@ -51,6 +51,10 @@ export class CategoryListComponent implements OnInit {
       }
     ]
   };
+  slideConfig1={
+    "infinite": false,
+    "slidesToShow": 1.5,
+  "slidesToScroll": 1};
   constructor(private categoryService: ListCategoryService) { }
 
   ngOnInit() {
