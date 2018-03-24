@@ -25,6 +25,13 @@ export class SingupComponent implements OnInit {
   condition:boolean;
   business:boolean=false;
 
+  hidName:boolean=true;
+  hidLastname:boolean=true;
+  hidEmail:boolean=true;
+  hidPassword:boolean=true;
+  popup_g:boolean=true;
+  cbxPersona:boolean;
+
   constructor(private singupService: SingupService, private router: Router,private sellService: SellService) {   
     
   }
@@ -35,21 +42,51 @@ export class SingupComponent implements OnInit {
     this.regPerson();
   }
   regPerson(){
-    this.person.createPerson(this.name, this.lastname,this.email,this.password,this.business);
-    this.singupService.signUp(this.person).subscribe(
-      res => {
-            this.msg = JSON.parse(JSON.stringify(res))._body;
-            if(this.msg=='save'){
-              alert("registrado exitosamente revise su bandeja de entrada");
-              this.router.navigate(['/']);   
-            }
-            else{
-              alert(this.msg);
-            } 
-          },
-          error => console.log(error)
-    );
+    this.reset();
+    var patron = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
+    if(this.name==null || this.name==""){
+        this.hidName=false;
+      }else if(this.lastname==null || this.lastname==""){
+        this.hidLastname=false;
+      }else if(this.email==null || this.email==""){
+        this.hidEmail=false;
+      }else if(this.password==null || this.password==""){
+        this.hidPassword=false;
+      }else if(this.cbxPersona!=true){
+        alert('Debe aceptar los terminos y condiciones');
+      }else if(!patron.test(this.email)){
+        alert('Corre electronico no valido');
+      }else{
+        this.popup_g=false;
+
+        this.person.createPerson(this.name, this.lastname,this.email,this.password,this.business);
+        this.singupService.signUp(this.person).subscribe(
+          res => {
+                this.msg = JSON.parse(JSON.stringify(res))._body;
+                if(this.msg=='save'){
+                  alert("registrado exitosamente revise su bandeja de entrada");
+                  this.router.navigate(['/']);   
+                }
+                else{
+                  this.popup_g=true;
+                  alert(this.msg);
+                } 
+              },
+              error => {
+                this.popup_g=true;
+                console.log(error)
+              }
+        );
+      }
   }
+
+  reset(){
+    this.hidName=true;
+    this.hidLastname=true;
+    this.hidEmail=true;
+    this.hidPassword=true;
+  }
+
   keyPress(event: any) {
     const pattern = /[0-9]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -57,12 +94,12 @@ export class SingupComponent implements OnInit {
       event.preventDefault();
     }
   }
-  isFormDisabled(){
+  /*isFormDisabled(){
     if(this.condition==null||this.condition!=true||this.name==null||this.name.length==0||this.lastname==null || this.lastname.length==0||this.password==null||this.password.length==0||this.email==null){
       return true;
     }else{
       return false;
     }
-  }
+  }*/
 
 }

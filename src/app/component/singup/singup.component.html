@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <p class="text-inverse b-b-default text-left p-b-5">Regístrate con tu cuenta habitual</p>
-                            <div class="row m-b-20">
+                            <div class="row m-b-0">
                             <div class="input-group col-md-6">
                                 <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">
                                 <span class="md-line"></span>
@@ -38,6 +38,15 @@
                             </div>
                             </div>
                             <div class="row m-b-20">
+                                <div class="error-g col-md-6">
+                                    <p  [hidden]="hidName">Nombre requerido</p>
+                                </div>
+                                <div class="error-g col-md-6">
+                                    <p  [hidden]="hidLastname">Apellido requerido</p>
+                                </div>
+                            </div>
+
+                            <div class="row m-b-0">
                             <div class="input-group col-md-6">
                                 <input type="text" class="form-control" placeholder="Correo electronico" name="email" required [(ngModel)]="email">
                                 <span class="md-line"></span>
@@ -47,11 +56,19 @@
                                 <span class="md-line"></span>
                             </div>
                             </div>
+			                <div class="row m-b-20">
+                                <div class="error-g col-md-6">
+                                    <p  [hidden]="hidEmail">Correo electronico requerido</p>
+                                </div>
+                                <div class="error-g col-md-6">
+                                    <p  [hidden]="hidPassword">Contraseña requerida</p>
+                                </div>
+                            </div>
                             <div class="row m-b-20">
                                 <div class="col-md-6">
                                     <div class="checkbox-fade fade-in-primary">
                                         <label>
-                                            <input type="checkbox" value="" name="condition" [(ngModel)]="condition">
+                                            <input type="checkbox" value="" name="condition" [(ngModel)]="cbxPersona">
                                             <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                             <span class="text-inverse">Leo y acepto <a href="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/politicas/terminos-y-condiciones-de-uso.pdf">Terminos &amp; Condiciones.</a></span>
                                         </label>
@@ -69,7 +86,7 @@
                             </div>
                             <div class="row m-t-30">
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="onSubmit()" [disabled]="isFormDisabled()">Regístrese ahora.</button>
+                                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" (click)="onSubmit()">Regístrese ahora.</button>
                                 </div>
                                 <div class="col-md-6">
                                     <a class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" href="javascript:history.back(-1);">Cancelar.</a>
@@ -98,7 +115,13 @@
     <!-- end of container-fluid -->
 </section>
 
-
+<div class="content_popup_g" align="center" [hidden]="popup_g">
+    <div class="popup_g">
+        <p class="popup-title">SOLICITUD EN PROCESO</p>
+        <img src="assets/images/spiner.gif" alt="Cargando">
+        <p class="popup-msg">Por favor espere...</p>
+    </div>
+</div>
 
 <!--
 
