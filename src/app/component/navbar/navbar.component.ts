@@ -130,6 +130,7 @@ export class NavbarComponent implements OnInit {
 			this.hidEmailVal=false;
 		}
 		else{
+			this.reset();
 			this.popup_g=false;
 			this.sendEmail.sentFrom=this.email;
 			this.sendEmail.sendTo="yingul@internetvale.com";
@@ -141,7 +142,6 @@ export class NavbarComponent implements OnInit {
 			res => {
 					this.msg = JSON.parse(JSON.stringify(res))._body;
 					this.redirectTo();
-					this.reset();
 					this.popup_g=true;
 				},
 				error => {
@@ -157,6 +157,10 @@ export class NavbarComponent implements OnInit {
 		}else{
 			alert("Algo salio mal vuelve a intentarlo");
 		} 
+		this.fullName="";
+		this.email="";
+		this.phone="";
+		this.message="";
 	}
 	handleKeyDown(event: any){
     	if (event.keyCode == 13){
