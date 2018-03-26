@@ -26,6 +26,13 @@ export class NavbarComponent implements OnInit {
 	message:string="";
 	sendEmail:Email=new Email();
 	msg:string;
+
+	hidName:boolean=true;
+	hidEmail:boolean=true;
+	hidPhone:boolean=true;
+	hidMessage:boolean=true;
+	hidEmailVal:boolean=true;
+	popup_g:boolean=true;
 	
 	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService,private aboutService:AboutService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -109,19 +116,40 @@ export class NavbarComponent implements OnInit {
 	}
 
 	sendMessage(){
-		this.sendEmail.sentFrom=this.email;
-		this.sendEmail.sendTo="yingul@internetvale.com";
-		this.sendEmail.title="Consulta Urgente";
-		this.sendEmail.body=this.fullName+" pregunto: "+this.message+" en la seccion de contactanos de yingul.com" 
-		+" se debe dar el soporte correspondiente su datos de contacto son: "
-		+"correo: "+this.email+" teléfono: "+this.phone;
-		this.aboutService.createMail(this.sendEmail).subscribe(
-		  res => {
-				this.msg = JSON.parse(JSON.stringify(res))._body;
-				this.redirectTo();
-			  },
-			  error => console.log(error)
-		);
+		this.reset();
+    	var patron = /^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
+		if(this.fullName==null || this.fullName==""){
+			this.hidName=false;
+		}else if(this.email==null || this.email==""){
+			this.hidEmail=false;
+		}else if(this.phone==null || this.phone==""){
+			this.hidPhone=false;
+		}else if(this.message==null || this.message==""){
+			this.hidMessage=false;
+		}else if(!patron.test(this.email)){
+			this.hidEmailVal=false;
+		}
+		else{
+			this.popup_g=false;
+			this.sendEmail.sentFrom=this.email;
+			this.sendEmail.sendTo="yingul@internetvale.com";
+			this.sendEmail.title="Consulta Urgente";
+			this.sendEmail.body=this.fullName+" pregunto: "+this.message+" en la seccion de contactanos de yingul.com" 
+			+" se debe dar el soporte correspondiente su datos de contacto son: "
+			+"correo: "+this.email+" teléfono: "+this.phone;
+			this.aboutService.createMail(this.sendEmail).subscribe(
+			res => {
+					this.msg = JSON.parse(JSON.stringify(res))._body;
+					this.redirectTo();
+					this.reset();
+					this.popup_g=true;
+				},
+				error => {
+					console.log(error)
+					this.popup_g=true;
+				}
+			);
+		}
 	}
 	redirectTo(){
 		if(this.msg=='save'){
@@ -135,5 +163,11 @@ export class NavbarComponent implements OnInit {
 			this.bestMatch();
     	}  
 	}
+	reset(){
+		this.hidName=true;
+		this.hidEmail=true;
+		this.hidPhone=true;
+		this.hidMessage=true;
+	  }
 }
 

@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit() {
+    this.reset();
     if(this.username==null || this.username==""){
       this.hidUsername=false;
     }else if(this.password==null || this.password==""){
@@ -62,5 +63,10 @@ export class LoginComponent implements OnInit {
     let User :user = this.User;
     localStorage.setItem("user", JSON.stringify(User));
 
+  }
+
+  reset(){
+    this.hidUsername=true;
+    this.hidPassword=true;
   }
 }
