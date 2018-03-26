@@ -86,7 +86,7 @@ export class DetailComponent implements OnInit {
   itemImageArray: Object[] = [];
 ////
 //product
-productCondition:string;
+productCondition:string="0";
 productSaleConditions:string;
 productQuantity:string;
 productFormDelivery:string;
@@ -106,6 +106,19 @@ motorizedYear:string;
 motorizedModel:string;
 motorizedUnicoDue:string;
 motorizedKilometers:number;
+
+/****************** VARIABLES VALIDACION SERVICIOS *******************/
+hidServicesTitle:boolean=true;
+hidServiciosDescription:boolean=true;
+
+/****************** VARIABLES VALIDACION PRODUCTOS *******************/
+hidProductTitle:boolean=true;
+hidProductQuantity:boolean=true;
+hidProductPeso:boolean=true;
+hidProductCondition:boolean=true;
+hidProductVolumen:boolean=true;
+
+/*********************************************************************/
 
 public product: Product=new Product;
 public property: Property=new Property;
@@ -196,53 +209,90 @@ public item: Item=new Item();
  
   }
   sendDetail(){
-    this.uploadImage();
-    this.item.name=this.title;
-    this.item.description=this.description;
-    this.item.video=this.video;
-    this.detailItemS.emit(this.item);
-    if(this.typeCat=="Product"){
-      //this.item.$name =this.title;
-      this.product.productCondition=this.productCondition;
-      this.product.productSaleConditions=this.productSaleConditions;
-      this.product.productFormDelivery=this.productFormDelivery;
-      this.product.productPagoEnvio=this.productPagoEnvio;
-      this.product.productPaymentMethod=this.productPaymentMethod;
-      this.product.productQuantity=this.productQuantity;
-      this.product.productWarranty=this.productWarranty;
-      this.product.productPeso=this.productPeso;
-      this.product.producVolumen=this.productVolumen;
-      this.detailProduct.emit(this.product);
-    }
-    if(this.typeCat=="Property"){
-      //this.property.
-      this.property.propertyDuildedArea=this.propertyDuildedArea;
-      this.property.propertyTotalArea=this.propertyTotalArea;
-      this.property.propertyYear=this.propertyYear;
-      this.property.propertyAmenities=this.propAmenities;
-      this.property.propertyAmbient=this.propAmbient;
+    
+      this.uploadImage();
+      this.item.name=this.title;
+      this.item.description=this.description;
+      this.item.video=this.video;
+
+      if(this.typeCat=="Service"){
+        if(this.title==null || this.title==""){
+          this.hidServicesTitle=false;
+        }else if(this.description==null || this.description==""){
+          this.hidServiciosDescription=false;
+        }else{
+          this.detailItemS.emit(this.item);
+        }
+      }
 
 
-      this.detailProduct.emit(this.property);    
-    }
-    if(this.typeCat=="Motorized"){
-      this.motorized.motorizedBrand=this.motorizedBrand;
-      this.motorized.motorizedYear=this.motorizedYear;
-      this.motorized.motorizedModel=this.motorizedModel;
-      this.motorized.motorizedUnicoDue=this.motorizedUnicoDue;
+      if(this.typeCat=="Product"){
+        this.resetProductHid();
+        if(this.title==null || this.title==""){
+          this.hidProductTitle=false;
+        }else if(this.productCondition=="0"){
+          this.hidProductCondition=false;
+        }else if(this.productQuantity==null || this.productQuantity==""){
+          this.hidProductQuantity=false;
+        }else if(this.productPeso==null || this.productPeso==""){
+          this.hidProductPeso=false;
+        }else if(this.productVolumen==null || this.productVolumen==""){
+          this.hidProductVolumen=false;
+        }
+        else{
+          this.detailItemS.emit(this.item);
+          this.product.productCondition=this.productCondition;
+          this.product.productSaleConditions=this.productSaleConditions;
+          this.product.productFormDelivery=this.productFormDelivery;
+          this.product.productPagoEnvio=this.productPagoEnvio;
+          this.product.productPaymentMethod=this.productPaymentMethod;
+          this.product.productQuantity=this.productQuantity;
+          this.product.productWarranty=this.productWarranty;
+          this.product.productPeso=this.productPeso;
+          this.product.producVolumen=this.productVolumen;
+          this.detailProduct.emit(this.product);
+        }
+      }
+      if(this.typeCat=="Property"){
+        this.detailItemS.emit(this.item);
+        this.property.propertyDuildedArea=this.propertyDuildedArea;
+        this.property.propertyTotalArea=this.propertyTotalArea;
+        this.property.propertyYear=this.propertyYear;
+        this.property.propertyAmenities=this.propAmenities;
+        this.property.propertyAmbient=this.propAmbient;
 
-      this.motorized.motorizedSecurity=this.motSecurity;
-      this.motorized.motorizedConfort=this.motConfort;
-      this.motorized.motorizedSound=this.motSound;
-      this.motorized.motorizedExterior=this.motExterior;
-      this.motorized.motorizedEquipment=this.motEquipment;
-      this.motorized.motorizedKilometers=this.motorizedKilometers;
-     // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
-     this.detailProduct.emit(this.motorized);
-    }  
+
+        this.detailProduct.emit(this.property);    
+      }
+      if(this.typeCat=="Motorized"){
+          this.detailItemS.emit(this.item);
+          this.motorized.motorizedBrand=this.motorizedBrand;
+          this.motorized.motorizedYear=this.motorizedYear;
+          this.motorized.motorizedModel=this.motorizedModel;
+          this.motorized.motorizedUnicoDue=this.motorizedUnicoDue;
+
+          this.motorized.motorizedSecurity=this.motSecurity;
+          this.motorized.motorizedConfort=this.motConfort;
+          this.motorized.motorizedSound=this.motSound;
+          this.motorized.motorizedExterior=this.motExterior;
+          this.motorized.motorizedEquipment=this.motEquipment;
+          this.motorized.motorizedKilometers=this.motorizedKilometers;
+        // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
+        this.detailProduct.emit(this.motorized);
+        
+      }  
     
 
   }
+
+  resetProductHid(){
+    this.hidProductTitle=true;
+    this.hidProductQuantity=true;
+    this.hidProductVolumen=true;
+    this.hidProductPeso=true;
+    this.hidProductCondition=true;
+  }
+
   back(){
     this.Back.emit('back');
   }
@@ -560,12 +610,12 @@ popSinGarantia(event) {
 
 }
 
-capturarCondicion(provinceId : string){
- this.productCondition=provinceId;
+capturarCondicion(productCondition : string){
+ this.productCondition=productCondition;
 }
 
-capturarCondicionVenta(provinceId : string){
-  this.productSaleConditions=provinceId;
+capturarCondicionVenta(productCondition : string){
+  this.productSaleConditions=productCondition;
 }
 
 mediosDPago(pagos:string){
