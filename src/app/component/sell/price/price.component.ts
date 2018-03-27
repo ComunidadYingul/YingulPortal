@@ -262,6 +262,35 @@ export class PriceComponent implements OnInit {
       return true;
     }
   }
+
+  validarInmueble(){
+    this.resetService();
+    if(this.phone==null || this.phone==""){
+      this.hidPhone=false;
+      return false;
+    }else if(this.typePay==true && (this.price==null || this.price==0)){
+      this.hidPrice=false;
+      return false;
+    }else if(this.country.countryId==null || this.country.countryId==0){
+      this.hidCountry=false;
+      return false;
+    }else if(this.province.provinceId==null || this.province.provinceId==0){
+      this.hidProvince=false;
+      return false;
+    }else if(this.city.cityId==null || this.city.cityId==0){
+      this.hidCity=false;
+      return false;
+    }else if(this.street==null || this.street==""){
+      this.hidStreet=false;
+      return false;
+    }else if(this.number==null || this.number==""){
+      this.hidNumber=false;
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   sendPrice(){
     console.log("type price  pre: "+this.typeCatPre)
     if(this.typeCatPre=="Service"){
@@ -322,24 +351,26 @@ export class PriceComponent implements OnInit {
       }
     }
     if(this.typeCatPre=="Property"){
-      this.property.yng_Item.user.phone=this.phone;
-      this.property.yng_Item.user.phone2=this.phone2;
-      //this.product.$emailService=this.email;
-      this.property.yng_Item.user.webSite=this.webSite;
-      this.property.yng_Item.price=this.price;
-      this.property.yng_Item.money=this.money;
-      this.property.yng_Item.yng_Ubication.street=this.street;
-      this.property.yng_Item.yng_Ubication.number=this.number;
-      this.property.yng_Item.yng_Ubication.postalCode= this.postalCode;
-      this.property.yng_Item.yng_Ubication.aditional=this.aditional;
-      this.property.yng_Item.yng_Ubication.yng_Country=this.country;
-      this.property.yng_Item.yng_Ubication.yng_Province=this.province;
-      this.property.yng_Item.yng_Ubication.yng_City=this.city;
-      this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
-      //this.product.$cobertureZone=this.cobertureZone;
-      //sise cobra publicidad por producto destacado aqui
-      //this.property.yng_Item.isOver=false;
-      this.priceItemS.emit(this.property);
+      if(this.validarInmueble()){
+        this.property.yng_Item.user.phone=this.phone;
+        this.property.yng_Item.user.phone2=this.phone2;
+        //this.product.$emailService=this.email;
+        this.property.yng_Item.user.webSite=this.webSite;
+        this.property.yng_Item.price=this.price;
+        this.property.yng_Item.money=this.money;
+        this.property.yng_Item.yng_Ubication.street=this.street;
+        this.property.yng_Item.yng_Ubication.number=this.number;
+        this.property.yng_Item.yng_Ubication.postalCode= this.postalCode;
+        this.property.yng_Item.yng_Ubication.aditional=this.aditional;
+        this.property.yng_Item.yng_Ubication.yng_Country=this.country;
+        this.property.yng_Item.yng_Ubication.yng_Province=this.province;
+        this.property.yng_Item.yng_Ubication.yng_City=this.city;
+        this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+        //this.product.$cobertureZone=this.cobertureZone;
+        //sise cobra publicidad por producto destacado aqui
+        //this.property.yng_Item.isOver=false;
+        this.priceItemS.emit(this.property);
+      }
     }
     if(this.typeCatPre=="Motorized")
     {
