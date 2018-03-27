@@ -76,6 +76,10 @@ export class PriceComponent implements OnInit {
   msg:string;
   cityTem:City =new City();
 
+  /****************************VARIABLE G*****************************/
+  prodPayMethod:string="0";
+  prodFormDeliv:boolean=false;
+
   /****************** VARIABLES VALIDACION SERVICIOS *******************/
   hidPhone:boolean=true;
   hidPrice:boolean=true;
@@ -86,7 +90,12 @@ export class PriceComponent implements OnInit {
   hidNumber:boolean=true;
   popup_g:boolean=true;
 
+  hidProductSalesCondition:boolean=true;
+  hidProductPaymentMethod:boolean=true;
+  hidYingulExpress:boolean=true;
+
   typePay:boolean=false;
+  
 
   constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
@@ -217,7 +226,35 @@ export class PriceComponent implements OnInit {
     else                                return false;
   }
   
+  resetProduct(){
+    this.hidPrice=true;
+    this.hidProductSalesCondition=true;
+    this.hidProductPaymentMethod=true;
+    this.hidYingulExpress=true;
+  }
 
+  validarProducto(){
+    this.resetProduct();
+    if(this.price==null || this.price==0){
+      this.hidPrice=false;
+      return false;
+    }else if(this.productSaleConditions==null || this.productSaleConditions=="0"){
+      this.hidProductSalesCondition=false;
+      return false;
+    }else if(this.prodPayMethod==null || this.prodPayMethod=="0"){
+      this.hidProductPaymentMethod=false;
+      return false;
+    }else if(this.prodFormDeliv==false){
+      this.hidYingulExpress=false;
+      return false;
+    }else if(this.popupUbicacion==false){
+      //this.hidYingulExpress=false;
+      alert('debe elegir su ubicacion');
+      return false;
+    }else{
+      return true;
+    }
+  }
   sendPrice(){
     console.log("type price  pre: "+this.typeCatPre)
     if(this.typeCatPre=="Service"){
@@ -259,22 +296,23 @@ export class PriceComponent implements OnInit {
         this.priceItemS.emit(this.service);
       }
     }
-    if(this.typeCatPre=="Product")
-    {
-      this.product.yng_Item.user.phone=this.phone;
-      this.product.yng_Item.user.phone2=this.phone2;
-      //this.product.$emailService=this.email;
-      this.product.yng_Item.user.webSite=this.webSite;
-      this.product.yng_Item.price=this.price;
-      this.product.yng_Item.money="ARS";      
-      //this.product.
-      //this.product.$cobertureZone=this.cobertureZone;
-      this.product.productPaymentMethod=this.productPaymentMethod;
-      this.product.productSaleConditions=this.productSaleConditions;
-      
-      //this.product.$productFormDelivery=
-      this.priceItemS.emit(this.product);
-
+    if(this.typeCatPre=="Product"){
+      if(this.validarProducto()){
+        this.resetProduct();
+        this.product.yng_Item.user.phone=this.phone;
+        this.product.yng_Item.user.phone2=this.phone2;
+        //this.product.$emailService=this.email;
+        this.product.yng_Item.user.webSite=this.webSite;
+        this.product.yng_Item.price=this.price;
+        this.product.yng_Item.money="ARS";      
+        //this.product.
+        //this.product.$cobertureZone=this.cobertureZone;
+        this.product.productPaymentMethod=this.productPaymentMethod;
+        this.product.productSaleConditions=this.productSaleConditions;
+        
+        //this.product.$productFormDelivery=
+        this.priceItemS.emit(this.product);
+      }
     }
     if(this.typeCatPre=="Property"){
       this.property.yng_Item.user.phone=this.phone;
@@ -495,10 +533,12 @@ export class PriceComponent implements OnInit {
     if(event.target.checked==true){
       this.product.productFormDelivery="YingulEnvios"      
       this.consultarUbi();
+      this.prodFormDeliv=true;
     }
     else {
       this.popupEnvios=true;
       this.popupUbicacion=true;
+      this.prodFormDeliv=false;;
     }
   }
 
@@ -595,7 +635,7 @@ export class PriceComponent implements OnInit {
     this.productPaymentMethod="Aceptar pagos solo por Yingul";
     if(envi=="2")
     this.productPaymentMethod="Aceptar pagos por Yingul y cobro en persona";
-  
+    this.prodPayMethod=envi;
   }
 
   discountPrice(event){

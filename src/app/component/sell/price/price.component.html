@@ -82,7 +82,7 @@
                 <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
             </div>
             <div class="error-g row">
-                <p></p>
+                <p [hidden]="hidPrice">Ingrese precio</p>
             </div>
         </div>
     </div>
@@ -193,18 +193,23 @@
                                     <option value="Subasta" disabled>Subasta</option>
                                     
                                 </select>
+                                <div class="error-g row">
+                                    <p  [hidden]="hidProductSalesCondition">Seleccione una opción</p>
+                                </div>
                             </div>
                 </div>
                 <br/>
                 <div class="row">
                         <div  class="col-sm-6" >
-                                <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
-                                    <option value="0"disabled>MEDIOS DE PAGO</option>
-                                    <option value="1">Aceptar pagos solo por Yingul</option>
-                                    <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
-                                </select>
+                            <select class="form-control form-control-primary"  #v (change)="pagoMedios(v.value)">
+                                <option value="0"disabled>MEDIOS DE PAGO</option>
+                                <option value="1">Aceptar pagos solo por Yingul</option>
+                                <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
+                            </select>
+                            <div class="error-g row">
+                                <p  [hidden]="hidProductPaymentMethod">Seleccione una opción</p>
                             </div>
-    
+                        </div>
                 </div>
                 <br/>
                     <div class="row">
@@ -224,7 +229,7 @@
                                     <div class="table-responsive" >
                                         <table class="table  invoice-detail-table">
         
-                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express<br>
+                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express <span style="color:red;" [hidden]="hidYingulExpress">Debe seleccionar este campo.</span><br>
                                             <tbody [hidden]="popupEnvios">
                                                 <tr>
                                                     <td class="radio radiofill radio-inline">
@@ -233,7 +238,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="radio radiofill radio-inline"> 
-                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" >Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" checked="checked">Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
                                                     </td>
                                                 </tr>
                                             </tbody>
