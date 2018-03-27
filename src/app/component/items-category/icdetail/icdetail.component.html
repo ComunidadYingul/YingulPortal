@@ -120,6 +120,45 @@
                             </div>
                         </form>
                     </div>
+
+                    <div class="card" [hidden]="discountCard" *ngIf="typeItemCategory=='Product'">
+                        <div class="card-header">Descuentos</div>
+                        <form>
+                        <div class="card-block">
+                            <div class="list-group" width="100%">
+                                <a style="cursor: pointer;" (click)="findDiscount(10)" class="list-group-item list-group-item-action " >10% off</a>
+                                <a style="cursor: pointer;" (click)="findDiscount(20)" class="list-group-item list-group-item-action " >20% off</a>
+                                <a style="cursor: pointer;" (click)="popupDiscount()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+
+                    <div class="card" [hidden]="freeShipingCard" *ngIf="typeItemCategory=='Product'">
+                        <div class="card-header">Envío</div>
+                        <form>
+                        <div class="card-block">
+                            <div class="list-group" width="100%">
+                                <a style="cursor: pointer;" (click)="freeShipping('all')" class="list-group-item list-group-item-action">
+                                    <div><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
+                                    <h6 style="font-size:12px; color:#ff5e3a;"> &nbsp;&nbsp;&nbsp;&nbsp; Envió gratis</h6>
+                                </a>
+                                <a style="cursor: pointer;" (click)="freeShipping('Andreani')" class="list-group-item list-group-item-action">
+                                    <div><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
+                                    <h6 style="font-size:12px; color:#ff5e3a;"> &nbsp;&nbsp;&nbsp;&nbsp; Envió gratis (Andreani)</h6>
+                                </a>
+                                <a style="cursor: pointer;" (click)="freeShipping('DHL')" class="list-group-item list-group-item-action">
+                                    <div><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
+                                    <h6 style="font-size:12px; color:#ff5e3a;"> &nbsp;&nbsp;&nbsp;&nbsp; Envió gratis (DHL)</h6>
+                                </a>
+                                <a style="cursor: pointer;" (click)="freeShipping('Fedex')" class="list-group-item list-group-item-action">
+                                    <div><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
+                                    <h6 style="font-size:12px; color:#ff5e3a;"> &nbsp;&nbsp;&nbsp;&nbsp; Envió gratis (Fedex)</h6>
+                                </a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
                     
                 </div>
                 <div class="col-sm-9">
@@ -280,14 +319,51 @@
     </div>
 </div>
 <div class="popup" [hidden]="cityCard">
-        <div class="row" >
-                <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
-                <div class="card-header col-sm-10 ">Ciudades y Barrios</div>
+    <div class="row" >
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+        <div class="card-header col-sm-10 ">Ciudades y Barrios</div>
+    </div>
+    <div class="card-block">
+        <div class="list-group" width="100%">
+            <a *ngFor="let city of cityListFive" style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action " >{{city.name}}</a>
+            <a style="cursor: pointer;" (click)="popupCity()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
+        </div>
+    </div>
+</div>
+<div class="popup" [hidden]="popup10">
+    <div class="row" >
+        <div class="card-header col-sm-10 ">Descuentos</div>
+        <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+    </div>
+    <div style="overflow:hidden; overflow-y:scroll; height:300px; width:100%; ">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(10)" class="list-group-item list-group-item-action">10% off</a>
             </div>
-            <div class="card-block">
-                <div class="list-group" width="100%">
-                    <a *ngFor="let city of cityListFive" style="cursor: pointer;" (click)="findCity(city.cityId)" class="list-group-item list-group-item-action " >{{city.name}}</a>
-                    <a style="cursor: pointer;" (click)="popupCity()" class="list-group-item list-group-item-action list-group-item-info" >Ver todos</a>
-                </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(20)" class="list-group-item list-group-item-action">20% off</a>
             </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(30)" class="list-group-item list-group-item-action">30% off</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(40)" class="list-group-item list-group-item-action">40% off</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(50)" class="list-group-item list-group-item-action">50% off</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(60)" class="list-group-item list-group-item-action">60% off</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(70)" class="list-group-item list-group-item-action">70% off</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(80)" class="list-group-item list-group-item-action">80% off</a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <a style="cursor: pointer;" (click)="findDiscount(90)" class="list-group-item list-group-item-action">90% off</a>
+            </div>
+        </div>
+    </div>
 </div>

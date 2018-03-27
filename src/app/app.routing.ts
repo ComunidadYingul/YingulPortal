@@ -56,7 +56,7 @@ const appRoutes: Routes = [
   	component: ForgotPasswordComponent
   },
   {
-  	path: 'resetPassword/:resetId',
+  	path: 'resetPassword/:resetPasswordId',
   	component: ResetPasswordComponent
   },
   {
