@@ -118,6 +118,17 @@ hidProductPeso:boolean=true;
 hidProductCondition:boolean=true;
 hidProductVolumen:boolean=true;
 
+/****************** VARIABLES VALIDACION INMUEBLES *******************/
+hidPropertyTitle:boolean=true;
+hidPropertyTotalArea:boolean=true;
+hidPropertyDuildedArea:boolean=true;
+
+/****************** VARIABLES VALIDACION INMUEBLES *******************/
+hidMotorizedTitle:boolean=true;
+hidMotorizedBrand:boolean=true;
+hidMotorizedYear:boolean=true;
+hidMotorizedKilometers:boolean=true;
+
 /*********************************************************************/
 
 public product: Product=new Product;
@@ -253,18 +264,40 @@ public item: Item=new Item();
           this.detailProduct.emit(this.product);
         }
       }
+
       if(this.typeCat=="Property"){
-        this.detailItemS.emit(this.item);
-        this.property.propertyDuildedArea=this.propertyDuildedArea;
-        this.property.propertyTotalArea=this.propertyTotalArea;
-        this.property.propertyYear=this.propertyYear;
-        this.property.propertyAmenities=this.propAmenities;
-        this.property.propertyAmbient=this.propAmbient;
-
-
-        this.detailProduct.emit(this.property);    
+        this.resetPropertyHid();
+        if(this.title==null || this.title==""){
+          this.hidPropertyTitle=false;
+        }else if(this.propertyTotalArea==null || this.propertyTotalArea==""){
+          this.hidPropertyTotalArea=false;
+        }else if(this.propertyDuildedArea==null || this.propertyDuildedArea==""){
+          this.hidPropertyDuildedArea=false;
+        }
+        else{
+          this.resetPropertyHid();
+          this.detailItemS.emit(this.item);
+          this.property.propertyDuildedArea=this.propertyDuildedArea;
+          this.property.propertyTotalArea=this.propertyTotalArea;
+          this.property.propertyYear=this.propertyYear;
+          this.property.propertyAmenities=this.propAmenities;
+          this.property.propertyAmbient=this.propAmbient;
+          this.detailProduct.emit(this.property);    
+        }
       }
       if(this.typeCat=="Motorized"){
+        this.resetMotorizedHid();
+        if(this.title==null || this.title==""){
+          this.hidMotorizedTitle=false;
+        }else if(this.motorizedBrand==null || this.motorizedBrand==""){
+          this.hidMotorizedBrand=false;
+        }else if(this.motorizedYear==null || this.motorizedYear==""){
+          this.hidMotorizedYear=false;
+        }else if(this.motorizedKilometers==null){
+          this.hidMotorizedKilometers=false;
+        }
+        else{
+          this.resetMotorizedHid();
           this.detailItemS.emit(this.item);
           this.motorized.motorizedBrand=this.motorizedBrand;
           this.motorized.motorizedYear=this.motorizedYear;
@@ -279,7 +312,7 @@ public item: Item=new Item();
           this.motorized.motorizedKilometers=this.motorizedKilometers;
         // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
         this.detailProduct.emit(this.motorized);
-        
+        }
       }  
     
 
@@ -291,6 +324,19 @@ public item: Item=new Item();
     this.hidProductVolumen=true;
     this.hidProductPeso=true;
     this.hidProductCondition=true;
+  }
+
+  resetPropertyHid(){
+    this.hidPropertyTitle=true;
+    this.hidPropertyTotalArea=true;
+    this.hidPropertyDuildedArea=true;
+  }
+
+  resetMotorizedHid(){
+    this.hidMotorizedTitle=true;
+    this.hidMotorizedBrand=true;
+    this.hidMotorizedYear=true;
+    this.hidMotorizedKilometers=true;
   }
 
   back(){

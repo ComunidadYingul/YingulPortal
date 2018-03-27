@@ -253,12 +253,18 @@
                                 <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
                                 <input type="text" class="form-control" placeholder="Titulo Ej: Casa de 5 ambientes y 2 baños" name="title" [(ngModel)]="title">
                             </div>
+                            <div class="error-g row">
+                                <p  [hidden]="hidPropertyTitle">Título requerido</p>
+                            </div>
                         </div>
                         <div class="col-sm-6">
                                 <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i>
                                     </span>
                                     <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                                </div>
+                                <div class="error-g row">
+                                    <p></p>
                                 </div>
                         </div>
                        
@@ -269,6 +275,9 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
                                         <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video">
+                                    </div>
+                                    <div class="error-g row">
+                                        <p></p>
                                     </div>
                             </div>
                     </div>
@@ -281,11 +290,17 @@
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
                             <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
                         </div>
+                        <div class="error-g row">
+                            <p  [hidden]="hidPropertyTotalArea">Campo requerido</p>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
                                 <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
+                            </div>
+                            <div class="error-g row">
+                                <p  [hidden]="hidPropertyDuildedArea">Campo requerido</p>
                             </div>
                     </div>
             
@@ -296,6 +311,9 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
                                 <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Años de Antigüedad" name="propertyYear" [(ngModel)]="propertyYear">
+                            </div>
+                            <div class="error-g row">
+                                <p></p>
                             </div>
                         </div>
 
@@ -336,7 +354,7 @@
                             <input type="text" class="form-control" placeholder="Ej.: Volkswagen Golf Motor 2.0 2006 Azul 5 puertas" name="title" [(ngModel)]="title">
                         </div>
                         <div class="error-g row">
-                            <p></p>
+                            <p  [hidden]="hidMotorizedTitle">Título requerido</p>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -416,7 +434,7 @@
                             <input type="text" class="form-control" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">km
                         </div>
                         <div class="error-g row">
-                            <p  [hidden]="hidMotorizedKilometers">Km requerido</p>
+                            <p  [hidden]="hidMotorizedKilometers">Kms. requerido</p>
                         </div>
                     </div>
                 </div>
