@@ -37,7 +37,7 @@ export class PriceComponent implements OnInit {
   email:string="";
   webSite:string="";
   price:number;
-  money:string="";
+  money:string="ARS";
   public cobertureZone:Object[]=[];
   street:string="";
   number:string="";
@@ -46,6 +46,7 @@ export class PriceComponent implements OnInit {
   User:object;
   userName;
   ubicationId:string;
+
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -74,6 +75,19 @@ export class PriceComponent implements OnInit {
   Usertemp:user=new user();
   msg:string;
   cityTem:City =new City();
+
+  /****************** VARIABLES VALIDACION SERVICIOS *******************/
+  hidPhone:boolean=true;
+  hidPrice:boolean=true;
+  hidCountry:boolean=true;
+  hidProvince:boolean=true;
+  hidCity:boolean=true;
+  hidStreet:boolean=true;
+  hidNumber:boolean=true;
+  popup_g:boolean=true;
+
+  typePay:boolean=false;
+
   constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
@@ -140,7 +154,7 @@ export class PriceComponent implements OnInit {
 
       		},
       		error => console.log(error)
-    )
+    );
   }
   getCity(provinceId : number){
    this.province.provinceId=provinceId;
@@ -159,7 +173,7 @@ export class PriceComponent implements OnInit {
             }
       		},
       		error => console.log(error)
-    )
+    );
   }
   getBarrio(cityId : number){
     this.city.cityId=cityId;
@@ -185,7 +199,7 @@ export class PriceComponent implements OnInit {
             }
       		},
       		error => console.log(error)
-    )
+    );
   }
   setBarrio(barrioId:number){
     this.barrio.barrioId=barrioId;
@@ -207,7 +221,24 @@ export class PriceComponent implements OnInit {
   sendPrice(){
     console.log("type price  pre: "+this.typeCatPre)
     if(this.typeCatPre=="Service"){
-    
+      this.resetService();
+      if(this.phone==null || this.phone==""){
+        this.hidPhone=false;
+      }else if(this.typePay==true && (this.price==null || this.price==0)){
+        this.hidPrice=false;
+      }else if(this.country.countryId==null || this.country.countryId==0){
+        this.hidCountry=false;
+      }else if(this.province.provinceId==null || this.province.provinceId==0){
+        this.hidProvince=false;
+      }else if(this.city.cityId==null || this.city.cityId==0){
+        this.hidCity=false;
+      }else if(this.street==null || this.street==""){
+        this.hidStreet=false;
+      }else if(this.number==null || this.number==""){
+        this.hidNumber=false;
+      }
+      else{
+        this.resetService();
         this.service.yng_Item.user.phone=this.phone;
         this.service.yng_Item.user.phone2=this.phone2;
         this.service.emailService=this.email;
@@ -226,6 +257,7 @@ export class PriceComponent implements OnInit {
         //this.service.yng_Item.isOver=false;
         this.service.cobertureZone=this.cobertureZone;
         this.priceItemS.emit(this.service);
+      }
     }
     if(this.typeCatPre=="Product")
     {
@@ -287,6 +319,30 @@ export class PriceComponent implements OnInit {
 
     }
   }
+
+  resetService(){
+    this.hidPhone=true;
+    this.hidCountry=true;
+    this.hidProvince=true;
+    this.hidCity=true;
+    this.hidStreet=true;
+    this.hidNumber=true;
+    this.hidPrice=true;
+  }
+
+  checkPrice(typePay:string){
+    switch (typePay) {
+      case "fijo":
+        this.typePay= true;
+        break;
+      case "convenir":
+      this.typePay= false;
+        break;
+      default:
+
+    }
+  }
+
   back(){
     this.Back.emit('back');
   }

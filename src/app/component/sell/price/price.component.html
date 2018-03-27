@@ -12,11 +12,17 @@
                 <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                 <input type="text" (keypress)="keyPress($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
             </div>
+            <div class="error-g row">
+                <p  [hidden]="hidPhone">Teléfono requerido</p>
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                 <input type="text" (keypress)="keyPress($event)" class="form-control" name="phone2" [(ngModel)]="phone2" placeholder="Telefono opcional" minlength=10 maxlength=10 >
+            </div>
+            <div class="error-g row">
+                <p></p>
             </div>
         </div>
     </div>
@@ -26,11 +32,17 @@
                 <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
                 <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="Correo electronico">
             </div>
+            <div class="error-g row">
+                <p></p>
+            </div>
         </div>
         <div *ngIf="isOtro()" class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
                 <input type="text" class="form-control" name="webSite" [(ngModel)]="webSite" placeholder="Sitio Web" >
+            </div>
+            <div class="error-g row">
+                <p></p>
             </div>
         </div>
     </div>
@@ -39,21 +51,27 @@
       <div class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon">
-            <input type="radio" id="option2" aria-label="Radio button for following text input">
+            <input type="radio" id="option2" aria-label="Radio button for following text input" name="radiob" (change)="checkPrice('fijo')">
           </span>
             <select class="form-control form-control-primary" name="money" [(ngModel)]="money">
-                <option [value]="ARS" >$</option>
-                <option  [value]="USD" >U$S</option>
+                <option value="ARS" >$</option>
+                <option  value="USD" >U$S</option>
             </select>
-          <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" aria-label="Text input with radio button">
+          <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" aria-label="Text input with radio button"  (keypress)="keyPress($event)">
+        </div>
+        <div class="error-g row">
+            <p style="margin-left:60%;" [hidden]="hidPrice">Ingrese precio</p>
         </div>
       </div>
       <div *ngIf="isOtro()" class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon">
-            <input type="radio" id="option1" aria-label="Radio button for following text input">
+            <input type="radio" id="option1" aria-label="Radio button for following text input" name="radiob"  checked="checked" (change)="checkPrice('convenir')">
           </span>
           <label class="form-control" aria-label="Text input with radio button">A convenir</label>
+        </div>
+        <div class="error-g row">
+            <p></p>
         </div>
       </div>
     </div>
@@ -63,6 +81,9 @@
                 <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
                 <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
             </div>
+            <div class="error-g row">
+                <p></p>
+            </div>
         </div>
     </div>
     <div *ngIf="isProduct()" class="row">
@@ -70,31 +91,43 @@
             <div class="input-group">
                 <input type="checkbox" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)">Ofrecer Descuento
             </div>
+            <div class="error-g row">
+                <p></p>
+            </div>
         </div>
     </div>
     <div *ngIf="isOtro()">
             <h5>Tu ubicacion</h5>
             <div class="row">
                 <div  class="col-sm-6" >
-                    <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
-                        <option >Seleccione su país</option>
+                    <select class="form-control form-control-primary" #w (change)="getProvince(w.value)">
+                        <option value="0">Seleccione su país</option>
                         <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
                     </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidCountry">Seleccione un país</p>
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div  class="col-sm-6" *ngIf="provinceList!=null">
-                    <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                    <select class="form-control form-control-primary" #t (change)="getCity(t.value)">
                         <option>Seleccione una provincia</option>
                         <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
                     </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidProvince">Seleccione una provincia</p>
+                    </div>
                 </div>
                 <div class="col-sm-6" [hidden]="cityHid">
                     <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
                         <option value="opt1">Seleccione una Ciudad</option>
                         <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
                     </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidCity">Seleccione una ciudad</p>
+                    </div>
                 </div>
             </div>
             <br/>
@@ -104,6 +137,9 @@
                         <option value="opt1">Seleccione un Barrio</option>
                         <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId">{{barrio.name}}</option>
                     </select>
+                    <div class="error-g row">
+                        <p></p>
+                    </div>
                 </div>
             </div>
             <br/>
@@ -113,11 +149,17 @@
                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                         <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
                     </div>
+                    <div class="error-g row">
+                        <p  [hidden]="hidStreet">Calle requerido</p>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                         <input type="text" (keypress)="keyPress($event)" class="form-control" name="number" [(ngModel)]="number" placeholder="Número">
+                    </div>
+                    <div class="error-g row">
+                        <p  [hidden]="hidNumber">Numero requerido</p>
                     </div>
                 </div>
             </div>
@@ -127,11 +169,17 @@
                         <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                         <input type="text" (keypress)="keyPress($event)" class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal">
                     </div>
+                    <div class="error-g row">
+                        <p></p>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                         <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
+                    </div>
+                    <div class="error-g row">
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -165,7 +213,7 @@
         
                                     <h5>Formas de entrega</h5>
                                     
-                                </div>                
+                                </div>             
                             </div>
         
                     </div>
