@@ -79,7 +79,7 @@
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-                <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
+                <input type="text" (keypress)="keyPress($event)" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
             </div>
             <div class="error-g row">
                 <p [hidden]="hidPrice">Ingrese precio</p>
@@ -229,7 +229,7 @@
                                     <div class="table-responsive" >
                                         <table class="table  invoice-detail-table">
         
-                                            <input type="checkbox" name="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)">Ofrecer envíos por Yingul Express <span style="color:red;" [hidden]="hidYingulExpress">Debe seleccionar este campo.</span><br>
+                                            <input type="checkbox" name="productFormDelivery" id="productFormDelivery" value="sucursal" [(ngModel)]="productFormDelivery" (click)="test($event)"><label for="productFormDelivery">Ofrecer envíos por Yingul Express</label><span style="color:red;margin-left:20px;font-size:.8em;" [hidden]="hidYingulExpress">* Debe seleccionar este campo.</span><br>
                                             <tbody [hidden]="popupEnvios">
                                                 <tr>
                                                     <td class="radio radiofill radio-inline">
@@ -244,8 +244,10 @@
                                             </tbody>
                                             <div [hidden]=popupUbicacion>
                                             <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="ubicacion()">
-                                                    <span class="m-l-10">Elige tu domicilio</span>
+                                                    <span class="m-l-10">Ingresa tu domicilio</span>
+
                                              </button>
+                                             <span style="color:red;margin-left:20px;font-size:.8em;" [hidden]="hidIngresarDomicilio">* Debe ingresar su domicilio.</span>
                                             </div>
                                             <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
                                         </table>
@@ -449,6 +451,9 @@
 
 
 </div>
+
+<!--    FORMULARIO POPUP     -->
+<div class="content_popup_g" align="center" [hidden]="popup_g">
 <div class="popup" [hidden]="popupUbication">
     <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
     <!--h5 class="text-center">Ingresa tu código postal </h5-->
@@ -488,20 +493,25 @@
         <div class="row">
             <div  class="col-sm-6" >
                 <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
-                    <option >Seleccione su país</option>
+                    <option value="0">Seleccione su país</option>
                     <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
                 </select>
+            </div>
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCountry">
+                <p>Seleccione un país</p>
             </div>
         </div>
         <br>
         <div class="row">
             <div  class="col-sm-6" *ngIf="provinceList!=null">
                 <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
-                    <option>Seleccione una provincia</option>
+                    <option value="0">Seleccione una provincia</option>
                     <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
                 </select>
             </div>
-
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
+                <p>Seleccione una provincia</p>
+            </div>
         </div>
         <br>
         <div class="row">
@@ -510,6 +520,9 @@
                         <option value="opt1">Seleccione una Ciudad</option>
                         <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
                     </select>
+            </div>
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
+                <p>Seleccione una ciudad</p>
             </div>
         </div>
         <br/>
@@ -538,6 +551,9 @@
                             <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
                         </div>
                     </div>
+                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
+                        <p>Ingrese calle</p>
+                    </div>
             </div>
             <div class="row">       
                 <div class="col-sm-6">
@@ -545,6 +561,9 @@
                         <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                         <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
                     </div>
+                </div>
+                <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
+                    <p>Ingrese número</p>
                 </div>
         </div>
             <div class="row">       
@@ -583,5 +602,6 @@
                 </div>
             </div>
 
+</div>
 </div>
 </div>

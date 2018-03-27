@@ -93,6 +93,13 @@ export class PriceComponent implements OnInit {
   hidProductSalesCondition:boolean=true;
   hidProductPaymentMethod:boolean=true;
   hidYingulExpress:boolean=true;
+  hidIngresarDomicilio:boolean=true;
+
+  hidUbicationCountry:boolean=true;
+  hidUbicationProvince:boolean=true;
+  hidUbicationCity:boolean=true;
+  hidUbicationStreet:boolean=true;
+  hidUbicationNumber:boolean=true;
 
   typePay:boolean=false;
   
@@ -231,6 +238,7 @@ export class PriceComponent implements OnInit {
     this.hidProductSalesCondition=true;
     this.hidProductPaymentMethod=true;
     this.hidYingulExpress=true;
+    this.hidIngresarDomicilio=true;
   }
 
   validarProducto(){
@@ -248,8 +256,7 @@ export class PriceComponent implements OnInit {
       this.hidYingulExpress=false;
       return false;
     }else if(this.popupUbicacion==false){
-      //this.hidYingulExpress=false;
-      alert('debe elegir su ubicacion');
+      this.hidIngresarDomicilio=false;
       return false;
     }else{
       return true;
@@ -457,12 +464,21 @@ export class PriceComponent implements OnInit {
     }
 
   }
+
+
   popupUbication:boolean=true;
   aceptar(){
-    
-   
-    if(this.street==""||this.number==""||this.aditional==""){  
-      alert("Complete todo los datos por favor");
+    this.resetHidFormUbication();
+    if(this.country.countryId==null || this.country.countryId==0){
+      this.hidUbicationCountry=false;
+    }else if(this.province.provinceId==null||this.province.provinceId==0){  
+      this.hidUbicationProvince=false;
+    }else if(this.city.cityId==null||this.city.cityId==0){  
+      this.hidUbicationCity=false;
+    }else if(this.street==null || this.street==""){  
+      this.hidUbicationStreet=false;
+    }else if(this.number==null||this.number==""){  
+      this.hidUbicationNumber=false;
     }
     else{
       this.product.yng_Item.yng_Ubication.street=this.street;
@@ -488,6 +504,7 @@ export class PriceComponent implements OnInit {
                   //this.sw=true;
                  // this.buyItem();
                  this.popupUbication=true;
+                 this.popup_g=true;
                 }
                 else{
                   alert(this.msg);
@@ -506,7 +523,17 @@ export class PriceComponent implements OnInit {
       this.popupUbication=true;
     }  
   }
+
+  resetHidFormUbication(){
+    this.hidUbicationCountry=true;
+    this.hidUbicationProvince=true;
+    this.hidUbicationCity=true;
+    this.hidUbicationStreet=true;
+    this.hidUbicationNumber=true;
+  }
+
   ubicacion(){
+    this.popup_g=false;
     this.popupUbication=false;
   }
   cambiarCP(){
