@@ -24,5 +24,6 @@ export class Item {
     dayPublication:number;
     monthPublication:number;
     yearPublication:number;
-
+    productPagoEnvio:string;
+    logisticsName:string;
 }
