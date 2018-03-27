@@ -229,7 +229,7 @@ export class ShippingComponent implements OnInit {
     this.typePrice.emit(this.priceSuc);
     this.typeShip.emit("envio");
     
-    this.shipping.yng_envio=this.andreaniEnvio;
+    //this.shipping.yng_envio=this.andreaniEnvio;
     //this.shipping.typeShipping=this.branchS.nameMail;
     this.shipping.yng_Quote.yng_Branch=this.branchS;
     this.shipping.yng_Quote
@@ -588,6 +588,8 @@ export class ShippingComponent implements OnInit {
          // this.shipping.yng_Shipment
           this.shipping.yng_Quote.yng_Item=null;
           this.shipping.yng_Quote.yng_User=null;
+          this.shipping.nameContact=this.name;
+          this.shipping.phoneContact=this.phone;
           this.typeEnvio.emit(this.shipping);
         }
       }      
