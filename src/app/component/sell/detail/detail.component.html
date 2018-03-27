@@ -431,7 +431,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">km
+                            <input type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">km
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidMotorizedKilometers">Kms. requerido</p>

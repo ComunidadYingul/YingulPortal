@@ -374,25 +374,26 @@ export class PriceComponent implements OnInit {
     }
     if(this.typeCatPre=="Motorized")
     {
-      this.motorized.yng_Item.user.phone=this.phone;
-      this.motorized.yng_Item.user.phone2=this.phone2;
-      //this.product.$emailService=this.email;
-      this.motorized.yng_Item.user.webSite=this.webSite;
-      this.motorized.yng_Item.price=this.price;
-      this.motorized.yng_Item.money=this.money;
-      this.motorized.yng_Item.yng_Ubication.street=this.street;
-      this.motorized.yng_Item.yng_Ubication.number=this.number;
-      this.motorized.yng_Item.yng_Ubication.postalCode= this.postalCode;
-      this.motorized.yng_Item.yng_Ubication.aditional=this.aditional;
-      this.motorized.yng_Item.yng_Ubication.yng_Country=this.country;
-      this.motorized.yng_Item.yng_Ubication.yng_Province=this.province;
-      this.motorized.yng_Item.yng_Ubication.yng_City=this.city;
-      this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
-      //this.product.$cobertureZone=this.cobertureZone;
-      //sise cobra publicidad por producto destacado aqui
-      //this.motorized.yng_Item.isOver=false;
-      this.priceItemS.emit(this.motorized);
-
+      if(this.validarInmueble()){
+        this.motorized.yng_Item.user.phone=this.phone;
+        this.motorized.yng_Item.user.phone2=this.phone2;
+        //this.product.$emailService=this.email;
+        this.motorized.yng_Item.user.webSite=this.webSite;
+        this.motorized.yng_Item.price=this.price;
+        this.motorized.yng_Item.money=this.money;
+        this.motorized.yng_Item.yng_Ubication.street=this.street;
+        this.motorized.yng_Item.yng_Ubication.number=this.number;
+        this.motorized.yng_Item.yng_Ubication.postalCode= this.postalCode;
+        this.motorized.yng_Item.yng_Ubication.aditional=this.aditional;
+        this.motorized.yng_Item.yng_Ubication.yng_Country=this.country;
+        this.motorized.yng_Item.yng_Ubication.yng_Province=this.province;
+        this.motorized.yng_Item.yng_Ubication.yng_City=this.city;
+        this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+        //this.product.$cobertureZone=this.cobertureZone;
+        //sise cobra publicidad por producto destacado aqui
+        //this.motorized.yng_Item.isOver=false;
+        this.priceItemS.emit(this.motorized);
+      }
     }
   }
 
