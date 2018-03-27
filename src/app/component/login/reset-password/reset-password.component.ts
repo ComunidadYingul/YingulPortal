@@ -11,6 +11,7 @@ export class ResetPasswordComponent implements OnInit {
   msg:string;
   resetPasswordId:number;
   password:string;
+  password1:string;
   resetPassword:ResetPassword=new ResetPassword();
   constructor(private loginService:LoginService,private route:ActivatedRoute,private router: Router) {
     this.resetPasswordId =route.snapshot.params['resetPasswordId'];
