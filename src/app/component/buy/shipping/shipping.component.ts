@@ -53,6 +53,27 @@ export class ShippingComponent implements OnInit {
  
   @Input('Item') Item:Item;
 
+  /****************** VARIABLES VALIDACION SERVICIOS *******************/
+  /*hidPhone:boolean=true;
+  hidPrice:boolean=true;
+  hidCountry:boolean=true;
+  hidProvince:boolean=true;
+  hidCity:boolean=true;
+  hidStreet:boolean=true;
+  hidNumber:boolean=true;*/
+  popup_g:boolean=true;
+
+  /*hidProductSalesCondition:boolean=true;
+  hidProductPaymentMethod:boolean=true;
+  hidYingulExpress:boolean=true;
+  hidIngresarDomicilio:boolean=true;*/
+
+  hidUbicationCountry:boolean=true;
+  hidUbicationProvince:boolean=true;
+  hidUbicationCity:boolean=true;
+  hidUbicationStreet:boolean=true;
+  hidUbicationNumber:boolean=true;
+
 
   //////////
   
@@ -142,6 +163,7 @@ export class ShippingComponent implements OnInit {
         }
         else {
           //this.popupEnvios=true;
+          this.popup_g=false;
           this.popupUbication=false;
           this.countryAll();
         }
@@ -651,9 +673,17 @@ export class ShippingComponent implements OnInit {
       this.btnCP=false;
     }
     aceptar(){   
-      
-      if(this.street==""||this.number==""||this.aditional==""){  
-        alert("Complete todo los datos por favor");
+      this.resetHidFormUbication();
+      if(this.country.countryId==null || this.country.countryId==0){
+        this.hidUbicationCountry=false;
+      }else if(this.province.provinceId==null||this.province.provinceId==0){  
+        this.hidUbicationProvince=false;
+      }else if(this.city.cityId==null||this.city.cityId==0){  
+        this.hidUbicationCity=false;
+      }else if(this.street==null || this.street==""){  
+        this.hidUbicationStreet=false;
+      }else if(this.number==null||this.number==""){  
+        this.hidUbicationNumber=false;
       }
       else{
         console.log("this.street:"+this.street);
@@ -678,6 +708,7 @@ export class ShippingComponent implements OnInit {
                   //this.sw=true;
                  // this.buyItem();
                  this.popupUbication=true;
+                 this.popup_g=true;
                 }
                 else{
                   alert(this.msg);
@@ -690,6 +721,15 @@ export class ShippingComponent implements OnInit {
         this.popupUbication=true;
       }  
     }
+
+    resetHidFormUbication(){
+      this.hidUbicationCountry=true;
+      this.hidUbicationProvince=true;
+      this.hidUbicationCity=true;
+      this.hidUbicationStreet=true;
+      this.hidUbicationNumber=true;
+    }
+
     getBarrio(cityId : number){
       this.city.cityId=cityId;
       console.log("cityId:"+cityId);
