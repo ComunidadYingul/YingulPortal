@@ -595,37 +595,37 @@ export class ShippingComponent implements OnInit {
     }
     sendTypeShip2(){
       if (this.branch==false){
-      if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+        if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+        else{
+          if(this.shipping.typeShipping=="branch")
+          {
+            this.typeCotizacion.emit(this.cotizacion);
+            this.typeProduct.emit(this.Product);
+            this.typePrice.emit(this.priceSuc);
+            this.typeShip.emit("envio");          
+            //this.shipping.yng_envio=this.andreaniEnvio;
+            //this.shipping.typeShipping=this.branchS.nameMail;
+            //this.shipping.yng_Quote.yng_Branch=this.branchS;
+            //this.shipping.yng_Quote
+          // this.shipping.yng_Shipment
+            this.shipping.yng_Quote.yng_Item=null;
+            this.shipping.yng_Quote.yng_User=null;
+            this.typeEnvio.emit(this.shipping);
+          }
+        }      
+      }
       else{
-        if(this.shipping.typeShipping=="branch")
-        {
-          this.typeCotizacion.emit(this.cotizacion);
-          this.typeProduct.emit(this.Product);
-          this.typePrice.emit(this.priceSuc);
-          this.typeShip.emit("envio");          
-          //this.shipping.yng_envio=this.andreaniEnvio;
-          //this.shipping.typeShipping=this.branchS.nameMail;
-          //this.shipping.yng_Quote.yng_Branch=this.branchS;
-          //this.shipping.yng_Quote
-         // this.shipping.yng_Shipment
-          this.shipping.yng_Quote.yng_Item=null;
-          this.shipping.yng_Quote.yng_User=null;
-          this.typeEnvio.emit(this.shipping);
-        }
-      }      
-    }
-    else{
-      this.typeCotizacion.emit(null);
-      this.typeProduct.emit(this.Product);
-      this.typePrice.emit(null);
-      this.typeShip.emit("envio");
-      this.typeEnvio.emit(this.shipping);
-      //this.shipping.yng_envio=this.andreaniEnvio;
-  
-    }
+        this.typeCotizacion.emit(null);
+        this.typeProduct.emit(this.Product);
+        this.typePrice.emit(null);
+        this.typeShip.emit("envio");
+        this.typeEnvio.emit(this.shipping);
+        //this.shipping.yng_envio=this.andreaniEnvio;
     
-  
-    
+      }
+
+
+      
     }
     buscarCP(){
       if(this.codigoPostalE==""){alert("Introduzca un Código Postal");}

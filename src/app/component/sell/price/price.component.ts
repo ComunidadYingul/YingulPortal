@@ -110,6 +110,7 @@ export class PriceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.product.productPagoEnvio="gratis";
     this.sellService.getCountries().subscribe(
 			res => {
         		this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
