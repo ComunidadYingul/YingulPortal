@@ -42,3 +42,17 @@ img{
     color: #ff5e3a;
     text-decoration: none;
 }
+.categorytext {
+    width:100%; 
+    height:40%; 
+    display:flex; 
+    text-align: center; 
+    align-items:flex-start; 
+    box-sizing: border-box;
+    color: #333;
+    font-size: 15px;
+    padding: 0 12px;
+    text-decoration: none;
+    width: 100%;
+    justify-content: center;
+}
