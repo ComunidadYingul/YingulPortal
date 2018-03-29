@@ -139,13 +139,16 @@
                             <div class="general-info">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <table class="table">
+                                        <table class="table contactanos">
                                             <tbody>
                                                 <tr>
                                                     <td>
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
                                                             <input type="text" name="fullName" [(ngModel)]="fullName"  class="form-control" placeholder="Nombre Compĺeto">
+                                                        </div>
+                                                        <div class="error-g row">
+                                                            <p  [hidden]="hidName">Nombre requerido</p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -154,6 +157,10 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><i class="icofont icofont-send-mail"></i></span>
                                                             <input type="text" name="email" [(ngModel)]="email" class="form-control" placeholder="Correo electrónico">
+                                                        </div>
+                                                        <div class="error-g row">
+                                                            <p  [hidden]="hidEmail">Email requerido</p>
+                                                            <p  [hidden]="hidEmailVal">Formato de email no valido</p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -181,6 +188,9 @@
                                                             <span class="input-group-addon"><i class="icofont icofont-mail"></i></span>
                                                             <input type="text" name="message" [(ngModel)]="message" class="form-control" placeholder="Escriba su mensaje">
                                                         </div>
+                                                        <div class="error-g row">
+                                                            <p  [hidden]="hidMessage">Mensaje requerido</p>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <!--<tr>
@@ -198,6 +208,9 @@
                                                             <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
                                                             <input type="text" name="direction" [(ngModel)]="direction" class="form-control" placeholder="Dirección">
                                                         </div>
+                                                        <div class="error-g row">
+                                                            <p  [hidden]="hidDirection">Dirección requerida</p>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -205,13 +218,16 @@
                                     </div>
                                     <!-- end of table col-lg-6 -->
                                     <div class="col-lg-6">
-                                        <table class="table">
+                                        <table class="table contactanos">
                                             <tbody>
                                                 <tr>
                                                     <td>
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
-                                                            <input type="text" name="phone" [(ngModel)]="phone" class="form-control" placeholder="Teléfono">
+                                                            <input type="text" name="phone" (keypress)="keyPress($event)" [(ngModel)]="phone" class="form-control" placeholder="Teléfono">
+                                                        </div>
+                                                        <div class="error-g row">
+                                                            <p  [hidden]="hidPhone">Teléfono requerido</p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -220,6 +236,9 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><i class="icofont icofont-social-twitter"></i></span>
                                                             <input type="text" name="twitterId" [(ngModel)]="twitterId" class="form-control" placeholder="Twitter Id">
+                                                        </div>
+                                                        <div class="error-g row">
+                                                            <p></p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -237,6 +256,9 @@
                                                             <span class="input-group-addon"><i class="icofont icofont-social-skype"></i></span>
                                                             <input type="email" name="skypeId" [(ngModel)]="skypeId" class="form-control" placeholder="Skype Id">
                                                         </div>
+                                                        <div class="error-g row">
+                                                            <p></p>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -244,6 +266,9 @@
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><i class="icofont icofont-earth"></i></span>
                                                             <input type="text" name="webSite" [(ngModel)]="webSite" class="form-control" placeholder="Sito Web">
+                                                        </div>
+                                                        <div class="error-g row">
+                                                            <p></p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -254,7 +279,7 @@
                                 </div>
                                 <!-- end of row -->
                                 <div class="text-center">
-                                    <a style="cursor:pointer;" (click)="sendMessage()"class="btn btn-primary waves-effect waves-light m-r-20">Enviar ahora</a>
+                                    <a style="cursor:pointer;color:#fff;" (click)="sendMessage()"class="btn btn-primary waves-effect waves-light m-r-20">Enviar ahora</a>
                                 </div>
                             </div>
                             <!-- end of edit info -->
@@ -273,3 +298,12 @@
   </div>
 </div>
 <!-- Main body end -->
+
+
+<div class="content_popup_g" align="center" [hidden]="popup_g">
+    <div class="popup_g">
+        <p class="popup-title">SOLICITUD EN PROCESO</p>
+        <img src="assets/images/spiner.gif" alt="Cargando">
+        <p class="popup-msg">Por favor espere...</p>
+    </div>
+</div>

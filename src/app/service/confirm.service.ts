@@ -24,4 +24,8 @@ export class ConfirmService {
     let url = Network.API_URL+"confirm/getConfirmToClaimForUser/"+username;
     return this.http.get(url);
   }
+  updateConfirmApi(confirm:Confirm){
+    let _url: string =Network.API_URL+"confirm/updateConfirm";
+    return this.http.post(_url, confirm,{headers: this.headers})
+  }
 }

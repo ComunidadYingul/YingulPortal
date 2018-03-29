@@ -13,6 +13,7 @@ import { Motorized } from '../../../model/Motorized';
 import { Ubication } from '../../../model/ubication';
 import { Country } from '../../../model/country';
 import { BuyService } from '../../../service/buy.service';
+import { StandarCostAndreani } from '../../../model/standar-cost-andreani';
 
 @Component({
   selector: 'app-price',
@@ -25,6 +26,7 @@ export class PriceComponent implements OnInit {
   @Output() priceItemS = new EventEmitter();
 
   @Input()  typeCatPre:any;
+  @Input('productTem') productTem:Product =new Product();
   countryList:Country[];
   provinceList: Object[];
   cityList: Object[];
@@ -37,7 +39,7 @@ export class PriceComponent implements OnInit {
   email:string="";
   webSite:string="";
   price:number;
-  money:string="";
+  money:string="ARS";
   public cobertureZone:Object[]=[];
   street:string="";
   number:string="";
@@ -46,6 +48,7 @@ export class PriceComponent implements OnInit {
   User:object;
   userName;
   ubicationId:string;
+
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -74,12 +77,45 @@ export class PriceComponent implements OnInit {
   Usertemp:user=new user();
   msg:string;
   cityTem:City =new City();
+  standardCost:StandarCostAndreani=new StandarCostAndreani();
+  listStandardCost:Object[];
+  precioEnvio:number;
+
+  /****************************VARIABLE G*****************************/
+  prodPayMethod:string="0";
+  prodFormDeliv:boolean=false;
+
+  /****************** VARIABLES VALIDACION SERVICIOS *******************/
+  hidPhone:boolean=true;
+  hidPrice:boolean=true;
+  hidCountry:boolean=true;
+  hidProvince:boolean=true;
+  hidCity:boolean=true;
+  hidStreet:boolean=true;
+  hidNumber:boolean=true;
+  popup_g:boolean=true;
+
+  hidProductSalesCondition:boolean=true;
+  hidProductPaymentMethod:boolean=true;
+  hidYingulExpress:boolean=true;
+  hidIngresarDomicilio:boolean=true;
+
+  hidUbicationCountry:boolean=true;
+  hidUbicationProvince:boolean=true;
+  hidUbicationCity:boolean=true;
+  hidUbicationStreet:boolean=true;
+  hidUbicationNumber:boolean=true;
+
+  typePay:boolean=false;
+  
+
   constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
   }
 
   ngOnInit() {
+    this.product.productPagoEnvio="gratis";
     this.sellService.getCountries().subscribe(
 			res => {
         		this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -125,6 +161,13 @@ export class PriceComponent implements OnInit {
           },
           error => console.log(error)
     );
+    this.sellService.standardCostAndreani().subscribe(
+      res => {
+          this.listStandardCost=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          console.log("this.listStandardCost:"+JSON.stringify(this.listStandardCost));
+          },
+          error => console.log(error)
+    );
     
   }
   provin:string;
@@ -140,7 +183,7 @@ export class PriceComponent implements OnInit {
 
       		},
       		error => console.log(error)
-    )
+    );
   }
   getCity(provinceId : number){
    this.province.provinceId=provinceId;
@@ -159,7 +202,7 @@ export class PriceComponent implements OnInit {
             }
       		},
       		error => console.log(error)
-    )
+    );
   }
   getBarrio(cityId : number){
     this.city.cityId=cityId;
@@ -185,7 +228,7 @@ export class PriceComponent implements OnInit {
             }
       		},
       		error => console.log(error)
-    )
+    );
   }
   setBarrio(barrioId:number){
     this.barrio.barrioId=barrioId;
@@ -203,11 +246,85 @@ export class PriceComponent implements OnInit {
     else                                return false;
   }
   
+  resetProduct(){
+    this.hidPrice=true;
+    this.hidProductSalesCondition=true;
+    this.hidProductPaymentMethod=true;
+    this.hidYingulExpress=true;
+    this.hidIngresarDomicilio=true;
+  }
+
+  validarProducto(){
+    this.resetProduct();
+    if(this.price==null || this.price==0){
+      this.hidPrice=false;
+      return false;
+    }else if(this.productSaleConditions==null || this.productSaleConditions=="0"){
+      this.hidProductSalesCondition=false;
+      return false;
+    }else if(this.prodPayMethod==null || this.prodPayMethod=="0"){
+      this.hidProductPaymentMethod=false;
+      return false;
+    }else if(this.prodFormDeliv==false){
+      this.hidYingulExpress=false;
+      return false;
+    }else if(this.popupUbicacion==false){
+      this.hidIngresarDomicilio=false;
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  validarInmueble(){
+    this.resetService();
+    if(this.phone==null || this.phone==""){
+      this.hidPhone=false;
+      return false;
+    }else if(this.typePay==true && (this.price==null || this.price==0)){
+      this.hidPrice=false;
+      return false;
+    }else if(this.country.countryId==null || this.country.countryId==0){
+      this.hidCountry=false;
+      return false;
+    }else if(this.province.provinceId==null || this.province.provinceId==0){
+      this.hidProvince=false;
+      return false;
+    }else if(this.city.cityId==null || this.city.cityId==0){
+      this.hidCity=false;
+      return false;
+    }else if(this.street==null || this.street==""){
+      this.hidStreet=false;
+      return false;
+    }else if(this.number==null || this.number==""){
+      this.hidNumber=false;
+      return false;
+    }else{
+      return true;
+    }
+  }
 
   sendPrice(){
     console.log("type price  pre: "+this.typeCatPre)
     if(this.typeCatPre=="Service"){
-    
+      this.resetService();
+      if(this.phone==null || this.phone==""){
+        this.hidPhone=false;
+      }else if(this.typePay==true && (this.price==null || this.price==0)){
+        this.hidPrice=false;
+      }else if(this.country.countryId==null || this.country.countryId==0){
+        this.hidCountry=false;
+      }else if(this.province.provinceId==null || this.province.provinceId==0){
+        this.hidProvince=false;
+      }else if(this.city.cityId==null || this.city.cityId==0){
+        this.hidCity=false;
+      }else if(this.street==null || this.street==""){
+        this.hidStreet=false;
+      }else if(this.number==null || this.number==""){
+        this.hidNumber=false;
+      }
+      else{
+        this.resetService();
         this.service.yng_Item.user.phone=this.phone;
         this.service.yng_Item.user.phone2=this.phone2;
         this.service.emailService=this.email;
@@ -226,67 +343,96 @@ export class PriceComponent implements OnInit {
         //this.service.yng_Item.isOver=false;
         this.service.cobertureZone=this.cobertureZone;
         this.priceItemS.emit(this.service);
+      }
     }
-    if(this.typeCatPre=="Product")
-    {
-      this.product.yng_Item.user.phone=this.phone;
-      this.product.yng_Item.user.phone2=this.phone2;
-      //this.product.$emailService=this.email;
-      this.product.yng_Item.user.webSite=this.webSite;
-      this.product.yng_Item.price=this.price;
-      this.product.yng_Item.money="ARS";      
-      //this.product.
-      //this.product.$cobertureZone=this.cobertureZone;
-      this.product.productPaymentMethod=this.productPaymentMethod;
-      this.product.productSaleConditions=this.productSaleConditions;
-      
-      //this.product.$productFormDelivery=
-      this.priceItemS.emit(this.product);
-
+    if(this.typeCatPre=="Product"){
+      if(this.validarProducto()){
+        this.resetProduct();
+        this.product.yng_Item.user.phone=this.phone;
+        this.product.yng_Item.user.phone2=this.phone2;
+        //this.product.$emailService=this.email;
+        this.product.yng_Item.user.webSite=this.webSite;
+        this.product.yng_Item.price=this.price;
+        this.product.yng_Item.money="ARS";      
+        //this.product.
+        //this.product.$cobertureZone=this.cobertureZone;
+        this.product.productPaymentMethod=this.productPaymentMethod;
+        this.product.productSaleConditions=this.productSaleConditions;
+        
+        //this.product.$productFormDelivery=
+        this.priceItemS.emit(this.product);
+      }
     }
     if(this.typeCatPre=="Property"){
-      this.property.yng_Item.user.phone=this.phone;
-      this.property.yng_Item.user.phone2=this.phone2;
-      //this.product.$emailService=this.email;
-      this.property.yng_Item.user.webSite=this.webSite;
-      this.property.yng_Item.price=this.price;
-      this.property.yng_Item.money=this.money;
-      this.property.yng_Item.yng_Ubication.street=this.street;
-      this.property.yng_Item.yng_Ubication.number=this.number;
-      this.property.yng_Item.yng_Ubication.postalCode= this.postalCode;
-      this.property.yng_Item.yng_Ubication.aditional=this.aditional;
-      this.property.yng_Item.yng_Ubication.yng_Country=this.country;
-      this.property.yng_Item.yng_Ubication.yng_Province=this.province;
-      this.property.yng_Item.yng_Ubication.yng_City=this.city;
-      this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
-      //this.product.$cobertureZone=this.cobertureZone;
-      //sise cobra publicidad por producto destacado aqui
-      //this.property.yng_Item.isOver=false;
-      this.priceItemS.emit(this.property);
+      if(this.validarInmueble()){
+        this.property.yng_Item.user.phone=this.phone;
+        this.property.yng_Item.user.phone2=this.phone2;
+        //this.product.$emailService=this.email;
+        this.property.yng_Item.user.webSite=this.webSite;
+        this.property.yng_Item.price=this.price;
+        this.property.yng_Item.money=this.money;
+        this.property.yng_Item.yng_Ubication.street=this.street;
+        this.property.yng_Item.yng_Ubication.number=this.number;
+        this.property.yng_Item.yng_Ubication.postalCode= this.postalCode;
+        this.property.yng_Item.yng_Ubication.aditional=this.aditional;
+        this.property.yng_Item.yng_Ubication.yng_Country=this.country;
+        this.property.yng_Item.yng_Ubication.yng_Province=this.province;
+        this.property.yng_Item.yng_Ubication.yng_City=this.city;
+        this.property.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+        //this.product.$cobertureZone=this.cobertureZone;
+        //sise cobra publicidad por producto destacado aqui
+        //this.property.yng_Item.isOver=false;
+        this.priceItemS.emit(this.property);
+      }
     }
     if(this.typeCatPre=="Motorized")
     {
-      this.motorized.yng_Item.user.phone=this.phone;
-      this.motorized.yng_Item.user.phone2=this.phone2;
-      //this.product.$emailService=this.email;
-      this.motorized.yng_Item.user.webSite=this.webSite;
-      this.motorized.yng_Item.price=this.price;
-      this.motorized.yng_Item.money=this.money;
-      this.motorized.yng_Item.yng_Ubication.street=this.street;
-      this.motorized.yng_Item.yng_Ubication.number=this.number;
-      this.motorized.yng_Item.yng_Ubication.postalCode= this.postalCode;
-      this.motorized.yng_Item.yng_Ubication.aditional=this.aditional;
-      this.motorized.yng_Item.yng_Ubication.yng_Country=this.country;
-      this.motorized.yng_Item.yng_Ubication.yng_Province=this.province;
-      this.motorized.yng_Item.yng_Ubication.yng_City=this.city;
-      this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
-      //this.product.$cobertureZone=this.cobertureZone;
-      //sise cobra publicidad por producto destacado aqui
-      //this.motorized.yng_Item.isOver=false;
-      this.priceItemS.emit(this.motorized);
+      if(this.validarInmueble()){
+        this.motorized.yng_Item.user.phone=this.phone;
+        this.motorized.yng_Item.user.phone2=this.phone2;
+        //this.product.$emailService=this.email;
+        this.motorized.yng_Item.user.webSite=this.webSite;
+        this.motorized.yng_Item.price=this.price;
+        this.motorized.yng_Item.money=this.money;
+        this.motorized.yng_Item.yng_Ubication.street=this.street;
+        this.motorized.yng_Item.yng_Ubication.number=this.number;
+        this.motorized.yng_Item.yng_Ubication.postalCode= this.postalCode;
+        this.motorized.yng_Item.yng_Ubication.aditional=this.aditional;
+        this.motorized.yng_Item.yng_Ubication.yng_Country=this.country;
+        this.motorized.yng_Item.yng_Ubication.yng_Province=this.province;
+        this.motorized.yng_Item.yng_Ubication.yng_City=this.city;
+        this.motorized.yng_Item.yng_Ubication.yng_Barrio=this.barrio;
+        //this.product.$cobertureZone=this.cobertureZone;
+        //sise cobra publicidad por producto destacado aqui
+        //this.motorized.yng_Item.isOver=false;
+        this.priceItemS.emit(this.motorized);
+      }
+    }
+  }
+
+  resetService(){
+    this.hidPhone=true;
+    this.hidCountry=true;
+    this.hidProvince=true;
+    this.hidCity=true;
+    this.hidStreet=true;
+    this.hidNumber=true;
+    this.hidPrice=true;
+  }
+
+  checkPrice(typePay:string){
+    switch (typePay) {
+      case "fijo":
+        this.typePay= true;
+        break;
+      case "convenir":
+      this.typePay= false;
+        break;
+      default:
 
     }
   }
+
   back(){
     this.Back.emit('back');
   }
@@ -363,12 +509,21 @@ export class PriceComponent implements OnInit {
     }
 
   }
+
+
   popupUbication:boolean=true;
   aceptar(){
-    
-   
-    if(this.street==""||this.number==""||this.aditional==""){  
-      alert("Complete todo los datos por favor");
+    this.resetHidFormUbication();
+    if(this.country.countryId==null || this.country.countryId==0){
+      this.hidUbicationCountry=false;
+    }else if(this.province.provinceId==null||this.province.provinceId==0){  
+      this.hidUbicationProvince=false;
+    }else if(this.city.cityId==null||this.city.cityId==0){  
+      this.hidUbicationCity=false;
+    }else if(this.street==null || this.street==""){  
+      this.hidUbicationStreet=false;
+    }else if(this.number==null||this.number==""){  
+      this.hidUbicationNumber=false;
     }
     else{
       this.product.yng_Item.yng_Ubication.street=this.street;
@@ -394,6 +549,7 @@ export class PriceComponent implements OnInit {
                   //this.sw=true;
                  // this.buyItem();
                  this.popupUbication=true;
+                 this.popup_g=true;
                 }
                 else{
                   alert(this.msg);
@@ -412,7 +568,17 @@ export class PriceComponent implements OnInit {
       this.popupUbication=true;
     }  
   }
+
+  resetHidFormUbication(){
+    this.hidUbicationCountry=true;
+    this.hidUbicationProvince=true;
+    this.hidUbicationCity=true;
+    this.hidUbicationStreet=true;
+    this.hidUbicationNumber=true;
+  }
+
   ubicacion(){
+    this.popup_g=false;
     this.popupUbication=false;
   }
   cambiarCP(){
@@ -435,14 +601,19 @@ export class PriceComponent implements OnInit {
  ubication:Ubication=new Ubication();
 
   test(event) {  
-    console.log("event:"+event.target.checked);    
+    console.log("event:"+event.target.checked); 
+    console.log("productTem:"+JSON.stringify(this.productTem));
+    this.setPriceFreeAndreani ();  
     if(event.target.checked==true){
-      this.product.productFormDelivery="YingulEnvios"      
+      this.product.productFormDelivery="YingulEnvios"
+      this.setPriceFreeAndreani();      
       this.consultarUbi();
+      this.prodFormDeliv=true;
     }
     else {
       this.popupEnvios=true;
       this.popupUbicacion=true;
+      this.prodFormDeliv=false;;
     }
   }
 
@@ -539,7 +710,7 @@ export class PriceComponent implements OnInit {
     this.productPaymentMethod="Aceptar pagos solo por Yingul";
     if(envi=="2")
     this.productPaymentMethod="Aceptar pagos por Yingul y cobro en persona";
-  
+    this.prodPayMethod=envi;
   }
 
   discountPrice(event){
@@ -593,5 +764,26 @@ export class PriceComponent implements OnInit {
     }
     console.log("ret:"+ret);
     this.postalCode=ret;
+  }
+  setPriceFreeAndreani(){
+    var volumen:number; 
+    volumen=parseInt(this.productTem.producVolumen);   
+    var pesoR:number;
+    pesoR=+this.productTem.productPeso/1000;
+    var pesoA=volumen*3.5/10000;
+    var dif=pesoR-pesoA;     
+    if(dif>0){pesoA=pesoR;}
+    pesoA=pesoA*1000; 
+    console.log(" pesoA:"+pesoA);
+    for(let p of this.listStandardCost){
+      this.standardCost=JSON.parse(JSON.stringify(p));
+      if(pesoA>=this.standardCost.weightFrom&&pesoA<=this.standardCost.weightUp) {
+        console.log("standardCost:"+this.standardCost.rateBranch);
+        this.precioEnvio=this.standardCost.rateBranch;
+      }
+      
+    }
+    
+  
   }
 }

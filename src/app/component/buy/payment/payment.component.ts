@@ -37,19 +37,31 @@ export class PaymentComponent implements OnInit {
   card:Card= new Card();
   cardUser:Card[];
   //datos recuperados del formulario
-  cardNumber:number;
+  cardNumber:string;
   fullName:string;
   cvv:number;
-  dueMonth:number;
-  dueYear:number;
+  dueMonth:string="0";
+  dueYear:string="0";
   dni:number;
-  provider:string="null";
+  provider:number=-1;
+  paymentMethod:string="null";
   focusedr:boolean;
   focusedf:boolean=true;
  // priceSuc:string;
   //fin datos recuperados del formulario
   User: user=new user();
   payment:Payment= new Payment();
+
+  /*****************************************************/
+  hidPaymentMethod:boolean=true;
+  hidProvider:boolean=true;
+  hidCardNumber:boolean=true;
+  hidFullname:boolean=true;
+  hidCvv:boolean=true;
+  hidDueMonth:boolean=true;
+  hidDueYear:boolean=true;
+  hidDni:boolean=true;
+
   constructor(private buyService: BuyService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
@@ -135,37 +147,79 @@ export class PaymentComponent implements OnInit {
         }
       }
     }
+    this.paymentMethod=listcardId;
   }
   setProvider(cardProviderId:number){
     this.debitHid=false;
     this.payment.yng_Card.type="CREDIT";
     this.payment.yng_Card.yng_CardProvider.cardProviderId=cardProviderId;
+    this.provider=cardProviderId;
   }
   /*check(a:number){   
     esto es para la s cuotas con tarjeta de credito
   }*/
   sendTypePay(){
-    //datos del fomulario para tarjetas 
-    var cadena:string = this.cardNumber.toString()
-    var CadenaSinBlancos:string="";
-    for (var x=0; x< cadena.length; x++)
-    {
-      if (cadena.charAt(x) != ' ')
+    if(this.validarTypePay()){
+      //datos del fomulario para tarjetas 
+      var cadena:string = this.cardNumber;
+      var CadenaSinBlancos:string="";
+      for (var x=0; x< cadena.length; x++)
       {
-      CadenaSinBlancos += cadena.charAt(x); 
+        if (cadena.charAt(x) != ' ')
+        {
+        CadenaSinBlancos += cadena.charAt(x); 
+        }
       }
+      this.payment.yng_Card.number=parseFloat(CadenaSinBlancos);
+      this.payment.yng_Card.fullName=this.fullName;
+      this.payment.yng_Card.securityCode=this.cvv;
+      this.payment.yng_Card.dueMonth=+this.dueMonth;
+      this.payment.yng_Card.dueYear=+this.dueYear;
+      this.payment.yng_Card.dni=this.dni;
+      //fin de datos del formulario para tarjetas
+      this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
+      this.typePay.emit(this.payment);
+      console.log(JSON.stringify(this.payment));
     }
-    this.payment.yng_Card.number=parseFloat(CadenaSinBlancos);
-    this.payment.yng_Card.fullName=this.fullName;
-    this.payment.yng_Card.securityCode=this.cvv;
-    this.payment.yng_Card.dueMonth=this.dueMonth;
-    this.payment.yng_Card.dueYear=this.dueYear;
-    this.payment.yng_Card.dni=this.dni;
-    //fin de datos del formulario para tarjetas
-    this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
-    this.typePay.emit(this.payment);
-    console.log(JSON.stringify(this.payment));
   }
+
+  validarTypePay(){
+    this.resetHidTypePay();
+    if(this.paymentMethod=="null"){
+      this.hidPaymentMethod=false;
+      return false;
+    }else if(this.providerHid==false && this.provider==-1){
+      this.hidProvider=false;
+      return false;
+    }else if(this.cardNumber==null || this.cardNumber.length<19){
+      this.hidCardNumber=false;
+    }else if(this.fullName==null || this.fullName==""){
+      this.hidFullname=false;
+    }else if(this.cvv==null || this.cvv.toString()==""){
+      this.hidCvv=false;
+    }else if(+this.dueMonth==0 || +this.dueMonth==null){
+      this.hidDueMonth=false;
+    }else if(+this.dueYear==0 || +this.dueYear==null){
+      this.hidDueYear=false;
+    }else if(this.dni==0 || this.dni==null){
+      this.hidDni=false;
+    }
+    else{
+      return true;
+    }
+  }
+
+  resetHidTypePay(){
+    this.hidPaymentMethod=true;
+    this.hidProvider=true;
+    this.hidCardNumber=true;
+    this.hidFullname=true;
+    this.hidCvv=true;
+    this.hidDueMonth=true;
+    this.hidDueYear=true;
+    this.hidDni=true;
+  }
+
   cardSelected(card:Card){
     this.payment.name="CARDPAYMENT";
     this.payment.type="CARD";
@@ -180,5 +234,26 @@ export class PaymentComponent implements OnInit {
   }
   onBlurCVV(){
     this.focusedr=false;
+  }
+
+  keyPress(event: any) {
+    const pattern = /[0-9]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  keyPressNumTarjeta(event: any) {
+    const pattern = /[0-9]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+    if(this.cardNumber.length>0 && (this.cardNumber.length==4 || this.cardNumber.length==9 || this.cardNumber.length==14)){
+      this.cardNumber+=" ";
+    }
   }
 }

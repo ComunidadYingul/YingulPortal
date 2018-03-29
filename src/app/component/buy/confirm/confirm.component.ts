@@ -35,11 +35,15 @@ export class ConfirmComponent implements OnInit {
   sw:boolean;
   popup:boolean=true;
   popup2:boolean=true;
+  popup_g:boolean=true;
   phone:string;
   User: user=new user();
   dataForBuyer:Object=new Object();
   documentType:string="DNI";
   documentNumber:string;
+
+  hidDocPhone:boolean=true;
+
   constructor(private buyService: BuyService, private router: Router) { 
   console.log("Cotizacion"+JSON.stringify(this.shipping));
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -101,9 +105,11 @@ export class ConfirmComponent implements OnInit {
     //aqui aumentas el precio del envio
     
     if(!this.sw){
+      this.popup_g=false;
       this.popup=false;
     } 
     else{
+      this.popup_g=false;
       this.popup2=false;
       this.buy.quantity=this.quantity;
       this.buy.yng_item=this.Item;
@@ -148,6 +154,7 @@ export class ConfirmComponent implements OnInit {
   }
 
   redirectTo(){
+    this.popup_g=true;
     this.popup2=true;
     if(this.msg=='problemCard'){
       this.problem.emit(this.msg);
@@ -161,24 +168,30 @@ export class ConfirmComponent implements OnInit {
     } 
   }
   updateUser(){
-    this.User.phone=this.phone;
-    this.User.documentType=this.documentType;
-    this.User.documentNumber=this.documentNumber;
-    this.buyService.updateUser(this.User).subscribe(
-      res => {
-            this.msg = JSON.parse(JSON.stringify(res))._body;
-            if(this.msg=='save'){
-              this.sw=true;
-              this.buyItem();
-            }
-            else{
-              alert(this.msg);
-            } 
-          },
-          error => console.log(error)
-    );
-
-    this.popup=true;
+    if(this.phone==null || this.phone=="" || this.documentNumber==null || this.documentNumber==""){
+      this.hidDocPhone=false;
+    }
+    else{
+      this.hidDocPhone=true;
+      this.User.phone=this.phone;
+      this.User.documentType=this.documentType;
+      this.User.documentNumber=this.documentNumber;
+      this.buyService.updateUser(this.User).subscribe(
+        res => {
+              this.msg = JSON.parse(JSON.stringify(res))._body;
+              if(this.msg=='save'){
+                this.sw=true;
+                this.buyItem();
+              }
+              else{
+                alert(this.msg);
+              } 
+            },
+            error => console.log(error)
+      );
+      this.popup_g=true;
+      this.popup=true;
+    }
   }
   getDniCuit(type : string){
     console.log("type:"+type);

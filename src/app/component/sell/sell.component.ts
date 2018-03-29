@@ -25,6 +25,7 @@ export class SellComponent implements OnInit {
   msg:string;
   aux:string;
   popup:boolean=true;
+  popup_g:boolean=true;
   User: user=new user();
   //para pedir las categorias
   public url:string = '';
@@ -47,6 +48,7 @@ export class SellComponent implements OnInit {
   public product:Product= new Product();
   public property:Property =new Property();
   public motorized:Motorized =new Motorized();
+  public productTem:Product=new Product();
 
   constructor(private sellService: SellService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -127,6 +129,7 @@ export class SellComponent implements OnInit {
   detailProductSe(ev){
     if(this.type=="Product"){
       this.itemP=ev;
+      this.productTem=JSON.parse(JSON.stringify(this.itemP));
     }
     if(this.type=="Property"){
       this.propertyObj=ev;
@@ -248,7 +251,7 @@ export class SellComponent implements OnInit {
 
       
   sendPriceCat(ev){
-    this.popup=false;
+    this.popup_g=false;
     if(this.type=="Service"){
       console.log("Service: "+this.type);
      this.priceItemSe(ev);

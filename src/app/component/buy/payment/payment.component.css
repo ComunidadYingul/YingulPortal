@@ -27,3 +27,20 @@
     left: 57%;
     color: white; 
 }
+
+
+/************** ESTILOS DEL MENSAJE DE ERROR **************/
+.input-group{
+    margin-bottom: 0;
+}
+.error-g{
+    height: 2em;
+    width: 100%;
+}
+
+.error-g p{
+    color: #f00;
+    text-align: left;
+    font-size: .9em;
+    margin-left: 20px;
+}

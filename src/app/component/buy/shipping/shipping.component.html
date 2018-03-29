@@ -29,12 +29,11 @@
                 <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
                 <div class="input-group input-group-button">
                     <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
-                    <span class="input-group-addon" id="basic-addon10"><!--value="domicilio" [(ngModel)]="shippingMethod"-->
+                    <span class="input-group-addon" id="basic-addon10">
                 <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
                 </span>
                 <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
-                </div>
-                
+                </div>                
                 <hr class="m-t-20 m-b-20">
                 <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
                         <div class="table-responsive" >
@@ -42,32 +41,9 @@
                                 <thead>
                                     <tr class="thead-default">
                                         <th>Sucursal/Costo</th>
-                                        <!--th>Costo</th-->
-                                        
-                                       
                                     </tr>
                                 </thead>
                                 <tbody [hidden]="false">
-                                    <!--tr>
-                                        <td>
-                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod" (click)="envioComprador($event)">{{sucursalAndre}}<br>
-                                        <h6 class="cho-list">{{resumen}}</h6>
-                                        <h6 class="cho-list">{{direccion}}</h6>
-                                        <h6 class="cho-list">{{horadeTrabajo}}</h6>
-                                        
-                                        </td>
-                                        <td>$ {{priceSuc}}</td>                                      
-                                        
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        <input type="radio" name="shippingMethod" value="sucursal" [(ngModel)]="shippingMethod" (click)="envioComprador($event)">{{sucursalAndre}}<br>
-                                        <h6 class="cho-list">{{resumen}}</h6>
-                                        <h6 class="cho-list">{{direccion}}</h6>
-                                        <h6 class="cho-list">{{horadeTrabajo}}</h6>                                        
-                                        </td>
-                                        <td>$ {{priceSuc}}</td>
-                                    </tr-->
                                     <div class="col-sm-12 form-radio">
                                      <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
                                             <label>
@@ -84,8 +60,7 @@
                                         </div> 
                                     </div>
                                 </tbody>                              
-                            </table>
-                       
+                            </table>                       
                         </div>
                 </div>
                 <br/>
@@ -95,35 +70,19 @@
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">
-                               
+                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
                             </div>
                         </div>
                 </div>
                 <div class="row">
                         <div class="input-group col-md-6">
-                                <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
-                                <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
-                                <span class="md-line"></span>
-                            </div>
+                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
+                            <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
+                            <span class="md-line"></span>
+                        </div>
                 </div>
                 </div>
             </div>
-
-            <br/>
-            <div [hidden]="sendHome">
-                <h4 class="sub-title">Ingresa tu código postal para ver las opciones y costos de envío</h4>
-                <div class="input-group input-group-button">
-                    <input type="text" class="form-control" placeholder="Código postal">
-                    <span class="input-group-addon" id="basic-addon10">
-                <button class="btn btn-primary">Buscar</button>
-                </span>
-                <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
-                </div>
-
-
-
-            </div> 
             <br/>
             <div class="col-sm-10">
                 <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip2()">Continuar</a>
@@ -150,10 +109,11 @@
     <!-- hasta aqui el detalle del item a vender --> 
 </div>
 
+
+<!--    FORMULARIO POPUP     -->
+<div class="content_popup_g" align="center" [hidden]="popup_g">
 <div class="popup" [hidden]="popupUbication">
     <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
-    <!--h5 class="text-center">Ingresa tu código postal </h5-->
-    
     <div [hidden]="true"> 
         <div class="col-sm-6" [hidden]="countryHidden">
                 <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
@@ -196,6 +156,9 @@
                     <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
                 </select>
             </div>
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCountry">
+                <p>Seleccione un país</p>
+            </div>
         </div>
         <br>
         <div class="row">
@@ -205,7 +168,9 @@
                     <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
                 </select>
             </div>
-
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
+                <p>Seleccione una provincia</p>
+            </div>
         </div>
         <br>
         <div class="row">
@@ -214,6 +179,9 @@
                         <option value="opt1">Seleccione una Ciudad</option>
                         <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
                     </select>
+            </div>
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
+                <p>Seleccione una ciudad</p>
             </div>
         </div>
         <br/>
@@ -249,6 +217,9 @@
                             <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
                         </div>
                     </div>
+                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
+                        <p>Ingrese calle</p>
+                    </div>
             </div>
             <div class="row">       
                 <div class="col-sm-6">
@@ -256,6 +227,9 @@
                         <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                         <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
                     </div>
+                </div>
+                <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
+                    <p>Ingrese número</p>
                 </div>
         </div>
             <div class="row">       
@@ -281,18 +255,20 @@
                             <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
                         </div>
                 </div>
-            </div>
+        </div>
     </div>
-                
-            
-            <div class="row">
-                
+
+
+        <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
                 <div class="col-sm-2">
                         <div class="text-center">
-                            <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                            <button type="button" class="btn btn-success waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
                         </div>
                 </div>
             </div>
 
+</div>
 </div>
 </div>
