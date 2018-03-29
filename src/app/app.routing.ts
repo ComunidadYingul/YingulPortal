@@ -56,7 +56,7 @@ const appRoutes: Routes = [
   	component: ForgotPasswordComponent
   },
   {
-  	path: 'resetPassword/:resetId',
+  	path: 'resetPassword/:resetPasswordId',
   	component: ResetPasswordComponent
   },
   {
@@ -196,10 +196,10 @@ const appRoutes: Routes = [
     path: 'agreement/:claimId',
     component: AgreementComponent
   },
-  /*{
+  {
     path: ':nameStore',
     component: StoreComponent
-  },*/
+  },
   {
     path: 'listPublications/:id',
     component: ListPublicationsComponent

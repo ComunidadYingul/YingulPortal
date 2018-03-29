@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import {Observable}     from 'rxjs/Observable';
 import { Network } from '../model/Network';
 import { user } from '../model/user';
+import { ResetPassword } from '../model/reset-password';
 @Injectable()
 export class LoginService {
   public headers = new Headers({
@@ -33,6 +34,15 @@ export class LoginService {
     let url = Network.API_URL+"login/sendRecoveryEmail";
     return this.http.post(url, user,{headers: this.headers})
   }
-  
+  checkAuthorization(resetPasswordId:number){
+    let url = Network.API_URL+"login/checkAuthorization/"+resetPasswordId;
+    return this.http.get(url);
+  }
+  updatePasswordUser(resetPassword:ResetPassword){
+    let url: string =Network.API_URL+"login/updatePasswordUser";
+    alert(JSON.stringify(resetPassword));
+    console.log(JSON.stringify(resetPassword));
+    return this.http.post(url, resetPassword,{headers: this.headers});
+  }
 
 }

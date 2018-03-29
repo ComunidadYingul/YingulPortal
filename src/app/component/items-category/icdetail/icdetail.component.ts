@@ -48,6 +48,7 @@ export class IcdetailComponent implements OnInit {
   popup7:boolean=true;
   popup8:boolean=true;
   popup9:boolean=true;
+  popup10:boolean=true;
   today = new Date().toJSON().split('T')[0];
   dateDesde:string;
   dateHasta:string;
@@ -55,6 +56,7 @@ export class IcdetailComponent implements OnInit {
   productList:Product[];
   motorizedList:Motorized[];
   conditionCard:boolean=false;
+  discountCard:boolean=false;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
   }
 
@@ -147,6 +149,7 @@ export class IcdetailComponent implements OnInit {
     this.popup7=true;
     this.popup8=true;
     this.popup9=true;
+    this.popup10=true;
   }
   popupCountry(){
     this.popup9=false;
@@ -159,6 +162,9 @@ export class IcdetailComponent implements OnInit {
   popupCity(){
     this.popup4=false;
     this.cityCard=true;
+  }
+  popupDiscount(){
+    this.popup10=false;
   }
   findCountry(a:number){
     this.sellService.getProvinces(a).subscribe(
@@ -328,6 +334,37 @@ export class IcdetailComponent implements OnInit {
     this.itemList=[];
     this.itemList=this.itemListTemp;
     this.conditionCard=true;
+  }
+  findDiscount(discount:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if((this.itemList[i].priceDiscount*100)/this.itemList[i].priceNormal>=discount){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    //this.discountCard=true;
+  }
+  freeShipping(logisticsName:string){
+    this.itemListTemp=[];
+    if(logisticsName=="all"){
+      for (var i = 0; i < this.itemList.length; i++) {
+        if(this.itemList[i].productPagoEnvio=="gratis"){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }else{
+      for (var i = 0; i < this.itemList.length; i++) {
+        if(this.itemList[i].productPagoEnvio=="gratis"&&this.itemList[i].logisticsName==logisticsName){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
   }
   
 }
