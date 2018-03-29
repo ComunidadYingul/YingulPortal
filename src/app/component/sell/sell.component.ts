@@ -47,6 +47,7 @@ export class SellComponent implements OnInit {
   public product:Product= new Product();
   public property:Property =new Property();
   public motorized:Motorized =new Motorized();
+  public productTem:Product=new Product();
 
   constructor(private sellService: SellService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -127,6 +128,7 @@ export class SellComponent implements OnInit {
   detailProductSe(ev){
     if(this.type=="Product"){
       this.itemP=ev;
+      this.productTem=JSON.parse(JSON.stringify(this.itemP));
     }
     if(this.type=="Property"){
       this.propertyObj=ev;

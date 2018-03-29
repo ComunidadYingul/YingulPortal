@@ -20,8 +20,8 @@ export class CategoryListComponent implements OnInit {
       {
         "breakpoint": 1900,
         "settings": {
-          "slidesToShow": 6,
-          "slidesToScroll": 6,
+          "slidesToShow": 9,
+          "slidesToScroll": 9,
           "infinite": true,
           "dots": true
         }

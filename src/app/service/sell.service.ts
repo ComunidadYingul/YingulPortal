@@ -123,4 +123,8 @@ export class SellService {
     return this.http.get(url);
     //return this.http.post(url, query,{headers: this.headers});
   }
+  standardCostAndreani(){
+    let url = Network.API_URL+"sell/standardCostAndreani";
+    return this.http.get(url);
+  }
 }

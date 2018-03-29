@@ -13,6 +13,7 @@ import { Motorized } from '../../../model/Motorized';
 import { Ubication } from '../../../model/ubication';
 import { Country } from '../../../model/country';
 import { BuyService } from '../../../service/buy.service';
+import { StandarCostAndreani } from '../../../model/standar-cost-andreani';
 
 @Component({
   selector: 'app-price',
@@ -25,6 +26,7 @@ export class PriceComponent implements OnInit {
   @Output() priceItemS = new EventEmitter();
 
   @Input()  typeCatPre:any;
+  @Input('productTem') productTem:Product =new Product();
   countryList:Country[];
   provinceList: Object[];
   cityList: Object[];
@@ -74,6 +76,9 @@ export class PriceComponent implements OnInit {
   Usertemp:user=new user();
   msg:string;
   cityTem:City =new City();
+  standardCost:StandarCostAndreani=new StandarCostAndreani();
+  listStandardCost:Object[];
+  precioEnvio:number;
   constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
@@ -122,6 +127,13 @@ export class PriceComponent implements OnInit {
         else {
           this.popPriUb=false;
         }
+          },
+          error => console.log(error)
+    );
+    this.sellService.standardCostAndreani().subscribe(
+      res => {
+          this.listStandardCost=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          console.log("this.listStandardCost:"+JSON.stringify(this.listStandardCost));
           },
           error => console.log(error)
     );
@@ -435,9 +447,12 @@ export class PriceComponent implements OnInit {
  ubication:Ubication=new Ubication();
 
   test(event) {  
-    console.log("event:"+event.target.checked);    
+    console.log("event:"+event.target.checked); 
+    console.log("productTem:"+JSON.stringify(this.productTem));
+    this.setPriceFreeAndreani ();  
     if(event.target.checked==true){
-      this.product.productFormDelivery="YingulEnvios"      
+      this.product.productFormDelivery="YingulEnvios"
+      this.setPriceFreeAndreani();      
       this.consultarUbi();
     }
     else {
@@ -593,5 +608,26 @@ export class PriceComponent implements OnInit {
     }
     console.log("ret:"+ret);
     this.postalCode=ret;
+  }
+  setPriceFreeAndreani(){
+    var volumen:number; 
+    volumen=parseInt(this.productTem.producVolumen);   
+    var pesoR:number;
+    pesoR=+this.productTem.productPeso/1000;
+    var pesoA=volumen*3.5/10000;
+    var dif=pesoR-pesoA;     
+    if(dif>0){pesoA=pesoR;}
+    pesoA=pesoA*1000; 
+    console.log(" pesoA:"+pesoA);
+    for(let p of this.listStandardCost){
+      this.standardCost=JSON.parse(JSON.stringify(p));
+      if(pesoA>=this.standardCost.weightFrom&&pesoA<=this.standardCost.weightUp) {
+        console.log("standardCost:"+this.standardCost.rateBranch);
+        this.precioEnvio=this.standardCost.rateBranch;
+      }
+      
+    }
+    
+  
   }
 }

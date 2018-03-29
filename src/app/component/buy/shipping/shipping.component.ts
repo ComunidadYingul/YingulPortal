@@ -59,7 +59,7 @@ export class ShippingComponent implements OnInit {
   public cotizar:Object; 
   public andraniCot:AndreaniCot =new AndreaniCot();
   public andreaniCotizacion:AndreaniCotizacion=new AndreaniCotizacion();
-  postalCode:string;
+  postalCode:string="";
   Cotizar:Cotizar=new Cotizar();
   cotizarTemp:AndreaniCotizacion;
     sucursalTemp:AndreaniCot;
@@ -134,14 +134,9 @@ export class ShippingComponent implements OnInit {
         if(JSON.parse(JSON.stringify(res))._body!=""){
             this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);           
            console.log("ubication:"+ JSON.stringify(this.ubication));
-           
-          //alert(this.ubication.codAndreani+" "+this.ubication.postalCode);
-           //this.product.yng_Item.yng_Ubication=this.ubication;
-            //this.popupEnvios=false;
            this.popupUbication=true;
         }
         else {
-          //this.popupEnvios=true;
           this.popupUbication=false;
           this.countryAll();
         }
@@ -175,85 +170,6 @@ export class ShippingComponent implements OnInit {
     }
   }
   cotizacion:Cotizacion = new Cotizacion();
-  sendTypeShip(){
-    console.log("alert");
-    if (this.branch==false){
-    if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
-    else{
-    if(this.shipping.typeShipping=="branch")
-    {
-
-      //alert("debe selecionar un metodo");
-   
-      this.sendCotizacion();
-      
-
-    
-
-
-    this.andreaniEnvio.provincia=""+this.Item.yng_Ubication.yng_Province.name;
-    this.andreaniEnvio.localidad=""+this.Item.yng_Ubication.yng_City.name;
-    this.andreaniEnvio.codigoPostalDestino=this.postalCode;
-    this.andreaniEnvio.calle=this.Item.yng_Ubication.street;
-    this.andreaniEnvio.numero=this.Item.yng_Ubication.number;
-    this.andreaniEnvio.sucursalRetiro=this.cotizacion.sucursal;
-    this.andreaniEnvio.sucursalCliente="";
-    this.andreaniEnvio.nombreApellido="";
-    this.andreaniEnvio.nombreApellidoAlternativo=""+this.name;
-    this.andreaniEnvio.tipoDocumento="DNI";
-    this.andreaniEnvio.numeroDocumento="";
-    this.andreaniEnvio.email=this.Item.user.email;
-    this.andreaniEnvio.numeroCelular="";
-    this.andreaniEnvio.numeroTelefono=""+this.phone;
-
-    this.andreaniEnvio.numeroTransaccion="";
-    this.andreaniEnvio.tarifa=this.andreaniCotizacionRespuesta.tarifa;
-    this.andreaniEnvio.valorACobrar="";
-    this.andreaniEnvio.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia
-    this.andreaniEnvio.categoriaFacturacion="1"
-    this.andreaniEnvio.categoriaPeso=this.andreaniCotizacionRespuesta.categoriaPeso;
-    this.andreaniEnvio.detalleProductosEntrega="";
-    this.andreaniEnvio.detalleProductosRetiro="";
-    this.andreaniEnvio.volumen=this.Product.producVolumen;
-    this.andreaniEnvio.valorDeclarado=""+this.Item.price;
-    this.andreaniEnvio.peso=this.Product.productPeso;
-
-
-
-    console.log("andreaniEnvio:"+JSON.stringify(this.andreaniEnvio));
-    
-    
-    
-    this.typeCotizacion.emit(this.cotizacion);
-    this.typeProduct.emit(this.Product);
-    this.typePrice.emit(this.priceSuc);
-    this.typeShip.emit("envio");
-    
-    //this.shipping.yng_envio=this.andreaniEnvio;
-    //this.shipping.typeShipping=this.branchS.nameMail;
-    this.shipping.yng_Quote.yng_Branch=this.branchS;
-    this.shipping.yng_Quote
-    this.shipping.yng_Shipment
-    this.typeEnvio.emit(this.shipping);
-    }
-  }
-    
-  }
-  else{
-    this.typeCotizacion.emit(null);
-    this.typeProduct.emit(this.Product);
-    this.typePrice.emit(null);
-    this.typeShip.emit("envio");
-    this.typeEnvio.emit(this.shipping);
-    //this.shipping.yng_envio=this.andreaniEnvio;
-
-  }
-  
-
-  
-  }
-
-
   buscar(){
 
     }
@@ -261,28 +177,7 @@ export class ShippingComponent implements OnInit {
     calcularCosto(){
       this.popup=false;
     }
-    //buscarCP:string="";
-    //postalCode:string;
- 
 
-
-    buscarSucursales(){
-      this.popupSucursal=true;
-      this.andreaniSucursalRespuesta=null;
-      this.andreaniCotizacionRespuesta=null;
-
-      
-            if(this.postalCode!=""){
-              this.getItem("Producto",this.Item.itemId); 
-            }
-            else {
-              var codigoPostalSel="";
-              
-              if(this.postalCode=="")codigoPostalSel=codigoPostalSel+"\n -Un Código postal";
-              alert("Para realizar una cotización debe agregar:"+codigoPostalSel);
-        
-            }
-    }
 
     sucursalLLenar(){
       console.log("this.postalCode:"+this.postalCode);

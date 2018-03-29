@@ -74,7 +74,7 @@
                                             <app-type-item (typeItemS)="typeItemSe($event)" [hidden]="hidType" ></app-type-item>
                                             <app-list-category (categoryItemS)="categoryItemSe($event)" [hidden]="hidCat" [url]="url"></app-list-category>
                                             <app-detail (detailProduct)="detailProductSe($event)"  [typeCat]="type" (detailItemS)="detailItemSe($event)" (Back)="backE($event)" [hidden]="hidDet" [category]="category"></app-detail>
-                                            <app-price [typeCatPre]="type"
+                                            <app-price [typeCatPre]="type" [productTem]="productTem" 
                                                         (priceItemS)="sendPriceCat($event)" (Back)="backP($event)" [hidden]="hidPri"></app-price>
                                             <app-type [hidden]="hidTyp"></app-type>
                                         </div>
