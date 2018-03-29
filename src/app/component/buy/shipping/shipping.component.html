@@ -30,9 +30,9 @@
                 <div class="input-group input-group-button">
                     <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
                     <span class="input-group-addon" id="basic-addon10">
-                        <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
-                    </span>
-                    <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+                <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
+                </span>
+                <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
                 </div>                
                 <hr class="m-t-20 m-b-20">
                 <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
@@ -47,7 +47,7 @@
                                     <div class="col-sm-12 form-radio">
                                      <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
                                             <label>
-                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" >
+                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
                                                 <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
@@ -65,22 +65,22 @@
                 </div>
                 <br/>
                 <div [hidden]="popupSucursal">
-                    <h6>¿Quien retira el paquete?</h6><br/>
-                    <div class="row">
+                <h6>¿Quien retira el paquete?</h6><br/>
+                <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                                
+                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+                </div>
+                <div class="row">
                         <div class="input-group col-md-6">
                             <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
                             <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
                             <span class="md-line"></span>
                         </div>
-                    </div>
+                </div>
                 </div>
             </div>
             <br/>
@@ -114,20 +114,6 @@
 <div class="content_popup_g" align="center" [hidden]="popup_g">
 <div class="popup" [hidden]="popupUbication">
     <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
-<<<<<<< HEAD
-    <div [hidden]="false">
-        <div  [hidden]="false">        
-                <h4 class="sub-title">{{provinciaCP}}</h4>
-                <!--nueva ubicacion -->
-                <h5>Tu ubicacion</h5>
-            <div class="row">
-                <div  class="col-sm-6" >
-                    <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
-                        <option >Seleccione su país</option>
-                        <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
-=======
-    <!--h5 class="text-center">Ingresa tu código postal </h5-->
-    
     <div [hidden]="true"> 
         <div class="col-sm-6" [hidden]="countryHidden">
                 <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
@@ -192,21 +178,8 @@
                     <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
                         <option value="opt1">Seleccione una Ciudad</option>
                         <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
->>>>>>> origin/master
                     </select>
-                </div>
             </div>
-<<<<<<< HEAD
-            <br>
-            <div class="row">
-                <div  class="col-sm-6" *ngIf="provinceList!=null">
-                    <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
-                        <option>Seleccione una provincia</option>
-                        <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
-                    </select>
-                </div>
-
-=======
             <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
                 <p>Seleccione una ciudad</p>
             </div>
@@ -219,96 +192,83 @@
                     <option value="opt1">Seleccione un Barrio</option>
                     <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
                 </select>
->>>>>>> origin/master
             </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6" [hidden]="cityHid">
-                        <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
-                            <option value="opt1">Seleccione una Ciudad</option>
-                            <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
-                        </select>
+        </div>
+        <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                        <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                    </div>
                 </div>
+        </div>
+            <!---->
+            <div class="col-sm-6" [hidden]="true">
+                    <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
+                        <option value="opt1">Seleccione una Ciudad</option>
+                        <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
+                    </select>
             </div>
             <br/>
             <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                            <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                            <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
                         </div>
                     </div>
                     <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
                         <p>Ingrese calle</p>
                     </div>
             </div>
-                <br/>
-                <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
-                            </div>
-                        </div>
+            <div class="row">       
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                        <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                    </div>
                 </div>
-<<<<<<< HEAD
-                <div class="row">       
-=======
                 <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
                     <p>Ingrese número</p>
                 </div>
         </div>
             <div class="row">       
->>>>>>> origin/master
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                            <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                            <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
                         </div>
                     </div>
-            </div>
-                <div class="row">       
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
-                            </div>
-                        </div>
-                </div>  
-                <div class="row">       
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                            <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
-                        </div>
-                    </div>
-                </div> 
-                <div class="row">
-                    <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
-                            </div>
+            </div>  
+            <div class="row">       
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                        <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
                     </div>
                 </div>
-<<<<<<< HEAD
-        </div>
-            <div class="row">                    
-=======
-            </div>
-    </div>
-                
-            
+            </div> 
             <div class="row">
+                <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                            <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
+                        </div>
+                </div>
+        </div>
+    </div>
+
+
+        <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2"></div>
->>>>>>> origin/master
                 <div class="col-sm-2">
                         <div class="text-center">
                             <button type="button" class="btn btn-success waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
                         </div>
                 </div>
             </div>
-    </div>
+
+</div>
 </div>
 </div>

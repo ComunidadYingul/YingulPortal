@@ -158,11 +158,8 @@ export class ShippingComponent implements OnInit {
            this.popupUbication=true;
         }
         else {
-<<<<<<< HEAD
-=======
           //this.popupEnvios=true;
           this.popup_g=false;
->>>>>>> origin/master
           this.popupUbication=false;
           //activar para postalcode por default
           //this.postalCode=this.ubication.postalCode;
@@ -471,45 +468,12 @@ export class ShippingComponent implements OnInit {
         }      
       }
       else{
-<<<<<<< HEAD
-        if(this.shipping.typeShipping=="branch")
-        {
-          this.typeCotizacion.emit(this.cotizacion);
-          this.typeProduct.emit(this.Product);
-          this.typePrice.emit(this.priceSuc);
-          this.typeShip.emit("envio");          
-          //this.shipping.yng_envio=this.andreaniEnvio;
-          //this.shipping.typeShipping=this.branchS.nameMail;
-          //this.shipping.yng_Quote.yng_Branch=this.branchS;
-          //this.shipping.yng_Quote
-         // this.shipping.yng_Shipment
-          this.shipping.yng_Quote.yng_Item=null;
-          this.shipping.yng_Quote.yng_User=null;
-          this.shipping.nameContact=this.name;
-          this.shipping.phoneContact=this.phone;
-          this.typeEnvio.emit(this.shipping);
-        }
-      }      
-    }
-    else{
-      this.typeCotizacion.emit(null);
-      this.typeProduct.emit(this.Product);
-      this.typePrice.emit(null);
-      this.typeShip.emit("envio");
-      this.typeEnvio.emit(this.shipping);
-      //this.shipping.yng_envio=this.andreaniEnvio;
-  
-    }
-    
-  
-=======
         this.typeCotizacion.emit(null);
         this.typeProduct.emit(this.Product);
         this.typePrice.emit(null);
         this.typeShip.emit("envio");
         this.typeEnvio.emit(this.shipping);
         //this.shipping.yng_envio=this.andreaniEnvio;
->>>>>>> origin/master
     
       }
 

@@ -77,11 +77,9 @@ export class PriceComponent implements OnInit {
   Usertemp:user=new user();
   msg:string;
   cityTem:City =new City();
-<<<<<<< HEAD
   standardCost:StandarCostAndreani=new StandarCostAndreani();
   listStandardCost:Object[];
   precioEnvio:number;
-=======
 
   /****************************VARIABLE G*****************************/
   prodPayMethod:string="0";
@@ -111,7 +109,6 @@ export class PriceComponent implements OnInit {
   typePay:boolean=false;
   
 
->>>>>>> origin/master
   constructor(private buyService: BuyService,private sellService: SellService) { 
     this.cityHid=true;
     this.barrioHid=true;
