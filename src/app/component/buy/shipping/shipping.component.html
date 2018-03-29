@@ -109,8 +109,12 @@
     <!-- hasta aqui el detalle del item a vender --> 
 </div>
 
+
+<!--    FORMULARIO POPUP     -->
+<div class="content_popup_g" align="center" [hidden]="popup_g">
 <div class="popup" [hidden]="popupUbication">
     <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
+<<<<<<< HEAD
     <div [hidden]="false">
         <div  [hidden]="false">        
                 <h4 class="sub-title">{{provinciaCP}}</h4>
@@ -121,9 +125,78 @@
                     <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
                         <option >Seleccione su país</option>
                         <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+=======
+    <!--h5 class="text-center">Ingresa tu código postal </h5-->
+    
+    <div [hidden]="true"> 
+        <div class="col-sm-6" [hidden]="countryHidden">
+                <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
+                    <option value="opt1" disabled>Seleccione un País</option>
+                    <option *ngFor="let country of countryList" [value]="country.countryId" [disabled]="country.countryId!=2">{{country.name}}</option>
+                </select>
+        </div>
+        <h4 class="sub-title" [hidden]="!countryHidden">{{countryName}}</h4>
+        <br/>
+    </div>
+<div [hidden]="false">
+
+    <div [hidden]="true" class="input-group input-group-button">
+        <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
+        <span class="input-group-addon" id="basic-addon10">
+            <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
+        </span>
+    <a hidden="true" href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+    </div>
+
+
+    <div  [hidden]="false">
+        
+            <div class="row" hidden=true>        
+                <div  class="input-group input-group-button">            
+                    <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
+                    <span class="input-group-addon" id="basic-addon10">
+                            <button  class="btn btn-primary"  (click)="cambiarCP()">Codigo postal Cambiar</button>
+                    </span>
+                </div>                
+            </div>
+
+            <h4 class="sub-title">{{provinciaCP}}</h4>
+            <!--nueva ubicacion -->
+            <h5>Tu ubicacion</h5>
+        <div class="row">
+            <div  class="col-sm-6" >
+                <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
+                    <option >Seleccione su país</option>
+                    <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+                </select>
+            </div>
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCountry">
+                <p>Seleccione un país</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div  class="col-sm-6" *ngIf="provinceList!=null">
+                <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                    <option>Seleccione una provincia</option>
+                    <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
+                </select>
+            </div>
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
+                <p>Seleccione una provincia</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6" [hidden]="cityHid">
+                    <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
+                        <option value="opt1">Seleccione una Ciudad</option>
+                        <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
+>>>>>>> origin/master
                     </select>
                 </div>
             </div>
+<<<<<<< HEAD
             <br>
             <div class="row">
                 <div  class="col-sm-6" *ngIf="provinceList!=null">
@@ -133,6 +206,20 @@
                     </select>
                 </div>
 
+=======
+            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
+                <p>Seleccione una ciudad</p>
+            </div>
+        </div>
+        <br/>
+        
+        <div class="row"> 
+            <div class="col-sm-6" [hidden]="true">
+                <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
+                    <option value="opt1">Seleccione un Barrio</option>
+                    <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
+                </select>
+>>>>>>> origin/master
             </div>
             <br>
             <div class="row">
@@ -151,6 +238,9 @@
                             <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
                         </div>
                     </div>
+                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
+                        <p>Ingrese calle</p>
+                    </div>
             </div>
                 <br/>
                 <div class="row">
@@ -161,7 +251,15 @@
                             </div>
                         </div>
                 </div>
+<<<<<<< HEAD
                 <div class="row">       
+=======
+                <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
+                    <p>Ingrese número</p>
+                </div>
+        </div>
+            <div class="row">       
+>>>>>>> origin/master
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
@@ -193,13 +291,24 @@
                             </div>
                     </div>
                 </div>
+<<<<<<< HEAD
         </div>
             <div class="row">                    
+=======
+            </div>
+    </div>
+                
+            
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2"></div>
+>>>>>>> origin/master
                 <div class="col-sm-2">
                         <div class="text-center">
-                            <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                            <button type="button" class="btn btn-success waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
                         </div>
                 </div>
             </div>
     </div>
+</div>
 </div>

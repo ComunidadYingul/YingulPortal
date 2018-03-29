@@ -53,6 +53,27 @@ export class ShippingComponent implements OnInit {
  
   @Input('Item') Item:Item;
 
+  /****************** VARIABLES VALIDACION SERVICIOS *******************/
+  /*hidPhone:boolean=true;
+  hidPrice:boolean=true;
+  hidCountry:boolean=true;
+  hidProvince:boolean=true;
+  hidCity:boolean=true;
+  hidStreet:boolean=true;
+  hidNumber:boolean=true;*/
+  popup_g:boolean=true;
+
+  /*hidProductSalesCondition:boolean=true;
+  hidProductPaymentMethod:boolean=true;
+  hidYingulExpress:boolean=true;
+  hidIngresarDomicilio:boolean=true;*/
+
+  hidUbicationCountry:boolean=true;
+  hidUbicationProvince:boolean=true;
+  hidUbicationCity:boolean=true;
+  hidUbicationStreet:boolean=true;
+  hidUbicationNumber:boolean=true;
+
 
   //////////
   
@@ -137,6 +158,11 @@ export class ShippingComponent implements OnInit {
            this.popupUbication=true;
         }
         else {
+<<<<<<< HEAD
+=======
+          //this.popupEnvios=true;
+          this.popup_g=false;
+>>>>>>> origin/master
           this.popupUbication=false;
           //activar para postalcode por default
           //this.postalCode=this.ubication.postalCode;
@@ -425,8 +451,27 @@ export class ShippingComponent implements OnInit {
     }
     sendTypeShip2(){
       if (this.branch==false){
-      if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+        if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+        else{
+          if(this.shipping.typeShipping=="branch")
+          {
+            this.typeCotizacion.emit(this.cotizacion);
+            this.typeProduct.emit(this.Product);
+            this.typePrice.emit(this.priceSuc);
+            this.typeShip.emit("envio");          
+            //this.shipping.yng_envio=this.andreaniEnvio;
+            //this.shipping.typeShipping=this.branchS.nameMail;
+            //this.shipping.yng_Quote.yng_Branch=this.branchS;
+            //this.shipping.yng_Quote
+          // this.shipping.yng_Shipment
+            this.shipping.yng_Quote.yng_Item=null;
+            this.shipping.yng_Quote.yng_User=null;
+            this.typeEnvio.emit(this.shipping);
+          }
+        }      
+      }
       else{
+<<<<<<< HEAD
         if(this.shipping.typeShipping=="branch")
         {
           this.typeCotizacion.emit(this.cotizacion);
@@ -457,7 +502,19 @@ export class ShippingComponent implements OnInit {
     }
     
   
+=======
+        this.typeCotizacion.emit(null);
+        this.typeProduct.emit(this.Product);
+        this.typePrice.emit(null);
+        this.typeShip.emit("envio");
+        this.typeEnvio.emit(this.shipping);
+        //this.shipping.yng_envio=this.andreaniEnvio;
+>>>>>>> origin/master
     
+      }
+
+
+      
     }
     buscarCP(){
       if(this.codigoPostalE==""){alert("Introduzca un Código Postal");}
@@ -505,9 +562,17 @@ export class ShippingComponent implements OnInit {
       this.btnCP=false;
     }
     aceptar(){   
-      
-      if(this.street==""||this.number==""||this.aditional==""){  
-        alert("Complete todo los datos por favor");
+      this.resetHidFormUbication();
+      if(this.country.countryId==null || this.country.countryId==0){
+        this.hidUbicationCountry=false;
+      }else if(this.province.provinceId==null||this.province.provinceId==0){  
+        this.hidUbicationProvince=false;
+      }else if(this.city.cityId==null||this.city.cityId==0){  
+        this.hidUbicationCity=false;
+      }else if(this.street==null || this.street==""){  
+        this.hidUbicationStreet=false;
+      }else if(this.number==null||this.number==""){  
+        this.hidUbicationNumber=false;
       }
       else{
         console.log("this.street:"+this.street);
@@ -532,6 +597,7 @@ export class ShippingComponent implements OnInit {
                   //this.sw=true;
                  // this.buyItem();
                  this.popupUbication=true;
+                 this.popup_g=true;
                 }
                 else{
                   alert(this.msg);
@@ -544,6 +610,15 @@ export class ShippingComponent implements OnInit {
         this.popupUbication=true;
       }  
     }
+
+    resetHidFormUbication(){
+      this.hidUbicationCountry=true;
+      this.hidUbicationProvince=true;
+      this.hidUbicationCity=true;
+      this.hidUbicationStreet=true;
+      this.hidUbicationNumber=true;
+    }
+
     getBarrio(cityId : number){
       this.city.cityId=cityId;
       console.log("cityId:"+cityId);
