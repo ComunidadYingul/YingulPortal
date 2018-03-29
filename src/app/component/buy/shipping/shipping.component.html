@@ -47,7 +47,7 @@
                                     <div class="col-sm-12 form-radio">
                                      <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
                                             <label>
-                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
+                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" >
                                                 <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     

@@ -138,6 +138,8 @@ export class ShippingComponent implements OnInit {
         }
         else {
           this.popupUbication=false;
+          //activar para postalcode por default
+          //this.postalCode=this.ubication.postalCode;
           this.countryAll();
         }
           },
@@ -176,18 +178,6 @@ export class ShippingComponent implements OnInit {
     popup:boolean=true;
     calcularCosto(){
       this.popup=false;
-    }
-
-
-    sucursalLLenar(){
-      console.log("this.postalCode:"+this.postalCode);
-          
-          this.andraniCot.username="";
-          this.andraniCot.password="";
-          this.andraniCot.codigoPostal=this.postalCode;
-          this.andraniCot.provincia="";
-          this.andraniCot.localidad="";
-          this.sendSucursal(this.andraniCot);
     }
     cotizarLLenar(){
 
@@ -333,18 +323,12 @@ export class ShippingComponent implements OnInit {
               switch (itemType) {
                 case "Producto":
                   this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                 // this.camSW=true;
-              
-                break;
-
-
-                default:
+                  break;
+                  default:
                   alert("error");
-                 
-
-              }
+                }
               if(this.Product.productPeso!=""){
-                this.sucursalLLenar();
+               // this.sucursalLLenar();
               }
             },
             error => console.log(error)
@@ -365,16 +349,7 @@ export class ShippingComponent implements OnInit {
       console.log("this.Product.productPagoEnvio:"+this.Product.productPagoEnvio);
       if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
       else  this.priceSuc=this.priceSuc2+"  Costo del envio";
-      /*this.cotizacion.categoriaDistancia=this.andreaniCotizacionRespuesta.categoriaDistancia
-      this.cotizacion.categoriaDistanciaId=this.andreaniCotizacionRespuesta.categoriaDistanciaId;
-      this.cotizacion.categoriaPeso=this.andreaniCotizacionRespuesta.categoriaPeso;
-      this.cotizacion.categoriaPesoId=this.andreaniCotizacionRespuesta.categoriaPesoId;
-      this.cotizacion.pesoAforado=this.andreaniCotizacionRespuesta.pesoAforado;
-      this.cotizacion.tarifa=this.andreaniCotizacionRespuesta.tarifa;*/
       this.popupSucursal=false;
-      //alert(this.andreaniCotizacionRespuesta.tarifa);
-
-
     }
     priceHiddem:boolean=true;
     envioComprador(event,yng_Quote:Quote){
@@ -404,10 +379,17 @@ export class ShippingComponent implements OnInit {
             console.log("JSON qoute responce:"+JSON.stringify(this.quoteList));
 
             if(this.quoteList.length>0){
-              this.popupCotizar=false;
-              //getItemS();
-              this.mostrarCotizacion();
-              //this.mostrarSucursal();
+              console.log("yng_Branch:"+JSON.parse(JSON.stringify(this.quoteList[0])).yng_Branch);
+              console.log("respuesta"+JSON.parse(JSON.stringify(this.quoteList[0])).respuesta);
+              var branchRes=JSON.parse(JSON.stringify(this.quoteList[0])).yng_Branch;
+              if (branchRes!=null){
+                this.popupCotizar=false;
+                this.mostrarCotizacion();
+              }
+              else{
+                this.quoteList=null;
+                alert("No existe una sucursal cercana");
+              }
             }
             else {
               this.popupCotizar=true; 
@@ -420,19 +402,17 @@ export class ShippingComponent implements OnInit {
     quoteSend(){
       if(this.postalCode!=""){
         this.popupSucursal=true;
-        this.getItem("Producto",this.Item.itemId); 
-         //this.quoteS.rate=0;
-      this.quoteS.respuesta="";
-      this.userTemp=this.Item.user;     
-      this.Item.user=null;
-      this.userTemp2.username=this.userTemp.username;
-      //
-      this.Item.user=this.userTemp2;
-      this.quoteS.yng_Item=this.Item;    
-      ///this.quoteS.yng_Item.user=null;
-      this.useri=JSON.parse(localStorage.getItem("user"));
-      this.quoteS.yng_User=this.useri;      
-      this.sendQuote(this.quoteS);
+        this.getItem("Producto",this.Item.itemId);
+        this.quoteS.respuesta="";
+        this.userTemp=this.Item.user;     
+        this.Item.user=null;
+        this.userTemp2.username=this.userTemp.username;
+        this.Item.user=this.userTemp2;
+        this.quoteS.yng_Item=this.Item;
+        this.useri=JSON.parse(localStorage.getItem("user"));
+        this.useri.yng_Ubication.postalCode=this.postalCode;
+        this.quoteS.yng_User=this.useri;      
+        this.sendQuote(this.quoteS);
       }
       else {
         var codigoPostalSel="";
@@ -442,29 +422,6 @@ export class ShippingComponent implements OnInit {
   
       }
      
-    }
-    getItemS(itemType:string, itemId: number){
-      this.itemDetailService.getItem(itemType,itemId).subscribe(
-        res => {
-              switch (itemType) {
-                case "Producto":
-                  this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                 // this.camSW=true;
-              
-                break;
-
-
-                default:
-                  alert("error");
-                 
-
-              }
-              if(this.Product.productPeso!=""){
-                this.sucursalLLenar();
-              }
-            },
-            error => console.log(error)
-      )
     }
     sendTypeShip2(){
       if (this.branch==false){
