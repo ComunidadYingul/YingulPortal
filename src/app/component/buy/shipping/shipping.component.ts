@@ -74,6 +74,11 @@ export class ShippingComponent implements OnInit {
   hidUbicationStreet:boolean=true;
   hidUbicationNumber:boolean=true;
 
+  hidBuscarSucursal:boolean=true;
+  hidSucursal:boolean=true;
+  hidName:boolean=true;
+  hidPhone:boolean=true;
+
 
   //////////
   
@@ -423,6 +428,7 @@ export class ShippingComponent implements OnInit {
       ); 
     }
     quoteSend(){
+      this.hidBuscarSucursal=true;
       if(this.postalCode!=""){
         this.popupSucursal=true;
         this.getItem("Producto",this.Item.itemId);
@@ -441,14 +447,31 @@ export class ShippingComponent implements OnInit {
         var codigoPostalSel="";
         
         if(this.postalCode=="")codigoPostalSel=codigoPostalSel+"\n -Un Código postal";
-        alert("Para realizar una cotización debe agregar:"+codigoPostalSel);
-  
+        //alert("Para realizar una cotización debe agregar:"+codigoPostalSel);
+        this.hidBuscarSucursal=false;
       }
      
     }
+
+    resetSucursal(){
+      this.hidSucursal=true;
+      this.hidName=true;
+      this.hidPhone=true;
+      this.hidBuscarSucursal=true;
+    }
+
     sendTypeShip2(){
+      this.resetSucursal();
       if (this.branch==false){
-        if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+        if(this.popupSucursal==true){
+          this.hidBuscarSucursal=false;
+        }else if(this.camSW==false){
+          this.hidSucursal=false;
+        }else if(this.name=="" || this.name==null){
+          this.hidName=false;
+        }else if(this.phone=="" || this.phone==null){
+          this.hidPhone=false;
+        }
         else{
           if(this.shipping.typeShipping=="branch")
           {
