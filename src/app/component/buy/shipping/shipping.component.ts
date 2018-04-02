@@ -61,6 +61,7 @@ export class ShippingComponent implements OnInit {
   hidCity:boolean=true;
   hidStreet:boolean=true;
   hidNumber:boolean=true;*/
+  radioSucursal:boolean=false;
   popup_g:boolean=true;
 
   /*hidProductSalesCondition:boolean=true;
@@ -78,6 +79,8 @@ export class ShippingComponent implements OnInit {
   hidSucursal:boolean=true;
   hidName:boolean=true;
   hidPhone:boolean=true;
+
+  hidRadioSucursal:boolean=true;
 
 
   //////////
@@ -173,10 +176,13 @@ export class ShippingComponent implements OnInit {
           },
           error => console.log(error)
     );
-    
+    if(this.Item.productPagoEnvio=="gratis"){
+
+    }
   }
 
   check(typebuy:string){
+    this.resetSucursal();
     switch (typebuy) {
       case "branch":
         this.branch= false;
@@ -458,6 +464,7 @@ export class ShippingComponent implements OnInit {
       this.hidName=true;
       this.hidPhone=true;
       this.hidBuscarSucursal=true;
+      this.hidRadioSucursal=true;
     }
 
     sendTypeShip2(){
@@ -491,13 +498,16 @@ export class ShippingComponent implements OnInit {
         }      
       }
       else{
-        this.typeCotizacion.emit(null);
-        this.typeProduct.emit(this.Product);
-        this.typePrice.emit(null);
-        this.typeShip.emit("envio");
-        this.typeEnvio.emit(this.shipping);
-        //this.shipping.yng_envio=this.andreaniEnvio;
-    
+        if(this.Item.productPagoEnvio=="gratis"){
+          this.hidRadioSucursal=false;
+        }else{
+          this.typeCotizacion.emit(null);
+          this.typeProduct.emit(this.Product);
+          this.typePrice.emit(null);
+          this.typeShip.emit("envio");
+          this.typeEnvio.emit(this.shipping);
+          //this.shipping.yng_envio=this.andreaniEnvio;
+        }
       }
 
 

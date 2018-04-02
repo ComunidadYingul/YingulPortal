@@ -6,7 +6,7 @@
     <div class="col-sm-8">
         <form class="md-float-material card-block">
 
-            <div class="form-radio">
+            <div class="form-radio" *ngIf="Item.productPagoEnvio!='gratis'" >
                 <div class="radio radiofill radio-inline">
                     <label>
                         <input type="radio" name="radio" checked="checked" (change)="check('home')">
@@ -19,9 +19,12 @@
             <div class="form-radio">
                 <div class="radio radiofill radio-inline">
                     <label>
-                        <input type="radio" name="radio" #radio (change)="check('branch')">
+                        <input type="radio" value="false" name="radio" #radio (change)="check('branch')" [(ngModel)]="radioSucursal">
                         <i class="helper"></i>Retiro en una sucursal
                     </label>
+                    <div class="error-g row">
+                        <p  [hidden]="hidRadioSucursal">* Marcar campo</p>
+                    </div>
                 </div>
             </div>
             <br/>
