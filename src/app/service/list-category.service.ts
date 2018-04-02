@@ -7,7 +7,11 @@ export class ListCategoryService {
 
   getCategories(url1:string) {
     let url = Network.API_URL+"category/"+url1;
-    return this.http.get(url);
+    let headers = new Headers(
+      {
+        'X-API-KEY': Network.API_KEY
+      });
+    return this.http.get(url,{headers: headers});
   }
   getSubCategories(url1:string){
     let url = Network.API_URL+"category/father/"+url1;
