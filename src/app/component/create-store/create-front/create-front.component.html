@@ -12,26 +12,38 @@
                     <div class="col-sm-6">
                         <input type="text"  (keypress)="keyPressCP($event)" class="form-control form-control-primary" placeholder="Nombre de tu tienda" name="name" [(ngModel)]="name">
                     </div>
+                    <div class="error-g row">
+                        <p  [hidden]="hidCreateStoreName">* Nombre requerido</p>
+                    </div>
                     <div class="col-sm-6" >
                         <input type="text" class="form-control form-control-primary" placeholder="Leyenda o Resúmen breve de tu tienda" name="summary" [(ngModel)]="summary">
+                    </div>
+                    <div class="error-g row">
+                        <p  [hidden]="hidCreateStoreSummary">* Leyenda requerido</p>
                     </div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-sm-6" >
+                    <div class="col-sm-6 fondo-img-g" >
                         <h5>Sube la foto principal(LOGO) de tu tienda</h5>
                         <p>(358 px X 330 px) <a target="_blank" href="{{BUCKET_URL}}store/sampleLogo.jpg">ejemplo</a></p>
                         <div id="image-preview1">
                             <label for="image-upload1" id="image-label1">Logo</label>
-                            <input type="file" name="image-upload1" id="image-upload1" />
+                            <input type="file" name="image-upload1" id="image-upload1" #l (change)="verifLogo(l.value)"/>
+                        </div>
+                        <div class="error-g error-img row">
+                            <p  [hidden]="hidCreateStoreLogo">* Subir LOGO</p>
                         </div>
                     </div>
-                    <div class="col-sm-6" >
+                    <div class="col-sm-6 fondo-img-g" >
                         <h5>Sube una portada(BANNER) para tu tienda</h5>
                         <p>(1170 px X 300 px) <a target="_blank" href="{{BUCKET_URL}}store/sampleBanner.jpg">ejemplo</a></p>
                         <div id="image-preview2" >
                             <label for="image-upload2" id="image-label2">Banner</label>
-                            <input type="file" name="image-upload2" id="image-upload2" />
+                            <input type="file" name="image-upload2" id="image-upload2" #l (change)="verifBanner(l.value)"/>
+                        </div>
+                        <div class="error-g error-img row">
+                            <p  [hidden]="hidCreateStoreBanner">* Subir BANNER</p>
                         </div>
                     </div>
                 </div>

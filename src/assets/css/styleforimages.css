@@ -6,6 +6,9 @@
   background: #014a8f11;
   border-radius: 5px;
   color: #ecf0f1;
+  background-size: 100% !important;
+  background-repeat: no-repeat;
+  /*margin: auto;*/
 }
 .fondo-img-g input {
   line-height: 150px;
