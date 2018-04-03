@@ -143,59 +143,70 @@
                 </div>
 
             </div>
-            <div class="row">
-                    <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                        <div class="input-group">
-                            <span class="input-group-addon">Largo: </span>
-                            <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Longitud de la caja de envío en cm Ej: 250" name="productLength" [(ngModel)]="productLength">
-                            
-                        </div>
-                        <div class="error-g row">
-                            <p  [hidden]="hidProductLength">Longitud requerido</p>
-                        </div>
-                    </div>
-    
-            </div>
-            <div class="row">
-                    <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                        <div class="input-group">
-                            <span class="input-group-addon">Ancho: </span>
-                            <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Ancho de la caja de envío en cm Ej: 200" name="productWidth" [(ngModel)]="productWidth">
-    
-                        </div>
-                        <div class="error-g row">
-                            <p  [hidden]="hidProductWidth">Ancho requerido</p>
-                        </div>
-                    </div>
-    
-            </div>
-            <div class="row">
-                    <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                        <div class="input-group">
-                            <span class="input-group-addon">Alto: </span>
-                            <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Altura de la caja de envío en cm Ej: 250" name="productHeight" [(ngModel)]="productHeight">
-    
-                        </div>
-                        <div class="error-g row">
-                            <p  [hidden]="hidProductHeight">Altura requerido</p>
-                        </div>
-                    </div>
-    
-            </div>
-            <div class="row">
-                    <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen" value="{{productLength*productWidth*productHeight}}" disabled>
-    
-                        </div>
-                        <div class="error-g row">
-                            <p  [hidden]="hidProductVolumen">Volumen requerido</p>
-                        </div>
-                    </div>
-    
-            </div>
 
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Largo: </span>
+                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Longitud en cm Ej: 250" name="productLength" [(ngModel)]="productLength">
+                                    
+                                </div>
+                                <div class="error-g row">
+                                    <p  [hidden]="hidProductLength">Longitud requerido</p>
+                                </div>
+                            </div>
+            
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Ancho: </span>
+                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Ancho en cm Ej: 200" name="productWidth" [(ngModel)]="productWidth">
+            
+                                </div>
+                                <div class="error-g row">
+                                    <p  [hidden]="hidProductWidth">Ancho requerido</p>
+                                </div>
+                            </div>
+            
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Alto: </span>
+                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Altura en cm Ej: 250" name="productHeight" [(ngModel)]="productHeight">
+            
+                                </div>
+                                <div class="error-g row">
+                                    <p  [hidden]="hidProductHeight">Altura requerido</p>
+                                </div>
+                            </div>
+            
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Volumen de la caja" name="productVolumen" [(ngModel)]="productVolumen" value="{{productLength*productWidth*productHeight}}" disabled>
+            
+                                </div>
+                                <div class="error-g row">
+                                    <p  [hidden]="hidProductVolumen">Volumen requerido</p>
+                                </div>
+                            </div>
+            
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 conten-caja">
+                    <span><i class="icofont icofont-box"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
             <!--div class="row">
                     <div  class="col-sm-6" >
                             <select class="form-control form-control-primary"  #t (change)="pagoEnvio(t.value)">
