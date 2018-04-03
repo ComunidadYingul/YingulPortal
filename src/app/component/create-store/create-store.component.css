@@ -15,3 +15,26 @@
 	text-align: center;
 	border: 15px solid #FF5E3A;
 }
+
+/************** ESTILOS DEL MENSAJE DE ERROR **************/
+.input-group{
+    margin-bottom: 0;
+}
+.error-g{
+    height: 2em;
+    width: 100%;
+}
+
+.error-g p{
+    color: #f00;
+    text-align: left;
+    font-size: .9em;
+    margin-left: 30px;
+}
+
+.conten-caja{
+    font-size:200px;
+    text-align: center;
+    line-height: 100%;
+    color: #ff5e3a;
+}
