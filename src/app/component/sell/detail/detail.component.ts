@@ -118,6 +118,14 @@ hidProductPeso:boolean=true;
 hidProductCondition:boolean=true;
 hidProductVolumen:boolean=true;
 
+productLength:number=0;
+productWidth:number=0;
+productHeight:number=0;
+
+hidProductLength:boolean=true;
+hidProductWidth:boolean=true;
+hidProductHeight:boolean=true;
+
 /****************** VARIABLES VALIDACION INMUEBLES *******************/
 hidPropertyTitle:boolean=true;
 hidPropertyTotalArea:boolean=true;
@@ -247,6 +255,12 @@ public item: Item=new Item();
           this.hidProductQuantity=false;
         }else if(this.productPeso==null || this.productPeso==""){
           this.hidProductPeso=false;
+        }else if(this.productLength==null || this.productLength==0){
+          this.hidProductLength=false;
+        }else if(this.productWidth==null || this.productWidth==0){
+          this.hidProductWidth=false;
+        }else if(this.productHeight==null || this.productHeight==0){
+          this.hidProductHeight=false;
         }else if(this.productVolumen==null || this.productVolumen==""){
           this.hidProductVolumen=false;
         }
@@ -324,6 +338,9 @@ public item: Item=new Item();
     this.hidProductVolumen=true;
     this.hidProductPeso=true;
     this.hidProductCondition=true;
+    this.hidProductLength=true;
+    this.hidProductWidth=true;
+    this.hidProductHeight=true;
   }
 
   resetPropertyHid(){
