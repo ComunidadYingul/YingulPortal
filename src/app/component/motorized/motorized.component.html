@@ -1,60 +1,139 @@
 <div class="image" style="width:100%">
   <img class="mySlides" src="assets/images/car-trip.jpg" style="width:100%">
-  <p align="center" class="prev"><span >Autos, motos y otros</span></p>
-  <h4 align="center" class="title"><span >Tu vehículo está aquí</span></h4>
+  <div class="content-title">
+    <div>
+        <p align="center" class="prev"><span >Autos, motos y otros</span></p>
+        <h4 align="center" class="title"><span >Tu vehículo está aquí</span></h4>
+    </div>
+  </div>
   <div align= "center" class="form">
     <form class="md-float-material card-block">
-      <div class="row">
-        <div class="col-sm-4">
-          <select name="select" class="form-control form-control-primary element" #t (change)="getSubCategory(t.value)">
-              <option [value]="0">Todas las categorias</option>
-            <option *ngFor="let category of categoryList" [value]="category.categoryId">{{category.name}}</option>
-          </select>
-          </div>
-          <div class="col-sm-4">
-              <select name="select" class="form-control form-control-primary" #u (change)="getSubSubCategory(u.value)">
-                  <option [value]="0">Todas las marcas</option>
-                  <option *ngFor="let category of subCategoryList" [value]="category.categoryId">{{category.name}}</option>
-              </select>
-          </div>
-          <div class="col-sm-4">
-              <select name="select" class="form-control form-control-primary" #v (change)="setSubSubCategory(v.value)">
-                  <option [value]="0">Todos los modelos</option>
-                  <option *ngFor="let category of subSubCategoryList" [value]="category.categoryId">{{category.name}}</option>
-              </select>
-          </div>
-      </div>
-      <hr>
-      <div class="row">
-          <a class="col-sm-1"></a>
-              <select name="select" class="form-control form-control-primary col-sm-2" #w (change)="setMinPrice(w.value)">
-                  <option [value]="0">Precio desde</option>
-                  <option [value]="0">Sin precio mínimo</option>
-                  <option *ngFor="let price1 of price" [value]="price1">$ {{price1}}</option>
-              </select>
-              <select name="select" class="form-control form-control-primary col-sm-2" #x (change)="setMaxPrice(x.value)">
-                  <option [value]="0">Precio hasta</option>
-                  <option *ngFor="let price1 of price" [value]="price1">$ {{price1}}</option>
-                  <option [value]="0">Sin precio máximo</option>
-              </select>
-              <a class="col-sm-2"></a>
-              <select name="select" class="form-control form-control-primary col-sm-2" #y (change)="setMinYear(y.value)">
-                  <option [value]="0">Año desde</option>
-                  <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
-              </select>
-              <select name="select" class="form-control form-control-primary col-sm-2" #z (change)="setMaxYear(z.value)">
-                <option [value]="0">Año hasta</option>
-                <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
-            </select>
-      </div>
-      <hr>
-      <div class="row">
-          <div class="col-sm-12">
-                  <button (click)="search()" type="button" class="btn btn-primary waves-effect waves-light m-r-10">Buscar
-                  </button>
-          </div>
-      </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="form-title">Búsqueda</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <select name="select" class="form-control element" #t (change)="getSubCategory(t.value)">
+                            <option [value]="0">Todas las categorias</option>
+                            <option *ngFor="let category of categoryList" [value]="category.categoryId">{{category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <select name="select" class="form-control" #u (change)="getSubSubCategory(u.value)">
+                            <option [value]="0">Todas las marcas</option>
+                            <option *ngFor="let category of subCategoryList" [value]="category.categoryId">{{category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <select name="select" class="form-control" #v (change)="setSubSubCategory(v.value)">
+                            <option [value]="0">Todos los modelos</option>
+                            <option *ngFor="let category of subSubCategoryList" [value]="category.categoryId">{{category.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="col-sm-6 col-lg-12">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select name="select" class="form-control" #w (change)="setMinPrice(w.value)">
+                            <option [value]="0">Precio desde</option>
+                            <option [value]="0">Sin precio mínimo</option>
+                            <option *ngFor="let price1 of price" [value]="price1">$ {{price1}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select name="select" class="form-control" #x (change)="setMaxPrice(x.value)">
+                            <option [value]="0">Precio hasta</option>
+                            <option *ngFor="let price1 of price" [value]="price1">$ {{price1}}</option>
+                            <option [value]="0">Sin precio máximo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select name="select" class="form-control" #y (change)="setMinYear(y.value)">
+                            <option [value]="0">Año desde</option>
+                            <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select name="select" class="form-control" #z (change)="setMaxYear(z.value)">
+                            <option [value]="0">Año hasta</option>
+                            <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button (click)="search()" type="button" class="btn btn-primary waves-effect waves-light m-r-10">Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
+    <!--form class="md-float-material card-block">
+            <div class="row">
+              <div class="col-sm-4">
+                <select name="select" class="form-control form-control-primary element" #t (change)="getSubCategory(t.value)">
+                    <option [value]="0">Todas las categorias</option>
+                  <option *ngFor="let category of categoryList" [value]="category.categoryId">{{category.name}}</option>
+                </select>
+              </div>
+              <div class="col-sm-4">
+                  <select name="select" class="form-control form-control-primary" #u (change)="getSubSubCategory(u.value)">
+                      <option [value]="0">Todas las marcas</option>
+                      <option *ngFor="let category of subCategoryList" [value]="category.categoryId">{{category.name}}</option>
+                  </select>
+              </div>
+              <div class="col-sm-4">
+                  <select name="select" class="form-control form-control-primary" #v (change)="setSubSubCategory(v.value)">
+                      <option [value]="0">Todos los modelos</option>
+                      <option *ngFor="let category of subSubCategoryList" [value]="category.categoryId">{{category.name}}</option>
+                  </select>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+                <a class="col-sm-1"></a>
+                    <select name="select" class="form-control form-control-primary col-sm-2" #w (change)="setMinPrice(w.value)">
+                        <option [value]="0">Precio desde</option>
+                        <option [value]="0">Sin precio mínimo</option>
+                        <option *ngFor="let price1 of price" [value]="price1">$ {{price1}}</option>
+                    </select>
+                    <select name="select" class="form-control form-control-primary col-sm-2" #x (change)="setMaxPrice(x.value)">
+                        <option [value]="0">Precio hasta</option>
+                        <option *ngFor="let price1 of price" [value]="price1">$ {{price1}}</option>
+                        <option [value]="0">Sin precio máximo</option>
+                    </select>
+                    <a class="col-sm-2"></a>
+                    <select name="select" class="form-control form-control-primary col-sm-2" #y (change)="setMinYear(y.value)">
+                        <option [value]="0">Año desde</option>
+                        <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
+                    </select>
+                    <select name="select" class="form-control form-control-primary col-sm-2" #z (change)="setMaxYear(z.value)">
+                      <option [value]="0">Año hasta</option>
+                      <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
+                  </select>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                        <button (click)="search()" type="button" class="btn btn-primary waves-effect waves-light m-r-10">Buscar
+                        </button>
+                </div>
+            </div>
+          </form-->
   </div>
 </div>
 <!-- round card start -->
