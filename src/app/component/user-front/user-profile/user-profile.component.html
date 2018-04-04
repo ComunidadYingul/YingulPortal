@@ -8,7 +8,7 @@
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
-                                <img class="img-40" src="assets/images/user.png" alt="User-Profile-Image">
+                                <img style="border-radius:50%;" class="img-40" src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profilePhoto}}" alt="User-Profile-Image">
                                 <div class="user-details">
                                     <span>{{User.username}}</span>
                                     <span id="more-details">Ventas Yingul<i class="ti-angle-down"></i></span>
@@ -1829,10 +1829,9 @@
                                                         <div class="col-md-12">
                                                             <!-- Social wallpaper start -->
                                                             <div class="social-wallpaper">
-                                                                <img src="assets/images/social/img1.jpg" class="img-fluid width-100" alt="" />
+                                                                <img style="max-height: 300px;"src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profileBanner}}" class="img-fluid width-100" alt="" />
                                                                 <div class="profile-hvr">
-                                                                    <i class="icofont icofont-ui-edit p-r-10"></i>
-                                                                    <i class="icofont icofont-ui-delete"></i>
+                                                                    <i (click)="updateBanner()" class="icofont icofont-ui-edit p-r-10"></i>
                                                                 </div>
                                                             </div>
                                                             <!-- Social wallpaper end -->
@@ -1853,15 +1852,14 @@
                                                                 <!-- social-profile card start -->
                                                                 <div class="card">
                                                                     <div class="social-profile">
-                                                                        <img class="img-fluid width-100" src="assets/images/social/profile.jpg" alt="">
+                                                                        <img style="max-height:230px;" class="img-fluid width-100" src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profilePhoto}}" alt="">
                                                                         <div class="profile-hvr m-t-15">
-                                                                            <i class="icofont icofont-ui-edit p-r-10"></i>
-                                                                            <i class="icofont icofont-ui-delete"></i>
+                                                                            <i (click)="updteImage()" class="icofont icofont-ui-edit p-r-10"></i>
                                                                         </div>
                                                                     </div>
                                                                     <div class="card-block social-follower">
-                                                                        <h4>Josephin Villa</h4>
-                                                                        <h5>Softwear Engineer</h5>
+                                                                        <h4>{{person.name}} {{person.lastname}}</h4>
+                                                                        <h5>VENTAS YINGUL</h5>
                                                                         <!--<div class="row follower-counter">
                                                                             <div class="col-md-12 col-lg-4">
                                                                                 <div class="txt-primary">485</div>
@@ -1885,10 +1883,12 @@
                                                                 <!-- Who to follow card start -->
                                                                 <div class="card">
                                                                     <div class="social-profile">
-                                                                        <img class="img-fluid width-100" src="assets/images/social/profile.jpg" alt="">
+                                                                        <!--video -->
+                                                                        <div class="embed-responsive embed-responsive-4by3">
+                                                                            <iframe class="embed-responsive-item" [src]='video'></iframe>
+                                                                        </div>
                                                                         <div class="profile-hvr m-t-15">
-                                                                            <i class="icofont icofont-ui-edit p-r-10"></i>
-                                                                            <i class="icofont icofont-ui-delete"></i>
+                                                                            <i (click)="updateVideo()" class="icofont icofont-ui-edit p-r-10"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2009,8 +2009,8 @@
                                                                                                             <tr>
                                                                                                                 <th scope="row">Teléfono</th>
                                                                                                                 <td *ngIf="!person.yng_User.phone&&!person.yng_User.phone2" ><a style="cursor: pointer; color:#0275d8;" (click)="setPhone()">Agregar</a></td>
-                                                                                                                <td *ngIf="person.yng_User.phone&&!person.yng_User.phone2" >{{person.yng_User.phone}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhone()">Modificar</a> | <a style="cursor: pointer; color:#0275d8;" (click)="setPhone2()">Agregar</a></td>
-                                                                                                                <td *ngIf="person.yng_User.phone&&person.yng_User.phone2" >{{person.yng_User.phone}} / {{person.yng_User.phone2}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhones()">Modificar</a></td>
+                                                                                                                <td *ngIf="person.yng_User.phone&&!person.yng_User.phone2" >{{phone}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhone()">Modificar</a> | <a style="cursor: pointer; color:#0275d8;" (click)="setPhone2()">Agregar</a></td>
+                                                                                                                <td *ngIf="person.yng_User.phone&&person.yng_User.phone2" >{{phone}} / {{phone2}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhones()">Modificar</a></td>
                                                                                                             </tr>
                                                                                                         </tbody>
                                                                                                     </table>
@@ -2073,5 +2073,387 @@
                 </div>
             </div>
         </div> 
+    </div>
+</div>
+
+<div class="content_popup_g" align="center" [hidden]="popup_g">
+    <div class="popup" [hidden]="popup">
+
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar Usuario</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="text" class="form-control" name="username" [(ngModel)]="username" placeholder="Usuario nuevo" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="confirm()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup10">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar foto de Perfil</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material text-center">
+            <div class="row fondo-img-g">
+                <div id="image-preview1" style="margin:auto;">
+                    <label for="image-upload1" id="image-label1">Foto Principal</label>
+                    <input type="file" name="image-upload1" id="image-upload1" />
+                </div>
+            </div>
+        </div>
+
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendProfilePhoto()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup12">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar Banner de Perfil</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material text-center">
+            <div class="row fondo-img-g">
+                <div id="image-preview2" style="margin:auto;">
+                    <label for="image-upload2" id="image-label2">Foto</label>
+                    <input type="file" name="image-upload2" id="image-upload2" />
+                </div>
+            </div>
+        </div>
+
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendProfileBanner()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup3">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar e-mail</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-email"></i>
+                </span>
+                <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="E-mail nuevo" required >
+            </div>
+        </div>
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-email"></i>
+                </span>
+                <input type="text" class="form-control" name="email2" [(ngModel)]="email2" placeholder="Repetir E-mail nuevo" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="confirmEmail()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="popup" [hidden]="popup4">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Cambiar clave</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-password"></i>
+                </span>
+                <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Clave nueva" required >
+            </div>
+        </div>
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-password"></i>
+                </span>
+                <input type="password" class="form-control" name="password2" [(ngModel)]="password2" placeholder="Repetir clave nueva" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="confirmPassword()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="popup" [hidden]="popup5">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Teléfonos</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-phone">Teléfono</i>
+                </span>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Ej. (11) 4323-4556" required >
+            </div>
+        </div>
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-phone">Teléfono alternativo</i>
+                </span>
+                <input type="text" class="form-control" name="phone2" [(ngModel)]="phone2" placeholder="Ej. (11) 4323-4556" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendPhones()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup11">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Teléfono Principal</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-phone">Teléfono</i>
+                </span>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Ej. (11) 4323-4556" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendPhone()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup6">
+
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar Video</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="text" class="form-control" name="video1" [(ngModel)]="video1" placeholder="Video nuevo (link Youtube)" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendVideo()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup7">
+
+        <!--<div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>-->
+
+        <div class="page-header-title">
+            <h3>Escriba su contraseña actual para continuar</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="password" class="form-control" name="passwordValited" [(ngModel)]="passwordValited" placeholder="Contraseña actual" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendUsername()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup8">
+        <!--<div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>-->
+
+        <div class="page-header-title">
+            <h3>Escriba su contraseña actual para continuar</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="password" class="form-control" name="passwordValited" [(ngModel)]="passwordValited" placeholder="Contraseña actual" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendEmail()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup9">
+        <!--<div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>-->
+
+        <div class="page-header-title">
+            <h3>Escriba su contraseña actual para continuar</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="password" class="form-control" name="passwordValited" [(ngModel)]="passwordValited" placeholder="Contraseña actual" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendPassword()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup2" align="center" [hidden]="popup2">
+        <div class="page-header-title">
+            <h3>SOLICITUD EN PROCESO</h3>
+            <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+            <br>
+            <br>
+            <h4>Por Favor espere</h4>
+        </div>
     </div>
 </div>

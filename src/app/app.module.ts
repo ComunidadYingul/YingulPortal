@@ -92,6 +92,7 @@ import { ContactUsComponent } from './component/about/contact-us/contact-us.comp
 import { AboutService } from './service/about.service';
 import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
+import { AllItemsComponent } from './component/all-items/all-items.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -156,7 +157,8 @@ import { ResetPasswordComponent } from './component/login/reset-password/reset-p
     AboutComponent,
     ContactUsComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AllItemsComponent
   ],
   imports: [
     BrowserModule,

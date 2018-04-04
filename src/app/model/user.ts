@@ -19,5 +19,8 @@ export class user {
     documentType:string;
     documentNumber:string
     authorities:Object[];
+    profileBanner:string;
+    profilePhoto:string;
+    profileVideo:string;
     
 }

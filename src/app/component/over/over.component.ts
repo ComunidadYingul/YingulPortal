@@ -347,23 +347,8 @@ export class OverComponent implements OnInit {
   findNew(){
     this.itemListTemp=[];
     for (let i of this.itemList) {
-      if(i.aproduct==true){
-        for(let p of this.productList){
-          if(p.yng_Item.itemId==i.itemId){
-            if(p.productCondition=="Nuevo"){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
-      }
-      if(i.amotorized==true){
-        for(let m of this.motorizedList){
-          if(m.yng_Item.itemId==i.itemId){
-            if(m.motorizedKilometers==0){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
+      if(i.condition=="New"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];
@@ -373,23 +358,8 @@ export class OverComponent implements OnInit {
   findUsed(){
     this.itemListTemp=[];
     for (let i of this.itemList) {
-      if(i.aproduct==true){
-        for(let p of this.productList){
-          if(p.yng_Item.itemId==i.itemId){
-            if(p.productCondition=="Usado"){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
-      }
-      if(i.amotorized==true){
-        for(let m of this.motorizedList){
-          if(m.yng_Item.itemId==i.itemId){
-            if(m.motorizedKilometers>0){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
+      if(i.condition=="Used"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];

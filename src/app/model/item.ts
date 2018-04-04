@@ -16,10 +16,8 @@ export class Item {
 	itemId:number;
 	priceNormal:number;
     priceDiscount:number;
-    aproduct:boolean;
-	aservice:boolean;
-	amotorized:boolean;
-	aproperty:boolean;
+    type:string;
+    condition:String;
 	over:boolean;
     dayPublication:number;
     monthPublication:number;

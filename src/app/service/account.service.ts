@@ -10,12 +10,13 @@ export class AccountService {
   }
   getAccountByUser(username:string) {
     this.User=JSON.parse(localStorage.getItem("user"));
-    let url = Network.API_URL+"/account/getAccountByUser/"+username;
+    let url = Network.API_URL+"account/getAccountByUser/"+username;
     let headers = new Headers(
       {
         'Authorization': this.User.password
       });
     return this.http.get(url,{headers: headers});
+    //verificar esta parte
   }
   getTransactionByUser(username:string){
     let url = Network.API_URL+"account/getTransactionsByUser/"+username;

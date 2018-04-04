@@ -13,6 +13,14 @@ export class IndexService {
       });
     return this.http.get(url,{headers: headers});
   }
+  getItem20first(){
+    let url = Network.API_URL+"index/item/20first";
+    let headers = new Headers(
+      {
+        'X-API-KEY': Network.API_KEY
+      });
+    return this.http.get(url,{headers: headers});
+  }
   getProduct() {
     let url = Network.API_URL+"item/product/all";
     return this.http.get(url);

@@ -98,7 +98,7 @@ export class ItemComponent implements OnInit {
     this.getProduct();
   }
   getItems() {
-    this.indexService.getItems().subscribe(
+    this.indexService.getItem20first().subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},

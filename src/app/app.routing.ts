@@ -41,6 +41,7 @@ import { QueryPurchasesComponent } from './component/user-front/purchases/query-
 import { ContactUsComponent } from './component/about/contact-us/contact-us.component';
 import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
+import { AllItemsComponent } from './component/all-items/all-items.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -68,7 +69,7 @@ const appRoutes: Routes = [
   	component: SellComponent
   },
   {
-  	path: 'index',
+    path: 'index',
   	component: IndexComponent
   },
   {
@@ -197,7 +198,7 @@ const appRoutes: Routes = [
     component: AgreementComponent
   },
   {
-    path: ':nameStore',
+    path: 'tiendaOficial/:nameStore',
     component: StoreComponent
   },
   {
@@ -207,6 +208,10 @@ const appRoutes: Routes = [
   {
     path:'ListItemsComponent',
     component: ListItemsComponent
+  },
+  {
+    path:'allItems',
+    component: AllItemsComponent
   }
 ];
 

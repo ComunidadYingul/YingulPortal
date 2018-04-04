@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { user } from '../../model/user';
 import { Email } from '../../model/email';
 import { AboutService } from '../../service/about.service';
+import { Network } from '../../model/Network';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +15,7 @@ import { AboutService } from '../../service/about.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+	BUCKET_URL:string=Network.BUCKET_URL;
 	@Output() Menu = new EventEmitter();
 	loggedIn: boolean=false;
 	User: user=new user();
@@ -33,8 +36,9 @@ export class NavbarComponent implements OnInit {
 	hidMessage:boolean=true;
 	hidEmailVal:boolean=true;
 	popup_g:boolean=true;
-	
-	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService,private aboutService:AboutService) {
+
+	profilePhoto:string="";
+	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService,private aboutService:AboutService, private userService:UserService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
 			this.loggedIn = false;
 			this.User = new user();
@@ -43,6 +47,7 @@ export class NavbarComponent implements OnInit {
 			this.loggedIn = true;
 			this.User=JSON.parse(localStorage.getItem("user"));
 			this.getQueries();
+			this.getProfilePhoto();
 		}
 	}
 
@@ -81,7 +86,18 @@ export class NavbarComponent implements OnInit {
             this.queries = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
-    );
+	);
+	
+	}
+	getProfilePhoto(){
+		this.userService.getProfilePhoto(this.User).subscribe(
+			res => {
+				  this.profilePhoto = JSON.parse(JSON.stringify(res))._body;
+				},
+				error => {
+				  console.log(error);
+				}
+		  );
 	}
 	onSearchChange(name) {
 		if(name!=""){
