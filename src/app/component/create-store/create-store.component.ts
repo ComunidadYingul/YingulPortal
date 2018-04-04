@@ -14,6 +14,7 @@ export class CreateStoreComponent implements OnInit {
   store:Store;
   msg:string;
   popup2:boolean=true;
+  popup_g:boolean=true;
   User: user=new user();
   constructor(private storeService: StoreService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -47,7 +48,7 @@ export class CreateStoreComponent implements OnInit {
     }
   }
   saveStore(){
-    this.popup2=false;
+    this.popup_g=false;
     this.store.user=JSON.parse(localStorage.getItem("user"));
     console.log(JSON.stringify(this.store));
     this.storeService.createStore(this.store).subscribe(

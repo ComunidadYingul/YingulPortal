@@ -17,28 +17,37 @@
                         <option *ngFor="let category of categoryList" [value]="category.categoryId" >{{category.name}}</option>
                         
                     </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidStoreCategory">* Seleccionar rubro</p>
+                    </div>
                 </div>
                 <div class="col-sm-6" >
                     <select name="employesQuantity" class="form-control form-control-primary" #t (change)="setEmployesQuantity(t.value)">
-                        <option value="opt1" disabled>Cantidad de empleados. Elegir...</option>
+                        <option value="null" disabled>Cantidad de empleados. Elegir...</option>
                         <option value="-6">Menos de 6</option>
                         <option value="6-30">De 6 a 30</option>
                         <option value="31-100">De 31 a 100</option>
                         <option value="101-500">De 101 a 500</option>
                         <option value="+500">Más de 500</option>
                     </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidStoreQuantity">* Seleccionar una opción</p>
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-sm-6" >
                     <select name="ecommerceExperience" class="form-control form-control-primary" #u (change)="setEcommerceExperience(u.value)">
-                        <option value="opt1" disabled>¿Tienes experiencia con e-commerce?. Elegir...</option>
+                        <option value="null" disabled>¿Tienes experiencia con e-commerce?. Elegir...</option>
                         <option value="-1">Menos de 1 año</option>
                         <option value="1-2">De 1 a 2 años</option>
                         <option value="3-5">De 3 a 5 años</option>
                         <option value="+5">Más de 5 años</option>
                     </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidStoreExperience">* Seleccionar una opción</p>
+                    </div>
                 </div>
                 <div class="col-sm-6" >
 
@@ -71,12 +80,18 @@
                   <br><br>
                   <div *ngIf="detailWebsite">
                       <input type="text" class="form-control form-control-primary" placeholder="Dirección: www.tusitio.com" name="website" [(ngModel)]="website">
+                        <div class="error-g row">
+                            <p  [hidden]="hidStoreWebsite">* Ingrese dirección de su sitio web</p>
+                        </div>
                       <br><select name="traficInvest" class="form-control form-control-primary" #v (change)="settraficInvest(v.value)">
-                          <option value="opt1" disabled>¿Invertís para conseguir tráfico?. Elegir...</option>
+                          <option value="null" disabled>¿Invertís para conseguir tráfico?. Elegir...</option>
                           <option value="yes">Si</option>
                           <option value="no">No</option>
                           <option value="needHelp">Necesito ayuda para acerlo</option>
                       </select>
+                        <div class="error-g row">
+                            <p  [hidden]="hidStoreTraffic">* Seleccione una opción</p>
+                        </div>
                   </div>  
                 </div>
             </div>

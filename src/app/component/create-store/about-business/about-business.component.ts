@@ -15,6 +15,19 @@ export class AboutBusinessComponent implements OnInit {
   categoryList:Category[];
   @Output() setStore = new EventEmitter();
   categoryTemp:Category =new Category();
+
+  /************************* VARIABLES HID ****************************/
+  hidStoreCategory:Boolean=true;
+  hidStoreQuantity:boolean=true;
+  hidStoreExperience:boolean=true;
+  hidStoreWebsite:boolean=true;
+  hidStoreTraffic:boolean=true;
+  /************************* VARIABLES VALIDACION ****************************/
+  valCategory:string="null";
+  valQuantity:string="null";
+  valExperience:string="null";
+  valTraffic:string="null";
+
   constructor(private categoryService: ListCategoryService) { }
 
   ngOnInit() {
@@ -41,19 +54,55 @@ export class AboutBusinessComponent implements OnInit {
   }
   setEmployesQuantity(employesQuantity:string){
     this.store.employeesQuantity=employesQuantity;
+    this.valQuantity=employesQuantity;
   }
   setEcommerceExperience(ecommerceExperience:string){
     this.store.ecommerceExperience=ecommerceExperience;
+    this.valExperience=ecommerceExperience;
   }
   settraficInvest(traficInvest:string){
     this.store.traficInvest=traficInvest;
+    this.valTraffic=traficInvest;
   }
   sendAboutBusines(){
-    this.store.webSite=this.website;
-    this.setStore.emit(this.store);
+    if(this.validarStore()){
+      this.store.webSite=this.website;
+      this.setStore.emit(this.store);
+    }
   }
+
+  validarStore(){
+    this.resetStore();
+    if(this.valCategory=="null"){
+      this.hidStoreCategory=false;
+      return false;
+    }else if(this.valQuantity=="null"){
+      this.hidStoreQuantity=false;
+      return false;
+    }else if(this.valExperience=="null"){
+      this.hidStoreExperience=false;
+      return false;
+    }else if(this.detailWebsite == true && (this.website==null || this.website=="")){
+      this.hidStoreWebsite=false;
+      return false;
+    }else if(this.detailWebsite == true && this.valTraffic=="null"){
+      this.hidStoreTraffic=false;
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  resetStore(){
+    this.hidStoreCategory=true;
+    this.hidStoreQuantity=true;
+    this.hidStoreExperience=true;
+    this.hidStoreWebsite=true;
+    this.hidStoreTraffic=true;
+  }
+
   setCategory(category:string){
-   // alert(category);
+   //alert(this.valCategory);
     if(category=="Property"||category=="Motorized"||category=="Service"||category=="Product"){
       this.store.itemsType=category;
       this.store.mainCategory=null;
@@ -63,5 +112,6 @@ export class AboutBusinessComponent implements OnInit {
       this.store.mainCategory=this.categoryTemp;
       //this.store.mainCategory.categoryId=Number(category);
     } 
+    this.valCategory=category;
   }
 }

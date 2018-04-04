@@ -23,6 +23,10 @@ export class StoreService {
   }
   findAll(){
     let url = Network.API_URL+"store/all";
-    return this.http.get(url);
+    let headers = new Headers(
+      {
+        'X-API-KEY': Network.API_KEY
+      });
+    return this.http.get(url,{headers: headers});
   }
 }

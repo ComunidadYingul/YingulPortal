@@ -6,7 +6,7 @@
     <div class="col-sm-8">
         <form class="md-float-material card-block">
 
-            <div class="form-radio">
+            <div class="form-radio" *ngIf="Item.productPagoEnvio!='gratis'" >
                 <div class="radio radiofill radio-inline">
                     <label>
                         <input type="radio" name="radio" checked="checked" (change)="check('home')">
@@ -19,9 +19,12 @@
             <div class="form-radio">
                 <div class="radio radiofill radio-inline">
                     <label>
-                        <input type="radio" name="radio" #radio (change)="check('branch')">
+                        <input type="radio" value="false" name="radio" #radio (change)="check('branch')" [(ngModel)]="radioSucursal">
                         <i class="helper"></i>Retiro en una sucursal
                     </label>
+                    <div class="error-g row">
+                        <p  [hidden]="hidRadioSucursal">* Marcar campo</p>
+                    </div>
                 </div>
             </div>
             <br/>
@@ -33,7 +36,10 @@
                 <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
                 </span>
                 <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
-                </div>                
+                </div> 
+                <div class="error-g row">
+                    <p  [hidden]="hidBuscarSucursal">* Debe ingresar código postal para buscar sucursales cercanas</p>
+                </div>               
                 <hr class="m-t-20 m-b-20">
                 <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
                         <div class="table-responsive" >
@@ -59,7 +65,10 @@
                                             </label>                                                
                                         </div> 
                                     </div>
-                                </tbody>                              
+                                </tbody>  
+                                <div class="error-g row">
+                                    <p  [hidden]="hidSucursal">* Debe seleccionar una opción</p>
+                                </div>                            
                             </table>                       
                         </div>
                 </div>
@@ -72,14 +81,22 @@
                                 <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
                             </div>
+                            <div class="error-g row">
+                                <p  [hidden]="hidName">* Nombre requerido</p>
+                            </div>
                         </div>
                 </div>
                 <div class="row">
-                        <div class="input-group col-md-6">
+                    <div class="col-md-6">
+                        <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
                             <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
                             <span class="md-line"></span>
                         </div>
+                        <div class="error-g row">
+                            <p  [hidden]="hidPhone">* Teléfono requerido</p>
+                        </div>
+                    </div>
                 </div>
                 </div>
             </div>
@@ -129,11 +146,11 @@
     <div [hidden]="true" class="input-group input-group-button">
         <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
         <span class="input-group-addon" id="basic-addon10">
-            <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
+            <button  class="btn btn-primary"  (click)="buscarCP()">Buscar1</button>
         </span>
     <a hidden="true" href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
     </div>
-
+    
 
     <div  [hidden]="false">
         

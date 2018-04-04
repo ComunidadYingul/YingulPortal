@@ -61,6 +61,7 @@ export class ShippingComponent implements OnInit {
   hidCity:boolean=true;
   hidStreet:boolean=true;
   hidNumber:boolean=true;*/
+  radioSucursal:boolean=false;
   popup_g:boolean=true;
 
   /*hidProductSalesCondition:boolean=true;
@@ -73,6 +74,13 @@ export class ShippingComponent implements OnInit {
   hidUbicationCity:boolean=true;
   hidUbicationStreet:boolean=true;
   hidUbicationNumber:boolean=true;
+
+  hidBuscarSucursal:boolean=true;
+  hidSucursal:boolean=true;
+  hidName:boolean=true;
+  hidPhone:boolean=true;
+
+  hidRadioSucursal:boolean=true;
 
 
   //////////
@@ -168,10 +176,13 @@ export class ShippingComponent implements OnInit {
           },
           error => console.log(error)
     );
-    
+    if(this.Item.productPagoEnvio=="gratis"){
+
+    }
   }
 
   check(typebuy:string){
+    this.resetSucursal();
     switch (typebuy) {
       case "branch":
         this.branch= false;
@@ -423,6 +434,7 @@ export class ShippingComponent implements OnInit {
       ); 
     }
     quoteSend(){
+      this.hidBuscarSucursal=true;
       if(this.postalCode!=""){
         this.popupSucursal=true;
         this.getItem("Producto",this.Item.itemId);
@@ -441,14 +453,32 @@ export class ShippingComponent implements OnInit {
         var codigoPostalSel="";
         
         if(this.postalCode=="")codigoPostalSel=codigoPostalSel+"\n -Un Código postal";
-        alert("Para realizar una cotización debe agregar:"+codigoPostalSel);
-  
+        //alert("Para realizar una cotización debe agregar:"+codigoPostalSel);
+        this.hidBuscarSucursal=false;
       }
      
     }
+
+    resetSucursal(){
+      this.hidSucursal=true;
+      this.hidName=true;
+      this.hidPhone=true;
+      this.hidBuscarSucursal=true;
+      this.hidRadioSucursal=true;
+    }
+
     sendTypeShip2(){
+      this.resetSucursal();
       if (this.branch==false){
-        if(this.name==""||this.phone=="" ||this.camSW==false){alert("Complete o seleccione otra opción de envío")}
+        if(this.popupSucursal==true){
+          this.hidBuscarSucursal=false;
+        }else if(this.camSW==false){
+          this.hidSucursal=false;
+        }else if(this.name=="" || this.name==null){
+          this.hidName=false;
+        }else if(this.phone=="" || this.phone==null){
+          this.hidPhone=false;
+        }
         else{
           if(this.shipping.typeShipping=="branch")
           {
@@ -468,13 +498,16 @@ export class ShippingComponent implements OnInit {
         }      
       }
       else{
-        this.typeCotizacion.emit(null);
-        this.typeProduct.emit(this.Product);
-        this.typePrice.emit(null);
-        this.typeShip.emit("envio");
-        this.typeEnvio.emit(this.shipping);
-        //this.shipping.yng_envio=this.andreaniEnvio;
-    
+        if(this.Item.productPagoEnvio=="gratis"){
+          this.hidRadioSucursal=false;
+        }else{
+          this.typeCotizacion.emit(null);
+          this.typeProduct.emit(this.Product);
+          this.typePrice.emit(null);
+          this.typeShip.emit("envio");
+          this.typeEnvio.emit(this.shipping);
+          //this.shipping.yng_envio=this.andreaniEnvio;
+        }
       }
 
 

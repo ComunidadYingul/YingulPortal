@@ -95,7 +95,7 @@ productPaymentMethod:string;
 productWarranty:string;
 productPagoEnvio:string;
 productPeso:string;
-productVolumen:string;
+productVolumen:number;
 //property
 propertyTotalArea:string;
 propertyDuildedArea:string;
@@ -117,6 +117,14 @@ hidProductQuantity:boolean=true;
 hidProductPeso:boolean=true;
 hidProductCondition:boolean=true;
 hidProductVolumen:boolean=true;
+
+productLength:number;
+productWidth:number;
+productHeight:number;
+
+hidProductLength:boolean=true;
+hidProductWidth:boolean=true;
+hidProductHeight:boolean=true;
 
 /****************** VARIABLES VALIDACION INMUEBLES *******************/
 hidPropertyTitle:boolean=true;
@@ -247,8 +255,14 @@ public item: Item=new Item();
           this.hidProductQuantity=false;
         }else if(this.productPeso==null || this.productPeso==""){
           this.hidProductPeso=false;
-        }else if(this.productVolumen==null || this.productVolumen==""){
-          this.hidProductVolumen=false;
+        }else if(this.productLength==null || this.productLength==0){
+          this.hidProductLength=false;
+        }else if(this.productWidth==null || this.productWidth==0){
+          this.hidProductWidth=false;
+        }else if(this.productHeight==null || this.productHeight==0){
+          this.hidProductHeight=false;
+        /*}else if(this.productVolumen==null || this.productVolumen==0){
+          this.hidProductVolumen=false;*/
         }
         else{
           this.detailItemS.emit(this.item);
@@ -260,7 +274,8 @@ public item: Item=new Item();
           this.product.productQuantity=this.productQuantity;
           this.product.productWarranty=this.productWarranty;
           this.product.productPeso=this.productPeso;
-          this.product.producVolumen=this.productVolumen;
+          //this.product.producVolumen=this.productVolumen;
+          this.product.producVolumen=(this.productLength*this.productHeight*this.productWidth).toString();
           this.detailProduct.emit(this.product);
         }
       }
@@ -324,6 +339,9 @@ public item: Item=new Item();
     this.hidProductVolumen=true;
     this.hidProductPeso=true;
     this.hidProductCondition=true;
+    this.hidProductLength=true;
+    this.hidProductWidth=true;
+    this.hidProductHeight=true;
   }
 
   resetPropertyHid(){
@@ -465,7 +483,7 @@ public item: Item=new Item();
     }
   }
 
-
+ 
   checkSecurity(security:Security){
     if(security){
       if(this.motSecurity.indexOf({"security":security})==-1){

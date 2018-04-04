@@ -107,4 +107,30 @@
     opacity: 0.6;
     text-decoration: none;
   }
-/*********************** END ESTILOS DEL POPUP  ****************************/
+/*********************** ESTILOS MENU EN PANTALLA PEQUEÑA ****************************/
+#pcoded nav.pcoded-navbar.completo{
+    margin-left: 0;
+}
+
+#pcoded .pcoded-navbar.menu-flotante{
+    display: none;
+    height: auto;
+    border-radius: 5px;
+}
+
+@media (max-width:992px){
+    #pcoded nav.pcoded-navbar.completo{
+        display: none;
+    }
+    #pcoded div.pcoded-content{
+        margin-left: 0;
+    }
+    .page-header{
+        margin-top: 30px;
+    }
+    #pcoded .pcoded-navbar.menu-flotante{
+        display: block;
+        margin-left: 0;
+    }
+}
+

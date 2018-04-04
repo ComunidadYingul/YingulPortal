@@ -39,7 +39,11 @@ export class ItemService {
   }
   getItemsOver(sw:boolean){
     let url = Network.API_URL+"item/over/"+sw;
-    return this.http.get(url);
+    let headers = new Headers(
+      {
+        'X-API-KEY': Network.API_KEY
+      });
+    return this.http.get(url,{headers: headers});
   }
   getProductsByCategory(categoryId:number){
     let url = Network.API_URL+"item/ProductsByCategory/"+categoryId;

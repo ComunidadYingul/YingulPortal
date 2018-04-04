@@ -12,6 +12,16 @@ export class CreateFrontComponent implements OnInit {
   name:string;
   summary:string;
   video:string;
+
+  logo:boolean=false;
+  banner:boolean=false;
+
+  /********************** VARIABLES HID *************************/
+  hidCreateStoreName:boolean=true;
+  hidCreateStoreSummary:boolean=true;
+  hidCreateStoreLogo:boolean=true;
+  hidCreateStoreBanner:boolean=true;
+
   @Output() setStore = new EventEmitter();
   constructor(private elem:ElementRef) { 
     
@@ -20,12 +30,40 @@ export class CreateFrontComponent implements OnInit {
     
   }
   sendFront(){
-    this.uploadImage();
-    this.store.name=this.name;
-    this.store.summary=this.summary;
-    this.store.video=this.video;
-    
+    if(this.validarCreateStore()){
+      this.uploadImage();
+      this.store.name=this.name;
+      this.store.summary=this.summary;
+      this.store.video=this.video;
+    }
   }
+
+  validarCreateStore(){
+    this.resetHidCreateStore();
+    if(this.name==null || this.name==""){
+      this.hidCreateStoreName=false;
+      return false;
+    }else if(this.summary==null || this.summary==""){
+      this.hidCreateStoreSummary=false;
+      return false;
+    }else if(this.logo==false){
+      this.hidCreateStoreLogo=false;
+      return false;
+    }else if(this.banner==false){
+      this.hidCreateStoreBanner=false;
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  resetHidCreateStore(){
+    this.hidCreateStoreName=true;
+    this.hidCreateStoreSummary=true;
+    this.hidCreateStoreLogo=true;
+    this.hidCreateStoreBanner=true;
+  }
+
   public uploadImage(){
     let files = this.elem.nativeElement.querySelector('#image-upload1').files;
     let file = files[0];
@@ -74,4 +112,15 @@ export class CreateFrontComponent implements OnInit {
         }
   }
 
+  verifLogo(valor:any){
+    if(valor!=null){
+      this.logo=true;
+    }
+  }
+
+  verifBanner(valor:any){
+    if(valor!=null){
+      this.banner=true;
+    }
+  }
 }
