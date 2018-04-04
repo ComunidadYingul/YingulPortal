@@ -4,7 +4,7 @@
     padding-right:35px;
 }
 #content-logo.navbar-logo div{
-    left: 53px;
+    left: 153px;
     right: 60px;
     top: 8px;
 }
@@ -55,7 +55,7 @@
         padding-right: 15px;
     }
     #content-search{
-        margin-left: 260px;
+        margin-left: 160px;
         margin-right: 400px;
         /*background: #ff5e3a;*/
     }
