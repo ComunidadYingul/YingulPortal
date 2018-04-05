@@ -84,7 +84,7 @@ export class ItemComponent implements OnInit {
   };
 
   constructor(private itemService: ItemService, private indexService: IndexService, private favoriteService: FavoriteService,private router: Router) {
-  
+
   }
 
   ngOnInit() {

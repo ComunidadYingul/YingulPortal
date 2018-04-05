@@ -12,7 +12,7 @@
                 </datalist>
                 <a style="cursor: pointer;" (click)="bestMatch()"><img  class="searchImagen" src="assets/images/search.png" alt="Theme-Logo"></a>
             </div>
-            <a href="/index">
+            <a routerLink="/index">
                 <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo">
             </a>
             <a class="mobile-options">
@@ -238,7 +238,7 @@
                             </li>
                         </ul>-->
                     <!--/li-->
-                    <li class="header-notification">
+                    <!--<li class="header-notification">
                         <a href="#!">
                             <i class="ti-bell"></i>
                             <span class="badge">5</span>
@@ -279,7 +279,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li class="header-notification">
                         <a href="/userFront/sales/query" class="displayChatbox">
                             <i class="ti-comments"></i>
@@ -288,7 +288,7 @@
                     </li>
                     <li class="user-profile header-notification">
                         <a href="javascript:void(0)">
-                            <img style="border-radius:50%;" src="{{BUCKET_URL}}user/userProfile/{{profilePhoto}}" alt="User-Profile-Image">
+                            <img style="border-radius:50%;" src="{{BUCKET_URL}}user/userProfile/{{profilePhoto}}" alt="Usuario">
                             <span>{{User.username}}</span>
                             <i class="ti-angle-down"></i>
                         </a>

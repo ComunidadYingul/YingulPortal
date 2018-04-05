@@ -206,12 +206,12 @@ const appRoutes: Routes = [
     component: ListPublicationsComponent
   },
   {
-    path:'ListItemsComponent',
-    component: ListItemsComponent
-  },
-  {
     path:'allItems',
     component: AllItemsComponent
+  },
+  {
+    path:'ListItemsComponent',
+    component: ListItemsComponent
   }
 ];
 
