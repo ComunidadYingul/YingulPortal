@@ -194,6 +194,7 @@ getBarrio(cityId : number){
       ret=this.cityTem.codigopostal;
     }
   }
+  this.postalCode=ret;
 }
 aceptar(){ 
   this.ubicationTemp.aditional=this.aditional
@@ -209,12 +210,15 @@ aceptar(){
   this.ubicationTemp.yng_Country=this.yng_Country
   this.ubicationTemp.yng_Province=this.yng_Province
   var ubicationtemporal:Ubication=new Ubication();
-  this.itemDetailService.postUpdateMotorized(this.item).subscribe(
+  ubicationtemporal=this.ubicationTemp;
+  this.item.yng_Ubication=ubicationtemporal;
+  console.log("this.item"+JSON.stringify(this.item));
+  this.itemDetailService.postUpdateUbication(this.item).subscribe(
     res => {
       console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
         },
         error => console.log(error)
-  );  
+  ); 
 }
 cancel(){
   this.popupUbication=true;

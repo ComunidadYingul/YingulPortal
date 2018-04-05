@@ -107,5 +107,9 @@ export class ItemDetailService {
     let url = Network.API_URL+"item/service/update";
     return this.http.post(url ,service, {headers: this.headers});
   }
+  postUpdateUbication(item:Object){///ubication/update
+    let url = Network.API_URL+"item/ubication/update";
+    return this.http.post(url ,item, {headers: this.headers});
+  }
 }
 
