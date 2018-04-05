@@ -10,36 +10,54 @@
       <!-- Page header end -->
       <!-- Page body start -->
           <!-- Product list start -->
-          <div class="page-body gallery-page">
+          <!--div class="page-body gallery-page">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12"-->
                         <!-- Gallery advance card start -->
-                            <div class="card-block">
+                            <!--div class="card-block">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="grid">
-                                            <div align="center">
+                                            <div align="center"-->
                                                 <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
                                                     <div ngxSlickItem *ngFor="let store of storeList" class="slide">
-                                                        <figure style="width:250px; height:200px" class="effect-ming">
+                                                        <!--figure style="width:250px; height:200px" class="effect-ming">
                                                             <img style="width:100%; height:100%; margin:0; border:0;" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="img09" />
                                                             <figcaption>
                                                                 <h2><span>{{store.name}}</span></h2>
                                                                 <p>Tienda Oficial Yingul</p>
                                                                 <a href="/tiendaOficial/{{store.name}}">View more</a>
                                                             </figcaption>
-                                                        </figure>
+                                                        </figure-->
+                                                        <a class="content-card" href="/tiendaOficial/{{store.name}}">
+                                                            <div class="card-banner">
+                                                                <img style="width:100%; height:100%; margin:0; border:0;" src="{{BUCKET_URL}}store/{{store.bannerImage}}" alt="img09" />
+                                                            </div>
+                                                            <div style="height:70%;">
+
+                                                            </div>
+                                                            <div class="card-logo">
+                                                                    <img style="width:100px; height:100px; margin:0; border:0;" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="img09" />
+                                                            </div>
+                                                            <div class="card-title">
+                                                                <p>{{store.name}}</p>
+                                                            </div>
+                                                            <div class="card-vermas">
+                                                                <a class="">Ver mas</a>
+                                                            </div>
+                                                        </a>
+                                                        <!--img style="width:100%; height:100%; margin:0; border:0;" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="img09" /-->
                                                     </div>
                                                 </ngx-slick>
-                                            </div>
+                                            <!--/div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                         <!-- Gallery advance card end -->
-                    </div>
+                    <!--/div>
                 </div>
-            </div>
+            </div-->
           <!-- Product list end -->
   </div>
 </div>
