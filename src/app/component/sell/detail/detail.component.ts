@@ -1,4 +1,4 @@
-import { Injectable, ElementRef, Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Injectable, ElementRef, Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {Observable}  from 'rxjs/Observable';
 import { Item } from '../../../model/item';
 import { Observer } from 'rxjs';
@@ -235,10 +235,13 @@ public item: Item=new Item();
       this.item.video=this.video;
 
       if(this.typeCat=="Service"){
+        this.resetServicesHid();
         if(this.title==null || this.title==""){
           this.hidServicesTitle=false;
+          this.elem.nativeElement.querySelector('#title').focus();
         }else if(this.description==null || this.description==""){
           this.hidServiciosDescription=false;
+          this.elem.nativeElement.querySelector('#description').focus();
         }else{
           this.detailItemS.emit(this.item);
         }
@@ -249,20 +252,25 @@ public item: Item=new Item();
         this.resetProductHid();
         if(this.title==null || this.title==""){
           this.hidProductTitle=false;
+          this.elem.nativeElement.querySelector('#title').focus();
         }else if(this.productCondition=="0"){
           this.hidProductCondition=false;
+          this.elem.nativeElement.querySelector('#condition').focus();
         }else if(this.productQuantity==null || this.productQuantity==""){
           this.hidProductQuantity=false;
+          this.elem.nativeElement.querySelector('#productQuantity').focus();
         }else if(this.productPeso==null || this.productPeso==""){
           this.hidProductPeso=false;
+          this.elem.nativeElement.querySelector('#productPeso').focus();
         }else if(this.productLength==null || this.productLength==0){
           this.hidProductLength=false;
+          this.elem.nativeElement.querySelector('#productLength').focus();
         }else if(this.productWidth==null || this.productWidth==0){
           this.hidProductWidth=false;
+          this.elem.nativeElement.querySelector('#productWidth').focus();
         }else if(this.productHeight==null || this.productHeight==0){
           this.hidProductHeight=false;
-        /*}else if(this.productVolumen==null || this.productVolumen==0){
-          this.hidProductVolumen=false;*/
+          this.elem.nativeElement.querySelector('#productHeight').focus();
         }
         else{
           this.detailItemS.emit(this.item);
@@ -274,7 +282,6 @@ public item: Item=new Item();
           this.product.productQuantity=this.productQuantity;
           this.product.productWarranty=this.productWarranty;
           this.product.productPeso=this.productPeso;
-          //this.product.producVolumen=this.productVolumen;
           this.product.producVolumen=(this.productLength*this.productHeight*this.productWidth).toString();
           this.detailProduct.emit(this.product);
         }
@@ -284,10 +291,13 @@ public item: Item=new Item();
         this.resetPropertyHid();
         if(this.title==null || this.title==""){
           this.hidPropertyTitle=false;
+          this.elem.nativeElement.querySelector('#title').focus();
         }else if(this.propertyTotalArea==null || this.propertyTotalArea==""){
           this.hidPropertyTotalArea=false;
+          this.elem.nativeElement.querySelector('#propertyTotalArea').focus();
         }else if(this.propertyDuildedArea==null || this.propertyDuildedArea==""){
           this.hidPropertyDuildedArea=false;
+          this.elem.nativeElement.querySelector('#propertyDuildedArea').focus();
         }
         else{
           this.resetPropertyHid();
@@ -304,12 +314,16 @@ public item: Item=new Item();
         this.resetMotorizedHid();
         if(this.title==null || this.title==""){
           this.hidMotorizedTitle=false;
+          this.elem.nativeElement.querySelector('#title').focus();
         }else if(this.motorizedBrand==null || this.motorizedBrand==""){
           this.hidMotorizedBrand=false;
+          this.elem.nativeElement.querySelector('#motorizedBrand').focus();
         }else if(this.motorizedYear==null || this.motorizedYear==""){
           this.hidMotorizedYear=false;
+          this.elem.nativeElement.querySelector('#motorizedYear').focus();
         }else if(this.motorizedKilometers==null){
           this.hidMotorizedKilometers=false;
+          this.elem.nativeElement.querySelector('#motorizedKilometers').focus();
         }
         else{
           this.resetMotorizedHid();
@@ -331,6 +345,11 @@ public item: Item=new Item();
       }  
     
 
+  }
+
+  resetServicesHid(){
+    this.hidServicesTitle=true;
+    this.hidServiciosDescription=true;
   }
 
   resetProductHid(){
