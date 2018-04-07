@@ -47,7 +47,7 @@
         </div>
     </div>
     <h5>Precio</h5>
-    <div *ngIf="isOtro()" class="row">
+    <!--div *ngIf="isOtro()" class="row">
       <div class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon">
@@ -74,7 +74,58 @@
             <p></p>
         </div>
       </div>
+    </div-->
+<!--******** BEGIN RADIO BUTTONS (PRECIO FIJO) Y (A CONVENIR) *******-->
+<div *ngIf="zonaServ()" class="row">
+    <div class="col-sm-6">
+        <div class="form-radio">
+            <div class="radio radiofill radio-inline">
+                <label>
+                    <input type="radio" id="option2" aria-label="Radio button for following text input" name="radiob" (change)="checkPrice('fijo')">
+                    <i class="helper"></i>Precio fijo
+                </label>
+            </div>
+        </div>
+        <div class="input-group" style="width:300px;">
+            <input (focus)="focus_g()" id="price" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" (keypress)="keyPress($event)">
+            <select (focus)="focus_g()" class="form-control form-control-primary" name="money" [(ngModel)]="money">
+                <option value="ARS" >$</option>
+                <option  value="USD" >U$S</option>
+            </select>
+        </div>
+        <div class="error-g row">
+            <p [hidden]="hidPrice">Ingrese precio</p>
+        </div>
+        <div class="form-radio">
+            <div class="radio radiofill radio-inline">
+                <label>
+                    <input type="radio" id="option1" aria-label="Radio button for following text input" name="radiob" checked="checked" (change)="checkPrice('convenir')">
+                    <i class="helper"></i>Precio a convenir
+                </label>
+            </div>
+        </div>
+        <div class="error-g row">
+            <p></p>
+        </div>
     </div>
+</div>
+
+<div *ngIf="isPropertyMotorized()" class="row">
+    <div class="col-sm-6">
+        <div class="input-group" style="width:300px;">
+            <input id="price" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" (keypress)="keyPress($event)">
+            <select class="form-control form-control-primary" name="money" [(ngModel)]="money">
+                <option value="ARS" >$</option>
+                <option  value="USD" >U$S</option>
+            </select>
+        </div>
+        <div class="error-g row">
+            <p [hidden]="hidPrice">Ingrese precio pm</p>
+        </div>
+    </div>
+</div>
+<!--******** BEGIN RADIO BUTTONS (PRECIO FIJO) Y (A CONVENIR) *******-->
+
     <div *ngIf="isProduct()" class="row">
         <div class="col-sm-6">
             <div class="input-group">

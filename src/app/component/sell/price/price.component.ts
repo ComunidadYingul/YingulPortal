@@ -245,6 +245,10 @@ export class PriceComponent implements OnInit {
     if(this.typeCatPre!="Product")      return true;
     else                                return false;
   }
+  isPropertyMotorized():boolean{
+    if(this.typeCatPre=="Motorized" || this.typeCatPre=="Property")      return true;
+    else                                return false;
+  }
   
   resetProduct(){
     this.hidPrice=true;
@@ -287,7 +291,7 @@ export class PriceComponent implements OnInit {
       this.hidPhone=false;
       this.elem.nativeElement.querySelector('#phone').focus();
       return false;
-    }else if(this.typePay==true && (this.price==null || this.price==0)){
+    }else if(this.price==null || this.price==0){
       this.hidPrice=false;
       this.elem.nativeElement.querySelector('#price').focus();
       return false;
@@ -445,7 +449,8 @@ export class PriceComponent implements OnInit {
         this.typePay= true;
         break;
       case "convenir":
-      this.typePay= false;
+        this.typePay= false;
+        this.price=null;
         break;
       default:
 
@@ -811,5 +816,10 @@ export class PriceComponent implements OnInit {
     if (event.keyCode != 8 && !patron.test(inputChar)) {
       event.preventDefault();
     }
+  }
+
+  focus_g(){
+    this.checkPrice('fijo');
+    this.elem.nativeElement.querySelector('#option2').checked=true;
   }
 }
