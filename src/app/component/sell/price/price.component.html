@@ -30,7 +30,7 @@
         <div *ngIf="isOtro()" class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
-                <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="Correo electronico">
+                <input type="text" class="form-control" name="email" [(ngModel)]="email" placeholder="Correo electronico" (keypress)="keyPressEmail($event)">
             </div>
             <div class="error-g row">
                 <p></p>

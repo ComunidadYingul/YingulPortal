@@ -156,7 +156,7 @@
                                                     <td>
                                                         <div class="input-group">
                                                             <span class="input-group-addon"><i class="icofont icofont-send-mail"></i></span>
-                                                            <input type="text" name="email" [(ngModel)]="email" class="form-control" placeholder="Correo electrónico">
+                                                            <input type="text" name="email" [(ngModel)]="email" class="form-control" placeholder="Correo electrónico" (keypress)="keyPressEmail($event)">
                                                         </div>
                                                         <div class="error-g row">
                                                             <p  [hidden]="hidEmail">Email requerido</p>
