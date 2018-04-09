@@ -6,19 +6,19 @@
     
 }
 .prev {
-    position: absolute;
+    /*position: absolute;*/
     top: 5%;
     width: 100%;  
     color: white;  
-    font-size: 50px; 
+    /*font-size: 50px; */
     text-shadow: -0.3px 0 black, 0 0.3px black, 0.3px 0 black, 0 -0.3px black;
 }
 .title {
-    position: absolute;
+    /*position: absolute;*/
     top: 18%;
     width: 100%;  
     color: white;   
-    font-size: 100px;
+    /*font-size: 100px;*/
     text-shadow: -0.3px 0 black, 0 0.3px black, 0.3px 0 black, 0 -0.3px black;
     font-weight: 600;
 }
@@ -27,9 +27,105 @@
     top: 50%;
     width: 70%;
     left: 15%;
-    background-color:rgba(0,0,0,0.4);
+    background-color:#0000008c;
     margin: 0 auto;
 }
 .element{
     opacity: 1;
+}
+
+/********************** ESTILO RESPONSIVO BANNER MOTORIZED ************************/
+
+.image .content-title{
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    background-color:rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.content-title div{
+    width: 80%;
+}
+.content-title p{
+    font-size: 2.5em;
+    font-weight: 600;
+}
+.content-title h4{
+    font-size: 4em;
+    font-weight: 700;
+}
+.image .form{
+    width: 40%;
+    height: 100%;
+    top: 0%;
+    left: 60%;
+    padding: 0 50px;
+    display: flex;
+    align-items: center;
+}
+.form select{
+    margin-bottom: 15px;
+}
+.form select, .form button{
+    border-radius: 8px;
+}
+.form .form-title{
+    color: white;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+@media (max-width:992px){
+    .image {
+        margin-top: 3.5rem;
+    }
+    .form select{
+        margin-bottom: 10px;
+    }
+    .image .form{
+        padding-top: 5px !important;
+        /*width: 100%;
+        left: 0%;*/
+    }
+    .content-title p{
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+    .content-title h4{
+        font-size: 3em;
+        font-weight: 700;
+    }
+}
+@media (max-width:768px){
+    .image img{
+        height: 320px;
+    }
+    .image .form{
+        width: 50%;
+        left: 50%;
+    }
+    .image .content-title{
+        width: 50%;
+    }
+}
+@media (max-width:650px){
+    .image .form{
+        /*padding-top: 5px !important;*/
+        width: 100%;
+        left: 0%;
+    }
+    .image .content-title{
+        width: 100%;
+    }
+    .image .content-title{
+        background-color:transparent;
+    }
+}
+@media (max-width:576px){
+    
 }

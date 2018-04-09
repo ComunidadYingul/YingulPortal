@@ -101,5 +101,12 @@ export class SingupComponent implements OnInit {
       return false;
     }
   }*/
+  keyPressEmail(event: any) {
+    const patron = /[a-z0-9@.\-_]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !patron.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 
 }

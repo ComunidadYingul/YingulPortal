@@ -110,6 +110,7 @@
 .fondo-img-g div{
     background: #014a8f11;
     border-radius: 5px;
+    background-repeat: no-repeat;
 }
 .fondo-img-g label{
     border-radius: 10px;

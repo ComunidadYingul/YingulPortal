@@ -72,7 +72,7 @@ import { AdminComponent } from './component/admin/admin.component';
 import { WireTransferComponent } from './component/admin/wire-transfer/wire-transfer.component';
 import { AdminService } from './service/admin.service';
 
-import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+//import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { OverComponent } from './component/over/over.component';
 import { SalesComponent } from './component/user-front/sales/sales.component';
 import { PurchasesComponent } from './component/user-front/purchases/purchases.component';
@@ -168,7 +168,7 @@ import { AllItemsComponent } from './component/all-items/all-items.component';
     RecaptchaModule.forRoot(),
     SlickModule.forRoot(),
 
-    Ng2CarouselamosModule
+   // Ng2CarouselamosModule
   ],
   providers: [
     LoginService,

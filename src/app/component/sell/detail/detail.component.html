@@ -18,7 +18,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title">
+                            <input id="title" type="text" class="form-control" placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidServicesTitle">Título requerido</p>
@@ -27,7 +27,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
-                            <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description">
+                            <input id="description" type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidServiciosDescription">Descripción requerido</p>
@@ -54,7 +54,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" placeholder="Titulo Ej: Camisa Lacoste Hombre Manga Laraga" name="title" [(ngModel)]="title">
+                            <input id="title" type="text" class="form-control" placeholder="Titulo Ej: Camisa Lacoste Hombre Manga Laraga" name="title" [(ngModel)]="title">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidProductTitle">Título requerido</p>
@@ -88,7 +88,7 @@
         
                 <div class="row">
                         <div  class="col-sm-6" >
-                            <select class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
+                            <select id="condition" class="form-control form-control-primary" #t (change)="capturarCondicion(t.value)">
                                 <option value="0" disabled>Indica la condición de tu producto</option>
                                 <option value="Nuevo">Nuevo</option>
                                 <option value="Usado">Usado</option>
@@ -121,7 +121,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                            <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
+                            <input id="productQuantity" type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidProductQuantity">Cantidad requerida</p>
@@ -133,7 +133,7 @@
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
-                        <input type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
+                        <input id="productPeso" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
 
                     </div>
                     <div class="error-g row">
@@ -152,7 +152,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon">Largo: </span>
-                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Longitud en cm Ej: 250" name="productLength" [(ngModel)]="productLength">
+                                    <input id="productLength" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Longitud en cm Ej: 250" name="productLength" [(ngModel)]="productLength">
                                     
                                 </div>
                                 <div class="error-g row">
@@ -165,7 +165,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon">Ancho: </span>
-                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Ancho en cm Ej: 200" name="productWidth" [(ngModel)]="productWidth">
+                                    <input id="productWidth" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Ancho en cm Ej: 200" name="productWidth" [(ngModel)]="productWidth">
             
                                 </div>
                                 <div class="error-g row">
@@ -178,7 +178,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group">
                                     <span class="input-group-addon">Alto: </span>
-                                    <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Altura en cm Ej: 250" name="productHeight" [(ngModel)]="productHeight">
+                                    <input id="productHeight" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Altura en cm Ej: 250" name="productHeight" [(ngModel)]="productHeight">
             
                                 </div>
                                 <div class="error-g row">
@@ -301,7 +301,7 @@
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                                <input type="text" class="form-control" placeholder="Titulo Ej: Casa de 5 ambientes y 2 baños" name="title" [(ngModel)]="title">
+                                <input id="title" type="text" class="form-control" placeholder="Titulo Ej: Casa de 5 ambientes y 2 baños" name="title" [(ngModel)]="title">
                             </div>
                             <div class="error-g row">
                                 <p  [hidden]="hidPropertyTitle">Título requerido</p>
@@ -338,7 +338,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
+                            <input id="propertyTotalArea" type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidPropertyTotalArea">Campo requerido</p>
@@ -347,7 +347,7 @@
                     <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                                <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
+                                <input id="propertyDuildedArea" type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
                             </div>
                             <div class="error-g row">
                                 <p  [hidden]="hidPropertyDuildedArea">Campo requerido</p>
@@ -401,7 +401,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" placeholder="Ej.: Volkswagen Golf Motor 2.0 2006 Azul 5 puertas" name="title" [(ngModel)]="title">
+                            <input id="title" type="text" class="form-control" placeholder="Ej.: Volkswagen Golf Motor 2.0 2006 Azul 5 puertas" name="title" [(ngModel)]="title">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidMotorizedTitle">Título requerido</p>
@@ -439,7 +439,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
+                            <input id="motorizedBrand" type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidMotorizedBrand">Marca requerida</p>
@@ -448,7 +448,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="motorizedYear" [(ngModel)]="motorizedYear">
+                            <input id="motorizedYear" type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="motorizedYear" [(ngModel)]="motorizedYear">
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidMotorizedYear">Año requerido</p>
@@ -481,7 +481,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">km
+                            <input id="motorizedKilometers" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">km
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidMotorizedKilometers">Kms. requerido</p>
