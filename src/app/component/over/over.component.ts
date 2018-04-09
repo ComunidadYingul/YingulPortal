@@ -59,6 +59,7 @@ export class OverComponent implements OnInit {
   itemFavorites: Item[]=[];
   conditionCard:boolean=false;
   motorizedList:Motorized[];
+  cityCard2:boolean=true;//solo para solucionar el error
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService,private router: Router, private favoriteService: FavoriteService,private indexService: IndexService) { }
 
   ngOnInit() {

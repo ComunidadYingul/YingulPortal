@@ -5,6 +5,7 @@ import { BuyService } from '../../../service/buy.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
 import { State } from '../../../model/state';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-sales',
@@ -12,7 +13,7 @@ import { State } from '../../../model/state';
   styleUrls: ['./sales.component.css']
 })
 export class SalesComponent implements OnInit {
-
+  BUCKET_URL:string=Network.BUCKET_URL;
   listSales:Buy[];
   User: user=new user();
   buyTemp:Buy =new Buy(); 

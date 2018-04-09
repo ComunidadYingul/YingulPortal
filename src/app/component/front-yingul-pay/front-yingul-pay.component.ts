@@ -5,6 +5,7 @@ import { Transaction } from '../../model/transaction';
 import { Router } from '@angular/router';
 import { AccountService } from '../../service/account.service';
 import { LoginService } from '../../service/login.service';
+import { Network } from '../../model/Network';
 
 @Component({
   selector: 'app-front-yingul-pay',
@@ -12,6 +13,7 @@ import { LoginService } from '../../service/login.service';
   styleUrls: ['./front-yingul-pay.component.css']
 })
 export class FrontYingulPayComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   User: user=new user();
   account:Account = new Account();
   money:number;

@@ -8,7 +8,7 @@
                     <div class="pcoded-inner-navbar main-menu">
                         <div class="">
                             <div class="main-menu-header">
-                                <img class="img-40" src="assets/images/user.png" alt="User-Profile-Image">
+                                <img style="border-radius:50%;" class="img-40" src="{{BUCKET_URL}}user/userProfile/{{User.profilePhoto}}" alt="User-Image">
                                 <div class="user-details">
                                     <span>{{User.username}}</span>
                                     <span id="more-details">Ventas Yingul<i class="ti-angle-down"></i></span>
@@ -339,7 +339,7 @@
                                     <li class=" ">
                                         <a href="/createStore" data-i18n="nav.basic-components.collapse–accordion">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext">eShop</span>
+                                            <span class="pcoded-mtext">Yingul Shop</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
@@ -1795,7 +1795,29 @@
                 <div class="pcoded-content">
 
                     <!-- Main-body start -->
-                    <div class="main-body chat-bg">
+
+                    <section class="offline-404 text-center">
+                        <!-- Container-fluid starts -->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- auth body start -->
+                                    <div class="auth-body">
+                                        <form>
+                                            <h1 style="margin: 120px; font-size: 80px; margin-bottom: 40px;">Chat en construcción</h1>
+                                            <img style="width:150px;height:150px;margin-bottom: 0;" src="assets/images/engranes-mov.gif" alt="Cargando">
+                                            <h2>Gracias por su comprensión</h2>
+                                            <a routerLink="/index" class="btn btn-primary btn-lg m-t-30">Ir a la página principal</a>
+                                        </form>
+                                    </div>
+                                    <!-- auth body end -->
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <div class="main-body chat-bg" [hidden]="true">
                         <nav class="pcoded-navbar pcoded-hasmenu menu-flotante" pcoded-header-position="relative">
                             <div class="pcoded-inner-navbar main-menu pcoded-hasmenu">
                                 <ul class="pcoded-item pcoded-left-item">
@@ -1890,7 +1912,7 @@
                                                     <li class=" ">
                                                         <a href="/createStore" data-i18n="nav.basic-components.collapse–accordion">
                                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                            <span class="">eShop</span>
+                                                            <span class="">Yingul Shop</span>
                                                             <span class="pcoded-mcaret"></span>
                                                         </a>
                                                     </li>

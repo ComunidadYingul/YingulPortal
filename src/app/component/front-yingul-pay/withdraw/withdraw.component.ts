@@ -9,6 +9,7 @@ import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import { Transaction } from '../../../model/transaction';
 import { LoginService } from '../../../service/login.service';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-withdraw',
@@ -16,6 +17,7 @@ import { LoginService } from '../../../service/login.service';
   styleUrls: ['./withdraw.component.css']
 })
 export class WithdrawComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   User: user=new user();
   listBank:Bank[];
   wireTransfer:WireTransfer= new WireTransfer();

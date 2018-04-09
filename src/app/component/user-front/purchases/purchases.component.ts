@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BuyService } from '../../../service/buy.service';
 import { LoginService } from '../../../service/login.service';
 import { State } from '../../../model/state';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-purchases',
@@ -12,7 +13,7 @@ import { State } from '../../../model/state';
   styleUrls: ['./purchases.component.css']
 })
 export class PurchasesComponent implements OnInit {
-
+  BUCKET_URL:string=Network.BUCKET_URL;
   listPurchases:Buy[];
   User: user=new user();
   buyTemp:Buy =new Buy(); 

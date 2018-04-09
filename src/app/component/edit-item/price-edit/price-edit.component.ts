@@ -275,7 +275,7 @@ Service:Service= new Service();
       if(this.product.productWarranty!=null&&this.product.productWarranty!="") {this.popupGarantia=false;}      
       this.productCondition=this.product.productCondition;
       this.productSaleConditions=this.product.productSaleConditions;
-      this.productQuantity=this.product.productQuantity;
+      this.productQuantity=this.Item.quantity.toString();
       this.productFormDelivery=this.product.productFormDelivery;
       this.productPaymentMethod=this.product.productPaymentMethod;
       this.productWarranty=this.product.productWarranty;
@@ -315,7 +315,7 @@ Service:Service= new Service();
     if(this.product.productWarranty!=null&&this.product.productWarranty!="") {this.popupGarantia=false;}      
     this.productCondition=this.product.productCondition;
     this.productSaleConditions=this.product.productSaleConditions;
-    this.productQuantity=this.product.productQuantity;
+    this.productQuantity=this.Item.quantity.toString();
     this.productFormDelivery=this.product.productFormDelivery;
     this.productPaymentMethod=this.product.productPaymentMethod;
     this.productWarranty=this.product.productWarranty;
@@ -362,7 +362,7 @@ Service:Service= new Service();
     productT.productPagoEnvio=this.productPagoEnvio;
     productT.productPaymentMethod=this.productPaymentMethod;
     productT.productPeso=this.productPeso;
-    productT.productQuantity=this.productQuantity;
+    productT.yng_Item.quantity=+this.productQuantity;
     productT.productSaleConditions=this.productSaleConditions;
     productT.productWarranty=this.productWarranty;
     productT.producVolumen=this.productVolumen;
@@ -610,7 +610,7 @@ Service:Service= new Service();
   }
   itemsSet(){
     console.log("Item: "+JSON.stringify(this.Item));
-    this.productQuantity=this.product.productQuantity;
+    this.productQuantity=this.Item.quantity.toString();
     this.itemDetailService.getItemType(this.itemId).subscribe(
             res => {
                     this.itemType = JSON.parse(JSON.stringify(res))._body; 

@@ -273,13 +273,14 @@ public item: Item=new Item();
           this.elem.nativeElement.querySelector('#productHeight').focus();
         }
         else{
+          this.item.quantity=+this.productQuantity;
           this.detailItemS.emit(this.item);
           this.product.productCondition=this.productCondition;
           this.product.productSaleConditions=this.productSaleConditions;
           this.product.productFormDelivery=this.productFormDelivery;
           this.product.productPagoEnvio=this.productPagoEnvio;
           this.product.productPaymentMethod=this.productPaymentMethod;
-          this.product.productQuantity=this.productQuantity;
+          //revisar si el stock funciona bien this.product.productQuantity=this.productQuantity;
           this.product.productWarranty=this.productWarranty;
           this.product.productPeso=this.productPeso;
           this.product.producVolumen=(this.productLength*this.productHeight*this.productWidth).toString();
