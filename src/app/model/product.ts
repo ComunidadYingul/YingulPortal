@@ -10,6 +10,11 @@ export class Product{
 	productPagoEnvio:string;
 	producVolumen:string;
 	productPeso:string;
+	productLength:number;
+	productWidth:number;
+	productHeight:number;
+	productWeight:number;
+
 
 	yng_Item:Item =new Item();  
 }

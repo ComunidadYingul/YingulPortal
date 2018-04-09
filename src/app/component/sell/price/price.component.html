@@ -238,7 +238,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="radio radiofill radio-inline"> 
-                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" checked="checked">Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                        <!--input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" checked="checked">Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br-->    
+                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" checked="checked">Envíos gratis para tu comprador. Aproximadamente pagaras $ {{precioEnvio}} por él envió.<br>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -250,6 +251,9 @@
                                              <span style="color:red;margin-left:20px;font-size:.8em;" [hidden]="hidIngresarDomicilio">* Debe ingresar su domicilio.</span>
                                             </div>
                                             <input type="checkbox" name="productFormDeliveryP" value="persona" [(ngModel)]="productFormDeliveryP" (click)="test2($event)"  [checked]="checkRPerson" [disabled]="disabledRPerson">También ofrecer retiro en persona
+                                            <br>
+                                            <hr class="m-t-20 m-b-20">
+                                            <input type="checkbox" name="productFormDeliveryI" value="international" [(ngModel)]="productFormDeliveryI" (click)="test3($event)"  [checked]="checkInter" [disabled]="disabledInter">Envíos internacionales(FedEx)
                                         </table>
                                     </div>
                             </div>

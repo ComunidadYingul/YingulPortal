@@ -24,4 +24,5 @@ export class Item {
     yearPublication:number;
     productPagoEnvio:string;
     logisticsName:string;
+    internationalDeliveries:string;
 }
