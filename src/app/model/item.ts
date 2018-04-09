@@ -18,10 +18,12 @@ export class Item {
     priceDiscount:number;
     type:string;
     condition:String;
-	over:boolean;
+    over:boolean;
+    enabled:boolean;
     dayPublication:number;
     monthPublication:number;
     yearPublication:number;
     productPagoEnvio:string;
     logisticsName:string;
+    quantity:number;
 }

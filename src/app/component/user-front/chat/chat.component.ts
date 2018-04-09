@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-chat',
@@ -9,6 +10,7 @@ import { LoginService } from '../../../service/login.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+	BUCKET_URL:string=Network.BUCKET_URL;
   User: user=new user();
   constructor(private router: Router,private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { user } from '../../model/user';
 import { Router } from '@angular/router';
 import { LoginService } from '../../service/login.service';
+import { Network } from '../../model/Network';
 
 @Component({
   selector: 'app-user-front',
@@ -9,6 +10,7 @@ import { LoginService } from '../../service/login.service';
   styleUrls: ['./user-front.component.css']
 })
 export class UserFrontComponent implements OnInit {
+	BUCKET_URL:string=Network.BUCKET_URL;
   User: user=new user();
   constructor(private loginService: LoginService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
