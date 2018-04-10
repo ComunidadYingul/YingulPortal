@@ -13,7 +13,7 @@
                 <input id="phone" type="text" (keypress)="keyPress($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
             </div>
             <div class="error-g row">
-                <p  [hidden]="hidPhone">Teléfono requerido</p>
+                <p  [hidden]="hidPhone">* Teléfono requerido</p>
             </div>
         </div>
         <div class="col-sm-6">
@@ -94,7 +94,7 @@
             </select>
         </div>
         <div class="error-g row">
-            <p [hidden]="hidPrice">Ingrese precio</p>
+            <p [hidden]="hidPrice">* Ingrese precio</p>
         </div>
         <div class="form-radio">
             <div class="radio radiofill radio-inline">
@@ -120,7 +120,7 @@
             </select>
         </div>
         <div class="error-g row">
-            <p [hidden]="hidPrice">Ingrese precio pm</p>
+            <p [hidden]="hidPrice">* Ingrese precio</p>
         </div>
     </div>
 </div>
@@ -130,17 +130,17 @@
         <div class="col-sm-6">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-                <input id="price" type="text" (keypress)="keyPress($event)" class="form-control" name="price" [(ngModel)]="price" placeholder="10.00" >
+                <input id="price" type="text" (keypress)="keyPress($event)" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio por unidad Ej. 10.00" >
             </div>
             <div class="error-g row">
-                <p [hidden]="hidPrice">Ingrese precio</p>
+                <p [hidden]="hidPrice">* Ingrese precio</p>
             </div>
         </div>
     </div>
     <div *ngIf="isProduct()" class="row">
         <div class="col-sm-6">
             <div class="input-group">
-                <input type="checkbox" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)">Ofrecer Descuento
+                <input type="checkbox" name="priceDiscount1"  [checked]="checkedDiscount" (click)="discountPrice($event)" [(ngModel)]="priceDiscount1">Ofrecer Descuento
             </div>
             <div class="error-g row">
                 <p></p>
@@ -156,7 +156,7 @@
                         <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
                     </select>
                     <div class="error-g row">
-                        <p  [hidden]="hidCountry">Seleccione un país</p>
+                        <p  [hidden]="hidCountry">* Seleccione un país</p>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                         <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
                     </select>
                     <div class="error-g row">
-                        <p  [hidden]="hidProvince">Seleccione una provincia</p>
+                        <p  [hidden]="hidProvince">* Seleccione una provincia</p>
                     </div>
                 </div>
                 <div class="col-sm-6" [hidden]="cityHid">
@@ -177,7 +177,7 @@
                         <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
                     </select>
                     <div class="error-g row">
-                        <p  [hidden]="hidCity">Seleccione una ciudad</p>
+                        <p  [hidden]="hidCity">* Seleccione una ciudad</p>
                     </div>
                 </div>
             </div>
@@ -201,7 +201,7 @@
                         <input id="street" type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
                     </div>
                     <div class="error-g row">
-                        <p  [hidden]="hidStreet">Calle requerido</p>
+                        <p  [hidden]="hidStreet">* Calle requerido</p>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -210,7 +210,7 @@
                         <input id="number" type="text" (keypress)="keyPress($event)" class="form-control" name="number" [(ngModel)]="number" placeholder="Número">
                     </div>
                     <div class="error-g row">
-                        <p  [hidden]="hidNumber">Numero requerido</p>
+                        <p  [hidden]="hidNumber">* Numero requerido</p>
                     </div>
                 </div>
             </div>
@@ -245,7 +245,7 @@
                                     
                                 </select>
                                 <div class="error-g row">
-                                    <p  [hidden]="hidProductSalesCondition">Seleccione una opción</p>
+                                    <p  [hidden]="hidProductSalesCondition">* Seleccione una opción</p>
                                 </div>
                             </div>
                 </div>
@@ -258,7 +258,7 @@
                                 <option value="2" disabled>Aceptar pagos por Yingul y cobro en persona</option>
                             </select>
                             <div class="error-g row">
-                                <p  [hidden]="hidProductPaymentMethod">Seleccione una opción</p>
+                                <p  [hidden]="hidProductPaymentMethod">* Seleccione una opción</p>
                             </div>
                         </div>
                 </div>
@@ -296,7 +296,7 @@
                                             </tbody>
                                             <div [hidden]=popupUbicacion>
                                             <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="ubicacion()">
-                                                    <span class="m-l-10">Ingresa tu domicilio</span>
+                                                    <span class="m-l-10">* Ingresa tu domicilio</span>
 
                                              </button>
                                              <span style="color:red;margin-left:20px;font-size:.8em;" [hidden]="hidIngresarDomicilio">* Debe ingresar su domicilio.</span>
@@ -471,7 +471,7 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-                    <input type="text" class="form-control" name="priceNormal" [(ngModel)]="priceNormal" placeholder="300.00" >
+                    <input type="text" class="form-control" name="priceNormal" [(ngModel)]="priceNormal" placeholder="Ej. 300.00" >
                 </div>
             </div>
             <div class="col-sm-6">
@@ -485,7 +485,7 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-                    <input type="text" class="form-control" name="priceDiscount" [(ngModel)]="priceDiscount" placeholder="200.00" >
+                    <input type="text" class="form-control" name="priceDiscount" [(ngModel)]="priceDiscount" placeholder="Ej. 200.00" >
                 </div>
             </div>
             <div class="col-sm-6">

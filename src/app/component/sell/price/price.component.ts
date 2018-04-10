@@ -49,6 +49,8 @@ export class PriceComponent implements OnInit {
   userName;
   ubicationId:string;
 
+  priceDiscount1:boolean;
+
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -750,11 +752,13 @@ export class PriceComponent implements OnInit {
   discountPrice(event){
     if(event.target.checked==true){
       this.popupDescuento=false;
+      this.priceNormal=null;
+      this.priceDiscount=null;
     }
     else {
-      
+      this.price=null;
     }
-
+    //alert(this.priceDiscount1);
   }
   aceptarDiscount(){
     var a=this.priceNormal-this.priceDiscount;
@@ -843,5 +847,6 @@ export class PriceComponent implements OnInit {
   }
   popupHide(){
     this.popupDescuento=true;
+    this.priceDiscount1=false;
   }
 }
