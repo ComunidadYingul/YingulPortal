@@ -610,7 +610,7 @@ Service:Service= new Service();
   }
   itemsSet(){
     console.log("Item: "+JSON.stringify(this.Item));
-    this.productQuantity=this.Item.quantity.toString();
+    //this.productQuantity=this.Item.quantity.toString();
     this.itemDetailService.getItemType(this.itemId).subscribe(
             res => {
                     this.itemType = JSON.parse(JSON.stringify(res))._body; 

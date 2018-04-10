@@ -51,6 +51,8 @@ export class OverComponent implements OnInit {
   popup7:boolean=true;
   popup8:boolean=true;
   popup9:boolean=true;
+  popupFechaPubli:boolean=true;
+  popupCond:boolean=true;
   today = new Date().toJSON().split('T')[0];
   dateDesde:string;
   dateHasta:string;
@@ -120,16 +122,21 @@ export class OverComponent implements OnInit {
     this.popup7=true;
     this.popup8=true;
     this.popup9=true;
+    this.popupFechaPubli=true;
+    this.popupCond=true;
   }
   popupCountry(){
+    this.popupHide();
     this.popup9=false;
   }
   popupProvince(){
+    this.popupHide();
     this.popup3=false;
     this.popup5=true;
     this.popup8=true;
   }
   popupCity(){
+    this.popupHide();
     this.popup4=false;
     this.cityCard=true;
   }
@@ -212,18 +219,29 @@ export class OverComponent implements OnInit {
       this.precioHasta=0;
     }
     this.findPrice(this.precioDesde,this.precioHasta);
+    this.popupHide();
   }
   filterHidden(){
     this.popup5=false;  
   }
   popupPrice(){
+    this.popupHide();
     this.popup6=false;
   }
   popupUbication(){
     this.popup8=false;
   }
   popupCategorys(){
+    this.popupHide();
     this.popup7=false;
+  }
+  popupDatePubli(){
+    this.popupHide();
+    this.popupFechaPubli=false;
+  }
+  popupCondition(){
+    this.popupHide();
+    this.popupCond=false;
   }
   findDate(){
     let dateDesde;
@@ -248,7 +266,10 @@ export class OverComponent implements OnInit {
     this.itemList=[];
     this.itemList=this.itemListTemp;
   }
-
+  findDate2(){
+    this.findDate();
+    this.popupHide();
+  }
 
   addToFavorites(itemId:number){
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -356,6 +377,10 @@ export class OverComponent implements OnInit {
     this.itemList=this.itemListTemp;
     this.conditionCard=true;
   }
+  findNew2(){
+    this.findNew();
+    this.popupHide();
+  }
   findUsed(){
     this.itemListTemp=[];
     for (let i of this.itemList) {
@@ -366,5 +391,9 @@ export class OverComponent implements OnInit {
     this.itemList=[];
     this.itemList=this.itemListTemp;
     this.conditionCard=true;
+  }
+  findUsed2(){
+    this.findUsed();
+    this.popupHide();
   }
 }

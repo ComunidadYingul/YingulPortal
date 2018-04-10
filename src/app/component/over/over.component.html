@@ -40,7 +40,7 @@
                   </div>
 
                   <div class="card" [hidden]="countryCard">
-                      <div class="card-header" >País</div>
+                      <div class="card-header" >País 1</div>
                       <form>
                       <div class="card-block">
                           <div class="list-group" width="100%">
@@ -307,3 +307,65 @@
               </div>
           </div>
 </div>
+
+
+<!--************ POPUPS G RESPONSIVO ***************-->
+<div class="popup" [hidden]="popup5">
+    <div class="row" >
+            <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+            <div class="card-header col-sm-10 ">Filtrar por</div>            
+    </div>
+    <div class="card-block">
+        <div class="list-group" width="100%">
+            <a style="cursor: pointer;" (click)="popupCategorys()" class="list-group-item list-group-item-action " *ngIf="tensubCategoryList">Categorias</a>
+            <a style="cursor: pointer;" (click)="popupCountry()" class="list-group-item list-group-item-action " *ngIf="countryCard==false">País</a>
+            <a style="cursor: pointer;" (click)="popupProvince()" class="list-group-item list-group-item-action " *ngIf="provinceCard==false">Ubicación</a>
+            <a style="cursor: pointer;" (click)="popupCity()" class="list-group-item list-group-item-action " *ngIf="cityCard!=true">Ciudades y Barrios</a>
+            <a style="cursor: pointer;" (click)="popupPrice()" class="list-group-item list-group-item-action " >Precio</a>
+            <a style="cursor: pointer;" (click)="popupDatePubli()" class="list-group-item list-group-item-action " >Fecha de publicación</a>
+            <a style="cursor: pointer;" (click)="popupCondition()" class="list-group-item list-group-item-action " *ngIf="conditionCard==false">Condición</a>
+        </div>
+    </div>
+</div>
+
+<div class="popup" [hidden]="popupFechaPubli">
+    <div class="row" >
+            <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+            <div class="card-header col-sm-10 ">Fecha de publicación</div>
+        </div>
+        <div class="card-block">
+            <div class="list-group" width="100%">
+                <a>Desde:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateDesde" [(ngModel)]="dateDesde">
+                <a>Hasta:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateHasta" [(ngModel)]="dateHasta">
+                <br>
+                <a *ngIf="dateDesde!=null||dateHasta!=null" style="cursor: pointer;" (click)="findDate2()" class="" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+            </div>
+        </div>
+  </div>
+  <div class="popup" [hidden]="popupCond">
+    <div class="row" >
+            <div class="col-sm-2" style="cursor: pointer;"> <i  (click)="popupHide()" style="margin-left: 70%;" class="icofont icofont-ui-close"></i></div>
+            <div class="card-header col-sm-10 ">Condición</div>
+        </div>
+        <div class="card-block">
+            <div class="list-group" width="100%">
+                <a style="cursor: pointer;" (click)="findNew2()" class="list-group-item list-group-item-action " >Nuevo</a>
+                <a style="cursor: pointer;" (click)="findUsed2()" class="list-group-item list-group-item-action " >Usado</a>
+            </div>
+        </div>
+  </div>
+
+
+<!--div class="card">
+    <div class="card-header">Fecha de publicación</div>
+    <form>
+        <div class="card-block">
+            <div class="list-group" width="100%">
+                <a>Desde:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateDesde" [(ngModel)]="dateDesde">
+                <a>Hasta:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateHasta" [(ngModel)]="dateHasta">
+                <br>
+                <a *ngIf="dateDesde!=null||dateHasta!=null" style="cursor: pointer;" (click)="findDate()" class="" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+            </div>
+        </div>
+    </form>
+</div-->
