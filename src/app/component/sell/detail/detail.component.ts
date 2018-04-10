@@ -284,6 +284,11 @@ public item: Item=new Item();
           this.product.productWarranty=this.productWarranty;
           this.product.productPeso=this.productPeso;
           this.product.producVolumen=(this.productLength*this.productHeight*this.productWidth).toString();
+          this.product.productLength=this.productLength;
+          this.product.productHeight=this.productHeight;
+          this.product.productWidth=this.productWidth;
+          this.product.productWeight=parseInt(this.product.productPeso);
+          console.log( " this.product.productWeight:"+this.product.productWeight);
           this.detailProduct.emit(this.product);
         }
       }

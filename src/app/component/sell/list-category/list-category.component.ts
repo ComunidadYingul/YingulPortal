@@ -9,10 +9,10 @@ import { ListCategoryService } from '../../../service/list-category.service'
 export class ListCategoryComponent implements OnInit {
   htmlContent:string;
   imageList:Object[];
-  categoryList: Object[];
-  subCategoryList: Object[];
-  subsubCategoryList: Object[];
-  subsubsubCategoryList: Object[];
+  categoryList: Object[]=[];
+  subCategoryList: Object[]=[];
+  subsubCategoryList: Object[]=[];
+  subsubsubCategoryList: Object[]=[];
   itemCategory1: Object[] =[];
   itemCategory: Object[] = [];
   @Output() categoryItemS = new EventEmitter();
@@ -25,7 +25,10 @@ export class ListCategoryComponent implements OnInit {
     if(this.url!=''){
     this.categoryService.getCategories(this.url).subscribe(
 			res => {
-        		this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.categoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.subCategoryList=[];
+            this.subsubCategoryList=[];
+            this.subsubsubCategoryList=[];
       		},
       		error => console.log(error)
     )}

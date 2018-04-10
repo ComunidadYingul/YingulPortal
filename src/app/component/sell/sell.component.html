@@ -33,40 +33,60 @@
                                   <div class="product-edit">
                                       <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
                                           <li class="nav-item">
-                                              <a class="nav-link active" data-toggle="tab" href="#home7" role="tab">
+                                                <a [hidden]="!hidType" style="cursor:pointer;" class="nav-link active" data-toggle="tab" (click)="typeItem()" role="tab">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-edit"></i>
                                                   </div>
                                                   Tipo de Item</a>
+                                                <a [hidden]="hidType" style="color:white; background:#ff5e3a; cursor:pointer;" class="nav-link active" data-toggle="tab" (click)="typeItem()" role="tab">
+                                                <div class="f-26">
+                                                    <i class="icofont icofont-edit"></i>
+                                                </div>
+                                                Tipo de Item</a>
                                           </li>
                                           <li class="nav-item"> 
-                                              <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
+                                                <a [hidden]="!hidCat" style="cursor:pointer;"  class="nav-link" data-toggle="tab"  role="tab" (click)="categories()">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-document-search"></i>
                                                   </div>
                                                   Que quieres publicar</a>
+                                                <a [hidden]="hidCat" style="color:white; background:#ff5e3a; cursor:pointer;"  class="nav-link" data-toggle="tab"  role="tab" (click)="categories()">
+                                                <div class="f-26">
+                                                    <i class="icofont icofont-document-search"></i>
+                                                </div>
+                                                Que quieres publicar</a>
                                           </li>
                                           <li class="nav-item">
-                                              <a class="nav-link" data-toggle="tab" href="#messages7" role="tab">
+                                                <a [hidden]="!hidDet" style="cursor:pointer;" class="nav-link" data-toggle="tab" role="tab" (click)="detail()">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-ui-image"></i>
                                                   </div>
                                                   Descripción y fotos</a>
+                                                <a [hidden]="hidDet" style="color:white; background:#ff5e3a; cursor:pointer;" class="nav-link" data-toggle="tab" role="tab" (click)="detail()">
+                                                    <div class="f-26">
+                                                        <i class="icofont icofont-ui-image"></i>
+                                                    </div>
+                                                    Descripción y fotos</a>
                                           </li>
                                           <li class="nav-item">
-                                              <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
+                                                <a [hidden]="!hidPri" style="cursor:pointer;" class="nav-link" data-toggle="tab" href="#messages8" role="tab" (click)="price()">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-money-bag"></i>
                                                   </div>
                                                   Precio</a>
+                                                <a [hidden]="hidPri" style="color:white; background:#ff5e3a; cursor:pointer;" class="nav-link" data-toggle="tab" href="#messages8" role="tab" (click)="price()">
+                                                    <div class="f-26">
+                                                        <i class="icofont icofont-money-bag"></i>
+                                                    </div>
+                                                    Precio</a>
                                           </li>
-                                          <li class="nav-item">
+                                          <!--<li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
                                                     <div class="f-26">
                                                         <i class="icofont icofont-wheel"></i>
                                                     </div>
                                                     Tipo de publicacion</a>      
-                                            </li>
+                                            </li>-->
                                       </ul>
                                       <!-- Tab panes -->
                                       <div class="tab-content">
@@ -76,7 +96,7 @@
                                             <app-detail (detailProduct)="detailProductSe($event)"  [typeCat]="type" (detailItemS)="detailItemSe($event)" (Back)="backE($event)" [hidden]="hidDet" [category]="category"></app-detail>
                                             <app-price [typeCatPre]="type" [productTem]="productTem" 
                                                         (priceItemS)="sendPriceCat($event)" (Back)="backP($event)" [hidden]="hidPri"></app-price>
-                                            <app-type [hidden]="hidTyp"></app-type>
+                                            <!--<app-type [hidden]="hidTyp"></app-type>-->
                                         </div>
                                       </div>
                                   </div>

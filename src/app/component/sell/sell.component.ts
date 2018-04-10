@@ -51,18 +51,20 @@ export class SellComponent implements OnInit {
   public productTem:Product=new Product();
 
   constructor(private sellService: SellService, private router: Router) { 
+    
+  }
+  ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
 		} else {
 			this.User=JSON.parse(localStorage.getItem("user"));
 		}
-  }
-  ngOnInit() {
     this.hidCat=true;
     this.hidDet=true;
     this.hidPri=true;
     this.hidTyp=true;
+    this.hidType=false;
   }
   typeItemSe(ev){
     this.type=ev;
@@ -79,7 +81,7 @@ export class SellComponent implements OnInit {
       this.typeEs="Inmueble";
     }
     this.url=ev+"/0";
-    if(this.type == '') {
+    if(this.type == ''||this.type == null) {
       this.hidType=false;
       this.hidCat=true;
       this.hidDet=true;
@@ -95,7 +97,7 @@ export class SellComponent implements OnInit {
   }
   categoryItemSe(ev){
     this.category=ev;
-    if(this.category == {}) {
+    if(this.category == {} || this.category==null) {
       this.hidType=true;
       this.hidCat=false;
       this.hidDet=true;
@@ -356,6 +358,51 @@ export class SellComponent implements OnInit {
     else{
       alert(this.msg);
     } 
+  }
+  typeItem(){
+    this.ngOnInit();
+  }
+  categories(){
+    if(this.type=="Service"){
+      this.typeEs="Servicio";
+    }
+    if(this.type=="Product"){
+      this.typeEs="Producto";
+    }
+    if(this.type=="Motorized"){
+      this.typeEs="Vehículo";
+    }
+    if(this.type=="Property"){
+      this.typeEs="Inmueble";
+    }
+    if(this.type == ''||this.type == null) {
+      this.hidType=false;
+      this.hidCat=true;
+      this.hidDet=true;
+      this.hidPri=true;
+      this.hidTyp=true;
+    } else {
+      this.hidType=true;
+      this.hidCat=false;
+      this.hidDet=true;
+      this.hidPri=true;
+      this.hidTyp=true;
+    }
+  }
+  detail(){
+    if(this.category == {} || this.category==null) {
+      this.hidType=true;
+      this.hidCat=false;
+      this.hidDet=true;
+      this.hidPri=true;
+      this.hidTyp=true;
+    } else {
+      this.hidType=true;
+      this.hidCat=true;
+      this.hidDet=false;
+      this.hidPri=true;
+      this.hidTyp=true;
+    }
   }
 }
 

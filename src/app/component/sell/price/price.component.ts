@@ -109,7 +109,12 @@ export class PriceComponent implements OnInit {
   typePay:boolean=false;
   
 
+  checkInter:boolean=true;
+  disabledInter:boolean=true;
+
+
   constructor(private elem:ElementRef,private buyService: BuyService,private sellService: SellService) { 
+
     this.cityHid=true;
     this.barrioHid=true;
   }
@@ -714,6 +719,7 @@ export class PriceComponent implements OnInit {
     if(event.target.checked==true) {
       this.checkRPerson=true;
       this.disabledRPerson=false;
+      this.disabledInter=false;
     }
   }
   envioGratis(event){
@@ -722,6 +728,10 @@ export class PriceComponent implements OnInit {
     if(event.target.checked==true) {
       this.checkRPerson=false;
       this.disabledRPerson=true;
+      this.checkInter=false;
+      this.disabledInter=true;
+      this.product.yng_Item.internationalDeliveries=""
+      this.product.yng_Item.logisticsName="Andreani"
     }
   }
   productSaleConditions:string;
@@ -810,6 +820,14 @@ export class PriceComponent implements OnInit {
     
   
   }
+
+  test3(event){
+    if(event.target.checked==true){
+      this.product.yng_Item.internationalDeliveries="fedex";
+    }
+    else this.product.yng_Item.internationalDeliveries="";
+  }
+
   keyPressEmail(event: any) {
     const patron = /[a-z0-9@.\-_]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -821,5 +839,6 @@ export class PriceComponent implements OnInit {
   focus_g(){
     this.checkPrice('fijo');
     this.elem.nativeElement.querySelector('#option2').checked=true;
+
   }
 }
