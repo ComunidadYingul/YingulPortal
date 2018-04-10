@@ -103,4 +103,11 @@
         font-size: 20px;
     }
 
+
+ol li{
+    background:rgba(0,0,0,.5);
+}
+ol li.active{
+    background: #000;
+}
     
