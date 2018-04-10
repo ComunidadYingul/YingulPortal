@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output,Input, EventEmitter, ElementRef } from '@angular/core';
 import {Observable}  from 'rxjs/Observable';
 import { SellService } from '../../../service/sell.service'
 import { Service } from '../../../model/service';
@@ -108,9 +108,13 @@ export class PriceComponent implements OnInit {
 
   typePay:boolean=false;
   
+
   checkInter:boolean=true;
   disabledInter:boolean=true;
-  constructor(private buyService: BuyService,private sellService: SellService) { 
+
+
+  constructor(private elem:ElementRef,private buyService: BuyService,private sellService: SellService) { 
+
     this.cityHid=true;
     this.barrioHid=true;
   }
@@ -246,6 +250,10 @@ export class PriceComponent implements OnInit {
     if(this.typeCatPre!="Product")      return true;
     else                                return false;
   }
+  isPropertyMotorized():boolean{
+    if(this.typeCatPre=="Motorized" || this.typeCatPre=="Property")      return true;
+    else                                return false;
+  }
   
   resetProduct(){
     this.hidPrice=true;
@@ -259,18 +267,23 @@ export class PriceComponent implements OnInit {
     this.resetProduct();
     if(this.price==null || this.price==0){
       this.hidPrice=false;
+      this.elem.nativeElement.querySelector('#price').focus();
       return false;
     }else if(this.productSaleConditions==null || this.productSaleConditions=="0"){
       this.hidProductSalesCondition=false;
+      this.elem.nativeElement.querySelector('#condition').focus();
       return false;
     }else if(this.prodPayMethod==null || this.prodPayMethod=="0"){
       this.hidProductPaymentMethod=false;
+      this.elem.nativeElement.querySelector('#payMethod').focus();
       return false;
     }else if(this.prodFormDeliv==false){
       this.hidYingulExpress=false;
+      //this.elem.nativeElement.querySelector('#yingulExpress').focus();
       return false;
     }else if(this.popupUbicacion==false){
       this.hidIngresarDomicilio=false;
+      //this.elem.nativeElement.querySelector('#number').focus();
       return false;
     }else{
       return true;
@@ -281,24 +294,31 @@ export class PriceComponent implements OnInit {
     this.resetService();
     if(this.phone==null || this.phone==""){
       this.hidPhone=false;
+      this.elem.nativeElement.querySelector('#phone').focus();
       return false;
-    }else if(this.typePay==true && (this.price==null || this.price==0)){
+    }else if(this.price==null || this.price==0){
       this.hidPrice=false;
+      this.elem.nativeElement.querySelector('#price').focus();
       return false;
     }else if(this.country.countryId==null || this.country.countryId==0){
       this.hidCountry=false;
+      this.elem.nativeElement.querySelector('#country').focus();
       return false;
     }else if(this.province.provinceId==null || this.province.provinceId==0){
       this.hidProvince=false;
+      this.elem.nativeElement.querySelector('#province').focus();
       return false;
     }else if(this.city.cityId==null || this.city.cityId==0){
       this.hidCity=false;
+      this.elem.nativeElement.querySelector('#city').focus();
       return false;
     }else if(this.street==null || this.street==""){
       this.hidStreet=false;
+      this.elem.nativeElement.querySelector('#street').focus();
       return false;
     }else if(this.number==null || this.number==""){
       this.hidNumber=false;
+      this.elem.nativeElement.querySelector('#number').focus();
       return false;
     }else{
       return true;
@@ -311,18 +331,25 @@ export class PriceComponent implements OnInit {
       this.resetService();
       if(this.phone==null || this.phone==""){
         this.hidPhone=false;
+        this.elem.nativeElement.querySelector('#phone').focus();
       }else if(this.typePay==true && (this.price==null || this.price==0)){
         this.hidPrice=false;
+        this.elem.nativeElement.querySelector('#price').focus();
       }else if(this.country.countryId==null || this.country.countryId==0){
         this.hidCountry=false;
+        this.elem.nativeElement.querySelector('#country').focus();
       }else if(this.province.provinceId==null || this.province.provinceId==0){
         this.hidProvince=false;
+        this.elem.nativeElement.querySelector('#province').focus();
       }else if(this.city.cityId==null || this.city.cityId==0){
         this.hidCity=false;
+        this.elem.nativeElement.querySelector('#city').focus();
       }else if(this.street==null || this.street==""){
         this.hidStreet=false;
+        this.elem.nativeElement.querySelector('#street').focus();
       }else if(this.number==null || this.number==""){
         this.hidNumber=false;
+        this.elem.nativeElement.querySelector('#number').focus();
       }
       else{
         this.resetService();
@@ -427,7 +454,8 @@ export class PriceComponent implements OnInit {
         this.typePay= true;
         break;
       case "convenir":
-      this.typePay= false;
+        this.typePay= false;
+        this.price=null;
         break;
       default:
 
@@ -792,10 +820,25 @@ export class PriceComponent implements OnInit {
     
   
   }
+
   test3(event){
     if(event.target.checked==true){
       this.product.yng_Item.internationalDeliveries="fedex";
     }
     else this.product.yng_Item.internationalDeliveries="";
+  }
+
+  keyPressEmail(event: any) {
+    const patron = /[a-z0-9@.\-_]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !patron.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+
+  focus_g(){
+    this.checkPrice('fijo');
+    this.elem.nativeElement.querySelector('#option2').checked=true;
+
   }
 }

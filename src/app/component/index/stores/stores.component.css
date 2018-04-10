@@ -16,3 +16,53 @@ img{
 .grid{
     max-width: 3000px;
 }
+
+
+/******************* ESTILOS PARA LAS TIENDAS ***********************/
+.content-card{
+    height:250px;
+    width:100%;
+    margin:0 8px;
+    border-radius:15px;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+}
+.content-card:hover{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(200,200,200,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(200,200,200,1);
+    box-shadow: 0px 0px 10px 0px rgba(200,200,200,1);
+}
+.content-card .card-banner{
+    height: 100px;
+}
+.content-card .card-logo{
+    position: absolute;
+    width: 100%;
+    top: 15%;
+    text-align: center;
+}
+.content-card .card-logo img{
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(170,170,170,1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(170,170,170,1);
+    box-shadow: 0px 0px 15px 0px rgba(170,170,170,1);
+}
+.content-card .card-title{
+    position: absolute;
+    width: 100%;
+    top: 150PX;
+    text-align: center;
+}
+.content-card .card-title p{
+    font-size: 23px;
+    font-weight: 700;
+}
+.card-vermas{
+    position: absolute;
+    width: 100%;
+    top: 210px;
+    text-align: center;
+}

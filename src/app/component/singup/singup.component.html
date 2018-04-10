@@ -39,16 +39,16 @@
                             </div>
                             <div class="row m-b-20">
                                 <div class="error-g col-md-6">
-                                    <p  [hidden]="hidName">Nombre requerido</p>
+                                    <p  [hidden]="hidName">* Nombre requerido</p>
                                 </div>
                                 <div class="error-g col-md-6">
-                                    <p  [hidden]="hidLastname">Apellido requerido</p>
+                                    <p  [hidden]="hidLastname">* Apellido requerido</p>
                                 </div>
                             </div>
 
                             <div class="row m-b-0">
                             <div class="input-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Correo electronico" name="email" required [(ngModel)]="email">
+                                <input type="text" class="form-control" placeholder="Correo electronico" name="email" required [(ngModel)]="email" (keypress)="keyPressEmail($event)">
                                 <span class="md-line"></span>
                             </div>
                             <div class="input-group col-md-6">
@@ -58,10 +58,10 @@
                             </div>
 			                <div class="row m-b-20">
                                 <div class="error-g col-md-6">
-                                    <p  [hidden]="hidEmail">Correo electronico requerido</p>
+                                    <p  [hidden]="hidEmail">* Correo electronico requerido</p>
                                 </div>
                                 <div class="error-g col-md-6">
-                                    <p  [hidden]="hidPassword">Contraseña requerida</p>
+                                    <p  [hidden]="hidPassword">* Contraseña requerida</p>
                                 </div>
                             </div>
                             <div class="row m-b-20">

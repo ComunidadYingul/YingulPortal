@@ -98,7 +98,7 @@
                                       <div>
                                           <div class="col-lg-12">
                                               <span class="txt-muted d-inline-block">Codigo de {{itemType}}: <a href="#!"> {{localItemId}} </a> </span>
-                                              <span class="f-right">Disponibilidad : <a href="#!">{{Product.productQuantity}} En Stock </a> </span>
+                                              <span class="f-right">Disponibilidad : <a >{{Item.quantity}} En Stock </a> </span>
                                           </div>
                                           <div class="col-lg-12">
                                               <h4 class="pro-desc">{{Item.name}}</h4>
@@ -278,7 +278,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">Cantidad en Stock</th>
-                                                                    <td>{{Product.productQuantity}}</td>
+                                                                    <td>{{Item.quantity}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">Forma de pago</th>
@@ -447,12 +447,12 @@
                                             <div class="col-lg-12">
                                                 <div class="cover-profile">
                                                     <div class="profile-bg-img">
-                                                        <img class="profile-bg-img img-fluid" src="assets/images/user-profile/bg-img1.jpg" alt="bg-img">
+                                                        <img class="profile-bg-img img-fluid" width="970" height="175" src="{{BUCKET_URL}}user/userProfile/{{Seller.yng_User.profileBanner}}" alt="bg-img">
                                                         <div class="card-block user-info">
                                                             <div class="col-md-12">
                                                                 <div class="media-left">
                                                                     <a href="#" class="profile-image">
-                                                                        <img class="user-img img-circle" src="assets/images/avatar-2.png" alt="user-img">
+                                                                        <img class="user-img img-circle" width="136" height="136" src="{{BUCKET_URL}}user/userProfile/{{Seller.yng_User.profilePhoto}}" alt="user-img">
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body row">

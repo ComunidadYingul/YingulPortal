@@ -4,6 +4,7 @@ import { Account } from '../../../model/account';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../service/account.service';
 import { LoginService } from '../../../service/login.service';
+import { Network } from '../../../model/Network';
 
 @Component({
   selector: 'app-balance',
@@ -11,6 +12,7 @@ import { LoginService } from '../../../service/login.service';
   styleUrls: ['./balance.component.css']
 })
 export class BalanceComponent implements OnInit {
+  BUCKET_URL:string=Network.BUCKET_URL;
   User: user=new user();
   account:Account = new Account();
   money:number;

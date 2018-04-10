@@ -104,4 +104,11 @@ export class ContactUsComponent implements OnInit {
     }
   }
 
+  keyPressEmail(event: any) {
+    const patron = /[a-z0-9@.\-_]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !patron.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 }

@@ -3,7 +3,6 @@ export class Product{
     product_id:number;
 	productCondition:string;
 	productSaleConditions:string;
-    productQuantity:string;
     productFormDelivery:string;
     productPaymentMethod:string;
 	productWarranty:string;
