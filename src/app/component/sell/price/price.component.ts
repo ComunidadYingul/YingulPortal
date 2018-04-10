@@ -759,11 +759,11 @@ export class PriceComponent implements OnInit {
   aceptarDiscount(){
     var a=this.priceNormal-this.priceDiscount;
     if(a>0){
-    this.popupDescuento=true;
-    this.checkedDiscount=false;
-    this.product.yng_Item.priceDiscount=this.priceDiscount;
-    this.product.yng_Item.priceNormal=this.priceNormal;
-    this.price=this.priceDiscount;
+      this.popupDescuento=true;
+      this.checkedDiscount=false;
+      this.product.yng_Item.priceDiscount=this.priceDiscount;
+      this.product.yng_Item.priceNormal=this.priceNormal;
+      this.price=this.priceDiscount;
     }
     else{
       alert("Los valores no son válidos");
@@ -840,5 +840,8 @@ export class PriceComponent implements OnInit {
     this.checkPrice('fijo');
     this.elem.nativeElement.querySelector('#option2').checked=true;
 
+  }
+  popupHide(){
+    this.popupDescuento=true;
   }
 }
