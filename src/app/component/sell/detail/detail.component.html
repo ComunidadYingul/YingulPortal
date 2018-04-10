@@ -146,8 +146,8 @@
                     <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Largo: </span>
-                                    <input id="productLength" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Longitud en cm Ej: 250" name="productLength" [(ngModel)]="productLength">
+                                    <span class="input-group-addon">Largo en cm: </span>
+                                    <input id="productLength" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Longitud en cm Ej: 25" name="productLength" [(ngModel)]="productLength">
                                     
                                 </div>
                                 <div class="error-g row">
@@ -159,8 +159,8 @@
                     <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Ancho: </span>
-                                    <input id="productWidth" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Ancho en cm Ej: 200" name="productWidth" [(ngModel)]="productWidth">
+                                    <span class="input-group-addon">Ancho en cm: </span>
+                                    <input id="productWidth" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Ancho en cm Ej: 20" name="productWidth" [(ngModel)]="productWidth">
             
                                 </div>
                                 <div class="error-g row">
@@ -172,8 +172,8 @@
                     <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Alto: </span>
-                                    <input id="productHeight" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Altura en cm Ej: 250" name="productHeight" [(ngModel)]="productHeight">
+                                    <span class="input-group-addon">Alto en cm: </span>
+                                    <input id="productHeight" type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Altura en cm Ej: 25" name="productHeight" [(ngModel)]="productHeight">
             
                                 </div>
                                 <div class="error-g row">
@@ -185,7 +185,7 @@
                     <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+                                    <span class="input-group-addon">Volumen en cm3: </span>
                                     <input type="text" class="form-control" (keypress)="keyPress($event)"placeholder="Volumen de la caja" name="productVolumen" [(ngModel)]="productVolumen" value="{{productLength*productWidth*productHeight}}" disabled>
             
                                 </div>
