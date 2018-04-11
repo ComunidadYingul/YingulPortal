@@ -186,7 +186,7 @@
                                               <button (click)="onSubmit()" *ngIf="Item.type=='Service'||Item.type=='Property'" type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                     <i class="icofont icofont-ui-head-phone f-16"></i><span class="m-l-10">CONTACTAR</span>
                                               </button>
-                                              <button type="button" class="btn btn-outline-primary waves-effect waves-light m-r-20">
+                                              <button (click)="addToFavorites(Item.itemId)" type="button" class="btn btn-outline-primary waves-effect waves-light m-r-20">
                                                   <i class="icofont icofont-heart-alt f-16 m-0"></i>
                                               </button>
                                               <!--<button type="button" class="btn btn-outline-primary waves-effect waves-light">
