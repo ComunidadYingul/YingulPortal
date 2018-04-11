@@ -167,7 +167,7 @@ export class ShippingComponent implements OnInit {
         }
         else {
           //this.popupEnvios=true;
-          this.popup_g=false;
+          //this.popup_g=false;
           this.popupUbication=false;
           //activar para postalcode por default
           //this.postalCode=this.ubication.postalCode;
@@ -384,6 +384,7 @@ export class ShippingComponent implements OnInit {
       if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
       else  this.priceSuc=this.priceSuc2+"  Costo del envio";
       this.popupSucursal=false;
+      this.popup_g=true;
     }
     priceHiddem:boolean=true;
     envioComprador(event,yng_Quote:Quote){
@@ -421,6 +422,7 @@ export class ShippingComponent implements OnInit {
                 this.mostrarCotizacion();
               }
               else{
+                this.popup_g=true;
                 this.quoteList=null;
                 alert("No existe una sucursal cercana");
               }
@@ -436,6 +438,7 @@ export class ShippingComponent implements OnInit {
     quoteSend(){
       this.hidBuscarSucursal=true;
       if(this.postalCode!=""){
+        this.popup_g=false;
         this.popupSucursal=true;
         this.getItem("Producto",this.Item.itemId);
         this.quoteS.respuesta="";
@@ -594,7 +597,7 @@ export class ShippingComponent implements OnInit {
                   //this.sw=true;
                  // this.buyItem();
                  this.popupUbication=true;
-                 this.popup_g=true;
+                 //this.popup_g=true;
                 }
                 else{
                   alert(this.msg);
