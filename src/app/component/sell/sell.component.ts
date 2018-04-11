@@ -390,18 +390,81 @@ export class SellComponent implements OnInit {
     }
   }
   detail(){
-    if(this.category == {} || this.category==null) {
-      this.hidType=true;
-      this.hidCat=false;
+    if(this.type=="Service"){
+      this.typeEs="Servicio";
+    }
+    if(this.type=="Product"){
+      this.typeEs="Producto";
+    }
+    if(this.type=="Motorized"){
+      this.typeEs="Vehículo";
+    }
+    if(this.type=="Property"){
+      this.typeEs="Inmueble";
+    }
+    if(this.type == ''||this.type == null) {
+      this.hidType=false;
+      this.hidCat=true;
       this.hidDet=true;
       this.hidPri=true;
       this.hidTyp=true;
     } else {
-      this.hidType=true;
+      if(this.category == {} || this.category==null) {
+        this.hidType=true;
+        this.hidCat=false;
+        this.hidDet=true;
+        this.hidPri=true;
+        this.hidTyp=true;
+      } else {
+        this.hidType=true;
+        this.hidCat=true;
+        this.hidDet=false;
+        this.hidPri=true;
+        this.hidTyp=true;
+      }
+    }
+  }
+  price(){
+    if(this.type=="Service"){
+      this.typeEs="Servicio";
+    }
+    if(this.type=="Product"){
+      this.typeEs="Producto";
+    }
+    if(this.type=="Motorized"){
+      this.typeEs="Vehículo";
+    }
+    if(this.type=="Property"){
+      this.typeEs="Inmueble";
+    }
+    if(this.type == ''||this.type == null) {
+      this.hidType=false;
       this.hidCat=true;
-      this.hidDet=false;
+      this.hidDet=true;
       this.hidPri=true;
       this.hidTyp=true;
+    } else {
+      if(this.category == {} || this.category==null) {
+        this.hidType=true;
+        this.hidCat=false;
+        this.hidDet=true;
+        this.hidPri=true;
+        this.hidTyp=true;
+      } else {
+        if(this.item == null) {
+          this.hidType=true;
+          this.hidCat=true;
+          this.hidDet=false;
+          this.hidPri=true;
+          this.hidTyp=true;
+        } else {
+          this.hidType=true;
+          this.hidCat=true;
+          this.hidDet=true;
+          this.hidPri=false;
+          this.hidTyp=true;
+        }
+      }
     }
   }
 }

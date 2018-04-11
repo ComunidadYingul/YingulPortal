@@ -17,7 +17,7 @@
             </div>
             <br/>
             <div class="form-radio">
-                <div class="radio radiofill radio-inline">
+                <div class="radio radiofill radio-inline" *ngIf="Item.type!='Motorized'">
                     <label>
                         <input type="radio" value="false" name="radio" #radio (change)="check('branch')" [(ngModel)]="radioSucursal">
                         <i class="helper"></i>Retiro en una sucursal
@@ -203,6 +203,7 @@
                 <div class="job-meta-data"><i class="icofont icofont-safety"></i>{{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></div>
                 <div class="job-meta-data" [hidden]="priceHiddem"><i class="icofont icofont-safety"></i>{{priceSuc}}</div>
                 <div class="job-meta-data"><i class="icofont icofont-university"></i>{{Item.price}}</div>
+                <div *ngIf="Item.type=='Motorized'"><button class="btn btn-default btn-outline-default"><i class="icofont icofont-credit-card"></i>Pagás $ 1.500 de reserva</button></div>
             </div>
         </div>
     </div>
