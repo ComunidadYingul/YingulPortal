@@ -8,6 +8,7 @@ import { Email } from '../../model/email';
 import { AboutService } from '../../service/about.service';
 import { Network } from '../../model/Network';
 import { UserService } from '../../service/user.service';
+import { Person } from '../../model/person';
 
 @Component({
   selector: 'app-navbar',
@@ -19,6 +20,7 @@ export class NavbarComponent implements OnInit {
 	@Output() Menu = new EventEmitter();
 	loggedIn: boolean=false;
 	User: user=new user();
+	person:Person= new Person();
 	queries:number=0;
 	categories:Object[];
 	search;
@@ -48,6 +50,7 @@ export class NavbarComponent implements OnInit {
 			this.User=JSON.parse(localStorage.getItem("user"));
 			this.getQueries();
 			this.getProfilePhoto();
+			this.getPerson();
 		}
 	}
 
@@ -195,6 +198,15 @@ export class NavbarComponent implements OnInit {
 		if (event.keyCode != 8 && !patron.test(inputChar)) {
 		  event.preventDefault();
 		}
+	}
+	getPerson(){
+		this.userService.getPerson(this.User.username).subscribe(
+			res => {
+				this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+			},
+				error => console.log(error)
+		);
+		
 	}
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemDetailService } from '../../service/item-detail.service';
 import { Item } from '../../model/item';
 import { Payment } from '../../model/payment';  
@@ -30,7 +30,7 @@ export class BuyComponent implements OnInit {
   hidConf:boolean;
   public payment:Payment= new Payment();
  
-  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService) { 
+  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private router: Router) { 
     this.itemId =route.snapshot.params['itemId'];
     this.quantity = route.snapshot.params['quantity'];
     this.postalCode=route.snapshot.params['postalCode'];
@@ -46,8 +46,17 @@ export class BuyComponent implements OnInit {
     this.itemDetailService.getItemById(this.itemId).subscribe(
 			res => {
             this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-            //console.log(JSON.stringify(this.Item));     
-            this.cost=this.Item.price*this.quantity;
+            if(this.Item.type=="Service"||this.Item.type=="Property"){
+              this.router.navigate(['/itemDetail/'+this.itemId]);
+            }
+            //console.log(JSON.stringify(this.Item));  
+            if(this.Item.type=="Motorized"){
+              this.cost=1500;
+              this.quantity=1;
+            }   
+            if(this.Item.type=="Product"){
+              this.cost=this.Item.price*this.quantity;
+            }
       		},
       		error => console.log(error)
     );
@@ -116,8 +125,6 @@ export class BuyComponent implements OnInit {
   sendProduct(ev){
     this.product=ev;
     console.log("product: "+JSON.stringify(this.product));
-
-
   }
   sendTypePrice(ev){
     this.priceSuc=ev;
@@ -133,5 +140,44 @@ export class BuyComponent implements OnInit {
   }
   sendShipping(ev){
     this.shipping=ev;
+  }
+  shiping(){
+    this.ngOnInit();
+  }
+  pays(){
+    if(this.shipping.typeShipping==""||this.shipping.typeShipping==null){
+      this.hidShip=false;
+      this.hidPay=true;
+      this.hidConf=true;
+    }else{
+      this.hidShip=true;
+      this.hidPay=false;
+      this.hidConf=true;
+    }
+  }
+  confirm(){
+    if(this.shipping.typeShipping==""||this.shipping.typeShipping==null){
+      this.hidShip=false;
+      this.hidPay=true;
+      this.hidConf=true;
+    }else{
+      if(this.payment.yng_Card.type==""||this.payment.yng_Card.type==null){
+        this.hidShip=true;
+        this.hidPay=false;
+        this.hidConf=true;
+      }else{
+        this.hidShip=true;
+        this.hidPay=true;
+        this.hidConf=false;
+      }
+    }
+  }
+  modifyAction(ev){
+    if(ev=="payment"){
+      this.pays();
+    }
+    if(ev=="shipping"){
+      this.ngOnInit();
+    }
   }
 }

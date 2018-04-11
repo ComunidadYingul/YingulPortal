@@ -413,12 +413,5 @@ export class IdetailComponent implements OnInit {
   quantMenos(){
     this.quant--;
   }
-  isFormValid(){
-    if(this.query=="" || this.query==null){
-      return true;
-    }else{
-      return false;
-    }
-  }
 
 }

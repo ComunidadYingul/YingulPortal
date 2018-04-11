@@ -40,8 +40,6 @@ export class LoginService {
   }
   updatePasswordUser(resetPassword:ResetPassword){
     let url: string =Network.API_URL+"login/updatePasswordUser";
-    alert(JSON.stringify(resetPassword));
-    console.log(JSON.stringify(resetPassword));
     return this.http.post(url, resetPassword,{headers: this.headers});
   }
 

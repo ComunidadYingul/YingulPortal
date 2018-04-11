@@ -51,7 +51,7 @@
                 <h5></h5>
 
                 <div class="blog-u-comment">
-                        <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                        <span class="blog-edit"><a (click)="modifyShipping()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
                     </div>
                
             </div>
@@ -67,20 +67,16 @@
                 <h6 class="media-heading">Pago
                 </h6>
                 <div>
-                    <img  *ngIf="payment.yng_Card.provider=='VisaD'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
-                    <img  *ngIf="payment.yng_Card.provider=='MastercardD'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
-                    <img  *ngIf="payment.yng_Card.provider=='AmexD'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
-                    <img  *ngIf="payment.yng_Card.provider=='0'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
-                    <img  *ngIf="payment.yng_Card.provider=='1'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
-                    <img  *ngIf="payment.yng_Card.provider=='2'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.yng_Card.provider=='VISA'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.yng_Card.provider=='MASTERCARD'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.yng_Card.provider=='AMEX'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
                         Terminada en: 
                         <a *ngIf="payment.yng_Card.number%10000>999"> {{payment.yng_Card.number%10000}}</a>
                         <a *ngIf="payment.yng_Card.number%10000>99 && payment.yng_Card.number%10000<=999"> 0{{payment.yng_Card.number%10000}}</a>
                         <a *ngIf="payment.yng_Card.number%10000>9 && payment.yng_Card.number%10000<=99"> 00{{payment.yng_Card.number%10000}}</a>
                         <a *ngIf="payment.yng_Card.number%10000>=0 && payment.yng_Card.number%10000<=9"> 000{{payment.yng_Card.number%10000}}</a>
-                </div>
-                <div class="blog-u-comment">
-                    <span class="blog-edit"><a href="#!">Modificar</a> </span>
+                        &nbsp;&nbsp; <span class="blog-edit"><a (click)="modifyPayment()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
+                
                 </div>
                 <hr>
             </div>
