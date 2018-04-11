@@ -35,7 +35,7 @@
                     <span class="input-group-addon" id="basic-addon10">
                 <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
                 </span>
-                <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+                <a href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
                 </div> 
                 <div class="error-g row">
                     <p  [hidden]="hidBuscarSucursal">* Debe ingresar código postal para buscar sucursales cercanas</p>
@@ -100,7 +100,90 @@
                 </div>
                 </div>
             </div>
+            <!--div class="form-radio">
+                <div class="radio radiofill radio-inline">
+                    <label>
+                        <input type="radio" value="false" name="radioInter" #radio (change)="check('branch')" [(ngModel)]="radioSucursalInter">
+                        <i class="helper"></i>Retiro en una sucursal FedEx
+                    </label>
+                    <div class="error-g row">
+                        <p  [hidden]="hidRadioSucursal">* Marcar campo</p>
+                    </div>
+                </div>
+            </div>
             <br/>
+            <div [hidden]="branch">
+                <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
+                <div class="input-group input-group-button">
+                    <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
+                    <span class="input-group-addon" id="basic-addon10">
+                <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
+                </span>
+                <a href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
+                </div> 
+                <div class="error-g row">
+                    <p  [hidden]="hidBuscarSucursal">* Debe ingresar código postal para buscar sucursales cercanas</p>
+                </div>               
+                <hr class="m-t-20 m-b-20">
+                <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
+                        <div class="table-responsive" >
+                            <table class="table  invoice-detail-table">
+                                <thead>
+                                    <tr class="thead-default">
+                                        <th>Sucursal/Costo</th>
+                                    </tr>
+                                </thead>
+                                <tbody [hidden]="false">
+                                    <div class="col-sm-12 form-radio">
+                                     <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
+                                            <label>
+                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
+                                                <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
+                                                <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
+                                                <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
+                                                <i class="helper"></i>{{amenities.yng_Branch.schedules}}
+                                            </label>
+                                            <label>
+                                                <h6 class="count text-primary"*ngIf="Product.productPagoEnvio=='gratis'">$ Envio Gratis</h6>
+                                                <h6 class="count text-primary"*ngIf="Product.productPagoEnvio!='gratis'">$ {{amenities.rate}}</h6><br>
+                                            </label>                                                
+                                        </div> 
+                                    </div>
+                                </tbody>  
+                                <div class="error-g row">
+                                    <p  [hidden]="hidSucursal">* Debe seleccionar una opción</p>
+                                </div>                            
+                            </table>                       
+                        </div>
+                </div>
+                <br/>
+                <div [hidden]="popupSucursal">
+                <h6>¿Quien retira el paquete?</h6><br/>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
+                            </div>
+                            <div class="error-g row">
+                                <p  [hidden]="hidName">* Nombre requerido</p>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
+                            <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
+                            <span class="md-line"></span>
+                        </div>
+                        <div class="error-g row">
+                            <p  [hidden]="hidPhone">* Teléfono requerido</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div-->
             <div class="col-sm-10">
                 <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip2()">Continuar</a>
             </div>  
@@ -148,7 +231,7 @@
         <span class="input-group-addon" id="basic-addon10">
             <button  class="btn btn-primary"  (click)="buscarCP()">Buscar1</button>
         </span>
-    <a hidden="true" href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+    <a hidden="true" href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
     </div>
     
 

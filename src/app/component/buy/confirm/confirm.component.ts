@@ -45,7 +45,7 @@ export class ConfirmComponent implements OnInit {
   hidDocPhone:boolean=true;
 
   constructor(private buyService: BuyService, private router: Router) { 
-  console.log("Cotizacion"+JSON.stringify(this.shipping));
+  console.log("shipping:"+JSON.stringify(this.shipping));
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -133,7 +133,7 @@ export class ConfirmComponent implements OnInit {
       this.buy.itemCost=this.cost;
       this.buy.shipping=this.shipping;
       
-      console.log(JSON.stringify(this.buy));
+      console.log("send buy:"+JSON.stringify(this.buy));
       this.buyService.saveBuy(this.buy).subscribe(
         res => {
               this.msg = JSON.parse(JSON.stringify(res))._body;

@@ -10,4 +10,5 @@ export class Quote {
 	yng_Item:Item;
 	yng_User:user;
 	yng_Branch:Branch;
+	quantity:number;
 }

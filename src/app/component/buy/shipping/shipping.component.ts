@@ -446,7 +446,8 @@ export class ShippingComponent implements OnInit {
         this.quoteS.yng_Item=this.Item;
         this.useri=JSON.parse(localStorage.getItem("user"));
         this.useri.yng_Ubication.postalCode=this.postalCode;
-        this.quoteS.yng_User=this.useri;      
+        this.quoteS.yng_User=this.useri;
+        this.quoteS.quantity=this.quantity;
         this.sendQuote(this.quoteS);
       }
       else {
@@ -486,11 +487,8 @@ export class ShippingComponent implements OnInit {
             this.typeProduct.emit(this.Product);
             this.typePrice.emit(this.priceSuc);
             this.typeShip.emit("envio");          
-            //this.shipping.yng_envio=this.andreaniEnvio;
-            //this.shipping.typeShipping=this.branchS.nameMail;
-            //this.shipping.yng_Quote.yng_Branch=this.branchS;
-            //this.shipping.yng_Quote
-          // this.shipping.yng_Shipment
+            this.shipping.nameContact=this.name;
+            this.shipping.phoneContact=this.phone;
             this.shipping.yng_Quote.yng_Item=null;
             this.shipping.yng_Quote.yng_User=null;
             this.typeEnvio.emit(this.shipping);
@@ -506,7 +504,7 @@ export class ShippingComponent implements OnInit {
           this.typePrice.emit(null);
           this.typeShip.emit("envio");
           this.typeEnvio.emit(this.shipping);
-          //this.shipping.yng_envio=this.andreaniEnvio;
+          
         }
       }
 
@@ -708,5 +706,29 @@ export class ShippingComponent implements OnInit {
    }
    setBarrio(barrioId:number){
     this.barrio.barrioId=barrioId;
+  }
+  checkInter(typebuy:string){
+    this.resetSucursal();
+    switch (typebuy) {
+      case "branch":
+        this.branch= false;
+        this.sendHome=true;
+        this.shipping.typeShipping="branch";
+        break;
+      case "home":
+        this.branch= true;
+        this.sendHome=true;
+        this.andreaniCotizacionRespuesta=null;
+        this.priceHiddem=true;
+        this.shipping.typeShipping="home";
+        this.checke=false;
+        break;
+      case "sendHome":
+        this.branch= true;
+        this.sendHome=false;
+        break;
+      default:
+
+    }
   }
 }
