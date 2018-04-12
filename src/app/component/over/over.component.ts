@@ -222,6 +222,7 @@ export class OverComponent implements OnInit {
     this.popupHide();
   }
   filterHidden(){
+    this.popupHide();
     this.popup5=false;  
   }
   popupPrice(){

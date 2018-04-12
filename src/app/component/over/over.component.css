@@ -53,3 +53,21 @@
 .wrap-img, .main-img{
 	height: 100%;
 }
+
+
+/****************cambios g*****************/
+.option-hover a:hover, .option-hover button:hover{
+    background: #f00;
+}
+.option-hover a, .option-hover button{
+    background: #0275d8;
+    border:none;
+}
+
+@media (max-width: 800px) and (orientation: landscape) {
+    .popup .card-block{
+		height: 170px;
+		overflow: hidden;
+		overflow-y: scroll;
+	}
+}

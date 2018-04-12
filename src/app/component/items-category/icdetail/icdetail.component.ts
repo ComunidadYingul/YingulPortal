@@ -49,6 +49,8 @@ export class IcdetailComponent implements OnInit {
   popup8:boolean=true;
   popup9:boolean=true;
   popup10:boolean=true;
+  popupFechaPubli:boolean=true;
+  popupCond:boolean=true;
   today = new Date().toJSON().split('T')[0];
   dateDesde:string;
   dateHasta:string;
@@ -150,8 +152,11 @@ export class IcdetailComponent implements OnInit {
     this.popup8=true;
     this.popup9=true;
     this.popup10=true;
+    this.popupFechaPubli=true;
+    this.popupCond=true;
   }
   popupCountry(){
+    this.popupHide();
     this.popup9=false;
   }
   popupProvince(){
@@ -206,7 +211,7 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
     this.popupHide();
     this.provinceCard=true;
-    this.cityCard=false;
+    //this.cityCard=false;
   }
   findCity(b:number){
     this.itemListTemp=[];
@@ -238,6 +243,7 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
   }
   findPrice1(){
+    this.popupHide();
     if(!this.precioDesde){
       this.precioDesde=0;
     }
@@ -250,15 +256,26 @@ export class IcdetailComponent implements OnInit {
     this.popup5=false;  
   }
   popupPrice(){
+    this.popupHide();
     this.popup6=false;
   }
   popupUbication(){
     this.popup8=false;
   }
   popupCategorys(){
+    this.popupHide();
     this.popup7=false;
   }
+  popupDatePubli(){
+    this.popupHide();
+    this.popupFechaPubli=false;
+  }
+  popupCondition(){
+    this.popupHide();
+    this.popupCond=false;
+  }
   findDate(){
+    this.popupHide();
     let dateDesde;
     let dateHasta;
     if(this.dateDesde==null){
@@ -282,6 +299,7 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
   }
   findNew(){
+    this.popupHide();
     this.itemListTemp=[];
     if(this.typeItemCategory=="Product"){
       for (let i of this.itemList) {
@@ -309,6 +327,7 @@ export class IcdetailComponent implements OnInit {
     this.conditionCard=true;
   }
   findUsed(){
+    this.popupHide();
     this.itemListTemp=[];
     if(this.typeItemCategory=="Product"){
       for (let i of this.itemList) {

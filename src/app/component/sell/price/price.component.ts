@@ -49,6 +49,8 @@ export class PriceComponent implements OnInit {
   userName;
   ubicationId:string;
 
+  priceDiscount1:boolean;
+
   //objeto final para enviar
   public service:Service = new Service();
   public product:Product = new Product();
@@ -752,20 +754,22 @@ export class PriceComponent implements OnInit {
   discountPrice(event){
     if(event.target.checked==true){
       this.popupDescuento=false;
+      this.priceNormal=null;
+      this.priceDiscount=null;
     }
     else {
-      
+      this.price=null;
     }
-
+    //alert(this.priceDiscount1);
   }
   aceptarDiscount(){
     var a=this.priceNormal-this.priceDiscount;
     if(a>0){
-    this.popupDescuento=true;
-    this.checkedDiscount=false;
-    this.product.yng_Item.priceDiscount=this.priceDiscount;
-    this.product.yng_Item.priceNormal=this.priceNormal;
-    this.price=this.priceDiscount;
+      this.popupDescuento=true;
+      this.checkedDiscount=false;
+      this.product.yng_Item.priceDiscount=this.priceDiscount;
+      this.product.yng_Item.priceNormal=this.priceNormal;
+      this.price=this.priceDiscount;
     }
     else{
       alert("Los valores no son válidos");
@@ -842,5 +846,9 @@ export class PriceComponent implements OnInit {
     this.checkPrice('fijo');
     this.elem.nativeElement.querySelector('#option2').checked=true;
 
+  }
+  popupHide(){
+    this.popupDescuento=true;
+    this.priceDiscount1=false;
   }
 }

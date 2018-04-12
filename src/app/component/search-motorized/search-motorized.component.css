@@ -15,3 +15,42 @@
     border: 5px solid #FF5E3A;
 	
 }
+
+@media screen and (max-width: 800px) {
+    .phone {        
+        display: none;
+	}
+	.phoneMirrow{
+		display: inline;
+	}
+}
+@media screen and (min-width: 801px) {
+	.phoneMirrow2{
+		display: none;
+	}
+}
+
+/****************** ESTILOS CUERPO G *********************/
+.sidebar{
+	width: 330px;
+}
+.section{
+	flex:1 1 200px;
+}
+.section > .row{
+	width: 100%;
+}
+.wrap-card{
+	height: 350px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.section .card, .prod-item{
+	height: 100%;
+}
+.prod-img{
+	height: 50%;
+}
+.wrap-img, .main-img{
+	height: 100%;
+}

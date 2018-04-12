@@ -115,9 +115,9 @@
                                                   <option value="5">5</option>
                                               </select>
                                           </div>
-                                          <div  *ngIf="Item.priceDiscount>0" class="col-lg-7 col-xs-12"><del  class="icofont icofont-cur-dollar"> {{Item.priceNormal}}</del>  </div>
+                                          <div  *ngIf="Item.priceDiscount>0" class="col-lg-7 col-xs-12"><del style="color: red;font-size: 24px;"  class="icofont icofont-cur-dollar"> {{Item.priceNormal}}</del>  </div>
                                           <div class="col-lg-7 col-xs-12">
-                                              <span class="text-primary product-price">
+                                              <span style="color: #3e5871 !important;" class="text-primary product-price">
                                                   <i class="icofont icofont-cur-dollar">
                                                   </i>{{Item.price}}
                                             </span> 
