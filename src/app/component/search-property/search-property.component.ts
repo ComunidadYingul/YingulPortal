@@ -98,6 +98,10 @@ export class SearchPropertyComponent implements OnInit {
   filterHidden(){
     this.popupFiltrar=false;  
   }
+  popupCategory(){
+    this.popupHide();
+    this.popup=false;
+  }
   popupCategorys(){
     this.popupHide();
     this.popup7=false;
