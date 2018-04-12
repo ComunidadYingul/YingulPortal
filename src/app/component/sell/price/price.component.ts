@@ -634,6 +634,8 @@ export class PriceComponent implements OnInit {
     console.log("productTem:"+JSON.stringify(this.productTem));
     this.setPriceFreeAndreani ();  
     if(event.target.checked==true){
+      this.checkRPerson=false;
+      this.disabledRPerson=true;
       this.product.productFormDelivery="YingulEnvios"
       this.setPriceFreeAndreani();      
       this.consultarUbi();
