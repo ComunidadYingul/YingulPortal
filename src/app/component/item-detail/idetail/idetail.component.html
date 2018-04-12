@@ -173,6 +173,9 @@
                                                             <i class="icofont icofont-comment"></i>
                                                         </span>
                                                         <input type="text" class="form-control" placeholder="Escribe una pregunta" name="query" required [(ngModel)]="query">
+                                                        <div class="error-g row">
+                                                            <p  [hidden]="hidQuery">Cantidad. requerido</p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,9 +189,9 @@
                                               <button (click)="onSubmit()" *ngIf="Item.type=='Service'||Item.type=='Property'" type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                     <i class="icofont icofont-ui-head-phone f-16"></i><span class="m-l-10">CONTACTAR</span>
                                               </button>
-                                              <button (click)="addToFavorites(Item.itemId)" type="button" class="btn btn-outline-primary waves-effect waves-light m-r-20">
+                                              <!--<button (click)="addToFavorites(Item.itemId)" type="button" class="btn btn-outline-primary waves-effect waves-light m-r-20">
                                                   <i class="icofont icofont-heart-alt f-16 m-0"></i>
-                                              </button>
+                                              </button>-->
                                               <!--<button type="button" class="btn btn-outline-primary waves-effect waves-light">
                                                   <i class="icofont icofont-eye-alt f-16 m-0"></i>
                                               </button>-->
@@ -607,14 +610,14 @@
                                                                     <i class="icofont icofont-heart-alt f-20"></i>
                                                                 </button>
                                                             </div>
-                                                            <a href="#!" class="hvr-shrink">
+                                                            <a href="javascript:void(0)" class="hvr-shrink">
                                                                 <!--ruta para la imagenes en desarrollo -->
                                                                 <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
                                                             </a>
                                                             <div class="p-sale">VENTA</div>
                                                         </div>
                                                         <div class="prod-info">
-                                                            <h5><a href="" class="txt-muted"> {{item.name}} </a></h5>
+                                                            <h5><a href="javascript:void(0)" class="txt-muted"> {{item.name}} </a></h5>
                                                             <div class="stars stars-example-css m-b-10">
                                                                 <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
                                                                     <option value="1">1</option>
@@ -763,6 +766,9 @@
                                                                                 <i class="icofont icofont-comment"></i>
                                                                             </span>
                                                                             <input type="text" class="form-control" placeholder="Escribe una pregunta" name="query" required [(ngModel)]="query">
+                                                                            <div class="error-g row">
+                                                                                <p  [hidden]="hidQuery">Cantidad. requerido</p>
+                                                                            </div>
                                                                             <span class="input-group-addon" id="basic-addon12">
                                                                                 <button class="btn btn-primary" (click)="onSubmit()"><i class="icofont icofont-plus m-r-10"> </i> Preguntar</button>
                                                                             </span> 

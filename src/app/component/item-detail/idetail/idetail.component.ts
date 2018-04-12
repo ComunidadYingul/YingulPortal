@@ -58,6 +58,7 @@ export class IdetailComponent implements OnInit {
   hiddenTypeSend:boolean=true;
   popup2:boolean=true;
   numberImg:number;
+  hidQuery:boolean=true;
   constructor(private itemDetailService : ItemDetailService, private router : Router, private favoriteService: FavoriteService){
     if(this.Product.productPagoEnvio=="comprador"){this.hiddenTypeSend=false;}
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
