@@ -398,7 +398,7 @@
                     <a>Desde:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateDesde" [(ngModel)]="dateDesde">
                     <a>Hasta:</a><input type="date" min="2018-03-08" [max]="today" class="form-control form-control-primary " name="dateHasta" [(ngModel)]="dateHasta">
                     <br>
-                    <a *ngIf="dateDesde!=null||dateHasta!=null" style="cursor: pointer;" (click)="findDate2()" class="" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
+                    <a *ngIf="dateDesde!=null||dateHasta!=null" style="cursor: pointer;" (click)="findDate()" class="" ><span class="input-group-addon"><i class="icofont icofont-search-alt-1"> Buscar</i></span></a>
                 </div>
             </div>
       </div>
@@ -409,8 +409,8 @@
             </div>
             <div class="card-block">
                 <div class="list-group" width="100%">
-                    <a style="cursor: pointer;" (click)="findNew2()" class="list-group-item list-group-item-action " >Nuevo</a>
-                    <a style="cursor: pointer;" (click)="findUsed2()" class="list-group-item list-group-item-action " >Usado</a>
+                    <a style="cursor: pointer;" (click)="findNew()" class="list-group-item list-group-item-action " >Nuevo</a>
+                    <a style="cursor: pointer;" (click)="findUsed()" class="list-group-item list-group-item-action " >Usado</a>
                 </div>
             </div>
       </div>

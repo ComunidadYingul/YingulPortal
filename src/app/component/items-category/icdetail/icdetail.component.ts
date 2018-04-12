@@ -243,6 +243,7 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
   }
   findPrice1(){
+    this.popupHide();
     if(!this.precioDesde){
       this.precioDesde=0;
     }
@@ -274,6 +275,7 @@ export class IcdetailComponent implements OnInit {
     this.popupCond=false;
   }
   findDate(){
+    this.popupHide();
     let dateDesde;
     let dateHasta;
     if(this.dateDesde==null){
@@ -297,6 +299,7 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
   }
   findNew(){
+    this.popupHide();
     this.itemListTemp=[];
     if(this.typeItemCategory=="Product"){
       for (let i of this.itemList) {
@@ -324,6 +327,7 @@ export class IcdetailComponent implements OnInit {
     this.conditionCard=true;
   }
   findUsed(){
+    this.popupHide();
     this.itemListTemp=[];
     if(this.typeItemCategory=="Product"){
       for (let i of this.itemList) {
