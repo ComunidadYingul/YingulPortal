@@ -26,6 +26,10 @@ export class SearchPropertyComponent implements OnInit {
   popup2:boolean=true;
   popup3:boolean=true;
   popup4:boolean=true;
+  popup6:boolean=true;
+  popup7:boolean=true;
+  popupFechaPubli:boolean=true;
+  popupFiltrar:boolean=true;
   provinceCard:boolean=true;
   cityCard:boolean=true;
   cityList: Object[];
@@ -91,19 +95,41 @@ export class SearchPropertyComponent implements OnInit {
       );
     }
   }
+  filterHidden(){
+    this.popupFiltrar=false;  
+  }
+  popupCategorys(){
+    this.popupHide();
+    this.popup7=false;
+  }
+  popupPrice(){
+    this.popupHide();
+    this.popup6=false;
+  }
+  popupDatePubli(){
+    this.popupHide();
+    this.popupFechaPubli=false;
+  }
   popupCountry(){
+    this.popupHide();
     this.popup4=false;
   }
   popupProvince(){
+    this.popupHide();
     this.popup=false;
   }
   popupCity(){
+    this.popupHide();
     this.popup2=false;
   }
   popupHide(){
     this.popup=true;
     this.popup2=true;
     this.popup4=true;
+    this.popup6=true;
+    this.popup7=true;
+    this.popupFechaPubli=true;
+    this.popupFiltrar=true;
   }
   findCountry(a:number){
     this.sellService.getProvinces(a).subscribe(
@@ -184,8 +210,10 @@ export class SearchPropertyComponent implements OnInit {
       this.precioHasta=0;
     }
     this.findPrice(this.precioDesde,this.precioHasta);
+    this.popupHide();
   }
   findDate(){
+    this.popupHide();
     let dateDesde;
     let dateHasta;
     if(this.dateDesde==null){
