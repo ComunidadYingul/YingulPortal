@@ -34,6 +34,8 @@ export class AllItemsComponent implements OnInit {
   popup7:boolean=true;
   popup8:boolean=true;
   popup9:boolean=true;
+  popupFechaPubli:boolean=true;
+  popupCond:boolean=true;
   today = new Date().toJSON().split('T')[0];
   dateDesde:string;
   dateHasta:string;
@@ -103,6 +105,8 @@ export class AllItemsComponent implements OnInit {
     this.popup7=true;
     this.popup8=true;
     this.popup9=true;
+    this.popupFechaPubli=true;
+    this.popupCond=true;
   }
   filterHidden(){
     this.popup5=false;  
@@ -133,10 +137,20 @@ export class AllItemsComponent implements OnInit {
     this.itemList=this.itemListTemp;
   }
   popupPrice(){
+    this.popupHide();
     this.popup6=false;
   }
   popupCategorys(){
+    this.popupHide();
     this.popup7=false;
+  }
+  popupDatePubli(){
+    this.popupHide();
+    this.popupFechaPubli=false;
+  }
+  popupCondition(){
+    this.popupHide();
+    this.popupCond=false;
   }
   popupCategory(){
     this.popup=false;
@@ -147,6 +161,7 @@ export class AllItemsComponent implements OnInit {
     this.popup8=false;
   }
   popupCountry(){
+    this.popupHide();
     this.popup9=false;
   }
   findNew(){
@@ -160,6 +175,10 @@ export class AllItemsComponent implements OnInit {
     this.itemList=this.itemListTemp;
     this.conditionCard=true;
   }
+  findNew2(){
+    this.findNew();
+    this.popupHide();
+  }
   findUsed(){
     this.itemListTemp=[];
     for (let i of this.itemList) {
@@ -170,6 +189,10 @@ export class AllItemsComponent implements OnInit {
     this.itemList=[];
     this.itemList=this.itemListTemp;
     this.conditionCard=true;
+  }
+  findUsed2(){
+    this.findUsed();
+    this.popupHide();
   }
   isFavortite(itemId:number){
     for(let i of this.itemFavorites){

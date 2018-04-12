@@ -61,3 +61,12 @@
 .prod-info{
     padding-top: 10px;
 }
+
+/****************cambios g*****************/
+.option-hover a:hover, .option-hover button:hover{
+    background: #f00;
+}
+.option-hover a, .option-hover button{
+    background: #0275d8;
+    border:none;
+}
