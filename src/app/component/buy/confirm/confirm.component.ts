@@ -24,6 +24,7 @@ export class ConfirmComponent implements OnInit {
   @Input('Item') Item:Item;
   @Input('cost') cost:number=12;
   @Output() problem = new EventEmitter();
+  @Output() modify = new EventEmitter();
   @Input('shipping') shipping:Shipping=new Shipping();
   @Input('cotizacion') cotizacion:Cotizacion =new Cotizacion();
   @Input('product') product:Product =new Product();
@@ -45,7 +46,7 @@ export class ConfirmComponent implements OnInit {
   hidDocPhone:boolean=true;
 
   constructor(private buyService: BuyService, private router: Router) { 
-  console.log("Cotizacion"+JSON.stringify(this.shipping));
+  console.log("shipping:"+JSON.stringify(this.shipping));
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -133,7 +134,7 @@ export class ConfirmComponent implements OnInit {
       this.buy.itemCost=this.cost;
       this.buy.shipping=this.shipping;
       
-      console.log(JSON.stringify(this.buy));
+      console.log("send buy:"+JSON.stringify(this.buy));
       this.buyService.saveBuy(this.buy).subscribe(
         res => {
               this.msg = JSON.parse(JSON.stringify(res))._body;
@@ -197,6 +198,12 @@ export class ConfirmComponent implements OnInit {
     console.log("type:"+type);
     if(type=="2"){this.documentType="CUIT";}
     else{this.documentType="DNI";}
-      
-}
+  }
+
+  modifyPayment(){
+    this.modify.emit("payment");
+  }
+  modifyShipping(){
+    this.modify.emit("shipping");
+  }
 }

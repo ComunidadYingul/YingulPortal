@@ -13,6 +13,8 @@ import { AndreaniCotizacion } from '../../../model/andreaniCotizacion';
 import { AndreaniCotizacionRespuesta } from '../../../model/andreaniCotizacionRespuesta';
 import { Cotizacion } from '../../../model/cotizacion';
 import { Network } from '../../../model/Network';
+import { user } from '../../../model/user';
+import { FavoriteService } from '../../../service/favorite.service';
 
 @Component({
   selector: 'app-idetail',
@@ -20,6 +22,7 @@ import { Network } from '../../../model/Network';
   styleUrls: ['./idetail.component.css']
 })
 export class IdetailComponent implements OnInit {
+  User: user=new user();
   BUCKET_URL:string=Network.BUCKET_URL;
   @Input('itemId') localItemId:number;
   itemType:string;
@@ -55,8 +58,14 @@ export class IdetailComponent implements OnInit {
   hiddenTypeSend:boolean=true;
   popup2:boolean=true;
   numberImg:number;
-  constructor(private itemDetailService : ItemDetailService, private router : Router){
+  hidQuery:boolean=true;
+  constructor(private itemDetailService : ItemDetailService, private router : Router, private favoriteService: FavoriteService){
     if(this.Product.productPagoEnvio=="comprador"){this.hiddenTypeSend=false;}
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+		}
   }
   ngOnInit() {
     this.getItemById();
@@ -413,12 +422,27 @@ export class IdetailComponent implements OnInit {
   quantMenos(){
     this.quant--;
   }
-  isFormValid(){
-    if(this.query=="" || this.query==null){
-      return true;
-    }else{
-      return false;
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
     }
   }
-
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    } 
+    
+  }
 }

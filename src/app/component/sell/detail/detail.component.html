@@ -483,6 +483,15 @@
                             <p  [hidden]="hidMotorizedKilometers">* Kms. requerido</p>
                         </div>
                     </div>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input id="motorizedQuantity" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Cantidad: *" name="motorizedQuantity" [(ngModel)]="motorizedQuantity">
+                        </div>
+                        <div class="error-g row">
+                            <p  [hidden]="hidMotorizedQuantity">Cantidad. requerido</p>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -644,7 +653,7 @@
             <span class="input-group-addon" id="basic-addon10"><value="domicilio" [(ngModel)]="shippingMethod">
                 <button class="btn btn-primary" (click)="buscarSucursales()">Buscar</button>
             </span>
-        <a href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
+        <a href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
         </div>
         <div class="page-header-title">
             <h5>Ingresá tu código postal</h5>

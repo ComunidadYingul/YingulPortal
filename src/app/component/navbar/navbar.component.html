@@ -41,7 +41,7 @@
                                 <ul class="mega-menu-links">
                                     <li><a href="/userFront">Resúmen</a></li>
                                     <li><a href="/userFront/favorites">Favoritos</a></li>
-                                    <li><a href="/lisItems">Publicaciones</a></li>
+                                    <li><a href="/listPublications/1">Publicaciones</a></li>
                                     <li><a href="/userFront/purchases">Compras</a></li>
                                     <li><a href="/userFront/sales">Ventas</a></li>
                                     <li><a href="/userFront/userProfile">Mis datos</a></li>
@@ -289,7 +289,7 @@
                     <li class="user-profile header-notification">
                         <a href="javascript:void(0)">
                             <img style="border-radius:50%;" src="{{BUCKET_URL}}user/userProfile/{{profilePhoto}}" alt="Usuario">
-                            <span>{{User.username}}</span>
+                            <span>{{person.name}} {{person.lastname}}</span>
                             <i class="ti-angle-down"></i>
                         </a>
                         <ul class="show-notification profile-notification">

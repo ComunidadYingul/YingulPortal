@@ -201,4 +201,84 @@ export class AllItemsComponent implements OnInit {
       }
     }
   }
+  findCountry(a:number){
+    this.sellService.getProvinces(a).subscribe(
+			res => {
+            this.provinceList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.provinceListFive=this.provinceListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_Country.countryId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.countryCard=true;
+    this.provinceCard=false;
+  }
+  findProvince(a:number){
+    this.sellService.getCities(a).subscribe(
+			res => {
+            this.cityList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.cityListFive= JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.cityListFive=this.cityListFive.splice(0,5);
+      		},
+      		error => console.log(error)
+    );
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      alert(this.itemList[i].yng_Ubication.yng_Province.provinceId)
+      if(this.itemList[i].yng_Ubication.yng_Province.provinceId==a){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.provinceCard=true;
+    this.cityCard=false;
+  }
+  findCity(b:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yng_Ubication.yng_City.cityId==b){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    this.provinceCard=true;
+    this.cityCard=true;
+  }
+  findDate(){
+    let dateDesde;
+    let dateHasta;
+    if(this.dateDesde==null){
+      dateDesde=["2018","03","08"];
+    }else{
+      dateDesde=this.dateDesde.split("-");
+    }
+    if(this.dateHasta==null){
+      dateHasta=this.today.split("-");
+    }else{
+      dateHasta=this.dateHasta.split("-");
+    }
+    
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(this.itemList[i].yearPublication>=+dateDesde[0]&&this.itemList[i].yearPublication<=+dateHasta[0]&&this.itemList[i].monthPublication>=+dateDesde[1]&&this.itemList[i].monthPublication<=+dateHasta[1]&&this.itemList[i].dayPublication>=+dateDesde[2]&&this.itemList[i].dayPublication<=+dateHasta[2]){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+  }
+  
 }

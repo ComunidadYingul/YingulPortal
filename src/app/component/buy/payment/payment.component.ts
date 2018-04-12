@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
   card:Card= new Card();
   cardUser:Card[];
   //datos recuperados del formulario
-  cardNumber:string;
+  cardNumber:string="";
   fullName:string;
   cvv:number;
   dueMonth:string="0";

@@ -106,6 +106,7 @@ motorizedYear:string;
 motorizedModel:string;
 motorizedUnicoDue:string;
 motorizedKilometers:number;
+motorizedQuantity:number;
 
 /****************** VARIABLES VALIDACION SERVICIOS *******************/
 hidServicesTitle:boolean=true;
@@ -136,6 +137,7 @@ hidMotorizedTitle:boolean=true;
 hidMotorizedBrand:boolean=true;
 hidMotorizedYear:boolean=true;
 hidMotorizedKilometers:boolean=true;
+hidMotorizedQuantity:boolean=true;
 
 /*********************************************************************/
 
@@ -330,9 +332,13 @@ public item: Item=new Item();
         }else if(this.motorizedKilometers==null){
           this.hidMotorizedKilometers=false;
           this.elem.nativeElement.querySelector('#motorizedKilometers').focus();
+        }else if(this.motorizedQuantity==null){
+          this.hidMotorizedQuantity=false;
+          this.elem.nativeElement.querySelector('#motorizedQuantity').focus();
         }
         else{
           this.resetMotorizedHid();
+          this.item.quantity=this.motorizedQuantity;
           this.detailItemS.emit(this.item);
           this.motorized.motorizedBrand=this.motorizedBrand;
           this.motorized.motorizedYear=this.motorizedYear;
@@ -345,6 +351,7 @@ public item: Item=new Item();
           this.motorized.motorizedExterior=this.motExterior;
           this.motorized.motorizedEquipment=this.motEquipment;
           this.motorized.motorizedKilometers=this.motorizedKilometers;
+          
         // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
         this.detailProduct.emit(this.motorized);
         }
@@ -380,6 +387,7 @@ public item: Item=new Item();
     this.hidMotorizedBrand=true;
     this.hidMotorizedYear=true;
     this.hidMotorizedKilometers=true;
+    this.hidMotorizedQuantity=true;
   }
 
   back(){

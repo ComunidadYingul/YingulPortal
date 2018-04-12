@@ -257,6 +257,7 @@
                 <div class="job-meta-data"><i class="icofont icofont-safety"></i>{{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></div>
                 <div class="job-meta-data"> <i class="icofont icofont-university"></i>{{priceSuc}} </div>
                 <div class="job-meta-data"><i class="icofont icofont-university"></i>{{Item.price}}</div>
+                <div *ngIf="Item.type=='Motorized'" ><button class="btn btn-default btn-outline-default"><i class="icofont icofont-credit-card"></i>Pagás $ 1.500 de reserva</button></div>
             </div>
         </div>
     </div>
