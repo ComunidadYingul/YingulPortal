@@ -37,6 +37,12 @@ export class SearchMotorizedComponent implements OnInit {
   popup3:boolean=true;
   popup4:boolean=true;
   popup5:boolean=true;
+  popup6:boolean=true;
+  popup7:boolean=true;
+  popup9:boolean=true;
+  popupFechaPubli:boolean=true;
+  popupCond:boolean=true;
+  popupFiltrar:boolean=true;
   anioDesde="0";
   anioHasta="0";
   precioDesde;
@@ -123,8 +129,21 @@ export class SearchMotorizedComponent implements OnInit {
   popupCategory(){
     this.popup=false;
   }
+  popupPrice(){
+    this.popupHide();
+    this.popup6=false;
+  }
   popupAnio(){
+    this.popupHide();
     this.popup2=false;
+  }
+  popupDatePubli(){
+    this.popupHide();
+    this.popupFechaPubli=false;
+  }
+  popupCondition(){
+    this.popupHide();
+    this.popupCond=false;
   }
   popupHide(){
     this.popup=true;
@@ -132,6 +151,12 @@ export class SearchMotorizedComponent implements OnInit {
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
+    this.popup6=true;
+    this.popup7=true;
+    this.popup9=true;
+    this.popupFiltrar=true;
+    this.popupFechaPubli=true;
+    this.popupCond=true;
   }
   setParameters(){
     this.anios=[];
@@ -148,13 +173,23 @@ export class SearchMotorizedComponent implements OnInit {
       this.price.push(j);
     }
   }
+  filterHidden(){
+    this.popupFiltrar=false;  
+  }
+  popupCategorys(){
+    this.popupHide();
+    this.popup7=false;
+  }
   popupCountry(){
+    this.popupHide();
     this.popup5=false;
   }
   popupProvince(){
+    this.popupHide();
     this.popup3=false;
   }
   popupCity(){
+    this.popupHide();
     this.popup4=false;
   }
   findCountry(a:number){
@@ -214,6 +249,7 @@ export class SearchMotorizedComponent implements OnInit {
     this.cityCard=true;
   }
   findDate(){
+    this.popupHide();
     let dateDesde;
     let dateHasta;
     if(this.dateDesde==null){
@@ -237,6 +273,7 @@ export class SearchMotorizedComponent implements OnInit {
     this.itemList=this.itemListTemp;
   }
   findNew(){
+    this.popupHide();
     this.itemListTemp=[];
     for (let i of this.itemList) {
       for(let m of this.motorizedList){
@@ -252,6 +289,7 @@ export class SearchMotorizedComponent implements OnInit {
     this.conditionCard=true;
   }
   findUsed(){
+    this.popupHide();
     this.itemListTemp=[];
     for (let i of this.itemList) {
       for(let m of this.motorizedList){
