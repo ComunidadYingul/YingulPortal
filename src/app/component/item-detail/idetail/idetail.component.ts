@@ -179,28 +179,35 @@ export class IdetailComponent implements OnInit {
     );
   }
   onSubmit(){
-    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
-			this.router.navigate(['/login']);
-		} else {
-      this.popup2=false;
-      this.oneQuery={"query":this.query,"user":JSON.parse(localStorage.getItem("user")),"yng_Item":{"itemId":this.localItemId}};
-      this.itemDetailService.postQuery(this.oneQuery).subscribe(
-        res => {
-          this.msg = JSON.parse(JSON.stringify(res))._body;
-          if(this.msg=='save'){
-            this.ngOnInit();
+    if(this.query=="" || this.query==null){
+      this.hidQuery=false;
+    }else{
+      if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+        this.router.navigate(['/login']);
+      } else {
+        this.popup2=false;
+        this.oneQuery={"query":this.query,"user":JSON.parse(localStorage.getItem("user")),"yng_Item":{"itemId":this.localItemId}};
+        this.itemDetailService.postQuery(this.oneQuery).subscribe(
+          res => {
+            this.msg = JSON.parse(JSON.stringify(res))._body;
+            if(this.msg=='save'){
+              this.ngOnInit();
+              this.popup2=true;
+            }
+            else{
+              alert(this.msg);
+              this.popup2=true;
+            } 
+            this.query="";
+          },
+          error => {
             this.popup2=true;
+            console.log(error);
           }
-          else{
-            alert(this.msg);
-            this.popup2=true;
-          } 
-        },
-        error => console.log(error)
-      );
+        );
 
-		}
-    
+      }
+    }
   }
   retiroSuc(event){
     if(event.target.checked==true)this.shippingMethod="sucursal";
