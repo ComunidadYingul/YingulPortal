@@ -15,8 +15,8 @@ export class StoresComponent implements OnInit {
     //"dots": true,
     "infinite": false,
     "speed": 300,
-    "slidesToShow": 2,
-    "slidesToScroll": 2,
+    "slidesToShow": 4,
+    "slidesToScroll": 4,
     //"autoplay": true,
     //"autoplaySpeed": 2000,
     
