@@ -173,9 +173,9 @@
                                                             <i class="icofont icofont-comment"></i>
                                                         </span>
                                                         <input type="text" class="form-control" placeholder="Escribe una pregunta" name="query" required [(ngModel)]="query">
-                                                        <div class="error-g row">
-                                                            <p  [hidden]="hidQuery">Cantidad. requerido</p>
-                                                        </div>
+                                                    </div>
+                                                    <div class="error-g row">
+                                                        <p  [hidden]="hidQuery">* Campo requerido</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -766,12 +766,12 @@
                                                                                 <i class="icofont icofont-comment"></i>
                                                                             </span>
                                                                             <input type="text" class="form-control" placeholder="Escribe una pregunta" name="query" required [(ngModel)]="query">
-                                                                            <div class="error-g row">
-                                                                                <p  [hidden]="hidQuery">Cantidad. requerido</p>
-                                                                            </div>
                                                                             <span class="input-group-addon" id="basic-addon12">
                                                                                 <button class="btn btn-primary" (click)="onSubmit()"><i class="icofont icofont-plus m-r-10"> </i> Preguntar</button>
                                                                             </span> 
+                                                                        </div>
+                                                                        <div class="error-g row">
+                                                                            <p  [hidden]="hidQuery">* Campo requerido</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -871,13 +871,10 @@
     </div>
 </div>
 
-
-<div class="popup2" align="center" [hidden]="popup2">
-    <div class="page-header-title">
-        <h3>SOLICITUD EN PROCESO</h3>
-        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
-        <br>
-        <br>
-        <h4>Por Favor espere</h4>
+<div class="content_popup_g" align="center" [hidden]="popup2">
+    <div class="popup_g">
+        <p class="popup-title">SOLICITUD EN PROCESO</p>
+        <img src="assets/images/spiner.gif" alt="Cargando">
+        <p class="popup-msg">Por favor espere...</p>
     </div>
 </div>

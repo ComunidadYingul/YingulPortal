@@ -1,4 +1,4 @@
-.popup2 {
+/*.popup2 {
     background: rgba(100, 100, 100, 0.6);
     position: fixed;
     z-index: 5000;
@@ -7,14 +7,13 @@
     background: #FFFFFF;
     box-shadow: 0px 0px 15px 0px rgba(#000000, 0.3);
     padding: 30px 15px;
-    /* Width of popup can be changed */
     width: 30%;
     z-index: 5001;
     bottom:50%;
     left:35%;
     text-align: center;
     border: 15px solid #FF5E3A;
-}
+}*/
 #loader {
     position: absolute;
     left: 50%;
@@ -110,6 +109,10 @@ ol li{
 ol li.active{
     background: #000;
 }
+/************** ESTILOS DEL MENSAJE DE ERROR **************/
+.input-group{
+    margin-bottom: 0;
+}
 .error-g{
     height: 2em;
     width: 100%;
@@ -121,4 +124,3 @@ ol li.active{
     font-size: .9em;
     margin-left: 20px;
 }
-    
