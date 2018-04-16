@@ -1,4 +1,87 @@
 <div class="main-body">
+
+        <div class="page-wrapper">
+                <!-- Page header start -->
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Destacados </h4><a routerLink="/over">&nbsp;&nbsp; Ver más</a>
+                        <!--<span>Encuentra lo que buscas</span>-->
+                    </div>
+                </div>
+                <!-- Page header end -->
+                <!-- Page body start -->
+                <div class="page-body">
+                    <!-- Product list start -->
+                 
+                    <div class="slid-content phoneMirrow2">
+                        <div class="content">
+                            <div class="slide-2" *ngFor="let item of overList; let i = index" [style.left.px]="i*160">
+                                <div class="card-items">
+                                    <div class="card-img">
+                                        <a  href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                            <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                        </a>
+                                        <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                            <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                        <div class="car-img">
+                                            <img src="assets/images/car.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div   class="card-desc">
+                                        <div *ngIf="item.priceDiscount>0">
+                                                <p class="price-past">${{item.priceNormal}}</p>
+                                            </div> 
+                                        <div class="price d-flex justify-content-between">
+                                            <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                        </div>
+                                        <p class="item-name">{{item.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                    
+                    <ngx-slick class="carousel phone" #slickModal="slick-modal" [config]="slideConfig">
+                            <!--div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;"-->
+                                <div ngxSlickItem *ngFor="let item of overList; let i = index" class="slide" >
+                                    <div class="card-items">
+                                        <div class="card-img">
+                                            <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                                <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                            </a>
+                                            <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                            <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                            <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                                <img src="assets/images/car.png" alt="">
+                                            </div>
+                                        </div>
+                                        <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                            <div *ngIf="item.priceDiscount>0">
+                                                <p class="price-past">${{item.priceNormal}}</p>
+                                            </div>                                    
+                                            <div class="price d-flex justify-content-between">
+                                                <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                            </div>
+                                            <p class="item-name">{{item.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            <!--/div-->
+                        </ngx-slick> 
+                  </div>
+                   <!---->
+          
+                <!-- Page body end -->
+            </div>
+
   <div class="page-wrapper">
       <!-- Page header start -->
       <div class="page-header">
@@ -12,60 +95,64 @@
       <div class="page-body">
           <!-- Product list start -->
        
-            <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
+            <ngx-slick class="carousel phone" #slickModal="slick-modal" [config]="slideConfig">
                     <!--div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;"-->
                         <div ngxSlickItem *ngFor="let item of itemList; let i = index" class="slide" >
-                            <a class="card-items">
+                            <div class="card-items">
                                 <div class="card-img">
-                                    <div class="content-img d-flex align-items-center">
+                                    <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
                                         <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
-                                    </div>
-                                    <div class="heart-img">
+                                    </a>
+                                    <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
                                         <i class="icofont icofont-heart-alt f-20"></i>
                                     </div>
-                                    <div class="heart-img-2">
+                                    <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
                                         <i class="icofont icofont-heart-alt f-20"></i>
                                     </div>
-                                    <div class="car-img">
+                                    <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
                                         <img src="assets/images/car.png" alt="">
                                     </div>
                                 </div>
-                                <div class="card-desc">
-                                    <p class="price-past">${{item.priceNormal}}</p>
+                                <div  class="card-desc">
+                                    <div *ngIf="item.priceDiscount>0">
+                                        <p class="price-past">${{item.priceNormal}}</p>
+                                    </div>                                    
                                     <div class="price d-flex justify-content-between">
                                         <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
                                     </div>
                                     <p class="item-name">{{item.name}}</p>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     <!--/div-->
                 </ngx-slick>  
-                <div class="slid-content">
+                <div class="slid-content phoneMirrow2">
                     <div class="content">
                         <div class="slide-2" *ngFor="let item of itemList; let i = index" [style.left.px]="i*160">
-                            <div class="card-items">
+                            <div  class="card-items">
                                 <div class="card-img">
-                                    <div class="content-img d-flex align-items-center">
+                                    <a href="/itemDetail/{{item.itemId}}"  class="content-img d-flex align-items-center">
                                         <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
-                                    </div>
-                                    <div class="heart-img">
+                                    </a>
+                                    <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
                                         <i class="icofont icofont-heart-alt f-20"></i>
                                     </div>
-                                    <div class="heart-img-2">
+                                    <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
                                         <i class="icofont icofont-heart-alt f-20"></i>
                                     </div>
-                                    <div class="car-img">
+                                    <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
                                         <img src="assets/images/car.png" alt="">
                                     </div>
                                 </div>
-                                <div class="card-desc">
-                                    <p class="price-past">${{item.priceNormal}}</p>
+                                <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                    <div *ngIf="item.priceDiscount>0">
+                                        <p class="price-past">${{item.priceNormal}}</p>
+                                    </div>  
                                     <div class="price d-flex justify-content-between">
                                         <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
                                     </div>
                                     <p class="item-name">{{item.name}}</p>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -76,50 +163,4 @@
 
       <!-- Page body end -->
   </div>
-
-    <div class="page-wrapper">
-        <!-- Page header start -->
-        <div class="page-header">
-            <div class="page-header-title">
-                <h4>Destacados </h4><a routerLink="/over">&nbsp;&nbsp; Ver más</a>
-                <!--<span>Encuentra lo que buscas</span>-->
-            </div>
-        </div>
-        <!-- Page header end -->
-        <!-- Page body start -->
-        <div class="page-body">
-            <!-- Product list start -->
-         
-            <div class="slid-content">
-                <div class="content">
-                    <div class="slide-2" *ngFor="let item of itemList; let i = index" [style.left.px]="i*160">
-                        <div class="card-items">
-                            <div class="card-img">
-                                <div class="content-img d-flex align-items-center">
-                                    <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
-                                </div>
-                                <div class="heart-img">
-                                    <i class="icofont icofont-heart-alt f-20"></i>
-                                </div>
-                                <div class="car-img">
-                                    <img src="assets/images/car.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-desc">
-                                <p class="price-past">${{item.priceNormal}}</p>
-                                <div class="price d-flex justify-content-between">
-                                    <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
-                                </div>
-                                <p class="item-name">{{item.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>                 
-                     
-          </div>
-           <!---->
-  
-        <!-- Page body end -->
-    </div>
 </div>

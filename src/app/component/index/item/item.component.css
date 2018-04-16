@@ -233,3 +233,14 @@
         display: flex;
     } 
 }
+/****************** ************************/
+@media screen and (max-width: 800px) {
+    .phone {        
+        display: none;
+	}
+}
+@media screen and (min-width: 801px) {
+	.phoneMirrow2{
+		display: none;
+	}
+}

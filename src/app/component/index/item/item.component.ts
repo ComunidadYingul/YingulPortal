@@ -131,7 +131,7 @@ export class ItemComponent implements OnInit {
       this.getItemFavorite();
 		}
     this.getItems();
-    this.getProduct();
+    //this.getProduct();
   }
   getItems() {
     this.indexService.getItem20first().subscribe(
