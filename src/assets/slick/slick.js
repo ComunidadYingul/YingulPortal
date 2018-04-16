@@ -76,6 +76,7 @@
                 slide: '',
                 slidesPerRow: 1,
                 slidesToShow: 1,
+                typeSlide: "item",
                 slidesToScroll: 1,
                 speed: 500,
                 swipe: true,
@@ -1935,10 +1936,20 @@
 
         if (_.options.vertical === false && _.options.variableWidth === false) {
             //_.slideWidth = Math.ceil(_.listWidth / _.options.slidesToShow);
-            if(_.listWidth>960){
-                _.slideWidth = 240;
+            if(_.options.typeSlide=="category"){
+                if(_.listWidth>960){
+                    _.slideWidth = 170;
+                }else{
+                    _.slideWidth = 140;
+                }
+            }else if(_.options.typeSlide=="store"){
+                _.slideWidth = 300;
             }else{
-                _.slideWidth = 160;
+                if(_.listWidth>960){
+                    _.slideWidth = 240;
+                }else{
+                    _.slideWidth = 160;
+                }
             }
             _.$slideTrack.width(Math.ceil((_.slideWidth * _.$slideTrack.children('.slick-slide').length)));
 
