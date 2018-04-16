@@ -1936,7 +1936,13 @@
 
         if (_.options.vertical === false && _.options.variableWidth === false) {
             //_.slideWidth = Math.ceil(_.listWidth / _.options.slidesToShow);
-            if(_.options.typeSlide=="store"){
+            if(_.options.typeSlide=="category"){
+                if(_.listWidth>960){
+                    _.slideWidth = 170;
+                }else{
+                    _.slideWidth = 140;
+                }
+            }else if(_.options.typeSlide=="store"){
                 _.slideWidth = 300;
             }else{
                 if(_.listWidth>960){
