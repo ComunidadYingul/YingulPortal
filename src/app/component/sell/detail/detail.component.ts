@@ -147,7 +147,8 @@ public motorized: Motorized=new Motorized;
 precioEnvio:number=527.8;
 ////
 public item: Item=new Item();
-
+  // imagenes con menor calidad
+  //imagenes con menos calidad
 
 
 
@@ -230,8 +231,6 @@ public item: Item=new Item();
  
   }
   sendDetail(){
-    
-      this.uploadImage();
       this.item.name=this.title;
       this.item.description=this.description;
       this.item.video=this.video;
@@ -245,6 +244,7 @@ public item: Item=new Item();
           this.hidServiciosDescription=false;
           this.elem.nativeElement.querySelector('#description').focus();
         }else{
+          this.uploadImage();
           this.detailItemS.emit(this.item);
         }
       }
@@ -275,6 +275,7 @@ public item: Item=new Item();
           this.elem.nativeElement.querySelector('#productHeight').focus();
         }
         else{
+          this.uploadImage();
           this.item.quantity=+this.productQuantity;
           this.detailItemS.emit(this.item);
           this.product.productCondition=this.productCondition;
@@ -308,6 +309,7 @@ public item: Item=new Item();
           this.elem.nativeElement.querySelector('#propertyDuildedArea').focus();
         }
         else{
+          this.uploadImage();
           this.resetPropertyHid();
           this.detailItemS.emit(this.item);
           this.property.propertyDuildedArea=this.propertyDuildedArea;
@@ -337,6 +339,7 @@ public item: Item=new Item();
           this.elem.nativeElement.querySelector('#motorizedQuantity').focus();
         }
         else{
+          this.uploadImage();
           this.resetMotorizedHid();
           this.item.quantity=this.motorizedQuantity;
           this.detailItemS.emit(this.item);
@@ -393,94 +396,49 @@ public item: Item=new Item();
   back(){
     this.Back.emit('back');
   }
-  public uploadImage():void{
-    this.elem.nativeElement.querySelector('#spinner').style.visibility='visible';
-    let files = this.elem.nativeElement.querySelector('#image-upload1').files;
-    let file = files[0];
-    let files2 = this.elem.nativeElement.querySelector('#image-upload2').files;
-    let file2 = files2[0];
-    let files3 = this.elem.nativeElement.querySelector('#image-upload3').files;
-    let file3 = files3[0];
-    let files4 = this.elem.nativeElement.querySelector('#image-upload4').files;
-    let file4 = files4[0];
-    let files5 = this.elem.nativeElement.querySelector('#image-upload5').files;
-    let file5 = files5[0];
-    let files6 = this.elem.nativeElement.querySelector('#image-upload6').files;
-    let file6 = files6[0];
-    let files7 = this.elem.nativeElement.querySelector('#image-upload7').files;
-    let file7 = files7[0];
-    let files8 = this.elem.nativeElement.querySelector('#image-upload8').files;
-    let file8 = files8[0];
-    let files9 = this.elem.nativeElement.querySelector('#image-upload9').files;
-    let file9 = files9[0];
-    let files10 = this.elem.nativeElement.querySelector('#image-upload10').files;
-    let file10 = files10[0];
-    let files11 = this.elem.nativeElement.querySelector('#image-upload11').files;
-    let file11 = files11[0];
-    let files12 = this.elem.nativeElement.querySelector('#image-upload12').files;
-    let file12 = files12[0];
-    if(file!=null){
-      this.getBase64(file).then(
-        data => this.setImagePrincipal(data)
-      );
+  public uploadImage(){
+    let file = (<HTMLInputElement>document.getElementById("principalWebp")).value;
+    let file2 = (<HTMLInputElement>document.getElementById("Webp2")).value;
+    let file3 = (<HTMLInputElement>document.getElementById("Webp3")).value;
+    let file4 = (<HTMLInputElement>document.getElementById("Webp4")).value;
+    let file5 = (<HTMLInputElement>document.getElementById("Webp5")).value;
+    let file6 = (<HTMLInputElement>document.getElementById("Webp6")).value;
+    let file7 = (<HTMLInputElement>document.getElementById("Webp7")).value;
+    let file8 = (<HTMLInputElement>document.getElementById("Webp8")).value;
+    let file9 = (<HTMLInputElement>document.getElementById("Webp9")).value;
+    let file10 = (<HTMLInputElement>document.getElementById("Webp10")).value;
+    if(file!=null && file!=""){
+      this.setImagePrincipal(file);
     }
     else{
       this.item.principalImage="sin";
     }
-    if(file2!=null){
-      this.getBase64(file2).then(
-        data => this.setImage(data)
-      );
+    if(file2!=null && file2!="" ){
+      this.setImage(file2);
     }
-    if(file3!=null){
-      this.getBase64(file3).then(
-        data => this.setImage(data)
-      );
+    if(file3!=null && file3!=""){
+      this.setImage(file3);
     }
-    if(file4!=null){
-      this.getBase64(file4).then(
-        data => this.setImage(data)
-      );
+    if(file4!=null && file4!=""){
+      this.setImage(file4);
     }
-    if(file5!=null){
-      this.getBase64(file5).then(
-        data => this.setImage(data)
-      );
+    if(file5!=null && file5!=""){
+      this.setImage(file5);
     }
-    if(file6!=null){
-      this.getBase64(file6).then(
-        data => this.setImage(data)
-      );
+    if(file6!=null && file6!=""){
+      this.setImage(file6);
     }
-    if(file7!=null){
-      this.getBase64(file7).then(
-        data => this.setImage(data)
-      );
+    if(file7!=null && file7!=""){
+      this.setImage(file7);
     }
-    if(file8!=null){
-      this.getBase64(file8).then(
-        data => this.setImage(data)
-      );
+    if(file8!=null && file8!=""){
+      this.setImage(file8);
     }
-    if(file9!=null){
-      this.getBase64(file9).then(
-        data => this.setImage(data)
-      );
+    if(file9!=null && file9!=""){
+      this.setImage(file9);
     }
-    if(file10!=null){
-      this.getBase64(file10).then(
-        data => this.setImage(data)
-      );
-    }
-    if(file11!=null){
-      this.getBase64(file11).then(
-        data => this.setImage(data)
-      );
-    }
-    if(file12!=null){
-      this.getBase64(file12).then(
-        data => this.setImage(data)
-      );
+    if(file10!=null && file10!=""){
+      this.setImage(file10);
     }
   }
   public dataLoaded(data: any):void{
@@ -495,11 +453,11 @@ public item: Item=new Item();
       reader.onerror = error => reject(error);
     });
   }
-  setImagePrincipal(data:object){
+  setImagePrincipal(data:string){
     this.item.principalImage=JSON.stringify(data);
     this.item.principalImage=this.item.principalImage.replace(/['"]+/g, '');
   }
-  setImage(data:object){
+  setImage(data:string){
     this.itemImage=JSON.stringify(data);
     this.itemImage=this.itemImage.replace(/['"]+/g, '');
     this.itemImageArray.push({"image":this.itemImage});
@@ -620,139 +578,759 @@ public item: Item=new Item();
   }
 
 
- capturar (){
+  capturar (){
 
-  
- }
- popup:boolean=true;
- popupEligeDomicilio:boolean=true;
- popupEnvios:boolean=true;
- popupGarantia:boolean=true;
- popupCotizar:boolean=true;
- popupUbicacion:boolean=true;
- addprop1(){
-   this.popupEligeDomicilio=this.popupEligeDomicilio!;
-   console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
-
- }
- domi(){
-   console.log("domi");
- }
-
- 
-
-test(event) {
-  
-  console.log("event:"+event.target.checked);
-  
-  if(event.target.checked==true){
-    this.consultarUbi();
     
-   // this.popupEnvios=false;
-   
   }
-  else {
-    this.popupEnvios=true;
-    this.popupUbicacion=true;
+  popup:boolean=true;
+  popupEligeDomicilio:boolean=true;
+  popupEnvios:boolean=true;
+  popupGarantia:boolean=true;
+  popupCotizar:boolean=true;
+  popupUbicacion:boolean=true;
+  addprop1(){
+    this.popupEligeDomicilio=this.popupEligeDomicilio!;
+    console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
+
   }
+  domi(){
+    console.log("domi");
+  }
+
   
-  console.log("popupEligeDomicilio:"+this.popupEnvios);
 
-}
-ubication:Ubication;
-consultarUbi(){
-  this.sellService.ConsultarUbicavionUser(this.User.username).subscribe(
-    res => {
-      console.log(JSON.stringify(res));
-      if(JSON.parse(JSON.stringify(res))._body!=""){
-          this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-          
-          console.log(JSON.stringify(this.ubication));
-          this.popupEnvios=false;
-          this.popupUbicacion=true;
-      }
-      else {
-        this.popupEnvios=true;
-        this.popupUbicacion=false;
+  test(event) {
+    
+    console.log("event:"+event.target.checked);
+    
+    if(event.target.checked==true){
+      this.consultarUbi();
+      
+    // this.popupEnvios=false;
+    
+    }
+    else {
+      this.popupEnvios=true;
+      this.popupUbicacion=true;
+    }
+    
+    console.log("popupEligeDomicilio:"+this.popupEnvios);
 
-      }
-        },
-        error => console.log(error)
-  );
-  
-}
-test2(event) {
-  
-  console.log("event:"+event.target.checked);
-  if(event.target.checked==true)this.popupEligeDomicilio=false;
-  else this.popupEligeDomicilio=true;
-  //this.popupEligeDomicilio=event.target.checked!; // undefined
-  console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
+  }
+  ubication:Ubication;
+  consultarUbi(){
+    this.sellService.ConsultarUbicavionUser(this.User.username).subscribe(
+      res => {
+        console.log(JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body!=""){
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            
+            console.log(JSON.stringify(this.ubication));
+            this.popupEnvios=false;
+            this.popupUbicacion=true;
+        }
+        else {
+          this.popupEnvios=true;
+          this.popupUbicacion=false;
 
-}
-popGarantia(event) {
-  
-  console.log("event:"+event.target.checked);
-  if(event.target.checked==true){this.popupGarantia=false;}
-  else this.popupGarantia=true;
-  console.log("popupGarantia:"+this.popupGarantia);
+        }
+          },
+          error => console.log(error)
+    );
+    
+  }
+  test2(event) {
+    
+    console.log("event:"+event.target.checked);
+    if(event.target.checked==true)this.popupEligeDomicilio=false;
+    else this.popupEligeDomicilio=true;
+    //this.popupEligeDomicilio=event.target.checked!; // undefined
+    console.log("popupEligeDomicilio:"+this.popupEligeDomicilio);
 
-}
-popSinGarantia(event) {
-  
-  console.log("event:"+event.target.checked);
-  if(event.target.checked==true){this.popupGarantia=true;this.productWarranty="";}
-  else this.popupGarantia=false;
-  console.log("popupGarantia:"+this.popupGarantia);
+  }
+  popGarantia(event) {
+    
+    console.log("event:"+event.target.checked);
+    if(event.target.checked==true){this.popupGarantia=false;}
+    else this.popupGarantia=true;
+    console.log("popupGarantia:"+this.popupGarantia);
 
-}
+  }
+  popSinGarantia(event) {
+    
+    console.log("event:"+event.target.checked);
+    if(event.target.checked==true){this.popupGarantia=true;this.productWarranty="";}
+    else this.popupGarantia=false;
+    console.log("popupGarantia:"+this.popupGarantia);
 
-capturarCondicion(productCondition : string){
- this.productCondition=productCondition;
-}
+  }
 
-capturarCondicionVenta(productCondition : string){
-  this.productSaleConditions=productCondition;
-}
+  capturarCondicion(productCondition : string){
+  this.productCondition=productCondition;
+  }
 
-mediosDPago(pagos:string){
-  this.productPaymentMethod=pagos;
-  //Precio fijo
-  if(pagos=="1")
-  this.productPagoEnvio="Precio fijo";
-  if(pagos=="2")
-  this.productPagoEnvio="Subasta";
-}
-pagoEnvio(envi:string){
-  if(envi=="1")
-  this.productPagoEnvio="Pagado por él comprador";
-  if(envi=="2")
-  this.productPagoEnvio="Pagado por él vendedor";
-}
+  capturarCondicionVenta(productCondition : string){
+    this.productSaleConditions=productCondition;
+  }
+
+  mediosDPago(pagos:string){
+    this.productPaymentMethod=pagos;
+    //Precio fijo
+    if(pagos=="1")
+    this.productPagoEnvio="Precio fijo";
+    if(pagos=="2")
+    this.productPagoEnvio="Subasta";
+  }
+  pagoEnvio(envi:string){
+    if(envi=="1")
+    this.productPagoEnvio="Pagado por él comprador";
+    if(envi=="2")
+    this.productPagoEnvio="Pagado por él vendedor";
+  }
 
 
-pagoMedios(envi:string){
-  if(envi=="1")
-  this.productPagoEnvio="Aceptar pagos solo por Yingul";
-  if(envi=="2")
-  this.productPagoEnvio="Aceptar pagos por Yingul y cobro en persona";
+  pagoMedios(envi:string){
+    if(envi=="1")
+    this.productPagoEnvio="Aceptar pagos solo por Yingul";
+    if(envi=="2")
+    this.productPagoEnvio="Aceptar pagos por Yingul y cobro en persona";
 
-}
+  }
 
-envioComprador(event){
-  
-  if(event.target.checked==true) this.productPagoEnvio="comprador";
-}
-envioGratis(event){
-  
-  if(event.target.checked==true) this.productPagoEnvio="gratis";
-}
+  envioComprador(event){
+    
+    if(event.target.checked==true) this.productPagoEnvio="comprador";
+  }
+  envioGratis(event){
+    
+    if(event.target.checked==true) this.productPagoEnvio="gratis";
+  }
 
-//popupEligeDomicilio:boolean;
-elijeDomicilio(){
-  this.popupEligeDomicilio=false;
+  //popupEligeDomicilio:boolean;
+  elijeDomicilio(){
+    this.popupEligeDomicilio=false;
 
-}
+  }
 
+  ToWebpPrincipal(){
+    let files = this.elem.nativeElement.querySelector('#image-upload1').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("principalWebp")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp2(){
+    let files = this.elem.nativeElement.querySelector('#image-upload2').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp2")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp3(){
+    let files = this.elem.nativeElement.querySelector('#image-upload3').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp3")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp4(){
+    let files = this.elem.nativeElement.querySelector('#image-upload4').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp4")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp5(){
+    let files = this.elem.nativeElement.querySelector('#image-upload5').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp5")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp6(){
+    let files = this.elem.nativeElement.querySelector('#image-upload6').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp6")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp7(){
+    let files = this.elem.nativeElement.querySelector('#image-upload7').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp7")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp8(){
+    let files = this.elem.nativeElement.querySelector('#image-upload8').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp8")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp9(){
+    let files = this.elem.nativeElement.querySelector('#image-upload9').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp9")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
+  ToWebp10(){
+    let files = this.elem.nativeElement.querySelector('#image-upload10').files;
+    var D;
+    var f = files[0];
+    var sizeByte = f.size;
+    var sizekiloByte = parseInt(sizeByte)/1024;
+    var g;
+    var i=document.createElement('img');
+    i.onload=function(e){
+    var b=document.createElement('canvas');
+    b.width=i.width;b.height=i.height;
+    var c=b.getContext("2d");
+    c.drawImage(i,0,0);
+    this.onload=function(){
+      this.className='imG';
+      var d=document.createElement('a');
+      g=f.name.split('.');g.pop();
+      d.download=g.join('')+'.webp';
+      d.href=i.src;
+      (<HTMLInputElement>document.getElementById("Webp10")).value=i.src;
+      console.log(i.src);
+      d.appendChild(this);
+    }
+    //aqui va la calidad
+    var quality=0;
+    if(sizekiloByte>=9000){
+      quality=0;
+    }
+    if(sizekiloByte>=8100 && sizekiloByte<9000){
+      quality=10;
+    }
+    if(sizekiloByte>=7200 && sizekiloByte<8100){
+      quality=20;
+    }
+    if(sizekiloByte>=6300 && sizekiloByte<7200){
+      quality=30;
+    }
+    if(sizekiloByte>=5400 && sizekiloByte<6300){
+      quality=40;
+    }
+    if(sizekiloByte>=4500 && sizekiloByte<5400){
+      quality=50;
+    }
+    if(sizekiloByte>=3600 && sizekiloByte<4500){
+      quality=60;
+    }
+    if(sizekiloByte>=2700 && sizekiloByte<3600){
+      quality=70;
+    }
+    if(sizekiloByte>=1800 && sizekiloByte<2700){
+      quality=80;
+    }
+    if(sizekiloByte>=900 && sizekiloByte<1800){
+      quality=90;
+    }
+    if(sizekiloByte>=0 && sizekiloByte<900){
+      quality=100;
+    }
+    i.src=b.toDataURL('image/webp',quality*0.01);
+    };
+    i.src=window.URL.createObjectURL(f);
+  }
 
 }
