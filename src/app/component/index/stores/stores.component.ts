@@ -32,29 +32,29 @@ export class StoresComponent implements OnInit {
       {
         "breakpoint": 480,
         "settings": {
-          "slidesToShow": 2,
-          "slidesToScroll": 2,
+          "slidesToShow": 1,
+          "slidesToScroll": 1,
         }
       },
       {
         "breakpoint": 640,
         "settings": {
-          "slidesToShow": 3,
-          "slidesToScroll": 3,
+          "slidesToShow": 2,
+          "slidesToScroll": 2,
         }
       },
       {
         "breakpoint": 800,
         "settings": {
-          "slidesToShow": 4,
-          "slidesToScroll": 4,
+          "slidesToShow": 2,
+          "slidesToScroll": 2,
         }
       },
       {
         "breakpoint": 960,
         "settings": {
-          "slidesToShow": 5,
-          "slidesToScroll": 5,
+          "slidesToShow": 3,
+          "slidesToScroll": 3,
         }
       },
       {
@@ -67,36 +67,36 @@ export class StoresComponent implements OnInit {
       {
         "breakpoint": 1440,
         "settings": {
+          "slidesToShow": 4,
+          "slidesToScroll": 4,
+        }
+      },
+      {
+        "breakpoint": 1680,
+        "settings": {
           "slidesToShow": 5,
           "slidesToScroll": 5,
         }
       },
       {
-        "breakpoint": 1680,
+        "breakpoint": 1920,
         "settings": {
           "slidesToShow": 6,
           "slidesToScroll": 6,
         }
       },
       {
-        "breakpoint": 1920,
+        "breakpoint": 2160,
         "settings": {
           "slidesToShow": 7,
           "slidesToScroll": 7,
         }
       },
       {
-        "breakpoint": 2160,
+        "breakpoint": 2400,
         "settings": {
           "slidesToShow": 8,
           "slidesToScroll": 8,
-        }
-      },
-      {
-        "breakpoint": 2400,
-        "settings": {
-          "slidesToShow": 9,
-          "slidesToScroll": 9,
         }
       },
     ]
