@@ -95,10 +95,10 @@
                               </div>
                               <div class="col-lg-7 col-xs-12 product-detail" id="product-detail">
                                   <div class="row">
-                                      <div>
-                                          <div class="col-lg-12">
-                                              <span class="txt-muted d-inline-block">Codigo de {{itemType}}: <a> {{localItemId}} </a> </span>
-                                              <span class="f-right">Disponibilidad : <a >{{Item.quantity}} En Stock </a> </span>
+                                      <div class="col-sm">
+                                          <div class="row" >
+                                              <span class="col-sm-6 txt-muted d-inline-block">Codigo de {{itemType}}: <a> {{localItemId}} </a> </span>
+                                              <span class="col-sm-6 f-right">Disponibilidad : <a >{{Item.quantity}} En Stock </a> </span>
                                           </div>
                                           <div class="col-lg-12">
                                               <h4 class="pro-desc">{{Item.name}}</h4>
@@ -136,7 +136,7 @@
                                            
               
                                           </div>
-                                            <div class="col-lg-12">
+                                            <div class="col-sm-12">
                                                 <p class="shipping-method-title">{{envioType}}</p>
                                                 <p >{{llegadaTime}}</p>
 
@@ -179,11 +179,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 col-sm-12 mob-product-btn">
+                                            <div class="col-sm-12 ">
                                               <a *ngIf="Item.type=='Product'" href="/buy/{{Item.itemId}}/{{quant}}"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                   <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">COMPRAR</span>
                                               </button></a>
-                                                <a *ngIf="Item.type=='Motorized'" href="/buy/{{Item.itemId}}/1"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
+                                                <a class="col-sm-12" *ngIf="Item.type=='Motorized'" href="/buy/{{Item.itemId}}/1"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                     <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">RESERVAR</span>
                                                 </button></a>
                                               <button (click)="onSubmit()" *ngIf="Item.type=='Service'||Item.type=='Property'" type="button" class="btn btn-primary waves-effect waves-light m-r-20">
@@ -197,9 +197,10 @@
                                               </button>-->
                                             </div>
                                             <br>
-                                            <div *ngIf="Item.type=='Motorized'" class="col-lg-12 col-sm-12 mob-product-btn"><button class="btn btn-default btn-outline-default"><i class="icofont icofont-credit-card"></i>Pagás $ 1.500 de reserva
+                                            <div *ngIf="Item.type=='Motorized'" class="col-lg-12 col-sm-12">
+                                                <button class="btn btn-default btn-outline-default" style="white-space:normal"><i class="icofont icofont-credit-card"></i>Pagás $ 1.500 de reserva
                                                 <br>
-                                                Lo hacés antes o después de ver el vehículo y se descuenta del valor total.</button></div>
+                                                <p style="width:100%">Lo hacés antes o después de ver el vehículo y se descuenta del valor total.</p></button></div>
                                           <br/>
                                           <!--div class="col-lg-12 col-sm-12 mob-product-btn">
                                             <a href="/editItem/{{Item.itemId}}"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
@@ -397,8 +398,8 @@
                                                         <table class="table m-0">
                                                             <tbody>
                                                                 <tr class="row">
-                                                                    <th class="col-sm-3" scope="row">Marca del {{itemType}}</th>
-                                                                    <td class="col-sm-3">{{Motorized.motorizedBrand}}</td>
+                                                                    <th scope="row">Marca del {{itemType}}</th>
+                                                                    <td >{{Motorized.motorizedBrand}}</td>
                                                                 </tr>
                                                                 <tr class="row">
                                                                     <th scope="row">Video</th>
@@ -410,7 +411,7 @@
                                                                 </tr>
                                                                 <tr class="row">
                                                                     <th scope="row">Seguridad:</th>
-                                                                    <td><a *ngFor="let security of Motorized.motorizedSecurity"><a>{{security.security.name}}, <br></a></a></td>
+                                                                    <td><a *ngFor="let security of Motorized.motorizedSecurity"><a style="white-space:normal">{{security.security.name}}, <br></a></a></td>
                                                                 </tr>
                                                                 <tr class="row">
                                                                     <th scope="row">Equipamiento:</th>
