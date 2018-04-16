@@ -12,55 +12,93 @@ export class StoresComponent implements OnInit {
   storeList : Store[];
   BUCKET_URL:string=Network.BUCKET_URL;
   slideConfig={
+    "typeSlide":"store",
+    "anchoSlide":560,
     //"dots": true,
     "infinite": false,
-    "speed": 300,
-    "slidesToShow": 4,
-    "slidesToScroll": 4,
+    //"speed": 350,
+    //"slidesToShow": 2,
+    "slidesToScroll": 3,
     //"autoplay": true,
     //"autoplaySpeed": 2000,
-    
     "responsive": [
       {
-        "breakpoint": 1980,
+        "breakpoint": 320,
+        "settings": {
+          "slidesToShow": 1,
+          "slidesToScroll": 1,
+        }
+      },
+      {
+        "breakpoint": 480,
+        "settings": {
+          "slidesToShow": 2,
+          "slidesToScroll": 2,
+        }
+      },
+      {
+        "breakpoint": 640,
+        "settings": {
+          "slidesToShow": 3,
+          "slidesToScroll": 3,
+        }
+      },
+      {
+        "breakpoint": 800,
         "settings": {
           "slidesToShow": 4,
-          "slidesToScroll": 3,
-          "dots": true
+          "slidesToScroll": 4,
+        }
+      },
+      {
+        "breakpoint": 960,
+        "settings": {
+          "slidesToShow": 5,
+          "slidesToScroll": 5,
         }
       },
       {
         "breakpoint": 1200,
         "settings": {
           "slidesToShow": 4,
-          "slidesToScroll": 2,
-          "dots": true
+          "slidesToScroll": 4,
         }
       },
       {
-        "breakpoint": 992,
+        "breakpoint": 1440,
         "settings": {
-          "slidesToShow": 3,
-          "slidesToScroll": 2,
-          "dots": true
+          "slidesToShow": 5,
+          "slidesToScroll": 5,
         }
       },
       {
-        "breakpoint": 768,
+        "breakpoint": 1680,
         "settings": {
-          "slidesToShow": 2,
-          "slidesToScroll": 2,
-          "dots": true
+          "slidesToShow": 6,
+          "slidesToScroll": 6,
         }
       },
       {
-        "breakpoint": 480,
+        "breakpoint": 1920,
         "settings": {
-          "slidesToShow": 1,
-          "slidesToScroll": 1,
-          "dots": true
+          "slidesToShow": 7,
+          "slidesToScroll": 7,
         }
-      }
+      },
+      {
+        "breakpoint": 2160,
+        "settings": {
+          "slidesToShow": 8,
+          "slidesToScroll": 8,
+        }
+      },
+      {
+        "breakpoint": 2400,
+        "settings": {
+          "slidesToShow": 9,
+          "slidesToScroll": 9,
+        }
+      },
     ]
   };
   constructor(private storeService : StoreService) { }
