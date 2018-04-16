@@ -103,6 +103,7 @@
     background: #fff;
     text-decoration: none;
     cursor: pointer;
+    display: block;
 }
 .card-img{
     position: relative;

@@ -15,7 +15,7 @@
             <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
                     <!--div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;"-->
                         <div ngxSlickItem *ngFor="let item of itemList; let i = index" class="slide" >
-                            <div class="card-items">
+                            <a class="card-items">
                                 <div class="card-img">
                                     <div class="content-img d-flex align-items-center">
                                         <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
@@ -37,7 +37,7 @@
                                     </div>
                                     <p class="item-name">{{item.name}}</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     <!--/div-->
                 </ngx-slick>  
