@@ -95,10 +95,10 @@
                               </div>
                               <div class="col-lg-7 col-xs-12 product-detail" id="product-detail">
                                   <div class="row">
-                                      <div>
-                                          <div class="col-lg-12">
-                                              <span class="txt-muted d-inline-block">Codigo de {{itemType}}: <a> {{localItemId}} </a> </span>
-                                              <span class="f-right">Disponibilidad : <a >{{Item.quantity}} En Stock </a> </span>
+                                      <div class="col-sm">
+                                          <div class="row" >
+                                              <span class="col-sm-6 txt-muted d-inline-block">Codigo de {{itemType}}: <a> {{localItemId}} </a> </span>
+                                              <span class="col-sm-6 f-right">Disponibilidad : <a >{{Item.quantity}} En Stock </a> </span>
                                           </div>
                                           <div class="col-lg-12">
                                               <h4 class="pro-desc">{{Item.name}}</h4>
@@ -136,7 +136,7 @@
                                            
               
                                           </div>
-                                            <div class="col-lg-12">
+                                            <div class="col-sm-12">
                                                 <p class="shipping-method-title">{{envioType}}</p>
                                                 <p >{{llegadaTime}}</p>
 
@@ -179,11 +179,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 col-sm-12 mob-product-btn">
+                                            <div class="col-sm-12 ">
                                               <a *ngIf="Item.type=='Product'" href="/buy/{{Item.itemId}}/{{quant}}"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                   <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">COMPRAR</span>
                                               </button></a>
-                                                <a *ngIf="Item.type=='Motorized'" href="/buy/{{Item.itemId}}/1"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
+                                                <a class="col-sm-12" *ngIf="Item.type=='Motorized'" href="/buy/{{Item.itemId}}/1"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
                                                     <i class="icofont icofont-cart-alt f-16"></i><span class="m-l-10">RESERVAR</span>
                                                 </button></a>
                                               <button (click)="onSubmit()" *ngIf="Item.type=='Service'||Item.type=='Property'" type="button" class="btn btn-primary waves-effect waves-light m-r-20">
@@ -197,9 +197,10 @@
                                               </button>-->
                                             </div>
                                             <br>
-                                            <div *ngIf="Item.type=='Motorized'" class="col-lg-12 col-sm-12 mob-product-btn"><button class="btn btn-default btn-outline-default"><i class="icofont icofont-credit-card"></i>Pagás $ 1.500 de reserva
+                                            <div *ngIf="Item.type=='Motorized'" class="col-lg-12 col-sm-12">
+                                                <button class="btn btn-default btn-outline-default" style="white-space:normal"><i class="icofont icofont-credit-card"></i>Pagás $ 1.500 de reserva
                                                 <br>
-                                                Lo hacés antes o después de ver el vehículo y se descuenta del valor total.</button></div>
+                                                <p style="width:100%">Lo hacés antes o después de ver el vehículo y se descuenta del valor total.</p></button></div>
                                           <br/>
                                           <!--div class="col-lg-12 col-sm-12 mob-product-btn">
                                             <a href="/editItem/{{Item.itemId}}"><button type="button" class="btn btn-primary waves-effect waves-light m-r-20">
@@ -260,14 +261,14 @@
                                             <div class="general-info" ngSwitch="{{itemType}}">
                                                 <!--principio del detalle del servicio-->
                                                 <div class="row" *ngSwitchCase="'Servicio'">
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table m-0">
                                                             <tbody>
-                                                                <tr>
-                                                                    <th scope="row">Correo del {{itemType}}</th>
-                                                                    <td>{{Service.emailService}}</td>
+                                                                <tr class="row">
+                                                                    <th class="col-sm-3" scope="row">Correo del {{itemType}}</th>
+                                                                    <td class="col-sm-3">{{Service.emailService}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Video</th>
                                                                     <td><a href="{{Item.video}}">{{Item.video}}</a></td>
                                                                 </tr>
@@ -275,16 +276,16 @@
                                                         </table>
                                                     </div>
                                                     <!-- end of table col-lg-6 -->
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Precio</th>
                                                                     <td>{{Item.price}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Disponible en:</th>
-                                                                    <td><a *ngFor="let zone of Service.cobertureZone"><a>{{zone.province.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let zone of Service.cobertureZone"><a>{{zone.province.name}}, <br></a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -295,22 +296,22 @@
 
                                                 <!--principio del detalle del producto-->
                                                 <div class="row" *ngSwitchCase="'Producto'">
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table m-0">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Condición del {{itemType}}</th>
                                                                     <td>{{Product.productCondition}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Cantidad en Stock</th>
                                                                     <td>{{Item.quantity}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Forma de pago</th>
                                                                     <td>{{Product.productPaymentMethod}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Garantia del {{itemType}}</th>
                                                                     <td>{{Product.productWarranty}}</td>
                                                                 </tr>
@@ -318,22 +319,22 @@
                                                         </table>
                                                     </div>
                                                     <!-- end of table col-lg-6 -->
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Video</th>
                                                                     <td><a href="{{Item.video}}">{{Item.video}}</a></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Precio</th>
                                                                     <td>{{Item.price}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Condiciónes de Venta</th>
                                                                     <td>{{Product.productSaleConditions}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Forma de entrega</th>
                                                                     <td>{{Product.productFormDelivery}}</td>
                                                                 </tr>
@@ -346,43 +347,43 @@
 
                                                 <!--principio del detalle del inmueble-->
                                                 <div class="row" *ngSwitchCase="'Inmueble'">
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table m-0">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Superficie Total del {{itemType}}</th>
                                                                     <td>{{Property.propertyTotalArea}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Video</th>
                                                                     <td><a href="{{Item.video}}">{{Item.video}}</a></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Antiguedad</th>
                                                                     <td>{{Property.propertyYear}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Ambientes:</th>
-                                                                    <td><a *ngFor="let ambient of Property.propertyAmbient"><a>{{ambient.ambient.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let ambient of Property.propertyAmbient"><a>{{ambient.ambient.name}}, <br></a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                     <!-- end of table col-lg-6 -->
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Precio</th>
                                                                     <td>{{Item.price}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Superficie Cubierta</th>
                                                                     <td>{{Property.propertyDuildedArea}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Comodidades:</th>
-                                                                    <td><a *ngFor="let amenities of Property.propertyAmenities"><a>{{amenities.amenities.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let amenities of Property.propertyAmenities"><a>{{amenities.amenities.name}}, <br></a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -393,56 +394,56 @@
 
                                                 <!--principio del detalle del vehiculo-->
                                                 <div class="row" *ngSwitchCase="'Vehiculo'">
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table m-0">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Marca del {{itemType}}</th>
-                                                                    <td>{{Motorized.motorizedBrand}}</td>
+                                                                    <td >{{Motorized.motorizedBrand}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Video</th>
                                                                     <td><a href="{{Item.video}}">{{Item.video}}</a></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Modelo</th>
                                                                     <td>{{Motorized.motorizedModel}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Seguridad:</th>
-                                                                    <td><a *ngFor="let security of Motorized.motorizedSecurity"><a>{{security.security.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let security of Motorized.motorizedSecurity"><a style="white-space:normal">{{security.security.name}}, <br></a></a></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Equipamiento:</th>
-                                                                    <td><a *ngFor="let equipment of Motorized.motorizedEquipment"><a>{{equipment.equipment.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let equipment of Motorized.motorizedEquipment"><a>{{equipment.equipment.name}}, <br></a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                     <!-- end of table col-lg-6 -->
-                                                    <div class="col-lg-12 col-xl-6">
+                                                    <div class="col-sm-6">
                                                         <table class="table">
                                                             <tbody>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Precio</th>
                                                                     <td>{{Item.price}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Año</th>
                                                                     <td>{{Motorized.motorizedYear}}</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Unico Dueño</th>
                                                                     <td   *ngIf="Motorized.motorizedUnicoDue">Si</td>
                                                                     <td   *ngIf="!Motorized.motorizedUnicoDue">No</td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Exterior:</th>
-                                                                    <td><a *ngFor="let exterior of Motorized.motorizedExterior"><a>{{exterior.exterior.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let exterior of Motorized.motorizedExterior"><a>{{exterior.exterior.name}}, <br></a></a></td>
                                                                 </tr>
-                                                                <tr>
+                                                                <tr class="row">
                                                                     <th scope="row">Sonido:</th>
-                                                                    <td><a *ngFor="let sound of Motorized.motorizedSound"><a>{{sound.sound.name}}, </a></a></td>
+                                                                    <td><a *ngFor="let sound of Motorized.motorizedSound"><a>{{sound.sound.name}}, <br></a></a></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -522,18 +523,18 @@
                                                                         <div class="col-lg-12">
                                                                             <div class="general-info">
                                                                                 <div class="row">
-                                                                                    <div class="col-lg-12 col-xl-6">
+                                                                                    <div class="col-sm-6">
                                                                                         <table class="table m-0">
                                                                                             <tbody>
-                                                                                                <tr>
+                                                                                                <tr class="row">
                                                                                                     <th scope="row">NOMBRE COMPLETO</th>
                                                                                                     <td>{{Seller.name}} {{Seller.lastname}}</td>
                                                                                                 </tr>
-                                                                                                <tr>
+                                                                                                <tr class="row">
                                                                                                     <th scope="row">TELEFONO PRINCIPAL</th>
                                                                                                     <td><!--{{Seller.yng_User.phone}}-->XXX-XXXXXXX</td>
                                                                                                 </tr>
-                                                                                                <tr>
+                                                                                                <tr class="row">
                                                                                                     <th scope="row">SITIO WEB</th>
                                                                                                     <td><a href="{{Seller.yng_User.webSite}}">{{Seller.yng_User.webSite}}</a></td>
                                                                                                 </tr>
@@ -541,18 +542,18 @@
                                                                                         </table>
                                                                                     </div>
                                                                                     <!-- end of table col-lg-6 -->
-                                                                                    <div class="col-lg-12 col-xl-6">
+                                                                                    <div class="col-sm-6">
                                                                                         <table class="table">
                                                                                             <tbody>
-                                                                                                <tr>
+                                                                                                <tr class="row">
                                                                                                     <th scope="row">CORREO ELECTRONICO</th>
                                                                                                     <td><a><!--{{Seller.yng_User.email}}-->XXXXXXXXXXXXXXXX</a></td>
                                                                                                 </tr>
-                                                                                                <tr>
+                                                                                                <tr class="row">
                                                                                                     <th scope="row">TELEFONO</th>
                                                                                                     <td><!--{{Seller.yng_User.phone2}}-->xxx-xxxxxxxx</td>
                                                                                                 </tr>
-                                                                                                <tr>
+                                                                                                <tr class="row">
                                                                                                     <th scope="row">UBICACIÓN</th>
                                                                                                     <td>{{Seller.yng_User.yng_Ubication.yng_Country.name}}</td>
                                                                                                 </tr>    
@@ -658,7 +659,7 @@
                                             <div class="card blog-page">
                                                 <div class="card-block">
                                                     <div class="container-fluid">
-                                                        <div class="row">
+                                                        <!--<div class="row">
                                                             <div class="blog-tag">
                                                                 <ul>
                                                                     <li><i class="icofont icofont-tags" aria-hidden="true"></i></li>
@@ -703,7 +704,7 @@
                                                                 </ul>
                                                             </div>
                                                             <hr class="m-t-40 m-b-40">
-                                                        </div>
+                                                        </div>-->
                                                         <div class="row blog-big-user">
                                                             <div class="col-sm-2">
                                                                 <img src="{{BUCKET_URL}}user/userProfile/{{Seller.yng_User.profilePhoto}}" class="img-fluid img-circle" alt="img">
@@ -761,7 +762,7 @@
                                                                         </li>
                                                                     </ul>
                                                                     <div class="md-float-material">
-                                                                        <div class="input-group input-group-button">
+                                                                        <div class="input-group input-group-button row">
                                                                             <span class="input-group-addon">
                                                                                 <i class="icofont icofont-comment"></i>
                                                                             </span>
@@ -845,7 +846,7 @@
                                 </tr>
                             </thead>
                             <tbody [hidden]="popupCotizar">
-                                <tr>
+                                <tr class="row">
                                     <td>
                                     <input type="radio" name="shippingMethod"  (click)="retiroSuc($event)">Retiro en una sucursal<br>
                                     </td>

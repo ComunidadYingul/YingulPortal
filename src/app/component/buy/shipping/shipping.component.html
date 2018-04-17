@@ -265,12 +265,12 @@
         <div class="row">
             <div  class="col-sm-6" *ngIf="provinceList!=null">
                 <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
-                    <option>Seleccione una provincia</option>
+                    <option>Seleccione una provincia/departamento/estado</option>
                     <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
                 </select>
             </div>
             <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
-                <p>Seleccione una provincia</p>
+                <p>Seleccione una provincia/departamento/estado</p>
             </div>
         </div>
         <br>
