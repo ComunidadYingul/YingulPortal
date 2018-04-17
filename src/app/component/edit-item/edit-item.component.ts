@@ -46,6 +46,7 @@ export class EditItemComponent implements OnInit {
   }
 
   getObject(category:string){
+    console.log("typeCat:"+this.typeCat);
     if(category=="Product"){
       this.itemDetailService.getProductByIdItem(this.itemId).subscribe(
         res=>{

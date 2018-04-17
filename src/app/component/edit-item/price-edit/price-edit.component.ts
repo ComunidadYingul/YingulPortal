@@ -108,6 +108,8 @@ Service:Service= new Service();
 
   precioEnvio:number;
   disabledRPerson:boolean=false;
+  editMoreDiable:boolean=false;
+  popup_g:boolean=true;
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { this.Item.name
     this.itemId =route.snapshot.params['itemId'];
     console.log("this.itemId edit:"+this.itemId);
@@ -123,7 +125,11 @@ Service:Service= new Service();
       },
       error=>console.error()      
     );
-
+    this.editMoreDiable=false;
+    this.hiddenEditProd=true;
+    this.hiddenEditProp=true;
+    this.hiddenEditMoto=true;
+    this.hiddenEditServ=true;
   }
   keyPress(event: any) {
     const pattern = /[0-9]/;
@@ -267,7 +273,7 @@ Service:Service= new Service();
 
   cargar(){
     this.productQuantityEdit();
-
+    this.editMoreDiable=true;
   }
   productQuantityEdit():string{
     if(this.itemType=="Producto"){
@@ -377,9 +383,17 @@ Service:Service= new Service();
      this.product=productT;
      this.product.yng_Item.user.authorities=null;
      console.log("prodssd: "+JSON.stringify(productT));
+     this.popup_g=false;
      this.itemDetailService.postUpdateProduct(this.product).subscribe(
        res => {
          console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+         let resp=JSON.parse(JSON.stringify(res))._body;
+          if(resp=="save"){
+            this.ngOnInit();
+            this.popup_g=true;
+          }
+          else
+          {}
            },
            error => console.log(error)
      );
@@ -594,6 +608,7 @@ Service:Service= new Service();
 
   }
   sendUpdateService(service:Service){
+    console.log("prodssd update: ");
     if (this.hiddenEditProd==false){
     service.cobertureZone=this.cobertureZone;
     service.emailService  
