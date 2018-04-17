@@ -98,13 +98,13 @@ export class ItemComponent implements OnInit {
     this.getProduct();
   }
   getItems() {
-    this.indexService.getItem20first().subscribe(
+    this.itemService.getOver20first(false).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );
-    this.itemService.getItemsOver(true).subscribe(
+    this.itemService.getOver20first(true).subscribe(
 			res => {
             this.overList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},

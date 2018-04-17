@@ -7,6 +7,7 @@ import { SellService } from '../../service/sell.service';
 import { Category } from '../../model/category';
 import { ListCategoryService } from '../../service/list-category.service';
 import { Network } from '../../model/Network';
+import { ItemService } from '../../service/item.service';
 
 @Component({
   selector: 'app-all-items',
@@ -52,7 +53,7 @@ export class AllItemsComponent implements OnInit {
   precioDesde:number;
   precioHasta:number;
   conditionCard:boolean=false;
-  constructor(private favoriteService: FavoriteService,private indexService: IndexService,private sellService:SellService, private categoryService1: ListCategoryService) { }
+  constructor(private favoriteService: FavoriteService,private itemService: ItemService,private sellService:SellService, private categoryService1: ListCategoryService) { }
 
   ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -61,9 +62,16 @@ export class AllItemsComponent implements OnInit {
       this.User=JSON.parse(localStorage.getItem("user"));
       this.getItemFavorite();
 		}
-    this.indexService.getItems().subscribe(
+    this.itemService.getItemsOver(false).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            console.log(JSON.stringify(this.itemList));
+            for(var j=0; j<this.itemList.length; j++){
+              this.priceTotal=this.priceTotal+this.itemList[j].price;
+            }
+            this.MediaPrice=this.priceTotal/this.itemList.length;
+            this.minPrice=this.MediaPrice-(this.MediaPrice*0.4);
+            this.maxPrice=this.MediaPrice+(this.MediaPrice*0.4);
       		},
       		error => console.log(error)
     );
