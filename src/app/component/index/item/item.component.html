@@ -1,4 +1,87 @@
 <div class="main-body">
+
+        <div class="page-wrapper">
+                <!-- Page header start -->
+                <div class="page-header">
+                    <div class="page-header-title">
+                        <h4>Destacados </h4><a routerLink="/over">&nbsp;&nbsp; Ver más</a>
+                        <!--<span>Encuentra lo que buscas</span>-->
+                    </div>
+                </div>
+                <!-- Page header end -->
+                <!-- Page body start -->
+                <div class="page-body">
+                    <!-- Product list start -->
+                 
+                    <div class="slid-content phoneMirrow2">
+                        <div class="content">
+                            <div class="slide-2" *ngFor="let item of overList; let i = index" [style.left.px]="i*160">
+                                <div class="card-items">
+                                    <div class="card-img">
+                                        <a  href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                            <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                        </a>
+                                        <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                            <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                        <div class="car-img">
+                                            <img src="assets/images/car.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div   class="card-desc">
+                                        <div *ngIf="item.priceDiscount>0">
+                                                <p class="price-past">${{item.priceNormal}}</p>
+                                            </div> 
+                                        <div class="price d-flex justify-content-between">
+                                            <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                        </div>
+                                        <p class="item-name">{{item.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                    
+                    <ngx-slick class="carousel phone" #slickModal="slick-modal" [config]="slideConfig">
+                            <!--div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;"-->
+                                <div ngxSlickItem *ngFor="let item of overList; let i = index" class="slide" >
+                                    <div class="card-items">
+                                        <div class="card-img">
+                                            <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                                <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                            </a>
+                                            <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                            <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                                <i class="icofont icofont-heart-alt f-20"></i>
+                                            </div>
+                                            <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                                <img src="assets/images/car.png" alt="">
+                                            </div>
+                                        </div>
+                                        <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                            <div *ngIf="item.priceDiscount>0">
+                                                <p class="price-past">${{item.priceNormal}}</p>
+                                            </div>                                    
+                                            <div class="price d-flex justify-content-between">
+                                                <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                            </div>
+                                            <p class="item-name">{{item.name}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            <!--/div-->
+                        </ngx-slick> 
+                  </div>
+                   <!---->
+          
+                <!-- Page body end -->
+            </div>
+
   <div class="page-wrapper">
       <!-- Page header start -->
       <div class="page-header">
@@ -12,126 +95,72 @@
       <div class="page-body">
           <!-- Product list start -->
        
-            <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
-                    <div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
-                            <div id="" class="divcolor">
-                                    <div class="prod-view prod-view                             
-                                    " style="width: 240px;">
-                                        <div class="prod-item text-center"  >
-                                                <div class="prod-img"  >
-                                                    <div class="option-hover">
-                                                        <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                            <i class="icofont icofont-cart-alt f-20"></i>
-                                                        </a>
-                                                        <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                            <i class="icofont icofont-eye-alt f-20"></i>
-                                                        </a>
-                                                        <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
-                                                            <i class="icofont icofont-heart-alt f-20"></i>
-                                                        </button>
-                                                    </div>
-                                                        <a href="javascript:void(0)" class="hvr-shrink">
-                                                            <!--ruta para la imagenes en desarrollo -->
-                                                            <img style="margin-top:5px;" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden img" alt="{{item.principalImage}}">       
-                                                        </a>
-                                                    <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-
-                                                </div>
-                                                <div class="prod-info">
-                                                    <h5><a class="txt-muted"> {{item.name}} </a></h5>
-                                                    <div class="stars stars-example-css m-b-10">
-                                                        <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select></div>
-                                                    </div>
-                                                    <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
-                                                    <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                                                    <div  class="row text-center" [hidden]="envioIcon(item.itemId)">
-                                                        <div class="col-sm-12"><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
-                                                        <h6 class="col-sm-12" style="font-size:12px; color:#ff5e3a;">Envió gratis</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+            <ngx-slick class="carousel phone" #slickModal="slick-modal" [config]="slideConfig">
+                    <!--div ngxSlickItem *ngFor="let item of itemList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;"-->
+                        <div ngxSlickItem *ngFor="let item of itemList; let i = index" class="slide" >
+                            <div class="card-items">
+                                <div class="card-img">
+                                    <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                        <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                    </a>
+                                    <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
                                     </div>
+                                    <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </div>
+                                    <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                        <img src="assets/images/car.png" alt="">
+                                    </div>
+                                </div>
+                                <div  class="card-desc">
+                                    <div *ngIf="item.priceDiscount>0">
+                                        <p class="price-past">${{item.priceNormal}}</p>
+                                    </div>                                    
+                                    <div class="price d-flex justify-content-between">
+                                        <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                    </div>
+                                    <p class="item-name">{{item.name}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    <!--/div-->
+                </ngx-slick>  
+                <div class="slid-content phoneMirrow2">
+                    <div class="content">
+                        <div class="slide-2" *ngFor="let item of itemList; let i = index" [style.left.px]="i*160">
+                            <div  class="card-items">
+                                <div class="card-img">
+                                    <a href="/itemDetail/{{item.itemId}}"  class="content-img d-flex align-items-center">
+                                        <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                    </a>
+                                    <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </div>
+                                    <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                        <i class="icofont icofont-heart-alt f-20"></i>
+                                    </div>
+                                    <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                        <img src="assets/images/car.png" alt="">
+                                    </div>
+                                </div>
+                                <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                    <div *ngIf="item.priceDiscount>0">
+                                        <p class="price-past">${{item.priceNormal}}</p>
+                                    </div>  
+                                    <div class="price d-flex justify-content-between">
+                                        <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                    </div>
+                                    <p class="item-name">{{item.name}}</p>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </ngx-slick>                   
+                </div>                 
                    
         </div>
          <!---->
 
       <!-- Page body end -->
   </div>
-
-    <div class="page-wrapper">
-        <!-- Page header start -->
-        <div class="page-header">
-            <div class="page-header-title">
-                <h4>Destacados </h4><a routerLink="/over">&nbsp;&nbsp; Ver más</a>
-                <!--<span>Encuentra lo que buscas</span>-->
-            </div>
-        </div>
-        <!-- Page header end -->
-        <!-- Page body start -->
-        <div class="page-body">
-            <!-- Product list start -->
-         
-              <ngx-slick class="carousel" #slickModal="slick-modal" [config]="slideConfig">
-                      <div ngxSlickItem *ngFor="let item of overList" class="slide" style="padding-top: 10px; padding-bottom: 10px; height: 400px;display: flex;justify-content: space-around; margin-right: 15px;margin-left: 15px;">
-                              <div id="" class="divcolor">
-                                      <div class="prod-view prod-view                             
-                                      " style="width: 240px;">
-                                          <div class="prod-item text-center"  >
-                                                  <div class="prod-img"  >
-                                                      <div class="option-hover">
-                                                          <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                              <i class="icofont icofont-cart-alt f-20"></i>
-                                                          </a>
-                                                          <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                              <i class="icofont icofont-eye-alt f-20"></i>
-                                                          </a>
-                                                          <button [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)" type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
-                                                              <i class="icofont icofont-heart-alt f-20"></i>
-                                                          </button>
-                                                      </div>
-                                                          <a href="javascript:void(0)" class="hvr-shrink">
-                                                              <!--ruta para la imagenes en desarrollo -->
-                                                              <img style="margin-top:5px;" src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden img" alt="{{item.principalImage}}">       
-                                                          </a>
-                                                      <div [hidden]=!isFavortite(item.itemId) style="cursor: pointer;" (click)="deleteToFavorites(item.itemId)" class="p-sale"><i class="icofont icofont-heart-alt f-20"></i></div>
-  
-                                                  </div>
-                                                  <div class="prod-info">
-                                                      <h5><a class="txt-muted"> {{item.name}} </a></h5>
-                                                      <div class="stars stars-example-css m-b-10">
-                                                          <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
-                                                              <option value="1">1</option>
-                                                              <option value="2">2</option>
-                                                              <option value="3">3</option>
-                                                              <option value="4">4</option>
-                                                              <option value="5">5</option>
-                                                          </select></div>
-                                                      </div>
-                                                      <div  *ngIf="item.priceDiscount>0"><del> $ {{item.priceNormal}}</del>  </div>
-                                                      <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                                                      <div  class="row text-center" [hidden]="envioIcon(item.itemId)">
-                                                        <div class="col-sm-12"><img style="display:inline; width: 25px; height: 25px;" src="assets/images/car.png" alt="Generic placeholder image"></div>
-                                                        <h6 class="col-sm-12" style="font-size:12px; color:#ff5e3a;">Envió gratis</h6>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                      </div>
-                  </ngx-slick>                   
-                     
-          </div>
-           <!---->
-  
-        <!-- Page body end -->
-    </div>
 </div>
