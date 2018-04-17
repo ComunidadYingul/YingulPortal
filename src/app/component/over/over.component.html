@@ -138,10 +138,12 @@
                                     <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
                                 </a>
                                 <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
-                                    <i class="icofont icofont-heart-alt f-20"></i>
+                                    <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                    <i class="fa fa-heart-o"></i>
                                 </div>
                                 <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
-                                    <i class="icofont icofont-heart-alt f-20"></i>
+                                    <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                    <i class="fa fa-heart"></i>
                                 </div>
                                 <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
                                     <img src="assets/images/car.png" alt="">
