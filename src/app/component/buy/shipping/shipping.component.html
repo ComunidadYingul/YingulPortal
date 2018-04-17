@@ -30,12 +30,12 @@
             <br/>
             <div [hidden]="branch">
                 <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
-                <div class="input-group input-group-button">
-                    <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
-                    <span class="input-group-addon" id="basic-addon10" (click)="quoteSend()">Buscar
+                <div class="row input-group input-group-button">
+                    <input type="text" (keypress)="keyPressCP($event)" class="col-sm-6 form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
+                    <span class="col-sm-3 input-group-addon" id="basic-addon10" (click)="quoteSend()">Buscar
                 <!--button class="btn btn-primary" (click)="quoteSend()">Buscar</button-->
-                </span>
-                <a href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
+                    </span>
+                    <a class="col-sm-3" href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
                 </div> 
                 <div class="error-g row">
                     <p  [hidden]="hidBuscarSucursal">* Debe ingresar código postal para buscar sucursales cercanas</p>
@@ -193,7 +193,7 @@
     <div class="col-sm-4">
         <div class="card gallery-desc">
             <div class="masonry-media">
-                <a class="media-middle" href="#!">
+                <a class="media-middle" href="javascript:void(0)">
                     <img class="img-fluid" src="{{BUCKET_URL}}{{Item.principalImage}}" alt="masonary">
                 </a>
             </div>

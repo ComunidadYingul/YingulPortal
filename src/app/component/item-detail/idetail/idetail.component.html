@@ -595,8 +595,38 @@
                                     <!-- Page body start -->
                                     <div class="page-body">
                                         <!-- Product list start -->
-                                        <div class="row">
-                                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemsBySeller">
+                                        <div class="row" style="background: #e9ecf3;justify-content: center;">
+                                            <div class="wrap-card" *ngFor="let item of itemsBySeller">
+                                                <div class="card-items">
+                                                    <div class="card-img">
+                                                        <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                                            <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                                        </a>
+                                                        <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                                            <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                                            <i class="fa fa-heart-o"></i>
+                                                        </div>
+                                                        <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                                            <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                                            <i class="fa fa-heart"></i>
+                                                        </div>
+                                                        <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                                            <img src="assets/images/car.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                                        <div *ngIf="item.priceDiscount>0">
+                                                            <p class="price-past">${{item.priceNormal}}</p>
+                                                        </div>                                    
+                                                        <div class="price d-flex justify-content-between">
+                                                            <span class="price-current">${{item.price}}</span><span class="price-past"></span>
+                                                        </div>
+                                                        <p class="item-name">{{item.name}}</p>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <!--<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" *ngFor="let item of itemsBySeller">
                                                 <div class="card prod-view">
                                                     <div class="prod-item text-center">
                                                         <div class="prod-img">
@@ -612,7 +642,6 @@
                                                                 </button>
                                                             </div>
                                                             <a href="javascript:void(0)" class="hvr-shrink">
-                                                                <!--ruta para la imagenes en desarrollo -->
                                                                 <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
                                                             </a>
                                                             <div class="p-sale">VENTA</div>
@@ -633,6 +662,9 @@
                                                     </div>
                                                 </div>
                                               </div>
+                                        
+                                            
+                                        -->
                                         </div>
                                         <!-- Product list end -->
                                     </div>

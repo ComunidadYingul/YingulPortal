@@ -1,0 +1,143 @@
+/********************* ESTILOS SLICK GRANDE G *********************/
+.wrap-card{
+	display: flex;
+    justify-content: center;
+}
+.card-items{
+    margin: 8px 8px;
+    width: 224px;
+    height: 314px;
+    border-radius: 4px;
+    background: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+}
+.card-img{
+    position: relative;
+    height: 65%;
+    padding: 7px;
+}
+.card-img .content-img{
+    height: 100%;
+    overflow: hidden;
+}
+.card-img .content-img img{
+    width: 100%;
+}
+.card-desc{
+    position: relative;
+    min-height: 35%;
+    border-radius:0px 0px 4px 4px;
+    border-top: 1px solid #ddd;
+    /*transition: all .5s ease;*/
+    padding: 8px 24px;
+    display: block;
+}
+.card-desc span{
+    font-size: 1.3em;
+    opacity: .8;
+}
+.card-desc .price-past{
+    text-decoration: line-through;
+    font-weight: lighter;
+    font-size: 1.3em;
+    margin: 0;
+    text-align: left;
+    color: #f00;
+}
+.card-items:hover .card-desc{
+    background: #fff;
+    box-shadow: 0px 3px 11px 0px rgba(170,170,170,1);
+} 
+.card-items:hover .item-name{
+    display: block;
+} 
+.item-name{
+    font-size: 12px;
+    font-weight: 300;
+    color: #555;
+    display: none;
+    transition: all .3s ease;
+}
+.car-img, .heart-img, .heart-img-2{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #ddd;
+    position: absolute;
+    z-index: 2;
+    right: 15px;
+    bottom: -18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.car-img img{
+    width: 70%;
+    height: 70%;
+}
+.heart-img{
+    background: rgba(255,255,255,.8);
+    border: none;
+    display: none;
+    right: 15px;
+    top: 15px;
+}
+.heart-img i{
+    color: #f00;
+    font-size: 15px;
+}
+.heart-img-2{
+    border: none;
+    right: 15px;
+    top: 15px;
+    background: rgba(255,255,255,.8);
+}
+.heart-img-2 i{
+    color: #f00;
+    font-size: 15px;
+}
+.heart-img:hover{
+    background: rgba(255,255,255,.8);
+}
+.heart-img:hover i{
+    color: #f00;
+}
+.card-items:hover .heart-img{
+    display: flex;
+} 
+@media (max-width: 976px){
+    .row{
+        justify-content: center;
+    }
+    .slide{
+        width: 160px;
+        height: 230px;
+    }
+    .card-items{
+        margin: 0 4px 4px;
+        width: 152px;
+        height: 226px;
+    }
+    .card-img{
+        height: 152px;
+    }
+    .card-desc{
+        height: 74px;
+        padding: 7px 7px;
+    }
+    .card-desc .item-name{
+        font-size: 1rem;
+    }
+    .card-desc .price{
+        font-size: 1rem;
+    }
+    .card-items:hover .item-name{
+        display: none;
+    } 
+    .card-items .heart-img{
+        display: flex;
+    } 
+}

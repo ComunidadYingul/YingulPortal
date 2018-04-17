@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <!-- Gallery with description card start -->
-                    <div class="card">
+                    <div class="card" style="background:transparent;">
                         <div class="card-header">
                             <h5>Inmuebles</h5>
                             <div class="card-header-right">
@@ -71,10 +71,37 @@
                         </div>
                         <div class="card-block">
                             <div class="default-grid">
-                                <div class="row lightboxgallery-popup">
+                                <div class="row lightboxgallery-popup justify-content-center">
                                     <!--ng for -->
-                                    <div class="col-sm-3 default-grid-item" *ngFor="let item of itemList">
-                                        <div class="card gallery-desc">
+                                    <div class="wrap-card default-grid-item" *ngFor="let item of itemList">
+                                        <div class="card-items">
+                                            <div class="card-img">
+                                                <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                                    <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                                </a>
+                                                <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                                    <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                                    <i class="fa fa-heart-o"></i>
+                                                </div>
+                                                <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                                    <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                                    <i class="fa fa-heart"></i>
+                                                </div>
+                                                <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                                    <img src="assets/images/car.png" alt="">
+                                                </div>
+                                            </div>
+                                            <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                                <div *ngIf="item.priceDiscount>0">
+                                                    <p class="price-past">${{item.priceNormal}}</p>
+                                                </div>                                    
+                                                <div class="price d-flex justify-content-between">
+                                                    <span class="price-current">${{item.price}}</span><span class="price-past"></span>
+                                                </div>
+                                                <p class="item-name">{{item.name}}</p>
+                                            </a>
+                                        </div>
+                                        <!--div class="card gallery-desc">
                                             <div class="masonry-media">
                                                 <a class="media-middle" href="/itemDetail/{{item.itemId}}">
                                                     <img class="img-fluid" src="{{BUCKET_URL}}{{item.principalImage}}" alt="masonary">
@@ -86,7 +113,7 @@
                                                 <div class="job-meta-data"><i class="icofont icofont-safety"></i>Ver si aqui ira la ubicacion de la propiedad</div>
                                                 <div class="job-meta-data"><i class="icofont icofont-university"></i>$ {{item.price}}</div>
                                             </div>
-                                        </div>
+                                        </div-->
                                     </div>
                                 </div>
                             </div>
