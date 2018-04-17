@@ -137,7 +137,7 @@
   </div>
 </div>
 <!-- round card start -->
-<div class="card">
+<div class="card" style="background:transparent;">
     <div class="card-header">
         <h5>Vehículos</h5>
         <div class="card-header-right">
@@ -147,10 +147,37 @@
         </div>
     </div>
     <div class="card-block">
-        <div class="row users-card">
+        <div class="row users-card justify-content-center">
 
-            <div class="col-lg-6 col-xl-3 col-md-6" *ngFor="let item of itemList">
-                <div class="card rounded-card user-card">
+            <div class="wrap-card" *ngFor="let item of itemList">
+                <div class="card-items">
+                    <div class="card-img">
+                        <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                            <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                        </a>
+                        <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                            <!--i class="icofont icofont-heart-alt f-20"></i-->
+                            <i class="fa fa-heart-o"></i>
+                        </div>
+                        <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                            <!--i class="icofont icofont-heart-alt f-20"></i-->
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                            <img src="assets/images/car.png" alt="">
+                        </div>
+                    </div>
+                    <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                        <div *ngIf="item.priceDiscount>0">
+                            <p class="price-past">${{item.priceNormal}}</p>
+                        </div>                                    
+                        <div class="price d-flex justify-content-between">
+                            <span class="price-current">${{item.price}}</span><span class="price-past"></span>
+                        </div>
+                        <p class="item-name">{{item.name}}</p>
+                    </a>
+                </div>
+                <!--div class="card rounded-card user-card">
                     <div class="card-block">
                         <div class="img-hover">
                             <img class="img-fluid img-circle" width="200" height="200" src="{{BUCKET_URL}}{{item.principalImage}}" alt="round-img">
@@ -166,7 +193,7 @@
                             <h5 class="">{{item.description}}</h5>
                         </div>
                     </div>
-                </div>
+                </div-->
             </div>
             
         </div>
