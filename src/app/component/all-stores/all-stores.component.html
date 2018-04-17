@@ -19,10 +19,43 @@
       </div>
       <!-- Page header end -->
       <!-- Page body start -->
-      <div class="page-body masonry-page">
+        <div class="col">
+            <!-- Product list start -->
+            <br>
+            <div class="row" style="justify-content: center;">
+                <div class="wrap-card" *ngFor="let store of storeList">
+                    <div class="card-items">
+                        <div class="card-img">
+                            <a href="/tiendaOficial/{{store.name}}" class="content-img d-flex align-items-center">
+                                <img src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
+                            </a>
+                            <!--<div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                <i class="fa fa-heart-o"></i>
+                            </div>
+                            <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                <i class="fa fa-heart"></i>
+                            </div>
+                            <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                <img src="assets/images/car.png" alt="">
+                            </div>-->
+                        </div>
+                        <a href="/tiendaOficial/{{store.name}}" class="card-desc">
+                            <!--<div>
+                                <p class="price-past">${{store.name}}</p>
+                            </div>-->                                    
+                            <div class="price d-flex justify-content-between">
+                                <span class="price-current">{{store.name}}</span><span class="price-past"></span>
+                            </div>
+                            <p class="item-name">{{store.summary}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!--<div class="page-body masonry-page">
           <div class="row">
               <div class="col-sm-12">
-                  <!-- Gallery with description card start -->
+                  <!-- Gallery with description card start
                   <div class="card">
                       <div class="card-header">
                           <h5>Tiendas Oficiales</h5>
@@ -35,7 +68,6 @@
                       <div class="card-block">
                           <div class="default-grid">
                               <div class="row lightboxgallery-popup">
-                                <!--ngfor -->
                                   <div class="col-xs-3 col-md-3 default-grid-item" *ngFor="let store of storeList">
                                       <div class="card gallery-desc">
                                           <div class="masonry-media">
@@ -46,8 +78,8 @@
                                           <div class="card-block">
                                               <h6 class="job-card-desc">{{store.name}}</h6>
                                               <p class="text-muted">{{store.summary}}</p>
-                                              <!--<div class="job-meta-data"><i class="icofont icofont-safety"></i>washington</div>
-                                              <div class="job-meta-data"><i class="icofont icofont-university"></i>10 Years</div>-->
+                                              <div class="job-meta-data"><i class="icofont icofont-safety"></i>washington</div>
+                                              <div class="job-meta-data"><i class="icofont icofont-university"></i>10 Years</div>
                                           </div>
                                       </div>
                                   </div>
@@ -55,10 +87,9 @@
                           </div>
                       </div>
                   </div>
-                  <!-- Gallery with description card end -->
               </div>
           </div>
-      </div>
+      </div>-->
       <!-- Page body end -->
   </div>
 </div>

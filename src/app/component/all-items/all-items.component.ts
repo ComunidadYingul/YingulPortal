@@ -8,6 +8,7 @@ import { Category } from '../../model/category';
 import { ListCategoryService } from '../../service/list-category.service';
 import { Network } from '../../model/Network';
 import { ItemService } from '../../service/item.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-items',
@@ -53,7 +54,8 @@ export class AllItemsComponent implements OnInit {
   precioDesde:number;
   precioHasta:number;
   conditionCard:boolean=false;
-  constructor(private favoriteService: FavoriteService,private itemService: ItemService,private sellService:SellService, private categoryService1: ListCategoryService) { }
+  msg:string;
+  constructor(private router: Router,private favoriteService: FavoriteService,private itemService: ItemService,private sellService:SellService, private categoryService1: ListCategoryService) { }
 
   ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -287,6 +289,45 @@ export class AllItemsComponent implements OnInit {
     }
     this.itemList=[];
     this.itemList=this.itemListTemp;
+  }
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    }  
   }
   
 }

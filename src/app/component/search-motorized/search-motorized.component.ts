@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../../service/item.service';
 import { Category } from '../../model/category';
 import { ListCategoryService } from '../../service/list-category.service'
@@ -9,6 +9,8 @@ import { Item } from '../../model/item';
 import { Country } from '../../model/country';
 import { Motorized } from '../../model/Motorized';
 import { Network } from '../../model/Network';
+import { user } from '../../model/user';
+import { FavoriteService } from '../../service/favorite.service';
 
 @Component({
   selector: 'app-search-motorized',
@@ -62,15 +64,23 @@ export class SearchMotorizedComponent implements OnInit {
   dateHasta:string;
   conditionCard:boolean=false;
   motorizedList:Motorized[];
-  constructor(private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService,private sellService:SellService) { 
+  User:user=new user();
+  itemFavorites: Item[]=[];
+  msg:string;
+  constructor(private router : Router,private favoriteService: FavoriteService,private route:ActivatedRoute,private itemService: ItemService,private categoryService: ListCategoryService,private sellService:SellService) { 
     this.categoryId =route.snapshot.params['categoryId'];
     this.minPrice = route.snapshot.params['minPrice'];
     this.maxPrice = route.snapshot.params['maxPrice'];
     this.minYear = route.snapshot.params['minYear'];
     this.maxYear = route.snapshot.params['maxYear'];
-    this.getItems();
   }
   ngOnInit() {
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
     this.getItems();
     this.sellService.getCountries().subscribe(
 			res => {
@@ -304,5 +314,60 @@ export class SearchMotorizedComponent implements OnInit {
     this.itemList=[];
     this.itemList=this.itemListTemp;
     this.conditionCard=true;
+  }
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
+  }
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    } 
+    
   }
 }

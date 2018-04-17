@@ -59,6 +59,7 @@ export class IdetailComponent implements OnInit {
   popup2:boolean=true;
   numberImg:number;
   hidQuery:boolean=true;
+  itemFavorites: Item[]=[];
   constructor(private itemDetailService : ItemDetailService, private router : Router, private favoriteService: FavoriteService){
     if(this.Product.productPagoEnvio=="comprador"){this.hiddenTypeSend=false;}
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -68,6 +69,12 @@ export class IdetailComponent implements OnInit {
 		}
   }
   ngOnInit() {
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
     this.getItemById();
     this.itemDetailService.getItemType(this.localItemId).subscribe(
 			res => {
@@ -438,6 +445,23 @@ export class IdetailComponent implements OnInit {
       this.favoriteService.createFavorite(itemId,username).subscribe(
         res => {
           this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
           this.redirectTo();
         },
         error => console.log(error)
@@ -451,5 +475,20 @@ export class IdetailComponent implements OnInit {
       alert(this.msg);
     } 
     
+  }
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
   }
 }
