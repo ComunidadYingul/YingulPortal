@@ -124,6 +124,7 @@
     border-top: 1px solid #ddd;
     transition: all .5s ease;
     padding: 8px 24px;
+    display: block;
 }
 /*.card-desc .item-name{
     font-size: 1.25rem;
@@ -139,6 +140,7 @@
     font-size: 1.3em;
     margin: 0;
     text-align: left;
+    color: #f00;
 }
 .card-items:hover .card-desc{
     background: #fff;
@@ -149,7 +151,7 @@
 .item-name{
     font-size: 12px;
     font-weight: 300;
-    color: #777;
+    color: #555;
     display: none;
     transition: all .3s ease;
 }
@@ -234,12 +236,12 @@
     } 
 }
 /****************** ************************/
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 976px) {
     .phone {        
         display: none;
 	}
 }
-@media screen and (min-width: 801px) {
+@media screen and (min-width: 977px) {
 	.phoneMirrow2{
 		display: none;
 	}

@@ -68,7 +68,7 @@
                                                 <p class="price-past">${{item.priceNormal}}</p>
                                             </div>                                    
                                             <div class="price d-flex justify-content-between">
-                                                <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
+                                                <span class="price-current">${{item.price}}</span><span class="price-past"></span>
                                             </div>
                                             <p class="item-name">{{item.name}}</p>
                                         </a>
@@ -113,7 +113,7 @@
                                         <img src="assets/images/car.png" alt="">
                                     </div>
                                 </div>
-                                <div  class="card-desc">
+                                <a  class="card-desc">
                                     <div *ngIf="item.priceDiscount>0">
                                         <p class="price-past">${{item.priceNormal}}</p>
                                     </div>                                    
@@ -121,7 +121,7 @@
                                         <span class="price-current">${{item.price}}</span><span class="price-past text-danger"></span>
                                     </div>
                                     <p class="item-name">{{item.name}}</p>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     <!--/div-->
