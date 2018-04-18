@@ -428,6 +428,7 @@ export class ShippingComponent implements OnInit {
               }
             }
             else {
+              this.popup_g=true;
               this.popupCotizar=true; 
               alert("Código postal invalido");
             }

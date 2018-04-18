@@ -25,7 +25,7 @@ import { Ambient } from '../../../model/ambient';
 export class PriceEditComponent implements OnInit {
   @Input('itemId') localItemId:number;
   @Input('Item') Item:Item =new Item();
-  @Input('typeCat') typeCat:string="";
+  @Input('typeCat') typeCat:string;
   @Input('product') product:Product =new Product();
   title:string="";
   description:string="";
@@ -225,6 +225,7 @@ Service:Service= new Service();
   }
   saveEdit(){
     console.log("this.typeCat:"+this.typeCat);
+    console.log("this.itemType"+this.itemType)
     this.itemTemp=this.Item;      
     if(this.title!=""){this.itemTemp.name=this.title;}
     else this.title=this.Item.name;
@@ -244,7 +245,7 @@ Service:Service= new Service();
     this.productTemp.yng_Item=this.itemTemp; 
     this.sendCotizar(this.productTemp);
     }
-    else{if(this.typeCat=="Vehiculo"){
+    else{if(this.itemType=="Vehiculo"){
       this.motorizedTemp=this.Motorized;
       this.motorizedTemp.motorizedConfort=this.motConfort;
       this.motorizedTemp.motorizedEquipment=this.motEquipment;
@@ -254,15 +255,17 @@ Service:Service= new Service();
       this.motorizedTemp.yng_Item=this.itemTemp;
       this.sendUpdateMotorized(this.Motorized);
     }
-   else {if(this.typeCat=="Inmueble"){
+   else {if(this.itemType=="Inmueble"){
       this.propertyTemp=this.Property;
       this.propertyTemp.propertyAmbient=this.propAmbient;
       this.propertyTemp.propertyAmenities=this.propAmenities;
       this.propertyTemp.yng_Item=this.itemTemp;
       this.sendUpdateProperty(this.propertyTemp)
     }
-  else{if(this.typeCat=="Servicio"){
+  else{if(this.itemType=="Servicio"){
     this.serviceTemp.cobertureZone=this.cobertureZone;
+    console.log("cobertureZone"+JSON.stringify(this.cobertureZone));
+    this.serviceTemp.yng_Item=this.itemTemp;
     this.sendUpdateService(this.serviceTemp);
 
   }
@@ -432,11 +435,34 @@ Service:Service= new Service();
     property.yng_Item.price=this.price;
     property.yng_Item.priceDiscount=this.priceDiscount;
     property.yng_Item.priceNormal=this.priceNormal;
-    property.yng_Item.video=this.video;}
+    property.yng_Item.video=this.video;
+  }
   this.Property=property;
   this.Property.yng_Item.user.authorities=null;
-  console.log("prodssd: "+JSON.stringify(property));
+  console.log("property: "+JSON.stringify(property));
   this.itemDetailService.postUpdateProperty(this.Property).subscribe(
+    res => {
+      console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+        },
+        error => console.log(error)
+  );
+}
+sendUpdateService(service:Service){
+  console.log("prodssd update: ");
+  if (this.hiddenEditProd==false){
+  service.cobertureZone=this.cobertureZone;
+  //service.emailService
+  service.yng_Item.description=this.description;
+  service.yng_Item.name=this.title;
+  service.yng_Item.price=this.price;
+  service.yng_Item.priceDiscount=this.priceDiscount;
+  service.yng_Item.priceNormal=this.priceNormal;
+  service.yng_Item.video=this.video;  
+  }
+  this.Service=service;
+  this.Service.yng_Item.user.authorities=null;
+  console.log("service: "+JSON.stringify(this.Service));
+  this.itemDetailService.postUpdateService(this.Service).subscribe(
     res => {
       console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
         },
@@ -454,6 +480,7 @@ Service:Service= new Service();
               case "Producto":
               console.log(JSON.parse(JSON.parse(JSON.stringify(res))._body));
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+                console.log( "dani Product: "+ JSON.stringify(res));
                 break;
               case "Inmueble":
                 this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -608,22 +635,7 @@ Service:Service= new Service();
 
 
   }
-  sendUpdateService(service:Service){
-    console.log("prodssd update: ");
-    if (this.hiddenEditProd==false){
-    service.cobertureZone=this.cobertureZone;
-    service.emailService  
-    }
-    this.Service=service;
-    this.Service.yng_Item.user.authorities=null;
-    console.log("prodssd: "+JSON.stringify(Service));
-    this.itemDetailService.postUpdateProperty(this.Property).subscribe(
-      res => {
-        console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
-          },
-          error => console.log(error)
-    );
-  }
+  
   itemsSet(){
     console.log("Item: "+JSON.stringify(this.Item));
     //this.productQuantity=this.Item.quantity.toString();

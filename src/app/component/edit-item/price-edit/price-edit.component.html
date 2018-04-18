@@ -92,8 +92,8 @@
                                                                             <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video" value="{{this.Item.video}}"><!--placeholder="Link desde Youtube" name="video" [(ngModel)]="video"-->
                                                                         </div>
                                                                     </div>
-                                                                    <div>
-                                                                        <div class="col-sm-6">
+                                                                    <div class="">
+                                                                        <div class="col-sm-9">
                                                                             <div class="input-group ">
                                                                                 <span class="input-group-addon">Precio</span>
                                                                                 <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio Ej: 10.00" value="{{this.Item.price}}">                                                                                
@@ -228,7 +228,7 @@
                                                                     <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 <div class="input-group">
-                                                                                    <span class="input-group-addon"><i class="Superficie total m2"></i></span>
+                                                                                    <span class="input-group-addon">Superficie total m2</span>
                                                                                     <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
                                                                                 </div>
                                                                             </div>
@@ -404,7 +404,7 @@
                                                                 <h5>Zona de Cobertura</h5>
 
                                                                 <br/>
-                                                                <div  class="col-sm-12" *ngFor="let zone of Service.cobertureZone">
+                                                                <div  class="" *ngFor="let zone of Service.cobertureZone">
                                                                         <label class="" >                                                                   
                                                                              
                                                                             <span class=""></span>
