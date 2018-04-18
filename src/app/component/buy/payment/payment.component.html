@@ -164,7 +164,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group" id="card-number-field">
-                                        <input (focus)="focusedf=true" (keypress)="keyPressNumTarjeta($event)" type="text" name="cardNumber" [(ngModel)]="cardNumber" class="form-control" id="cardNumber" placeholder="Numero de la tarjeta" maxlength="19">
+                                        <input (focus)="focusedf=true" (keypress)="keyPressNumTarjeta($event)" type="text" name="cardNumber" [(ngModel)]="cardNumber" class="form-control" id="cardNumber" placeholder="Numero de la tarjeta" maxlength="16">
                                         <div class="error-g row">
                                             <p  [hidden]="hidCardNumber">* Número de tarjeta requerido</p>
                                         </div>

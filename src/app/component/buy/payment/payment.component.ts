@@ -252,8 +252,8 @@ export class PaymentComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
-    if(this.cardNumber.length>0 && (this.cardNumber.length==4 || this.cardNumber.length==9 || this.cardNumber.length==14)){
+    /*if(this.cardNumber.length>0 && (this.cardNumber.length==4 || this.cardNumber.length==9 || this.cardNumber.length==14)){
       this.cardNumber+=" ";
-    }
+    }*/
   }
 }
