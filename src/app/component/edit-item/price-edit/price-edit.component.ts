@@ -224,6 +224,7 @@ Service:Service= new Service();
     }
   }
   saveEdit(){
+    console.log("this.typeCat:"+this.typeCat);
     this.itemTemp=this.Item;      
     if(this.title!=""){this.itemTemp.name=this.title;}
     else this.title=this.Item.name;
