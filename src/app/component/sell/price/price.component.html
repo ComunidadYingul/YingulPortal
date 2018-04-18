@@ -507,156 +507,113 @@
     </div>
 </div>
 <!--    FORMULARIO POPUP     -->
-<div class="content_popup_g" align="center" [hidden]="popup_g">
-<div class="popup" [hidden]="popupUbication">
-    <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
-    <!--h5 class="text-center">Ingresa tu código postal </h5-->
-<div [hidden]="false">    
-<div [hidden]="true">
-    <div class="col-sm-6" [hidden]="countryHidden">
-                <select name="select" class="form-control form-control-primary" #a (change)="getCountry(a.value)">
-                    <option value="opt1" disabled>Seleccione un País</option>
-                    <option *ngFor="let country of countryList" [value]="country.countryId" [disabled]="country.countryId!=2">{{country.name}}</option>
-                </select>
-    </div>
-    <h4 class="sub-title" [hidden]="!countryHidden">{{countryName}}</h4>
-    <br/>
-    <div [hidden]="!countryHidden">
-        <div [hidden]="btnCP" class="input-group input-group-button">
-            <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
-            <span class="input-group-addon" id="basic-addon10">
-                <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
-            </span>
-        <a hidden="true" href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
-        </div>
-        <h4 class="sub-title" [hidden]="!countryHidden">{{countryName}}</h4>
-        <br/>
-        <div [hidden]="!countryHidden">
-            <div [hidden]="btnCP" class="input-group input-group-button">
-                <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="codigoPostalE"  [(ngModel)]="codigoPostalE"  placeholder="Código postal"  minlength=4 maxlength=4>
-                <span class="input-group-addon" id="basic-addon10">
-                    <button  class="btn btn-primary"  (click)="buscarCP()">Buscar</button>
-                </span>
-            <a hidden="true" href="http://wxw.oca.com.ar/Contenidos_Dinamicos/cpa.asp" target="_blank">.    No se mi código</a>
-            </div>
-        </div>
-    </div>
-    <div  [hidden]="false">
-                <div class="row" hidden="true">        
-                    <div  class="input-group input-group-button">            
-                        <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly">
-                        <span class="input-group-addon" id="basic-addon10">
-                                <button  class="btn btn-primary"  (click)="cambiarCP()">Codigo postal Cambiar</button>
-                        </span>
-                    </div>                
-                </div>
-
-                <h4 class="sub-title">{{provinciaCP}}</h4>
-                <!--h5 class="text-center">Ingresa tu código postal </h5-->
-            <h5>Tu ubicacion</h5>
-            <div class="row">
-                <div  class="col-sm-6" >
-                    <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
-                        <option value="0">Seleccione su país</option>
-                        <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
-                    </select>
-                </div>
-                <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCountry">
-                    <p>Seleccione un país</p>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div  class="col-sm-6" *ngIf="provinceList!=null">
-                    <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
-                        <option value="0">Seleccione una provincia</option>
-                        <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
-                    </select>
-                </div>
-                <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
-                    <p>Seleccione una provincia/departamento/estado</p>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6" [hidden]="cityHid">
-                        <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
-                            <option value="opt1">Seleccione una Ciudad</option>
-                            <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
-                        </select>
-                </div>
-                <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
-                    <p>Seleccione una ciudad</p>
-                </div>
-            </div>
-            <br/>
-            
-            <div class="row"> 
-                <div class="col-sm-6" [hidden]="barrioHid">
-                    <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
-                        <option value="opt1">Seleccione un Barrio</option>
-                        <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <br/>
-                <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly" disabled="disabled">
-                            </div>
+<div class="content_popup_g" align="center" [hidden]="popupUbication">
+    <div class="popup" >   
+            <div [hidden]="false">
+                <div  [hidden]="false">
+                    <h5>Tu ubicacion</h5>
+                    <div class="row">
+                        <div  class="col-sm-6" >
+                            <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
+                                <option value="0">Seleccione su país</option>
+                                <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+                            </select>
                         </div>
-                </div>
-                <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
-                            </div>
-                        </div>
-                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
-                            <p>Ingrese calle</p>
-                        </div>
-                </div>
-                <div class="row">       
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                            <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCountry">
+                            <p>Seleccione un país</p>
                         </div>
                     </div>
-                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
-                        <p>Ingrese número</p>
-                    </div>
-            </div>
-                <div class="row">       
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
-                            </div>
+                    <br>
+                    <div class="row">
+                        <div  class="col-sm-6" *ngIf="provinceList!=null">
+                            <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                                <option value="0">Seleccione una provincia</option>
+                                <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
+                            </select>
                         </div>
-                </div>  
-                <div class="row">       
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                            <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
+                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
+                            <p>Seleccione una provincia/departamento/estado</p>
                         </div>
                     </div>
-                </div> 
-                <div class="row">
-                    <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
-                            </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6" [hidden]="cityHid">
+                                <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
+                                    <option value="opt1">Seleccione una Ciudad</option>
+                                    <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
+                                </select>
+                        </div>
+                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
+                            <p>Seleccione una ciudad</p>
+                        </div>
                     </div>
-                </div>
-        </div>
+                    <br/>
                     
-                
+                    <div class="row"> 
+                        <div class="col-sm-6" [hidden]="barrioHid">
+                            <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
+                                <option value="opt1">Seleccione un Barrio</option>
+                                <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                    <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly" disabled="disabled">
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                    <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+                                </div>
+                            </div>
+                            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
+                                <p>Ingrese calle</p>
+                            </div>
+                    </div>
+                    <div class="row">       
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                            </div>
+                        </div>
+                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
+                            <p>Ingrese número</p>
+                        </div>
+                    </div>
+                    <div class="row">       
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                    <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
+                                </div>
+                            </div>
+                    </div>  
+                    <div class="row">       
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                    <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                            
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2"></div>
@@ -667,6 +624,6 @@
                     </div>
                 </div>
 
-    </div>
-    </div>
+            </div>
+        </div>
 </div>
