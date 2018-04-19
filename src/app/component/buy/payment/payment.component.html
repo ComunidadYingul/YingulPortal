@@ -39,7 +39,7 @@
         <form class="md-float-material card-block">
             <div class="row">
                 <div class="col-sm-6">
-                    <select name="provider" [(ngModel)]="paymentMethod" class="form-control form-control-primary" #t (change)="getProvider(t.value)">
+                    <select id="paymentMethod" name="provider" [(ngModel)]="paymentMethod" class="form-control form-control-primary" #t (change)="getProvider(t.value)">
                         <option value="null" disabled>Elegir medio de pago...</option>
                         <option value="opt1" disabled>Tarjetas de crédito</option>
                         <option *ngFor="let listCreditCard of creditCardList" [value]="listCreditCard.listCreditCardId">{{listCreditCard.name}}</option>
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6" [hidden]="providerHid">
-                    <select name="select" [(ngModel)]="provider" class="form-control form-control-primary" #u (change)="setProvider(u.value)">
+                    <select id="provider" name="select" [(ngModel)]="provider" class="form-control form-control-primary" #u (change)="setProvider(u.value)">
                         <option value="-1" disabled>Elegir un proveedor</option>
                         <option *ngFor="let cardProvider of cardProviderList" [value]="cardProvider.cardProviderId">{{cardProvider.name}}</option>
                     </select>
@@ -164,13 +164,13 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group" id="card-number-field">
-                                        <input (focus)="focusedf=true" (keypress)="keyPressNumTarjeta($event)" type="text" name="cardNumber" [(ngModel)]="cardNumber" class="form-control" id="cardNumber" placeholder="Numero de la tarjeta" maxlength="19">
+                                        <input (focus)="focusedf=true" (keypress)="keyPressNumTarjeta($event)" type="text" name="cardNumber" [(ngModel)]="cardNumber" class="form-control" id="cardNumber" placeholder="Numero de la tarjeta" maxlength="16">
                                         <div class="error-g row">
                                             <p  [hidden]="hidCardNumber">* Número de tarjeta requerido</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <input (focus)="focusedf=true" type="text" class="form-control" name="fullName" [(ngModel)]="fullName" placeholder="Nombre Apellido del dueño de la Tarjeta">
+                                        <input id="fullName" (focus)="focusedf=true" type="text" class="form-control" name="fullName" [(ngModel)]="fullName" placeholder="Nombre Apellido del dueño de la Tarjeta">
                                         <div class="error-g row">
                                             <p  [hidden]="hidFullname">* Nombre completo requerido</p>
                                         </div>
@@ -187,7 +187,7 @@
                                         <label>Fecha de expiración</label>
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <select (focus)="focusedf=true" class="form-control" name="dueMonth" [(ngModel)]="dueMonth">
+                                                <select (focus)="focusedf=true" class="form-control" id="dueMonth" name="dueMonth" [(ngModel)]="dueMonth">
                                                     <option value="0">Seleccione el Mes</option>
                                                     <option value="01">01</option>
                                                     <option value="02">02</option>
@@ -207,7 +207,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <select (focus)="focusedf=true" class="form-control" name="dueYear" [(ngModel)]="dueYear">
+                                                <select (focus)="focusedf=true" class="form-control" id="dueYear" name="dueYear" [(ngModel)]="dueYear">
                                                     <option value="0">Seleccione el Año</option>
                                                     <option *ngFor="let anio1 of anios" [value]="anio1">{{anio1}}</option>
                                                 </select>
@@ -220,7 +220,7 @@
                                     <div class="form-group">
                                         <label>Documento del titular de esta tarjeta</label>
                                         <div class="row">
-                                            <input  (focus)="focusedf=true" (keypress)="keyPress($event)" type="text" class="form-control" name="dni" [(ngModel)]="dni" placeholder="Usa sólo números" maxlength="15">
+                                            <input  (focus)="focusedf=true" (keypress)="keyPress($event)" type="text" class="form-control" id="dni" name="dni" [(ngModel)]="dni" placeholder="Usa sólo números" maxlength="15">
                                         </div>
                                         <div class="error-g row">
                                             <p  [hidden]="hidDni">* Ingrese su número de documento</p>

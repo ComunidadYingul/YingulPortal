@@ -161,8 +161,8 @@
                     </div>
                     
                 </div>
-                <div class="col">
-                    <!-- Product list card start -->
+                <!--items en forma de lista-->
+                <!--<div class="col">
                     <div class="card">
                         <div class="card-header">
                             <h5>Lista de {{category.name}}</h5>
@@ -199,7 +199,42 @@
                             
                         </div>
                     </div>
-                    <!-- Product list card end -->
+                </div>-->
+                <div class="col">
+                    <br>
+                    <div class="row" style="justify-content: center;">
+                        <div class="wrap-card" *ngFor="let item of itemList">
+                            <div class="card-items">
+                                <div class="card-img">
+                                    <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                        <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                    </a>
+                                    <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                        <i class="fa fa-heart-o"></i>
+                                    </div>
+                                    <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                    <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                        <img src="assets/images/car.png" alt="">
+                                    </div>
+                                </div>
+                                <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                    <div *ngIf="item.priceDiscount>0">
+                                        <p class="price-past">${{item.priceNormal}}</p>
+                                    </div>                                    
+                                    <div class="price d-flex justify-content-between">
+                                        <span class="price-current">${{item.price}}</span><span class="price-past"></span>
+                                    </div>
+                                    <p *ngIf="item.type=='Motorized'" class="item-name item-desc">{{item.itemYear}} - {{item.kilometer}} km</p>
+                                    <p *ngIf="item.type=='Property'" class="item-name item-desc">{{item.duildedArea}} m2 cubiertos - {{item.ambientes}} ambs.</p>
+                                    <p class="item-name item-name-e">{{item.name}}</p>
+                                    <p *ngIf="item.type=='Motorized'||item.type=='Service'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}}</p>
+                                    <p *ngIf="item.type=='Property'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}} - {{item.yng_Ubication.yng_City.name}}</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

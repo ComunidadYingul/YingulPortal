@@ -5,6 +5,9 @@ import { ItemService } from '../../service/item.service'
 import { FindMotorized } from '../../model/find-motorized';
 import { Router } from '@angular/router';
 import { Network } from '../../model/Network';
+import { user } from '../../model/user';
+import { Item } from '../../model/item';
+import { FavoriteService } from '../../service/favorite.service';
 @Component({
   selector: 'app-motorized',
   templateUrl: './motorized.component.html',
@@ -29,9 +32,18 @@ export class MotorizedComponent implements OnInit {
   maxPrice:string="0";
   minYear:string="0";
   maxYear:string="0";
-  constructor(private categoryService: ListCategoryService,private itemService: ItemService,private router: Router) { }
+  User:user=new user();
+  itemFavorites: Item[]=[];
+  msg:string;
+  constructor(private favoriteService: FavoriteService,private categoryService: ListCategoryService,private itemService: ItemService,private router: Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
     this.getCategories();
     this.itemService.getMotorized().subscribe(
 			res => {
@@ -124,5 +136,58 @@ export class MotorizedComponent implements OnInit {
       }
     }
   }
-
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
+  }
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    }  
+  }
 }

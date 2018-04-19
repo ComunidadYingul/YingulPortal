@@ -16,47 +16,44 @@
                 <h6 class="media-heading">Producto
                 </h6>
                 <h5><strong>{{Item.name}}</strong></h5>
-                <p> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></p>
+                <p class="cho-address"> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></p>
             </div>
         </li>
+        <hr>
         <li class="media">
             <div class="media-left">
                 <a>
                     <img class="media-object img-circle" width="70" heigth="70" src="assets/images/envio.png" alt="Generic placeholder image">
                 </a>
             </div>
-            <h6 class="media-heading">Envio</h6>
-            <br/> 
-            <div *ngIf="shipping.typeShipping == 'home'" class="media-left">
-                    <br/>Al finalizar la compra te daremos los datos de contacto del vendedor.
+
+            <div class="media-body blog-s-reply">
+                <h6 class="media-heading">Envio
+                </h6>
+                <div *ngIf="shipping.typeShipping == 'home'">
+                    <p class="cho-address">Al finalizar la compra te daremos los datos de contacto del vendedor.</p>
+                </div>
+                <div *ngIf="shipping.typeShipping == 'branch'">
+
+                
+                        <!--p class="cho-address"-->
+                                <p class="cho-address" >{{cotizacion.resumen}}-Andreani</p>
+                                <p class="cho-address" >{{cotizacion.descripcion}}</p>
+                                <p class="cho-address" >{{shipping.yng_Quote.yng_Branch.location}}</p>
+                                <p class="cho-address" >{{shipping.yng_Quote.yng_Branch.schedules}}</p>
+                            <!--/p-->
+                            <div  class="cho-address" *ngIf="isComprador()"><h6 >{{shipping.yng_Quote.rate}}</h6></div>
+                            <div  class="cho-address" *ngIf="isGratis()"> <h6 >Envio Gratis</h6></div>
+                </div>
+                <span class="blog-edit"><a (click)="modifyShipping()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
             </div>
-            <div *ngIf="shipping.typeShipping == 'branch'" class="media-left">
 
             
-                    <p class="cho-address">
-                            <br/>
-                            {{cotizacion.resumen}}-Andreani
-                            {{cotizacion.descripcion}}<br/>
-                            {{shipping.yng_Quote.yng_Branch.location}}<br/>
-                            {{shipping.yng_Quote.yng_Branch.schedules}}
-                        </p>
-                        <div  class="cho-address" *ngIf="isComprador()"><h6 >{{shipping.yng_Quote.rate}}</h6></div>
-                        <div  class="cho-address" *ngIf="isGratis()"> <h6 >Envio Gratis</h6><br/></div>
-            </div>
+            
                 
-            <div class="media-left">
-
-
-        <!--this.sucursalRe=this.sucursal.descripcion+" "+this.sucursal.direccion+" "+this.sucursal.horadeTrabajo;-->
-                <h5></h5>
-
-                <div class="blog-u-comment">
-                        <span class="blog-edit"><a (click)="modifyShipping()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
-                    </div>
-               
-            </div>
+            
         </li>
-        <br/>
+        <hr>
         <li class="media">
             <div class="media-left">
                 <a>
@@ -78,10 +75,8 @@
                         &nbsp;&nbsp; <span class="blog-edit"><a (click)="modifyPayment()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
                 
                 </div>
-                <hr>
             </div>
         </li>
-        <br/>
         <hr>
         <li class="media">
             <div class="media-left">
@@ -90,12 +85,15 @@
                 </a>
             </div>
             <div class="media-body blog-s-reply">
-                <h5>PRECIO: </h5> <strong>{{Item.price}}</strong> Cantidad: {{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a>
-                <br/> <a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     <strong>{{shipping.yng_Quote.rate}}</strong></a>
-                <hr>
-                <h5><strong>PAGAS: </strong></h5><strong>{{cost+costosEnvio}}</strong>    
+                <p><span>PRECIO: </span><strong>{{Item.price}}</strong></p>
+                <p><span>Cantidad: </span>{{quantity}} <a *ngIf="quantity == 1">Unidad</a><a *ngIf="quantity != 1">Unidades</a></p>
+                <p><a *ngIf="shipping.typeShipping=='branch'"> ENVÍO:     
+                <div  class="cho-address" *ngIf="isComprador()"><h6 >{{shipping.yng_Quote.rate}}</h6></div>
+                <div  class="cho-address" *ngIf="isGratis()"> <h6 >Envio Gratis</h6></div>  </a></p> 
             </div>
         </li>
+        <hr>
+        <h5><strong>PAGAS: </strong></h5><strong>{{cost+costosEnvio}}</strong> 
     </ul>
     <br/>
     <!--<p style="background:url(https://maf.pagosonline.net/ws/fp?id=${deviceSessionId}usuarioId)"></p>
@@ -112,8 +110,8 @@
 </div>
 
 <!--    FORMULARIO POPUP     -->
-<div class="content_popup_g" align="center" [hidden]="popup_g">
-<div class="popup" [hidden]="popup">
+<div class="content_popup_g" align="center" [hidden]="popup">
+<div class="popup" >
     <div class="page-header-title">
         <h3>POR ÚNICA VEZ, DEJA TUS DATOS DE CONTACTO</h3>
         <hr class="m-t-20 m-b-20">
@@ -122,7 +120,7 @@
     <div class="">
         <div class="input-group">
          
-            <select class="input-group-addon col-sm-2"#a (change)="getDniCuit(a.value)">
+            <select class="input-group-addon"#a (change)="getDniCuit(a.value)">
                 <option [value]="1" >DNI</option>
                 <option  [value]="2" >CUIT</option>
             </select>
@@ -137,7 +135,7 @@
             <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Teléfono" required maxlength="15">
         </div>
     </div>
-    <div class="error-g error-form-ub col-sm-6" [hidden]="hidDocPhone">
+    <div class="error-g error-form-ub col" [hidden]="hidDocPhone">
         <p>* Debe rellenar todos los campos</p>
     </div>
     <hr class="m-t-20 m-b-20">
@@ -150,16 +148,12 @@
         </div>
     </div>
 </div>
-
-
-
-<div class="popup2" align="center" [hidden]="popup2">
-    <div class="page-header-title">
-        <h3>SOLICITUD EN PROCESO</h3>
-        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
-        <br>
-        <br>
-        <h4>Por Favor espere</h4>
-    </div>
 </div>
+
+<div class="content_popup_g" align="center" [hidden]="popup2">
+    <div class="popup_g">
+        <p class="popup-title">SOLICITUD EN PROCESO</p>
+        <img src="assets/images/spiner.gif" alt="Cargando">
+        <p class="popup-msg">Por favor espere...</p>
+    </div>
 </div>

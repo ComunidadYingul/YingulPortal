@@ -1,0 +1,11 @@
+@media only screen and (max-width: 573px){
+    .md-tabs{
+        display: flex !important;
+    }
+    .tab-title{
+        display: none;
+    }
+    .product-edit .md-tabs .nav-item a{
+        padding: 5px 0 !important;
+    }
+}
