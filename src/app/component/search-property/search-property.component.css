@@ -29,7 +29,7 @@
 	}
 }
 
-/****************** ESTILOS CUERPO G *********************/
+/****************** ESTILOS CUERPO G ********************
 .sidebar{
 	width: 330px;
 }
@@ -44,7 +44,9 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.section .card, .prod-item{
+.section .card, .prod-item{margin: 0 4px 4px;
+    width: 152px;
+    height: 290px;
 	height: 100%;
 }
 .prod-img{
@@ -53,15 +55,15 @@
 .wrap-img, .main-img{
 	height: 100%;
 }
-/********************* ESTILOS SLICK GRANDE G *********************/
+/********************* ESTILOS SLICK GRANDE G con descripcion*********************/
 .wrap-card{
 	display: flex;
     justify-content: center;
 }
 .card-items{
     margin: 8px 8px;
-    width: 224px;
-    height: 314px;
+    width: 280px;
+    height: 370px;
     border-radius: 4px;
     background: #fff;
     text-decoration: none;
@@ -104,15 +106,13 @@
 .card-items:hover .card-desc{
     background: #fff;
 } 
-.card-items:hover .item-name{
-    display: block;
-} 
+
 .item-name{
     font-size: 12px;
     font-weight: 300;
     color: #555;
-    display: none;
     transition: all .3s ease;
+    margin-bottom: 1px;
 }
 .car-img, .heart-img, .heart-img-2{
     width: 34px;
@@ -173,7 +173,7 @@
     .card-items{
         margin: 0 4px 4px;
         width: 152px;
-        height: 226px;
+        height: 290px;
     }
     .card-img{
         height: 152px;
@@ -187,11 +187,17 @@
     }
     .card-desc .price{
         font-size: 1rem;
-    }
+    }/*
     .card-items:hover .item-name{
         display: none;
-    } 
+    } */
     .card-items .heart-img{
         display: flex;
     } 
+    .item-ubication{
+        display: none;
+    }
+    a.card-desc .item-desc{
+        font-size: 10px;
+    }
 }

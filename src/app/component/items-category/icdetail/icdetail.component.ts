@@ -55,8 +55,6 @@ export class IcdetailComponent implements OnInit {
   dateDesde:string;
   dateHasta:string;
   typeItemCategory:string;
-  productList:Product[];
-  motorizedList:Motorized[];
   conditionCard:boolean=false;
   discountCard:boolean=false;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
@@ -122,20 +120,8 @@ export class IcdetailComponent implements OnInit {
     );
   }
   getProductsByCategory(){
-    this.itemService.getProductsByCategory(this.categoryId).subscribe(
-			res => {
-            this.productList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-      		},
-      		error => console.log(error)
-    );
   }
   getMotorizedByCategory(){
-    this.itemService.getMotorizedByCategory(this.categoryId).subscribe(
-			res => {
-            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-      		},
-      		error => console.log(error)
-    );
   }
   popupCategory(){
     this.popup=false;
@@ -301,25 +287,9 @@ export class IcdetailComponent implements OnInit {
   findNew(){
     this.popupHide();
     this.itemListTemp=[];
-    if(this.typeItemCategory=="Product"){
-      for (let i of this.itemList) {
-        for(let p of this.productList){
-          if(p.yng_Item.itemId==i.itemId){
-            if(p.productCondition=="Nuevo"){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
-      }
-    }else{
-      for (let i of this.itemList) {
-        for(let m of this.motorizedList){
-          if(m.yng_Item.itemId==i.itemId){
-            if(m.motorizedKilometers==0){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
+    for (let i of this.itemList) {
+      if(i.condition=="New"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];
@@ -329,25 +299,9 @@ export class IcdetailComponent implements OnInit {
   findUsed(){
     this.popupHide();
     this.itemListTemp=[];
-    if(this.typeItemCategory=="Product"){
-      for (let i of this.itemList) {
-        for(let p of this.productList){
-          if(p.yng_Item.itemId==i.itemId){
-            if(p.productCondition=="Usado"){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
-      }
-    }else{
-      for (let i of this.itemList) {
-        for(let m of this.motorizedList){
-          if(m.yng_Item.itemId==i.itemId){
-            if(m.motorizedKilometers>0){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
+    for (let i of this.itemList) {
+      if(i.condition=="Used"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];

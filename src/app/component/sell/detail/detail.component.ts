@@ -311,8 +311,8 @@ public item: Item=new Item();
         else{
           this.uploadImage();
           this.resetPropertyHid();
+          this.item.duildedArea=+this.propertyDuildedArea;
           this.detailItemS.emit(this.item);
-          this.property.propertyDuildedArea=this.propertyDuildedArea;
           this.property.propertyTotalArea=this.propertyTotalArea;
           this.property.propertyYear=this.propertyYear;
           this.property.propertyAmenities=this.propAmenities;
@@ -342,9 +342,9 @@ public item: Item=new Item();
           this.uploadImage();
           this.resetMotorizedHid();
           this.item.quantity=this.motorizedQuantity;
+          this.item.itemYear=+this.motorizedYear;
           this.detailItemS.emit(this.item);
           this.motorized.motorizedBrand=this.motorizedBrand;
-          this.motorized.motorizedYear=this.motorizedYear;
           this.motorized.motorizedModel=this.motorizedModel;
           this.motorized.motorizedUnicoDue=this.motorizedUnicoDue;
 
@@ -353,7 +353,7 @@ public item: Item=new Item();
           this.motorized.motorizedSound=this.motSound;
           this.motorized.motorizedExterior=this.motExterior;
           this.motorized.motorizedEquipment=this.motEquipment;
-          this.motorized.motorizedKilometers=this.motorizedKilometers;
+          this.item.kilometer=this.motorizedKilometers;
           
         // console.log("motorizedUnicoDue: "+ this.motorizedUnicoDue);
         this.detailProduct.emit(this.motorized);

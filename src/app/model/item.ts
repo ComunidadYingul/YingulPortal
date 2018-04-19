@@ -27,4 +27,8 @@ export class Item {
     logisticsName:string;
     internationalDeliveries:string;
     quantity:number;
+    kilometer:number;
+    itemYear:number;
+    duildedArea:number;
+    ambientes:number;
 }

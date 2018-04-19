@@ -61,11 +61,36 @@
                 <!-- Right column start -->
                 <div class="col-sm-3">
                     <!-- Filter card start inicio de los item servicios-->
-                    <div class="card" *ngFor="let item of itemList">
-                        <div class="card-header">
-                            <h5><i class="icofont icofont-filter m-r-5"></i>{{item.name}}</h5>
-                        </div>
-                        <div class="card prod-view">
+                    <div class="card-items" *ngFor="let item of itemList">
+                            <div class="card-img">
+                                <a href="/itemDetail/{{item.itemId}}" class="content-img d-flex align-items-center">
+                                    <img src="{{BUCKET_URL}}{{item.principalImage}}" alt="">
+                                </a>
+                                <div class="heart-img" [hidden]=isFavortite(item.itemId) (click)="addToFavorites(item.itemId)">
+                                    <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                    <i class="fa fa-heart-o"></i>
+                                </div>
+                                <div class="heart-img-2" [hidden]=!isFavortite(item.itemId) (click)="deleteToFavorites(item.itemId)">
+                                    <!--i class="icofont icofont-heart-alt f-20"></i-->
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div [hidden]="item.productPagoEnvio!='gratis'" class="car-img">
+                                    <img src="assets/images/car.png" alt="">
+                                </div>
+                            </div>
+                            <a href="/itemDetail/{{item.itemId}}" class="card-desc">
+                                <div *ngIf="item.priceDiscount>0">
+                                    <p class="price-past">${{item.priceNormal}}</p>
+                                </div>                                    
+                                <div class="price d-flex justify-content-between">
+                                    <span class="price-current">${{item.price}}</span><span class="price-past"></span>
+                                </div>
+                                <p *ngIf="item.type=='Motorized'" class="item-name">{{item.itemYear}} - {{item.kilometer}} km</p>
+                                <p *ngIf="item.type=='Property'" class="item-name">{{item.duildedArea}} m2 cubiertos - {{item.ambientes}} ambs.</p>
+                                <p class="item-name">{{item.name}}</p>
+                                <p *ngIf="item.type=='Motorized'||item.type=='Property'||item.type=='Service'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}}</p>
+                            </a>
+                        <!--<div class="card prod-view">
                             <div class="prod-item text-center">
                                 <div class="prod-img">
                                     <div class="option-hover">
@@ -80,7 +105,6 @@
                                         </button>
                                     </div>
                                     <a href="javascript:void(0)" class="hvr-shrink">
-                                        <!--ruta para la imagenes en desarrollo -->
                                         <img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">       
                                     </a>
                                     <div class="p-sale">SALE</div>
@@ -99,7 +123,7 @@
                                     <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Filter card end -->
                 </div>

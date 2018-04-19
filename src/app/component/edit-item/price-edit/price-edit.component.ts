@@ -294,7 +294,7 @@ Service:Service= new Service();
       this.propAmbient=this.Property.propertyAmbient;
       this.propAmenities=this.Property.propertyAmenities;
       this.propertyTotalArea=this.Property.propertyTotalArea;
-      this.propertyDuildedArea=this.Property.propertyDuildedArea;
+      //this.propertyDuildedArea=this.Property.propertyDuildedArea;
       this.propertyYear=this.Property.propertyYear;
     }
     if(this.itemType=="Vehiculo"){
@@ -305,7 +305,7 @@ Service:Service= new Service();
       this.motSecurity=this.motorizedTemp.motorizedSecurity;
       this.motSound=this.motorizedTemp.motorizedSound;
       this.motorizedBrand=this.Motorized.motorizedBrand;
-      this.motorizedYear=this.Motorized.motorizedYear;
+      //this.motorizedYear=this.Motorized.motorizedYear;
       this.motorizedModel=this.Motorized.motorizedModel;
       this.motorizedUnicoDue=this.Motorized.motorizedUnicoDue;
     }
@@ -403,7 +403,7 @@ Service:Service= new Service();
       motorized.motorizedBrand=this.motorizedBrand;
       motorized.motorizedModel=this.motorizedModel;
       motorized.motorizedUnicoDue=this.motorizedUnicoDue;
-      motorized.motorizedYear=this.motorizedYear;
+      //motorized.motorizedYear=this.motorizedYear;
       motorized.yng_Item.description=this.description;
       motorized.yng_Item.name=this.title;
       motorized.yng_Item.price=this.price;
@@ -423,7 +423,7 @@ Service:Service= new Service();
 
  sendUpdateProperty(property:Property){
   if (this.hiddenEditProd==false){
-    property.propertyDuildedArea=this.propertyDuildedArea;
+    //property.propertyDuildedArea=this.propertyDuildedArea;
     property.propertyTotalArea=this.propertyTotalArea;
     property.propertyYear=this.propertyYear;
     property.yng_Item.description=this.description;
