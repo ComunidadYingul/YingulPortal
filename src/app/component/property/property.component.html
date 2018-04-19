@@ -98,10 +98,11 @@
                                                 <div class="price d-flex justify-content-between">
                                                     <span class="price-current">${{item.price}}</span><span class="price-past"></span>
                                                 </div>
-                                                <p *ngIf="item.type=='Motorized'" class="item-name">{{item.itemYear}} - {{item.kilometer}} km</p>
-                                                <p *ngIf="item.type=='Property'" class="item-name">{{item.duildedArea}} m2 cubiertos - {{item.ambientes}} ambs.</p>
-                                                <p class="item-name">{{item.name}}</p>
-                                                <p *ngIf="item.type=='Motorized'||item.type=='Property'||item.type=='Service'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}}</p>
+                                                <p *ngIf="item.type=='Motorized'" class="item-name item-desc">{{item.itemYear}} - {{item.kilometer}} km</p>
+                                                <p *ngIf="item.type=='Property'" class="item-name item-desc">{{item.duildedArea}} m2 cubiertos - {{item.ambientes}} ambs.</p>
+                                                <p class="item-name item-name-e">{{item.name}}</p>
+                                                <p *ngIf="item.type=='Motorized'||item.type=='Service'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}}</p>
+                                                <p *ngIf="item.type=='Property'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}} - {{item.yng_Ubication.yng_City.name}}</p>
                                             </a>
                                         </div>
                                     </div>

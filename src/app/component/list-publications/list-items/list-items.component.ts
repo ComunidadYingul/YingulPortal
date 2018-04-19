@@ -9,6 +9,9 @@ import { Item } from '../../../model/item';
 import { Barrio } from '../../../model/barrio';
 import { City } from '../../../model/city';
 import { Country } from '../../../model/country';
+import { Router } from '@angular/router';
+import { UserService } from '../../../service/user.service';
+import { Person } from '../../../model/person';
 
 @Component({
   selector: 'app-list-items',
@@ -16,6 +19,7 @@ import { Country } from '../../../model/country';
   styleUrls: ['./list-items.component.css']
 })
 export class ListItemsComponent implements OnInit {
+  User: user=new user();
   BUCKET_URL:string=Network.BUCKET_URL;
   itemsBySeller: Object[]=[];
   useri:user=new user();
@@ -55,9 +59,16 @@ export class ListItemsComponent implements OnInit {
   provin:string;
   countruHidden:boolean=false;
   barrioList : Object[];
-  constructor(private itemDetailService : ItemDetailService,private sellService: SellService) {
+  person:Person= new Person();
+  constructor(private userService:UserService,private router: Router, private itemDetailService : ItemDetailService,private sellService: SellService) {
     this.cityHid=true;
-   }
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+    }
+  }
 
   ngOnInit() {
     this.getItemsBySeller();
@@ -67,6 +78,16 @@ export class ListItemsComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+    this.getPerson();
+  }
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
   }
   getItemsBySeller() {
     this.useri=JSON.parse(localStorage.getItem("user"));

@@ -10,6 +10,9 @@ import { ItemDetailService } from '../../../service/item-detail.service';
 import { Product } from '../../../model/product';
 import { Motorized } from '../../../model/Motorized';
 import { Network } from '../../../model/Network';
+import { user } from '../../../model/user';
+import { Router } from '@angular/router';
+import { FavoriteService } from '../../../service/favorite.service';
 
 @Component({
   selector: 'app-icdetail',
@@ -57,10 +60,19 @@ export class IcdetailComponent implements OnInit {
   typeItemCategory:string;
   conditionCard:boolean=false;
   discountCard:boolean=false;
-  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
+  User:user=new user();
+  msg:string;
+  itemFavorites: Item[]=[];
+  constructor(private favoriteService: FavoriteService, private router : Router,private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
   }
 
   ngOnInit() {
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
     this.getItemsByCategory();
     this.categoryService.getCategoryById(this.categoryId).subscribe(
 			res => {
@@ -339,7 +351,61 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
     this.popupHide();
   }
-  
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    } 
+    
+  }
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
+  }
 }
 
 

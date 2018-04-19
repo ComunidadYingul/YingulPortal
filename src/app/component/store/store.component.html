@@ -123,7 +123,7 @@
                                             <div class="col-sm-12">
                                             <div class="card" style="min-height:630px; background:transparent;" >
                                             <!-- Product list start -->
-                                            <div class="row">
+                                            <div class="row" style="justify-content: center;">
                                                  <div class="wrap-card" *ngFor="let item of itemsBySeller">
                                                     <div class="card-items">
                                                         <div class="card-img">
@@ -149,44 +149,13 @@
                                                             <div class="price d-flex justify-content-between">
                                                                 <span class="price-current">${{item.price}}</span><span class="price-past"></span>
                                                             </div>
-                                                            <p class="item-name">{{item.name}}</p>
+                                                            <p *ngIf="item.type=='Motorized'" class="item-name item-desc">{{item.itemYear}} - {{item.kilometer}} km</p>
+                                                            <p *ngIf="item.type=='Property'" class="item-name item-desc">{{item.duildedArea}} m2 cubiertos - {{item.ambientes}} ambs.</p>
+                                                            <p class="item-name item-name-e">{{item.name}}</p>
+                                                            <p *ngIf="item.type=='Motorized'||item.type=='Service'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}}</p>
+                                                            <p *ngIf="item.type=='Property'" class="item-name item-ubication">{{item.yng_Ubication.yng_Province.name}} - {{item.yng_Ubication.yng_City.name}}</p>
                                                         </a>
                                                     </div>
-                                                    <!--div class="card prod-view">
-                                                        <div class="prod-item text-center">
-                                                            <div class="prod-img">
-                                                                <div class="option-hover">
-                                                                    <a href="/buy/{{item.itemId}}/1" class="btn btn-danger btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                                        <i class="icofont icofont-cart-alt f-20"></i>
-                                                                    </a>
-                                                                    <a href="/itemDetail/{{item.itemId}}" class="btn btn-primary btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
-                                                                        <i class="icofont icofont-eye-alt f-20"></i>
-                                                                    </a>
-                                                                    <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
-                                                                        <i class="icofont icofont-heart-alt f-20"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <a href="javascript:void(0)" class="hvr-shrink"-->
-                                                                    <!--ruta para la imagenes en desarrollo -->
-                                                                    <!--img src="{{BUCKET_URL}}{{item.principalImage}}" class="img-fluid o-hidden" alt="{{item.principalImage}}">
-                                                                </a>
-                                                                <div class="p-sale">VENTA</div>
-                                                            </div>
-                                                            <div class="prod-info">
-                                                                <h5><a href="javascript:void(0)" class="txt-muted"> {{item.name}} </a></h5>
-                                                                <div class="stars stars-example-css m-b-10">
-                                                                    <div class="br-wrapper br-theme-css-stars"><select id="example12-css" class="rating-star" name="rating" autocomplete="off" style="display: none;">
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                    </select></div>
-                                                                </div>
-                                                                <h6 class="txt-danger"><i class="icofont icofont-cur-dollar"></i> {{item.price}}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div-->
                                                   </div>
                                                 </div>
                                                 <!-- Product list end -->

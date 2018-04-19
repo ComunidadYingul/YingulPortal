@@ -29,32 +29,6 @@
 	}
 }
 
-/****************** ESTILOS CUERPO G ********************
-.sidebar{
-	width: 330px;
-}
-.section{
-	flex:1 1 200px;
-}
-.section > .row{
-	width: 100%;
-}
-.wrap-card{
-	height: 350px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.section .card, .prod-item{margin: 0 4px 4px;
-    width: 152px;
-    height: 290px;
-	height: 100%;
-}
-.prod-img{
-	height: 50%;
-}
-.wrap-img, .main-img{
-	height: 100%;
-}
 /********************* ESTILOS SLICK GRANDE G con descripcion*********************/
 .wrap-card{
 	display: flex;
@@ -109,8 +83,8 @@
 
 .item-name{
     font-size: 12px;
-    font-weight: 300;
-    color: #555;
+    font-weight: 400;
+    color: #333;
     transition: all .3s ease;
     margin-bottom: 1px;
 }
@@ -162,6 +136,10 @@
 .card-items:hover .heart-img{
     display: flex;
 } 
+a.card-desc .item-name-e{
+    font-size: 15px;
+    color: #666;
+}
 @media (max-width: 976px){
     .row{
         justify-content: center;
@@ -173,7 +151,7 @@
     .card-items{
         margin: 0 4px 4px;
         width: 152px;
-        height: 290px;
+        height: 270px;
     }
     .card-img{
         height: 152px;
@@ -199,5 +177,10 @@
     }
     a.card-desc .item-desc{
         font-size: 10px;
+        color: #333;
+    }
+    a.card-desc .item-name-e{
+        font-size: 12px;
+        color: #666;
     }
 }

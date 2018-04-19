@@ -3,6 +3,8 @@ import { user } from '../../model/user';
 import { Router } from '@angular/router';
 import { LoginService } from '../../service/login.service';
 import { Network } from '../../model/Network';
+import { Person } from '../../model/person';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-user-front',
@@ -11,8 +13,9 @@ import { Network } from '../../model/Network';
 })
 export class UserFrontComponent implements OnInit {
 	BUCKET_URL:string=Network.BUCKET_URL;
-  User: user=new user();
-  constructor(private loginService: LoginService, private router: Router) { 
+	User: user=new user();
+	person:Person= new Person();
+  constructor(private userService:UserService,private loginService: LoginService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -22,8 +25,17 @@ export class UserFrontComponent implements OnInit {
   }
 
   ngOnInit() {
+		this.getPerson();
   }
-
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
+  }
   logout(){
 		localStorage.setItem('user', '');
 		localStorage.removeItem('user');

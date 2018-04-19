@@ -6,6 +6,8 @@ import { BuyService } from '../../../service/buy.service';
 import { LoginService } from '../../../service/login.service';
 import { State } from '../../../model/state';
 import { Network } from '../../../model/Network';
+import { Person } from '../../../model/person';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-purchases',
@@ -24,7 +26,8 @@ export class PurchasesComponent implements OnInit {
   dateStringA:string;
   newDateA:Date;
   newDate:Date;
-  constructor(private router: Router, private buyService:BuyService,private loginService: LoginService) { 
+  person:Person= new Person();
+  constructor(private userService:UserService,private router: Router, private buyService:BuyService,private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -40,6 +43,16 @@ export class PurchasesComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+    this.getPerson();
+  }
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
   }
   logout(){
 		localStorage.setItem('user', '');
