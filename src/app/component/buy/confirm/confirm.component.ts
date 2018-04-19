@@ -42,7 +42,7 @@ export class ConfirmComponent implements OnInit {
   dataForBuyer:Object=new Object();
   documentType:string="DNI";
   documentNumber:string;
-
+  maxDocumentNumber:number=8;
   hidDocPhone:boolean=true;
 
   constructor(private buyService: BuyService, private router: Router) { 

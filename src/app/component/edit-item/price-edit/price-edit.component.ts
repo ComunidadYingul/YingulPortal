@@ -263,8 +263,9 @@ Service:Service= new Service();
       this.sendUpdateProperty(this.propertyTemp)
     }
   else{if(this.itemType=="Servicio"){
+    this.serviceTemp=this.Service;
     this.serviceTemp.cobertureZone=this.cobertureZone;
-    console.log("cobertureZone"+JSON.stringify(this.cobertureZone));
+    console.log("cobertureZone: "+JSON.stringify(this.cobertureZone));
     this.serviceTemp.yng_Item=this.itemTemp;
     this.sendUpdateService(this.serviceTemp);
 
@@ -386,7 +387,7 @@ Service:Service= new Service();
   }
      this.product=productT;
      this.product.yng_Item.user.authorities=null;
-     console.log("prodssd: "+JSON.stringify(productT));
+     console.log("prodssd1: "+JSON.stringify(productT));
      this.popup_g=false;
      this.itemDetailService.postUpdateProduct(this.product).subscribe(
        res => {
@@ -403,7 +404,7 @@ Service:Service= new Service();
      );
   }
   sendUpdateMotorized(motorized:Motorized){
-    if (this.hiddenEditProd==false){
+    if (this.hiddenEditMoto==false){
       motorized.motorizedBrand=this.motorizedBrand;
       motorized.motorizedModel=this.motorizedModel;
       motorized.motorizedUnicoDue=this.motorizedUnicoDue;
@@ -416,17 +417,24 @@ Service:Service= new Service();
       motorized.yng_Item.video=this.video;}
     this.Motorized=motorized;
     this.Motorized.yng_Item.user.authorities=null;
-    console.log("prodssd: "+JSON.stringify(motorized));
-    this.itemDetailService.postUpdateMotorized(this.Motorized).subscribe(
+    console.log("this.Motorized: "+JSON.stringify( this.Motorized));
+    console.log("motorized: "+JSON.stringify( motorized));
+    this.popup_g=false;
+    this.itemDetailService.postUpdateMotorized(motorized).subscribe(
       res => {
         console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+        let resp=JSON.parse(JSON.stringify(res))._body;
+          if(resp=="save"){
+            this.ngOnInit();
+            this.popup_g=true;
+          }
           },
           error => console.log(error)
     );
  }
 
  sendUpdateProperty(property:Property){
-  if (this.hiddenEditProd==false){
+  if (this.hiddenEditProp==false){
     property.propertyDuildedArea=this.propertyDuildedArea;
     property.propertyTotalArea=this.propertyTotalArea;
     property.propertyYear=this.propertyYear;
@@ -440,16 +448,22 @@ Service:Service= new Service();
   this.Property=property;
   this.Property.yng_Item.user.authorities=null;
   console.log("property: "+JSON.stringify(property));
-  this.itemDetailService.postUpdateProperty(this.Property).subscribe(
+  this.popup_g=false;
+  this.itemDetailService.postUpdateProperty(property).subscribe(
     res => {
       console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+      let resp=JSON.parse(JSON.stringify(res))._body;
+          if(resp=="save"){
+            this.ngOnInit();
+            this.popup_g=true;
+          }
         },
         error => console.log(error)
   );
 }
 sendUpdateService(service:Service){
   console.log("prodssd update: ");
-  if (this.hiddenEditProd==false){
+  if (this.hiddenEditServ==false){
   service.cobertureZone=this.cobertureZone;
   //service.emailService
   service.yng_Item.description=this.description;
@@ -461,10 +475,16 @@ sendUpdateService(service:Service){
   }
   this.Service=service;
   this.Service.yng_Item.user.authorities=null;
-  console.log("service: "+JSON.stringify(this.Service));
+  console.log("service: "+JSON.stringify(service));
+  this.popup_g=false;
   this.itemDetailService.postUpdateService(this.Service).subscribe(
     res => {
       console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+      let resp=JSON.parse(JSON.stringify(res))._body;
+          if(resp=="save"){
+            this.ngOnInit();
+            this.popup_g=true;
+          }
         },
         error => console.log(error)
   );
