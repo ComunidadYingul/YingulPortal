@@ -3,6 +3,8 @@ import { user } from '../../../model/user';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
 import { Network } from '../../../model/Network';
+import { Person } from '../../../model/person';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,8 +13,9 @@ import { Network } from '../../../model/Network';
 })
 export class ChatComponent implements OnInit {
 	BUCKET_URL:string=Network.BUCKET_URL;
-  User: user=new user();
-  constructor(private router: Router,private loginService: LoginService) { 
+	User: user=new user();
+	person:Person= new Person();
+  constructor(private userService:UserService,private router: Router,private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -22,6 +25,16 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+		this.getPerson();
+  }
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
   }
   logout(){
 		localStorage.setItem('user', '');

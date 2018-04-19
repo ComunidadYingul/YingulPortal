@@ -6,6 +6,9 @@ import { City } from '../../model/city';
 import { UbicationService } from '../../service/ubication.service';
 import { Router } from '@angular/router';
 import { Network } from '../../model/Network';
+import { user } from '../../model/user';
+import { Item } from '../../model/item';
+import { FavoriteService } from '../../service/favorite.service';
 @Component({
   selector: 'app-property',
   templateUrl: './property.component.html',
@@ -14,7 +17,6 @@ import { Network } from '../../model/Network';
 export class PropertyComponent implements OnInit {
   BUCKET_URL:string=Network.BUCKET_URL;
   itemList: Object[]=[];
-  constructor(private itemService: ItemService,private categoryService: ListCategoryService, private ubicationService: UbicationService,private router: Router) { }
   categoryList:Category[];
   subCategoryList: Category[];
   cities:City[];
@@ -24,7 +26,17 @@ export class PropertyComponent implements OnInit {
   categoryId: string="0";
   subCategoryId:string="0";
   cityId:string="0";
+  User:user=new user();
+  itemFavorites: Item[]=[];
+  msg:string;
+  constructor(private favoriteService: FavoriteService,private itemService: ItemService,private categoryService: ListCategoryService, private ubicationService: UbicationService,private router: Router) { }
   ngOnInit() {
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
     this.getCategories();
     this.itemService.getProperty().subscribe(
 			res => {
@@ -86,5 +98,59 @@ export class PropertyComponent implements OnInit {
       let url="/searchProperty/"+this.categoryId+"/"+this.cityId;
       this.router.navigate([url]);
     }
+  }
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
+  }
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    }  
   }
 }

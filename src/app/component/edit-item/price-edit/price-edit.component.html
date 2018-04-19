@@ -40,7 +40,7 @@
                                                         Editar producto</a>
                                                     <div class="slide"></div>
                                                 </li>
-                                                <li class="nav-item invisible">
+                                                <li class="nav-item " style="display: none;">
                                                     <a class="nav-link" data-toggle="tab" href="#profile7" role="tab">
                                                         <div class="f-26">
                                                             <i class="icofont icofont-document-search"></i>
@@ -48,7 +48,7 @@
                                                         SEO Metadata</a>
                                                     <div class="slide"></div>
                                                 </li>
-                                                <li class="nav-item invisible">
+                                                <li class="nav-item " style="display: none;">
                                                     <a class="nav-link" data-toggle="tab" href="#messages7" role="tab">
                                                         <div class="f-26">
                                                             <i class="icofont icofont-ui-image"></i>
@@ -56,7 +56,7 @@
                                                         Pictures</a>
                                                     <div class="slide"></div>
                                                 </li>
-                                                <li class="nav-item invisible">
+                                                <li class="nav-item " style="display: none;">
                                                     <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">
                                                         <div class="f-26">
                                                             <i class="icofont icofont-comment"></i>
@@ -74,13 +74,13 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                            <span class="input-group-addon">Titulo</span>
                                                                             <input type="text" class="form-control"  placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title" value="{{this.Item.name}}">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                                                            <span class="input-group-addon">Descripción</span>
                                                                             <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description" value="{{this.Item.description}}">
                                                                         </div>
                                                                     </div>
@@ -88,21 +88,23 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-ui-note"></i></span>
+                                                                            <span class="input-group-addon">Link</span>
                                                                             <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video" value="{{this.Item.video}}"><!--placeholder="Link desde Youtube" name="video" [(ngModel)]="video"-->
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="input-group ">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-cur-dollar"></i></span>
-                                                                            <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio Ej: 10.00" value="{{this.Item.price}}">
-                                                                                <div class="checkbox-fade fade-in-primary">
-                                                                                    <label> <input type="checkbox" value="" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)"> 
-                                                                                        <span class="cr">
-                                                                                            <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
-                                                                                        </span> <span>Ofrecer Descuento</span>
-                                                                                    </label>
-                                                                                </div>
+                                                                    <div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="input-group ">
+                                                                                <span class="input-group-addon">Precio</span>
+                                                                                <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio Ej: 10.00" value="{{this.Item.price}}">                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="checkbox-fade fade-in-primary">
+                                                                            <label> <input type="checkbox" value="" name="priceDiscount"  [checked]="checkedDiscount" (click)="discountPrice($event)"> 
+                                                                                <span class="cr">
+                                                                                    <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                                                                </span> <span>Ofrecer Descuento</span>
+                                                                            </label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -122,7 +124,7 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                            <span class="input-group-addon">Cantidad</span>
                                                                             <input type="text" class="form-control"  placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
                                                                         </div>
                                                                     </div>
@@ -130,7 +132,7 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                            <span class="input-group-addon">Peso</span>
                                                                             <input type="text" class="form-control"  placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
                                                                         </div>
                                                                     </div>
@@ -138,7 +140,7 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
-                                                                            <span class="input-group-addon"><i class="icofont icofont-numbered"></i></span>
+                                                                            <span class="input-group-addon">Volumen</span>
                                                                             <input type="text" class="form-control"  placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
                                                                         </div>
                                                                     </div>
@@ -226,13 +228,13 @@
                                                                     <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 <div class="input-group">
-                                                                                    <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                    <span class="input-group-addon"><i class="Superficie total m2"></i></span>
                                                                                     <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6">
                                                                                     <div class="input-group">
-                                                                                        <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                        <span class="input-group-addon">Superficie cubierta m2 </span>
                                                                                         <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
                                                                                     </div>
                                                                             </div>
@@ -242,7 +244,7 @@
                                                                         <div class="row">
                                                                                 <div class="col-sm-6">
                                                                                     <div class="input-group">
-                                                                                        <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                        <span class="input-group-addon">Años</span>
                                                                                         <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Años de Antigüedad" name="propertyYear" [(ngModel)]="propertyYear">
                                                                                     </div>
                                                                                 </div>
@@ -291,13 +293,13 @@
                                                                     <div class="row">
                                                                         <div class="col-sm-6">
                                                                             <div class="input-group">
-                                                                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                <span class="input-group-addon">Marca *</span>
                                                                                 <input type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="input-group">
-                                                                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                <span class="input-group-addon">Año *</span>
                                                                                 <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="motorizedYear" [(ngModel)]="motorizedYear">
                                                                             </div>
                                                                         </div>
@@ -307,7 +309,7 @@
                                                                     <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 <div class="input-group">
-                                                                                    <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                                                                    <span class="input-group-addon">Modelo</span>
                                                                                     <input type="text" class="form-control" placeholder="Modelo" name="motorizedModel" [(ngModel)]="motorizedModel">
                                                                                 </div>
                                                                             </div>
@@ -434,7 +436,7 @@
                                                                             <div class="text-center">
                                                                                 <button type="button" class="btn btn-primary waves-effect waves-light m-r-10"(click)="saveEdit()">Guardar
                                                                                 </button>
-                                                                                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="cargar()"> Modificar mas datos...
+                                                                                <button type="button" class="btn btn-warning waves-effect waves-light" (click)="cargar()" [disabled]="editMoreDiable"> Modificar mas datos...
                                                                                 </button>
                                                                             </div>
                                                                         </div>
@@ -719,3 +721,17 @@
         
         
         </div>
+        <div class="content_popup_g" align="center" [hidden]="popup_g">
+                <div class="popup_g">
+                    <p class="popup-title">SOLICITUD EN PROCESO</p>
+                    <img src="assets/images/spiner.gif" alt="Cargando">
+                    <p class="popup-msg">Por favor espere...</p>
+                </div>
+            </div>
+            <div class="content_popup_g" align="center" [hidden]="popup_g">
+                    <div class="popup_g">
+                        <p class="popup-title">Error</p>
+                        <img src="assets/images/spiner.gif" alt="Cargando">
+                        <p class="popup-msg">Intentelo mas tarde...</p>
+                    </div>
+                </div>

@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit {
 		} else {
       this.User=JSON.parse(localStorage.getItem("user"));
     }
-   }
+  }
 
   ngOnInit() {
     this.getPerson();

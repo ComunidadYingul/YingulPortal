@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { query } from '@angular/core/src/animation/dsl';
 import { Network } from '../../../../model/Network';
 import { LoginService } from '../../../../service/login.service';
+import { Person } from '../../../../model/person';
+import { UserService } from '../../../../service/user.service';
 
 @Component({
   selector: 'app-query-sales',
@@ -23,7 +25,8 @@ export class QuerySalesComponent implements OnInit {
   query:Query=new Query();
   answer:string;
   msg:string;
-  constructor(private queryService:QueryServiceService,private router: Router,private loginService: LoginService) {
+  person:Person= new Person();
+  constructor(private userService:UserService,private queryService:QueryServiceService,private router: Router,private loginService: LoginService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -35,6 +38,16 @@ export class QuerySalesComponent implements OnInit {
     this.getQuery();
     this.getQueryWithOutAnswer();
     this.getQueryWithAnswer();
+    this.getPerson();
+  }
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
   }
   getQuery() {
     this.queryService.getQueryBySeller(this.User).subscribe(

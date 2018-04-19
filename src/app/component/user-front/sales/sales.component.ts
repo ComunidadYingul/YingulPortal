@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
 import { State } from '../../../model/state';
 import { Network } from '../../../model/Network';
+import { UserService } from '../../../service/user.service';
+import { Person } from '../../../model/person';
 
 @Component({
   selector: 'app-sales',
@@ -24,7 +26,8 @@ export class SalesComponent implements OnInit {
   dateStringA:string;
   newDateA:Date;
   newDate:Date;
-  constructor(private router: Router, private buyService:BuyService, private loginService: LoginService) { 
+  person:Person= new Person();
+  constructor(private userService:UserService,private router: Router, private buyService:BuyService, private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -40,6 +43,16 @@ export class SalesComponent implements OnInit {
       		},
       		error => console.log(error)
     );
+    this.getPerson();
+  }
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
   }
   onConfirm(buyTemp2:Buy){
     this.codSeg=buyTemp2.shipping.yng_Shipment.shipmentCod;

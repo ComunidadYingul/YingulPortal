@@ -3,12 +3,10 @@ import { Province } from './province';
 export class Motorized {
     motorized_id:number;
     motorizedBrand: string;
-    motorizedYear: string;
     motorizedModel: string;
     motorizedUnicoDue: string;
 
     motorizedDoor: string;
-    motorizedKilometers: number;
     motorizedFuelType: string;
     motorizedColor: string;
     motorizedDirection: string;

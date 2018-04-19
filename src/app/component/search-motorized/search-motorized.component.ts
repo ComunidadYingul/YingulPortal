@@ -63,7 +63,6 @@ export class SearchMotorizedComponent implements OnInit {
   dateDesde:string;
   dateHasta:string;
   conditionCard:boolean=false;
-  motorizedList:Motorized[];
   User:user=new user();
   itemFavorites: Item[]=[];
   msg:string;
@@ -95,12 +94,6 @@ export class SearchMotorizedComponent implements OnInit {
     this.itemService.searchMotorized(this.categoryId, this.minPrice, this.maxPrice, this.minYear, this.maxYear).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-      		},
-      		error => console.log(error)
-    );
-    this.itemService.getOnlyMotorized().subscribe(
-			res => {
-            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );
@@ -287,12 +280,8 @@ export class SearchMotorizedComponent implements OnInit {
     this.popupHide();
     this.itemListTemp=[];
     for (let i of this.itemList) {
-      for(let m of this.motorizedList){
-        if(m.yng_Item.itemId==i.itemId){
-          if(m.motorizedKilometers==0){
-            this.itemListTemp.push(i);
-          }
-        }         
+      if(i.condition=="New"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];
@@ -303,12 +292,8 @@ export class SearchMotorizedComponent implements OnInit {
     this.popupHide();
     this.itemListTemp=[];
     for (let i of this.itemList) {
-      for(let m of this.motorizedList){
-        if(m.yng_Item.itemId==i.itemId){
-          if(m.motorizedKilometers>0){
-            this.itemListTemp.push(i);
-          }
-        }         
+      if(i.condition=="Used"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];

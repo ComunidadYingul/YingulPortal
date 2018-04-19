@@ -10,6 +10,9 @@ import { ItemDetailService } from '../../../service/item-detail.service';
 import { Product } from '../../../model/product';
 import { Motorized } from '../../../model/Motorized';
 import { Network } from '../../../model/Network';
+import { user } from '../../../model/user';
+import { Router } from '@angular/router';
+import { FavoriteService } from '../../../service/favorite.service';
 
 @Component({
   selector: 'app-icdetail',
@@ -55,14 +58,21 @@ export class IcdetailComponent implements OnInit {
   dateDesde:string;
   dateHasta:string;
   typeItemCategory:string;
-  productList:Product[];
-  motorizedList:Motorized[];
   conditionCard:boolean=false;
   discountCard:boolean=false;
-  constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
+  User:user=new user();
+  msg:string;
+  itemFavorites: Item[]=[];
+  constructor(private favoriteService: FavoriteService, private router : Router,private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService, private itemDetailService :ItemDetailService) { 
   }
 
   ngOnInit() {
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
     this.getItemsByCategory();
     this.categoryService.getCategoryById(this.categoryId).subscribe(
 			res => {
@@ -122,20 +132,8 @@ export class IcdetailComponent implements OnInit {
     );
   }
   getProductsByCategory(){
-    this.itemService.getProductsByCategory(this.categoryId).subscribe(
-			res => {
-            this.productList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-      		},
-      		error => console.log(error)
-    );
   }
   getMotorizedByCategory(){
-    this.itemService.getMotorizedByCategory(this.categoryId).subscribe(
-			res => {
-            this.motorizedList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-      		},
-      		error => console.log(error)
-    );
   }
   popupCategory(){
     this.popup=false;
@@ -301,25 +299,9 @@ export class IcdetailComponent implements OnInit {
   findNew(){
     this.popupHide();
     this.itemListTemp=[];
-    if(this.typeItemCategory=="Product"){
-      for (let i of this.itemList) {
-        for(let p of this.productList){
-          if(p.yng_Item.itemId==i.itemId){
-            if(p.productCondition=="Nuevo"){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
-      }
-    }else{
-      for (let i of this.itemList) {
-        for(let m of this.motorizedList){
-          if(m.yng_Item.itemId==i.itemId){
-            if(m.motorizedKilometers==0){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
+    for (let i of this.itemList) {
+      if(i.condition=="New"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];
@@ -329,25 +311,9 @@ export class IcdetailComponent implements OnInit {
   findUsed(){
     this.popupHide();
     this.itemListTemp=[];
-    if(this.typeItemCategory=="Product"){
-      for (let i of this.itemList) {
-        for(let p of this.productList){
-          if(p.yng_Item.itemId==i.itemId){
-            if(p.productCondition=="Usado"){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
-      }
-    }else{
-      for (let i of this.itemList) {
-        for(let m of this.motorizedList){
-          if(m.yng_Item.itemId==i.itemId){
-            if(m.motorizedKilometers>0){
-              this.itemListTemp.push(i);
-            }
-          }         
-        }
+    for (let i of this.itemList) {
+      if(i.condition=="Used"){
+        this.itemListTemp.push(i);
       }
     }
     this.itemList=[];
@@ -385,7 +351,61 @@ export class IcdetailComponent implements OnInit {
     this.itemList=this.itemListTemp;
     this.popupHide();
   }
-  
+  addToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.createFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  deleteToFavorites(itemId:number){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+      this.router.navigate(['/login']);      
+		} else {
+      var username= this.User.username;
+      this.favoriteService.deleteFavorite(itemId,username).subscribe(
+        res => {
+          this.msg = JSON.parse(JSON.stringify(res))._body;
+          this.getItemFavorite();
+          this.redirectTo();
+        },
+        error => console.log(error)
+      );
+    }
+  }
+  redirectTo(){
+    if(this.msg=='save'){ 
+      this.ngOnInit();
+    }else{
+      alert(this.msg);
+    } 
+    
+  }
+  getItemFavorite(){
+    this.favoriteService.getItemFavorite(this.User.username).subscribe(
+			res => {
+            this.itemFavorites = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  isFavortite(itemId:number){
+    for(let i of this.itemFavorites){
+      if(i.itemId==itemId){
+        return true;
+      }
+    }
+  }
 }
 
 

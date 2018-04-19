@@ -108,6 +108,8 @@ Service:Service= new Service();
 
   precioEnvio:number;
   disabledRPerson:boolean=false;
+  editMoreDiable:boolean=false;
+  popup_g:boolean=true;
   constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { this.Item.name
     this.itemId =route.snapshot.params['itemId'];
     console.log("this.itemId edit:"+this.itemId);
@@ -123,7 +125,11 @@ Service:Service= new Service();
       },
       error=>console.error()      
     );
-
+    this.editMoreDiable=false;
+    this.hiddenEditProd=true;
+    this.hiddenEditProp=true;
+    this.hiddenEditMoto=true;
+    this.hiddenEditServ=true;
   }
   keyPress(event: any) {
     const pattern = /[0-9]/;
@@ -218,6 +224,7 @@ Service:Service= new Service();
     }
   }
   saveEdit(){
+    console.log("this.typeCat:"+this.typeCat);
     this.itemTemp=this.Item;      
     if(this.title!=""){this.itemTemp.name=this.title;}
     else this.title=this.Item.name;
@@ -267,7 +274,7 @@ Service:Service= new Service();
 
   cargar(){
     this.productQuantityEdit();
-
+    this.editMoreDiable=true;
   }
   productQuantityEdit():string{
     if(this.itemType=="Producto"){
@@ -288,7 +295,7 @@ Service:Service= new Service();
       this.propAmbient=this.Property.propertyAmbient;
       this.propAmenities=this.Property.propertyAmenities;
       this.propertyTotalArea=this.Property.propertyTotalArea;
-      this.propertyDuildedArea=this.Property.propertyDuildedArea;
+      //this.propertyDuildedArea=this.Property.propertyDuildedArea;
       this.propertyYear=this.Property.propertyYear;
     }
     if(this.itemType=="Vehiculo"){
@@ -299,7 +306,7 @@ Service:Service= new Service();
       this.motSecurity=this.motorizedTemp.motorizedSecurity;
       this.motSound=this.motorizedTemp.motorizedSound;
       this.motorizedBrand=this.Motorized.motorizedBrand;
-      this.motorizedYear=this.Motorized.motorizedYear;
+      //this.motorizedYear=this.Motorized.motorizedYear;
       this.motorizedModel=this.Motorized.motorizedModel;
       this.motorizedUnicoDue=this.Motorized.motorizedUnicoDue;
     }
@@ -377,9 +384,17 @@ Service:Service= new Service();
      this.product=productT;
      this.product.yng_Item.user.authorities=null;
      console.log("prodssd: "+JSON.stringify(productT));
+     this.popup_g=false;
      this.itemDetailService.postUpdateProduct(this.product).subscribe(
        res => {
          console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
+         let resp=JSON.parse(JSON.stringify(res))._body;
+          if(resp=="save"){
+            this.ngOnInit();
+            this.popup_g=true;
+          }
+          else
+          {}
            },
            error => console.log(error)
      );
@@ -389,7 +404,7 @@ Service:Service= new Service();
       motorized.motorizedBrand=this.motorizedBrand;
       motorized.motorizedModel=this.motorizedModel;
       motorized.motorizedUnicoDue=this.motorizedUnicoDue;
-      motorized.motorizedYear=this.motorizedYear;
+      //motorized.motorizedYear=this.motorizedYear;
       motorized.yng_Item.description=this.description;
       motorized.yng_Item.name=this.title;
       motorized.yng_Item.price=this.price;
@@ -409,7 +424,7 @@ Service:Service= new Service();
 
  sendUpdateProperty(property:Property){
   if (this.hiddenEditProd==false){
-    property.propertyDuildedArea=this.propertyDuildedArea;
+    //property.propertyDuildedArea=this.propertyDuildedArea;
     property.propertyTotalArea=this.propertyTotalArea;
     property.propertyYear=this.propertyYear;
     property.yng_Item.description=this.description;
@@ -594,6 +609,7 @@ Service:Service= new Service();
 
   }
   sendUpdateService(service:Service){
+    console.log("prodssd update: ");
     if (this.hiddenEditProd==false){
     service.cobertureZone=this.cobertureZone;
     service.emailService  

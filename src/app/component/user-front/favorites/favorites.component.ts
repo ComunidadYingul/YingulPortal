@@ -5,6 +5,8 @@ import { Favorite } from '../../../model/favorite';
 import { Router } from '@angular/router';
 import { Network } from '../../../model/Network';
 import { LoginService } from '../../../service/login.service';
+import { Person } from '../../../model/person';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-favorites',
@@ -17,7 +19,8 @@ export class FavoritesComponent implements OnInit {
   favoriteList: Favorite[];
   deleteList:number[]=[];
   msg:string;
-  constructor(private favoriteService: FavoriteService,private router: Router,private loginService: LoginService) { }
+  person:Person= new Person();
+  constructor(private userService:UserService,private favoriteService: FavoriteService,private router: Router,private loginService: LoginService) { }
 
   ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -27,6 +30,16 @@ export class FavoritesComponent implements OnInit {
 			this.User=JSON.parse(localStorage.getItem("user"));
 		}
     this.getFavorites();
+    this.getPerson();
+  }
+	getPerson(){
+    this.userService.getPerson(this.User.username).subscribe(
+			res => {
+            this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+    
   }
   getFavorites() {
     this.favoriteService.getFavorite(this.User.username).subscribe(
