@@ -152,4 +152,7 @@ a.card-desc .item-name-e{
         font-size: 12px;
         color: #666;
     }
+    .align-video-center{
+        margin-top:30%;
+    }
 }

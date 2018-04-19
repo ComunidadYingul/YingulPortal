@@ -26,9 +26,9 @@
                       <div class="row">
                           <div class="col-xl-3 col-lg-4 col-md-4 col-xs-12">
                               <!-- Social timeline left start -->
-                              <div class="social-timeline-left">
+                              <div class="social-timeline-left row">
                                   <!-- social-profile card start -->
-                                  <div class="card">
+                                  <div class="card col-md-12 col-sm-5 col-5">
                                       <div class="social-profile">
                                           <img style="max-height:230px;" *ngIf="store.mainImage" class="img-fluid width-100" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
                                       </div>
@@ -54,9 +54,10 @@
                                           </div>-->
                                       </div>
                                   </div>
+                                  <div class="col-sm-1 col-1"></div>
                                   <!-- social-profile card end -->
-                                  <div class="card" *ngIf="store.video" >
-                                        <div  class="cd-timeline-content card_main">
+                                  <div class="card col-md-12 col-sm-5 col-5" *ngIf="store.video" >
+                                        <div  class="cd-timeline-content card_main align-video-center">
                                             <div class="embed-responsive embed-responsive-4by3">
                                                 <iframe class="embed-responsive-item" [src]='video'></iframe>
                                             </div>
