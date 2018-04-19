@@ -112,8 +112,8 @@
 </div>
 
 <!--    FORMULARIO POPUP     -->
-<div class="content_popup_g" align="center" [hidden]="popup_g">
-<div class="popup" [hidden]="popup">
+<div class="content_popup_g" align="center" [hidden]="popup">
+<div class="popup" >
     <div class="page-header-title">
         <h3>POR ÚNICA VEZ, DEJA TUS DATOS DE CONTACTO</h3>
         <hr class="m-t-20 m-b-20">
@@ -122,7 +122,7 @@
     <div class="">
         <div class="input-group">
          
-            <select class="input-group-addon col-sm-2"#a (change)="getDniCuit(a.value)">
+            <select class="input-group-addon"#a (change)="getDniCuit(a.value)">
                 <option [value]="1" >DNI</option>
                 <option  [value]="2" >CUIT</option>
             </select>
@@ -150,16 +150,12 @@
         </div>
     </div>
 </div>
-
-
-
-<div class="popup2" align="center" [hidden]="popup2">
-    <div class="page-header-title">
-        <h3>SOLICITUD EN PROCESO</h3>
-        <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
-        <br>
-        <br>
-        <h4>Por Favor espere</h4>
-    </div>
 </div>
+
+<div class="content_popup_g" align="center" [hidden]="popup2">
+    <div class="popup_g">
+        <p class="popup-title">SOLICITUD EN PROCESO</p>
+        <img src="assets/images/spiner.gif" alt="Cargando">
+        <p class="popup-msg">Por favor espere...</p>
+    </div>
 </div>
