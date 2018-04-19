@@ -127,7 +127,7 @@
                 <input id="price" type="text" (keypress)="keyPress($event)" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio por unidad Ej. 10.00" >
             </div>
             <div class="error-g row">
-                <p [hidden]="hidPrice">* Ingrese precio</p>
+                <p [hidden]="hidPrice">* Ingrese precio</p><p [hidden]="hidPriceExedido">* No puede vender productos mayor a 29.900$ cuando el envio es a cargo del comprador!</p>
             </div>
         </div>
     </div>
@@ -278,13 +278,13 @@
                                             <tbody [hidden]="popupEnvios">
                                                 <tr>
                                                     <td class="radio radiofill radio-inline">
-                                                        <input type="radio" name="shippingMethod" value="normal" (click)="envioComprador($event)" >Envío a cargo del comprador<br>
+                                                        <input type="radio" name="shippingMethod" id="envioComprador" value="normal" (click)="envioComprador($event)" ><label for="envioComprador">Envío a cargo del comprador</label><br>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="radio radiofill radio-inline"> 
                                                         <!--input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" checked="checked">Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br-->    
-                                                        <input type="radio" name="shippingMethod" value="normal2" (click)="envioGratis($event)" checked="checked">Envió gratis al comprador. (paga el vendedor aprox. $  {{precioEnvio}})<br>
+                                                        <input type="radio" name="shippingMethod" id="envioGratis" value="normal2" (click)="envioGratis($event)" checked="checked"><label for="envioGratis">Envió gratis al comprador. (paga el vendedor aprox. $  {{precioEnvio}})</label><br>
                                                     </td>
                                                 </tr>
                                             </tbody>

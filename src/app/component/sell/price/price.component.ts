@@ -90,6 +90,7 @@ export class PriceComponent implements OnInit {
   /****************** VARIABLES VALIDACION SERVICIOS *******************/
   hidPhone:boolean=true;
   hidPrice:boolean=true;
+  hidPriceExedido:boolean=true;
   hidCountry:boolean=true;
   hidProvince:boolean=true;
   hidCity:boolean=true;
@@ -263,6 +264,7 @@ export class PriceComponent implements OnInit {
     this.hidProductPaymentMethod=true;
     this.hidYingulExpress=true;
     this.hidIngresarDomicilio=true;
+    this.hidPriceExedido=true;
   }
 
   validarProducto(){
@@ -286,6 +288,10 @@ export class PriceComponent implements OnInit {
     }else if(this.popupUbicacion==false){
       this.hidIngresarDomicilio=false;
       //this.elem.nativeElement.querySelector('#number').focus();
+      return false;
+    }else if(this.product.productPagoEnvio=="comprador" && this.price>29900){
+      this.hidPriceExedido=false;
+      this.elem.nativeElement.querySelector('#price').focus();
       return false;
     }else{
       return true;
