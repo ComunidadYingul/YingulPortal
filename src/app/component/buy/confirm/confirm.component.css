@@ -24,12 +24,17 @@
 }
 .cho-address {
 	line-height: 1.6;
-    padding: 10px 0;
+	padding: 0;
+	margin: 0;
 	color: #999;
 	font-size: 13px;
 }
 
-
+@media only screen and (max-width: 573px){
+	.img-circle{
+		width: 30px;
+	}
+}
 /************** ESTILOS DEL MENSAJE DE ERROR **************/
 .input-group{
     margin-bottom: 0;

@@ -2,6 +2,9 @@
     position: relative;
     width: 100%; /* for IE 6 */
 }
+.image img{
+    width: 100%;
+}
 .number {
     position: absolute;
     top: 55%;
