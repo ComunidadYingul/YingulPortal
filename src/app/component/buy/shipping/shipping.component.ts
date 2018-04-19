@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { Item } from '../../../model/item';
 import { Cotizar } from '../../../model/cotizar';
 import { ItemDetailService } from '../../../service/item-detail.service';
@@ -140,7 +140,7 @@ export class ShippingComponent implements OnInit {
     cityTem:City=new City();
     provinceList: Object[];
     provin:string;
-  constructor(private buyService: BuyService,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService,private router: Router) { 
+  constructor(private elem:ElementRef,private buyService: BuyService,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService,private router: Router) { 
     this.cityHid=true;
     console.log("Cotizacion"+JSON.stringify(this.shipping));
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -476,12 +476,16 @@ export class ShippingComponent implements OnInit {
       if (this.branch==false){
         if(this.popupSucursal==true){
           this.hidBuscarSucursal=false;
+          this.elem.nativeElement.querySelector('#postalCode').focus();
         }else if(this.camSW==false){
           this.hidSucursal=false;
+          this.elem.nativeElement.querySelector('#rbSucursal').focus();
         }else if(this.name=="" || this.name==null){
           this.hidName=false;
+          this.elem.nativeElement.querySelector('#name').focus();
         }else if(this.phone=="" || this.phone==null){
           this.hidPhone=false;
+          this.elem.nativeElement.querySelector('#phone').focus();
         }
         else{
           if(this.shipping.typeShipping=="branch")
@@ -501,6 +505,7 @@ export class ShippingComponent implements OnInit {
       else{
         if(this.Item.productPagoEnvio=="gratis"){
           this.hidRadioSucursal=false;
+          this.elem.nativeElement.querySelector('#rbRetiroSuc').focus();
         }else{
           this.typeCotizacion.emit(null);
           this.typeProduct.emit(this.Product);

@@ -19,7 +19,7 @@
             <div class="form-radio">
                 <div class="radio radiofill radio-inline" *ngIf="Item.type!='Motorized'">
                     <label>
-                        <input type="radio" value="false" name="radio" #radio (change)="check('branch')" [(ngModel)]="radioSucursal">
+                        <input id="rbRetiroSuc" type="radio" value="false" name="radio" #radio (change)="check('branch')" [(ngModel)]="radioSucursal">
                         <i class="helper"></i>Retiro en una sucursal
                     </label>
                     <div class="error-g row">
@@ -31,7 +31,7 @@
             <div [hidden]="branch">
                 <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
                 <div class="row input-group input-group-button">
-                    <input type="text" (keypress)="keyPressCP($event)" class="col-sm-6 form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
+                    <input id="postalCode" type="text" (keypress)="keyPressCP($event)" class="col-sm-6 form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
                     <span class="col-sm-3 input-group-addon" id="basic-addon10" (click)="quoteSend()">Buscar
                 <!--button class="btn btn-primary" (click)="quoteSend()">Buscar</button-->
                     </span>
@@ -53,7 +53,7 @@
                                     <div class="col-sm-12 form-radio">
                                      <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
                                             <label>
-                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
+                                                <input id="rbSucursal" type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
                                                 <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
@@ -79,7 +79,7 @@
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
+                                <input id="name" type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
                             </div>
                             <div class="error-g row">
                                 <p  [hidden]="hidName">* Nombre requerido</p>
@@ -90,7 +90,7 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
-                            <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
+                            <input id="phone" type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
                             <span class="md-line"></span>
                         </div>
                         <div class="error-g row">
