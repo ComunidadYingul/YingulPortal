@@ -62,7 +62,7 @@ export class PaymentComponent implements OnInit {
   hidDueYear:boolean=true;
   hidDni:boolean=true;
 
-  constructor(private buyService: BuyService, private router: Router) { 
+  constructor(private elem:ElementRef,private buyService: BuyService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -187,22 +187,36 @@ export class PaymentComponent implements OnInit {
     this.resetHidTypePay();
     if(this.paymentMethod=="null"){
       this.hidPaymentMethod=false;
+      this.elem.nativeElement.querySelector('#paymentMethod').focus();
       return false;
     }else if(this.providerHid==false && this.provider==-1){
       this.hidProvider=false;
+      this.elem.nativeElement.querySelector('#provider').focus();
       return false;
-    }else if(this.cardNumber==null || this.cardNumber.length<19){
+    }else if(this.cardNumber==null || this.cardNumber.length<16){
       this.hidCardNumber=false;
+      this.elem.nativeElement.querySelector('#cardNumber').focus();
+      return false;
     }else if(this.fullName==null || this.fullName==""){
       this.hidFullname=false;
+      this.elem.nativeElement.querySelector('#fullName').focus();
+      return false;
     }else if(this.cvv==null || this.cvv.toString()==""){
       this.hidCvv=false;
+      this.elem.nativeElement.querySelector('#cvv').focus();
+      return false;
     }else if(+this.dueMonth==0 || +this.dueMonth==null){
       this.hidDueMonth=false;
+      this.elem.nativeElement.querySelector('#dueMonth').focus();
+      return false;
     }else if(+this.dueYear==0 || +this.dueYear==null){
       this.hidDueYear=false;
+      this.elem.nativeElement.querySelector('#dueYear').focus();
+      return false;
     }else if(this.dni==0 || this.dni==null){
       this.hidDni=false;
+      this.elem.nativeElement.querySelector('#dni').focus();
+      return false;
     }
     else{
       return true;
@@ -252,8 +266,8 @@ export class PaymentComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
-    if(this.cardNumber.length>0 && (this.cardNumber.length==4 || this.cardNumber.length==9 || this.cardNumber.length==14)){
+    /*if(this.cardNumber.length>0 && (this.cardNumber.length==4 || this.cardNumber.length==9 || this.cardNumber.length==14)){
       this.cardNumber+=" ";
-    }
+    }*/
   }
 }

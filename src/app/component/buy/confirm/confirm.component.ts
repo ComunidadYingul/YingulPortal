@@ -106,11 +106,9 @@ export class ConfirmComponent implements OnInit {
     //aqui aumentas el precio del envio
     
     if(!this.sw){
-      this.popup_g=false;
       this.popup=false;
     } 
     else{
-      this.popup_g=false;
       this.popup2=false;
       this.buy.quantity=this.quantity;
       this.buy.yng_item=this.Item;
@@ -155,7 +153,6 @@ export class ConfirmComponent implements OnInit {
   }
 
   redirectTo(){
-    this.popup_g=true;
     this.popup2=true;
     if(this.msg=='problemCard'){
       this.problem.emit(this.msg);
@@ -190,7 +187,6 @@ export class ConfirmComponent implements OnInit {
             },
             error => console.log(error)
       );
-      this.popup_g=true;
       this.popup=true;
     }
   }
