@@ -21,7 +21,6 @@ import { user } from '../../../model/user';
 import { Ubication } from '../../../model/ubication';
 
 
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
