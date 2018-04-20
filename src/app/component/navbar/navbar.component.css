@@ -8,7 +8,9 @@
     right: 60px;
     top: 8px;
 }
-
+.yingul-logo{
+    font-size: 1.5em;
+}
 #content-search{
     position: absolute;
     display: flex;
@@ -65,7 +67,10 @@
 }
 @media (max-width:480px){
     #content-logo.navbar-logo div{
-        left: 55px;
+        left: 58px;
+    }
+    .yingul-text{
+        display: none;
     }
 }
 .searchImagen{
