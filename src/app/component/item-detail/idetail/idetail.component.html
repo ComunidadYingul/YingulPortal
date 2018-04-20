@@ -1,5 +1,5 @@
 <!-- Main-body start -->
-<div class="main-body" [hidden]="spinner">
+<div class="main-body first-body" [hidden]="spinner">
   <div class="page-wrapper">
       <!-- Page header start -->
       <div class="page-header">
@@ -155,7 +155,7 @@
                                                                         <span class="icofont icofont-minus m-0"></span>
                                                             </button>
                                                             </span>
-                                                            <input type="text" name="quant" [(ngModel)]="quant" class="input-number text-center"  >
+                                                            <input style="width:100px;" type="text" name="quant" [(ngModel)]="quant" class="input-number text-center"  >
                                                             <span class="input-group-btn">
                                                                 <button type="button" class="btn btn-default btn-number shadow-none" [disabled]="quant>=Item.quantity" data-type="plus" data-field="quant[1]" (click)="quantMas()">
                                                                     <span class="icofont icofont-plus m-0"></span>
@@ -218,22 +218,46 @@
               </div>
           </div>
           <!-- Nav tabs start-->
-          <div class="card product-detail-page">
+          <div class="card product-detail-page" style="margin-bottom:0px;">
               <ul class="nav nav-tabs md-tabs tab-timeline" role="tablist">
-                  <li class="nav-item">
-                      <a class="nav-link active f-18 p-b-0" data-toggle="tab" href="#description" role="tab">Description del {{itemType}}</a>
+                  <li class="nav-item" style="position:relative">
+                        
+                      <a class="nav-link active f-18 p-b-0" data-toggle="tab" href="#description" role="tab">
+                            <div _ngcontent-c2="" class="f-26">
+                                    <i class="icofont icofont-clip-board"></i>
+                                </div>  
+                        <span>Description del {{itemType}}</span>
+                    </a>
                       <div class="slide" style="max-height:10px;"></div>
                   </li>
-                  <li class="nav-item m-b-0">
-                      <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#review" role="tab">Informacion del vendedor</a>
+                  <li class="nav-item m-b-0" style="position:relative">
+                        
+                      <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#review" role="tab">
+                            <div _ngcontent-c2="" class="f-26">
+                                    <i class="icofont icofont-ui-user"></i>
+                                </div>
+                                <span>Informacion del vendedor</span>
+                                </a>
                       <div class="slide" style="max-height:10px;"></div>
                   </li>
-                  <li class="nav-item m-b-0">
-                      <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#sizeguide" role="tab">Más publicaciones del vendedor</a>
+                  <li class="nav-item m-b-0" style="position:relative">
+                        
+                      <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#sizeguide" role="tab">
+                            <div _ngcontent-c2="" class="f-26">
+                                    <i class="icofont icofont-ui-add"></i>
+                                </div>  
+                        <span>Más publicaciones del vendedor</span>
+                        </a>
                       <div class="slide" style="max-height:10px;"></div>
                   </li>
-                  <li class="nav-item m-b-0">
-                      <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#about" role="tab">Preguntas sobre el {{itemType}}</a>
+                  <li class="nav-item m-b-0" style="position:relative">
+                        
+                      <a class="nav-link f-18 p-b-0" data-toggle="tab" href="#about" role="tab">
+                            <div _ngcontent-c2="" class="f-26">
+                                    <i class="icofont icofont-question-circle"></i>
+                                </div>  
+                        <span>Preguntas sobre el {{itemType}}</span>
+                        </a>
                       <div class="slide" style="max-height:10px;"></div>
                   </li>
               </ul>
@@ -591,7 +615,7 @@
                       </div>
                       <div class="tab-pane" id="sizeguide" role="tabpanel">
                           <!-- mas publicaciones del mismo usuario-->
-                            <div class="page-wrapper row" style="background: #e9ecf3;justify-content: center; padding: 5px;">
+                            <div class="page-wrapper row" style="justify-content: space-around; padding: 5px;">
                                 <!-- Product list start -->
                                 <div class="wrap-card" *ngFor="let item of itemsBySeller">
                                     <div class="card-items">

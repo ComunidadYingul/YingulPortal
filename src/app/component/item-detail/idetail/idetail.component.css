@@ -138,6 +138,7 @@ ol li.active{
     text-decoration: none;
     cursor: pointer;
     display: block;
+    box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
 }
 .card-img{
     position: relative;
@@ -233,14 +234,19 @@ ol li.active{
 .card-items:hover .heart-img{
     display: flex;
 } 
+@media (max-width:992px){
+    .first-body{
+        margin-top: 56px;
+    }
+}
 @media (max-width: 976px){
-    .row{
+    /*.row{
         justify-content: center;
     }
     .slide{
         width: 160px;
         height: 230px;
-    }
+    }*/
     .card-items{
         margin: 0 4px 4px;
         width: 130px;
@@ -265,4 +271,47 @@ ol li.active{
     .card-items .heart-img{
         display: flex;
     } 
+}
+
+.nav-item .active{
+    background: #FF5E3A;
+    color: white;
+}
+
+@media (max-width:768px){
+    .nav-tabs{
+        display: flex;
+    }
+    .nav-item{
+        position: relative;
+    }
+    .nav-item span{
+        display: none;
+    }
+    .slide{
+        width: 100%;
+    }
+    .nav-tabs .nav-item a.nav-link{
+        padding: 0 5px !important;
+        height: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+    .card .card-block table tr {
+        padding-bottom: 0px;
+        font-size: .8em;
+    }
+    .main-body .page-wrapper .page-header-title h4 {
+        font-size: 1em;
+    }
+    .card-block {
+        padding: .5rem .5rem;
+    }
+    .tab-pane .page-wrapper{
+        padding: 0;
+    }
+}
+@media (max-width:576px){
+    .nav-tabs .nav-item a.nav-link{
+        border-radius: 5px 5px 0 0;
+    }
 }
