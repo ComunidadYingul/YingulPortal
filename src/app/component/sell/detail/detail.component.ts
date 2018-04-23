@@ -21,7 +21,6 @@ import { user } from '../../../model/user';
 import { Ubication } from '../../../model/ubication';
 
 
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -729,7 +728,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("principalWebp")).value=i.src;
       console.log(i.src);
@@ -737,40 +736,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -791,7 +784,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp2")).value=i.src;
       console.log(i.src);
@@ -799,40 +792,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -853,7 +840,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp3")).value=i.src;
       console.log(i.src);
@@ -861,40 +848,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -915,7 +896,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp4")).value=i.src;
       console.log(i.src);
@@ -923,40 +904,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -977,7 +952,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp5")).value=i.src;
       console.log(i.src);
@@ -985,40 +960,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -1039,7 +1008,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp6")).value=i.src;
       console.log(i.src);
@@ -1047,40 +1016,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -1101,7 +1064,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp7")).value=i.src;
       console.log(i.src);
@@ -1109,40 +1072,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -1163,7 +1120,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp8")).value=i.src;
       console.log(i.src);
@@ -1171,40 +1128,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -1225,7 +1176,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp9")).value=i.src;
       console.log(i.src);
@@ -1233,40 +1184,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
@@ -1287,7 +1232,7 @@ public item: Item=new Item();
       this.className='imG';
       var d=document.createElement('a');
       g=f.name.split('.');g.pop();
-      d.download=g.join('')+'.webp';
+      d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp10")).value=i.src;
       console.log(i.src);
@@ -1295,40 +1240,34 @@ public item: Item=new Item();
     }
     //aqui va la calidad
     var quality=0;
-    if(sizekiloByte>=9000){
+    if(sizekiloByte>=1120){
       quality=0;
     }
-    if(sizekiloByte>=8100 && sizekiloByte<9000){
+    if(sizekiloByte>=9000 && sizekiloByte<1120){
       quality=10;
     }
-    if(sizekiloByte>=7200 && sizekiloByte<8100){
+    if(sizekiloByte>=4860 && sizekiloByte<9000){
       quality=20;
     }
-    if(sizekiloByte>=6300 && sizekiloByte<7200){
+    if(sizekiloByte>=1620 && sizekiloByte<4860){
+      quality=25;
+    }
+    if(sizekiloByte>=540 && sizekiloByte<1620){
       quality=30;
     }
-    if(sizekiloByte>=5400 && sizekiloByte<6300){
+    if(sizekiloByte>=180 && sizekiloByte<540){
+      quality=35;
+    }
+    if(sizekiloByte>=60 && sizekiloByte<180){
       quality=40;
     }
-    if(sizekiloByte>=4500 && sizekiloByte<5400){
-      quality=50;
-    }
-    if(sizekiloByte>=3600 && sizekiloByte<4500){
+    if(sizekiloByte>=20 && sizekiloByte<60){
       quality=60;
     }
-    if(sizekiloByte>=2700 && sizekiloByte<3600){
-      quality=70;
-    }
-    if(sizekiloByte>=1800 && sizekiloByte<2700){
+    if(sizekiloByte>=0 && sizekiloByte<20){
       quality=80;
     }
-    if(sizekiloByte>=900 && sizekiloByte<1800){
-      quality=90;
-    }
-    if(sizekiloByte>=0 && sizekiloByte<900){
-      quality=100;
-    }
-    i.src=b.toDataURL('image/webp',quality*0.01);
+    i.src=b.toDataURL('image/jpeg',quality*0.01);
     };
     i.src=window.URL.createObjectURL(f);
   }
