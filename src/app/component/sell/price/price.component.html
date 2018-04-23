@@ -168,7 +168,7 @@
                 <div class="col-sm-6" [hidden]="cityHid">
                     <select id="city" name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
                         <option value="opt1">Seleccione una Ciudad</option>
-                        <option *ngFor="let city of cityList" [value]="city.cityId" >{{city.name}}</option>
+                        <option *ngFor="let city of cityList" [value]="city.cityId" > ( {{city.codigopostal}} ) {{city.name}}</option>
                     </select>
                     <div class="error-g row">
                         <p  [hidden]="hidCity">* Seleccione una ciudad</p>
@@ -540,7 +540,7 @@
                         <div class="col-sm-6" [hidden]="cityHid">
                                 <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
                                     <option value="opt1">Seleccione una Ciudad</option>
-                                    <option *ngFor="let city of cityList" [value]="city.cityId"  >{{city.name}}  </option>
+                                    <option *ngFor="let city of cityList" [value]="city.cityId"  >( {{city.codigopostal}} ){{city.name}}  </option>
                                 </select>
                         </div>
                         <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
