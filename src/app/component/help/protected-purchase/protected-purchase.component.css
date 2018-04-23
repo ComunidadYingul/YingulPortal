@@ -1,0 +1,51 @@
+.card-block-big{
+    background-color: #f7f7f7;
+    /*background-image: url("assets/images/banner-productos.png");*/
+    background-repeat: no-repeat repeat;
+    background-size: 100%;
+    text-align: center;
+}
+.card-block-big i{
+    position: static !important;
+    font-size: 180px;
+    color: #ff5e3a;
+}
+.main-title{
+    text-align: center;
+}
+.main-title span{
+    font-family: Proxima nova,Arial,sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 42px;
+    margin: 0 15px;
+    margin-top: 0px;
+    padding: 45px 0 0;
+}
+
+
+@media (max-width: 992px){
+    .main-body{
+        margin-top: 56px;
+    }
+    .main-title span{
+        font-size: 1.2em;
+    }
+}
+@media (max-width:576px){
+    .main-title span{
+        font-size: .7em;
+    }
+    .card-block-big i{
+        font-size: 80px;
+    }
+    .user-img img, .rounded-card img {
+        width: 50%;
+    }
+    .user-content h5 {
+        font-size: 10px;
+    }
+    .social-widget-card {
+        margin: 0;
+    }
+}

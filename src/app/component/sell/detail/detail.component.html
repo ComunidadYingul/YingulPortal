@@ -366,8 +366,9 @@
                 </div>
 
                 <h5>Comodidades y amenities</h5>
+                <hr style="margin-top:0;margin-bottom:0;">
                 <div class="row">
-                <div  class="col-sm-8" *ngFor="let amenities of amenitiesList">
+                <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let amenities of amenitiesList">
                     <label class="custom-control custom-checkbox" >
                     <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmenities(amenities)">
                     <span class="custom-control-indicator"></span>
@@ -375,10 +376,11 @@
                     </label>
                 </div>
                 </div>
-
+                <br>
                 <h5>Ambientes</h5>
+                <hr style="margin-top:0;margin-bottom:0;">
                 <div class="row">
-                <div  class="col-sm-8" *ngFor="let ambient of ambientList">
+                <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let ambient of ambientList">
                     <label class="custom-control custom-checkbox" >
                     <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmbient(ambient)">
                     <span class="custom-control-indicator"></span>
@@ -386,7 +388,7 @@
                     </label>
                 </div>
                 </div>
-
+                <br>
                     <h5>Fotos de tu Inmueble</h5>
         </div>
            
@@ -498,61 +500,65 @@
                 <div *ngIf="true">
                     
                         <h5>Seguridad</h5>
-
+                        <hr style="margin-top:0;margin-bottom:0;">
                         <div class="row">
-                        <div  class="col-sm-8" *ngFor="let security of securityList">
-                            <label class="custom-control custom-checkbox" >
-                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSecurity(security)">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{security.name}}</span>
-                            </label>
+                            <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let security of securityList">
+                                <label class="custom-control custom-checkbox" >
+                                <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSecurity(security)">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{security.name}}</span>
+                                </label>
+                            </div>
                         </div>
-                        </div>
-                    
+                        <br>
                         <h5>Confort</h5>
+                        <hr style="margin-top:0;margin-bottom:0;">
                         <div class="row">
-                        <div  class="col-sm-8" *ngFor="let confort of confortList">
-                            <label class="custom-control custom-checkbox" >
-                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkConfort(confort)">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{confort.name}}</span>
-                            </label>
+                            <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let confort of confortList">
+                                <label class="custom-control custom-checkbox" >
+                                <input type="checkbox" class="custom-control-input" #checkbox (change)="checkConfort(confort)">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{confort.name}}</span>
+                                </label>
+                            </div>
                         </div>
-                        </div>
-    
+                        <br>
                         <h5>Sonido</h5>
+                        <hr style="margin-top:0;margin-bottom:0;">
                         <div class="row">
-                        <div  class="col-sm-8" *ngFor="let sound of soundList">
-                            <label class="custom-control custom-checkbox" >
-                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSound(sound)">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{sound.name}}</span>
-                            </label>
+                            <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let sound of soundList">
+                                <label class="custom-control custom-checkbox" >
+                                <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSound(sound)">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{sound.name}}</span>
+                                </label>
+                            </div>
                         </div>
-                        </div>
-    
+                        <br>
                         <h5>Exterior</h5>
+                        <hr style="margin-top:0;margin-bottom:0;">
                         <div class="row">
-                        <div  class="col-sm-8" *ngFor="let exterior of exteriorList">
-                            <label class="custom-control custom-checkbox" >
-                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkExterior(exterior)">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{exterior.name}}</span>
-                            </label>
+                            <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let exterior of exteriorList">
+                                <label class="custom-control custom-checkbox" >
+                                <input type="checkbox" class="custom-control-input" #checkbox (change)="checkExterior(exterior)">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{exterior.name}}</span>
+                                </label>
+                            </div>
                         </div>
-                        </div>
-    
+                        <br>
                         <h5>Equipamiento</h5>
+                        <hr style="margin-top:0;margin-bottom:0;">
                         <div class="row">
-                        <div  class="col-sm-8" *ngFor="let equipment of equipmentList">
-                            <label class="custom-control custom-checkbox" >
-                            <input type="checkbox" class="custom-control-input" #checkbox (change)="checkEquipment(equipment)">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description">{{equipment.name}}</span>
-                            </label>
+                            <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let equipment of equipmentList">
+                                <label class="custom-control custom-checkbox" >
+                                <input type="checkbox" class="custom-control-input" #checkbox (change)="checkEquipment(equipment)">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">{{equipment.name}}</span>
+                                </label>
+                            </div>
                         </div>
-                        </div>
-    
+                        <br>
     
                     </div>
 
