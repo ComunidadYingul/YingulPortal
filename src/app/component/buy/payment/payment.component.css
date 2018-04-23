@@ -3,7 +3,7 @@
     width: 100%; /* for IE 6 */
 }
 .image img{
-    width: 100%;
+    width: auto;
 }
 .number {
     position: absolute;
@@ -31,7 +31,11 @@
     color: white; 
 }
 
-
+@media (max-width: 576px){
+    .image img{
+        width: 100%;
+    }
+}
 /************** ESTILOS DEL MENSAJE DE ERROR **************/
 .input-group{
     margin-bottom: 0;

@@ -31,54 +31,65 @@
                           <div class="row">
                               <div class="col-sm-12">
                                   <div class="product-edit">
-                                      <ul class="nav nav-tabs nav-justified md-tabs " role="tablist">
-                                          <li class="nav-item">
-                                                <a [hidden]="!hidType" style="cursor:pointer;" class="nav-link active" data-toggle="tab" (click)="typeItem()" role="tab">
+                                      <ul class="nav nav-tabs nav-justified md-tabs " role="tablist" class="row">
+                                          <li class="text-center section-no-selected nav-item col-3" [hidden]="!hidType" (click)="typeItem()">
+                                                <a  class="nav-link active" data-toggle="tab"  role="tab">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-edit"></i>
                                                   </div>
-                                                  Tipo de Item</a>
-                                                <a [hidden]="hidType" style="color:white; background:#ff5e3a; cursor:pointer;" class="nav-link active" data-toggle="tab" (click)="typeItem()" role="tab">
+                                                  <span class="name-section">Tipo de Item</span>
+                                                </a>
+                                          </li>
+                                          <li class="text-center section-selected nav-item col-3" [hidden]="hidType" (click)="typeItem()">
+                                            <a class="nav-link active" data-toggle="tab" role="tab">
                                                 <div class="f-26">
                                                     <i class="icofont icofont-edit"></i>
                                                 </div>
-                                                Tipo de Item</a>
+                                                <span class="name-section">Tipo de Item</span>
+                                            </a>
                                           </li>
-                                          <li class="nav-item"> 
-                                                <a [hidden]="!hidCat" style="cursor:pointer;"  class="nav-link" data-toggle="tab"  role="tab" (click)="categories()">
+                                          <li class="text-center section-no-selected nav-item col-3" [hidden]="!hidCat" (click)="categories()"> 
+                                                <a class="nav-link" data-toggle="tab"  role="tab">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-document-search"></i>
                                                   </div>
-                                                  Que quieres publicar</a>
-                                                <a [hidden]="hidCat" style="color:white; background:#ff5e3a; cursor:pointer;"  class="nav-link" data-toggle="tab"  role="tab" (click)="categories()">
+                                                  <span class="name-section">Que quieres publicar</span></a>
+                                          </li>
+                                          <li class="text-center section-selected nav-item col-3" [hidden]="hidCat" (click)="categories()"> 
+                                                <a class="nav-link" data-toggle="tab"  role="tab">
                                                 <div class="f-26">
                                                     <i class="icofont icofont-document-search"></i>
                                                 </div>
-                                                Que quieres publicar</a>
+                                                <span class="name-section">Que quieres publicar</span></a>
                                           </li>
-                                          <li class="nav-item">
-                                                <a [hidden]="!hidDet" style="cursor:pointer;" class="nav-link" data-toggle="tab" role="tab" (click)="detail()">
+                                          <li class="text-center section-no-selected nav-item col-3" [hidden]="!hidDet" (click)="detail()">
+                                                <a class="nav-link" data-toggle="tab" role="tab" >
                                                   <div class="f-26">
                                                       <i class="icofont icofont-ui-image"></i>
                                                   </div>
-                                                  Descripción y fotos</a>
-                                                <a [hidden]="hidDet" style="color:white; background:#ff5e3a; cursor:pointer;" class="nav-link" data-toggle="tab" role="tab" (click)="detail()">
+                                                  <span class="name-section">Descripción y fotos</span></a>
+                                          </li>
+                                          <li class="text-center section-selected nav-item col-3" [hidden]="hidDet" (click)="detail()">
+                                                <a class="nav-link" data-toggle="tab" role="tab" >
                                                     <div class="f-26">
                                                         <i class="icofont icofont-ui-image"></i>
                                                     </div>
-                                                    Descripción y fotos</a>
+                                                    <span class="name-section">Descripción y fotos</span></a>
                                           </li>
-                                          <li class="nav-item">
-                                                <a [hidden]="!hidPri" style="cursor:pointer;" class="nav-link" data-toggle="tab" href="#messages8" role="tab" (click)="price()">
+                                          <li class="text-center section-no-selected nav-item col-3" [hidden]="!hidPri" (click)="price()">
+                                                <a class="nav-link" data-toggle="tab" role="tab">
                                                   <div class="f-26">
                                                       <i class="icofont icofont-money-bag"></i>
                                                   </div>
-                                                  Precio</a>
-                                                <a [hidden]="hidPri" style="color:white; background:#ff5e3a; cursor:pointer;" class="nav-link" data-toggle="tab" href="#messages8" role="tab" (click)="price()">
+                                                  <span class="name-section">Precio</span></a>
+                                          </li>
+                                          <li class="text-center section-selected nav-item col-3" [hidden]="hidPri" (click)="price()">
+                                                <a class="nav-link" data-toggle="tab" role="tab" >
                                                     <div class="f-26">
                                                         <i class="icofont icofont-money-bag"></i>
                                                     </div>
-                                                    Precio</a>
+                                                    <span class="name-section">Precio</span>
+                                                </a>
                                           </li>
                                           <!--<li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#messages8" role="tab">

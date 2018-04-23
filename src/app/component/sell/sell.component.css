@@ -22,3 +22,19 @@
 		border: 5px solid #FF5E3A;
 	
 }
+.section-selected{
+	background:#ff5e3a;
+	color:white;
+	cursor: pointer;
+}
+.section-no-selected{
+	background:white;
+	color:#ff5e3a;
+	border: 1px solid #ff5e3a55;
+	cursor: pointer;
+}
+@media (max-width: 627px){
+    .name-section{
+        display: none;
+    }
+}

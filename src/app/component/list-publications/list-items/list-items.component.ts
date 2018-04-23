@@ -12,6 +12,7 @@ import { Country } from '../../../model/country';
 import { Router } from '@angular/router';
 import { UserService } from '../../../service/user.service';
 import { Person } from '../../../model/person';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-list-items',
@@ -60,7 +61,7 @@ export class ListItemsComponent implements OnInit {
   countruHidden:boolean=false;
   barrioList : Object[];
   person:Person= new Person();
-  constructor(private userService:UserService,private router: Router, private itemDetailService : ItemDetailService,private sellService: SellService) {
+  constructor(private userService:UserService,private router: Router, private itemDetailService : ItemDetailService,private sellService: SellService,private loginService: LoginService) {
     this.cityHid=true;
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
@@ -281,5 +282,18 @@ getCity(provinceId : number){
  }
  setBarrio(barrioId:number){
   //this.barrio.barrioId=barrioId;
-}
+  }
+  logout(){
+		localStorage.setItem('user', '');
+		localStorage.removeItem('user');
+		this.loginService.logout().subscribe(
+			res => {
+				localStorage.setItem('user', '');
+				localStorage.removeItem('user');
+			},
+			err => console.log(err)
+			);
+		location.reload();
+		//this.router.navigate(['/login']);
+	}
 }

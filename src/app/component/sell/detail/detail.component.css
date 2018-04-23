@@ -111,8 +111,11 @@
     background: #014a8f11;
     border-radius: 5px;
     background-repeat: no-repeat;
+    width: 125px;
+    height: 175px;
 }
 .fondo-img-g label{
     border-radius: 10px;
     background: #FF5E3A;
+    width: 105.6px;
 }
