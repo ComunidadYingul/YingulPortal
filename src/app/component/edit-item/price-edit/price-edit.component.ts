@@ -130,6 +130,7 @@ Service:Service= new Service();
     this.hiddenEditProp=true;
     this.hiddenEditMoto=true;
     this.hiddenEditServ=true;
+    this.cobertureZone
   }
   keyPress(event: any) {
     const pattern = /[0-9]/;
@@ -296,19 +297,19 @@ Service:Service= new Service();
     }
     if(this.itemType=="Inmueble"){
       this.hiddenEditProp=false;
-      this.propAmbient=this.Property.propertyAmbient;
-      this.propAmenities=this.Property.propertyAmenities;
+     // this.propAmbient=this.Property.propertyAmbient;
+     // this.propAmenities=this.Property.propertyAmenities;
       this.propertyTotalArea=this.Property.propertyTotalArea;
       //this.propertyDuildedArea=this.Property.propertyDuildedArea;
       this.propertyYear=this.Property.propertyYear;
     }
     if(this.itemType=="Vehiculo"){
       this.hiddenEditMoto=false;
-      this.motConfort=this.motorizedTemp.motorizedConfort;
-      this.motEquipment=this.motorizedTemp.motorizedEquipment;
-      this.motExterior=this.motorizedTemp.motorizedExterior;
-      this.motSecurity=this.motorizedTemp.motorizedSecurity;
-      this.motSound=this.motorizedTemp.motorizedSound;
+     // this.motConfort=this.motorizedTemp.motorizedConfort;
+     // this.motEquipment=this.motorizedTemp.motorizedEquipment;
+     // this.motExterior=this.motorizedTemp.motorizedExterior;
+     // this.motSecurity=this.motorizedTemp.motorizedSecurity;
+     // this.motSound=this.motorizedTemp.motorizedSound;
       this.motorizedBrand=this.Motorized.motorizedBrand;
       //this.motorizedYear=this.Motorized.motorizedYear;
       this.motorizedModel=this.Motorized.motorizedModel;
@@ -409,6 +410,11 @@ Service:Service= new Service();
       motorized.motorizedModel=this.motorizedModel;
       motorized.motorizedUnicoDue=this.motorizedUnicoDue;
       //motorized.motorizedYear=this.motorizedYear;
+      this.motorizedTemp.motorizedConfort=this.motConfort;
+      this.motorizedTemp.motorizedEquipment=this.motEquipment;
+      this.motorizedTemp.motorizedExterior=this.motExterior;
+      this.motorizedTemp.motorizedSecurity=this.motSecurity;
+      this.motorizedTemp.motorizedSound=this.motSound;
       motorized.yng_Item.description=this.description;
       motorized.yng_Item.name=this.title;
       motorized.yng_Item.price=this.price;
@@ -417,7 +423,7 @@ Service:Service= new Service();
       motorized.yng_Item.video=this.video;}
     this.Motorized=motorized;
     this.Motorized.yng_Item.user.authorities=null;
-    console.log("this.Motorized: "+JSON.stringify( this.Motorized));
+    //console.log("this.Motorized: "+JSON.stringify( this.Motorized));
     console.log("motorized: "+JSON.stringify( motorized));
     this.popup_g=false;
     this.itemDetailService.postUpdateMotorized(motorized).subscribe(
@@ -482,7 +488,7 @@ sendUpdateService(service:Service){
       console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
       let resp=JSON.parse(JSON.stringify(res))._body;
           if(resp=="save"){
-            this.ngOnInit();
+            //this.ngOnInit();
             this.popup_g=true;
           }
         },
@@ -522,21 +528,7 @@ sendUpdateService(service:Service){
     else                                return false;
   }
   cityB:boolean=false;
-  checkedZone(provinceName:string):boolean{    
-    //console.log("provinceName"+ provinceName+"this.Service.cobertureZone length: "+this.Service.cobertureZone.length);     
-        for(let zone of this.Service.cobertureZone){
       
-        //console.log("zone:"+(JSON.stringify(zone)));
-        if(provinceName==JSON.parse((JSON.stringify(zone))).province.name){
-          console.log("zone if :"+provinceName);
-          this.cityB= true;
-        }
-        else {this.cityB= false;return this.cityB;}
-      // 
-      }    
-    //  console.log("this.cityB:"+this.cityB);
-    
-  }
   check(province:Province){   
     if(this.cobertureZone.length==0){
       this.cobertureZone.push({"province":province});
@@ -555,104 +547,129 @@ sendUpdateService(service:Service){
     } 
   }
   checkSecurity(security:Security){
-    if(security){
-      if(this.motSecurity.indexOf({"security":security})==-1){
+    if(this.motSecurity.length==0){
           this.motSecurity.push({"security":security});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motSecurity.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motSecurity[i])).security) == JSON.stringify(security)) {
+          this.motSecurity.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.motSecurity.indexOf({"security":security});
-        if (index !== -1) {
-            this.motSecurity.splice(index, 1);
         }  
+      if(!aux){
+        this.motSecurity.push({"security":security});
       }
     }
-
   }
 
   checkConfort(confort:Confort){
-    if(confort){
-      if(this.motConfort.indexOf({"confort":confort})==-1){
+    if(this.motConfort.length==0){
           this.motConfort.push({"confort":confort});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motConfort.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motConfort[i])).confort) == JSON.stringify(confort)) {
+          this.motConfort.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.motConfort.indexOf({"confort":confort});
-        if (index !== -1) {
-            this.motConfort.splice(index, 1);
         }  
+      if(!aux){
+        this.motConfort.push({"confort":confort});
       }
     }    
   }
 
   checkSound(sound:Sound){
-    if(sound){
-      if(this.motSound.indexOf({"sound":sound})==-1){
+    if(this.motSound.length==0){
           this.motSound.push({"sound":sound});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motSound.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motSound[i])).sound) == JSON.stringify(sound)) {
+          this.motSound.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.motSound.indexOf({"sound":sound});
-        if (index !== -1) {
-            this.motSound.splice(index, 1);
         }  
+      if(!aux){
+        this.motSound.push({"sound":sound});
       }
     }    
   }
   checkExterior(exterior:Exterior){
-    if(exterior){
-      if(this.motExterior.indexOf({"exterior":exterior})==-1){
+    if(this.motExterior.length==0){
           this.motExterior.push({"exterior":exterior});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motExterior.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motExterior[i])).exterior) == JSON.stringify(exterior)) {
+          this.motExterior.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.motExterior.indexOf({"exterior":exterior});
-        if (index !== -1) {
-            this.motExterior.splice(index, 1);
         }  
+      if(!aux){
+        this.motExterior.push({"exterior":exterior});
       }
     }
-
   }
 
   checkEquipment(equipment:Equipment){
-    if(equipment){
-      if(this.motEquipment.indexOf({"equipment":equipment})==-1){
+    if(this.motEquipment.length==0){
           this.motEquipment.push({"equipment":equipment});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motEquipment.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motEquipment[i])).equipment) == JSON.stringify(equipment)) {
+          this.motEquipment.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.motEquipment.indexOf({"equipment":equipment});
-        if (index !== -1) {
-            this.motEquipment.splice(index, 1);
         }  
+      if(!aux){
+        this.motEquipment.push({"equipment":equipment});
       }
     }
   }
 
 
   checkAmenities(amenities:Amenities){
-    if(amenities){
-      if(this.propAmenities.indexOf({"amenities":amenities})==-1){
+    if(this.propAmenities.length==0){
           this.propAmenities.push({"amenities":amenities});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.propAmenities.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.propAmenities[i])).amenities) == JSON.stringify(amenities)) {
+          this.propAmenities.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.propAmenities.indexOf({"amenities":amenities});
-        if (index !== -1) {
-            this.propAmenities.splice(index, 1);
         }  
+      if(!aux){
+        this.propAmenities.push({"amenities":amenities});
       }
     }
   }
   checkAmbient(ambient:Ambient){
-    if(ambient){
-      if(this.propAmbient.indexOf({"ambient":ambient})==-1){
+    if(this.propAmbient.length==0){
           this.propAmbient.push({"ambient":ambient});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.propAmbient.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.propAmbient[i])).ambient) == JSON.stringify(ambient)) {
+          this.propAmbient.splice(i, 1);   
+          aux=true;
+          break;    
       }
-      else{
-        const index: number = this.propAmbient.indexOf({"ambient":ambient});
-        if (index !== -1) {
-            this.propAmbient.splice(index, 1);
         }  
+      if(!aux){
+        this.propAmbient.push({"ambient":ambient});
       }
     }
     
-
 
   }
   
