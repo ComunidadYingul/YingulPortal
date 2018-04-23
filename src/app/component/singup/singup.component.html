@@ -29,11 +29,11 @@
                             <p class="text-inverse b-b-default text-left p-b-5">Regístrate con tu cuenta habitual</p>
                             <div class="row m-b-0">
                             <div class="input-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">
+                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name" (keypress)="keyPressLetras($event)">
                                 <span class="md-line"></span>
                             </div>
                             <div class="input-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Apellido" name="lastname" required [(ngModel)]="lastname">
+                                <input type="text" class="form-control" placeholder="Apellido" name="lastname" required [(ngModel)]="lastname" (keypress)="keyPressLetras($event)">
                                 <span class="md-line"></span>
                             </div>
                             </div>
