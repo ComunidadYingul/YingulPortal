@@ -283,7 +283,7 @@
                     <li class="header-notification">
                         <a href="/userFront/sales/query" class="displayChatbox">
                             <i class="ti-comments"></i>
-                            <span [ngClass]="(queries==0)?'':'badge'">{{queries}}</span>
+                            <span *ngIf="queries>0" [ngClass]="(queries==0)?'':'badge'">{{queries}}</span>
                         </a>
                     </li>
                     <li class="user-profile header-notification">
@@ -321,7 +321,7 @@
                         </ul>
                     </li>
                     <li class="header-notification">
-                        <a href="/sell" routerLinkActive="active">
+                        <a routerLink="/sell" routerLinkActive="active">
                           Vender
                         </a>
                     </li>

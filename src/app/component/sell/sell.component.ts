@@ -9,6 +9,7 @@ import { user } from '../../model/user';
 import { Product } from '../../model/product';
 import { Property } from '../../model/Property';
 import { Motorized } from '../../model/Motorized';
+import { BuyService } from '../../service/buy.service';
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',
@@ -35,7 +36,7 @@ export class SellComponent implements OnInit {
   //listcategory
   public category:object[];
   //detail
-  public item:Object;
+  public item:Item;
   public item2:Object;
   public itemc:Object;
   //
@@ -50,7 +51,9 @@ export class SellComponent implements OnInit {
   public motorized:Motorized =new Motorized();
   public productTem:Product=new Product();
 
-  constructor(private sellService: SellService, private router: Router) { 
+  dataForBuyer:Object=new Object();
+
+  constructor(private buyService: BuyService,private sellService: SellService, private router: Router) { 
     
   }
   ngOnInit() {
@@ -65,6 +68,13 @@ export class SellComponent implements OnInit {
     this.hidPri=true;
     this.hidTyp=true;
     this.hidType=false;
+    this.buyService.getDataForBuyer().subscribe(
+			res => {
+            this.dataForBuyer = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            console.log(JSON.stringify(this.dataForBuyer));
+      		},
+      		error => console.log(error)
+    );
   }
   typeItemSe(ev){
     this.type=ev;
@@ -113,6 +123,16 @@ export class SellComponent implements OnInit {
   }
   detailItemSe(ev){
     this.item=ev;
+    this.item.ip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).query));
+    this.item.org=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).org));
+    this.item.lat=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).lat));
+    this.item.lon=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).lon));
+    this.item.city=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).city));
+    this.item.country=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).country));
+    this.item.countryCode=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).countryCode));
+    this.item.regionName=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).regionName));
+    this.item.zip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).zip));
+    this.item.userAgent=navigator.userAgent;
     if(this.item == null) {
       this.hidType=true;
       this.hidCat=true;

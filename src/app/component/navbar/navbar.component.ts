@@ -89,7 +89,7 @@ export class NavbarComponent implements OnInit {
             this.queries = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
-	);
+		);
 	
 	}
 	getProfilePhoto(){

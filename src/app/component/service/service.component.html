@@ -29,24 +29,24 @@
                         <div class="default-grid">
                             <div class="row">
                               <!--empezar el for de la categoria nivel cero de los servicios-->
-                                <div class="col-sm-4 default-grid-item" *ngFor="let category of categoryList">
+                                <div class="col-12 col-sm-6 col-lg-4 col-xl-4 default-grid-item" *ngFor="let category of categoryList">
                                     <!-- Job card start -->
                                     <div class="card">
                                         <a href="/itemsCategory/{{category.categoryId}}"><div class="card-header">
                                             <div class="media">
                                                 <a class="media-left media-middle">
-                                                    <img class="media-object img-60" src="assets/images/services/{{category.categoryId}}.png" alt="Generic placeholder image">
+                                                    <img class="media-object img-40" src="assets/images/services/{{category.categoryId}}.png" alt="Generic placeholder image">
                                                 </a>
                                                 <div class="media-body media-middle">
-                                                    <div class="company-name">
-                                                        <p>{{category.name}}</p>
+                                                    <div class="company-name-e">
+                                                        <span>{{category.name}}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div></a>
                                         <div  class="card-block">
                                             <div *ngFor="let subCategory of subCategoryList[category.categoryId]" class="job-lable">
-                                                <a style="cursor: pointer;" href="/itemsCategory/{{subCategory.categoryId}}"><label style="cursor: pointer;" class="label">{{subCategory.name}}</label></a>
+                                                <a style="cursor: pointer;" href="/itemsCategory/{{subCategory.categoryId}}"><label style="cursor: pointer; background-color: white; color: #014abf;" class="">{{subCategory.name}}</label></a>
                                             </div>
                                         </div>
                                     </div>

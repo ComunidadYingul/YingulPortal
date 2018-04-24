@@ -2055,7 +2055,7 @@
                                                         <h5><i class="icofont icofont-chat text-info"> PREGUNTAS</i></h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <a href="/sales/query"><button class="btn btn-default col-sm-12" style="text-align: left;"><span class="pcoded-badge label label-danger ">0</span> Que aún no respondiste
+                                                        <a href="/sales/query"><button class="btn btn-default col-sm-12" style="text-align: left;"><span class="pcoded-badge label label-danger ">{{queries}}</span> Que aún no respondiste
                                                         </button></a>
                                                     </div>
                                                 </div>
@@ -2082,7 +2082,7 @@
                                     <!-- Recent Order table end -->
                                     <div class="col-sm-12 col-xl-4">
                                         <div class="row">
-                                            <div class="col-sm-12">
+                                            <div class="col-12 col-sm-6 col-md-6 col-xl-12">
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <h5>SALDO EN YINGUL PAY</h5>
@@ -2093,15 +2093,15 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td><a href="/frontYingulPay/userBalance">En Cuenta</a></td>
-                                                                        <td>$ 0</td>
+                                                                        <td>$ {{money}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><a class="text-danger">Disponible</a></td>
-                                                                        <td>$ 0</td>
+                                                                        <td>$ {{account.availableMoney}}</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><a >A liberar</a></td>
-                                                                        <td>$ 0</td>
+                                                                        <td>$ {{account.releasedMoney}}</td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -2109,16 +2109,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12">
+                                            <div class="col-12 col-sm-6 col-md-6 col-xl-12">
                                                 <!-- User activities chart start -->
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <h5>CRECE EN YINGUL</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <a href="/userFront/userProfile"><button class="btn btn-default col-sm-12" style="font-size:20px;"><i class="ti-user" style="color:#014abf"> Completa tu cuenta</i><br>
+                                                        <a href="/userFront/userProfile"><button class="btn btn-default col-sm-12" style="font-size:18px;"><i class="ti-user" style="color:#014abf"> Completa tu cuenta</i><br>
                                                             <div class="progress">
-                                                                <div class="progress-bar" role="progressbar" style="width: 50%; height: 20px; font-size: 20px; padding-top: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+                                                                <div class="progress-bar" role="progressbar" [style.width.%]="profilePorcentage" style="width: 50%; height: 20px; font-size: 20px; padding-top: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">{{profilePorcentage}}%</div>
                                                             </div>
                                                         </button></a>
                                                         <br>
