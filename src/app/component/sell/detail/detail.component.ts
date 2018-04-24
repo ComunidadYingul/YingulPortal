@@ -83,6 +83,7 @@ export class DetailComponent implements OnInit {
   data:object;
   itemImage:string;
   itemImageArray: Object[] = [];
+  ambientes:number;
 ////
 //product
 productCondition:string="0";
@@ -233,7 +234,7 @@ public item: Item=new Item();
       this.item.name=this.title;
       this.item.description=this.description;
       this.item.video=this.video;
-
+      this.item.ambientes=this.ambientes;
       if(this.typeCat=="Service"){
         this.resetServicesHid();
         if(this.title==null || this.title==""){

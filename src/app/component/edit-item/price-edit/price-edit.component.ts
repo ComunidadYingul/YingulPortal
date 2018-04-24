@@ -33,6 +33,11 @@ export class PriceEditComponent implements OnInit {
   msg:string="";
   data:object;
   itemImage:string="";
+  itemYear:number;
+  kilometer:number;
+  quantity:number;
+  ambientes:number;
+  duildedArea:number;
   datosProductCondition;
   datosProductSaleConditions;
   datosProductFormDelivery;
@@ -244,7 +249,7 @@ Service:Service= new Service();
     if(this.typeCat=="Product"){
     this.productTemp=this.product;
     this.productTemp.yng_Item=this.itemTemp; 
-    this.sendCotizar(this.productTemp);
+    this.sendUpdateProduct(this.productTemp);
     }
     else{if(this.itemType=="Vehiculo"){
       this.motorizedTemp=this.Motorized;
@@ -282,6 +287,7 @@ Service:Service= new Service();
     this.editMoreDiable=true;
   }
   productQuantityEdit():string{
+    console.log("this.itemType285:"+this.itemType);
     if(this.itemType=="Producto"){
       this.hiddenEditProd=false;
       if(this.product.productWarranty!=null&&this.product.productWarranty!="") {this.popupGarantia=false;}      
@@ -314,6 +320,8 @@ Service:Service= new Service();
       //this.motorizedYear=this.Motorized.motorizedYear;
       this.motorizedModel=this.Motorized.motorizedModel;
       this.motorizedUnicoDue=this.Motorized.motorizedUnicoDue;
+      
+      //this.Motorized.motorizedEquipment=this.motEquipment;
     }
     if(this.itemType=="Servicio"){
       this.hiddenEditServ=false;
@@ -367,7 +375,7 @@ Service:Service= new Service();
     if(this.product.productPagoEnvio=="gratis"){return true}
     else return false;
   }
-  sendCotizar(productT:Product){
+  sendUpdateProduct(productT:Product){
      if (this.hiddenEditProd==false){
     productT.productCondition=this.productCondition;
     productT.productFormDelivery=this.productFormDelivery;
@@ -410,6 +418,7 @@ Service:Service= new Service();
       motorized.motorizedModel=this.motorizedModel;
       motorized.motorizedUnicoDue=this.motorizedUnicoDue;
       //motorized.motorizedYear=this.motorizedYear;
+      
       this.motorizedTemp.motorizedConfort=this.motConfort;
       this.motorizedTemp.motorizedEquipment=this.motEquipment;
       this.motorizedTemp.motorizedExterior=this.motExterior;
@@ -420,7 +429,11 @@ Service:Service= new Service();
       motorized.yng_Item.price=this.price;
       motorized.yng_Item.priceDiscount=this.priceDiscount;
       motorized.yng_Item.priceNormal=this.priceNormal;
-      motorized.yng_Item.video=this.video;}
+      motorized.yng_Item.video=this.video;
+      motorized.yng_Item.itemYear=this.itemYear;
+      motorized.yng_Item.kilometer=this.kilometer;
+      motorized.yng_Item.quantity=this.quantity;
+    }
     this.Motorized=motorized;
     this.Motorized.yng_Item.user.authorities=null;
     //console.log("this.Motorized: "+JSON.stringify( this.Motorized));
@@ -431,7 +444,7 @@ Service:Service= new Service();
         console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
         let resp=JSON.parse(JSON.stringify(res))._body;
           if(resp=="save"){
-            this.ngOnInit();
+            //this.ngOnInit();
             this.popup_g=true;
           }
           },
@@ -450,6 +463,8 @@ Service:Service= new Service();
     property.yng_Item.priceDiscount=this.priceDiscount;
     property.yng_Item.priceNormal=this.priceNormal;
     property.yng_Item.video=this.video;
+    property.yng_Item.ambientes=this.ambientes;
+    property.yng_Item.duildedArea=this.duildedArea;
   }
   this.Property=property;
   this.Property.yng_Item.user.authorities=null;
@@ -460,7 +475,7 @@ Service:Service= new Service();
       console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
       let resp=JSON.parse(JSON.stringify(res))._body;
           if(resp=="save"){
-            this.ngOnInit();
+           // this.ngOnInit();
             this.popup_g=true;
           }
         },
@@ -481,7 +496,6 @@ sendUpdateService(service:Service){
   }
   this.Service=service;
   this.Service.yng_Item.user.authorities=null;
-  console.log("service: "+JSON.stringify(service));
   this.popup_g=false;
   this.itemDetailService.postUpdateService(this.Service).subscribe(
     res => {
@@ -502,19 +516,34 @@ sendUpdateService(service:Service){
               case "Servicio":
                 this.Service = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                 console.log( "dani S: "+ JSON.stringify(this.Service));
+                this.cobertureZone=this.Service.cobertureZone;
+                this.itemType="Servicio";
+                this.editMoreDiable=false;
                 break;
               case "Producto":
               console.log(JSON.parse(JSON.parse(JSON.stringify(res))._body));
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log( "dani Product: "+ JSON.stringify(res));
+                console.log( "dani Product: "+ JSON.stringify(this.Product));
+                this.editMoreDiable=false;
                 break;
               case "Inmueble":
                 this.Property = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log( "dani P: "+ JSON.stringify(res));
+                console.log( "dani P: "+ JSON.stringify(this.Property));
+                this.propAmbient=this.Property.propertyAmbient;
+                this.propAmenities=this.Property.propertyAmenities;
+                this.editMoreDiable=false;
+                this.itemType="Inmueble";
                 break;
               case "Vehiculo":
                 this.Motorized = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                console.log( "dani v: "+ JSON.stringify(res));
+                console.log( "dani v: "+ JSON.stringify( this.Motorized));
+                this.motSecurity=this.Motorized.motorizedSecurity;
+                this.motConfort=this.Motorized.motorizedConfort;
+                this.motSound=this.Motorized.motorizedSound;
+                this.motExterior=this.Motorized.motorizedExterior;
+                this.motEquipment=this.Motorized.motorizedEquipment;
+                this.editMoreDiable=false;
+                this.itemType="Vehiculo";
                 break;
               default:
                 alert("error");
@@ -674,7 +703,7 @@ sendUpdateService(service:Service){
   }
   
   itemsSet(){
-    console.log("Item: "+JSON.stringify(this.Item));
+    console.log("itemsSet Item: "+JSON.stringify(this.Item));
     //this.productQuantity=this.Item.quantity.toString();
     this.itemDetailService.getItemType(this.itemId).subscribe(
             res => {
@@ -741,5 +770,84 @@ sendUpdateService(service:Service){
     if (event.keyCode != 8 && !patron.test(inputChar)) {
       event.preventDefault();
     }
+  }
+  provinceCheck(province:Province):boolean{
+    var provinceT:Province;
+    if(JSON.stringify(this.Service.cobertureZone)!=undefined){
+        for(let p of this.Service.cobertureZone){
+          provinceT=JSON.parse(JSON.stringify(p)).province;
+          if(province.provinceId==provinceT.provinceId){
+            return true;
+          }
+        }
+      }
+    return false;
+  }
+  securityCheck(security:Security):boolean{
+    var securityT:Security;
+    if(JSON.stringify(this.Motorized.motorizedSecurity)!=undefined){
+        for(let p of this.Motorized.motorizedSecurity){
+          securityT=JSON.parse(JSON.stringify(p)).security;
+          if(security.securityId==securityT.securityId){
+            return true;
+          }
+        }
+      }
+    return false;
+  }
+  confortCheck(confort:Confort):boolean{
+    var confortT:Confort;
+    if(JSON.stringify(this.Motorized.motorizedConfort)!=undefined){
+        for(let p of this.Motorized.motorizedConfort){
+          confortT=JSON.parse(JSON.stringify(p)).confort;
+          if(confort.confortId==confortT.confortId){
+            return true;
+          }
+        }
+      }
+    return false;
+  }
+  soundCheck(sound:Sound):boolean{
+    var soundT:Sound;
+    if(JSON.stringify(this.Motorized.motorizedSound)!=undefined){
+        for(let p of this.Motorized.motorizedSound){
+          soundT=JSON.parse(JSON.stringify(p)).sound;
+          if(sound.soundId==soundT.soundId){
+            return true;
+          }
+        }
+      }
+    return false;
+  }
+  exteriorCheck(exterior:Exterior):boolean{
+    var exteriorT:Exterior;
+    if(JSON.stringify(this.Motorized.motorizedExterior)!=undefined){
+        for(let p of this.Motorized.motorizedExterior){
+          exteriorT=JSON.parse(JSON.stringify(p)).exterior;
+          if(exterior.exteriorId==exteriorT.exteriorId){
+            return true;
+          }
+        }
+      }
+    return false;
+  }
+  equipmentCheck(equipment:Equipment):boolean{
+    var equipmentT:Equipment;
+
+    if(JSON.stringify(this.Motorized.motorizedEquipment)!=undefined){
+        for(let p of this.Motorized.motorizedEquipment){
+          equipmentT=JSON.parse(JSON.stringify(p)).equipment;
+          if(equipment.equipmentId==equipmentT.equipmentId){
+            return true;
+          }
+        }
+      }
+    return false;
+  }
+  cancelarDiscount(){
+    this.popupDescuento=true;
+    this.priceNormal=0;
+    this.priceDiscount=0;
+   // this.checkedDiscount=false;
   }
 }
