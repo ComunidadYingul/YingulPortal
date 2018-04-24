@@ -858,7 +858,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("principalWebp")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview1")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -914,7 +914,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp2")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview2")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -970,7 +970,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp3")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview3")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1026,7 +1026,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp4")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview4")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1082,7 +1082,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp5")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview5")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1138,7 +1138,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp6")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview6")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1194,7 +1194,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp7")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview7")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1250,7 +1250,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp8")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview8")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1306,7 +1306,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp9")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview9")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad
@@ -1362,7 +1362,7 @@ public item: Item=new Item();
       d.download=g.join('')+'.jpeg';
       d.href=i.src;
       (<HTMLInputElement>document.getElementById("Webp10")).value=i.src;
-      console.log(i.src);
+      (<HTMLInputElement>document.getElementById("image-preview10")).style.backgroundImage = "url("+i.src+")";
       d.appendChild(this);
     }
     //aqui va la calidad

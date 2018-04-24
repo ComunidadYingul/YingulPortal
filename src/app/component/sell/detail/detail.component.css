@@ -104,11 +104,15 @@
     color: #ff5e3a;
 }
 
-
+.preview-image-e{
+    background-size: cover;
+    background-position: center center;
+    box-shadow: 0 0 5px 0 #555;
+}
 
 /*********************** MODIFICACION G ***********************/
 .fondo-img-g div{
-    background: #014a8f11;
+    background-color: #014a8f11;
     border-radius: 5px;
     background-repeat: no-repeat;
     width: 125px;

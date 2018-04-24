@@ -105,6 +105,12 @@
 .card-items:hover .heart-img{
     display: flex;
 } 
+.company-name-e span{
+    font-weight: 600;
+    color: #FF5E3A;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
 @media (max-width: 976px){
     .row{
         justify-content: center;

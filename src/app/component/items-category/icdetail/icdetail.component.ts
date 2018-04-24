@@ -114,7 +114,9 @@ export class IcdetailComponent implements OnInit {
             }
             this.MediaPrice=this.priceTotal/this.itemList.length;
             this.minPrice=this.MediaPrice-(this.MediaPrice*0.4);
+            this.minPrice=Math.round(this.minPrice * 100) / 100;
             this.maxPrice=this.MediaPrice+(this.MediaPrice*0.4);
+            this.maxPrice=Math.round(this.maxPrice * 100) / 100;
       		},
       		error => console.log(error)
     );

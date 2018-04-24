@@ -31,4 +31,16 @@ export class Item {
     itemYear:number;
     duildedArea:number;
     ambientes:number;
+    //datos nuevos para mayor seguridad
+    ip:string;
+    org:string;
+    lat:string;
+    lon:string;
+    city:string;
+    country:string;
+    countryCode:string;
+    regionName:string;
+    zip:string;
+    userAgent:string;
+    //datos nuevos para mayor seguridad
 }
