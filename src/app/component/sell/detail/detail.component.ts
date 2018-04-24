@@ -83,6 +83,7 @@ export class DetailComponent implements OnInit {
   data:object;
   itemImage:string;
   itemImageArray: Object[] = [];
+  ambientes:number;
 ////
 //product
 productCondition:string="0";
@@ -233,7 +234,7 @@ public item: Item=new Item();
       this.item.name=this.title;
       this.item.description=this.description;
       this.item.video=this.video;
-
+      this.item.ambientes=this.ambientes;
       if(this.typeCat=="Service"){
         this.resetServicesHid();
         if(this.title==null || this.title==""){
@@ -474,7 +475,7 @@ public item: Item=new Item();
   }
 
  
-  checkSecurity(security:Security){
+  /*checkSecurity(security:Security){
     if(security){
       if(this.motSecurity.indexOf({"security":security})==-1){
           this.motSecurity.push({"security":security});
@@ -574,8 +575,134 @@ public item: Item=new Item();
     
 
 
+  }*/
+
+  checkSecurity(security:Security){
+    if(this.motSecurity.length==0){
+      this.motSecurity.push({"security":security});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motSecurity.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motSecurity[i])).security) == JSON.stringify(security)) {
+          this.motSecurity.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.motSecurity.push({"security":security});
+      }
+    } 
   }
 
+  checkConfort(confort:Confort){
+    if(this.motConfort.length==0){
+      this.motConfort.push({"confort":confort});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motConfort.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motConfort[i])).confort) == JSON.stringify(confort)) {
+          this.motConfort.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.motConfort.push({"confort":confort});
+      }
+    }    
+  }
+
+  checkSound(sound:Sound){  
+    if(this.motSound.length==0){
+      this.motSound.push({"sound":sound});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motSound.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motSound[i])).sound) == JSON.stringify(sound)) {
+          this.motSound.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.motSound.push({"sound":sound});
+      }
+    }  
+  }
+  checkExterior(exterior:Exterior){
+    if(this.motExterior.length==0){
+      this.motExterior.push({"exterior":exterior});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motExterior.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motExterior[i])).exterior) == JSON.stringify(exterior)) {
+          this.motExterior.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.motExterior.push({"exterior":exterior});
+      }
+    }
+  }
+
+  checkEquipment(equipment:Equipment){
+    if(this.motEquipment.length==0){
+      this.motEquipment.push({"equipment":equipment});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.motEquipment.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.motEquipment[i])).equipment) == JSON.stringify(equipment)) {
+          this.motEquipment.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.motEquipment.push({"equipment":equipment});
+      }
+    } 
+  }
+
+
+  checkAmenities(amenities:Amenities){
+    if(this.propAmenities.length==0){
+      this.propAmenities.push({"amenities":amenities});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.propAmenities.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.propAmenities[i])).amenities) == JSON.stringify(amenities)) {
+          this.propAmenities.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.propAmenities.push({"amenities":amenities});
+      }
+    } 
+  }
+  checkAmbient(ambient:Ambient){
+    if(this.propAmbient.length==0){
+      this.propAmbient.push({"ambient":ambient});
+    }else{
+      var aux=false;
+      for(var i = 0, len = this.propAmbient.length; i < len; i++) {
+        if (JSON.stringify(JSON.parse(JSON.stringify(this.propAmbient[i])).ambient) == JSON.stringify(ambient)) {
+          this.propAmbient.splice(i, 1);   
+          aux=true;
+          break;    
+        }
+      }
+      if(!aux){
+        this.propAmbient.push({"ambient":ambient});
+      }
+    } 
+
+
+  }
 
   capturar (){
 

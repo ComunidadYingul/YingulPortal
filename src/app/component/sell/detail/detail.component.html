@@ -295,7 +295,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <span class="input-group-addon">Titulo</span>
                                 <input id="title" type="text" class="form-control" placeholder="Titulo Ej: Casa de 5 ambientes y 2 baños" name="title" [(ngModel)]="title">
                             </div>
                             <div class="error-g row">
@@ -304,9 +304,9 @@
                         </div>
                         <div class="col-sm-6">
                                 <div class="input-group">
-                                        <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i>
+                                        <span class="input-group-addon">Descripción
                                     </span>
-                                    <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                                    <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description">
                                 </div>
                                 <div class="error-g row">
                                     <p></p>
@@ -318,7 +318,7 @@
                     <div class="row">
                             <div class="col-sm-6">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                        <span class="input-group-addon">Link</span>
                                         <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video">
                                     </div>
                                     <div class="error-g row">
@@ -332,7 +332,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <span class="input-group-addon">S. Total m2</span>
                             <input id="propertyTotalArea" type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
                         </div>
                         <div class="error-g row">
@@ -341,7 +341,7 @@
                     </div>
                     <div class="col-sm-6">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <span class="input-group-addon">S. Cubierta m2</span>
                                 <input id="propertyDuildedArea" type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
                             </div>
                             <div class="error-g row">
@@ -354,14 +354,22 @@
                 <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                                <span class="input-group-addon">Años de Antigüedad</span>
                                 <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Años de Antigüedad" name="propertyYear" [(ngModel)]="propertyYear">
                             </div>
                             <div class="error-g row">
                                 <p></p>
                             </div>
                         </div>
-
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Ambientes</span>
+                                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Número de Ambientes" name="ambientes" [(ngModel)]="ambientes">
+                            </div>
+                            <div class="error-g row">
+                                <p></p>
+                            </div>
+                        </div>
                 
                 </div>
 
@@ -435,7 +443,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <span class="input-group-addon"></span>
                             <input id="motorizedBrand" type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
                         </div>
                         <div class="error-g row">
@@ -478,8 +486,7 @@
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
-                            <input id="motorizedKilometers" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">
-                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <input id="motorizedKilometers" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Kilómetros: *" name="motorizedKilometers" [(ngModel)]="motorizedKilometers">                    
                         </div>
                         <div class="error-g row">
                             <p  [hidden]="hidMotorizedKilometers">* Kms. requerido</p>

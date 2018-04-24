@@ -228,14 +228,14 @@
                                                                     <div class="row">
                                                                             <div class="col-sm-6">
                                                                                 <div class="input-group">
-                                                                                    <span class="input-group-addon">Superficie total m2</span>
+                                                                                    <span class="input-group-addon">S. Total m2</span>
                                                                                     <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Superficie total m2 *" name="propertyTotalArea" [(ngModel)]="propertyTotalArea">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-6">
                                                                                     <div class="input-group">
-                                                                                        <span class="input-group-addon">Superficie cubierta m2 </span>
-                                                                                        <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="propertyDuildedArea" [(ngModel)]="propertyDuildedArea">
+                                                                                        <span class="input-group-addon">S. Cubierta m2 </span>
+                                                                                        <input type="text"  (keypress)="keyPress($event)" class="form-control" placeholder="Superficie cubierta m2 *" name="duildedArea" [(ngModel)]="duildedArea" value="{{this.Item.duildedArea}}">
                                                                                     </div>
                                                                             </div>
                                                                     
@@ -248,18 +248,20 @@
                                                                                         <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Años de Antigüedad" name="propertyYear" [(ngModel)]="propertyYear">
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="input-group">
+                                                                                        <span class="input-group-addon">Ambientes</span>
+                                                                                        <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Número de Ambientes" name="ambientes" [(ngModel)]="ambientes" value="{{this.Item.ambientes}}">
+                                                                                    </div>                                                        
+                                                                                </div>
                                                         
                                                                         
                                                                         </div>
                                                         
                                                                         <h5>Comodidades y amenities</h5>
-                                                                        <div  class="col-sm-12" *ngFor="let zone of Property.propertyAmenities">
-                                                                                <label>
-                                                                                    <span class="custom-control-description">{{zone.amenities.name}}</span>
-                                                                                </label>
-                                                                        </div>
+                                                                        
                                                                         <div class="row">
-                                                                        <div  class="col-sm-8" *ngFor="let amenities of amenitiesList">
+                                                                        <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let amenities of amenitiesList">
                                                                             <label class="custom-control custom-checkbox" >
                                                                             <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmenities(amenities)">
                                                                             <span class="custom-control-indicator"></span>
@@ -269,13 +271,9 @@
                                                                         </div>
                                                         
                                                                         <h5>Ambientes</h5>
-                                                                        <div  class="col-sm-12" *ngFor="let zone of Property.propertyAmbient">
-                                                                                <label>
-                                                                                    <span class="custom-control-description">{{zone.ambient.name}}</span>
-                                                                                </label>
-                                                                        </div>
+                                                                        
                                                                         <div class="row">
-                                                                        <div  class="col-sm-8" *ngFor="let ambient of ambientList">
+                                                                        <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let ambient of ambientList">
                                                                             <label class="custom-control custom-checkbox" >
                                                                             <input type="checkbox" class="custom-control-input" #checkbox (change)="checkAmbient(ambient)">
                                                                             <span class="custom-control-indicator"></span>
@@ -294,13 +292,13 @@
                                                                         <div class="col-sm-6">
                                                                             <div class="input-group">
                                                                                 <span class="input-group-addon">Marca *</span>
-                                                                                <input type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand">
+                                                                                <input type="text" class="form-control" placeholder="Marca *" name="motorizedBrand" [(ngModel)]="motorizedBrand" >
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-sm-6">
                                                                             <div class="input-group">
                                                                                 <span class="input-group-addon">Año *</span>
-                                                                                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="motorizedYear" [(ngModel)]="motorizedYear">
+                                                                                <input type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Año *" name="itemYear" [(ngModel)]="itemYear" value="{{this.Item.itemYear}}"> 
                                                                             </div>
                                                                         </div>
                                                                 
@@ -323,17 +321,30 @@
                                                                             </div>
                                                                        
                                                                     </div>
-                                                                    <h5>Seguridad</h5>
-                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedSecurity">
-                                                                            <label>
-                                                                                <span class="custom-control-description">{{zone.security.name}}</span>
-                                                                            </label>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon">Kilómetros</span>
+                                                                                <input id="motorizedKilometers" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Kilómetros: *" name="kilometer" [(ngModel)]="kilometer" value="{{this.Item.kilometer}}">                    
+                                                                            </div>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon">Cantidad</span>
+                                                                                <input id="motorizedQuantity" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Cantidad: *" name="quantity" [(ngModel)]="quantity" value="{{this.Item.quantity}}">
+                                                                            </div>                                                                         
+                                                                        </div>
                                                                     </div>
+                                                                    <h5>Seguridad</h5>
+                                                                   
 
                                                                     <div class="row">
-                                                                    <div  class="col-sm-8" *ngFor="let security of securityList">
+                                                                    <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let security of securityList">
                                                                         <label class="custom-control custom-checkbox" >
-                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSecurity(security)">
+                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSecurity(security)"
+                                                                        [checked]="securityCheck(security)"
+                                                                        >
                                                                         <span class="custom-control-indicator"></span>
                                                                         <span class="custom-control-description">{{security.name}}</span>
                                                                         </label>
@@ -341,15 +352,14 @@
                                                                     </div>
                                                                 
                                                                     <h5>Confort</h5>
-                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedConfort">
-                                                                            <label>
-                                                                                <span class="custom-control-description">{{zone.confort.name}}</span>
-                                                                            </label>
-                                                                    </div>
+                                                                   
                                                                     <div class="row">
-                                                                    <div  class="col-sm-8" *ngFor="let confort of confortList">
+                                                                    <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let confort of confortList">
                                                                         <label class="custom-control custom-checkbox" >
-                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkConfort(confort)">
+                                                                        <input type="checkbox" class="custom-control-input" 
+                                                                        #checkbox (change)="checkConfort(confort)"
+                                                                        [checked]="confortCheck(confort)"
+                                                                        >
                                                                         <span class="custom-control-indicator"></span>
                                                                         <span class="custom-control-description">{{confort.name}}</span>
                                                                         </label>
@@ -357,15 +367,14 @@
                                                                     </div>
                                                 
                                                                     <h5>Sonido</h5>
-                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedSound">
-                                                                            <label>
-                                                                                <span class="custom-control-description">{{zone.sound.name}}</span>
-                                                                            </label>
-                                                                    </div>
+                                                                    
                                                                     <div class="row">
-                                                                    <div  class="col-sm-8" *ngFor="let sound of soundList">
+                                                                    <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let sound of soundList">
                                                                         <label class="custom-control custom-checkbox" >
-                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkSound(sound)">
+                                                                        <input type="checkbox" class="custom-control-input" 
+                                                                        #checkbox (change)="checkSound(sound)"
+                                                                        [checked]="soundCheck(sound)"
+                                                                        >
                                                                         <span class="custom-control-indicator"></span>
                                                                         <span class="custom-control-description">{{sound.name}}</span>
                                                                         </label>
@@ -373,15 +382,14 @@
                                                                     </div>
                                                 
                                                                     <h5>Exterior</h5>
-                                                                    <div  class="col-sm-12" *ngFor="let zone of Motorized.motorizedExterior">
-                                                                        <label>
-                                                                            <span class="custom-control-description">{{zone.exterior.name}}</span>
-                                                                        </label>
-                                                                    </div>
+                                                                    
                                                                     <div class="row">
-                                                                    <div  class="col-sm-8" *ngFor="let exterior of exteriorList">
+                                                                    <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let exterior of exteriorList">
                                                                         <label class="custom-control custom-checkbox" >
-                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkExterior(exterior)">
+                                                                        <input type="checkbox" class="custom-control-input" 
+                                                                        #checkbox (change)="checkExterior(exterior)"
+                                                                        [checked]="exteriorCheck(exterior)"
+                                                                        >
                                                                         <span class="custom-control-indicator"></span>
                                                                         <span class="custom-control-description">{{exterior.name}}</span>
                                                                         </label>
@@ -389,10 +397,14 @@
                                                                     </div>
                                                 
                                                                     <h5>Equipamiento</h5>
+
                                                                     <div class="row">
-                                                                    <div  class="col-sm-8" *ngFor="let equipment of equipmentList">
+                                                                    <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let equipment of equipmentList">
                                                                         <label class="custom-control custom-checkbox" >
-                                                                        <input type="checkbox" class="custom-control-input" #checkbox (change)="checkEquipment(equipment)">
+                                                                        <input type="checkbox" class="custom-control-input" 
+                                                                        #checkbox (change)="checkEquipment(equipment)"
+                                                                        [checked]="equipmentCheck(equipment)"
+                                                                        >
                                                                         <span class="custom-control-indicator"></span>
                                                                         <span class="custom-control-description">{{equipment.name}}</span>
                                                                         </label>
@@ -412,13 +424,13 @@
                                                                         </label>
                                                                 </div>
                                                                 <div class="row">
-                                                                <div  class="col-sm-8" *ngFor="let province of provinceList">
+                                                                <div  class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3" *ngFor="let province of provinceList">
                                                                     <label class="custom-control custom-checkbox" >                                                                        
                                                                             <input 
                                                                             type="checkbox" 
                                                                             class="custom-control-input" 
                                                                             #checkbox (change)="check(province)" 
-                                                                            
+                                                                            [checked]="provinceCheck(province)"
                                                                             >
                                                                         <span class="custom-control-indicator"></span>
                                                                         <span class="custom-control-description">{{province.name}}</span>
@@ -710,28 +722,32 @@
                 </div>
             </div>        
                     
-                    <div class="row">
-                        
+                    <div class="row">                        
                         <div class="col-sm-2">
                                 <div class="text-center">
                                     <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="aceptarDiscount()">Aceptar</button>
                                 </div>
                         </div>
+                        <div class="col-sm-2">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-warning waves-effect waves-light m-r-10" (click)="cancelarDiscount()">Cancelar</button>
+                            </div>
+                    </div>
                     </div>
         
         
         </div>
         <div class="content_popup_g" align="center" [hidden]="popup_g">
-                <div class="popup_g">
-                    <p class="popup-title">SOLICITUD EN PROCESO</p>
-                    <img src="assets/images/spiner.gif" alt="Cargando">
-                    <p class="popup-msg">Por favor espere...</p>
-                </div>
+            <div class="popup_g">
+                <p class="popup-title">SOLICITUD EN PROCESO</p>
+                <img src="assets/images/spiner.gif" alt="Cargando">
+                <p class="popup-msg">Por favor espere...</p>
             </div>
-            <div class="content_popup_g" align="center" [hidden]="popup_g">
-                    <div class="popup_g">
-                        <p class="popup-title">Error</p>
-                        <img src="assets/images/spiner.gif" alt="Cargando">
-                        <p class="popup-msg">Intentelo mas tarde...</p>
-                    </div>
-                </div>
+        </div>
+        <!--div class="content_popup_g" align="center" [hidden]="popup_g">
+            <div class="popup_g">
+                <p class="popup-title">Error</p>
+                <img src="assets/images/spiner.gif" alt="Cargando">
+                <p class="popup-msg">Intentelo mas tarde...</p>
+            </div>
+        </div-->

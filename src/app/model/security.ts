@@ -1,5 +1,5 @@
 export class Security {
-    security_id:number;
+    securityId:number;
     desciption:string;
     name:string;
 }
