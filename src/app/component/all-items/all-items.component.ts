@@ -73,7 +73,9 @@ export class AllItemsComponent implements OnInit {
             }
             this.MediaPrice=this.priceTotal/this.itemList.length;
             this.minPrice=this.MediaPrice-(this.MediaPrice*0.4);
+            this.minPrice=Math.round(this.minPrice * 100) / 100;
             this.maxPrice=this.MediaPrice+(this.MediaPrice*0.4);
+            this.maxPrice=Math.round(this.maxPrice * 100) / 100;
       		},
       		error => console.log(error)
     );
@@ -145,6 +147,16 @@ export class AllItemsComponent implements OnInit {
     }
     this.itemList=[];
     this.itemList=this.itemListTemp;
+  }
+  findPrice1(){
+    if(!this.precioDesde){
+      this.precioDesde=0;
+    }
+    if(!this.precioHasta){
+      this.precioHasta=0;
+    }
+    this.findPrice(this.precioDesde,this.precioHasta);
+    this.popupHide();
   }
   popupPrice(){
     this.popupHide();
