@@ -41,6 +41,11 @@ export class LoginComponent implements OnInit {
       this.hidPassword=false;
     }
     else{
+      var patron = /[@\.]/;
+      if(patron.test(this.username)){
+        this.username = this.username.toLowerCase(); 
+      }
+
       this.popup_g=false;
       this.hidUsername=true;
       this.hidPassword=true;

@@ -108,5 +108,11 @@ export class SingupComponent implements OnInit {
       event.preventDefault();
     }
   }
-
+  keyPressLetras(event: any){
+    const pattern = /[a-zA-Z]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 }

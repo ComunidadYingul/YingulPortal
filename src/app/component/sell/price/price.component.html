@@ -80,8 +80,8 @@
                 </label>
             </div>
         </div>
-        <div class="input-group" style="width:300px;">
-            <input (focus)="focus_g()" id="price" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" (keypress)="keyPress($event)">
+        <div class="input-group">
+            <input (focus)="focus_g()" id="price" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" (keypress)="keyPress($event)" style="width:60%;">
             <select (focus)="focus_g()" class="form-control form-control-primary" name="money" [(ngModel)]="money">
                 <option value="ARS" >$</option>
                 <option  value="USD" >U$S</option>
@@ -106,8 +106,8 @@
 
 <div *ngIf="isPropertyMotorized()" class="row">
     <div class="col-sm-6">
-        <div class="input-group" style="width:300px;">
-            <input id="price" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" (keypress)="keyPress($event)">
+        <div class="input-group">
+            <input id="price" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Ej. 10.00" (keypress)="keyPress($event)" style="width:60%;">
             <select class="form-control form-control-primary" name="money" [(ngModel)]="money">
                 <option value="ARS" >$</option>
                 <option  value="USD" >U$S</option>
