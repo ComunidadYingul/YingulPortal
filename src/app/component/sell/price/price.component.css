@@ -1,6 +1,4 @@
 .popup {
-    top: 50%;
-    left: 50%;
     border-radius: 10px;
     background: #FFFFFF;
     box-shadow: 0px 0px 15px 0px rgba(#000000, 0.3);
@@ -10,6 +8,7 @@
     z-index: 5001;
     text-align: center;
     border: 5px solid #FF5E3A;
+    position: relative;
 }
 .table > thead > tr > th {
     border-bottom-color: #FF5E3A;
