@@ -31,7 +31,7 @@
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-md-12 input-group">
-                                            <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name" (keypress)="keyPressLetras($event)">
+                                            <input id="name" type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name" (keypress)="keyPressLetras($event)">
                                             <span class="md-line"></span>
                                         </div>
                                         <div class="error-g">
@@ -42,7 +42,7 @@
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-md-12 input-group">
-                                            <input type="text" class="form-control" placeholder="Apellido" name="lastname" required [(ngModel)]="lastname" (keypress)="keyPressLetras($event)">
+                                            <input id="lastname" type="text" class="form-control" placeholder="Apellido" name="lastname" required [(ngModel)]="lastname" (keypress)="keyPressLetras($event)">
                                             <span class="md-line"></span>
                                         </div>
                                         <div class="error-g">
@@ -57,18 +57,19 @@
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-sm-12 input-group">
-                                            <input type="text" class="form-control" placeholder="Correo electronico" name="email" required [(ngModel)]="email" (keypress)="keyPressEmail($event)">
+                                            <input id="email" type="email" class="form-control" placeholder="Correo electronico" name="email" required [(ngModel)]="email" (keypress)="keyPressEmail($event)">
                                             <span class="md-line"></span>
                                         </div>
                                         <div class="error-g">
                                             <p  [hidden]="hidEmail">* Correo electronico requerido</p>
+                                            <p  [hidden]="hidEmail2">* Correo no válido</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-sm-12 input-group">
-                                            <input type="password" class="form-control" placeholder="Contraseña" name="password" required [(ngModel)]="password">
+                                            <input id="password" type="password" class="form-control" placeholder="Contraseña" name="password" required [(ngModel)]="password">
                                             <span class="md-line"></span>
                                         </div>
                                         <div class="error-g">
@@ -133,6 +134,38 @@
         <p class="popup-title">SOLICITUD EN PROCESO</p>
         <img src="assets/images/spiner.gif" alt="Cargando">
         <p class="popup-msg">Por favor espere...</p>
+    </div>
+</div>
+<div class="content_popup_g" align="center" [hidden]="popup_registro">
+    <div class="popup_g">
+        <p class="popup-title">REGISTRO</p>
+        <!--img src="assets/images/spiner.gif" alt="Cargando"-->
+        <p class="popup-msg">Registrado exitosamente revise su bandeja de entrada</p>
+    </div>
+</div>
+<div class="content_popup_g" align="center" [hidden]="popup_exist">
+    <div class="popup_g" style="position:relative;">
+            <div style="position:absolute; top:-35px; right:-35px;">
+                <span (click)="popupHide()">
+                    <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+                </span>
+            </div>
+        <p class="popup-title">ATENCIÓN</p>
+        <!--img src="assets/images/spiner.gif" alt="Cargando"-->
+        <p class="popup-msg">El correo ingresado ya existe, por favor intentar con otro correo.</p>
+    </div>
+</div>
+<div class="content_popup_g" align="center" [hidden]="popup_terminos">
+    <div class="popup_g" style="position:relative;">
+            <div style="position:absolute; top:-35px; right:-35px;">
+                <span (click)="popupHide()">
+                    <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+                </span>
+            </div>
+        <p class="popup-title">ATENCIÓN</p>
+        <!--img src="assets/images/spiner.gif" alt="Cargando"-->
+        <p class="popup-msg">Debe aceptar los términos y condiciones.</p>
+        
     </div>
 </div>
 
