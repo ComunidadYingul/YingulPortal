@@ -79,10 +79,21 @@
   <!--<h2>Welcome to User Portal!</h2>-->
 </div>
 
-<div class="content_popup_g" align="center" [hidden]="popup_g">
-    <div class="popup_g">
+<div class="content_popup_g" align="center" [hidden]="popup">
+    <div class="popup_g" [hidden]="popup_g">
         <p class="popup-title">SOLICITUD EN PROCESO</p>
         <img src="assets/images/spiner.gif" alt="Cargando">
         <p class="popup-msg">Por favor espere...</p>
+    </div>
+
+    <div class="popup_g" style="position:relative;" [hidden]="alert">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+        <p class="popup-title">Usuario o Contraseña incorrecta</p>
+        <!--<img src="assets/images/spiner.gif" alt="Cargando">-->
+        <p class="popup-msg">Vuelva a intentarlo...</p>
     </div>
 </div>

@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   hidUsername:boolean=true;
   hidPassword:boolean=true;
   popup_g:boolean=true;
-
+  alert:boolean=true;
+  popup:boolean=true;
 
 	constructor (private loginService: LoginService,private router: Router,private location: Location, private userService:UserService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
       if(patron.test(this.username)){
         this.username = this.username.toLowerCase(); 
       }
-
+      this.popup=false;
       this.popup_g=false;
       this.hidUsername=true;
       this.hidPassword=true;
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
         },
         err => {
           this.popup_g=true;
-          alert("Usuario o Contraseña incorrecta")
+          this.alert=false;
         }
       );
     }
@@ -87,5 +88,10 @@ export class LoginComponent implements OnInit {
       		error => console.log(error)
     );
     
+  }
+  popupHide(){
+    this.alert=true;
+    this.popup=true;
+    this.popup_g=true;
   }
 }
