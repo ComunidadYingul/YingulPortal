@@ -75,13 +75,14 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Titulo</span>
-                                                                            <input type="text" class="form-control"  placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title" value="{{this.Item.name}}">
+                                                                            <input id="title" type="text" class="form-control"  placeholder="Titulo Ej: Clases de particulares a domicilio" name="title" [(ngModel)]="title" >
+                                                                            <p class="validar_g" [hidden]="hidTitulo">Campo requerido</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Descripción</span>
-                                                                            <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description" value="{{this.Item.description}}">
+                                                                            <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -89,14 +90,17 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Link</span>
-                                                                            <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video" value="{{this.Item.video}}"><!--placeholder="Link desde Youtube" name="video" [(ngModel)]="video"-->
+                                                                            <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video"><!--placeholder="Link desde Youtube" name="video" [(ngModel)]="video"-->
                                                                         </div>
                                                                     </div>
                                                                     <div class="">
                                                                         <div class="col-sm-9">
                                                                             <div class="input-group ">
                                                                                 <span class="input-group-addon">Precio</span>
-                                                                                <input type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio Ej: 10.00" value="{{this.Item.price}}">                                                                                
+                                                                                <input id="price" (keypress)="keyPress($event)" type="text" class="form-control" name="price" [(ngModel)]="price" placeholder="Precio Ej: 10.00">                                                                                
+                                                                                <p class="validar_g" [hidden]="hidPrice">Ingrese precio</p>
+                                                                                <p class="validar_g" [hidden]="hidPriceExedido">No puede vender productos mayor a 29.000$ cuando el envio es a cargo del comprador!</p>
+                                                                                <p class="validar_g" [hidden]="hidPriceLimit">No puede vender productos mayores a 29.900$</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="checkbox-fade fade-in-primary">
@@ -125,7 +129,8 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Cantidad</span>
-                                                                            <input type="text" class="form-control"  placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
+                                                                            <input id="productQuantity" (keypress)="keyPress($event)" type="text" class="form-control"  placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
+                                                                            <p class="validar_g" [hidden]="hidProductQuantity">Ingrese cantidad</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -133,7 +138,8 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Peso</span>
-                                                                            <input type="text" class="form-control"  placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
+                                                                            <input id="productPeso" (keypress)="keyPress($event)" type="text" class="form-control"  placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
+                                                                            <p class="validar_g" [hidden]="hidProductPeso">Ingrese peso</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -141,7 +147,8 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="input-group">
                                                                             <span class="input-group-addon">Volumen</span>
-                                                                            <input type="text" class="form-control"  placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
+                                                                            <input id="productVolumen" (keypress)="keyPress($event)" type="text" class="form-control"  placeholder="Volumen de la caja de envío en cm3 Ej: 25000" name="productVolumen" [(ngModel)]="productVolumen">
+                                                                            <p class="validar_g" [hidden]="hidProductVolumen">Ingrese volumen</p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -199,7 +206,7 @@
                                                                                 <div class="table-responsive" >
                                                                                     <table class="table  invoice-detail-table">
                                                     
-                                                                                        <input type="checkbox"  (click)="test($event)" [checked]="formDeliveryB()">Ofrecer envíos por Yingul Express<br>
+                                                                                        <input id="productFormDelivery" type="checkbox"  (click)="test($event)" [checked]="formDeliveryB()"><label for="productFormDelivery">Ofrecer envíos por Yingul Express</label><span style="color:red;margin-left:20px;font-size:.8em;" [hidden]="hidYingulExpress">* Debe seleccionar este campo.</span><br>
                                                                                         <tbody [hidden]="popupEnvios">
                                                                                             <tr>
                                                                                                 <td class="radio radiofill radio-inline">
@@ -665,7 +672,7 @@
                                                             </div>
                                                             <div class="input-group">
                                                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                                                <input type="text" class="form-control" placeholder="Email" (keypress)="keyPressEmail($event)">
+                                                                <input type="email" class="form-control" placeholder="Email" (keypress)="keyPressEmail($event)">
                                                             </div>
                                                             <div class="form-group">
                                                                 <button type="submit" class="btn btn-primary waves-effect waves-light">Submit

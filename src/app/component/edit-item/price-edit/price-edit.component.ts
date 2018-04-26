@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Item } from '../../../model/item';
 import { Product } from '../../../model/product';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +16,6 @@ import { Exterior } from '../../../model/exterior';
 import { Equipment } from '../../../model/equipment';
 import { Amenities } from '../../../model/amenities';
 import { Ambient } from '../../../model/ambient';
-
 @Component({
   selector: 'app-price-edit',
   templateUrl: './price-edit.component.html',
@@ -57,6 +56,8 @@ productPagoEnvio:string="";
 productPeso:string="";
 productVolumen:string="";
 popupGarantia:boolean=true;
+prodFormDeliv:boolean=true;
+prodPagEnv:string;
 nuevoB:boolean=false;
 usadoB:boolean=false;
 popupDescuento:boolean=true;
@@ -75,6 +76,14 @@ hiddenEditProd:boolean=true;
 hiddenEditProp:boolean=true;
 hiddenEditMoto:boolean=true;
 hiddenEditServ:boolean=true;
+hidTitulo:boolean=true;
+hidPrice:boolean=true;
+hidPriceLimit:boolean=true;
+hidProductQuantity:boolean=true;
+hidProductPeso:boolean=true;
+hidProductVolumen:boolean=true;
+hidYingulExpress:boolean=true;
+hidPriceExedido:boolean=true;
 itemTemp:Item=new Item();
 itemType:string;
 Service:Service= new Service();
@@ -115,7 +124,7 @@ Service:Service= new Service();
   disabledRPerson:boolean=false;
   editMoreDiable:boolean=false;
   popup_g:boolean=true;
-  constructor(private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { this.Item.name
+  constructor(private elem:ElementRef,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService) { this.Item.name
     this.itemId =route.snapshot.params['itemId'];
     console.log("this.itemId edit:"+this.itemId);
   }
@@ -127,6 +136,10 @@ Service:Service= new Service();
         this.Item.user.authorities=null;
         console.log("this.Item:"+JSON.stringify(this.Item))
         this.itemsSet();
+        this.title=this.Item.name;
+        this.description=this.Item.description;
+        this.video=this.Item.video;
+        this.price=this.Item.price;
       },
       error=>console.error()      
     );
@@ -183,11 +196,19 @@ Service:Service= new Service();
   
   envioComprador(event){
     
-    if(event.target.checked==true) this.productPagoEnvio="comprador";
+    if(event.target.checked==true) {
+      this.productPagoEnvio="comprador";
+      this.prodPagEnv="comprador";
+      console.log(this.prodPagEnv);
+    }
   }
   envioGratis(event){
     
-    if(event.target.checked==true) this.productPagoEnvio="gratis";
+    if(event.target.checked==true) {
+      this.productPagoEnvio="gratis";
+      this.prodPagEnv="gratis";
+      console.log(this.prodPagEnv);
+    }
   }
   popGarantia(event) {
     if(event.target.checked==true){this.popupGarantia=false;}
@@ -205,9 +226,11 @@ Service:Service= new Service();
     if(event.target.checked==true){
       this.productFormDelivery="YingulEnvios"      
       this.popupEnvios=false;
+      this.prodFormDeliv=true;
     }
     else {
       this.popupEnvios=true;
+      this.prodFormDeliv=false;
     }
   }
 
@@ -229,57 +252,111 @@ Service:Service= new Service();
       alert("Los valores no son válidos");
     }
   }
+  resetHide(){
+    this.hidTitulo=true;
+    this.hidPrice=true;
+    this.hidPriceLimit=true;
+    this.hidProductQuantity=true;
+    this.hidProductPeso=true;
+    this.hidProductVolumen=true;
+    this.hidYingulExpress=true;
+    this.hidPriceExedido=true;
+  }
+
+  validEdition(){
+    if(this.title==""||this.title==null){
+      this.elem.nativeElement.querySelector('#title').focus();
+      this.hidTitulo=false;
+      return false;
+    }else if(this.price==null || this.price==0){
+      this.elem.nativeElement.querySelector('#price').focus();
+      this.hidPrice=false;
+      return false;
+    }else if(this.price>29900){
+      this.elem.nativeElement.querySelector('#price').focus();
+      this.hidPriceLimit=false;
+      return false;
+    }else if(!this.hiddenEditProd && (this.productQuantity==null||this.productQuantity=="")){
+      this.elem.nativeElement.querySelector('#productQuantity').focus();
+      this.hidProductQuantity=false;
+      return false;
+    }else if(!this.hiddenEditProd && (this.productPeso==null||this.productPeso=="")){
+      this.elem.nativeElement.querySelector('#productPeso').focus();
+      this.hidProductPeso=false;
+      return false;
+    }else if(!this.hiddenEditProd && (this.productVolumen==null||this.productVolumen=="")){
+      this.elem.nativeElement.querySelector('#productVolumen').focus();
+      this.hidProductVolumen=false;
+      return false;
+    }else if(this.prodFormDeliv==false){
+      this.hidYingulExpress=false;
+      return false;
+    }else if(this.prodPagEnv=="comprador" && this.price>29000){
+      this.hidPriceExedido=false;
+      this.elem.nativeElement.querySelector('#price').focus();
+      return false;
+    }else{
+      return true;
+    }
+  }
+
   saveEdit(){
-    console.log("this.typeCat:"+this.typeCat);
-    console.log("this.itemType"+this.itemType)
-    this.itemTemp=this.Item;      
-    if(this.title!=""){this.itemTemp.name=this.title;}
-    else this.title=this.Item.name;
-    if(this.description!=""){this.itemTemp.description=this.description;}
-    else this.description=this.Item.description;
-    if(this.video!=""){this.itemTemp.video=this.video;}
-    else this.video=this.Item.video;
-    if(this.price!=undefined){this.itemTemp.price=this.price;}
-    else this.price=this.Item.price; 
-    if(this.priceNormal!=undefined){this.itemTemp.priceNormal=this.priceNormal;}
-    else this.priceNormal=this.Item.priceNormal;  
-    if(this.priceDiscount!=undefined){this.itemTemp.priceDiscount=this.priceDiscount;}
-    else this.priceDiscount=this.Item.priceDiscount;
+    this.resetHide();
+    if(this.validEdition()==true){
+      this.resetHide();
+      console.log("this.typeCat:"+this.typeCat);
+      console.log("this.itemType"+this.itemType)
+      this.itemTemp=this.Item;      
+      if(this.title!=""){this.itemTemp.name=this.title;}
+      else this.title=this.Item.name;
+      if(this.description!=""){this.itemTemp.description=this.description;}
+      else this.description=this.Item.description;
+      if(this.video!=""){this.itemTemp.video=this.video;}
+      else this.video=this.Item.video;
+      if(this.price!=undefined){this.itemTemp.price=this.price;}
+      else this.price=this.Item.price; 
+      if(this.priceNormal!=undefined){this.itemTemp.priceNormal=this.priceNormal;}
+      else this.priceNormal=this.Item.priceNormal;  
+      if(this.priceDiscount!=undefined){this.itemTemp.priceDiscount=this.priceDiscount;}
+      else this.priceDiscount=this.Item.priceDiscount;
 
-    if(this.typeCat=="Product"){
-    this.productTemp=this.product;
-    this.productTemp.yng_Item=this.itemTemp; 
-    this.sendUpdateProduct(this.productTemp);
-    }
-    else{if(this.itemType=="Vehiculo"){
-      this.motorizedTemp=this.Motorized;
-      this.motorizedTemp.motorizedConfort=this.motConfort;
-      this.motorizedTemp.motorizedEquipment=this.motEquipment;
-      this.motorizedTemp.motorizedExterior=this.motExterior;
-      this.motorizedTemp.motorizedSecurity=this.motSecurity;
-      this.motorizedTemp.motorizedSound=this.motSound;
-      this.motorizedTemp.yng_Item=this.itemTemp;
-      this.sendUpdateMotorized(this.Motorized);
-    }
-   else {if(this.itemType=="Inmueble"){
-      this.propertyTemp=this.Property;
-      this.propertyTemp.propertyAmbient=this.propAmbient;
-      this.propertyTemp.propertyAmenities=this.propAmenities;
-      this.propertyTemp.yng_Item=this.itemTemp;
-      this.sendUpdateProperty(this.propertyTemp)
-    }
-  else{if(this.itemType=="Servicio"){
-    this.serviceTemp=this.Service;
-    this.serviceTemp.cobertureZone=this.cobertureZone;
-    console.log("cobertureZone: "+JSON.stringify(this.cobertureZone));
-    this.serviceTemp.yng_Item=this.itemTemp;
-    this.sendUpdateService(this.serviceTemp);
+      if(this.typeCat=="Product"){
+      this.productTemp=this.product;
+      this.productTemp.yng_Item=this.itemTemp; 
+      this.sendUpdateProduct(this.productTemp);
+      }
+      else{
+        if(this.itemType=="Vehiculo"){
+          this.motorizedTemp=this.Motorized;
+          this.motorizedTemp.motorizedConfort=this.motConfort;
+          this.motorizedTemp.motorizedEquipment=this.motEquipment;
+          this.motorizedTemp.motorizedExterior=this.motExterior;
+          this.motorizedTemp.motorizedSecurity=this.motSecurity;
+          this.motorizedTemp.motorizedSound=this.motSound;
+          this.motorizedTemp.yng_Item=this.itemTemp;
+          this.sendUpdateMotorized(this.Motorized);
+        }
+        else {
+          if(this.itemType=="Inmueble"){
+            this.propertyTemp=this.Property;
+            this.propertyTemp.propertyAmbient=this.propAmbient;
+            this.propertyTemp.propertyAmenities=this.propAmenities;
+            this.propertyTemp.yng_Item=this.itemTemp;
+            this.sendUpdateProperty(this.propertyTemp)
+          }
+          else{
+            if(this.itemType=="Servicio"){
+              this.serviceTemp=this.Service;
+              this.serviceTemp.cobertureZone=this.cobertureZone;
+              console.log("cobertureZone: "+JSON.stringify(this.cobertureZone));
+              this.serviceTemp.yng_Item=this.itemTemp;
+              this.sendUpdateService(this.serviceTemp);
 
-  }
-  }
-       }
-
-    }    
+            }
+          }
+        }
+      }  
+    }
   }
 
   cargar(){
@@ -368,11 +445,11 @@ Service:Service= new Service();
     else return false;
   }
   envioCompradorB():boolean{
-    if(this.product.productPagoEnvio=="comprador"){return true}
+    if(this.product.productPagoEnvio=="comprador"){return true;}
     else return false;
   }
   envioGratisB():boolean{
-    if(this.product.productPagoEnvio=="gratis"){return true}
+    if(this.product.productPagoEnvio=="gratis"){return true;}
     else return false;
   }
   sendUpdateProduct(productT:Product){
