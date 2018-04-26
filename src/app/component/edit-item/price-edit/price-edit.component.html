@@ -112,7 +112,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div [hidden]="hiddenEditProd">
+                                                            <div [hidden]="hiddenEditProd">
                                                                 <div class="row">
                                                                     <div  class="col-sm-6" >
                                                                         <div class="input-group">
@@ -210,17 +210,17 @@
                                                                                         <tbody [hidden]="popupEnvios">
                                                                                             <tr>
                                                                                                 <td class="radio radiofill radio-inline">
-                                                                                                    <input type="radio" name="shippingMethod"  (click)="envioComprador($event)" [checked]="envioCompradorB()">Envío a cargo del comprador<br>
+                                                                                                    <input id="envioComprador" type="radio" name="shippingMethod"  (click)="envioComprador($event)" [checked]="envioCompradorB()"><label for="envioComprador">Envío a cargo del comprador</label><br>
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr>
                                                                                                 <td class="radio radiofill radio-inline"> 
-                                                                                                    <input type="radio" name="shippingMethod"  (click)="envioGratis($event)" [checked]="envioGratisB()">Envío gratis. Pagarás $ {{precioEnvio}} por envío.<br>    
+                                                                                                    <input id="envioGratis" type="radio" name="shippingMethod"  (click)="envioGratis($event)" [checked]="envioGratisB()"><label for="envioGratis">Envío gratis. Pagarás $ {{precioEnvio}} por envío.</label><br>    
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>
 
-                                                                                        <input type="checkbox"  (click)="test2($event)"  [checked]="formDeliveryP()" [disabled]="disabledRPerson">También ofrecer retiro en persona
+                                                                                        <input id="retirePerson" type="checkbox"  (click)="test2($event)"  [checked]="formDeliveryP()" [disabled]="disabledRPerson"><label for="retirePerson">También ofrecer retiro en persona</label>
                                                                                     </table>
                                                                                 </div>
                                                                         </div>
