@@ -52,7 +52,7 @@ export class SellComponent implements OnInit {
   public productTem:Product=new Product();
 
   dataForBuyer:Object=new Object();
-
+  alert:boolean=true;
   constructor(private buyService: BuyService,private sellService: SellService, private router: Router) { 
     
   }
@@ -372,8 +372,8 @@ export class SellComponent implements OnInit {
 
   redirectTo(){
     if(this.msg=='save'){
-      alert("item registrado exitosamente revise su bandeja de entrada");
-      this.router.navigate(['/']);   
+      this.popup_g=true;
+      this.alert=false;  
     }
     else{
       alert(this.msg);
@@ -487,5 +487,10 @@ export class SellComponent implements OnInit {
       }
     }
   }
+  closeAlert(){
+    this.popup_g=true;
+    this.alert=true;
+    this.router.navigate(['/']); 
+  } 
 }
 

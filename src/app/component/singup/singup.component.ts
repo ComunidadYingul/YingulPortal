@@ -8,6 +8,8 @@ import { SellService } from '../../service/sell.service'
 import { Province } from '../../model/province';
 import { City } from '../../model/city';
 import { Barrio } from '../../model/barrio';
+import { AuthService } from "angular2-social-login";
+import { UserGoogle } from '../../model/userGoogle';
 
 @Component({
   selector: 'app-singup',
@@ -36,7 +38,12 @@ export class SingupComponent implements OnInit {
   popup_g:boolean=true;
   cbxPersona:boolean;
 
-  constructor(private elem:ElementRef,private singupService: SingupService, private router: Router,private sellService: SellService) {   
+  sub:any;
+  profilePhoto:string="";
+  userGoogle: UserGoogle= new UserGoogle();
+  provider:string="";
+  fullname:string[]=[]
+  constructor(public _auth:AuthService, private elem:ElementRef,private singupService: SingupService, private router: Router,private sellService: SellService) {   
     
   }
   ngOnInit() {
@@ -133,5 +140,38 @@ export class SingupComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+  }
+  googleLoginFunction(){
+    this.sub = this._auth.login("google").subscribe(
+      (data) => {
+        this.userGoogle=JSON.parse(JSON.stringify(data));
+        this.email=this.userGoogle.email;
+        this.profilePhoto=this.userGoogle.image;
+        this.provider=this.userGoogle.provider;
+        this.fullname=this.userGoogle.name.split(" ");
+        this.name=this.MaysPrimera(this.fullname[0]);
+        this.lastname=this.MaysPrimera(this.fullname[1])+" "+this.MaysPrimera(this.fullname[2]);
+        this.password="";
+        this.cbxPersona=true;
+      }
+    );
+  }
+  facebookLoginFunction(){
+    this.sub = this._auth.login("facebook").subscribe(
+      (data) => {
+        this.userGoogle=JSON.parse(JSON.stringify(data));
+        this.email=this.userGoogle.email;
+        this.profilePhoto=this.userGoogle.image;
+        this.provider=this.userGoogle.provider;
+        this.fullname=this.userGoogle.name.split(" ");
+        this.name=this.MaysPrimera(this.fullname[0]);
+        this.lastname=this.MaysPrimera(this.fullname[1])+" "+this.MaysPrimera(this.fullname[2]);
+        this.password="";
+        this.cbxPersona=true;
+      }
+    );
+  }
+  MaysPrimera(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }

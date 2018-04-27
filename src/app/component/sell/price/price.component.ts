@@ -751,9 +751,9 @@ export class PriceComponent implements OnInit {
   productPaymentMethod:string;
   pagoMedios(envi:string){
     if(envi=="1")
-    this.productPaymentMethod="Aceptar pagos solo por Yingul";
+    this.productPaymentMethod="Aceptar pagos solo por Yingul Pay";
     if(envi=="2")
-    this.productPaymentMethod="Aceptar pagos por Yingul y cobro en persona";
+    this.productPaymentMethod="Aceptar pagos por Yingul Pay y cobro en persona";
     this.prodPayMethod=envi;
   }
 

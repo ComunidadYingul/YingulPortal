@@ -17,16 +17,16 @@
                                 </div>
 
                             </div>
-                            <p  [hidden]="true" class="text-inverse b-b-default text-left p-b-5">Regístrate fácilmente con su cuenta social:</p>
-                            <div class="row m-b-20" [hidden]="true">
+                            <p  [hidden]="false" class="text-inverse b-b-default text-left p-b-5">Regístrate fácilmente con su cuenta social:</p>
+                            <div class="row m-b-20" [hidden]="false">
                                 <div class="col-6">
-                                    <button class="btn btn-facebook m-b-0"><i class="icofont icofont-social-facebook"></i><span class="title-social">Registrate con Facebook</span></button>
+                                    <!--button (click)= "facebookLoginFunction()" class="btn btn-facebook m-b-0"><i class="icofont icofont-social-facebook"></i><span class="title-social">Registrate con Facebook</span></button-->
                                 </div>
                                 <div class="col-6">
-                                    <button class="btn btn-twitter m-b-0"><i class="icofont icofont-social-twitter"></i><span class="title-social">Registrate con Twitter</span></button>
+                                    <button (click)= "googleLoginFunction()" class="btn btn-google-plus m-b-0"><i class="icofont icofont-social-google-plus"></i><span class="title-social">Registrate con Google</span></button>
                                 </div>
                             </div>
-                            <p class="text-inverse b-b-default text-left p-b-5">Regístrate con tu cuenta habitual</p>
+                            <div class="row m-b-0"><p class="col-10 text-inverse b-b-default text-left p-b-5">Regístrate con <span *ngIf="provider==''||provider==null">tu cuenta habitual</span><span *ngIf="provider=='facebook'">Facebook</span><span *ngIf="provider=='google'">Google</span></p><img *ngIf="profilePhoto!=''&&profilePhoto!=null" style="height: 60px;"class=" d-flex mr-3 img-circle img-60 img-thumbnail" src="{{profilePhoto}}" alt="Generic placeholder image"></div>
                             <div class="row m-b-0">
                                 <div class="col-sm-6">
                                     <div class="row">

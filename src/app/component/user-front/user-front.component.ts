@@ -8,6 +8,7 @@ import { UserService } from '../../service/user.service';
 import { AccountService } from '../../service/account.service';
 import { Account } from '../../model/account';
 import { QueryServiceService } from '../../service/query-service.service';
+import { ConfirmService } from '../../service/confirm.service';
 
 @Component({
   selector: 'app-user-front',
@@ -21,8 +22,9 @@ export class UserFrontComponent implements OnInit {
 	account:Account = new Account();
 	money:number;
 	queries:number=0;
+	deliveries:number=0;
 	profilePorcentage:number=0;
-  constructor(private queryService : QueryServiceService,private accountService:AccountService,private userService:UserService,private loginService: LoginService, private router: Router) { 
+  constructor(private confirmService :  ConfirmService, private queryService : QueryServiceService,private accountService:AccountService,private userService:UserService,private loginService: LoginService, private router: Router) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
       this.router.navigate(['/login']);      
@@ -48,6 +50,13 @@ export class UserFrontComponent implements OnInit {
 		this.queryService.getQueriesByUser(this.User.username).subscribe(
 			res => {
             this.queries = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+		);
+		this.confirmService.getNumberPendingDeliveriesForUser(this.User.username).subscribe(
+			res => {
+						this.deliveries = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+						alert(this.deliveries);
       		},
       		error => console.log(error)
 		);

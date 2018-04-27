@@ -138,6 +138,17 @@
     </div>
 </div>
 
+<div class="content_popup_g" align="center" [hidden]="alert">
+    <div class="popup_g" style="position:relative;">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="closeAlert()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+        <p class="popup-title">Artículo registrado exitosamente</p>
+        <p class="popup-msg">Revise su bandeja de entrada</p>
+    </div>
+</div>
 
 
 
