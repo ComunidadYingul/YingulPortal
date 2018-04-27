@@ -286,3 +286,23 @@ li .dropdown-menu:before {
 }
 
 /*********************** END ESTILOS DEL POPUP  ****************************/
+/*************** ESTILOS POPOVER ERROR G ***************/
+.validar_g{
+  position: absolute;
+  bottom: 70%;
+  padding: 5px 10px;
+  background: #0275d8;
+  border-radius: 10px;
+  right: 0%;
+  font-weight: 600;
+  z-index: 3;
+  color: #fff;
+}
+.validar_g::before{
+  content: '';
+  border: 5px solid transparent;
+  top: 100%;
+  border-top-color: #0275d8;
+  position: absolute;
+  right: 10%;
+}

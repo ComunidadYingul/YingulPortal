@@ -11,3 +11,8 @@
     text-align: left;
     font-size: .9em;
 }
+@media(max-width:575px){
+    .title-social{
+        display: none;
+    }
+}

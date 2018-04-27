@@ -2093,19 +2093,18 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="general-info">
                                                                                             <div class="row">
+                                                                                                <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">Datos de cuenta</p>
+                                                                                            </div>
+                                                                                            <div class="row">
                                                                                                 <div class="col-lg-12 col-xl-6">
                                                                                                     <table class="table m-0">
                                                                                                         <tbody>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">Datos de cuenta</th>
-                                                                                                                <td></td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">Usuario</th>
+                                                                                                            <tr class="row">
+                                                                                                                <th class="col-12 col-sm-4" scope="row">Usuario</th>
                                                                                                                 <td>{{person.yng_User.username}} <a style="cursor: pointer; color:#0275d8;" (click)="updateUsername()">Modificar</a></td>
                                                                                                             </tr>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">Clave</th>
+                                                                                                            <tr class="row">
+                                                                                                                <th class="col-12 col-sm-4" scope="row">Clave</th>
                                                                                                                 <td>********** <a style="cursor: pointer; color:#0275d8;" (click)="updatePassword()" >Modificar</a></td>
                                                                                                             </tr>
                                                                                                         </tbody>
@@ -2115,26 +2114,23 @@
                                                                                                 <div class="col-lg-12 col-xl-6">
                                                                                                     <table class="table">
                                                                                                         <tbody>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">&nbsp;</th>
-                                                                                                                <td>&nbsp;</td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">E-mail</th>
+                                                                                                            <tr class="row">
+                                                                                                                <th class="col-12 col-sm-4" scope="row">E-mail</th>
                                                                                                                 <td>{{person.yng_User.email}} <a style="cursor: pointer; color:#0275d8;" (click)="updateEmail()">Modificar</a></td>
                                                                                                             </tr>
                                                                                                         </tbody>
                                                                                                     </table>
                                                                                                 </div>
+                                                                                            </div>
+                                                                                            <div class="row">
+                                                                                                <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">Datos personales</p>
+                                                                                            </div>
+                                                                                            <div class="row">
                                                                                                 <div class="col-lg-12 col-xl-6">
                                                                                                     <table class="table m-0">
                                                                                                         <tbody>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">Datos personales</th>
-                                                                                                                <td></td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">Nombre y apellido</th>
+                                                                                                            <tr class="row">
+                                                                                                                <th class="col-12 col-sm-4" scope="row">Nombre y apellido</th>
                                                                                                                 <td>{{person.name}} {{person.lastname}}</td>
                                                                                                             </tr>
                                                                                                         </tbody>
@@ -2144,12 +2140,8 @@
                                                                                                 <div class="col-lg-12 col-xl-6">
                                                                                                     <table class="table">
                                                                                                         <tbody>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">&nbsp;</th>
-                                                                                                                <td>&nbsp;</td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <th scope="row">Teléfono</th>
+                                                                                                            <tr class="row">
+                                                                                                                <th class="col-12 col-sm-4" scope="row">Teléfono</th>
                                                                                                                 <td *ngIf="!person.yng_User.phone&&!person.yng_User.phone2" ><a style="cursor: pointer; color:#0275d8;" (click)="setPhone()">Agregar</a></td>
                                                                                                                 <td *ngIf="person.yng_User.phone&&!person.yng_User.phone2" >{{phone}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhone()">Modificar</a> | <a style="cursor: pointer; color:#0275d8;" (click)="setPhone2()">Agregar</a></td>
                                                                                                                 <td *ngIf="person.yng_User.phone&&person.yng_User.phone2" >{{phone}} / {{phone2}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhones()">Modificar</a></td>

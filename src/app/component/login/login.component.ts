@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import {Observable}  from 'rxjs/Observable';
 import {LoginService} from '../../service/login.service';
 import { user } from '../../model/user';
@@ -21,9 +21,10 @@ export class LoginComponent implements OnInit {
   hidUsername:boolean=true;
   hidPassword:boolean=true;
   popup_g:boolean=true;
+  alert:boolean=true;
+  popup:boolean=true;
 
-
-	constructor (private loginService: LoginService,private router: Router,private location: Location, private userService:UserService) {
+	constructor (private elem:ElementRef,private loginService: LoginService,private router: Router,private location: Location, private userService:UserService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.loggedIn = false;
     } else {
@@ -36,16 +37,18 @@ export class LoginComponent implements OnInit {
     this.reset();
     if(this.username==null || this.username==""){
       this.hidUsername=false;
+      this.elem.nativeElement.querySelector('#username').focus();
     }else if(this.password==null || this.password==""){
       this.hidUsername=true;
       this.hidPassword=false;
+      this.elem.nativeElement.querySelector('#password').focus();
     }
     else{
       var patron = /[@\.]/;
       if(patron.test(this.username)){
         this.username = this.username.toLowerCase(); 
       }
-
+      this.popup=false;
       this.popup_g=false;
       this.hidUsername=true;
       this.hidPassword=true;
@@ -58,7 +61,7 @@ export class LoginComponent implements OnInit {
         },
         err => {
           this.popup_g=true;
-          alert("Usuario o Contraseña incorrecta")
+          this.alert=false;
         }
       );
     }
@@ -87,5 +90,10 @@ export class LoginComponent implements OnInit {
       		error => console.log(error)
     );
     
+  }
+  popupHide(){
+    this.alert=true;
+    this.popup=true;
+    this.popup_g=true;
   }
 }

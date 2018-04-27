@@ -93,6 +93,16 @@ import { AboutService } from './service/about.service';
 import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 import { AllItemsComponent } from './component/all-items/all-items.component';
+import { Angular2SocialLoginModule } from 'angular2-social-login';
+let socialloginproviders = {
+  "google":{
+    "clientId":"1014727148194-lc7g9s995bt6l5v4dhqt5md381a9j075.apps.googleusercontent.com"
+  },
+  "facebook":{
+    "clientId":"1774930695878939",
+    "apiVersion":"v2.12" 
+  }
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -165,6 +175,7 @@ import { AllItemsComponent } from './component/all-items/all-items.component';
     FormsModule,
     HttpModule,
     routing,
+    Angular2SocialLoginModule,
     RecaptchaModule.forRoot(),
     SlickModule.forRoot(),
 
@@ -197,3 +208,4 @@ import { AllItemsComponent } from './component/all-items/all-items.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+Angular2SocialLoginModule.loadProvidersScripts(socialloginproviders);
