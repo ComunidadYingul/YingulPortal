@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import {Observable}  from 'rxjs/Observable';
 import {LoginService} from '../../service/login.service';
 import { user } from '../../model/user';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   alert:boolean=true;
   popup:boolean=true;
 
-	constructor (private loginService: LoginService,private router: Router,private location: Location, private userService:UserService) {
+	constructor (private elem:ElementRef,private loginService: LoginService,private router: Router,private location: Location, private userService:UserService) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.loggedIn = false;
     } else {
@@ -37,9 +37,11 @@ export class LoginComponent implements OnInit {
     this.reset();
     if(this.username==null || this.username==""){
       this.hidUsername=false;
+      this.elem.nativeElement.querySelector('#username').focus();
     }else if(this.password==null || this.password==""){
       this.hidUsername=true;
       this.hidPassword=false;
+      this.elem.nativeElement.querySelector('#password').focus();
     }
     else{
       var patron = /[@\.]/;

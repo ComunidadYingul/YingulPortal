@@ -20,14 +20,14 @@
                         </div>
                           <hr/>
                           <div class="input-group">
-                              <input type="text" class="form-control" name="username" [(ngModel)]="username" placeholder="Correo o Nombre de usuario" name="username" required autofocus=""/>
+                              <input id="username" type="email" class="form-control" name="username" [(ngModel)]="username" placeholder="Correo o Nombre de usuario" name="username" required autofocus=""/>
                               <span class="md-line"></span>
                           </div>
                           <div class="error-g">
                             <p  [hidden]="hidUsername">* Usuario requerido</p>
                         </div>
                           <div class="input-group">
-                              <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Contraseña" required/>
+                              <input id="password" type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Contraseña" required/>
                               <span class="md-line"></span>
                           </div>
                           <div class="error-g">
