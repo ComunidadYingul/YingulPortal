@@ -51,6 +51,7 @@ export class OverComponent implements OnInit {
   popup7:boolean=true;
   popup8:boolean=true;
   popup9:boolean=true;
+  popup11:boolean=true;
   popupFechaPubli:boolean=true;
   popupCond:boolean=true;
   today = new Date().toJSON().split('T')[0];
@@ -128,6 +129,7 @@ export class OverComponent implements OnInit {
     this.popup8=true;
     this.popup9=true;
     this.popup10=true;
+    this.popup11=true;
     this.popupFechaPubli=true;
     this.popupCond=true;
   }
@@ -404,6 +406,7 @@ export class OverComponent implements OnInit {
     this.popupHide();
   }
   popupDiscount(){
+    this.popupHide();
     this.popup10=false;
   }
   findDiscount(discount:number){
@@ -436,5 +439,9 @@ export class OverComponent implements OnInit {
     this.itemList=[];
     this.itemList=this.itemListTemp;
     this.popupHide();
+  }
+  popupEnvio(){
+    this.popupHide();
+    this.popup11=false;
   }
 }

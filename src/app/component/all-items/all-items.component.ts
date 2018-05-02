@@ -37,6 +37,7 @@ export class AllItemsComponent implements OnInit {
   popup8:boolean=true;
   popup9:boolean=true;
   popup10:boolean=true;
+  popup11:boolean=true;
   popupFechaPubli:boolean=true;
   popupCond:boolean=true;
   today = new Date().toJSON().split('T')[0];
@@ -120,6 +121,7 @@ export class AllItemsComponent implements OnInit {
     this.popup8=true;
     this.popup9=true;
     this.popup10=true;
+    this.popup11=true;
     this.popupFechaPubli=true;
     this.popupCond=true;
   }
@@ -376,6 +378,11 @@ export class AllItemsComponent implements OnInit {
     this.popupHide();
   }
   popupDiscount(){
+    this.popupHide();
     this.popup10=false;
+  }
+  popupEnvio(){
+    this.popupHide();
+    this.popup11=false;
   }
 }
