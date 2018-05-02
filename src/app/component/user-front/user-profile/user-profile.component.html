@@ -1944,27 +1944,15 @@
                                 </ul>
                             </div>
                         </nav>
-                        <div class="page-wrapper">
-                            <!-- Page-header start -->
-                            <div class="page-header">
-                                <div class="page-header-title">
-                                    <h4>Mis datos</h4>
-                                </div>
-                                <div class="page-header-breadcrumb">
-                                    <ul class="breadcrumb-title">
-                                        <li class="breadcrumb-item">
-                                            <a href="/index">
-                                                <i class="icofont icofont-home"></i>
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="/userFront">Mi cuenta</a>
-                                        </li>
-                                        <li class="breadcrumb-item"><a href="/userFront/userProfile">Mis datos</a>
-                                        </li>
-                                    </ul>
+                        <div class="banner_g">
+                            <div class="social-wallpaper">
+                                <img style="max-height: 300px;"src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profileBanner}}" class="img-fluid width-100" alt="" />
+                                <div class="profile-hvr">
+                                    <i (click)="updateBanner()" class="icofont icofont-ui-edit p-r-10"></i>
                                 </div>
                             </div>
-                            <!-- Page-header end -->
+                        </div>
+                        <div class="page-wrapper">
                             <!-- Page-body start -->
                             <div class="page-body">
                                 <div class="row">
@@ -2088,6 +2076,26 @@
                                                             <div class="tab-content">
                                                                 <!-- Timeline tab start -->
                                                                 <div class="tab-pane active" id="timeline">
+                                                                    <!-- Page-header start -->
+                                                                    <div class="page-header">
+                                                                            <div class="page-header-title">
+                                                                                <h4>Mis datos</h4>
+                                                                            </div>
+                                                                            <div class="page-header-breadcrumb">
+                                                                                <ul class="breadcrumb-title">
+                                                                                    <li class="breadcrumb-item">
+                                                                                        <a href="/index">
+                                                                                            <i class="icofont icofont-home"></i>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <li class="breadcrumb-item"><a href="/userFront">Mi cuenta</a>
+                                                                                    </li>
+                                                                                    <li class="breadcrumb-item"><a href="/userFront/userProfile">Mis datos</a>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- Page-header end -->
                                                                     <!-- personal card start -->
                                                                     <div class="card">
                                                                         <div class="card-header">
