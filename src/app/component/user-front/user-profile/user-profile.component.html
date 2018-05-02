@@ -2033,7 +2033,7 @@
                                                                     <div class="social-profile">
                                                                         <!--video -->
                                                                         <div class="embed-responsive embed-responsive-4by3">
-                                                                            <iframe class="embed-responsive-item" [src]='video'></iframe>
+                                                                            <iframe *ngIf="video!=null" class="embed-responsive-item" [src]='video'></iframe>
                                                                         </div>
                                                                         <div class="profile-hvr m-t-15">
                                                                             <i (click)="updateVideo()" class="icofont icofont-ui-edit p-r-10"></i>

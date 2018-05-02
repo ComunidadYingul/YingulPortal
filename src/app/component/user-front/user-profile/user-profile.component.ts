@@ -5,7 +5,7 @@ import { UserService } from '../../../service/user.service';
 import { Person } from '../../../model/person';
 import { LoginService } from '../../../service/login.service';
 import { Network } from '../../../model/Network';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer,SafeResourceUrl,SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,7 +17,7 @@ export class UserProfileComponent implements OnInit {
   newUser : user = new user();
   person:Person= new Person();
   BUCKET_URL:string=Network.BUCKET_URL;
-  video;
+  video:SafeUrl=null;
   popup:boolean=true;
   popup2:boolean=true;
   popup3:boolean=true;
@@ -58,6 +58,7 @@ export class UserProfileComponent implements OnInit {
 			res => {
             this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.video=this.sanitizer.bypassSecurityTrustResourceUrl(this.person.yng_User.profileVideo);
+            console.log(JSON.stringify(this.video));
             this.phone=this.person.yng_User.phone;
             this.phone2=this.person.yng_User.phone2;
       		},
