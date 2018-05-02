@@ -36,6 +36,7 @@ export class AllItemsComponent implements OnInit {
   popup7:boolean=true;
   popup8:boolean=true;
   popup9:boolean=true;
+  popup10:boolean=true;
   popupFechaPubli:boolean=true;
   popupCond:boolean=true;
   today = new Date().toJSON().split('T')[0];
@@ -55,6 +56,7 @@ export class AllItemsComponent implements OnInit {
   precioHasta:number;
   conditionCard:boolean=false;
   msg:string;
+  discountCard:boolean=false;
   constructor(private router: Router,private favoriteService: FavoriteService,private itemService: ItemService,private sellService:SellService, private categoryService1: ListCategoryService) { }
 
   ngOnInit() {
@@ -117,6 +119,7 @@ export class AllItemsComponent implements OnInit {
     this.popup7=true;
     this.popup8=true;
     this.popup9=true;
+    this.popup10=true;
     this.popupFechaPubli=true;
     this.popupCond=true;
   }
@@ -341,5 +344,38 @@ export class AllItemsComponent implements OnInit {
       alert(this.msg);
     }  
   }
-  
+  findDiscount(discount:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(100-((this.itemList[i].priceDiscount*100)/this.itemList[i].priceNormal)>=discount&&this.itemList[i].priceDiscount>0){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    //this.discountCard=true;
+  }
+  freeShipping(logisticsName:string){
+    this.itemListTemp=[];
+    if(logisticsName=="all"){
+      for (var i = 0; i < this.itemList.length; i++) {
+        if(this.itemList[i].productPagoEnvio=="gratis"){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }else{
+      for (var i = 0; i < this.itemList.length; i++) {
+        if(this.itemList[i].productPagoEnvio=="gratis"&&this.itemList[i].logisticsName==logisticsName){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+  }
+  popupDiscount(){
+    this.popup10=false;
+  }
 }

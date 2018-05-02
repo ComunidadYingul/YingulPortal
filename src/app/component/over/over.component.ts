@@ -62,6 +62,9 @@ export class OverComponent implements OnInit {
   conditionCard:boolean=false;
   motorizedList:Motorized[];
   cityCard2:boolean=true;//solo para solucionar el error
+  discountCard:boolean=false;
+  freeShipingCard:boolean=false;
+  popup10:boolean=true;
   constructor(private itemService: ItemService, private categoryService: CategoryService, private categoryService1: ListCategoryService,private sellService:SellService,private router: Router, private favoriteService: FavoriteService,private indexService: IndexService) { }
 
   ngOnInit() {
@@ -124,6 +127,7 @@ export class OverComponent implements OnInit {
     this.popup7=true;
     this.popup8=true;
     this.popup9=true;
+    this.popup10=true;
     this.popupFechaPubli=true;
     this.popupCond=true;
   }
@@ -397,6 +401,40 @@ export class OverComponent implements OnInit {
   }
   findUsed2(){
     this.findUsed();
+    this.popupHide();
+  }
+  popupDiscount(){
+    this.popup10=false;
+  }
+  findDiscount(discount:number){
+    this.itemListTemp=[];
+    for (var i = 0; i < this.itemList.length; i++) {
+      if(100-((this.itemList[i].priceDiscount*100)/this.itemList[i].priceNormal)>=discount&&this.itemList[i].priceDiscount>0){
+        this.itemListTemp.push(this.itemList[i]);
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
+    this.popupHide();
+    //this.discountCard=true;
+  }
+  freeShipping(logisticsName:string){
+    this.itemListTemp=[];
+    if(logisticsName=="all"){
+      for (var i = 0; i < this.itemList.length; i++) {
+        if(this.itemList[i].productPagoEnvio=="gratis"){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }else{
+      for (var i = 0; i < this.itemList.length; i++) {
+        if(this.itemList[i].productPagoEnvio=="gratis"&&this.itemList[i].logisticsName==logisticsName){
+          this.itemListTemp.push(this.itemList[i]);
+        }
+      }
+    }
+    this.itemList=[];
+    this.itemList=this.itemListTemp;
     this.popupHide();
   }
 }

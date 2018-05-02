@@ -325,7 +325,7 @@ export class IcdetailComponent implements OnInit {
   findDiscount(discount:number){
     this.itemListTemp=[];
     for (var i = 0; i < this.itemList.length; i++) {
-      if((this.itemList[i].priceDiscount*100)/this.itemList[i].priceNormal>=discount){
+      if(100-((this.itemList[i].priceDiscount*100)/this.itemList[i].priceNormal)>=discount&&this.itemList[i].priceDiscount>0){
         this.itemListTemp.push(this.itemList[i]);
       }
     }
