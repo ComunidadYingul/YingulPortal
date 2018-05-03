@@ -41,17 +41,7 @@ export class NavbarComponent implements OnInit {
 
 	profilePhoto:string="";
 	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService,private aboutService:AboutService, private userService:UserService) {
-    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
-			this.loggedIn = false;
-			this.User = new user();
-		
-		} else {
-			this.loggedIn = true;
-			this.User=JSON.parse(localStorage.getItem("user"));
-			this.getQueries();
-			this.getProfilePhoto();
-			this.getPerson();
-		}
+    
 	}
 
 	logout(){
@@ -207,6 +197,18 @@ export class NavbarComponent implements OnInit {
 				error => console.log(error)
 		);
 		
+	}
+	ngAfterViewInit(){
+		if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+			this.loggedIn = false;
+			this.User = new user();
+		} else {
+			this.loggedIn = true;
+			this.User=JSON.parse(localStorage.getItem("user"));
+			this.getQueries();
+			this.getProfilePhoto();
+			this.getPerson();
+		}
 	}
 }
 

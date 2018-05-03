@@ -104,6 +104,9 @@ export class StoresComponent implements OnInit {
   constructor(private storeService : StoreService) { }
 
   ngOnInit() {
+    
+  }
+  ngAfterViewInit(){
     this.storeService.findAll().subscribe(
 			res => {
             this.storeList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
