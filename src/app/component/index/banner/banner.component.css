@@ -1,9 +1,13 @@
 @media screen and (max-width: 992px) {
-    .phone {        
+    .phone {      
         display: none;
 	}
 	.phoneMirrow{
 		display: inline;
+	}
+	img{
+		object-fit: cover;
+		height: 210px;
 	}
 }
 @media screen and (min-width: 993px) {

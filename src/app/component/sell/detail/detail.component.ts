@@ -286,7 +286,7 @@ public item: Item=new Item();
           //revisar si el stock funciona bien this.product.productQuantity=this.productQuantity;
           this.product.productWarranty=this.productWarranty;
           this.product.productPeso=this.productPeso;
-          this.product.producVolumen=(this.productLength*this.productHeight*this.productWidth).toString();
+          this.product.producVolumen=""+this.productLength*this.productHeight*this.productWidth;
           this.product.productLength=this.productLength;
           this.product.productHeight=this.productHeight;
           this.product.productWidth=this.productWidth;
@@ -1398,5 +1398,16 @@ public item: Item=new Item();
     };
     i.src=window.URL.createObjectURL(f);
   }
-
+  categoryType():string{
+    if(this.typeCat=="Product"){
+      this.typeCatEs="Producto";
+    }
+    if(this.typeCat=="Property"){
+      this.typeCatEs="Inmueble";  
+    }
+    if(this.typeCat=="Motorized"){
+      this.typeCatEs="Vehículo";
+    }  
+    return this.typeCatEs;
+  }
 }

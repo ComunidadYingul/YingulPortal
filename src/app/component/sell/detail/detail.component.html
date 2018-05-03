@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <span class="input-group-addon">Titulo:</span>
                             <input id="title" type="text" class="form-control" placeholder="Titulo Ej: Camisa Lacoste Hombre Manga Laraga" name="title" [(ngModel)]="title">
                         </div>
                         <div class="error-g row">
@@ -57,8 +57,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-copy-alt"></i></span>
-                            <input type="text" class="form-control" placeholder="Description" name="description" [(ngModel)]="description">
+                            <span class="input-group-addon">Descripción:</span>
+                            <input type="text" class="form-control" placeholder="Descripción" name="description" [(ngModel)]="description">
                         </div>
                         <div class="error-g row">
                             <p></p>
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-all-caps"></i></span>
+                            <span class="input-group-addon">Link del video:</span>
                             <input type="text" class="form-control" placeholder="Link desde Youtube" name="video" [(ngModel)]="video"
                             >
                             
@@ -115,7 +115,7 @@
             <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+                            <span class="input-group-addon">Cantidad:</span>
                             <input id="productQuantity" type="text" (keypress)="keyPress($event)" class="form-control" placeholder="Cantidad Ej: 1" name="productQuantity" [(ngModel)]="productQuantity">
                         </div>
                         <div class="error-g row">
@@ -127,7 +127,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon"><i  class="icofont icofont-all-caps"></i></span>
+                        <span class="input-group-addon">Peso en gr:</span>
                         <input id="productPeso" type="text" class="form-control" (keypress)="keyPress($event)" placeholder="Peso Neto del item en gr. Ej: 1000" name="productPeso" [(ngModel)]="productPeso">
 
                     </div>
