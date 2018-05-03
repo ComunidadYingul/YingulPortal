@@ -108,6 +108,16 @@
 .card-items:hover .heart-img{
     display: flex;
 } 
+/*********** CAMBIOS G **********/
+.banner_g{
+    height: 300px;
+}
+@media (min-width:992px){
+    .banner_g{
+        height: 400px;
+    }
+}
+/**********************/
 @media (max-width: 976px){
     .row{
         justify-content: center;

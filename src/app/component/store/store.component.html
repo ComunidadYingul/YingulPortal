@@ -1,17 +1,58 @@
 <!-- Page-body start -->
 <div class="page-body">
-  <div class="row">
+  <div style="margin:0;" class="row">
       <div class="col-sm-12">
           <div>
               <div class="content social-timeline">
                   <div class="">
                       <!-- Row Starts -->
-                      <div class="row">
-                          <div class="col-md-12">
+                      <div style="    margin-bottom: 3em;" class="row">
+                            <div class="banner_g">
+                                <div class="social-wallpaper">
+                                    <img class="image-banner img-fluid width-100" alt="" *ngIf="store.bannerImage" src="{{BUCKET_URL}}store/{{store.bannerImage}}"/>
+                                </div>
+                                <!-- social-profile card start -->
+                                <div class="card-perfil card">
+                                    <div class="social-profile">
+                                        <img class="foto-perfil img-fluid width-100" *ngIf="store.mainImage" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
+                                    </div>
+                                    <div class="card-block social-follower">
+                                        <h4>{{store.name}}</h4>
+                                        <h5>{{store.summary}}</h5>
+                                        <!--<div class="row follower-counter">
+                                            <div class="col-md-12 col-lg-4">
+                                                <div class="txt-primary">485</div>
+                                                <div>Followings</div>
+                                            </div>
+                                            <div class="col-md-12 col-lg-4">
+                                                <div class="txt-primary">2k</div>
+                                                <div>Followers</div>
+                                            </div>
+                                            <div class="col-md-12 col-lg-4">
+                                                <div class="txt-primary">90</div>
+                                                <div>Activities</div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-outline-primary waves-effect"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
+                                        </div>-->
+                                    </div>
+                                </div>
+                                <!-- social-profile card end -->
+                                <div class="social-icons">
+                                    <a style="color:#3b5998;" class="fa fa-facebook-square" href="javascript:void(0)"></a>
+                                    <a style="color:#55acee;" class="fa fa-twitter-square" href="javascript:void(0)"></a>
+                                    <a style="color:#125688;" class="fa fa-instagram" href="javascript:void(0)"></a>
+                                    <a style="color:#dd4b39;" class="fa fa-google-plus-square" href="javascript:void(0)"></a>
+                                </div>
+                            </div>
+                      </div>
+                      <!--div class="row">
+                          <div class="col-md-12"-->
                               <!-- Social wallpaper start -->
-                              <div class="social-wallpaper">
+                              <!--div class="social-wallpaper">
                                   <img  style="max-height: 300px;" *ngIf="store.bannerImage" src="{{BUCKET_URL}}store/{{store.bannerImage}}" class="img-fluid width-100" alt="" />
-                              </div>
+                              </div-->
                               <!-- Social wallpaper end -->
                               <!-- Timeline button start -->
                               <!--<div class="timeline-btn">
@@ -19,22 +60,22 @@
                                   <a href="#" class="btn btn-primary waves-effect waves-light">Send Message</a>
                               </div>-->
                               <!-- Timeline button end -->
-                          </div>
-                      </div>
+                          <!--/div>
+                      </div-->
                       <!-- Row end -->
                       <!-- Row Starts -->
                       <div class="row">
                           <div class="col-xl-3 col-lg-4 col-md-4 col-xs-12">
                               <!-- Social timeline left start -->
-                              <div class="social-timeline-left row">
+                              <div style="position:static;" class="social-timeline-left row">
                                   <!-- social-profile card start -->
-                                  <div class="card col-md-12 col-sm-5 col-5">
+                                  <!--div class="card col-md-12 col-sm-5 col-5">
                                       <div class="social-profile">
                                           <img style="max-height:230px;" *ngIf="store.mainImage" class="img-fluid width-100" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
                                       </div>
                                       <div class="card-block social-follower">
                                           <h4>{{store.name}}</h4>
-                                          <h5>{{store.summary}}</h5>
+                                          <h5>{{store.summary}}</h5-->
                                           <!--<div class="row follower-counter">
                                               <div class="col-md-12 col-lg-4">
                                                   <div class="txt-primary">485</div>
@@ -52,9 +93,9 @@
                                           <div class="btn-group">
                                               <button type="button" class="btn btn-outline-primary waves-effect"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
                                           </div>-->
-                                      </div>
+                                      <!--/div>
                                   </div>
-                                  <div class="col-sm-1 col-1"></div>
+                                  <div class="col-sm-1 col-1"></div-->
                                   <!-- social-profile card end -->
                                   <div class="card col-md-12 col-sm-5 col-5" *ngIf="store.video" >
                                         <div  class="cd-timeline-content card_main align-video-center">
