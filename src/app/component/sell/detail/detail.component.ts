@@ -1398,5 +1398,16 @@ public item: Item=new Item();
     };
     i.src=window.URL.createObjectURL(f);
   }
-
+  categoryType():string{
+    if(this.typeCat=="Product"){
+      this.typeCatEs="Producto";
+    }
+    if(this.typeCat=="Property"){
+      this.typeCatEs="Inmueble";  
+    }
+    if(this.typeCat=="Motorized"){
+      this.typeCatEs="Vehículo";
+    }  
+    return this.typeCatEs;
+  }
 }
