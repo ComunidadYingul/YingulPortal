@@ -66,3 +66,79 @@
 	padding-bottom: 0;
 	padding-top: 0;
 }
+/****************** DISEÑO BANNER PERFIL DE USUARIO *********************/
+.banner_g{
+	position: relative;
+	margin-bottom: 200px;
+}
+.banner_g .social-profile{
+	margin: 0;
+    padding: 5px;
+    background: white;
+    border-radius: 4px;
+}
+.image-banner{
+	object-fit: cover;
+	height: 300px;
+}
+.card-perfil{
+	background: transparent;
+    position: absolute;
+    z-index: 1;
+    bottom: -180px;
+    border: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+	align-items: center;
+	box-shadow: none;
+}
+.foto-perfil{
+	width: 150px;
+}
+.card-perfil h4{
+	font-size: 1.5em;
+}
+.card-perfil h5{
+	font-size: 1em;
+}
+.social-icons{
+	position: absolute;
+	display: flex;
+    justify-content: space-around;
+	width: 100%;
+	bottom: -200px;
+}
+.social-icons a{
+	font-size: 4em;
+}
+
+@media (min-width:1024px){
+	.banner_g{
+		margin-bottom: 70px;
+	}
+	.card-perfil{
+		flex-direction: row;
+		bottom: -100px;
+		width: auto;
+		left: 50px;
+		align-items: flex-end;
+		bottom: -110px;
+	}
+	.card-perfil h4{
+		font-size: 2em;
+		margin-bottom: 5px;
+	}
+	.card-perfil h5{
+    	font-size: .9em;
+	}
+	.social-follower{
+		text-align: left;
+		padding: 1rem;
+	}
+	.social-icons{
+		width: 400px;
+		bottom: -60px;
+		right: 0;
+	}
+}
