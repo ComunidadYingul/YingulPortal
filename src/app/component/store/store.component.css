@@ -160,13 +160,17 @@ a.card-desc .item-name-e{
 /****************** DISEÑO BANNER PERFIL DE USUARIO *********************/
 .banner_g{
 	position: relative;
-	margin-bottom: 200px;
+    margin-bottom: 200px;
+    width: 100%;
 }
 .banner_g .social-profile{
 	margin: 0;
     padding: 5px;
     background: white;
     border-radius: 4px;
+    width: 160px;
+    height: 160px;
+    min-width: 160px;
 }
 .image-banner{
 	object-fit: cover;
@@ -176,7 +180,7 @@ a.card-desc .item-name-e{
 	background: transparent;
     position: absolute;
     z-index: 1;
-    bottom: -180px;
+    top: 200px;
     border: none;
     width: 100%;
     display: flex;
@@ -185,7 +189,9 @@ a.card-desc .item-name-e{
 	box-shadow: none;
 }
 .foto-perfil{
-	width: 150px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }
 .card-perfil h4{
 	font-size: 1.5em;
@@ -194,11 +200,9 @@ a.card-desc .item-name-e{
 	font-size: 1em;
 }
 .social-icons{
-	position: absolute;
 	display: flex;
     justify-content: space-around;
 	width: 100%;
-	bottom: -200px;
 }
 .social-icons a{
 	font-size: 4em;
@@ -206,8 +210,8 @@ a.card-desc .item-name-e{
 
 @media (min-width:1024px){
 	.banner_g{
-		margin-bottom: 70px;
-	}
+        margin-bottom: 70px;
+    }
 	.card-perfil{
 		flex-direction: row;
 		bottom: -100px;
@@ -225,11 +229,6 @@ a.card-desc .item-name-e{
 	}
 	.social-follower{
 		text-align: left;
-		padding: 1rem;
-	}
-	.social-icons{
-		width: 400px;
-		bottom: -60px;
-		right: 0;
+		padding: 0;
 	}
 }

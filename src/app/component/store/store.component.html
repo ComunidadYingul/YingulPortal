@@ -6,7 +6,7 @@
               <div class="content social-timeline">
                   <div class="">
                       <!-- Row Starts -->
-                      <div style="    margin-bottom: 3em;" class="row">
+                      <div style="margin-bottom: 7em;" class="row">
                             <div class="banner_g">
                                 <div class="social-wallpaper">
                                     <img class="image-banner img-fluid width-100" alt="" *ngIf="store.bannerImage" src="{{BUCKET_URL}}store/{{store.bannerImage}}"/>
@@ -14,7 +14,9 @@
                                 <!-- social-profile card start -->
                                 <div class="card-perfil card">
                                     <div class="social-profile">
-                                        <img class="foto-perfil img-fluid width-100" *ngIf="store.mainImage" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
+                                        <!--div class="foto"-->
+                                            <img class="foto-perfil img-fluid width-100" *ngIf="store.mainImage" src="{{BUCKET_URL}}store/{{store.mainImage}}" alt="">
+                                        <!--/div-->
                                     </div>
                                     <div class="card-block social-follower">
                                         <h4>{{store.name}}</h4>
@@ -37,14 +39,14 @@
                                             <button type="button" class="btn btn-outline-primary waves-effect"><i class="icofont icofont-ui-user m-r-10"></i> Add as Friend</button>
                                         </div>-->
                                     </div>
+                                    <div class="social-icons">
+                                        <a style="color:#3b5998;" class="fa fa-facebook-square" href="javascript:void(0)"></a>
+                                        <a style="color:#55acee;" class="fa fa-twitter-square" href="javascript:void(0)"></a>
+                                        <a style="color:#125688;" class="fa fa-instagram" href="javascript:void(0)"></a>
+                                        <a style="color:#dd4b39;" class="fa fa-google-plus-square" href="javascript:void(0)"></a>
+                                    </div>
                                 </div>
                                 <!-- social-profile card end -->
-                                <div class="social-icons">
-                                    <a style="color:#3b5998;" class="fa fa-facebook-square" href="javascript:void(0)"></a>
-                                    <a style="color:#55acee;" class="fa fa-twitter-square" href="javascript:void(0)"></a>
-                                    <a style="color:#125688;" class="fa fa-instagram" href="javascript:void(0)"></a>
-                                    <a style="color:#dd4b39;" class="fa fa-google-plus-square" href="javascript:void(0)"></a>
-                                </div>
                             </div>
                       </div>
                       <!--div class="row">
