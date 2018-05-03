@@ -65,11 +65,25 @@
         margin-left: 0;
     }
 }
-@media (max-width:480px){
+@media (max-width:992px){
+    #content-logo.navbar-logo div{
+        left: 100px;
+    }
+    .yingul-text{
+        display: none;
+    }
+    .yingul-logo{
+        margin-left: 43px;
+    }
+}
+@media (max-width:385px){
     #content-logo.navbar-logo div{
         left: 58px;
     }
     .yingul-text{
+        display: none;
+    }
+    .yingul-logo{
         display: none;
     }
 }

@@ -1,3 +1,16 @@
+.text-menu-e{
+    color: white;
+    display: block;
+    padding: 10px 20px;
+}
+.i-menu-e{
+    margin-right: 15px;
+}
+.i-plus-e{
+    float:right;
+    padding-top:4px;
+    margin-right:0px;
+}
 @media (max-width: 480px){
     .btn-descargar{
         width: 100%;
