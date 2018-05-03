@@ -81,7 +81,7 @@ export class NavbarComponent implements OnInit {
   }
 
 	menu(){
-    this.Menu.emit('menu');
+    	this.Menu.emit('menu');
 	}
 	getQueries(){
 		this.queryService.getQueriesByUser(this.User.username).subscribe(

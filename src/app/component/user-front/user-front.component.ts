@@ -56,7 +56,6 @@ export class UserFrontComponent implements OnInit {
 		this.confirmService.getNumberPendingDeliveriesForUser(this.User.username).subscribe(
 			res => {
 						this.deliveries = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-						alert(this.deliveries);
       		},
       		error => console.log(error)
 		);

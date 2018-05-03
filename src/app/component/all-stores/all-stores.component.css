@@ -108,6 +108,16 @@
 .card-items:hover .heart-img{
     display: flex;
 } 
+/*********** CAMBIOS G **********/
+.banner_g{
+    height: 300px;
+}
+@media (min-width:992px){
+    .banner_g{
+        height: 400px;
+    }
+}
+/**********************/
 @media (max-width: 976px){
     .row{
         justify-content: center;
@@ -122,7 +132,7 @@
         height: 226px;
     }
     .card-img{
-        height: 152px;
+        /*height: 152px;*/
     }
     .card-desc{
         height: 74px;
@@ -140,4 +150,54 @@
     .card-items .heart-img{
         display: flex;
     } 
+}
+@media (max-width: 370px){
+    .card-img{
+        height: 102px;
+    }
+}
+@media only screen and (min-width: 370px) and (max-width: 476px){
+    .card-img{
+        height: 115px;
+    }
+}
+@media only screen and (min-width: 477px) and (max-width: 520px){
+    .card-img{
+        height: 140px;
+    }
+}
+@media only screen and (min-width: 521px) and (max-width: 630px){
+    .card-img{
+        height: 155px;
+    }
+}
+@media only screen and (min-width: 631px) and (max-width: 768px){
+    .card-img{
+        height: 120px;
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 800px){
+    .card-img{
+        height: 157px;
+    }
+}
+@media only screen and (min-width: 801px) and (max-width: 992px){
+    .card-img{
+        height: 124px;
+    }
+}
+@media only screen and (min-width: 993px) and (max-width: 1200px){
+    .card-img{
+        height: 172px;
+    }
+}
+@media only screen and (min-width: 1201px) and (max-width: 1300px){
+    .card-img{
+        height: 190px;
+    }
+}
+@media only screen and (min-width: 1301px){
+    .card-img{
+        height: 210px;
+    }
 }

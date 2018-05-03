@@ -142,7 +142,7 @@
         </div>
     </div>
     <div *ngIf="isOtro()">
-            <h5>Tu ubicacion</h5>
+            <h5>Ubicacion del <span *ngIf="typeCatPre=='Service'">servicio</span><span *ngIf="typeCatPre=='Property'">inmueble</span><span *ngIf="typeCatPre=='Motorized'">vehículo</span></h5>
             <div class="row">
                 <div  class="col-sm-6" >
                     <select id="country" class="form-control form-control-primary" #w (change)="getProvince(w.value)">

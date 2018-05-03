@@ -7,7 +7,175 @@
  Pre-loader end -->
 
 <app-navbar (Menu)="menuE($event)"></app-navbar>
+<!--primera modificacion para el menú-->
+<nav *ngIf="menu" class="pcoded-navbar" style="position: absolute;" >
+    <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+    <div class="pcoded-inner-navbar main-menu">
+        <div class="" *ngIf="loggedIn">
+            <div class="main-menu-header">
+                <img style="border-radius:50%;" class="img-40" src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profilePhoto}}" alt="User-Image">
+                <div class="user-details">
+                    <span>{{person.name}} {{person.lastname}}</span>
+                    <span id="more-details">Ventas Yingul<i class="ti-angle-down" (click)="showUserMenu()"></i></span>
+                </div>
+            </div>
+        </div>
+        <ul [hidden]="userMenu">
+            <li>
+                <a class="text-menu-e" href="/userFront"><i class="i-menu-e ti-user"></i>Mi cuenta</a>
+                <a class="text-menu-e" href="/userFront/userProfile"><i class="i-menu-e ti-settings"></i>Mis datos</a>
+                <a class="text-menu-e" style="cursor: pointer; color: white;" (click)="logout()"><i class="i-menu-e ti-layout-sidebar-left"></i>Salir</a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a class="text-menu-e" href="/userFront">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-home"></i></span>
+                    <span class="pcoded-mtext" data-i18n="nav.dash.main">Resúmen</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a class="text-menu-e" href="/userFront/favorites" >
+                    <span class="pcoded-micon"><i class="i-menu-e ti-star"></i></span>
+                    <span class="pcoded-mtext">Favoritos</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a class="text-menu-e" href="/listPublications/1">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-layout-grid2-alt"></i></span>
+                    <span class="pcoded-mtext">Publicaciones</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="" (click)="showPurchasesMenu()">
+                <a class="text-menu-e" href="javascript:void(0)" data-i18n="nav.advance-components.main">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-shopping-cart"></i></span>
+                    <span class="pcoded-mtext">Compras</span>
+                    <span class="pcoded-mcaret"></span>
+                    <i class="i-plus-e i-menu-e ti-plus"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item" [hidden]="purchasesMenu">
+            <li class="" >
+                <a class="text-menu-e" href="userFront/purchases/query" data-i18n="nav.navigate.navbar-inverse">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Preguntas</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a class="text-menu-e" href="userFront/purchases" data-i18n="nav.navigate.navbar-with-elements">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Compras</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="" (click)="showSalesMenu()">
+                <a class="text-menu-e" href="javascript:void(0)" data-i18n="nav.extra-components.main">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-credit-card"></i></span>
+                    <span class="pcoded-mtext">Ventas</span>
+                    <span class="pcoded-mcaret"></span>
+                    <i class="i-plus-e i-menu-e ti-plus"></i>
+                </a>     
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item" [hidden]=salesMenu>
+            <li class="">
+                <a class="text-menu-e" href="userFront/sales/query" data-i18n="nav.basic-components.breadcrumbs">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Preguntas</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a class="text-menu-e" href="userFront/sales" data-i18n="nav.basic-components.button">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Ventas</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="" (click)="showConfigurationMenu()">
+                <a class="text-menu-e" href="javascript:void(0)" data-i18n="nav.animations.main">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-settings"></i></span>
+                    <span class="pcoded-mtext">Configuración</span>
+                    <span class="pcoded-mcaret"></span>
+                    <i class="i-plus-e i-menu-e ti-plus"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item" [hidden]="configurationMenu">
+            <li class=" active">
+                <a class="text-menu-e" href="/userFront/userProfile" data-i18n="nav.basic-components.breadcrumbs">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Mis datos</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a class="text-menu-e" href="/userFront/chat" data-i18n="nav.chat.main">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-comments"></i></span>
+                    <span class="pcoded-mtext">Chat</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class=" pcoded-hasmenu" (click)="showPayMenu()">
+                <a class="text-menu-e" href="javascript:void(0)" data-i18n="nav.crm-contact.main">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-reload rotate-refresh"></i></span>
+                    <span class="pcoded-mtext">Yingul Pay</span>
+                    <span class="pcoded-mcaret"></span>
+                    <i class="i-plus-e i-menu-e ti-plus"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item" [hidden]="payMenu">
+            <li class="">
+                <a class="text-menu-e" href="/frontYingulPay" data-i18n="nav.navigate.navbar-inverse">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Yingul Pay</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a class="text-menu-e" href="/frontYingulPay/userBalance" data-i18n="nav.navigate.navbar-with-elements">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Actividad</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a class="text-menu-e" href="/frontYingulPay/withdraw" data-i18n="nav.navigate.navbar-with-elements">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-angle-right"></i></span>
+                    <span class="pcoded-mtext">Solicitar dinero</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-item pcoded-left-item">
+            <li class="">
+                <a class="text-menu-e" href="/createStore" data-i18n="nav.basic-components.collapse–accordion">
+                    <span class="pcoded-micon"><i class="i-menu-e ti-shopping-cart-full"></i></span>
+                    <span class="pcoded-mtext">Yingul Shop</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <router-outlet></router-outlet>
+
+<!--primera modificacion para el menú-->
+
 <div class="card">
     <div class="row">
         <div class="col-sm-12" >
@@ -81,13 +249,13 @@
                     <!--<p style="font-size: 14px; line-height: 0; padding-left:4em">Trabajá con nosotros</p>-->
                     <p style="font-size: 14px; padding-left:4em"><a style="color:#292b2c;" target="_blank" href="https://s3-us-west-2.amazonaws.com/jsa-s3-bucketimage/politicas/terminos-y-condiciones-de-uso.pdf">Términos y condiciones</a></p> 
                     <!--<p style="font-size: 14px; line-height: 0; padding-left:4em">Políticas de privacidad</p> -->
-                    <p style="font-size: 14px; padding-left:4em">Ayuda</p>
+                    <p class="hiddePhone" style="font-size: 14px; padding-left:4em">Ayuda</p>
                     <p style="font-size: 14px; padding-left:4em"><a style="color:#292b2c;" href="/about/contactUs">Contáctanos</a></p>
                 </div>
                 <div class="row" >
                     <div class="col-sm-12" style="display:flex; justify-content:space-between; padding-left:4em; padding-right:4em; align-items:center; flex-wrap:wrap;">
-                        <p style="color: #999; font-size: 13px; "> Copyright © 1999-2018 Yingul S.R.L</p>
-                        <p class="btn btn-descargar" style="background-color: #ff5e3a; border-color: #ff5e3a; color: #fff; cursor: pointer; transition: all ease-in 0.3s;"><i class="icofont icofont-ui-touch-phone"></i><span>¡Descargá gratis la app de Yingul!</span></p>
+                        <p class="hiddePhone" style="color: #999; font-size: 13px; "> Copyright © 1999-2018 Yingul S.R.L</p>
+                        <p class="btn btn-descargar" style="background-color: #ff5e3a; border-color: #ff5e3a; color: #fff; cursor: pointer; transition: all ease-in 0.3s;"><i class="icofont icofont-ui-touch-phone"></i><span>¡Descargá <span class="hiddePhone">gratis </span>la app<span class="hiddePhone"> de Yingul</span>!</span></p>
                     </div>
                 </div>
             </div>

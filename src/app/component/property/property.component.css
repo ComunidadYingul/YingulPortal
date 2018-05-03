@@ -251,7 +251,7 @@ a.card-desc .item-name-e{
     }
     .card-items{
         margin: 0 4px 4px;
-        width: 152px;
+        width: 135px;
         height: 270px;
     }
     .card-img{
@@ -279,9 +279,11 @@ a.card-desc .item-name-e{
     a.card-desc .item-desc{
         font-size: 10px;
         color: #333;
+        line-height: 120%;
     }
     a.card-desc .item-name-e{
         font-size: 12px;
         color: #666;
+        line-height: 120%;
     }
 }
