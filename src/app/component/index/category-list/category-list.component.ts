@@ -7,6 +7,7 @@ import { ListCategoryService } from '../../../service/list-category.service'
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
+  loaded:boolean=false;
   categoryList: Object[];
   slideConfig3={
     "typeSlide":"category",
@@ -102,7 +103,7 @@ export class CategoryListComponent implements OnInit {
   constructor(private categoryService: ListCategoryService) { }
 
   ngOnInit() {
-    this.getCategories();
+    
   }
   getCategories() {
     this.categoryService.getCategories("Product/0").subscribe(
@@ -111,5 +112,9 @@ export class CategoryListComponent implements OnInit {
       		},
       		error => console.log(error)
     )
+  }
+  ngAfterViewInit(){
+    this.getCategories();
+    this.loaded=true;
   }
 }

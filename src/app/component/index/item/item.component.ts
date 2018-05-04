@@ -124,22 +124,26 @@ export class ItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
-      this.User = new user();
-		} else {
-      this.User=JSON.parse(localStorage.getItem("user"));
-      this.getItemFavorite();
-		}
-    this.getItems();
-    //this.getProduct();
+    
   }
   getItems() {
+    this.itemService.getOver20first(true).subscribe(
+			res => {
+            this.overList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.getFalse20index();
+      		},
+      		error => console.log(error)
+    );
+  }
+  getFalse20index(){
     this.itemService.getOver20first(false).subscribe(
 			res => {
             this.itemList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
       		},
       		error => console.log(error)
     );
+  }
+  getTrue20index(){
     this.itemService.getOver20first(true).subscribe(
 			res => {
             this.overList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -213,7 +217,7 @@ export class ItemComponent implements OnInit {
   }
   redirectTo(){
     if(this.msg=='save'){ 
-      this.ngOnInit();
+      this.ngAfterViewInit();
     }else{
       alert(this.msg);
     } 
@@ -236,5 +240,14 @@ export class ItemComponent implements OnInit {
   }
   click(){
     alert("kanf");
+  }
+  ngAfterViewInit(){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
+      this.User = new user();
+		} else {
+      this.User=JSON.parse(localStorage.getItem("user"));
+      this.getItemFavorite();
+		}
+    this.getItems();
   }
 }

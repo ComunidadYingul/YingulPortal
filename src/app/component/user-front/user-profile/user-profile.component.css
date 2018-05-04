@@ -70,12 +70,16 @@
 .banner_g{
 	position: relative;
 	margin-bottom: 200px;
+	width: 100%;
 }
 .banner_g .social-profile{
 	margin: 0;
     padding: 5px;
     background: white;
-    border-radius: 4px;
+	border-radius: 4px;
+	width: 160px;
+    height: 160px;
+    min-width: 160px;
 }
 .image-banner{
 	object-fit: cover;
@@ -85,7 +89,7 @@
 	background: transparent;
     position: absolute;
     z-index: 1;
-    bottom: -180px;
+    top: 200px;
     border: none;
     width: 100%;
     display: flex;
@@ -95,6 +99,8 @@
 }
 .foto-perfil{
 	width: 150px;
+	height: 150px;
+    object-fit: cover;
 }
 .card-perfil h4{
 	font-size: 1.5em;
@@ -103,11 +109,9 @@
 	font-size: 1em;
 }
 .social-icons{
-	position: absolute;
 	display: flex;
     justify-content: space-around;
 	width: 100%;
-	bottom: -200px;
 }
 .social-icons a{
 	font-size: 4em;
@@ -135,10 +139,7 @@
 	.social-follower{
 		text-align: left;
 		padding: 1rem;
-	}
-	.social-icons{
-		width: 400px;
-		bottom: -60px;
-		right: 0;
+		padding: 0;
+		
 	}
 }
