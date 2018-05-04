@@ -43,6 +43,7 @@ export class ShippingComponent implements OnInit {
   andreaniEnvio:AndreaniEnvios=new AndreaniEnvios();
   shipping:Shipping =new Shipping();
   name:string="";
+  lastName:string="";
   phone:string="";
   shippingMethod;
   branch:boolean=true;
@@ -78,6 +79,7 @@ export class ShippingComponent implements OnInit {
   hidBuscarSucursal:boolean=true;
   hidSucursal:boolean=true;
   hidName:boolean=true;
+  hidlastName:boolean=true;
   hidPhone:boolean=true;
 
   hidRadioSucursal:boolean=true;
@@ -201,6 +203,10 @@ export class ShippingComponent implements OnInit {
         this.branch= true;
         this.sendHome=false;
         break;
+      case "fedex":
+      this.branch= true;
+      this.sendHome=false;
+      break;
       default:
 
     }
@@ -467,6 +473,7 @@ export class ShippingComponent implements OnInit {
     resetSucursal(){
       this.hidSucursal=true;
       this.hidName=true;
+      this.hidlastName=true;
       this.hidPhone=true;
       this.hidBuscarSucursal=true;
       this.hidRadioSucursal=true;
@@ -484,11 +491,14 @@ export class ShippingComponent implements OnInit {
         }else if(this.name=="" || this.name==null){
           this.hidName=false;
           this.elem.nativeElement.querySelector('#name').focus();
+        }if(this.lastName=="" || this.lastName==null){
+          this.hidlastName=false;
+          this.elem.nativeElement.querySelector('#lastName').focus();
         }else if(this.phone=="" || this.phone==null){
           this.hidPhone=false;
           this.elem.nativeElement.querySelector('#phone').focus();
         }
-        else{
+        else {
           if(this.shipping.typeShipping=="branch")
           {
             this.typeCotizacion.emit(this.cotizacion);
@@ -497,6 +507,7 @@ export class ShippingComponent implements OnInit {
             this.typeShip.emit("envio");          
             this.shipping.nameContact=this.name;
             this.shipping.phoneContact=this.phone;
+            this.shipping.lastName=this.lastName;
             this.shipping.yng_Quote.yng_Item=null;
             this.shipping.yng_Quote.yng_User=null;
             this.typeEnvio.emit(this.shipping);

@@ -78,7 +78,7 @@
                 <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <span class="input-group-addon">Nombre</span>
                                 <input id="name" type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
                             </div>
                             <div class="error-g row">
@@ -87,9 +87,20 @@
                         </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Apellido</span>
+                            <input id="lastName" type="text" class="form-control" placeholder="Apellido" name="lastName" required [(ngModel)]="lastName">                               
+                        </div>
+                        <div class="error-g row">
+                            <p  [hidden]="hidlastName">* Apellido requerido</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
+                            <span class="input-group-addon">Teléfono </span>
                             <input id="phone" type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
                             <span class="md-line"></span>
                         </div>
@@ -100,11 +111,15 @@
                 </div>
                 </div>
             </div>
+           
+            <br/>
+
+<!--   -->            
             <!--div class="form-radio">
-                <div class="radio radiofill radio-inline">
+                <div class="radio radiofill radio-inline" *ngIf="Item.type!='Motorized'">
                     <label>
-                        <input type="radio" value="false" name="radioInter" #radio (change)="check('branch')" [(ngModel)]="radioSucursalInter">
-                        <i class="helper"></i>Retiro en una sucursal FedEx
+                        <input id="rbRetiroSuc" type="radio" value="false" name="radio" #radio (change)="check('fedex')" [(ngModel)]="radioSucursal">
+                        <i class="helper"></i> Envíos internacio
                     </label>
                     <div class="error-g row">
                         <p  [hidden]="hidRadioSucursal">* Marcar campo</p>
@@ -114,12 +129,12 @@
             <br/>
             <div [hidden]="branch">
                 <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
-                <div class="input-group input-group-button">
-                    <input type="text" (keypress)="keyPressCP($event)" class="form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
-                    <span class="input-group-addon" id="basic-addon10">
-                <button class="btn btn-primary" (click)="quoteSend()">Buscar</button>
-                </span>
-                <a href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
+                <div class="row input-group input-group-button">
+                    <input id="postalCode" type="text" (keypress)="keyPressCP($event)" class="col-sm-6 form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
+                    <span class="col-sm-3 input-group-addon" id="basic-addon10" (click)="quoteSend()">Buscar
+               
+                    </span>
+                    <a class="col-sm-3" href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
                 </div> 
                 <div class="error-g row">
                     <p  [hidden]="hidBuscarSucursal">* Debe ingresar código postal para buscar sucursales cercanas</p>
@@ -137,7 +152,7 @@
                                     <div class="col-sm-12 form-radio">
                                      <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
                                             <label>
-                                                <input type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
+                                                <input id="rbSucursal" type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
                                                 <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
@@ -162,8 +177,8 @@
                 <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
+                                <span class="input-group-addon">Nombre</span>
+                                <input id="name" type="text" class="form-control" placeholder="Nombre" name="name" required [(ngModel)]="name">                               
                             </div>
                             <div class="error-g row">
                                 <p  [hidden]="hidName">* Nombre requerido</p>
@@ -171,10 +186,21 @@
                         </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Apellido</span>
+                            <input id="lastName" type="text" class="form-control" placeholder="Apellido" name="lastName" required [(ngModel)]="lastName">                               
+                        </div>
+                        <div class="error-g row">
+                            <p  [hidden]="hidlastName">* Apellido requerido</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-safety"></i></span>
-                            <input type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
+                            <span class="input-group-addon">Teléfono </span>
+                            <input id="phone" type="text" (keypress)="keyPressCP($event)" class="form-control" name="phone" [(ngModel)]="phone" [value]="phone" placeholder="Telefono" minlength=10 maxlength=10 >
                             <span class="md-line"></span>
                         </div>
                         <div class="error-g row">
@@ -183,8 +209,10 @@
                     </div>
                 </div>
                 </div>
-            </div-->
-            <div class="col-sm-10">
+            </div>
+            
+            <div class="col-sm-10"-->
+                <!-- -->
                 <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip2()">Continuar</a>
             </div>  
         </form>

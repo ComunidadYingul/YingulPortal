@@ -14,4 +14,5 @@ export class Shipping {
     andreani:boolean;
     nameContact:string;
     phoneContact:string;
+    lastName:string;
 }
