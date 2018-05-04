@@ -114,7 +114,7 @@ export class ConfirmComponent implements OnInit {
       this.buy.yng_item=this.Item;
       this.buy.yng_item.user=null;
       this.buy.yng_Payment=this.payment;
-      this.buy.user=this.payment.yng_Card.user;
+      this.buy.user=JSON.parse(localStorage.getItem("user"));
       this.buy.ip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).query));
       this.buy.org=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).org));
       this.buy.lat=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).lat));

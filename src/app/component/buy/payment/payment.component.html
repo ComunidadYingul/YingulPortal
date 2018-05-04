@@ -237,21 +237,26 @@
             <div class="row" [hidden]="msgHid">
                 <div class="col-sm-6">
                     <label class="col-form-label">* Tipo de documento</label>
-                    <select (focus)="focusedf=true" class="form-control" id="typeDocument" name="typeDocument" [(ngModel)]="typeDocument">
-                        <option [value]="DNI">DNI</option>
-                        <option [value]="CUIT">CUIT</option>
+                    <select (focus)="focusedf=true" class="form-control" id="documentType" name="documentType" [(ngModel)]="documentType">
+                        <option value="DNI">DNI</option>
+                        <option value="CUIT">CUIT</option>
                     </select>
                     <div class="error-g row">
                         <p  [hidden]="hidDueYear">* Seleccione año</p>
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <label class="col-form-label">* Numero de documento</label>
-                    <input id="numberDocument" (focus)="focusedf=true" type="text" class="form-control" name="numberDocument" [(ngModel)]="numberDocument" >
+                    <label class="col-form-label">* Número de documento</label>
+                    <input id="documentNumber" (focus)="focusedf=true" type="text" class="form-control" name="documentNumber" [(ngModel)]="documentNumber" >
                     <div class="error-g row">
                         <p  [hidden]="hidFullname">* Nombre completo requerido</p>
                     </div>
                 </div>
+                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='COBRO_EXPRESS'" src="assets/images/e-payment/cash/cobroexpress.png" id="visa" alt="visa.jpg">
+                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='PAGOFACIL'" src="assets/images/e-payment/cash/pagofacil.png" id="visa" alt="visa.jpg">
+                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='ProvinciaNET'" src="assets/images/e-payment/cash/provincia_net.png" id="visa" alt="visa.jpg">
+                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='RAPIPAGO'" src="assets/images/e-payment/cash/rapi-pago-1.png" id="visa" alt="visa.jpg">
+                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='RIPSA'" src="assets/images/e-payment/cash/ripsa_pagos.png" id="visa" alt="visa.jpg">
             </div>  
             <br/>
             <div class="col-sm-10">

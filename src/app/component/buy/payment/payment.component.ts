@@ -12,6 +12,7 @@ import {Pipe} from '@angular/core';
 import { AndreaniSucursalRespuesta } from '../../../model/andreaniSucursalRespuesta';
 import { AndreaniEnvios } from '../../../model/andreaniEnvios';
 import { Network } from '../../../model/Network';
+import { CashPayment } from '../../../model/cash-payment';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -51,8 +52,9 @@ export class PaymentComponent implements OnInit {
   //fin datos recuperados del formulario
   User: user=new user();
   payment:Payment= new Payment();
-  typeDocument:string="DNI";
-  numberDocument:number;
+  documentType:string="DNI";
+  documentNumber:string;
+  cashPayment:CashPayment=new CashPayment();
   /*****************************************************/
   hidPaymentMethod:boolean=true;
   hidProvider:boolean=true;
@@ -101,6 +103,7 @@ export class PaymentComponent implements OnInit {
       this.msgHid=true;
       if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD")
       {
+        this.payment.cashPayment=null;
         this.debitHid=false;
         this.payment.name="CARDPAYMENT";
         this.payment.type="CARD";
@@ -123,8 +126,14 @@ export class PaymentComponent implements OnInit {
       else{
         if(listcardId=="COBRO_EXPRESS"||listcardId=="PAGOFACIL"||listcardId=="ProvinciaNET"||listcardId=="RAPIPAGO"||listcardId=="RIPSA"){
           this.msgHid=false;
+          this.payment.name="CASHPAYMENT";
+          this.payment.type="CASH";
+          this.payment.yng_Card=null;
+          this.cashPayment.paymentMethod=listcardId;
+          this.payment.cashPayment=this.cashPayment;
         }
         else{
+          this.payment.cashPayment=null;
           this.buyService.getCardProvider(listcardId).subscribe(
             res => {
                   this.cardProviderList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -160,28 +169,33 @@ export class PaymentComponent implements OnInit {
     esto es para la s cuotas con tarjeta de credito
   }*/
   sendTypePay(){
-    if(this.validarTypePay()){
-      //datos del fomulario para tarjetas 
-      var cadena:string = this.cardNumber;
-      var CadenaSinBlancos:string="";
-      for (var x=0; x< cadena.length; x++)
-      {
-        if (cadena.charAt(x) != ' ')
-        {
-        CadenaSinBlancos += cadena.charAt(x); 
+    //if(this.validarTypePay()){
+        if(this.payment.type=="CASH"){
+          this.payment.cashPayment.documentNumber=this.documentNumber;
+          this.payment.cashPayment.documentType=this.documentType;
+        }else{
+          //datos del fomulario para tarjetas 
+          var cadena:string = this.cardNumber;
+          var CadenaSinBlancos:string="";
+          for (var x=0; x< cadena.length; x++)
+          {
+            if (cadena.charAt(x) != ' ')
+            {
+            CadenaSinBlancos += cadena.charAt(x); 
+            }
+          }
+          this.payment.yng_Card.number=parseFloat(CadenaSinBlancos);
+          this.payment.yng_Card.fullName=this.fullName;
+          this.payment.yng_Card.securityCode=this.cvv;
+          this.payment.yng_Card.dueMonth=+this.dueMonth;
+          this.payment.yng_Card.dueYear=+this.dueYear;
+          this.payment.yng_Card.dni=this.dni;
+          //fin de datos del formulario para tarjetas
+          this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
         }
-      }
-      this.payment.yng_Card.number=parseFloat(CadenaSinBlancos);
-      this.payment.yng_Card.fullName=this.fullName;
-      this.payment.yng_Card.securityCode=this.cvv;
-      this.payment.yng_Card.dueMonth=+this.dueMonth;
-      this.payment.yng_Card.dueYear=+this.dueYear;
-      this.payment.yng_Card.dni=this.dni;
-      //fin de datos del formulario para tarjetas
-      this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
-      this.typePay.emit(this.payment);
-      console.log(JSON.stringify(this.payment));
-    }
+        this.typePay.emit(this.payment);
+        console.log(JSON.stringify(this.payment));
+    //}
   }
 
   validarTypePay(){
