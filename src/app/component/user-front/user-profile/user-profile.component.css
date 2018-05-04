@@ -69,38 +69,32 @@
 /****************** DISEÑO BANNER PERFIL DE USUARIO *********************/
 .banner_g{
 	position: relative;
-	margin-bottom: 200px;
-	width: 100%;
+    width: 100%;
 }
-.banner_g .social-profile{
-	margin: 0;
+.social-wallpaper{
+    margin-bottom: 70px;
+}
+.foto{
+    position: absolute;
+    bottom: -75px;
+    width: 100%;
+}
+.social-profile{
+	margin: 0 auto;
     padding: 5px;
     background: white;
-	border-radius: 4px;
-	width: 160px;
+    border-radius: 4px;
+    width: 160px;
     height: 160px;
     min-width: 160px;
+}
+.foto-perfil{
+    height: 100%;
+    object-fit: cover;
 }
 .image-banner{
 	object-fit: cover;
 	height: 300px;
-}
-.card-perfil{
-	background: transparent;
-    position: absolute;
-    z-index: 1;
-    top: 200px;
-    border: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-	align-items: center;
-	box-shadow: none;
-}
-.foto-perfil{
-	width: 150px;
-	height: 150px;
-    object-fit: cover;
 }
 .card-perfil h4{
 	font-size: 1.5em;
@@ -111,35 +105,34 @@
 .social-icons{
 	display: flex;
     justify-content: space-around;
-	width: 100%;
-}
+} 
 .social-icons a{
 	font-size: 4em;
 }
 
 @media (min-width:1024px){
-	.banner_g{
-		margin-bottom: 70px;
-	}
-	.card-perfil{
-		flex-direction: row;
-		bottom: -100px;
-		width: auto;
-		left: 50px;
-		align-items: flex-end;
-		bottom: -110px;
-	}
+    .social-wallpaper{
+        margin-bottom: 0;
+    }
+    .social-profile{
+        margin-left: 100px;
+    }
+    .card-perfil{
+        flex-direction: row;
+        margin-left: 250px;
+    }
+    .social-follower{
+        text-align: left;
+    }
+    .social-icons{
+		min-width: 350px;
+		padding: 20px 0;
+    }
 	.card-perfil h4{
 		font-size: 2em;
 		margin-bottom: 5px;
 	}
 	.card-perfil h5{
     	font-size: .9em;
-	}
-	.social-follower{
-		text-align: left;
-		padding: 1rem;
-		padding: 0;
-		
 	}
 }

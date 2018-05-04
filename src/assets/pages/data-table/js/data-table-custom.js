@@ -506,7 +506,8 @@ $(document).ready(function() {
     $('#simpletable').DataTable( {
         "language": {
             "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
+            "sLengthMenu":     "Mostrar _MENU_",
+            /*"sLengthMenu":     "Mostrar _MENU_ registros",*/
             /*"sZeroRecords":    "No se encontraron resultados",*/
             "sZeroRecords":    "",
             /*"sEmptyTable":     "Ningún dato disponible en esta tabla",*/
