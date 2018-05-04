@@ -51,9 +51,11 @@
                         <option value="opt1" disabled>Transferencia bancaria</option>
                         <option value="RedLink" disabled>Red Link</option>
                         <option value="opt1" disabled>En efectivo</option>
-                        <option value="Rapipago" disabled>Rapipago</option>
-                        <option value="PagoFacil" disabled>Pago Fácil</option>
-                        <option value="ProvinciaNET" disabled>Provincia NET</option>
+                        <option value="COBRO_EXPRESS">CobroExpress</option>
+                        <option value="PAGOFACIL">Pago Fácil</option>
+                        <option value="ProvinciaNET">Provincia NET</option>
+                        <option value="RAPIPAGO">Rapipago</option>
+                        <option value="RIPSA">RIPSA</option>
                     </select>
                     <div class="error-g row">
                         <p  [hidden]="hidPaymentMethod">* Debes seleccionar un medio de pago</p>
@@ -233,7 +235,23 @@
                 </div>
             </div>
             <div class="row" [hidden]="msgHid">
-                <label class="col-sm-12 col-form-label">Al terminar la compra te daremos instrucciones o un número para pagar</label>
+                <div class="col-sm-6">
+                    <label class="col-form-label">* Tipo de documento</label>
+                    <select (focus)="focusedf=true" class="form-control" id="typeDocument" name="typeDocument" [(ngModel)]="typeDocument">
+                        <option [value]="DNI">DNI</option>
+                        <option [value]="CUIT">CUIT</option>
+                    </select>
+                    <div class="error-g row">
+                        <p  [hidden]="hidDueYear">* Seleccione año</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="col-form-label">* Numero de documento</label>
+                    <input id="numberDocument" (focus)="focusedf=true" type="text" class="form-control" name="numberDocument" [(ngModel)]="numberDocument" >
+                    <div class="error-g row">
+                        <p  [hidden]="hidFullname">* Nombre completo requerido</p>
+                    </div>
+                </div>
             </div>  
             <br/>
             <div class="col-sm-10">

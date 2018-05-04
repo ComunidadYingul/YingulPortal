@@ -51,7 +51,8 @@ export class PaymentComponent implements OnInit {
   //fin datos recuperados del formulario
   User: user=new user();
   payment:Payment= new Payment();
-
+  typeDocument:string="DNI";
+  numberDocument:number;
   /*****************************************************/
   hidPaymentMethod:boolean=true;
   hidProvider:boolean=true;
@@ -120,7 +121,7 @@ export class PaymentComponent implements OnInit {
         }
       }
       else{
-        if(listcardId=="Rapipago"||listcardId=="PagoFacil"||listcardId=="ProvinciaNET"){
+        if(listcardId=="COBRO_EXPRESS"||listcardId=="PAGOFACIL"||listcardId=="ProvinciaNET"||listcardId=="RAPIPAGO"||listcardId=="RIPSA"){
           this.msgHid=false;
         }
         else{
