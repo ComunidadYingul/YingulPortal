@@ -154,16 +154,22 @@ export class ConfirmComponent implements OnInit {
 
   redirectTo(){
     this.popup2=true;
-    if(this.msg=='problemCard'){
-      this.problem.emit(this.msg);
+    switch(this.msg) {
+      case "cash":
+        this.problem.emit(this.msg);
+        break;
+      case "save":
+        alert("compra realizada exitosamente revise su bandeja de entrada");
+        this.router.navigate(['/']); 
+        break;
+      case "problemCard":
+        this.problem.emit(this.msg);
+        break;
+      default:
+        alert(this.msg);
+        alert("algo salio mal vuela a intentarlo");
+        this.router.navigate(['/']); 
     }
-    if(this.msg=='save'){
-      alert("compra realizada exitosamente revise su bandeja de entrada");
-      this.router.navigate(['/']);   
-    }else{
-      if(this.msg!='problemCard')
-      alert(this.msg);
-    } 
   }
   updateUser(){
     if(this.phone==null || this.phone=="" || this.documentNumber==null || this.documentNumber==""){
