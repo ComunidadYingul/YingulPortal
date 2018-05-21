@@ -95,6 +95,7 @@ import { ResetPasswordComponent } from './component/login/reset-password/reset-p
 import { AllItemsComponent } from './component/all-items/all-items.component';
 import { Angular2SocialLoginModule } from 'angular2-social-login';
 import { CashComponent } from './component/buy/cash/cash.component';
+import { PaymentService } from './service/payment.service';
 let socialloginproviders = {
   "google":{
     "clientId":"1014727148194-lc7g9s995bt6l5v4dhqt5md381a9j075.apps.googleusercontent.com"
@@ -205,7 +206,8 @@ let socialloginproviders = {
     WireTransferService,
     AdminService,
     ClaimService,
-    AboutService
+    AboutService,
+    PaymentService
   ],
   bootstrap: [AppComponent]
 })

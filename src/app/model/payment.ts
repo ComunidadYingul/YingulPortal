@@ -7,5 +7,11 @@ export class Payment {
     paymentPlan:string;
     yng_Card:Card=new Card();
     cashPayment:CashPayment=new CashPayment();
-    
+    status:string;
+	orderId:number;
+	referenceCode:string;
+    transactionId:string;
+    value:number;
+    currency:string;
+    buyStatus:string;
 }

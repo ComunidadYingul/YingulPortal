@@ -443,7 +443,7 @@ export class ShippingComponent implements OnInit {
         this.popupSucursal=true;
         this.getItem("Producto",this.Item.itemId);
         this.quoteS.respuesta="";
-        this.userTemp=this.Item.user;     
+        this.userTemp=this.Item.user; 
         this.Item.user=null;
         this.userTemp2.username=this.userTemp.username;
         this.Item.user=this.userTemp2;

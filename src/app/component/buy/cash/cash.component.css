@@ -1,0 +1,14 @@
+.margin-e{
+    margin-top:60px;
+}
+.ticket-e{
+    width: 60%;
+}
+@media only screen and (max-width: 711px){
+	.margin-e{
+		margin-top:30px;
+    }
+    .ticket-e{
+        width: 100%;
+    }
+}

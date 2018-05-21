@@ -86,7 +86,7 @@ const appRoutes: Routes = [
     component: BuyComponent
   },
   {
-    path: 'cashPayment',
+    path: 'cashPayment/:paymentId',
     component: CashComponent
   },
   {
