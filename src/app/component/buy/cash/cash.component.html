@@ -1,0 +1,36 @@
+<div class="page-body" style="height: 500px;">
+    <div class="row align-center" style="justify-content:  center; background: #3498DB; height: 292px;" >
+        <div class="col-9 col-sm-5 margin-e"  >
+            <div class="">
+                <div class="row" style="color: #fff; font-size: 16px;">¡Apurate a pagar!</div><br>
+                <div class="row" style="font-size: 32px; line-height: 1; color: #fff; font-weight: 600;" [ngSwitch]="payment.cashPayment.paymentMethod">Pagá <span *ngIf="payment.currency=='ARS'">&nbsp;$</span>({{payment.currency}}) {{payment.value}} en&nbsp;<br>
+                  <span *ngSwitchCase="'ProvinciaNET'">Provincia NET&nbsp;</span>
+                  <span *ngSwitchCase="'COBRO_EXPRESS'">Cobro Express&nbsp;</span>
+                  <span *ngSwitchCase="'PAGOFACIL'">Pago Fácil&nbsp;</span>
+                  <span *ngSwitchCase="'RAPIPAGO'">Rapipago&nbsp;</span>
+                  <span *ngSwitchCase="'RIPSA'">RIPSA red de pagos&nbsp;</span> para completar tu compra
+                </div>
+            </div>
+        </div>
+
+        <div class="page-body ticket-e" style="position: absolute; margin-top:260px; ">
+            <div class="row align-center" style="justify-content:  center;">
+                <div class="col-sm-12">
+                    <div class="card rounded-card user-card">
+                        <div class="card-header" style="text-align: center;">
+                            <h5>Acercate a tu sucursal más cercana,</h5><br>
+                            <h5>Con este ticket:</h5>
+                        </div>
+                        <div class="row card-block" style="justify-content:  center;">
+                          <div class="col-12 col-sm-5 " style="margin-bottom: 15px; text-align: center;"><a href="{{payment.cashPayment.url_PAYMENT_RECEIPT_HTML}}" target="_blank"><button class="btn btn-info"><i class="icofont icofont-external-link"></i>Ver ticket</button></a></div>
+                          <div class="col-12 col-sm-5 " style="margin-bottom: 15px; text-align: center;"><a href="{{payment.cashPayment.url_PAYMENT_RECEIPT_PDF}}" style="color:#3498DB;"><button class="btn btn-info btn-outline-info"><i class="icofont icofont-printer"></i>Imprimir ticket</button></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

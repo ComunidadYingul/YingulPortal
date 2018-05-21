@@ -4,18 +4,20 @@
     <div class="banner_g">
         <div class="social-wallpaper">
             <img class="image-banner img-fluid width-100" alt="" src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profileBanner}}"/>
+            <div class="foto">
+                <div class="social-profile">
+                    <img class="foto-perfil img-fluid width-100" src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profilePhoto}}" alt="">
+                    <div class="profile-hvr m-t-15">
+                        <i (click)="updteImage()" class="icofont icofont-ui-edit p-r-10"></i>
+                    </div>
+                </div>
+            </div>
             <div class="profile-hvr">
                 <i (click)="updateBanner()" class="icofont icofont-ui-edit p-r-10"></i>
             </div>
         </div>
         <!-- social-profile card start -->
-        <div class="card-perfil card">
-            <div class="social-profile">
-                <img class="foto-perfil img-fluid width-100" src="{{BUCKET_URL}}user/userProfile/{{person.yng_User.profilePhoto}}" alt="">
-                <div class="profile-hvr m-t-15">
-                    <i (click)="updteImage()" class="icofont icofont-ui-edit p-r-10"></i>
-                </div>
-            </div>
+        <div style="background: transparent;border: none;box-shadow: none;" class="card-perfil card">
             <div class="card-block social-follower">
                 <h4>{{person.name}} {{person.lastname}}</h4>
                 <h5>VENTAS YINGUL</h5>
