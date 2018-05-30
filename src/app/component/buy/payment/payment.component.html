@@ -45,11 +45,11 @@
                         <option *ngFor="let listCreditCard of creditCardList" [value]="listCreditCard.listCreditCardId">{{listCreditCard.name}}</option>
                         <option value="opt1" disabled>Tarjetas de débito</option>
                         <option value="VisaD">Visa Débito</option>
-                        <option value="CabalD" disabled>Cabal Débito</option>
+                        <option value="CabalD">Cabal Débito</option>
                         <option value="MastercardD">Mastercard Débito</option>
-                        <option value="MaestroD" disabled>Maestro</option>
-                        <option value="opt1" disabled>Transferencia bancaria</option>
-                        <option value="RedLink" disabled>Red Link</option>
+                        <option value="MaestroD">Maestro</option>
+                        <!--option value="opt1" disabled>Transferencia bancaria</option-->
+                        <!--option value="RedLink" disabled>Red Link</option-->
                         <option value="opt1" disabled>En efectivo</option>
                         <option value="COBRO_EXPRESS">CobroExpress</option>
                         <option value="PAGOFACIL">Pago Fácil</option>
@@ -59,15 +59,6 @@
                     </select>
                     <div class="error-g row">
                         <p  [hidden]="hidPaymentMethod">* Debes seleccionar un medio de pago</p>
-                    </div>
-                </div>
-                <div class="col-sm-6" [hidden]="providerHid">
-                    <select id="provider" name="select" [(ngModel)]="provider" class="form-control form-control-primary" #u (change)="setProvider(u.value)">
-                        <option value="-1" disabled>Elegir un proveedor</option>
-                        <option *ngFor="let cardProvider of cardProviderList" [value]="cardProvider.cardProviderId">{{cardProvider.name}}</option>
-                    </select>
-                    <div class="error-g row">
-                        <p  [hidden]="hidProvider">* Debes elegir un proveedor</p>
                     </div>
                 </div>
             </div>
@@ -252,11 +243,13 @@
                         <p  [hidden]="hidFullname">* Nombre completo requerido</p>
                     </div>
                 </div>
-                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='COBRO_EXPRESS'" src="assets/images/e-payment/cash/cobroexpress.png" id="visa" alt="visa.jpg">
-                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='PAGOFACIL'" src="assets/images/e-payment/cash/pagofacil.png" id="visa" alt="visa.jpg">
-                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='ProvinciaNET'" src="assets/images/e-payment/cash/provincia_net.png" id="visa" alt="visa.jpg">
-                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='RAPIPAGO'" src="assets/images/e-payment/cash/rapi-pago-1.png" id="visa" alt="visa.jpg">
-                <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='RIPSA'" src="assets/images/e-payment/cash/ripsa_pagos.png" id="visa" alt="visa.jpg">
+                <div *ngIf="payment.cashPayment!=null">
+                    <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='COBRO_EXPRESS'" src="assets/images/e-payment/cash/cobroexpress.png" id="visa" alt="visa.jpg">
+                    <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='PAGOFACIL'" src="assets/images/e-payment/cash/pagofacil.png" id="visa" alt="visa.jpg">
+                    <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='ProvinciaNET'" src="assets/images/e-payment/cash/provincia_net.png" id="visa" alt="visa.jpg">
+                    <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='RAPIPAGO'" src="assets/images/e-payment/cash/rapi-pago-1.png" id="visa" alt="visa.jpg">
+                    <img style="margin-left: 15px;" *ngIf="payment.cashPayment.paymentMethod=='RIPSA'" src="assets/images/e-payment/cash/ripsa_pagos.png" id="visa" alt="visa.jpg">
+                </div>
             </div>  
             <br/>
             <div class="col-sm-10">

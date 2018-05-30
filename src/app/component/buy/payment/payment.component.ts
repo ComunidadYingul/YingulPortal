@@ -3,7 +3,6 @@ import {Observable}  from 'rxjs/Observable';
 import { Item } from '../../../model/item';
 import { BuyService } from '../../../service/buy.service'
 import { ListCreditCard } from '../../../model/list-credit-card';
-import { CardProvider } from '../../../model/card-provider';
 import { Card } from '../../../model/card';
 import { Payment } from '../../../model/payment';  
 import { user } from '../../../model/user';
@@ -25,12 +24,10 @@ export class PaymentComponent implements OnInit {
   @Input('Item') Item:Item;
   @Input('andreaniEnvio')andreaniEnvio:AndreaniEnvios=new AndreaniEnvios;
   @Output() typePay = new EventEmitter();
-  providerHid:boolean=true;
   formHid:boolean=true;
   msgHid:boolean=true;
   debitHid:boolean=true;
   creditCardList:ListCreditCard[];
-  cardProviderList:CardProvider[];
   fechaActual = new Date();
   anio = this.fechaActual.getFullYear();
   anios = [];
@@ -44,7 +41,6 @@ export class PaymentComponent implements OnInit {
   dueMonth:string="0";
   dueYear:string="0";
   dni:number;
-  provider:number=-1;
   paymentMethod:string="null";
   focusedr:boolean;
   focusedf:boolean=true;
@@ -57,7 +53,6 @@ export class PaymentComponent implements OnInit {
   cashPayment:CashPayment=new CashPayment();
   /*****************************************************/
   hidPaymentMethod:boolean=true;
-  hidProvider:boolean=true;
   hidCardNumber:boolean=true;
   hidFullname:boolean=true;
   hidCvv:boolean=true;
@@ -99,7 +94,6 @@ export class PaymentComponent implements OnInit {
   getProvider(listcardId:string){
     if(listcardId!="null"){
       this.debitHid=true;
-      this.providerHid=true;
       this.msgHid=true;
       if(listcardId=="VisaD"||listcardId=="CabalD"||listcardId=="MastercardD"||listcardId=="MaestroD")
       {
@@ -134,36 +128,43 @@ export class PaymentComponent implements OnInit {
         }
         else{
           this.payment.cashPayment=null;
-          this.buyService.getCardProvider(listcardId).subscribe(
-            res => {
-                  this.cardProviderList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
-                  for(let i of this.creditCardList){
-                    if(i.listCreditCardId==+listcardId){
-                      this.payment.yng_Card.provider=i.keyPayu;
-                    }
-                  }
-                  if(JSON.stringify(this.cardProviderList)=="[]"){
-                    this.providerHid=true;
-                    this.debitHid=false;
-                    this.payment.yng_Card.type="CREDIT";
-                    /* en caso de que no existan proveedores para el tipo de tarjeta proporcionado this.payment.yng_Card.yng_CardProvider=*/
-                  } 
-                  else{
-                    this.providerHid=false;
-                  }
-                },
-                error => console.log(error)
-          );
+          this.payment.name="CARDPAYMENT";
+          this.payment.type="CARD";
+          this.payment.yng_Card.type="CREDIT";
+          switch(listcardId){
+            case "0":
+              this.payment.yng_Card.provider="VISA";
+              break;
+            case "1":
+              this.payment.yng_Card.provider="MASTERCARD";
+              break;
+            case "2":
+              this.payment.yng_Card.provider="AMEX";
+              break;
+            case "3":
+              this.payment.yng_Card.provider="SHOPPING";
+              break;
+            case "4":
+              this.payment.yng_Card.provider="CABAL";
+              break;
+            case "5":
+              this.payment.yng_Card.provider="DINERS";
+              break;
+            case "6":
+              this.payment.yng_Card.provider="ARGENCARD";
+              break;
+            case "7":
+              this.payment.yng_Card.provider="NARANJA";
+              break;
+            case "8":
+              this.payment.yng_Card.provider="CENCOSUD";
+              break;
+          }
+          this.debitHid=false;
         }
       }
     }
     this.paymentMethod=listcardId;
-  }
-  setProvider(cardProviderId:number){
-    this.debitHid=false;
-    this.payment.yng_Card.type="CREDIT";
-    this.payment.yng_Card.yng_CardProvider.cardProviderId=cardProviderId;
-    this.provider=cardProviderId;
   }
   /*check(a:number){   
     esto es para la s cuotas con tarjeta de credito
@@ -204,10 +205,6 @@ export class PaymentComponent implements OnInit {
       this.hidPaymentMethod=false;
       this.elem.nativeElement.querySelector('#paymentMethod').focus();
       return false;
-    }else if(this.providerHid==false && this.provider==-1){
-      this.hidProvider=false;
-      this.elem.nativeElement.querySelector('#provider').focus();
-      return false;
     }else if(this.cardNumber==null || this.cardNumber.length<16){
       this.hidCardNumber=false;
       this.elem.nativeElement.querySelector('#cardNumber').focus();
@@ -240,7 +237,6 @@ export class PaymentComponent implements OnInit {
 
   resetHidTypePay(){
     this.hidPaymentMethod=true;
-    this.hidProvider=true;
     this.hidCardNumber=true;
     this.hidFullname=true;
     this.hidCvv=true;
