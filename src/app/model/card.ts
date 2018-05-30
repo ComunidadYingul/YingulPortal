@@ -1,5 +1,4 @@
 import { user } from './user';
-import { CardProvider } from './card-provider';
 export class Card {
     cardId:number;
     number:number;
@@ -10,7 +9,6 @@ export class Card {
     securityCode:number;
 	type:string;
 	provider:string;
-    yng_CardProvider:CardProvider=new CardProvider();
 	user : user=new user();
 
 }

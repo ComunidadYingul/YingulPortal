@@ -63,7 +63,7 @@
             <div class="media-body blog-s-reply">
                 <h6 class="media-heading">Pago
                 </h6>
-                <div>
+                <div *ngIf="payment.type=='CARD'">
                     <img  *ngIf="payment.yng_Card.provider=='VISA'" src="assets/images/e-payment/card/visa.jpg" id="visa" alt="visa.jpg">
                     <img  *ngIf="payment.yng_Card.provider=='MASTERCARD'" src="assets/images/e-payment/card/mastercard.jpg" id="visa" alt="visa.jpg">
                     <img  *ngIf="payment.yng_Card.provider=='AMEX'" src="assets/images/e-payment/card/amex.jpg" id="visa" alt="visa.jpg">
@@ -72,8 +72,16 @@
                         <a *ngIf="payment.yng_Card.number%10000>99 && payment.yng_Card.number%10000<=999"> 0{{payment.yng_Card.number%10000}}</a>
                         <a *ngIf="payment.yng_Card.number%10000>9 && payment.yng_Card.number%10000<=99"> 00{{payment.yng_Card.number%10000}}</a>
                         <a *ngIf="payment.yng_Card.number%10000>=0 && payment.yng_Card.number%10000<=9"> 000{{payment.yng_Card.number%10000}}</a>
-                        &nbsp;&nbsp; <span class="blog-edit"><a (click)="modifyPayment()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
+                        <br> <span class="blog-edit"><a (click)="modifyPayment()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
                 
+                </div>
+                <div *ngIf="payment.type=='CASH'">
+                    <img  *ngIf="payment.cashPayment.paymentMethod=='COBRO_EXPRESS'" src="assets/images/e-payment/cash/cobroexpress.png" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.cashPayment.paymentMethod=='PAGOFACIL'" src="assets/images/e-payment/cash/pagofacil.png" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.cashPayment.paymentMethod=='ProvinciaNET'" src="assets/images/e-payment/cash/provincia_net.png" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.cashPayment.paymentMethod=='RAPIPAGO'" src="assets/images/e-payment/cash/rapi-pago-1.png" id="visa" alt="visa.jpg">
+                    <img  *ngIf="payment.cashPayment.paymentMethod=='RIPSA'" src="assets/images/e-payment/cash/ripsa_pagos.png" id="visa" alt="visa.jpg">
+                    <br> <span class="blog-edit"><a (click)="modifyPayment()" style="color: #0275d8; cursor:pointer;">Modificar</a> </span>
                 </div>
             </div>
         </li>

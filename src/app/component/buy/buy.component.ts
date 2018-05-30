@@ -137,6 +137,12 @@ export class BuyComponent implements OnInit {
       this.hidPay=false;
       this.hidConf=true;
     }
+    if(ev="cash"){
+      this.hidShip=true;
+      this.hidPay=true;
+      this.hidConf=true;
+      this.router.navigate(['/cashPayment']);
+    }
   }
   sendShipping(ev){
     this.shipping=ev;

@@ -114,7 +114,7 @@ export class ConfirmComponent implements OnInit {
       this.buy.yng_item=this.Item;
       this.buy.yng_item.user=null;
       this.buy.yng_Payment=this.payment;
-      this.buy.user=this.payment.yng_Card.user;
+      this.buy.user=JSON.parse(localStorage.getItem("user"));
       this.buy.ip=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).query));
       this.buy.org=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).org));
       this.buy.lat=JSON.parse(JSON.stringify(JSON.parse(JSON.stringify(this.dataForBuyer)).lat));
@@ -154,16 +154,24 @@ export class ConfirmComponent implements OnInit {
 
   redirectTo(){
     this.popup2=true;
-    if(this.msg=='problemCard'){
-      this.problem.emit(this.msg);
-    }
-    if(this.msg=='save'){
-      alert("compra realizada exitosamente revise su bandeja de entrada");
-      this.router.navigate(['/']);   
+    if(this.msg.includes(':')){
+      var array = this.msg.split(':');
+      this.router.navigate(['/cashPayment/'+array[1]]);
     }else{
-      if(this.msg!='problemCard')
-      alert(this.msg);
-    } 
+      switch(this.msg) {
+        case "save":
+          alert("compra realizada exitosamente revise su bandeja de entrada");
+          this.router.navigate(['/']); 
+          break;
+        case "problemCard":
+          this.problem.emit(this.msg);
+          break;
+        default:
+          alert(this.msg);
+          alert("algo salio mal vuela a intentarlo");
+          this.router.navigate(['/']); 
+      }
+    }
   }
   updateUser(){
     if(this.phone==null || this.phone=="" || this.documentNumber==null || this.documentNumber==""){

@@ -42,6 +42,7 @@ import { ContactUsComponent } from './component/about/contact-us/contact-us.comp
 import { ForgotPasswordComponent } from './component/login/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 import { AllItemsComponent } from './component/all-items/all-items.component';
+import { CashComponent } from './component/buy/cash/cash.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -83,6 +84,10 @@ const appRoutes: Routes = [
   {
     path: 'buy/:itemId/:quantity',
     component: BuyComponent
+  },
+  {
+    path: 'cashPayment/:paymentId',
+    component: CashComponent
   },
   {
     path: 'service',
