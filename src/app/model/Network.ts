@@ -1,5 +1,6 @@
 export class Network {
     //public static API_URL = "http://192.168.100.17:8080/";
+   //public static API_URL="http://localhost:8080/Yingul-0.0.2-SNAPSHOT/";
     public static API_URL = "http://192.168.100.42:8080/";
     //public static API_URL = "http://192.168.100.51:8080/";
     //public static API_URL = "http://192.168.0.14:8080/";
