@@ -78,13 +78,16 @@
 }
 @media (max-width:385px){
     #content-logo.navbar-logo div{
-        left: 58px;
+        /*left: 58px;*/
     }
     .yingul-text{
         display: none;
     }
     .yingul-logo{
-        display: none;
+        /*display: none;*/
+    }
+    .searchItemMobile{
+        width: 100px;
     }
 }
 .searchImagen{
