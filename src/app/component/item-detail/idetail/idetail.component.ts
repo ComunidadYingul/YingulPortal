@@ -60,13 +60,16 @@ export class IdetailComponent implements OnInit {
   numberImg:number;
   hidQuery:boolean=true;
   itemFavorites: Item[]=[];
+  public urldetail:string="http://backendyingul-env.cqx28e6j2j.us-west-2.elasticbeanstalk.com/sell/meta/";
+  iditem:string="";
   constructor(private itemDetailService : ItemDetailService, private router : Router, private favoriteService: FavoriteService){
     if(this.Product.productPagoEnvio=="comprador"){this.hiddenTypeSend=false;}
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
 		} else {
       this.User=JSON.parse(localStorage.getItem("user"));
-		}
+    }
+    this.iditem=""+this.localItemId;
   }
   ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
@@ -98,7 +101,8 @@ export class IdetailComponent implements OnInit {
   getItemById(){
     this.itemDetailService.getItemById(this.localItemId).subscribe(
 			res => {
-            this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body);  
+            this.Item = JSON.parse(JSON.parse(JSON.stringify(res))._body); 
+            this.iditem=""+this.Item.item_id; 
             console.log("daniel: "+JSON.stringify(this.Item));
            // alert("daniel: "+JSON.stringify(this.Item));           
       		},
