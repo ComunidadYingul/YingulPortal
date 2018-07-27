@@ -13,6 +13,9 @@ export class ListCategoryComponent implements OnInit {
   subCategoryList: Object[]=[];
   subsubCategoryList: Object[]=[];
   subsubsubCategoryList: Object[]=[];
+  subsubsubsubCategoryList: Object[]=[];
+  subsubsubsubsubCategoryList: Object[]=[];
+  subsubsubsubsubsubCategoryList:Object[]=[];
   itemCategory1: Object[] =[];
   itemCategory: Object[] = [];
   @Output() categoryItemS = new EventEmitter();
@@ -29,6 +32,7 @@ export class ListCategoryComponent implements OnInit {
             this.subCategoryList=[];
             this.subsubCategoryList=[];
             this.subsubsubCategoryList=[];
+            this.subsubsubsubCategoryList=[];
       		},
       		error => console.log(error)
     )}
@@ -43,6 +47,9 @@ export class ListCategoryComponent implements OnInit {
     this.itemCategory1.push({"category":category0});
     this.subsubCategoryList=[];
     this.subsubsubCategoryList=[];
+    this.subsubsubsubCategoryList=[];
+    this.subsubsubsubsubCategoryList=[];
+    this.subsubsubsubsubsubCategoryList=[];
     this.categoryService.getSubCategories(categoryId).subscribe(
 			res => {
             this.subCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -61,6 +68,9 @@ export class ListCategoryComponent implements OnInit {
     this.itemCategory.push(category)
     this.itemCategory1.push({"category":category});
     this.subsubsubCategoryList=[];
+    this.subsubsubsubCategoryList=[];
+    this.subsubsubsubsubCategoryList=[];
+    this.subsubsubsubsubsubCategoryList=[];
     this.categoryService.getSubCategories(JSON.stringify(JSON.parse(JSON.parse(JSON.stringify(category)).categoryId))).subscribe(
 			res => {
             this.subsubCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -76,6 +86,9 @@ export class ListCategoryComponent implements OnInit {
     this.itemCategory1.splice(2,this.itemCategory1.length);
     this.itemCategory.push(category);
     this.itemCategory1.push({"category":category});
+    this.subsubsubsubCategoryList=[];
+    this.subsubsubsubsubCategoryList=[];
+    this.subsubsubsubsubsubCategoryList=[];
     this.categoryService.getSubCategories(JSON.stringify(JSON.parse(JSON.parse(JSON.stringify(category)).categoryId))).subscribe(
 			res => {
             this.subsubsubCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
@@ -90,6 +103,57 @@ export class ListCategoryComponent implements OnInit {
   getSubSubSubSubCategory(category : Object){
     this.itemCategory.splice(3,this.itemCategory1.length);
     this.itemCategory1.splice(3,this.itemCategory1.length);
+    this.itemCategory.push(category);
+    this.itemCategory1.push({"category":category});
+    this.subsubsubsubsubCategoryList=[];
+    this.subsubsubsubsubsubCategoryList=[];
+    this.categoryService.getSubCategories(JSON.stringify(JSON.parse(JSON.parse(JSON.stringify(category)).categoryId))).subscribe(
+			res => {
+            this.subsubsubsubCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            if(!this.subsubsubsubCategoryList[0]){
+              this.sendCategories();
+            }
+      		},
+      		error => console.log(error)
+    )
+    
+  }
+  getSubSubSubSubSubCategory(category : Object){
+    this.itemCategory.splice(4,this.itemCategory1.length);
+    this.itemCategory1.splice(4,this.itemCategory1.length);
+    this.itemCategory.push(category);
+    this.itemCategory1.push({"category":category});
+    this.subsubsubsubsubsubCategoryList=[];
+    this.categoryService.getSubCategories(JSON.stringify(JSON.parse(JSON.parse(JSON.stringify(category)).categoryId))).subscribe(
+			res => {
+            this.subsubsubsubsubCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            if(!this.subsubsubsubsubCategoryList[0]){
+              this.sendCategories();
+            }
+      		},
+      		error => console.log(error)
+    )
+    
+  }
+  getSubSubSubSubSubSubCategory(category : Object){
+    this.itemCategory.splice(5,this.itemCategory1.length);
+    this.itemCategory1.splice(5,this.itemCategory1.length);
+    this.itemCategory.push(category);
+    this.itemCategory1.push({"category":category});
+    this.categoryService.getSubCategories(JSON.stringify(JSON.parse(JSON.parse(JSON.stringify(category)).categoryId))).subscribe(
+			res => {
+            this.subsubsubsubsubsubCategoryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            if(!this.subsubsubsubsubsubCategoryList[0]){
+              this.sendCategories();
+            }
+      		},
+      		error => console.log(error)
+    )
+    
+  }
+  getSubSubSubSubSubSubSubSubCategory(category : Object){
+    this.itemCategory.splice(6,this.itemCategory1.length);
+    this.itemCategory1.splice(6,this.itemCategory1.length);
     this.itemCategory.push(category);
     this.itemCategory1.push({"category":category});
     this.sendCategories();
