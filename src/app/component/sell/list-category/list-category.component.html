@@ -28,6 +28,27 @@
       </li>
     </ul>
   </nav>
+  <nav *ngIf="subsubsubsubCategoryList!=[]&&subsubsubsubCategoryList!=null&&subsubsubsubCategoryList.length>0">
+    <ul class="list-group col-md-auto">
+      <li class="nav-item border border-primary " *ngFor="let subsubsubsubcategory of subsubsubsubCategoryList">
+        <a class="nav-link active text-primary" (click)="getSubSubSubSubSubCategory(subsubsubsubcategory)">{{subsubsubsubcategory.name}}</a>
+      </li>
+    </ul>
+  </nav>
+  <nav *ngIf="subsubsubsubsubCategoryList!=[]&&subsubsubsubsubCategoryList!=null&&subsubsubsubsubCategoryList.length>0">
+    <ul class="list-group col-md-auto">
+      <li class="nav-item border border-primary " *ngFor="let subsubsubsubsubcategory of subsubsubsubsubCategoryList">
+        <a class="nav-link active text-primary" (click)="getSubSubSubSubSubSubCategory(subsubsubsubsubcategory)">{{subsubsubsubsubcategory.name}}</a>
+      </li>
+    </ul>
+  </nav>
+  <nav *ngIf="subsubsubsubsubsubCategoryList!=[]&&subsubsubsubsubsubCategoryList!=null&&subsubsubsubsubsubCategoryList.length>0">
+    <ul class="list-group col-md-auto">
+      <li class="nav-item border border-primary " *ngFor="let subsubsubsubsubsubcategory of subsubsubsubsubsubCategoryList">
+        <a class="nav-link active text-primary" (click)="getSubSubSubSubSubSubSubSubCategory(subsubsubsubsubsubcategory)">{{subsubsubsubsubsubcategory.name}}</a>
+      </li>
+    </ul>
+  </nav>
 </ul>
 <br/>
 <div class="text-center">
