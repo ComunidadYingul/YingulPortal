@@ -1970,7 +1970,7 @@ table thead .border-bottom-info th, table tbody .border-bottom-info th, table tb
 .header-navbar .navbar-wrapper .navbar-container .nav-left a, .header-navbar .navbar-wrapper .navbar-container .nav-right a { color: #fff; padding: 1.5rem .6rem; }
 .header-navbar .navbar-wrapper .navbar-container .nav-left .mega-menu-top i, .header-navbar .navbar-wrapper .navbar-container .nav-right .mega-menu-top i { font-size: 10px; margin-left: 10px; }
 .header-navbar .navbar-wrapper .navbar-container .nav-right { float: right; }
-.header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img { margin-right: 10px; width: 40px; }
+.header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img { margin-right: 10px; width: 40px; height: 40px; object-fit: cover;}
 .header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile i { font-size: 10px; margin-left: 10px; }
 .header-navbar .navbar-wrapper .navbar-container .header-notification, .header-navbar .navbar-wrapper .navbar-container .mega-menu-top { perspective: 1000px; z-index: 99; }
 .header-navbar .navbar-wrapper .navbar-container .header-notification .badge, .header-navbar .navbar-wrapper .navbar-container .mega-menu-top .badge { background: red; border-radius: 100px; left: 27px; position: absolute; top: 10px; }

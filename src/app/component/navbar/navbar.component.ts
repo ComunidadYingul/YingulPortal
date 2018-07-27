@@ -113,14 +113,9 @@ export class NavbarComponent implements OnInit {
 	}
 	bestMatch(){
 		if(this.search!=""){
-			this.categoryService.getBestMatch(this.search).subscribe(
-			res => {
-						let url = JSON.parse(JSON.stringify(res))._body;
-						this.router.navigate(['/itemsCategory'+url]); 
-						location.reload();  
-				},
-				error => console.log(error)
-			);
+			this.search = this.search.replace(" ","%20");
+			this.router.navigate(['/itemsByName/'+this.search]); 
+			location.reload();  
 		}
 	}
 

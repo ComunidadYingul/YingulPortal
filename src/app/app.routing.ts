@@ -43,6 +43,7 @@ import { ForgotPasswordComponent } from './component/login/forgot-password/forgo
 import { ResetPasswordComponent } from './component/login/reset-password/reset-password.component';
 import { AllItemsComponent } from './component/all-items/all-items.component';
 import { CashComponent } from './component/buy/cash/cash.component';
+import { ItemsByNameComponent } from './component/items-by-name/items-by-name.component';
 const appRoutes: Routes = [
   {
     path: '',
@@ -76,6 +77,10 @@ const appRoutes: Routes = [
   {
   	path: 'itemDetail/:itemId',
   	component: ItemDetailComponent
+  },
+  {
+  	path: 'itemsByName/:itemName',
+  	component: ItemsByNameComponent
   },
   {
     path: 'itemsCategory/:categoryId',

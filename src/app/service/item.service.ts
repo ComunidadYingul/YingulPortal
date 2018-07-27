@@ -45,6 +45,14 @@ export class ItemService {
       });
     return this.http.get(url,{headers: headers});
   }
+  getItemsByName(itemName:string){
+    let url = Network.API_URL+"item/listItemByName/"+itemName+"/0/100";
+    let headers = new Headers(
+      {
+        'X-API-KEY': Network.API_KEY
+      });
+    return this.http.get(url,{headers: headers});
+  }
   getOver20first(sw:boolean){
     let url = Network.API_URL+"item/over20first/"+sw;
     let headers = new Headers(
