@@ -510,6 +510,7 @@ export class ShippingComponent implements OnInit {
             this.shipping.lastName=this.lastName;
             this.shipping.yng_Quote.yng_Item=null;
             this.shipping.yng_Quote.yng_User=null;
+            this.shipping.yng_Shipment.yng_User.yng_Ubication.postalCode=this.postalCode;
             this.typeEnvio.emit(this.shipping);
           }
         }      

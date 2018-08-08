@@ -57,7 +57,7 @@
                                         <td>{{sale.quantity}}</td>
                                         <td>{{sale.yng_item.name}}</td>
                                         <td>{{sale.itemCost}}</td>
-                                        <td>{{sale.shippingCost}} &nbsp;&nbsp; <button [disabled]="sale.shippingCost == 0" (click)="onConfirm(sale)" type="submit" class="btn btn-primary m-b-0" >Ver Envio</button> <button [disabled]="sale.shippingCost == 0" (click)="printTicket(sale)" type="submit" class="btn btn-primary m-b-0" >Ver etiqueta</button></td>
+                                        <td>{{sale.shippingCost}} &nbsp;&nbsp; <button [disabled]="sale.shippingCost == 0" (click)="onConfirm(sale)" type="submit" class="btn btn-primary m-b-0" >Ver Envio</button> <button [disabled]="sale.shippingCost == 0" (click)="printTicket(sale)" type="submit" class="btn btn-primary m-b-0" hidden=true>Ver etiqueta</button></td>
                                         <td>{{sale.cost}}</td>
                                     </tr>
                                 </tbody>
