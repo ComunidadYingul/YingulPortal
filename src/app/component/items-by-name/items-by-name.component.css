@@ -1,0 +1,196 @@
+.popup {
+	background: rgba(100, 100, 100, 0.6);
+	position: fixed;
+	z-index: 5000;
+	left: 15%;
+	border-radius: 10px;
+	position: fixed;
+	background: #FFFFFF;
+	box-shadow: 0px 0px 15px 0px rgba(#000000, 0.3);
+	padding: 30px 15px;
+	width: 70%;
+	z-index: 5001;
+	top:15%;
+	text-align: center;
+    border: 5px solid #ff5e3a;
+	
+}
+@media screen and (max-width: 800px) {
+    .phone {        
+        display: none;
+	}
+	.phoneMirrow{
+		display: inline;
+	}
+}
+@media screen and (min-width: 801px) {
+	.phoneMirrow2{
+		display: none;
+	}
+}
+
+
+/****************cambios g*****************/
+.option-hover a:hover, .option-hover button:hover{
+    background: #f00;
+}
+.option-hover a, .option-hover button{
+    background: #0275d8;
+    border:none;
+}
+
+/********************* ESTILOS SLICK GRANDE G con descripcion*********************/
+.wrap-card{
+	display: flex;
+    justify-content: center;
+}
+.card-items{
+    margin: 8px 8px;
+    width: 280px;
+    height: 370px;
+    border-radius: 4px;
+    background: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+}
+.card-img{
+    position: relative;
+    height: 65%;
+    padding: 7px;
+}
+.card-img .content-img{
+    height: 100%;
+    overflow: hidden;
+}
+.card-img .content-img img{
+    width: 100%;
+}
+.card-desc{
+    position: relative;
+    max-height: 124px;
+    border-radius:0px 0px 4px 4px;
+    border-top: 1px solid #ddd;
+    transition: all .5s ease;
+    padding: 8px 24px;
+    display: block;
+}
+.card-desc span{
+    font-size: 1.3em;
+    opacity: .8;
+}
+.card-desc .price-past{
+    text-decoration: line-through;
+    font-weight: lighter;
+    font-size: 1.3em;
+    margin: 0;
+    text-align: left;
+    color: #f00;
+}
+.card-items:hover .card-desc{
+    background: #fff;
+} 
+
+.item-name{
+    font-size: 12px;
+    font-weight: 400;
+    color: #333;
+    transition: all .3s ease;
+    margin-bottom: 1px;
+}
+.car-img, .heart-img, .heart-img-2{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #ddd;
+    position: absolute;
+    z-index: 2;
+    right: 15px;
+    bottom: -18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.car-img img{
+    width: 70%;
+    height: 70%;
+}
+.heart-img{
+    background: rgba(255,255,255,.8);
+    border: none;
+    display: none;
+    right: 15px;
+    top: 15px;
+}
+.heart-img i{
+    color: #f00;
+    font-size: 15px;
+}
+.heart-img-2{
+    border: none;
+    right: 15px;
+    top: 15px;
+    background: rgba(255,255,255,.8);
+}
+.heart-img-2 i{
+    color: #f00;
+    font-size: 15px;
+}
+.heart-img:hover{
+    background: rgba(255,255,255,.8);
+}
+.heart-img:hover i{
+    color: #f00;
+}
+.card-items:hover .heart-img{
+    display: flex;
+} 
+a.card-desc .item-name-e{
+    font-size: 15px;
+    color: #666;
+}
+@media (max-width: 976px){
+    .row{
+        justify-content: center;
+    }
+    .slide{
+        width: 160px;
+        height: 230px;
+    }
+    .card-items{
+        margin: 0 4px 4px;
+        width: 152px;
+        height: 270px;
+    }
+    .card-img{
+        height: 152px;
+    }
+    .card-desc{
+        height: 74px;
+        padding: 7px 7px;
+    }
+    .card-desc .item-name{
+        font-size: 1rem;
+    }
+    .card-desc .price{
+        font-size: 1rem;
+    }/*
+    .card-items:hover .item-name{
+        display: none;
+    } */
+    .card-items .heart-img{
+        display: flex;
+    } 
+    .item-ubication{
+        display: none;
+    }
+    a.card-desc .item-desc{
+        font-size: 10px;
+        color: #333;
+    }
+    a.card-desc .item-name-e{
+        font-size: 12px;
+        color: #666;
+    }
+}

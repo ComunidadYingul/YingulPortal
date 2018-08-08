@@ -9,6 +9,7 @@ import { AboutService } from '../../service/about.service';
 import { Network } from '../../model/Network';
 import { UserService } from '../../service/user.service';
 import { Person } from '../../model/person';
+import { ItemsByNameComponent } from "../../component/items-by-name/items-by-name.component";
 
 @Component({
   selector: 'app-navbar',
@@ -40,6 +41,9 @@ export class NavbarComponent implements OnInit {
 	popup_g:boolean=true;
 
 	profilePhoto:string="";
+	url:string="";
+	words:string[]=[];
+
 	constructor(private loginService: LoginService, private router : Router,private queryService : QueryServiceService, private categoryService:CategoryService,private aboutService:AboutService, private userService:UserService) {
     
 	}
@@ -66,9 +70,13 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-		
-  }
+	ngOnInit() {
+		this.url=window.location.href;
+		if(this.url.indexOf("itemsByName")){
+			this.words=this.url.split("/");
+			this.search=this.words[this.words.length-1];
+		}
+	}
 
 	menu(){
     	this.Menu.emit('menu');
@@ -113,14 +121,9 @@ export class NavbarComponent implements OnInit {
 	}
 	bestMatch(){
 		if(this.search!=""){
-			this.categoryService.getBestMatch(this.search).subscribe(
-			res => {
-						let url = JSON.parse(JSON.stringify(res))._body;
-						this.router.navigate(['/itemsCategory'+url]); 
-						location.reload();  
-				},
-				error => console.log(error)
-			);
+			this.search = this.search.replace(" ","%20");
+			this.router.navigate(['/itemsByName/'+this.search]); 
+			location.reload();
 		}
 	}
 
