@@ -64,4 +64,8 @@ export class BuyService {
     let url = Network.API_URL+"buy/getStateBuy/"+number;
     return this.http.get(url);
   }
+  getLinkPdf(number:string){
+    let url = Network.API_URL+"buy/getTicket/"+number;
+    return this.http.get(url);
+  }
 }

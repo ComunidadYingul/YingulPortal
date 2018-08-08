@@ -121,7 +121,7 @@ export class IdetailComponent implements OnInit {
               console.log(JSON.parse(JSON.parse(JSON.stringify(res))._body));
                 this.Product = JSON.parse(JSON.parse(JSON.stringify(res))._body);
                 //console.log( "dani: "+ JSON.stringify(res));alert("dani: "+ JSON.stringify(res));
-                if(this.Product.productPagoEnvio=="gratis"){this.envioType="Envío Gratis a todo el país";this.hiddenTypeSend=true;this.llegadaTime="Llega a la sucursal entre 48 y 96 hs. hábiles desde la entraga del entrega del producto.";}console.log("this.Product.productPagoEnvio"+this.Product.productPagoEnvio);
+                if(this.Product.productPagoEnvio=="gratis"){this.envioType="Envío Gratis a todo el país";this.hiddenTypeSend=true;this.llegadaTime="Llega a la sucursal entre 48 y 96 hs. hábiles desde la entrega del producto.";}console.log("this.Product.productPagoEnvio"+this.Product.productPagoEnvio);
                 
                 break;
               case "Inmueble":

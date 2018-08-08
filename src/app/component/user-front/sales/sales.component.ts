@@ -96,4 +96,15 @@ export class SalesComponent implements OnInit {
   aceptar(){
     this.hiddenPop=true;
   }
+  printTicket(buyTemp2:Buy){
+    this.codSeg=buyTemp2.shipping.yng_Shipment.shipmentCod;
+    this.buyService.getLinkPdf(this.codSeg).subscribe(
+      res => {
+         var Linkpdf = JSON.parse(JSON.stringify(res))._body; 
+        console.log("Linkpdf:"+Linkpdf);
+        window.open(Linkpdf,"_blank");
+          },
+          error => console.log(error)
+    ); 
+  }
 }
