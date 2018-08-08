@@ -32,6 +32,9 @@ export class ConfirmwosComponent implements OnInit {
               this.router.navigate(['/']); 
             }else{
               this.confirm = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+              if(this.confirm.seller.username!=this.User.username){
+                this.router.navigate(['/']);
+              }
             }
       		},
       		error => console.log(error)

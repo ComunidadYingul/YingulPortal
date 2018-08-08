@@ -268,7 +268,7 @@ export class ItemsByNameComponent implements OnInit {
     );
     this.itemListTemp=[];
     for (var i = 0; i < this.itemList.length; i++) {
-      alert(this.itemList[i].yng_Ubication.yng_Province.provinceId)
+      //alert(this.itemList[i].yng_Ubication.yng_Province.provinceId)
       if(this.itemList[i].yng_Ubication.yng_Province.provinceId==a){
         this.itemListTemp.push(this.itemList[i]);
       }
