@@ -44,6 +44,7 @@ export class ConfirmComponent implements OnInit {
   documentNumber:string;
   maxDocumentNumber:number=8;
   hidDocPhone:boolean=true;
+  payTotal:number=20000;
 
   constructor(private buyService: BuyService, private router: Router) { 
   console.log("shipping:"+JSON.stringify(this.shipping));
@@ -68,7 +69,7 @@ export class ConfirmComponent implements OnInit {
         }
         else{
           this.costosEnvio=Number(this.shipping.yng_Quote.rate);
-         
+          console.log("costosEnviodaniel:"+this.costosEnvio+ " this.cost:"+this.cost);
       }
 
       }
@@ -209,5 +210,8 @@ export class ConfirmComponent implements OnInit {
   }
   modifyShipping(){
     this.modify.emit("shipping");
+  }
+  integerD(minPrice){
+  return Math.round(minPrice * 100) / 100;
   }
 }
