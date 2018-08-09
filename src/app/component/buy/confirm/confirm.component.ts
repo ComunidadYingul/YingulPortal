@@ -127,9 +127,9 @@ export class ConfirmComponent implements OnInit {
       this.buy.userAgent=navigator.userAgent;
       this.buy.cookie=this.User.password;
 
-      this.buy.cost=this.cost+this.costosEnvio;
-      this.buy.shippingCost=Number(this.shipping.yng_Quote.rate);
-      this.buy.itemCost=this.cost;
+      this.buy.cost=Math.round((this.cost+this.costosEnvio) * 100) / 100;
+      this.buy.shippingCost=Math.round((Number(this.shipping.yng_Quote.rate)) * 100) / 100;
+      this.buy.itemCost=Math.round((this.cost) * 100) / 100;
       this.buy.shipping=this.shipping;
       
       console.log("send buy:"+JSON.stringify(this.buy));
