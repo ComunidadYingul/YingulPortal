@@ -606,11 +606,42 @@
                     </div> 
                     <div class="row">
                         <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                    <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Datos adicionales">
-                                </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Referencias (Ej. Casa con rejas negras)">
+                            </div>
                         </div>
+                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationAditional">
+                            <p>Campo requerido</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                            <input type="text" class="form-control" name="telephone" [(ngModel)]="telephone" placeholder="Teléfono">
+                        </div>
+                    </div>
+                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationPhone">
+                        <p>Ingrese teléfono</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                        
+                            <select class="input-group-addon"#a (change)="getDniCuit(a.value)">
+                                <option [value]="1" >DNI</option>
+                                <option [value]="2" >CUIT</option>
+                            </select>
+                        <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
+                        </div>
+                    </div>
+                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationDni">
+                        <p>Ingrese numero de documento</p>
                     </div>
                 </div>
                             
