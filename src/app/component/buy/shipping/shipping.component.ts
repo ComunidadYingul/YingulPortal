@@ -516,17 +516,17 @@ export class ShippingComponent implements OnInit {
         }      
       }
       else{
-        if(this.Item.productPagoEnvio=="gratis"){
-          this.hidRadioSucursal=false;
-          this.elem.nativeElement.querySelector('#rbRetiroSuc').focus();
-        }else{
+        //if(this.Item.productPagoEnvio=="gratis"){
+          /*this.hidRadioSucursal=false;*/
+          //this.elem.nativeElement.querySelector('#rbRetiroSuc').focus();
+        //}else{
           this.typeCotizacion.emit(null);
           this.typeProduct.emit(this.Product);
           this.typePrice.emit(null);
           this.typeShip.emit("envio");
           this.typeEnvio.emit(this.shipping);
           
-        }
+        //}
       }
 
 
