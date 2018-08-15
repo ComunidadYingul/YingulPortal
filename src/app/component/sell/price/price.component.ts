@@ -45,6 +45,9 @@ export class PriceComponent implements OnInit {
   number:string="";
   postalCode:string="";
   aditional:string="";
+  documentNumber:string="";
+  documentType:string="DNI";
+  telephone:string="";
   User:object;
   userName;
   ubicationId:string;
@@ -108,6 +111,9 @@ export class PriceComponent implements OnInit {
   hidUbicationCity:boolean=true;
   hidUbicationStreet:boolean=true;
   hidUbicationNumber:boolean=true;
+  hidUbicationPhone:boolean=true;
+  hidUbicationDni:boolean=true;
+  hidUbicationAditional:boolean=true;
 
   typePay:boolean=false;
   
@@ -547,6 +553,11 @@ export class PriceComponent implements OnInit {
 
   }
 
+  getDniCuit(type : string){
+    console.log("type:"+type);
+    if(type=="2"){this.documentType="CUIT";}
+    else{this.documentType="DNI";}
+  }
 
   popupUbication:boolean=true;
   aceptar(){
@@ -561,6 +572,12 @@ export class PriceComponent implements OnInit {
       this.hidUbicationStreet=false;
     }else if(this.number==null||this.number==""){  
       this.hidUbicationNumber=false;
+    }else if(this.aditional==null||this.aditional==""){  
+      this.hidUbicationAditional=false;
+    }else if(this.telephone==null||this.telephone==""){  
+      this.hidUbicationPhone=false;
+    }else if(this.documentNumber==null||this.documentNumber==""){  
+      this.hidUbicationDni=false;
     }
     else{
       this.product.yng_Item.yng_Ubication.street=this.street;
@@ -578,6 +595,9 @@ export class PriceComponent implements OnInit {
       //console.log("ubication"+JSON.stringify(this.ubication));
         this.Usertemp.yng_Ubication=this.product.yng_Item.yng_Ubication;
         this.Usertemp.username=this.userNameP;
+        this.Usertemp.phone=this.telephone;
+        this.Usertemp.documentType=this.documentType;
+        this.Usertemp.documentNumber=this.documentNumber;
         console.log("ubication"+JSON.stringify(this.Usertemp));
         this.buyService.updateUserUbication(this.Usertemp).subscribe(
           res => {
@@ -612,6 +632,9 @@ export class PriceComponent implements OnInit {
     this.hidUbicationCity=true;
     this.hidUbicationStreet=true;
     this.hidUbicationNumber=true;
+    this.hidUbicationPhone=true;
+    this.hidUbicationDni=true;
+    this.hidUbicationAditional=true;
   }
 
   ubicacion(){
