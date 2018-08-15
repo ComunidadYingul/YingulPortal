@@ -512,44 +512,39 @@
             <div [hidden]="false">
                 <div  [hidden]="false">
                     <h5>Tu ubicacion</h5>
+                    <h6>Ingresa estos datos por unica vez</h6>
                     <div class="row">
                         <div  class="col-sm-6" >
                             <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
                                 <option value="0">Seleccione su país</option>
                                 <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
                             </select>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationCountry">
+                                <p>Seleccione un país</p>
+                            </div>
                         </div>
-                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCountry">
-                            <p>Seleccione un país</p>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
                         <div  class="col-sm-6" *ngIf="provinceList!=null">
                             <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
                                 <option value="0">Seleccione una provincia</option>
                                 <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
                             </select>
-                        </div>
-                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationProvince">
-                            <p>Seleccione una provincia/departamento/estado</p>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationProvince">
+                                <p>Seleccione una provincia/departamento/estado</p>
+                            </div>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-6" [hidden]="cityHid">
-                                <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
-                                    <option value="opt1">Seleccione una Ciudad</option>
-                                    <option *ngFor="let city of cityList" [value]="city.cityId"  >( {{city.codigopostal}} ){{city.name}}  </option>
-                                </select>
+                            <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
+                                <option value="opt1">Seleccione una Ciudad</option>
+                                <option *ngFor="let city of cityList" [value]="city.cityId"  >( {{city.codigopostal}} ){{city.name}}  </option>
+                            </select>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationCity">
+                                <p>Seleccione una ciudad</p>
+                            </div>
                         </div>
-                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationCity">
-                            <p>Seleccione una ciudad</p>
-                        </div>
-                    </div>
-                    <br/>
-                    
-                    <div class="row"> 
+                        <br/>
                         <div class="col-sm-6" [hidden]="barrioHid">
                             <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
                                 <option value="opt1">Seleccione un Barrio</option>
@@ -559,23 +554,21 @@
                     </div>
                     <br/>
                     <div class="row">
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                    <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly" disabled="disabled">
-                                </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly" disabled="disabled">
                             </div>
-                    </div>
-                    <div class="row">
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
-                                    <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
-                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
                             </div>
-                            <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationStreet">
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationStreet">
                                 <p>Ingrese calle</p>
                             </div>
+                        </div>  
                     </div>
                     <div class="row">       
                         <div class="col-sm-6">
@@ -583,18 +576,16 @@
                                 <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                                 <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
                             </div>
-                        </div>
-                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationNumber">
-                            <p>Ingrese número</p>
-                        </div>
-                    </div>
-                    <div class="row">       
-                            <div class="col-sm-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
-                                    <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
-                                </div>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationNumber">
+                                <p>Ingrese número</p>
                             </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
+                            </div>
+                        </div>
                     </div>  
                     <div class="row">       
                         <div class="col-sm-6">
@@ -603,55 +594,51 @@
                                 <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
                             </div>
                         </div>
-                    </div> 
-                    <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
                                 <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Referencias (Ej. Casa con rejas negras)">
                             </div>
-                        </div>
-                        <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationAditional">
-                            <p>Campo requerido</p>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationAditional">
+                                <p>Campo requerido</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                <br/>
+                <h5>Datos personales</h5>
+                <br/>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
                             <input type="text" class="form-control" name="telephone" [(ngModel)]="telephone" placeholder="Teléfono">
                         </div>
+                        <div class="error-g error-form-ub" [hidden]="hidUbicationPhone">
+                            <p>Ingrese teléfono</p>
+                        </div>
                     </div>
-                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationPhone">
-                        <p>Ingrese teléfono</p>
-                    </div>
-                </div>
-
-                <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                        
                             <select class="input-group-addon"#a (change)="getDniCuit(a.value)">
                                 <option [value]="1" >DNI</option>
                                 <option [value]="2" >CUIT</option>
                             </select>
                         <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
                         </div>
-                    </div>
-                    <div class="error-g error-form-ub col-sm-6" [hidden]="hidUbicationDni">
-                        <p>Ingrese numero de documento</p>
+                        <div class="error-g error-form-ub" [hidden]="hidUbicationDni">
+                            <p>Ingrese numero de documento</p>
+                        </div>
                     </div>
                 </div>
-                            
+                <br/>      
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2">
-                            <div class="text-center">
-                                <button type="button" class="btn btn-success waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
-                            </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-success waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                        </div>
                     </div>
                 </div>
 
