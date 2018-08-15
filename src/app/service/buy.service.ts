@@ -68,4 +68,13 @@ export class BuyService {
     let url = Network.API_URL+"buy/getTicket/"+number;
     return this.http.get(url);
   }
+  setUserUbicationEditPersonalInfo(user:user){
+    //let url: string = Network.API_URL+'admin/isAdmin';
+    let headers = new Headers(
+      {
+        'Authorization': user.password
+      });
+    let _url: string =Network.API_URL+"user/setUserUbicationEditPersonalInfo";
+    return this.http.post(_url, user,{headers: headers})// return this.http.get(url, {headers: headers});
+  }
 }

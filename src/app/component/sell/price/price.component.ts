@@ -598,18 +598,19 @@ export class PriceComponent implements OnInit {
         this.Usertemp.phone=this.telephone;
         this.Usertemp.documentType=this.documentType;
         this.Usertemp.documentNumber=this.documentNumber;
+        this.Usertemp.password=this.useri.password;
         console.log("ubication"+JSON.stringify(this.Usertemp));
-        this.buyService.updateUserUbication(this.Usertemp).subscribe(
+        this.buyService.setUserUbicationEditPersonalInfo(this.Usertemp).subscribe(
           res => {
                 this.msg = JSON.parse(JSON.stringify(res))._body;
-                if(this.msg=='save'){
+                if(this.msg!=""){
                   //this.sw=true;
                  // this.buyItem();
                  this.popupUbication=true;
                  this.popup_g=true;
                 }
                 else{
-                  alert(this.msg);
+                  alert("Algo salio mal intente mas tarde");
                 } 
               },
               error => console.log(error)
