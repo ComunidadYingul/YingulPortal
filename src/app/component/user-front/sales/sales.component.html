@@ -89,11 +89,11 @@
                 <div class="popup_g">
                     <p class="popup-title">ESTADO DEL ENVIÓ</p>
                     <!--img src="assets/images/spiner.gif" alt="Cargando"-->
-                    <p class="popup-msg">Fecha de Alta: {{dateStringA |  date:'MM/dd/yyyy'}}</p>
-                    <p class="popup-msg">Fecha: {{dateString |  date:'MM/dd/yyyy'}}</p>
+                    <!--p class="popup-msg">Fecha de Alta: {{dateStringA |  date:'MM/dd/yyyy'}}</p-->
+                    <p class="popup-msg">Fecha: {{state.fecha}}</p>
                     <p class="popup-msg">Estado: {{state.estado}}</p>
                     <p class="popup-msg">Motivo: {{state.motivo}}</p>
-                    <p class="popup-msg">Sucursal:  {{state.sucursal}}</p>
+                    <!--p class="popup-msg">Sucursal:  {{state.sucursal}}</p-->
 
                     <button type="button" class="boton_1" (click)="aceptar()">Aceptar</button>
                 </div>
