@@ -74,6 +74,7 @@ export class PurchasesComponent implements OnInit {
     this.buyService.getStateShipping(this.codSeg).subscribe(
       res => {
         this.state = JSON.parse(JSON.parse(JSON.stringify(res))._body); 
+       // this.state.fecha=this.state.fecha.replace("T"," ");
         this.state.estado
         this.state.fecha
         this.state.fechaAlta
@@ -87,6 +88,7 @@ export class PurchasesComponent implements OnInit {
 
         this.dateString = this.state.fecha; 
         this.newDate = new Date(this.dateString);
+        this.state.fecha=this.state.fecha.replace("T"," ");
         this.hiddenPop=false;
         console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
 

@@ -89,7 +89,7 @@ export class PriceComponent implements OnInit {
   /****************************VARIABLE G*****************************/
   prodPayMethod:string="0";
   prodFormDeliv:boolean=false;
-
+  maxDocumentNumber:number=8;
   /****************** VARIABLES VALIDACION SERVICIOS *******************/
   hidPhone:boolean=true;
   hidPrice:boolean=true;
