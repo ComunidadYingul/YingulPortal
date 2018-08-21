@@ -4,10 +4,11 @@ import { user } from '../../../model/user';
 import { BuyService } from '../../../service/buy.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
-import { State } from '../../../model/state';
 import { Network } from '../../../model/Network';
 import { UserService } from '../../../service/user.service';
 import { Person } from '../../../model/person';
+import { ShippingTraceability } from '../../../model/shipping-traceability';
+import { ShippingState } from '../../../model/shipping-state';
 
 @Component({
   selector: 'app-sales',
@@ -21,12 +22,14 @@ export class SalesComponent implements OnInit {
   buyTemp:Buy =new Buy(); 
   codSeg:string;
   hiddenPop:boolean=true;
-  state:State=new State;
   dateString:string;
   dateStringA:string;
   newDateA:Date;
   newDate:Date;
   person:Person= new Person();
+  traceability:ShippingTraceability= new ShippingTraceability();
+  arrayState:ShippingState[];
+  state1:string;
   constructor(private userService:UserService,private router: Router, private buyService:BuyService, private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
@@ -56,28 +59,21 @@ export class SalesComponent implements OnInit {
   }
   onConfirm(buyTemp2:Buy){
     this.codSeg=buyTemp2.shipping.yng_Shipment.shipmentCod;
-    console.log("codSeg:"+this.codSeg);
     this.buyService.getStateShipping(this.codSeg).subscribe(
       res => {
-        this.state = JSON.parse(JSON.parse(JSON.stringify(res))._body); 
-        this.state.estado
-        this.state.fecha
-        this.state.fechaAlta
-        this.state.motivo
-        this.state.nombreEnvio
-        this.state.nroAndreani
-        this.state.sucursal
+        
+        this.state1 = "{\"FechaAlta\":\"2018-08-16T13:22:52-03:00\",\"Eventos\":{\"Evento_\":[{\"Sucursal\":\"-\",\"Fecha\":\"2018-08-16T13:22:52-03:00\",\"IdMotivo\":\"-1\",\"Motivo\":{},\"IdEstado\":\"30\",\"Estado\":\"Envío no ingresado\"},{\"Sucursal\":\"Sucursal Moreno (Bs. As.)\",\"Fecha\":\"2018-08-16T14:53:57-03:00\",\"IdMotivo\":\"-1\",\"Motivo\":{},\"IdEstado\":\"25\",\"Estado\":\"Envío ingresado al circuito operativo\"},{\"Sucursal\":\"Sucursal Moreno (Bs. As.)\",\"Fecha\":\"2018-08-16T18:29:29-03:00\",\"IdMotivo\":\"-1\",\"Motivo\":{},\"IdEstado\":\"21\",\"Estado\":\"Envío en tránsito a sucursal de Andreani\"},{\"Sucursal\":\"Planta de Operaciones Bs. As.\",\"Fecha\":\"2018-08-16T20:16:47-03:00\",\"IdMotivo\":\"-1\",\"Motivo\":{},\"IdEstado\":\"20\",\"Estado\":\"Envío en sucursal de Andreani\"},{\"Sucursal\":\"Planta de Operaciones Bs. As.\",\"Fecha\":\"2018-08-17T04:16:17-03:00\",\"IdMotivo\":\"-1\",\"Motivo\":{},\"IdEstado\":\"21\",\"Estado\":\"Envío en tránsito a sucursal de Andreani\"},{\"Sucursal\":\"Sucursal San Miguel (Bs. As.)\",\"Fecha\":\"2018-08-17T07:16:37-03:00\",\"IdMotivo\":\"-1\",\"Motivo\":{},\"IdEstado\":\"17\",\"Estado\":\"Envío en custodia en sucursal de Andreani\"}]},\"NombreEnvio\":\"Encomienda\",\"NroAndreani\":\"310000005335214\"}";
+        this.traceability=JSON.parse(this.state1);
+        this.arrayState=this.traceability.Eventos.Evento_;
+        for(var j=0; j<this.arrayState.length; j++){
+          this.arrayState[j].Fecha=this.arrayState[j].Fecha.replace("T"," ");
+        }
+        this.traceability.Eventos.Evento_= this.arrayState;
 
-        this.dateStringA = this.state.fechaAlta; 
-        this.newDateA = new Date(this.dateStringA);
-
-        this.dateString = this.state.fecha; 
-        this.newDate = new Date(this.dateString);
         this.hiddenPop=false;
-        console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
 
-          },
-          error => console.log(error)
+        },
+        error => console.log(error)
     ); 
   }
   logout(){
