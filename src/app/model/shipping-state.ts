@@ -1,10 +1,10 @@
 export class ShippingState {
-    Sucursal:string;
-	Fecha:string;
-	IdMotivo:string;
-	Motivo:Object = new Object();
-	IdEstado:string;
-	Estado:string;
+    sucursal:string;
+	fecha:string;
+	idMotivo:string;
+	motivo:Object = new Object();
+	idEstado:string;
+	estado:string;
 	constructor() {
 	}
 }
