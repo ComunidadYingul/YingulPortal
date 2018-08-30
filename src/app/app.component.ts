@@ -22,11 +22,17 @@ export class AppComponent {
 	salesMenu:boolean=true;
 	configurationMenu:boolean=true;
 	payMenu:boolean=true;
+	url:string="";
   menuE(ev){
     this.menu=!this.menu;
 	}
 	constructor(private userService:UserService){
-
+		this.url=window.location.href;
+		let substring = "https://";
+    if(!this.url.includes(substring)){
+			this.url=this.url.replace("http://","https://");
+			window.location.href=this.url; 
+		}
 	}
   ngOnInit() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
