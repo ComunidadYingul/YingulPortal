@@ -72,7 +72,8 @@ export class NavbarComponent implements OnInit {
 
 	ngOnInit() {
 		this.url=window.location.href;
-		if(this.url.indexOf("itemsByName")){
+		let substring = "itemsByName";
+		if(this.url.includes(substring)){
 			this.words=this.url.split("/");
 			this.search=this.words[this.words.length-1];
 		}
