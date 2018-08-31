@@ -23,14 +23,14 @@ export class AppComponent {
 	configurationMenu:boolean=true;
 	payMenu:boolean=true;
 	url:string="";
+	PROTOCOL_URL:string=Network.PROTOCOL_URL;
   menuE(ev){
     this.menu=!this.menu;
 	}
 	constructor(private userService:UserService){
 		this.url=window.location.href;
-		let substring = "https://";
-    if(!this.url.includes(substring)){
-			this.url=this.url.replace("http://","https://");
+    if(!this.url.includes(this.PROTOCOL_URL)){
+			this.url=this.url.replace("http://",this.PROTOCOL_URL);
 			window.location.href=this.url; 
 		}
 	}

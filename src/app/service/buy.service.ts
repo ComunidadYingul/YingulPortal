@@ -48,7 +48,7 @@ export class BuyService {
     return this.http.get(url);
   }
   getDataForBuyer(){
-    let url = "http://ip-api.com/json";
+    let url = "https://ipapi.co/json";
     return this.http.get(url);
   }
 
