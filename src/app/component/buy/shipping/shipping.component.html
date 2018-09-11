@@ -19,7 +19,7 @@
             <div class="form-radio">
                 <div class="radio radiofill radio-inline" *ngIf="Item.type!='Motorized'">
                     <label>
-                        <input id="rbRetiroSuc" type="radio" value="false" name="radio" #radio (change)="check('branch')" [(ngModel)]="radioSucursal">
+                        <input id="rbRetiroSuc" type="radio" value="false" name="radio" #radio (change)="check('branch')" >
                         <i class="helper"></i>Retiro en una sucursal
                     </label>
                     <div class="error-g row">
@@ -33,7 +33,7 @@
                 <div class="row input-group input-group-button">
                     <input id="postalCode" type="text" (keypress)="keyPressCP($event)" class="col-sm-6 form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
                     <span class="col-sm-3 input-group-addon" id="basic-addon10" (click)="quoteSend()">Buscar
-                <!--button class="btn btn-primary" (click)="quoteSend()">Buscar</button-->
+               
                     </span>
                     <a class="col-sm-3" href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
                 </div> 
@@ -53,7 +53,7 @@
                                     <div class="col-sm-12 form-radio">
                                      <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
                                             <label>
-                                                <input id="rbSucursal" type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
+                                                <input id="rbSucursalHome" type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
                                                 <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
                                                 <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
@@ -65,7 +65,7 @@
                                             </label>                                                
                                         </div> 
                                     </div>
-                                </tbody>  
+                                </tbody> 
                                 <div class="error-g row">
                                     <p  [hidden]="hidSucursal">* Debe seleccionar una opción</p>
                                 </div>                            
@@ -113,67 +113,52 @@
             </div>
            
             <br/>
-
-<!--   -->            
-            <!--div class="form-radio">
+            <div class="form-radio">
                 <div class="radio radiofill radio-inline" *ngIf="Item.type!='Motorized'">
                     <label>
-                        <input id="rbRetiroSuc" type="radio" value="false" name="radio" #radio (change)="check('fedex')" [(ngModel)]="radioSucursal">
-                        <i class="helper"></i> Envíos internacio
+                        <input id="rbRetiroSendHome" type="radio" value="false" name="radio" #radio (change)="check('sendHome')">
+                        <i class="helper"></i> Normal a domicilio
                     </label>
                     <div class="error-g row">
                         <p  [hidden]="hidRadioSucursal">* Marcar campo</p>
                     </div>
                 </div>
             </div>
+            <div [hidden]=hiddenHomeButton>
+                <button type="button" class="btn btn-primary waves-effect waves-light m-r-20" (click)="ubicacion()">
+                    <span class="m-l-10">* Ingresa tu domicilio</span>
+                </button>
+                <span style="color:red;margin-left:20px;font-size:.8em;" [hidden]="hidIngresarDomicilio">* Debe ingresar su domicilio.</span>
+            </div>
+            <div class="col-sm-12" [hidden]="popupSendHome"  class="radio radiofill radio-inline">
+                    <div class="table-responsive" >
+                        <table class="table  invoice-detail-table">
+                            <tbody [hidden]="false">
+                                <div class="col-sm-12 form-radio">
+                                    <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
+                                        <label>
+                                            <input id="rbSucursalHome" type="radio" name="shippingMethodHome" value="sucursalHome" (click)="envioCompradorHome($event,amenities)" [checked]="checke">
+                                            <h6>{{ubication.street }} {{ubication.number}} - {{ubication.department}}</h6>
+                                            <h6 class="cho-list">{{ubication.withinStreets}} - {{ubication.aditional}} - C.P. {{ubication.postalCode}} {{ubication.yng_City.name}},{{ubication.yng_Province.name}}</h6>
+                                            <i class="helper"></i>
+                                        </label>
+                                        <label>
+                                            <h6 class="count text-primary"*ngIf="Product.productPagoEnvio=='gratis'">$ Envio Gratis</h6>
+                                            <h6 class="count text-primary"*ngIf="Product.productPagoEnvio!='gratis'">$ {{amenities.rate}}</h6><br>
+                                        </label>                                                
+                                    </div> 
+                                </div>
+                            </tbody> 
+                            <div class="error-g row">
+                                <p  [hidden]="hidSucursal">* Debe seleccionar una opción</p>
+                            </div>                            
+                        </table>                       
+                    </div>
+            </div>
+            <br>
             <br/>
-            <div [hidden]="branch">
-                <h4 class="sub-title">Ingresa tu código postal para buscar sucursales</h4>
-                <div class="row input-group input-group-button">
-                    <input id="postalCode" type="text" (keypress)="keyPressCP($event)" class="col-sm-6 form-control" placeholder="Código postal" name="postalCode" [(ngModel)]="postalCode" minlength=4 maxlength=4>
-                    <span class="col-sm-3 input-group-addon" id="basic-addon10" (click)="quoteSend()">Buscar
-               
-                    </span>
-                    <a class="col-sm-3" href="https://codigopostal.com.ar/" target="_blank">.    No se mi código</a>
-                </div> 
-                <div class="error-g row">
-                    <p  [hidden]="hidBuscarSucursal">* Debe ingresar código postal para buscar sucursales cercanas</p>
-                </div>               
-                <hr class="m-t-20 m-b-20">
-                <div class="col-sm-12" [hidden]="popupSucursal"  class="radio radiofill radio-inline">
-                        <div class="table-responsive" >
-                            <table class="table  invoice-detail-table">
-                                <thead>
-                                    <tr class="thead-default">
-                                        <th>Sucursal/Costo</th>
-                                    </tr>
-                                </thead>
-                                <tbody [hidden]="false">
-                                    <div class="col-sm-12 form-radio">
-                                     <div class="radio radiofill radio-primary radio-inline" *ngFor="let amenities of quoteList" >
-                                            <label>
-                                                <input id="rbSucursal" type="radio" name="shippingMethod" value="sucursal" (click)="envioComprador($event,amenities)" [checked]="checke">
-                                                <h6 class="cho-list">{{amenities.yng_Branch.nameMail}}</h6>
-                                                <h6 class="cho-list">{{amenities.yng_Branch.location}}</h6>
-                                                <h6 class="cho-list">{{amenities.yng_Branch.street}}</h6>                     
-                                                <i class="helper"></i>{{amenities.yng_Branch.schedules}}
-                                            </label>
-                                            <label>
-                                                <h6 class="count text-primary"*ngIf="Product.productPagoEnvio=='gratis'">$ Envio Gratis</h6>
-                                                <h6 class="count text-primary"*ngIf="Product.productPagoEnvio!='gratis'">$ {{amenities.rate}}</h6><br>
-                                            </label>                                                
-                                        </div> 
-                                    </div>
-                                </tbody>  
-                                <div class="error-g row">
-                                    <p  [hidden]="hidSucursal">* Debe seleccionar una opción</p>
-                                </div>                            
-                            </table>                       
-                        </div>
-                </div>
-                <br/>
-                <div [hidden]="popupSucursal">
-                <h6>¿Quien retira el paquete?</h6><br/>
+            <div [hidden]="popupSendHome">
+                <h6>¿Quien recibirá el paquete?</h6><br/>
                 <div class="row">
                         <div class="col-sm-6">
                             <div class="input-group">
@@ -208,11 +193,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
-            
-            <div class="col-sm-10"-->
-                <!-- -->
                 <a type="submit" class="btn btn-primary m-b-0" (click)="sendTypeShip2()">Continuar</a>
             <!--/div-->  
         </form>
@@ -240,8 +221,13 @@
 
 
 <!--    FORMULARIO POPUP     -->
-<div class="content_popup_g" align="center" [hidden]="popupUbication">
+<!--div class="content_popup_g" align="center" [hidden]="true">
 <div class="popup" >
+        <div style="position:absolute; top:35px; right:35px;">
+                <span (click)="popupHide()">
+                    <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+                </span>
+            </div>
     <h4 class="text-primary">¿Dónde querés recibirlo?</h4>
     <div [hidden]="true"> 
         <div class="col-sm-6" [hidden]="countryHidden">
@@ -276,7 +262,7 @@
             </div>
 
             <h4 class="sub-title">{{provinciaCP}}</h4>
-            <!--nueva ubicacion -->
+            
             <h5>Tu ubicacion</h5>
         <div class="row">
             <div  class="col-sm-6" >
@@ -331,7 +317,7 @@
                     </div>
                 </div>
         </div>
-            <!---->
+           
             <div class="col-sm-6" [hidden]="true">
                     <select name="select" class="form-control form-control-primary" #u (change)="getBarrio(u.value)">
                         <option value="opt1">Seleccione una Ciudad</option>
@@ -400,7 +386,7 @@
 
 </div>
 </div>
-</div>
+</div-->
 
 <div class="content_popup_g" align="center" [hidden]="popup_g">
     <div class="popup_g">
@@ -409,3 +395,148 @@
         <p class="popup-msg">Por favor espere...</p>
     </div>
 </div>
+
+<!--    FORMULARIO POPUP     -->
+<div class="content_popup_g" align="center" [hidden]="popupUbication1">
+        <div style="position:absolute; top:35px; right:35px;">
+                <span (click)="popupHide()">
+                    <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+                </span>
+            </div>
+        <div class="popup" >   
+                <div [hidden]="false">
+                    <div  [hidden]="false">
+                        <h5>Tu ubicacion</h5>
+                        <h6>Ingresa estos datos por unica vez</h6>
+                        <div class="row">
+                            <div  class="col-sm-6" >
+                                <select class="form-control form-control-primary" #w (change)="getProvince(w.value)" >
+                                    <option value="0">Seleccione su país</option>
+                                    <option *ngFor="let country of countryList" [value]="country.countryId" >{{country.name}}</option>
+                                </select>
+                                <div class="error-g error-form-ub" [hidden]="hidUbicationCountry">
+                                    <p>Seleccione un país</p>
+                                </div>
+                            </div>
+                            <div  class="col-sm-6" *ngIf="provinceList!=null">
+                                <select class="form-control form-control-primary" #t (change)="getCity(t.value)" >
+                                    <option value="0">Seleccione una provincia</option>
+                                    <option *ngFor="let province of provinceList" [value]="province.provinceId" >{{province.name}}</option>
+                                </select>
+                                <div class="error-g error-form-ub" [hidden]="hidUbicationProvince">
+                                    <p>Seleccione una provincia/departamento/estado</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6" [hidden]="cityHid">
+                                <select name="select" class="form-control form-control-primary" #b (change)="getBarrio( b.value)">
+                                    <option value="opt1">Seleccione una Ciudad</option>
+                                    <option *ngFor="let city of cityList" [value]="city.cityId"  >( {{city.codigopostal}} ){{city.name}}  </option>
+                                </select>
+                                <div class="error-g error-form-ub" [hidden]="hidUbicationCity">
+                                    <p>Seleccione una ciudad</p>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="col-sm-6" [hidden]="barrioHid">
+                                <select name="select" class="form-control form-control-primary" #v (change)="setBarrio(v.value)">
+                                    <option value="opt1">Seleccione un Barrio</option>
+                                    <option *ngFor="let barrio of barrioList" [value]="barrio.barrioId" >{{barrio.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                    <input type="text"  class="form-control" name="postalCode" [(ngModel)]="postalCode" placeholder="Codigo postal" readonly="readonly" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                    <input type="text" class="form-control" name="street" [(ngModel)]="street" placeholder="Calle">
+                                </div>
+                                <div class="error-g error-form-ub" [hidden]="hidUbicationStreet">
+                                    <p>Ingrese calle</p>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="row">       
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                    <input type="text" class="form-control" name="number" [(ngModel)]="number" placeholder="Número *">
+                                </div>
+                                <div class="error-g error-form-ub" [hidden]="hidUbicationNumber">
+                                    <p>Ingrese número</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                    <input type="text" class="form-control" name="department" [(ngModel)]="department" placeholder="Piso / Departamento">
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row">       
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                    <input type="text" class="form-control" name="withinStreets" [(ngModel)]="withinStreets" placeholder="Entre calles">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-man-in-glasses"></i></span>
+                                    <input type="text" class="form-control" name="aditional" [(ngModel)]="aditional" placeholder="Referencias (Ej. Casa con rejas negras)">
+                                </div>
+                                <div class="error-g error-form-ub" [hidden]="hidUbicationAditional">
+                                    <p>Campo requerido</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <h5>Datos personales</h5>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-ui-user"></i></span>
+                                <input type="text" class="form-control" name="telephone" [(ngModel)]="telephone" placeholder="Teléfono">
+                            </div>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationPhone">
+                                <p>Ingrese teléfono</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <select class="input-group-addon"#a (change)="getDniCuit(a.value)">
+                                    <option [value]="1" >DNI</option>
+                                    <option [value]="2" >CUIT</option>
+                                </select>
+                            <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
+                            </div>
+                            <div class="error-g error-form-ub" [hidden]="hidUbicationDni">
+                                <p>Ingrese numero de documento</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>      
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-success waves-effect waves-light m-r-10" (click)="aceptar()">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    </div>

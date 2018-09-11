@@ -28,8 +28,12 @@ export class BuyService {
     return this.http.get(url);
   }
   saveBuy(buy:Buy){
+    let headers = new Headers(
+      {
+        'Authorization': buy.user.password
+      });
     let _url: string =Network.API_URL+"buy/createBuy";
-    return this.http.post(_url, buy,{headers: this.headers})
+    return this.http.post(_url, buy,{headers: headers});
   }
   saveEnvio(envio:AndreaniEnvios){
     let _url: string =Network.API_URL+"logistics/envio";

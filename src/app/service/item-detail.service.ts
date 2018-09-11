@@ -111,5 +111,9 @@ export class ItemDetailService {
     let url = Network.API_URL+"item/ubication/update";
     return this.http.post(url ,item, {headers: this.headers});
   }
+  sendQuoteBranchHome(cotizar : Object){
+    let url = Network.API_URL+"logistics/quoteBranchHome";
+    return this.http.post(url,cotizar, {headers: this.headers});
+  }
 }
 

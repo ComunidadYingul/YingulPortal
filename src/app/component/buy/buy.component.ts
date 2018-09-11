@@ -146,6 +146,7 @@ export class BuyComponent implements OnInit {
   }
   sendShipping(ev){
     this.shipping=ev;
+    console.log("shipping: "+JSON.stringify(this.shipping));
   }
   shiping(){
     this.ngOnInit();

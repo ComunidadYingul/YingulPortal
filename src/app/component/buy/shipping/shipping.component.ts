@@ -142,6 +142,9 @@ export class ShippingComponent implements OnInit {
     cityTem:City=new City();
     provinceList: Object[];
     provin:string;
+    popupUbication1:boolean=true;
+    hiddenHomeButton:boolean=true;
+    popupSendHome:boolean=true;
   constructor(private elem:ElementRef,private buyService: BuyService,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService,private router: Router) { 
     this.cityHid=true;
     console.log("Cotizacion"+JSON.stringify(this.shipping));
@@ -190,6 +193,8 @@ export class ShippingComponent implements OnInit {
         this.branch= false;
         this.sendHome=true;
         this.shipping.typeShipping="branch";
+        this.hiddenHomeButton=true;
+        this.popupSendHome=true;
         break;
       case "home":
         this.branch= true;
@@ -198,10 +203,17 @@ export class ShippingComponent implements OnInit {
         this.priceHiddem=true;
         this.shipping.typeShipping="home";
         this.checke=false;
+        this.hiddenHomeButton=true;
+        this.popupSendHome=true;
         break;
       case "sendHome":
         this.branch= true;
         this.sendHome=false;
+        this.checke=false;
+        //this.popupUbication1=false;
+        this.consultarUbi();
+        this.hiddenHomeButton=false;
+        this.popupSendHome=true;
         break;
       case "fedex":
       this.branch= true;
@@ -511,22 +523,57 @@ export class ShippingComponent implements OnInit {
             this.shipping.yng_Quote.yng_Item=null;
             this.shipping.yng_Quote.yng_User=null;
             this.shipping.yng_Shipment.yng_User.yng_Ubication.postalCode=this.postalCode;
+            console.log("shipping: "+JSON.stringify(this.shipping));
             this.typeEnvio.emit(this.shipping);
           }
         }      
       }
       else{
-        //if(this.Item.productPagoEnvio=="gratis"){
-          /*this.hidRadioSucursal=false;*/
-          //this.elem.nativeElement.querySelector('#rbRetiroSuc').focus();
-        //}else{
-          this.typeCotizacion.emit(null);
-          this.typeProduct.emit(this.Product);
-          this.typePrice.emit(null);
-          this.typeShip.emit("envio");
-          this.typeEnvio.emit(this.shipping);
-          
-        //}
+        if(this.sendHome==false){
+          if(this.popupSendHome==true){
+            console.log("this.sendHome==false");
+            this.hidBuscarSucursal=false;
+            this.elem.nativeElement.querySelector('#postalCode').focus();
+          }else if(this.camSW==false){
+            this.hidSucursal=false;
+            this.elem.nativeElement.querySelector('#rbSucursal').focus();
+          }else if(this.name=="" || this.name==null){
+            this.hidName=false;
+            this.elem.nativeElement.querySelector('#name').focus();
+          }if(this.lastName=="" || this.lastName==null){
+            this.hidlastName=false;
+            this.elem.nativeElement.querySelector('#lastName').focus();
+          }else if(this.phone=="" || this.phone==null){
+            this.hidPhone=false;
+            this.elem.nativeElement.querySelector('#phone').focus();
+          }
+          else {
+            if(this.shipping.typeShipping=="branchHome")
+            {
+              this.typeCotizacion.emit(this.cotizacion);
+              this.typeProduct.emit(this.Product);
+              this.typePrice.emit(this.priceSuc);
+              this.typeShip.emit("envio");          
+              this.shipping.nameContact=this.name;
+              this.shipping.phoneContact=this.phone;
+              this.shipping.lastName=this.lastName;
+              this.shipping.yng_Quote.yng_Item=null;
+              this.shipping.yng_Quote.yng_User=null;
+              this.shipping.yng_Shipment.yng_User.yng_Ubication.postalCode=this.postalCode;
+              console.log("shipping: "+JSON.stringify(this.shipping));
+              this.typeEnvio.emit(this.shipping);
+            }
+          }
+          }
+          else{
+            this.typeCotizacion.emit(null);
+            this.typeProduct.emit(this.Product);
+            this.typePrice.emit(null);
+            this.typeShip.emit("envio");
+            console.log("shipping: "+JSON.stringify(this.shipping));
+            this.typeEnvio.emit(this.shipping);
+          }       
+
       }
 
 
@@ -751,5 +798,135 @@ export class ShippingComponent implements OnInit {
       default:
 
     }
+  }
+  popupHide(){
+    this.popupUbication1=true;
+    //this.hiddenHomeButton=true;
+    //this.ngOnInit();
+  }
+  ubicacion(){
+    this.popupUbication1=false;
+  }
+  consultarUbi(){
+    this.popupSendHome=true;
+    console.log("this.userName: "+this.userName);
+    this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
+      res => {
+        console.log("res: "+JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body!=""){
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.hiddenHomeButton=true; 
+           console.log("ubicacion : "+JSON.stringify(this.ubication));
+           this.popupSendHome=false;
+           this.popup_g=false;
+           this.popupSucursal=true;
+           this.getItem("Producto",this.Item.itemId);
+           this.quoteS.respuesta="";
+           this.userTemp=this.Item.user; 
+           this.Item.user=null;
+           this.userTemp2.username=this.userTemp.username;
+           this.Item.user=this.userTemp2;
+           this.quoteS.yng_Item=this.Item;
+           this.useri=JSON.parse(localStorage.getItem("user"));
+           this.postalCode=this.ubication.postalCode;
+           this.useri.yng_Ubication.postalCode=this.postalCode;
+           this.quoteS.yng_User=this.useri;
+           this.quoteS.quantity=this.quantity;
+           this.sendQuoteBranchHome(this.quoteS);
+        }
+        else {
+          this.hiddenHomeButton=false;
+         /* this.popupEnvios=true;
+          this.popupUbicacion=false;*/
+          console.log("vacio");
+                }
+          },
+          error => {
+            console.log("error : " +error); 
+            alert("Algo salio mal intente mas tarde");}
+    );
+    
+  }
+  envioCompradorHome(event,yng_Quote:Quote){
+      
+    this.shipping.typeShipping="branchHome";
+    this.camSW=true;
+    if(event.target.checked==true) {
+      this.priceHiddem=false;
+      this.shipping.yng_Quote=yng_Quote;
+     // this.priceSuc2=""+yng_Quote.rate;
+      if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
+    else  this.priceSuc=yng_Quote.rate+"  Costo del envio";
+    }
+  }
+  consultarUbiHome(){
+    this.popupSendHome=true;
+    console.log("this.userName: "+this.userName);
+    this.sellService.ConsultarUbicavionUser(this.userName).subscribe(
+      res => {
+        console.log("res: "+JSON.stringify(res));
+        if(JSON.parse(JSON.stringify(res))._body!=""){
+            this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            this.hiddenHomeButton=true; 
+           console.log("ubicacion : "+JSON.stringify(this.ubication));
+           this.popupSendHome=false;
+           this.popup_g=false;
+           this.popupSucursal=true;
+           this.getItem("Producto",this.Item.itemId);
+           this.quoteS.respuesta="";
+           this.userTemp=this.Item.user; 
+           this.Item.user=null;
+           this.userTemp2.username=this.userTemp.username;
+           this.Item.user=this.userTemp2;
+           this.quoteS.yng_Item=this.Item;
+           this.useri=JSON.parse(localStorage.getItem("user"));
+           this.postalCode=this.ubication.postalCode;
+           this.useri.yng_Ubication.postalCode=this.postalCode;
+           this.quoteS.yng_User=this.useri;
+           this.quoteS.quantity=this.quantity;
+           this.sendQuote(this.quoteS);
+        }
+        else {
+          this.hiddenHomeButton=false;
+         /* this.popupEnvios=true;
+          this.popupUbicacion=false;*/
+          console.log("vacio");
+                }
+          },
+          error => {
+            console.log("error : " +error); 
+            alert("Algo salio mal intente mas tarde");}
+    );
+    
+  }
+  sendQuoteBranchHome(yng_Quote:Quote){
+    console.log("yng_Quote: "+JSON.stringify(yng_Quote));
+    this.itemDetailService.sendQuoteBranchHome(yng_Quote).subscribe(
+      res => {
+          this.quoteList=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+          console.log("JSON qoute responce:"+JSON.stringify(this.quoteList));
+
+          if(this.quoteList.length>0){
+            console.log("yng_Branch:"+JSON.parse(JSON.stringify(this.quoteList[0])).yng_Branch);
+            console.log("respuesta"+JSON.parse(JSON.stringify(this.quoteList[0])).respuesta);
+            var branchRes=JSON.parse(JSON.stringify(this.quoteList[0])).yng_Branch;
+            if (branchRes!=null){
+              this.popupCotizar=false;
+              this.mostrarCotizacion();
+            }
+            else{
+              this.popup_g=true;
+              this.quoteList=null;
+              alert("No existe una sucursal cercana");
+            }
+          }
+          else {
+            this.popup_g=true;
+            this.popupCotizar=true; 
+            alert("Código postal invalido");
+          }
+        },
+      error => console.log(error)
+    ); 
   }
 }

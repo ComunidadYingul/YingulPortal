@@ -60,7 +60,7 @@ export class IdetailComponent implements OnInit {
   numberImg:number;
   hidQuery:boolean=true;
   itemFavorites: Item[]=[];
-  public urldetail:string="http://backendyingul-env.cqx28e6j2j.us-west-2.elasticbeanstalk.com/sell/meta/";
+  public urldetail:string="https://api.yingul.com/sell/meta/";
   iditem:string="";
   constructor(private itemDetailService : ItemDetailService, private router : Router, private favoriteService: FavoriteService){
     if(this.Product.productPagoEnvio=="comprador"){this.hiddenTypeSend=false;}
