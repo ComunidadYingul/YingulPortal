@@ -172,7 +172,7 @@
                                                                 <div class="col-lg-12">
                                                                     <div class="general-info">
                                                                         <div class="row">
-                                                                            <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">Datos de cuenta</p>
+                                                                            <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">DATOS DE TU CUENTA</p>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-12 col-xl-6">
@@ -201,8 +201,11 @@
                                                                                 </table>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
-                                                                            <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">Datos personales</p>
+                                                                        <div *ngIf="!person.business" class="row">
+                                                                            <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">DATOS PERSONALES</p>
+                                                                        </div>
+                                                                        <div *ngIf="person.business" class="row">
+                                                                            <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">DATOS DEL REPRESENTANTE</p>
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-lg-12 col-xl-6">
@@ -224,6 +227,59 @@
                                                                                             <td *ngIf="!person.yng_User.phone&&!person.yng_User.phone2" ><a style="cursor: pointer; color:#0275d8;" (click)="setPhone()">Agregar</a></td>
                                                                                             <td *ngIf="person.yng_User.phone&&!person.yng_User.phone2" >{{phone}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhone()">Modificar</a> | <a style="cursor: pointer; color:#0275d8;" (click)="setPhone2()">Agregar</a></td>
                                                                                             <td *ngIf="person.yng_User.phone&&person.yng_User.phone2" >{{phone}} / {{phone2}} <a style="cursor: pointer; color:#0275d8;" (click)="updatePhones()">Modificar</a></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <!-- end of table col-lg-6 -->
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-xl-6">
+                                                                                <table class="table m-0">
+                                                                                    <tbody>
+                                                                                        <tr class="row">
+                                                                                            <th class="col-12 col-sm-4" scope="row">Tipo de documento </th>
+                                                                                            <td *ngIf="person.yng_User.documentType">{{person.yng_User.documentType}}</td>
+                                                                                            <td *ngIf="!person.yng_User.documentType">-</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <!-- end of table col-lg-6 -->
+                                                                            <div class="col-lg-12 col-xl-6">
+                                                                                <table class="table">
+                                                                                    <tbody>
+                                                                                        <tr class="row">
+                                                                                            <th class="col-12 col-sm-4" scope="row">Número de documento</th>
+                                                                                            <td *ngIf="person.yng_User.documentNumber">{{person.yng_User.documentNumber}} <a style="cursor: pointer; color:#0275d8;" (click)="setUserDocument()">Modificar</a></td>
+                                                                                            <td *ngIf="!person.yng_User.documentNumber"><a style="cursor: pointer; color:#0275d8;" (click)="setUserDocument()"> Agregar</a></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <!-- end of table col-lg-6 -->
+                                                                        </div>
+                                                                        <div *ngIf="person.business" class="row">
+                                                                            <p class="col-12 col-sm-4 text-left font-weight-bold" scope="row">DATOS DE TU EMPRESA</p>
+                                                                        </div>
+                                                                        <div *ngIf="person.business" class="row">
+                                                                            <div class="col-lg-12 col-xl-6">
+                                                                                <table class="table m-0">
+                                                                                    <tbody>
+                                                                                        <tr class="row">
+                                                                                            <th class="col-12 col-sm-4" scope="row">Razon Social</th>
+                                                                                            <td>{{business.businessName}} <a style="cursor: pointer; color:#0275d8;" (click)="updateBusinessName()">Modificar</a></td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <!-- end of table col-lg-6 -->
+                                                                            <div class="col-lg-12 col-xl-6">
+                                                                                <table class="table">
+                                                                                    <tbody>
+                                                                                        <tr class="row">
+                                                                                            <th class="col-12 col-sm-4" scope="row">CUIT</th>
+                                                                                            <td>{{business.documentNumber}} <a style="cursor: pointer; color:#0275d8;" (click)="updateUserDocument()">Modificar</a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -315,7 +371,8 @@
         </div>
     </div>
 
-    <div class="popup" [hidden]="popup10">
+    <div class="popup" [hidden]="popup1">
+
         <div style="position:absolute; top:-35px; right:-35px;">
             <span (click)="popupHide()">
                 <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
@@ -323,59 +380,36 @@
         </div>
 
         <div class="page-header-title">
-            <h3>Modificar foto de Perfil</h3>
+            <h3>Modificar Razon Social</h3>
             <hr class="m-t-20 m-b-20">
         </div>
 
-        <div class="md-float-material text-center">
-            <div class="row fondo-img-g">
-                <div id="image-preview1" style="margin:auto;">
-                    <label for="image-upload1" id="image-label1">Foto Principal</label>
-                    <input type="file" name="image-upload1" id="image-upload1" />
-                </div>
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="text" class="form-control" name="businessName" [(ngModel)]="businessName" placeholder="Razon Social nuevo" required >
             </div>
         </div>
-
         <hr class="m-t-20 m-b-20">
         <div class="row">
             <div class="col-sm-12">
                 <div class="text-center">
-                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendProfilePhoto()">CONFIRMAR
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendBusinessName()">CONFIRMAR
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="popup" [hidden]="popup12">
-        <div style="position:absolute; top:-35px; right:-35px;">
-            <span (click)="popupHide()">
-                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
-            </span>
-        </div>
-
+    <div class="popup2" align="center" [hidden]="popup2">
         <div class="page-header-title">
-            <h3>Modificar Banner de Perfil</h3>
-            <hr class="m-t-20 m-b-20">
-        </div>
-
-        <div class="md-float-material text-center">
-            <div class="row fondo-img-g">
-                <div id="image-preview2" style="margin:auto;">
-                    <label for="image-upload2" id="image-label2">Foto</label>
-                    <input type="file" name="image-upload2" id="image-upload2" />
-                </div>
-            </div>
-        </div>
-
-        <hr class="m-t-20 m-b-20">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendProfileBanner()">CONFIRMAR
-                    </button>
-                </div>
-            </div>
+            <h3>SOLICITUD EN PROCESO</h3>
+            <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
+            <br>
+            <br>
+            <h4>Por Favor espere</h4>
         </div>
     </div>
 
@@ -490,37 +524,6 @@
             <div class="col-sm-12">
                 <div class="text-center">
                     <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendPhones()">CONFIRMAR
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup" [hidden]="popup11">
-        <div style="position:absolute; top:-35px; right:-35px;">
-            <span (click)="popupHide()">
-                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
-            </span>
-        </div>
-
-        <div class="page-header-title">
-            <h3>Teléfono Principal</h3>
-            <hr class="m-t-20 m-b-20">
-        </div>
-
-        <div class="md-float-material">
-            <div class="input-group input-group-button">
-                <span class="input-group-addon">
-                    <i class="icofont icofont-phone">Teléfono</i>
-                </span>
-                <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Ej. (11) 4323-4556" required >
-            </div>
-        </div>
-        <hr class="m-t-20 m-b-20">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="text-center">
-                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendPhone()">CONFIRMAR
                     </button>
                 </div>
             </div>
@@ -653,13 +656,164 @@
         </div>
     </div>
 
-    <div class="popup2" align="center" [hidden]="popup2">
+    <div class="popup" [hidden]="popup10">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
         <div class="page-header-title">
-            <h3>SOLICITUD EN PROCESO</h3>
-            <img width="70" heigth="70" src="assets/images/spiner.gif" alt="Cargando">
-            <br>
-            <br>
-            <h4>Por Favor espere</h4>
+            <h3>Modificar foto de Perfil</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material text-center">
+            <div class="row fondo-img-g">
+                <div id="image-preview1" style="margin:auto;">
+                    <label for="image-upload1" id="image-label1">Foto Principal</label>
+                    <input type="file" name="image-upload1" id="image-upload1" />
+                </div>
+            </div>
+        </div>
+
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendProfilePhoto()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="popup" [hidden]="popup11">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Teléfono Principal</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-phone">Teléfono</i>
+                </span>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="phone" placeholder="Ej. (11) 4323-4556" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendPhone()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup12">
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar Banner de Perfil</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material text-center">
+            <div class="row fondo-img-g">
+                <div id="image-preview2" style="margin:auto;">
+                    <label for="image-upload2" id="image-label2">Foto</label>
+                    <input type="file" name="image-upload2" id="image-upload2" />
+                </div>
+            </div>
+        </div>
+
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendProfileBanner()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup13">
+
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Modificar CUIT de la empresa</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group input-group-button">
+                <span class="input-group-addon">
+                    <i class="icofont icofont-ui-user"></i>
+                </span>
+                <input type="text" class="form-control" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Nuevo CUIT escribe solo números" required >
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendDocumentNumber()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" [hidden]="popup14">
+
+        <div style="position:absolute; top:-35px; right:-35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div>
+
+        <div class="page-header-title">
+            <h3>Nuevo documento personal</h3>
+            <hr class="m-t-20 m-b-20">
+        </div>
+
+        <div class="md-float-material">
+            <div class="input-group">
+                <select class="input-group-addon"#a (change)="getDniCuit(a.value)">
+                    <option [value]="1" >DNI</option>
+                    <option  [value]="2" >CUIT</option>
+                </select>
+              <input type="text" class="form-control col-sm-11" name="userDocumentNumber" [(ngModel)]="userDocumentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
+            </div>
+        </div>
+        <hr class="m-t-20 m-b-20">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-r-10" (click)="sendUserDocument()">CONFIRMAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

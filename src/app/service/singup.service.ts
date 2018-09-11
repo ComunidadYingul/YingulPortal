@@ -27,7 +27,7 @@ export class SingupService {
     //alert(JSON.stringify(person));
     return this.http.post(url ,person, {headers: this.headers});
   }
-  signUpBusiness(business : Business) {
+  signUpBusiness(business : Object) {
     let url = Network.API_URL+"business";
     //convertir objeto a string
     //alert(JSON.stringify(person));

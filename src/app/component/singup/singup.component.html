@@ -28,6 +28,9 @@
                             </div>
                             <div class="row m-b-0"><p class="col-10 text-inverse b-b-default text-left p-b-5">Regístrate con <span *ngIf="provider==''||provider==null">tu cuenta habitual</span><span *ngIf="provider=='facebook'">Facebook</span><span *ngIf="provider=='google'">Google</span></p><img *ngIf="profilePhoto!=''&&profilePhoto!=null" style="height: 60px;"class=" d-flex mr-3 img-circle img-60 img-thumbnail" src="{{profilePhoto}}" alt="Generic placeholder image"></div>
                             <div class="row m-b-0">
+                                <div *ngIf="business" class="row m-b-0 col-sm-11">
+                                    <span class="text-inverse"> &nbsp;&nbsp;&nbsp;&nbsp;Representante de la empresa</span>
+                                </div>
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-md-12 input-group">
@@ -95,6 +98,33 @@
                                             <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                                             <span class="text-inverse">Regístrarme como empresa</span>
                                         </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="business"class="row m-b-0">
+                                <div class="row m-b-0 col-sm-11">
+                                    <span class="text-inverse"> &nbsp;&nbsp;&nbsp;&nbsp;Datos de la empresa</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-12 input-group">
+                                            <input id="businessName" type="text" class="form-control" placeholder="Razon social" name="businessName" required [(ngModel)]="businessName" >
+                                            <span class="md-line"></span>
+                                        </div>
+                                        <div class="error-g">
+                                            <p  [hidden]="hidBusinessName">* Razon social requerida</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-12 input-group">
+                                            <input id="documentNumber" type="text" class="form-control" placeholder="CUIT ingresa solo números" name="documentNumber" required [(ngModel)]="documentNumber" (keypress)="keyPress($event)">
+                                            <span class="md-line"></span>
+                                        </div>
+                                        <div class="error-g">
+                                            <p  [hidden]="hidDocumentNumber">* CUIT requerido</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

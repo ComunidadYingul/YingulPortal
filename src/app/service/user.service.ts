@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import { Network } from '../model/Network';
 import { user } from '../model/user';
+import { Business } from '../model/business';
 @Injectable()
 export class UserService {
   public headers = new Headers({
@@ -14,6 +15,10 @@ export class UserService {
   constructor(private http:Http) { }
   getPerson(username:string){
     let url = Network.API_URL+"user/person/"+username;
+    return this.http.get(url);
+  }
+  getBusiness(username:string){
+    let url = Network.API_URL+"user/business/"+username;
     return this.http.get(url);
   }
   updateUsername(newUser:user, User:user){
@@ -42,6 +47,30 @@ export class UserService {
   }
   updatePhones(newUser:user, User:user){
     let url = Network.API_URL+"user/updatePhones";
+    let headers = new Headers(
+      {
+        'Authorization': User.password
+      });
+    return this.http.post(url,newUser,{headers: headers});
+  }
+  updateBusinessName(business:Business, User:user){
+    let url = Network.API_URL+"user/updateBusinessName";
+    let headers = new Headers(
+      {
+        'Authorization': User.password
+      });
+    return this.http.post(url,business,{headers: headers});
+  }
+  updateBusinessDocumentNumber(business:Business, User:user){
+    let url = Network.API_URL+"user/updateBusinessDocumentNumber";
+    let headers = new Headers(
+      {
+        'Authorization': User.password
+      });
+    return this.http.post(url,business,{headers: headers});
+  }
+  updateUserDocument(newUser:user, User:user){
+    let url = Network.API_URL+"user/updateUserDocument";
     let headers = new Headers(
       {
         'Authorization': User.password
