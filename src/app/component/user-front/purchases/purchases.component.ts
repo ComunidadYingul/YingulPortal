@@ -8,6 +8,8 @@ import { State } from '../../../model/state';
 import { Network } from '../../../model/Network';
 import { Person } from '../../../model/person';
 import { UserService } from '../../../service/user.service';
+import { ShippingTraceability } from '../../../model/shipping-traceability';
+import { ShippingState } from '../../../model/shipping-state';
 
 @Component({
   selector: 'app-purchases',
@@ -27,6 +29,8 @@ export class PurchasesComponent implements OnInit {
   newDateA:Date;
   newDate:Date;
   person:Person= new Person();
+  traceability:ShippingTraceability= new ShippingTraceability();
+  arrayState:ShippingState[];
   constructor(private userService:UserService,private router: Router, private buyService:BuyService,private loginService: LoginService) { 
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
@@ -70,30 +74,18 @@ export class PurchasesComponent implements OnInit {
 
   onConfirm(buyTemp2:Buy){  
     this.codSeg=buyTemp2.shipping.yng_Shipment.shipmentCod;
-    console.log("codSeg:"+this.codSeg);
-    this.buyService.getStateShipping(this.codSeg).subscribe(
+    this.buyService.getShippingTrazability(this.codSeg).subscribe(
       res => {
-        this.state = JSON.parse(JSON.parse(JSON.stringify(res))._body); 
-       // this.state.fecha=this.state.fecha.replace("T"," ");
-        this.state.estado
-        this.state.fecha
-        this.state.fechaAlta
-        this.state.motivo
-        this.state.nombreEnvio
-        this.state.nroAndreani
-        this.state.sucursal
+        this.traceability=JSON.parse(JSON.parse(JSON.stringify(res))._body);
+        this.arrayState=this.traceability.eventos.evento_;
+        for(var j=0; j<this.arrayState.length; j++){
+          this.arrayState[j].fecha=this.arrayState[j].fecha.replace("T"," ");
+        }
+        this.traceability.eventos.evento_= this.arrayState;
 
-        this.dateStringA = this.state.fechaAlta; 
-        this.newDateA = new Date(this.dateStringA);
-
-        this.dateString = this.state.fecha; 
-        this.newDate = new Date(this.dateString);
-        this.state.fecha=this.state.fecha.replace("T"," ");
         this.hiddenPop=false;
-        console.log("postUpdateProduct: "+JSON.parse(JSON.stringify(res))._body);
-
-          },
-          error => console.log(error)
+        },
+        error => console.log(error)
     ); 
   }
   aceptar(){

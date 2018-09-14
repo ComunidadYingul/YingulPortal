@@ -105,12 +105,34 @@
         <div class="content_popup_g" align="center" [hidden]="hiddenPop">
                 <div class="popup_g">
                     <p class="popup-title">ESTADO DEL ENVIÓ</p>
-                    <!--img src="assets/images/spiner.gif" alt="Cargando"-->
-                    <!--p class="popup-msg">Fecha de Alta: {{dateStringA |  date:'MM/dd/yyyy'}}</p-->
-                    <p class="popup-msg">Fecha: {{state.fecha}}</p>
-                    <p class="popup-msg">Estado: {{state.estado}}</p>
-                    <p class="popup-msg">Motivo: {{state.motivo}}</p>
-                    <!--p class="popup-msg">Sucursal:  {{state.sucursal}}</p-->
+                    <div class="dt-responsive table-responsive">
+                        <table id="simpletable" class="table table-striped table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Fecha y Hora</th>
+                                    <th>Estado</th>
+                                    <th>Motivo</th>
+                                    <th>Sucursal</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-text-e">
+                                <tr *ngFor="let shippingState of traceability.eventos.evento_">
+                                    <td>{{shippingState.fecha}}</td>
+                                    <td>{{shippingState.estado}}</td>
+                                    <td>-</td>
+                                    <td>{{shippingState.sucursal}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Fecha y Hora</th>
+                                    <th>Estado</th>
+                                    <th>Motivo</th>
+                                    <th>Sucursal</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
 
                     <button type="button" class="boton_1" (click)="aceptar()">Aceptar</button>
                 </div>

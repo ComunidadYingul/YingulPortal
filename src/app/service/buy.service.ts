@@ -32,7 +32,7 @@ export class BuyService {
       {
         'Authorization': buy.user.password
       });
-    let _url: string =Network.API_URL+"buy/createBuyA";
+    let _url: string =Network.API_URL+"buy/createBuy";
     return this.http.post(_url, buy,{headers: headers});
   }
   saveEnvio(envio:AndreaniEnvios){
@@ -48,7 +48,7 @@ export class BuyService {
     return this.http.get(url);
   }
   getDataForBuyer(){
-    let url = "http://ip-api.com/json";
+    let url = "https://ipapi.co/json";
     return this.http.get(url);
   }
 
@@ -66,6 +66,10 @@ export class BuyService {
   }
   getStateShipping(number:string){
     let url = Network.API_URL+"buy/getStateBuy/"+number;
+    return this.http.get(url);
+  }
+  getShippingTrazability(number:string){
+    let url = Network.API_URL+"buy/getTrazabBuy/"+number;
     return this.http.get(url);
   }
   getLinkPdf(number:string){

@@ -6,6 +6,7 @@ import { Person } from '../../../model/person';
 import { LoginService } from '../../../service/login.service';
 import { Network } from '../../../model/Network';
 import { DomSanitizer,SafeResourceUrl,SafeUrl } from '@angular/platform-browser';
+import { Business } from '../../../model/business';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,9 +17,11 @@ export class UserProfileComponent implements OnInit {
   User: user=new user();
   newUser : user = new user();
   person:Person= new Person();
+  business:Business = new Business();
   BUCKET_URL:string=Network.BUCKET_URL;
   video:SafeUrl=null;
   popup:boolean=true;
+  popup1:boolean=true;
   popup2:boolean=true;
   popup3:boolean=true;
   popup4:boolean=true;
@@ -30,6 +33,8 @@ export class UserProfileComponent implements OnInit {
   popup10:boolean=true;
   popup11:boolean=true;
   popup12:boolean=true;
+  popup13:boolean=true;
+  popup14:boolean=true;
   popup_g:boolean=true;
   username:string="";
   msg:string;
@@ -41,6 +46,10 @@ export class UserProfileComponent implements OnInit {
   phone:string="";
   phone2:string="";
   video1:string="";
+  businessName:string="";
+  documentNumber:string="";
+  userDocumentNumber:string="";
+  userDocumentType:string="DNI";
   constructor(private router: Router, private userService:UserService, private loginService: LoginService,public sanitizer: DomSanitizer,private elem:ElementRef) {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.User = new user();
@@ -57,19 +66,36 @@ export class UserProfileComponent implements OnInit {
     this.userService.getPerson(this.User.username).subscribe(
 			res => {
             this.person = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+            if(this.person.business){
+              this.getBusiness();
+            }
             this.video=this.sanitizer.bypassSecurityTrustResourceUrl(this.person.yng_User.profileVideo);
             console.log(JSON.stringify(this.video));
             this.phone=this.person.yng_User.phone;
             this.phone2=this.person.yng_User.phone2;
+
       		},
       		error => console.log(error)
     );
-    
+  }
+  getBusiness(){
+    this.userService.getBusiness(this.User.username).subscribe(
+			res => {
+            this.business = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+      		},
+      		error => console.log(error)
+    );
+  }
+  getDniCuit(type : string){
+    console.log("type:"+type);
+    if(type=="2"){this.userDocumentType="CUIT";}
+    else{this.userDocumentType="DNI";}
   }
   updateUsername(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=false;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -80,11 +106,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   updatePassword(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=false;
     this.popup5=true;
@@ -95,11 +124,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   updateEmail(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=false;
     this.popup4=true;
     this.popup5=true;
@@ -110,11 +142,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   setPhone(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -125,11 +160,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=false;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   setPhone2(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=false;
@@ -140,11 +178,32 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
+  }
+  setUserDocument(){
+    this.popup_g=false;
+    this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
+    this.popup3=true;
+    this.popup4=true;
+    this.popup5=true;
+    this.popup6=true;
+    this.popup7=true;
+    this.popup8=true;
+    this.popup9=true;
+    this.popup10=true;
+    this.popup11=true;
+    this.popup12=true;
+    this.popup13=true;
+    this.popup14=false;
   }
   updatePhone(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -155,11 +214,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=false;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   updatePhones(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=false;
@@ -170,11 +232,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   updateBanner(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -185,11 +250,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=false;
+    this.popup13=true;
+    this.popup14=true;
   }
   updteImage(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -200,11 +268,14 @@ export class UserProfileComponent implements OnInit {
     this.popup10=false;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   updateVideo(){
     this.popup_g=false;
-    this.popup2=true;
     this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -215,6 +286,44 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
+  }
+  updateBusinessName(){
+    this.popup_g=false;
+    this.popup=true;
+    this.popup1=false;
+    this.popup2=true;
+    this.popup3=true;
+    this.popup4=true;
+    this.popup5=true;
+    this.popup6=true;
+    this.popup7=true;
+    this.popup8=true;
+    this.popup9=true;
+    this.popup10=true;
+    this.popup11=true;
+    this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
+  }
+  updateUserDocument(){
+    this.popup_g=false;
+    this.popup=true;
+    this.popup1=true;
+    this.popup2=true;
+    this.popup3=true;
+    this.popup4=true;
+    this.popup5=true;
+    this.popup6=true;
+    this.popup7=true;
+    this.popup8=true;
+    this.popup9=true;
+    this.popup10=true;
+    this.popup11=true;
+    this.popup12=true;
+    this.popup13=false;
+    this.popup14=true;
   }
   logout(){
 		localStorage.setItem('user', '');
@@ -238,6 +347,7 @@ export class UserProfileComponent implements OnInit {
     this.popup2=false;
 
     this.popup=true;
+    this.popup1=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -248,12 +358,15 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   confirm(){
     this.popup_g=false;
     this.popup2=true;
 
     this.popup=true;
+    this.popup1=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -264,12 +377,15 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   confirmEmail(){
     this.popup_g=false;
     this.popup2=true;
 
     this.popup=true;
+    this.popup1=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -280,12 +396,15 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   confirmPassword(){
     this.popup_g=false;
     this.popup2=true;
 
     this.popup=true;
+    this.popup1=true;
     this.popup3=true;
     this.popup4=true;
     this.popup5=true;
@@ -296,6 +415,8 @@ export class UserProfileComponent implements OnInit {
     this.popup10=true;
     this.popup11=true;
     this.popup12=true;
+    this.popup13=true;
+    this.popup14=true;
   }
   sendUsername(){
     this.process();
@@ -332,6 +453,49 @@ export class UserProfileComponent implements OnInit {
       res => {
             this.msg = JSON.parse(JSON.stringify(res))._body;
             this.redirectTo2();
+          },
+          error => {
+            console.log(error);
+          }
+    );
+  }
+  sendBusinessName(){
+    this.process();
+    this.business.businessName=this.businessName;
+    this.business.user=null;
+    this.userService.updateBusinessName(this.business,this.User).subscribe(
+      res => {
+            this.msg = JSON.parse(JSON.stringify(res))._body;
+            this.redirectTo1();
+          },
+          error => {
+            console.log(error);
+          }
+    );
+  }
+  sendUserDocument(){
+    this.process();
+    this.newUser.documentNumber=this.userDocumentNumber;
+    this.newUser.documentType=this.userDocumentType;
+    this.userService.updateUserDocument(this.newUser,this.User).subscribe(
+      res => {
+            this.msg = JSON.parse(JSON.stringify(res))._body;
+            this.redirectTo1();
+          },
+          error => {
+            console.log(error);
+          }
+    );
+  }
+  sendDocumentNumber(){
+    this.process();
+    this.business.documentNumber=this.documentNumber;
+    this.business.documentType="CUIT";
+    this.business.user=null;
+    this.userService.updateBusinessDocumentNumber(this.business,this.User).subscribe(
+      res => {
+            this.msg = JSON.parse(JSON.stringify(res))._body;
+            this.redirectTo1();
           },
           error => {
             console.log(error);

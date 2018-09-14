@@ -48,11 +48,11 @@
 }
 
 .popup_g{
-    background: #FF7E3A;
+    background: #fff;
     border-radius: 30px;
-    color: #fff;
+    color: #ff5e3a;
     padding: 30px 15px;
-    width: 30%;
+    width: 70%;
 
     text-align: center;
 }
@@ -73,6 +73,10 @@
     font-weight: lighter;
     font-size: 1em;
     margin-bottom: 0;
+}
+.table-text-e{
+    text-align: left;
+    color:black;
 }
 
 @media screen and (max-width:992px){
