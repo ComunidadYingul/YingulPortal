@@ -117,7 +117,7 @@
                 <div class="radio radiofill radio-inline" *ngIf="Item.type!='Motorized'">
                     <label>
                         <input id="rbRetiroSendHome" type="radio" value="false" name="radio" #radio (change)="check('sendHome')">
-                        <i class="helper"></i> Normal a domicilio
+                        <i class="helper"></i> Normal a domicilio <u (click)="newUbication()" style="cursor: pointer"[hidden]="hiddenSwOtherHome">enviar a otra ubicacion</u>
                     </label>
                     <div class="error-g row">
                         <p  [hidden]="hidRadioSucursal">* Marcar campo</p>
@@ -157,7 +157,7 @@
             </div>
             <br>
             <br/>
-            <div [hidden]="popupSendHome">
+            <div [hidden]="popupSucursalHome">
                 <h6>¿Quien recibirá el paquete?</h6><br/>
                 <div class="row">
                         <div class="col-sm-6">

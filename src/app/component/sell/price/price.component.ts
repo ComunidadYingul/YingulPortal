@@ -120,7 +120,7 @@ export class PriceComponent implements OnInit {
 
   checkInter:boolean=true;
   disabledInter:boolean=true;
-
+  maxDocumentNumber:number=8;
 
   constructor(private elem:ElementRef,private buyService: BuyService,private sellService: SellService) { 
 

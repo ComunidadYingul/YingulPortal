@@ -32,7 +32,7 @@ export class BuyService {
       {
         'Authorization': buy.user.password
       });
-    let _url: string =Network.API_URL+"buy/createBuy";
+    let _url: string =Network.API_URL+"buy/createBuyA";
     return this.http.post(_url, buy,{headers: headers});
   }
   saveEnvio(envio:AndreaniEnvios){

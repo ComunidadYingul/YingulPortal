@@ -50,6 +50,7 @@ export class ShippingComponent implements OnInit {
   sendHome:boolean=true;
   priceSuc:string="";
   popupSucursal:boolean=true;
+  popupSucursalHome:boolean=true;
   checke:boolean=false;
  
   @Input('Item') Item:Item;
@@ -67,14 +68,20 @@ export class ShippingComponent implements OnInit {
 
   /*hidProductSalesCondition:boolean=true;
   hidProductPaymentMethod:boolean=true;
-  hidYingulExpress:boolean=true;
-  hidIngresarDomicilio:boolean=true;*/
+  hidYingulExpress:boolean=true;*/
+  hidIngresarDomicilio:boolean=true;
 
   hidUbicationCountry:boolean=true;
   hidUbicationProvince:boolean=true;
   hidUbicationCity:boolean=true;
   hidUbicationStreet:boolean=true;
   hidUbicationNumber:boolean=true;
+  hidUbicationPhone:boolean=true;
+  hidUbicationDni:boolean=true;
+  hidUbicationAditional:boolean=true;
+  documentNumber:string="";
+  documentType:string="DNI";
+  telephone:string="";
 
   hidBuscarSucursal:boolean=true;
   hidSucursal:boolean=true;
@@ -145,6 +152,7 @@ export class ShippingComponent implements OnInit {
     popupUbication1:boolean=true;
     hiddenHomeButton:boolean=true;
     popupSendHome:boolean=true;
+    maxDocumentNumber:number=8;
   constructor(private elem:ElementRef,private buyService: BuyService,private route:ActivatedRoute,private itemDetailService : ItemDetailService,private sellService: SellService,private router: Router) { 
     this.cityHid=true;
     console.log("Cotizacion"+JSON.stringify(this.shipping));
@@ -168,14 +176,11 @@ export class ShippingComponent implements OnInit {
         if(JSON.parse(JSON.stringify(res))._body!=""){
             this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);           
            console.log("ubication:"+ JSON.stringify(this.ubication));
-           this.popupUbication=true;
+           this.popupUbication1=true;
+           this.countryAll();
         }
         else {
-          //this.popupEnvios=true;
-          //this.popup_g=false;
-          this.popupUbication=false;
-          //activar para postalcode por default
-          //this.postalCode=this.ubication.postalCode;
+          this.popupUbication1=false;
           this.countryAll();
         }
           },
@@ -195,6 +200,9 @@ export class ShippingComponent implements OnInit {
         this.shipping.typeShipping="branch";
         this.hiddenHomeButton=true;
         this.popupSendHome=true;
+        this.hiddenSwOtherHome=true;
+        this.popupSucursal=true;
+        this.popupSucursalHome=true;
         break;
       case "home":
         this.branch= true;
@@ -205,15 +213,21 @@ export class ShippingComponent implements OnInit {
         this.checke=false;
         this.hiddenHomeButton=true;
         this.popupSendHome=true;
+        this.hiddenSwOtherHome=true;
+        this.popupSucursal=true;
+        this.popupSucursalHome=true;
         break;
       case "sendHome":
         this.branch= true;
         this.sendHome=false;
         this.checke=false;
+        this.shipping.typeShipping="branchHome";
         //this.popupUbication1=false;
         this.consultarUbi();
         this.hiddenHomeButton=false;
+        this.popup
         this.popupSendHome=true;
+        this.hiddenSwOtherHome=true;
         break;
       case "fedex":
       this.branch= true;
@@ -402,6 +416,9 @@ export class ShippingComponent implements OnInit {
       if(this.Product.productPagoEnvio=="gratis") this.priceSuc=" Envio Gratis";
       else  this.priceSuc=this.priceSuc2+"  Costo del envio";
       this.popupSucursal=false;
+      if( this.shipping.typeShipping=="branchHome"){
+        this.popupSucursalHome=false;
+      }      
       this.popup_g=true;
     }
     priceHiddem:boolean=true;
@@ -459,6 +476,7 @@ export class ShippingComponent implements OnInit {
       if(this.postalCode!=""){
         this.popup_g=false;
         this.popupSucursal=true;
+        this.popupSucursalHome=true;
         this.getItem("Producto",this.Item.itemId);
         this.quoteS.respuesta="";
         this.userTemp=this.Item.user; 
@@ -492,6 +510,7 @@ export class ShippingComponent implements OnInit {
     }
 
     sendTypeShip2(){
+      console.log("this.name:"+this.name);
       this.resetSucursal();
       if (this.branch==false){
         if(this.popupSucursal==true){
@@ -560,6 +579,8 @@ export class ShippingComponent implements OnInit {
               this.shipping.yng_Quote.yng_Item=null;
               this.shipping.yng_Quote.yng_User=null;
               this.shipping.yng_Shipment.yng_User.yng_Ubication.postalCode=this.postalCode;
+              this.shipping.yng_Shipment.yng_User.yng_Ubication.street=this.ubication.street;
+              this.shipping.yng_Shipment.yng_User.yng_Ubication.number=this.ubication.number;
               console.log("shipping: "+JSON.stringify(this.shipping));
               this.typeEnvio.emit(this.shipping);
             }
@@ -636,6 +657,12 @@ export class ShippingComponent implements OnInit {
         this.hidUbicationStreet=false;
       }else if(this.number==null||this.number==""){  
         this.hidUbicationNumber=false;
+      }else if(this.aditional==null||this.aditional==""){  
+        this.hidUbicationAditional=false;
+      }else if(this.telephone==null||this.telephone==""){  
+        this.hidUbicationPhone=false;
+      }else if(this.documentNumber==null||this.documentNumber==""){  
+        this.hidUbicationDni=false;
       }
       else{
         console.log("this.street:"+this.street);
@@ -652,25 +679,58 @@ export class ShippingComponent implements OnInit {
         //alert("ubication"+JSON.stringify(this.ubication));
         console.log("ubication"+JSON.stringify(this.ubication));
         this.User.yng_Ubication=this.ubication;
+        this.User.phone=this.telephone;
+        this.User.documentNumber=this.documentNumber;
+        this.User.documentType=this.documentType;
         console.log("ubication"+JSON.stringify(this.User));
-        this.buyService.updateUserUbication(this.User).subscribe(
-          res => {
-                this.msg = JSON.parse(JSON.stringify(res))._body;
-                if(this.msg=='save'){
-                  //this.sw=true;
-                 // this.buyItem();
-                 this.popupUbication=true;
-                 //this.popup_g=true;
-                }
-                else{
-                  alert(this.msg);
-                } 
-              },
-              error => console.log(error)
-        );
-    
-        this.popup=true;
-        this.popupUbication=true;
+        if(this.swSendOtherHome==true){
+          this.popupSendHome=false;
+          this.popup_g=false;
+          this.popupSucursal=true;
+          this.popupSucursalHome=true;
+          this.getItem("Producto",this.Item.itemId);
+          this.quoteS.respuesta="";
+          this.userTemp=this.Item.user; 
+          this.Item.user=null;
+          this.userTemp2.username=this.userTemp.username;
+          this.Item.user=this.userTemp2;
+          this.quoteS.yng_Item=this.Item;
+          this.useri=JSON.parse(localStorage.getItem("user"));
+          this.postalCode=this.ubication.postalCode;
+          this.useri.yng_Ubication.postalCode=this.postalCode;
+          this.useri.yng_Ubication.street=this.ubication.street;
+          this.useri.yng_Ubication.number=this.ubication.number;
+          this.useri.yng_Ubication.withinStreets=this.ubication.withinStreets;
+          this.quoteS.yng_User=this.useri;
+          this.quoteS.quantity=this.quantity;
+          console.log("da"+this.shipping.typeShipping);
+          if( this.shipping.typeShipping=="branchHome"){
+            this.sendQuoteBranchHome(this.quoteS);
+          }
+          else{
+              this.popup_g=true;            
+          }
+
+        }
+        else{
+          this.buyService.setUserUbicationEditPersonalInfo(this.User).subscribe(
+            res => {
+                  this.msg = JSON.parse(JSON.stringify(res))._body;
+                  if(this.msg!=""){
+                   this.popupUbication1=true;
+                   this.popup_g=true;
+                   this.consultarUbi();
+                  }
+                  else{
+                    alert("Algo salio mal intente mas tarde");
+                  } 
+                },
+                error => console.log(error)
+          );
+
+        }
+
+      this.popupUbication1=true;
       }  
     }
 
@@ -794,6 +854,7 @@ export class ShippingComponent implements OnInit {
       case "sendHome":
         this.branch= true;
         this.sendHome=false;
+        this.shipping.typeShipping="branchHome";
         break;
       default:
 
@@ -816,28 +877,38 @@ export class ShippingComponent implements OnInit {
         if(JSON.parse(JSON.stringify(res))._body!=""){
             this.ubication = JSON.parse(JSON.parse(JSON.stringify(res))._body);
             this.hiddenHomeButton=true; 
-           console.log("ubicacion : "+JSON.stringify(this.ubication));
-           this.popupSendHome=false;
-           this.popup_g=false;
-           this.popupSucursal=true;
-           this.getItem("Producto",this.Item.itemId);
-           this.quoteS.respuesta="";
-           this.userTemp=this.Item.user; 
-           this.Item.user=null;
-           this.userTemp2.username=this.userTemp.username;
-           this.Item.user=this.userTemp2;
-           this.quoteS.yng_Item=this.Item;
-           this.useri=JSON.parse(localStorage.getItem("user"));
-           this.postalCode=this.ubication.postalCode;
-           this.useri.yng_Ubication.postalCode=this.postalCode;
-           this.quoteS.yng_User=this.useri;
-           this.quoteS.quantity=this.quantity;
-           this.sendQuoteBranchHome(this.quoteS);
+            console.log("ubicacion : "+JSON.stringify(this.ubication));
+            this.popupSendHome=false;
+            this.popup_g=false;
+            this.popupSucursal=true;
+            this.popupSucursalHome=true;
+            this.getItem("Producto",this.Item.itemId);
+            this.quoteS.respuesta="";
+            this.userTemp=this.Item.user; 
+            this.Item.user=null;
+            this.userTemp2.username=this.userTemp.username;
+            this.Item.user=this.userTemp2;
+            this.quoteS.yng_Item=this.Item;
+            this.useri=JSON.parse(localStorage.getItem("user"));
+            this.postalCode=this.ubication.postalCode;
+            this.useri.yng_Ubication.postalCode=this.postalCode;
+            this.useri.yng_Ubication.street=this.ubication.street;
+            this.useri.yng_Ubication.number=this.ubication.number;
+            this.useri.yng_Ubication.withinStreets=this.ubication.withinStreets;
+            this.quoteS.yng_User=this.useri;
+            this.quoteS.quantity=this.quantity;
+            console.log("da:"+this.shipping.typeShipping);
+            if( this.shipping.typeShipping=="branchHome"){
+              this.sendQuoteBranchHome(this.quoteS);
+            }
+            else{
+              this.popup_g=true;
+            }
+            this.hiddenSwOtherHome=false;
         }
         else {
           this.hiddenHomeButton=false;
-         /* this.popupEnvios=true;
-          this.popupUbicacion=false;*/
+          this.hiddenSwOtherHome=true;
           console.log("vacio");
                 }
           },
@@ -872,6 +943,7 @@ export class ShippingComponent implements OnInit {
            this.popupSendHome=false;
            this.popup_g=false;
            this.popupSucursal=true;
+           this.popupSucursalHome=true;
            this.getItem("Producto",this.Item.itemId);
            this.quoteS.respuesta="";
            this.userTemp=this.Item.user; 
@@ -928,5 +1000,20 @@ export class ShippingComponent implements OnInit {
         },
       error => console.log(error)
     ); 
+  }
+  getDniCuit(type : string){
+    console.log("type:"+type);
+    if(type=="2"){this.documentType="CUIT";}
+    else{this.documentType="DNI";}
+  }
+  swSendHome:boolean=false;
+  swSendOtherHome:boolean=false;
+  hiddenSwOtherHome:boolean=true;
+  newUbication(){
+    this.swSendHome=true;
+    this.swSendOtherHome=true;
+    this.popupUbication1=false;
+    this.useri=JSON.parse(localStorage.getItem("user"));
+    console.log("proyecto 1"+JSON.stringify(this.useri));
   }
 }
