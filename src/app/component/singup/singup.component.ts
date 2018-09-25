@@ -47,6 +47,7 @@ export class SingupComponent implements OnInit {
   userGoogle: UserGoogle= new UserGoogle();
   provider:string="";
   fullname:string[]=[]
+  contributorType:string="Exentoana";
   constructor(public _auth:AuthService, private elem:ElementRef,private singupService: SingupService, private router: Router,private sellService: SellService) {   
     
   }
@@ -91,6 +92,7 @@ export class SingupComponent implements OnInit {
         this.businessO.businessName=this.businessName;
         this.businessO.documentType="CUIT";
         this.businessO.documentNumber=this.documentNumber;
+        this.businessO.contributorType=this.contributorType;
         this.person.createPerson(this.name, this.lastname,this.email,this.password,this.business);
         this.sendBusiness= new Object("{\"person\":"+JSON.stringify(this.person)+",\"business\":"+JSON.stringify(this.businessO)+"}");
         console.log(JSON.stringify(this.sendBusiness));
@@ -240,5 +242,28 @@ export class SingupComponent implements OnInit {
   }
   MaysPrimera(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  getContributorType(type : string){
+    console.log("type:"+type);
+    switch (type) {
+        case "1":
+        this.contributorType="Exento";        
+        break;
+        case "2":
+        this.contributorType="Exterior";
+        break;
+        case "3":
+        this.contributorType="IVA No Alcanzado";
+        break;
+        case "4":
+        this.contributorType="Monotributista";
+        break;
+        case "5":
+        this.contributorType="Responsable Inscripto";
+        break;
+      default:
+      this.contributorType="Exento";
+        break;
+    } 
   }
 }

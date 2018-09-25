@@ -119,6 +119,13 @@
                                 <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-md-12 input-group">
+                                                <select class="input-group-addon"#a (change)="getContributorType(a.value)"  style="width: 150px;">
+                                                        <option [value]="1" >Exento</option>
+                                                        <option [value]="2" >Exterior</option>
+                                                        <option [value]="3" >IVA No Alcanzado</option>
+                                                        <option [value]="4" >Monotributista</option>
+                                                        <option [value]="2" >Responsable Inscripto</option>
+                                                    </select>
                                             <input id="documentNumber" type="text" class="form-control" placeholder="CUIT ingresa solo números" name="documentNumber" required [(ngModel)]="documentNumber" (keypress)="keyPress($event)">
                                             <span class="md-line"></span>
                                         </div>

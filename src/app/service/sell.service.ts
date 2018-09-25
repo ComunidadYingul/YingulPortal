@@ -127,4 +127,9 @@ export class SellService {
     let url = Network.API_URL+"sell/standardCostAndreani";
     return this.http.get(url);
   }
+  CosultarIsBussines(username : string){
+    let url = Network.API_URL+"user/person/"+username;
+    return this.http.get(url);
+    //return this.http.post(url, query,{headers: this.headers});
+  }
 }
