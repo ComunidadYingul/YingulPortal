@@ -90,7 +90,7 @@ export class SingupComponent implements OnInit {
         this.popup_g=false;
         this.businessO.businessName=this.businessName;
         this.businessO.documentType="CUIT";
-        this.businessO.documentNumber=this.documentNumber;
+        this.businessO.documentNumber=this.documentNumber.replace("-","");
         this.person.createPerson(this.name, this.lastname,this.email,this.password,this.business);
         this.sendBusiness= new Object("{\"person\":"+JSON.stringify(this.person)+",\"business\":"+JSON.stringify(this.businessO)+"}");
         console.log(JSON.stringify(this.sendBusiness));
@@ -186,6 +186,18 @@ export class SingupComponent implements OnInit {
     if (event.keyCode != 8 && !pattern.test(inputChar)) {
       event.preventDefault();
     }
+  }
+  changeDocumentNumber(event: any) {
+    this.documentNumber=this.documentNumber.replace("-","");
+    if(this.documentNumber.length>=2&&this.documentNumber.length<=10){
+      this.documentNumber=this.documentNumber.replace("-","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, this.documentNumber.length);
+    }
+    if(this.documentNumber.length>10){
+      this.documentNumber=this.documentNumber.replace("-","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, this.documentNumber.length);
+    }
+    //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
   }
   /*isFormDisabled(){
     if(this.condition==null||this.condition!=true||this.name==null||this.name.length==0||this.lastname==null || this.lastname.length==0||this.password==null||this.password.length==0||this.email==null){
