@@ -14,6 +14,7 @@ import { Ubication } from '../../../model/ubication';
 import { Country } from '../../../model/country';
 import { BuyService } from '../../../service/buy.service';
 import { StandarCostAndreani } from '../../../model/standar-cost-andreani';
+import { Person } from '../../../model/person';
 
 @Component({
   selector: 'app-price',
@@ -641,6 +642,7 @@ export class PriceComponent implements OnInit {
   ubicacion(){
     this.popup_g=false;
     this.popupUbication=false;
+    this.isBussines();
   }
   cambiarCP(){
     this.cityHid=true;
@@ -880,5 +882,23 @@ export class PriceComponent implements OnInit {
   popupHide(){
     this.popupDescuento=true;
     this.priceDiscount1=false;
+  }
+  personC:Person=new Person();
+  ubicationLabel:string;
+  isBussines(){
+    console.log("this.userName:"+this.userName);
+    this.sellService.CosultarIsBussines(this.userName).subscribe(
+      res => {
+        this.personC = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+        console.log("this.person: "+JSON.stringify(this.personC));
+        if(this.personC.business){
+          this.ubicationLabel="INGRESA LA DIRECCIÓN DE LA CASA CENTRAL DE LA EMPRESA";
+        }
+        else {
+          this.ubicationLabel="INGRESA ESTOS DATOS POR ÚNICA VEZ";
+        }
+          },
+          error => console.log(error)
+    );    
   }
 }

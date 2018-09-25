@@ -25,6 +25,7 @@ import { City } from '../../../model/city';
 import { Barrio } from '../../../model/barrio';
 import { Country } from '../../../model/country';
 import { Network } from '../../../model/Network';
+import { Person } from '../../../model/person';
 
 @Component({
   selector: 'app-shipping',
@@ -775,12 +776,14 @@ export class ShippingComponent implements OnInit {
           if(JSON.parse(JSON.stringify(res))._body!=""){
               this.countryList = JSON.parse(JSON.parse(JSON.stringify(res))._body);           
              console.log("ubication:"+ JSON.stringify(this.ubication));
+             this.isBussines()
             // this.popupUbication=true;
           }
           else {
             //this.popupUbication=false;
             
           }
+          
             },
             error => console.log(error)
       );
@@ -1015,5 +1018,23 @@ export class ShippingComponent implements OnInit {
     this.popupUbication1=false;
     this.useri=JSON.parse(localStorage.getItem("user"));
     console.log("proyecto 1"+JSON.stringify(this.useri));
+  }
+  personC:Person=new Person();
+  ubicationLabel:string;
+  isBussines(){
+    console.log("this.userName:"+this.userName);
+    this.sellService.CosultarIsBussines(this.userName).subscribe(
+      res => {
+        this.personC = JSON.parse(JSON.parse(JSON.stringify(res))._body);
+        console.log("this.personC.business: "+this.personC.business+"this.person: "+JSON.stringify(this.personC));
+        if(this.personC.business==true){
+          this.ubicationLabel="INGRESA LA DIRECCIÓN DE LA CASA CENTRAL DE LA EMPRESA";
+        }
+        else {
+          this.ubicationLabel="INGRESA ESTOS DATOS POR ÚNICA VEZ";
+        }
+          },
+          error => console.log(error)
+    );    
   }
 }
