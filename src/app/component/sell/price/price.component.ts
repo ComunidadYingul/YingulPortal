@@ -605,7 +605,7 @@ export class PriceComponent implements OnInit {
         this.Usertemp.username=this.userNameP;
         this.Usertemp.phone=this.telephone;
         this.Usertemp.documentType=this.documentType;
-        this.Usertemp.documentNumber=this.documentNumber;
+        this.Usertemp.documentNumber=this.documentNumber.replace("-","");;
         this.Usertemp.password=this.useri.password;
         console.log("ubication"+JSON.stringify(this.Usertemp));
         this.buyService.setUserUbicationEditPersonalInfo(this.Usertemp).subscribe(

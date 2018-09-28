@@ -681,7 +681,7 @@ export class ShippingComponent implements OnInit {
         console.log("ubication"+JSON.stringify(this.ubication));
         this.User.yng_Ubication=this.ubication;
         this.User.phone=this.telephone;
-        this.User.documentNumber=this.documentNumber;
+        this.User.documentNumber=this.documentNumber.replace("-","");
         this.User.documentType=this.documentType;
         console.log("ubication"+JSON.stringify(this.User));
         if(this.swSendOtherHome==true){
