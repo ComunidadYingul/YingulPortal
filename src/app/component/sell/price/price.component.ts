@@ -556,8 +556,15 @@ export class PriceComponent implements OnInit {
 
   getDniCuit(type : string){
     console.log("type:"+type);
-    if(type=="2"){this.documentType="CUIT";}
-    else{this.documentType="DNI";}
+    if(type=="2"){
+      this.documentType="CUIT";
+      this.maxDocumentNumber=13
+      this.documentNumber="";
+    }
+    else{this.documentType="DNI";
+    this.maxDocumentNumber=8;
+    this.documentNumber="";
+   }
   }
 
   popupUbication:boolean=true;
@@ -900,5 +907,21 @@ export class PriceComponent implements OnInit {
           },
           error => console.log(error)
     );    
+  }
+  changeDocumentNumber(event: any) {
+    if(  this.documentType=="CUIT")
+    {
+      this.documentNumber=this.documentNumber.replace("-","");
+    if(this.documentNumber.length>=2&&this.documentNumber.length<=10){
+      this.documentNumber=this.documentNumber.replace("-","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, this.documentNumber.length);
+    }
+    if(this.documentNumber.length>10){
+      this.documentNumber=this.documentNumber.replace("-","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, this.documentNumber.length);
+    }
+    }
+    
+    //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
   }
 }
