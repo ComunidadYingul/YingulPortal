@@ -230,11 +230,11 @@
 
 <!--    FORMULARIO POPUP     -->
 <div class="content_popup_g" align="center" [hidden]="popupUbication1">
-        <div style="position:absolute; top:35px; right:35px;">
-                <span (click)="popupHide()">
-                    <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
-                </span>
-            </div>
+        <!--div style="position:absolute; top:35px; right:35px;">
+            <span (click)="popupHide()">
+                <i style="font-size:2em; color:white; cursor:pointer;" class="icofont icofont-ui-close"></i>
+            </span>
+        </div-->
         <div class="popup" >   
                 <div [hidden]="false">
                     <div  [hidden]="false">
@@ -351,7 +351,7 @@
                                     <option [value]="1" >DNI</option>
                                     <option [value]="2" >CUIT</option>
                                 </select>
-                            <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
+                            <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" (ngModelChange)="changeDocumentNumber($event)" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
                             </div>
                             <div class="error-g error-form-ub" [hidden]="hidUbicationDni">
                                 <p>Ingrese numero de documento</p>
