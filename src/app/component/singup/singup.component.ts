@@ -99,18 +99,18 @@ export class SingupComponent implements OnInit {
         this.singupService.signUpBusiness(this.sendBusiness).subscribe(
           res => {
                 this.msg = JSON.parse(JSON.stringify(res))._body;
-                if(this.msg=='save'){
-                  this.popup_registro=false;
-                  this.router.navigate(['/']);   
-                }
-                else{
-                  this.popup_g=true;
-                  if(this.msg=='email exist'){
+                switch(this.msg){
+                  case "save":
+                      this.popup_registro=false;
+                      this.router.navigate(['/']);
+                  break;
+                  case "email exist":
                     this.popup_exist=false;
-                  }else{
+                  break;
+                  default:
                     alert(this.msg);
-                  }
-                } 
+                  break;
+                }
               },
               error => {
                 this.popup_g=true;
