@@ -618,11 +618,17 @@ export class UserProfileComponent implements OnInit {
     this.popup_g=true;
   }
   redirectTo1(){
-    if(this.msg=='save'){
-      alert("Datos cambiados exitosamente!");
-      this.ngOnInit();
-    }else{
-      alert(this.msg);
+    switch(this.msg){
+      case "save":
+        alert("Datos cambiados exitosamente!");
+        this.ngOnInit();
+      break;
+      case "documentNumberExists":
+        alert("el número de CUIT ya esta registrado porfavor intente con otro.");
+      break;
+      default:
+        alert(this.msg);
+      break;
     }
     this.popup_g=true;
   }
