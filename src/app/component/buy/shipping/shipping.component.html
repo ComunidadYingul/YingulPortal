@@ -351,10 +351,10 @@
                                     <option [value]="1" >DNI</option>
                                     <option [value]="2" >CUIT</option>
                                 </select>
-                            <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" (ngModelChange)="changeDocumentNumber($event)" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
+                            <input type="text" class="form-control col-sm-11" name="documentNumber" [(ngModel)]="documentNumber" (ngModelChange)="changeDocumentNumber($event)" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="10">
                             </div>
                             <div class="error-g error-form-ub" [hidden]="hidUbicationDni">
-                                <p>Ingrese numero de documento</p>
+                                <p>Ingrese número de documento ej. XX.XXX.XXX</p>
                             </div>
                         </div>
                     </div>

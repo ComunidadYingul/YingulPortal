@@ -646,7 +646,8 @@ export class ShippingComponent implements OnInit {
       this.withinStreets="";
       this.btnCP=false;
     }
-    aceptar(){   
+    aceptar(){  
+      const patron = /^[0-9]{2}.[0-9]{3}.[0-9]{3}$/; 
       this.resetHidFormUbication();
       if(this.country.countryId==null || this.country.countryId==0){
         this.hidUbicationCountry=false;
@@ -662,7 +663,7 @@ export class ShippingComponent implements OnInit {
         this.hidUbicationAditional=false;
       }else if(this.telephone==null||this.telephone==""){  
         this.hidUbicationPhone=false;
-      }else if(this.documentNumber==null||this.documentNumber==""){  
+      }else if(!patron.test(this.documentNumber)){  
         this.hidUbicationDni=false;
       }
       else{
@@ -681,7 +682,7 @@ export class ShippingComponent implements OnInit {
         console.log("ubication"+JSON.stringify(this.ubication));
         this.User.yng_Ubication=this.ubication;
         this.User.phone=this.telephone;
-        this.User.documentNumber=this.documentNumber.replace("-","");
+        this.User.documentNumber=this.documentNumber.split(".").join("");
         this.User.documentType=this.documentType;
         console.log("ubication"+JSON.stringify(this.User));
         if(this.swSendOtherHome==true){
@@ -1045,19 +1046,15 @@ export class ShippingComponent implements OnInit {
     );    
   }
   changeDocumentNumber(event: any) {
-    if(  this.documentType=="CUIT")
-    {
-      this.documentNumber=this.documentNumber.replace("-","");
-    if(this.documentNumber.length>=2&&this.documentNumber.length<=10){
-      this.documentNumber=this.documentNumber.replace("-","");
-      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, this.documentNumber.length);
+    this.documentNumber=this.documentNumber.replace(".","");
+    if(this.documentNumber.length>=2&&this.documentNumber.length<=5){
+      this.documentNumber=this.documentNumber.replace(".","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"."+this.documentNumber.substring(2, this.documentNumber.length);
     }
-    if(this.documentNumber.length>10){
-      this.documentNumber=this.documentNumber.replace("-","");
-      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, this.documentNumber.length);
+    if(this.documentNumber.length>5){
+      this.documentNumber=this.documentNumber.replace(".","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"."+this.documentNumber.substring(2, 5)+"."+this.documentNumber.substring(5, this.documentNumber.length);
     }
-    }
-    
     //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
   }
 }

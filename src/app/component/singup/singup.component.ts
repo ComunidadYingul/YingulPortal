@@ -47,7 +47,7 @@ export class SingupComponent implements OnInit {
   userGoogle: UserGoogle= new UserGoogle();
   provider:string="";
   fullname:string[]=[]
-  contributorType:string="Exentoana";
+  contributorType:string="Exento";
   constructor(public _auth:AuthService, private elem:ElementRef,private singupService: SingupService, private router: Router,private sellService: SellService) {   
     
   }
@@ -91,7 +91,7 @@ export class SingupComponent implements OnInit {
         this.popup_g=false;
         this.businessO.businessName=this.businessName;
         this.businessO.documentType="CUIT";
-        this.businessO.documentNumber=this.documentNumber.replace("-","");
+        this.businessO.documentNumber=this.documentNumber.split("-").join("");
         this.businessO.contributorType=this.contributorType;
         this.person.createPerson(this.name, this.lastname,this.email,this.password,this.business);
         this.sendBusiness= new Object("{\"person\":"+JSON.stringify(this.person)+",\"business\":"+JSON.stringify(this.businessO)+"}");
@@ -101,11 +101,17 @@ export class SingupComponent implements OnInit {
                 this.msg = JSON.parse(JSON.stringify(res))._body;
                 switch(this.msg){
                   case "save":
+                      this.popup_g=true;
                       this.popup_registro=false;
                       this.router.navigate(['/']);
                   break;
                   case "email exist":
+                    this.popup_g=true;
                     this.popup_exist=false;
+                  break;
+                  case "documentNumberExists":
+                    this.popup_g=true;
+                    alert("El número de CUIT ya esta registrado porfavor intente con otro.");
                   break;
                   default:
                     alert(this.msg);
@@ -147,12 +153,14 @@ export class SingupComponent implements OnInit {
           res => {
                 this.msg = JSON.parse(JSON.stringify(res))._body;
                 if(this.msg=='save'){
+                  this.popup_g=true;
                   this.popup_registro=false;
                   this.router.navigate(['/']);   
                 }
                 else{
                   this.popup_g=true;
                   if(this.msg=='email exist'){
+                    this.popup_g=true;
                     this.popup_exist=false;
                   }else{
                     alert(this.msg);

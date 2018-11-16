@@ -213,7 +213,7 @@
                                     <div class="form-group">
                                         <label>Documento del titular de esta tarjeta</label>
                                         <div class="row">
-                                            <input  (focus)="focusedf=true" (keypress)="keyPress($event)" type="text" class="form-control" id="dni" name="dni" [(ngModel)]="dni" placeholder="Usa sólo números" maxlength="15">
+                                            <input  (focus)="focusedf=true" (keypress)="keyPress($event)" type="text" class="form-control" id="dni" name="dni" [(ngModel)]="dni" placeholder="Usa sólo números" (ngModelChange)="changeDniNumber($event)" maxlength="10">
                                         </div>
                                         <div class="error-g row">
                                             <p  [hidden]="hidDni">* Ingrese su número de documento</p>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="col-sm-6">
                     <label class="col-form-label">* Número de documento</label>
-                    <input id="documentNumber" (focus)="focusedf=true" type="text" class="form-control" name="documentNumber" [(ngModel)]="documentNumber" >
+                    <input id="documentNumber" (focus)="focusedf=true" type="text" class="form-control" name="documentNumber" [(ngModel)]="documentNumber"(ngModelChange)="changeDocumentNumber($event)" maxlength="10" >
                     <div class="error-g row">
                         <p  [hidden]="hidFullname">* Nombre completo requerido</p>
                     </div>

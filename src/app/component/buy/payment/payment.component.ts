@@ -40,7 +40,7 @@ export class PaymentComponent implements OnInit {
   cvv:number;
   dueMonth:string="0";
   dueYear:string="0";
-  dni:number;
+  dni:string;
   paymentMethod:string="null";
   focusedr:boolean;
   focusedf:boolean=true;
@@ -190,7 +190,7 @@ export class PaymentComponent implements OnInit {
           this.payment.yng_Card.securityCode=this.cvv;
           this.payment.yng_Card.dueMonth=+this.dueMonth;
           this.payment.yng_Card.dueYear=+this.dueYear;
-          this.payment.yng_Card.dni=this.dni;
+          this.payment.yng_Card.dni= +this.dni;
           //fin de datos del formulario para tarjetas
           this.payment.yng_Card.user=JSON.parse(localStorage.getItem("user"));
         }
@@ -225,7 +225,7 @@ export class PaymentComponent implements OnInit {
       this.hidDueYear=false;
       this.elem.nativeElement.querySelector('#dueYear').focus();
       return false;
-    }else if(this.dni==0 || this.dni==null){
+    }else if(this.dni=="" || this.dni==null){
       this.hidDni=false;
       this.elem.nativeElement.querySelector('#dni').focus();
       return false;
@@ -281,4 +281,30 @@ export class PaymentComponent implements OnInit {
       this.cardNumber+=" ";
     }*/
   }
+  changeDniNumber(event: any) {
+    this.dni=this.dni.replace(".","");
+    if(this.dni.length>=2&&this.dni.length<=5){
+      this.dni=this.dni.replace(".","");
+      this.dni = this.dni.substring(0, 2)+"."+this.dni.substring(2, this.dni.length);
+    }
+    if(this.dni.length>5){
+      this.dni=this.dni.replace(".","");
+      this.dni = this.dni.substring(0, 2)+"."+this.dni.substring(2, 5)+"."+this.dni.substring(5, this.dni.length);
+    }
+    //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
+  }
+
+  changeDocumentNumber(event: any) {
+    this.documentNumber=this.documentNumber.replace(".","");
+    if(this.documentNumber.length>=2&&this.documentNumber.length<=5){
+      this.documentNumber=this.documentNumber.replace(".","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"."+this.documentNumber.substring(2, this.documentNumber.length);
+    }
+    if(this.documentNumber.length>5){
+      this.documentNumber=this.documentNumber.replace(".","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"."+this.documentNumber.substring(2, 5)+"."+this.documentNumber.substring(5, this.documentNumber.length);
+    }
+    //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
+  }
+
 }

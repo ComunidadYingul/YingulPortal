@@ -474,33 +474,39 @@ export class UserProfileComponent implements OnInit {
     );
   }
   sendUserDocument(){
-    this.process();
-    this.newUser.documentNumber=this.userDocumentNumber;
-    this.newUser.documentType=this.userDocumentType;
-    this.userService.updateUserDocument(this.newUser,this.User).subscribe(
-      res => {
-            this.msg = JSON.parse(JSON.stringify(res))._body;
-            this.redirectTo1();
-          },
-          error => {
-            console.log(error);
-          }
-    );
+    const patron = /^[0-9]{2}.[0-9]{3}.[0-9]{3}$/;
+    if (patron.test(this.userDocumentNumber)) { 
+      this.process();
+      this.newUser.documentNumber=this.userDocumentNumber.split(".").join("");
+      this.newUser.documentType=this.userDocumentType;
+      this.userService.updateUserDocument(this.newUser,this.User).subscribe(
+        res => {
+              this.msg = JSON.parse(JSON.stringify(res))._body;
+              this.redirectTo1();
+            },
+            error => {
+              console.log(error);
+            }
+      );
+    }
   }
   sendDocumentNumber(){
-    this.process();
-    this.business.documentNumber=this.documentNumber;
-    this.business.documentType="CUIT";
-    this.business.user=null;
-    this.userService.updateBusinessDocumentNumber(this.business,this.User).subscribe(
-      res => {
-            this.msg = JSON.parse(JSON.stringify(res))._body;
-            this.redirectTo1();
-          },
-          error => {
-            console.log(error);
-          }
-    );
+    const patron = /^[0-9]{2}.[0-9]{8}.[0-9]{1}$/;
+    if (patron.test(this.documentNumber)) { 
+      this.process();
+      this.business.documentNumber=this.documentNumber.split("-").join("");
+      this.business.documentType="CUIT";
+      this.business.user=null;
+      this.userService.updateBusinessDocumentNumber(this.business,this.User).subscribe(
+        res => {
+              this.msg = JSON.parse(JSON.stringify(res))._body;
+              this.redirectTo1();
+            },
+            error => {
+              console.log(error);
+            }
+      );
+    }
   }
   sendPhones(){
     this.process();
@@ -664,5 +670,29 @@ export class UserProfileComponent implements OnInit {
     if (event.keyCode != 8 && !patron.test(inputChar)) {
       event.preventDefault();
     }
+  }
+  changeCuitNumber(event: any) {
+    this.documentNumber=this.documentNumber.replace("-","");
+    if(this.documentNumber.length>=2&&this.documentNumber.length<=10){
+      this.documentNumber=this.documentNumber.replace("-","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, this.documentNumber.length);
+    }
+    if(this.documentNumber.length>10){
+      this.documentNumber=this.documentNumber.replace("-","");
+      this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, this.documentNumber.length);
+    }
+    //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
+  }
+  changeDocumentNumber(event: any) {
+    this.userDocumentNumber=this.userDocumentNumber.replace(".","");
+    if(this.userDocumentNumber.length>=2&&this.userDocumentNumber.length<=5){
+      this.userDocumentNumber=this.userDocumentNumber.replace(".","");
+      this.userDocumentNumber = this.userDocumentNumber.substring(0, 2)+"."+this.userDocumentNumber.substring(2, this.userDocumentNumber.length);
+    }
+    if(this.userDocumentNumber.length>5){
+      this.userDocumentNumber=this.userDocumentNumber.replace(".","");
+      this.userDocumentNumber = this.userDocumentNumber.substring(0, 2)+"."+this.userDocumentNumber.substring(2, 5)+"."+this.userDocumentNumber.substring(5, this.userDocumentNumber.length);
+    }
+    //this.documentNumber = this.documentNumber.substring(0, 2)+"-"+this.documentNumber.substring(2, 10)+"-"+this.documentNumber.substring(10, 11);
   }
 }

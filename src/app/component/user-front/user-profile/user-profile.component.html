@@ -251,7 +251,7 @@
                                                                                     <tbody>
                                                                                         <tr class="row">
                                                                                             <th class="col-12 col-sm-4" scope="row">Número de documento</th>
-                                                                                            <td *ngIf="person.yng_User.documentNumber">{{person.yng_User.documentNumber}} <a style="cursor: pointer; color:#0275d8;" (click)="setUserDocument()">Modificar</a></td>
+                                                                                            <td *ngIf="person.yng_User.documentNumber">{{person.yng_User.documentNumber.substring(0,2)+"."+person.yng_User.documentNumber.substring(2,5)+"."+person.yng_User.documentNumber.substring(5)}} <a style="cursor: pointer; color:#0275d8;" (click)="setUserDocument()">Modificar</a></td>
                                                                                             <td *ngIf="!person.yng_User.documentNumber"><a style="cursor: pointer; color:#0275d8;" (click)="setUserDocument()"> Agregar</a></td>
                                                                                         </tr>
                                                                                     </tbody>
@@ -279,7 +279,7 @@
                                                                                     <tbody>
                                                                                         <tr class="row">
                                                                                             <th class="col-12 col-sm-4" scope="row">CUIT</th>
-                                                                                            <td>{{business.documentNumber}} <a style="cursor: pointer; color:#0275d8;" (click)="updateUserDocument()">Modificar</a></td>
+                                                                                            <td>{{business.documentNumber.substring(0,2)+"-"+business.documentNumber.substring(2,10)+"-"+business.documentNumber.substring(10)}} <a style="cursor: pointer; color:#0275d8;" (click)="updateUserDocument()">Modificar</a></td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -769,7 +769,10 @@
                 <span class="input-group-addon">
                     <i class="icofont icofont-ui-user"></i>
                 </span>
-                <input type="text" class="form-control" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Nuevo CUIT escribe solo números" required >
+                <input type="text" class="form-control" name="documentNumber" [(ngModel)]="documentNumber" placeholder="Nuevo CUIT escribe solo números" (ngModelChange)="changeCuitNumber($event)" maxlength="13" required >
+            </div>
+            <div class="error-g row">
+                <p  [hidden]="">* Debes seleccionar un medio de pago</p>
             </div>
         </div>
         <hr class="m-t-20 m-b-20">
@@ -802,7 +805,7 @@
                     <option [value]="1" >DNI</option>
                     <option  [value]="2" >CUIT</option>
                 </select>
-              <input type="text" class="form-control col-sm-11" name="userDocumentNumber" [(ngModel)]="userDocumentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" [maxlength]="maxDocumentNumber">
+              <input type="text" class="form-control col-sm-11" name="userDocumentNumber" [(ngModel)]="userDocumentNumber" placeholder="Número de DNI/CUIT" aria-label="Text input with radio button" (ngModelChange)="changeDocumentNumber($event)" [maxlength]="10">
             </div>
         </div>
         <hr class="m-t-20 m-b-20">
